@@ -12,97 +12,108 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
         
-        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 1.2rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.4rem; }
-        .nav-links { list-style: none; display: flex; gap: 1.5rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.85rem; }
+        /* ヘッダーの修正：高さを固定してズレを防止 */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            padding: 0 5%; 
+            height: 70px; /* 高さをしっかり固定 */
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0;
+            z-index: 1000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
 
-        .hero { height: 60vh; background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1500&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.8rem, 5vw, 3rem); color: var(--dark); }
+        /* メインビジュアル：ヘッダーの高さ分(70px)を避ける */
+        .hero { 
+            margin-top: 70px;
+            height: 50vh; 
+            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1500&q=80'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+        }
+        .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.3; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 5rem 1.5rem; }
-        section { margin-bottom: 6rem; padding-top: 80px; }
-        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 2rem; margin-bottom: 3.5rem; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem; }
+        section { margin-bottom: 5rem; scroll-margin-top: 90px; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
 
-        .lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .card { background: #fff; padding: 2.5rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
         .food-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
         .price { font-size: 1.6rem; font-weight: bold; color: var(--dark); }
 
-        .consultation-banner { background: #fff; padding: 2.5rem; border-radius: 25px; text-align: center; border: 1px solid #e0e6ed; max-width: 650px; margin: 0 auto; box-shadow: var(--shadow); }
+        .consultation-banner { background: #fff; padding: 2rem; border-radius: 25px; text-align: center; border: 1px solid #e0e6ed; max-width: 600px; margin: 0 auto; box-shadow: var(--shadow); }
 
-        .profile-box { background: #fff; padding: 4rem 2rem; border-radius: 30px; box-shadow: var(--shadow); max-width: 900px; margin: 0 auto; }
-        .profile-content { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; justify-content: center; }
+        .profile-box { background: #fff; padding: 3rem 1.5rem; border-radius: 30px; box-shadow: var(--shadow); max-width: 850px; margin: 0 auto; }
+        .profile-content { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center; }
         .profile-image-container { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: var(--primary-light); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; }
-        .exp-item { margin-bottom: 1rem; display: flex; gap: 1rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 0.5rem; }
-        .exp-year { color: var(--primary); font-weight: bold; min-width: 80px; }
+        .exp-item { margin-bottom: 0.8rem; display: flex; gap: 1rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 0.5rem; font-size: 0.9rem; }
+        .exp-year { color: var(--primary); font-weight: bold; min-width: 70px; }
 
-        /* Links Grid Layout: ボタンを少し上に配置 */
-        .unified-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .unified-card { 
-            background: #fff; 
-            padding: 2.5rem 1.5rem; 
-            border-radius: 25px; 
-            text-align: center; 
-            box-shadow: var(--shadow); 
-            text-decoration: none; 
-            color: inherit; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; /* 中央寄せに変更 */
-            border: 1px solid rgba(0,0,0,0.02); 
-            transition: 0.3s;
-            min-height: 250px; /* 高さを少し低く調整 */
-        }
+        .unified-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+        .unified-card { background: #fff; padding: 2rem 1.2rem; border-radius: 25px; text-align: center; box-shadow: var(--shadow); text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; border: 1px solid rgba(0,0,0,0.02); transition: 0.3s; min-height: 240px; }
         .unified-card:hover { transform: translateY(-5px); }
-        .unified-card i { font-size: 2.2rem; margin-bottom: 1rem; color: var(--primary); }
-        .unified-card h3 { margin-bottom: 0.5rem; }
-        .unified-card p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; } /* 下の余白を縮小 */
+        .unified-card i { font-size: 2rem; margin-bottom: 0.8rem; color: var(--primary); }
+        .unified-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .unified-card p { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
 
-        /* ボタンの配置：margin-top: autoを削除し、固定の余白を設定 */
-        .btn-bottom { 
-            margin-top: 10px; /* 説明文からの距離 */
-            font-size: 0.75rem; 
-            font-weight: bold; 
-            padding: 8px 18px; 
-            border-radius: 50px; 
-            letter-spacing: 0.5px;
+        .btn-bottom { margin-top: 10px; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; }
+
+        footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+        
+        /* スマホ対応：メニューが重ならないように調整 */
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; }
+            .hero { height: 40vh; }
         }
-
-        footer { padding: 4rem 1rem; text-align: center; font-size: 0.8rem; color: #aaa; }
-        @media (max-width: 768px) { .nav-links { display: none; } .profile-box { padding: 2.5rem 1.5rem; } }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">Ohayo Center</div>
+    <div class="logo">OHAYO CENTER</div>
     <ul class="nav-links">
         <li><a href="#lessons">LESSONS</a></li>
         <li><a href="#profile">PROFILE</a></li>
-        <li><a href="#resources">FREE MATERIAL</a></li>
+        <li><a href="#resources">MATERIAL</a></li>
     </ul>
 </nav>
 
 <header class="hero">
-    <p>Enjoy Online Japanese Learning</p>
-    <h1>OHAYO CENTER<br>ONLINE JAPANESE LESSON</h1>
+    <p style="font-size: 0.9rem; letter-spacing: 2px;">ONLINE JAPANESE LESSON</p>
+    <h1>ENJOY LEARNING<br>JAPANESE</h1>
 </header>
 
 <div class="container">
     <section id="lessons">
         <h2>Lesson Course</h2>
         <div class="lesson-grid">
-            <div class="card"><span class="food-icon">🍙</span><h3>30 min</h3><p class="price">1,800 yen</p><span style="color:#888; font-size:0.85rem;">5 lessons: 9,000 yen</span></div>
-            <div class="card"><span class="food-icon">🥪</span><h3>45 min</h3><p class="price">3,000 yen</p><span style="color:#888; font-size:0.85rem;">5 lessons: 14,000 yen</span></div>
-            <div class="card"><span class="food-icon">🍜</span><h3>60 min</h3><p class="price">3,500 yen</p><span style="color:#888; font-size:0.85rem;">5 lessons: 16,000 yen</span></div>
+            <div class="card"><span class="food-icon">🍙</span><h3>30 min</h3><p class="price">1,800 yen</p></div>
+            <div class="card"><span class="food-icon">🥪</span><h3>45 min</h3><p class="price">3,000 yen</p></div>
+            <div class="card"><span class="food-icon">🍜</span><h3>60 min</h3><p class="price">3,500 yen</p></div>
         </div>
         <div class="consultation-banner">
-            <h3>日本語教師相談</h3>
-            <p style="color:#666; font-size:0.9rem; margin-bottom: 10px;">Career support for future Japanese teachers</p>
-            <p style="font-weight:bold; font-size:1.4rem;">45 mins / 2,000 yen</p>
+            <h3 style="font-size: 1.2rem;">日本語教師相談</h3>
+            <p style="color:#666; font-size:0.8rem; margin-bottom: 8px;">Career support for future Japanese teachers</p>
+            <p style="font-weight:bold; font-size:1.2rem;">45 mins / 2,000 yen</p>
         </div>
     </section>
 
@@ -111,14 +122,17 @@
             <div class="profile-content">
                 <div class="profile-left">
                     <div class="profile-image-container">
-                        <img src="face.jpg" alt="Teacher" class="profile-photo">
+                        <picture>
+                            <source srcset="face.jpeg" type="image/jpeg">
+                            <img src="face.jpg" alt="Teacher" class="profile-photo">
+                        </picture>
                     </div>
-                    <p style="margin-top: 1.5rem; font-weight: bold;">Me as a Teacher</p>
+                    <p style="margin-top: 1.2rem; font-weight: bold; text-align: center;">Shinya</p>
                 </div>
                 <div class="profile-right">
-                    <div class="exp-item"><span class="exp-year">2017</span><span>Japanese Teaching Certificate (JAPAN)</span></div>
-                    <div class="exp-item"><span class="exp-year">2017-18</span><span>Japanese language school in Japan</span></div>
-                    <div class="exp-item"><span class="exp-year">2018-19</span><span>Public high schools in Vietnam</span></div>
+                    <div class="exp-item"><span class="exp-year">2017</span><span>Japanese Teaching Certificate</span></div>
+                    <div class="exp-item"><span class="exp-year">2017-18</span><span>Language school in Japan</span></div>
+                    <div class="exp-item"><span class="exp-year">2018-19</span><span>High schools in Vietnam</span></div>
                     <div class="exp-item"><span class="exp-year">2019-Now</span><span>Ohayo Center (JAPAN)</span></div>
                 </div>
             </div>
@@ -133,8 +147,8 @@
                 <div class="btn-bottom" style="color:var(--primary); border:1px solid;">VIEW MORE</div>
             </a>
             <a href="https://buymeacoffee.com/ohayocenteh" class="unified-card" target="_blank">
-                <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i><h3>Support Me</h3><p>Support Ohayo Center</p>
-                <div class="btn-bottom"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 32px;"></div>
+                <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i><h3>Support Me</h3><p>Support my work</p>
+                <div class="btn-bottom"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;"></div>
             </a>
             <a href="https://wise.com/pay/me/shinyau31" class="unified-card" target="_blank">
                 <i class="fa-solid fa-wallet" style="color: #00b894;"></i><h3>Payments</h3><p>Wise (@shinyau31)</p>
@@ -151,5 +165,4 @@
 <footer><p>&copy; 2026 Ohayo Center. All rights reserved.</p></footer>
 
 </body>
-
 </html>
