@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>まるごと 漢字練習：初級2（No.222-391）トピック別版</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db; /* 初級2はブルー系 */
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .container { max-width: 1100px; width: 100%; }
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.6em; margin-bottom: 20px; }
+        .slide {
+            display: none; background: var(--card-bg); padding: 30px;
+            border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            animation: fadeIn 0.4s ease;
+        }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .topic-label {
+            background: var(--accent-color); color: white;
+            display: inline-block; padding: 5px 15px; border-radius: 20px;
+            font-size: 0.9em; font-weight: bold; margin-bottom: 10px;
+        }
+        .topic-title {
+            font-size: 1.4em; font-weight: bold; color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px; margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px; margin-bottom: 30px;
+        }
+        .kanji-card {
+            border: 1px solid #eee; padding: 15px; border-radius: 10px;
+            text-align: center; background: #fff; transition: all 0.2s;
+            position: relative; border-bottom: 3px solid #ddd;
+        }
+        .kanji-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
+        .no-badge { position: absolute; top: 5px; left: 8px; font-size: 0.7em; color: #aaa; }
+        .question { font-size: 1.4em; font-weight: bold; color: #333; margin-bottom: 5px; }
+        .meaning { font-size: 0.8em; color: #666; min-height: 2.5em; display: flex; align-items: center; justify-content: center; line-height: 1.2; }
+        .answer {
+            background: #f1f2f6; color: #f1f2f6; padding: 8px;
+            border-radius: 5px; cursor: pointer; font-weight: bold;
+            font-size: 0.95em; transition: all 0.3s; border: 1px dashed #ccc;
+        }
+        .answer.reveal { background: var(--accent-color); color: white; border-style: solid; }
+
+        .controls { text-align: center; margin-top: 30px; }
+        button {
+            padding: 12px 35px; font-size: 1em; cursor: pointer;
+            background: var(--primary-color); color: white;
+            border: none; border-radius: 30px; margin: 0 10px; transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.8; }
+        button:disabled { background: #bdc3c7; cursor: not-allowed; }
+        
+        .footer {
+            margin-top: 50px; text-align: center; padding: 25px;
+            border-top: 1px solid #ddd; width: 100%;
+        }
+        .bmc-button {
+            display: inline-block; background-color: #FFDD00; color: #000;
+            padding: 12px 25px; border-radius: 10px; text-decoration: none;
+            font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>漢字読み練習：初級2（No.222 - 391）</h1>
+
+    <div class="slide active" id="slide1">
+        <div class="topic-label">Topic 1</div><div class="topic-title">新しい友だち [No.222-242]</div>
+        <div class="grid" id="gridT1"></div>
+        <div class="topic-label">Topic 2</div><div class="topic-title">店で食べる [No.243-259]</div>
+        <div class="grid" id="gridT2"></div>
+    </div>
+
+    <div class="slide" id="slide2">
+        <div class="topic-label">Topic 3</div><div class="topic-title">沖縄旅行 [No.260-281]</div>
+        <div class="grid" id="gridT3"></div>
+        <div class="topic-label">Topic 4</div><div class="topic-title">日本祭 [No.282-298]</div>
+        <div class="grid" id="gridT4"></div>
+    </div>
+
+    <div class="slide" id="slide3">
+        <div class="topic-label">Topic 5</div><div class="topic-title">特別な日 [No.299-315]</div>
+        <div class="grid" id="gridT5"></div>
+        <div class="topic-label">Topic 6</div><div class="topic-title">ネットショッピング [No.316-336]</div>
+        <div class="grid" id="gridT6"></div>
+    </div>
+
+    <div class="slide" id="slide4">
+        <div class="topic-label">Topic 7</div><div class="topic-title">歴史と文化の町 [No.337-354]</div>
+        <div class="grid" id="gridT7"></div>
+        <div class="topic-label">Topic 8</div><div class="topic-title">せいかつとエコ [No.355-372]</div>
+        <div class="grid" id="gridT8"></div>
+    </div>
+
+    <div class="slide" id="slide5">
+        <div class="topic-label">Topic 9</div><div class="topic-title">人生 [No.373-391]</div>
+        <div class="grid" id="gridT9"></div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+        <span id="pageIndicator" style="font-weight: bold; margin: 0 15px;">1 / 5</span>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <div class="footer">
+        <a class="bmc-button" href="https://buymeacoffee.com/ohayocenteh" target="_blank">☕ Buy me a coffee</a>
+        <p style="margin-top: 15px; font-weight: bold;">Thank you for your support!</p>
+    </div>
+</div>
+
+<script>
+    const data = {
+        T1: [
+            {n:222,q:"自己紹介",a:"じこしょうかい",m:"Self-introduction"},{n:223,q:"名前",a:"なまえ",m:"Name"},{n:224,q:"意味",a:"いみ",m:"Meaning"},{n:225,q:"本屋",a:"ほんや",m:"Bookstore"},{n:226,q:"近く",a:"ちかく",m:"Near"},
+            {n:227,q:"住みます",a:"すみます",m:"To live"},{n:228,q:"働きます",a:"はたらきます",m:"To work"},{n:229,q:"~番目",a:"ばんめ",m:"Order (~th)"},{n:230,q:"兄",a:"あに",m:"Older brother"},{n:231,q:"お兄さん",a:"おにいさん",m:"Older brother (polite)"},
+            {n:232,q:"姉",a:"あね",m:"Older sister"},{n:233,q:"お姉さん",a:"おねえさん",m:"Older sister (polite)"},{n:234,q:"弟",a:"おとうと",m:"Younger brother"},{n:235,q:"妹",a:"いもうと",m:"Younger sister"},{n:236,q:"家族",a:"かぞく",m:"Family"},
+            {n:237,q:"長い",a:"ながい",m:"Long"},{n:238,q:"短い",a:"みじかい",m:"Short"},{n:239,q:"低い",a:"ひくい",m:"Low/Short"},{n:240,q:"上手",a:"じょうず",m:"Skillful"},{n:241,q:"歌",a:"うた",m:"Song"},{n:242,q:"歌います",a:"うたいます",m:"To sing"}
+        ],
+        T2: [
+            {n:243,q:"客",a:"きゃく",m:"Guest/Customer"},{n:244,q:"注文",a:"ちゅうもん",m:"Order"},{n:245,q:"洋食",a:"ようしょく",m:"Western food"},{n:246,q:"和食",a:"わしょく",m:"Japanese food"},{n:247,q:"牛肉",a:"ぎゅうにく",m:"Beef"},
+            {n:248,q:"地方",a:"ちほう",m:"Region/Locality"},{n:249,q:"有名",a:"ゆうめい",m:"Famous"},{n:250,q:"生",a:"なま",m:"Raw"},{n:251,q:"冷たい",a:"つめたい",m:"Cold"},{n:252,q:"ご飯",a:"ごはん",m:"Rice/Meal"},
+            {n:253,q:"塩",a:"しお",m:"Salt"},{n:254,q:"全部",a:"ぜんぶ",m:"All"},{n:255,q:"~方",a:"かた",m:"Way of ~"},{n:256,q:"食べ方",a:"たべかた",m:"Way of eating"},{n:257,q:"熱い",a:"あつい",m:"Hot"},
+            {n:258,q:"苦手",a:"にがて",m:"Poor at"},{n:259,q:"入れます",a:"いれます",m:"To put in"}
+        ],
+        T3: [
+            {n:260,q:"木",a:"き",m:"Tree"},{n:261,q:"森",a:"もり",m:"Forest"},{n:262,q:"島",a:"しま",m:"Island"},{n:263,q:"自然",a:"しぜん",m:"Nature"},{n:264,q:"船",a:"ふね",m:"Ship"},
+            {n:265,q:"暑い",a:"あつい",m:"Hot (weather)"},{n:266,q:"帰ります",a:"かえります",m:"To return"},{n:267,q:"予約します",a:"よやくします",m:"To reserve"},{n:268,q:"運転します",a:"うんてんします",m:"To drive"},{n:269,q:"~中",a:"ちゅう",m:"During"},
+            {n:270,q:"旅行中",a:"りょこうちゅう",m:"During a trip"},{n:271,q:"観光地",a:"かんこうち",m:"Sightseeing spot"},{n:272,q:"女性",a:"じょせい",m:"Woman/Female"},{n:273,q:"男性",a:"だんせい",m:"Man/Male"},{n:274,q:"動物",a:"どうぶつ",m:"Animal"},
+            {n:275,q:"空気",a:"くうき",m:"Air"},{n:276,q:"料金",a:"りょうきん",m:"Fee"},{n:277,q:"無料",a:"むりょう",m:"Free"},{n:278,q:"明るい",a:"あかるい",m:"Bright"},{n:279,q:"便利",a:"べんり",m:"Convenient"},
+            {n:280,q:"~中",a:"じゅう",m:"Throughout"},{n:281,q:"一年中",a:"いちねんじゅう",m:"All year round"}
+        ],
+        T4: [
+            {n:282,q:"受付",a:"うけつけ",m:"Reception"},{n:283,q:"広場",a:"ひろば",m:"Square"},{n:284,q:"問題",a:"もんだい",m:"Problem"},{n:285,q:"同じ",a:"おなじ",m:"Same"},{n:286,q:"集まります",a:"あつまります",m:"To gather"},
+            {n:287,q:"始まります",a:"はじまります",m:"To begin"},{n:288,q:"終わります",a:"おわります",m:"To end"},{n:289,q:"中止します",a:"ちゅうしします",m:"To cancel"},{n:290,q:"教えます",a:"おしえます",m:"To teach"},{n:291,q:"祭り",a:"まつり",m:"Festival"},
+            {n:292,q:"日本祭",a:"にほんまつり",m:"Japanese Festival"},{n:293,q:"会場",a:"かいじょう",m:"Venue"},{n:294,q:"入場料",a:"にゅうじょうりょう",m:"Admission fee"},{n:295,q:"参加者",a:"さんかしゃ",m:"Participant"},{n:296,q:"急ぎます",a:"いそぎます",m:"To hurry"},
+            {n:297,q:"決めます",a:"きめます",m:"To decide"},{n:298,q:"知ります",a:"しります",m:"To know"}
+        ],
+        T5: [
+            {n:299,q:"正月",a:"しょうがつ",m:"New Year"},{n:300,q:"年末",a:"ねんまつ",m:"Year-end"},{n:301,q:"年始",a:"ねんし",m:"Beginning of year"},{n:302,q:"親",a:"おや",m:"Parent"},{n:303,q:"忙しい",a:"いそがしい",m:"Busy"},
+            {n:304,q:"特別",a:"とくべつ",m:"Special"},{n:305,q:"帰国",a:"きこく",m:"Returning home"},{n:306,q:"喜びます",a:"よろこびます",m:"To be happy"},{n:307,q:"幸せ",a:"しあわせ",m:"Happiness"},{n:308,q:"成長",a:"せいちょう",m:"Growth"},
+            {n:309,q:"長生き",a:"ながいき",m:"Long life"},{n:310,q:"願い事",a:"ねがいごと",m:"Wish"},{n:311,q:"合格",a:"ごうかく",m:"Pass (exam)"},{n:312,q:"試験",a:"しけん",m:"Exam"},{n:313,q:"大人",a:"おとな",m:"Adult"},
+            {n:314,q:"~式",a:"しき",m:"Ceremony"},{n:315,q:"~市",a:"し",m:"City"}
+        ],
+        T6: [
+            {n:316,q:"商品",a:"しょうひん",m:"Product"},{n:317,q:"電気製品",a:"でんきせいひん",m:"Electric appliance"},{n:318,q:"電子レンジ",a:"でんしレンジ",m:"Microwave"},{n:319,q:"~機",a:"き",m:"Machine"},{n:320,q:"店員",a:"てんいん",m:"Clerk"},
+            {n:321,q:"調子",a:"ちょうし",m:"Condition"},{n:322,q:"悪い",a:"わるい",m:"Bad"},{n:323,q:"動きます",a:"うごきます",m:"To move"},{n:324,q:"考えます",a:"かんがえます",m:"To think"},{n:325,q:"音",a:"おと",m:"Sound"},
+            {n:326,q:"出ます",a:"でます",m:"To come out"},{n:327,q:"機能",a:"きのう",m:"Function"},{n:328,q:"省エネ",a:"しょうエネ",m:"Energy saving"},{n:329,q:"日本製",a:"にほんせい",m:"Made in Japan"},{n:330,q:"重い",a:"おもい",m:"Heavy"},
+            {n:331,q:"軽い",a:"かるい",m:"Light"},{n:332,q:"静か",a:"しずか",m:"Quiet"},{n:333,q:"早く",a:"はやく",m:"Fast/Early"},{n:334,q:"方",a:"ほう",m:"Way/Side"},{n:335,q:"洗います",a:"あらいます",m:"To wash"},
+            {n:336,q:"満足します",a:"まんぞくします",m:"To be satisfied"}
+        ],
+        T7: [
+            {n:337,q:"京都",a:"きょうと",m:"Kyoto"},{n:338,q:"神社",a:"じんじゃ",m:"Shrine"},{n:339,q:"お寺",a:"おてら",m:"Temple"},{n:340,q:"仏教",a:"ぶっきょう",m:"Buddhism"},{n:341,q:"歴史",a:"れきし",m:"History"},
+            {n:342,q:"世界",a:"せかい",m:"World"},{n:343,q:"中心",a:"ちゅうしん",m:"Center"},{n:344,q:"~世紀",a:"せいき",m:"~ Century"},{n:345,q:"~的",a:"てき",m:"~ical"},{n:346,q:"日本的",a:"にほんてき",m:"Typically JP"},
+            {n:347,q:"歴史的",a:"れきしてき",m:"Historical"},{n:348,q:"飲食",a:"いんしょく",m:"Eating/Drinking"},{n:349,q:"禁止",a:"きんし",m:"Prohibition"},{n:350,q:"説明",a:"せつめい",m:"Explanation"},{n:351,q:"道具",a:"どうぐ",m:"Tool"},
+            {n:352,q:"博物館",a:"はくぶつかん",m:"Museum"},{n:353,q:"必要",a:"ひつよう",m:"Necessary"},{n:354,q:"~階",a:"かい",m:"Floor"}
+        ],
+        T8: [
+            {n:355,q:"油",a:"あぶら",m:"Oil"},{n:356,q:"紙",a:"かみ",m:"Paper"},{n:357,q:"温度",a:"おんど",m:"Temperature"},{n:358,q:"活動",a:"かつどう",m:"Activity"},{n:359,q:"会議室",a:"かいぎしつ",m:"Meeting room"},
+            {n:360,q:"寒い",a:"さむい",m:"Cold (weather)"},{n:361,q:"出します",a:"だします",m:"To put out"},{n:362,q:"~度",a:"ど",m:"Degrees"},{n:363,q:"~点",a:"てん",m:"Points"},{n:364,q:"服",a:"ふく",m:"Clothes"},
+            {n:365,q:"自転車",a:"じてんしゃ",m:"Bicycle"},{n:366,q:"自動車",a:"じどうしゃ",m:"Automobile"},{n:367,q:"売ります",a:"うります",m:"To sell"},{n:368,q:"貸します",a:"かします",m:"To lend"},{n:369,q:"返します",a:"かえします",m:"To return"},
+            {n:370,q:"変わります",a:"かわります",m:"To change"},{n:371,q:"~用",a:"よう",m:"For ~ use"},{n:372,q:"子ども用",a:"こどもよう",m:"For children"}
+        ],
+        T9: [
+            {n:373,q:"人生",a:"じんせい",m:"Life"},{n:374,q:"歌手",a:"かしゅ",m:"Singer"},{n:375,q:"選手",a:"せんしゅ",m:"Athlete"},{n:376,q:"画家",a:"がか",m:"Painter"},{n:377,q:"作家",a:"さっか",m:"Author"},
+            {n:378,q:"入学",a:"にゅうがく",m:"Admission"},{n:379,q:"卒業",a:"そつぎょう",m:"Graduation"},{n:380,q:"病気",a:"びょうき",m:"Illness"},{n:381,q:"若い",a:"わかい",m:"Young"},{n:382,q:"生まれます",a:"うまれます",m:"To be born"},
+            {n:383,q:"思い出",a:"おもいで",m:"Memory"},{n:384,q:"生活",a:"せいかつ",m:"Living/Life"},{n:385,q:"映画",a:"えいが",m:"Movie"},{n:386,q:"夫",a:"おっと",m:"Husband"},{n:387,q:"妻",a:"つま",m:"Wife"},
+            {n:388,q:"両親",a:"りょうしん",m:"Parents"},{n:389,q:"不便",a:"ふべん",m:"Inconvenient"},{n:390,q:"選びます",a:"えらびます",m:"To choose"},{n:391,q:"寝ます",a:"ねます",m:"To sleep"}
+        ]
+    };
+
+    function populate() {
+        Object.keys(data).forEach(key => {
+            const grid = document.getElementById('grid' + key);
+            data[key].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'kanji-card';
+                card.innerHTML = `
+                    <span class="no-badge">${item.n}</span>
+                    <div class="question">${item.q}</div>
+                    <div class="meaning">${item.m}</div>
+                    <div class="answer" onclick="this.classList.toggle('reveal')">${item.a}</div>
+                `;
+                grid.appendChild(card);
+            });
+        });
+    }
+
+    let currentSlide = 1;
+    const totalSlides = 5;
+    function changeSlide(n) {
+        document.getElementById(`slide${currentSlide}`).classList.remove('active');
+        currentSlide += n;
+        document.getElementById(`slide${currentSlide}`).classList.add('active');
+        document.getElementById('prevBtn').disabled = currentSlide === 1;
+        document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        document.getElementById('pageIndicator').innerText = `${currentSlide} / ${totalSlides}`;
+        window.scrollTo(0, 0);
+    }
+
+    populate();
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>まるごと 漢字読み練習：入門（No.1-65）</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22; /* 入門テーマカラー */
+            --bg-color: #fdfaf6;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .container { max-width: 1000px; width: 100%; }
+        h1 { text-align: center; color: var(--primary-color); margin-bottom: 20px; }
+        .slide {
+            display: none; background: var(--card-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.4s ease;
+        }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .topic-header {
+            font-size: 1.1em; font-weight: bold; color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px; margin: 15px 0 10px 0;
+            background: #fdf2e9; padding-top: 5px; padding-bottom: 5px;
+        }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(5, 1fr);
+            gap: 12px; margin-bottom: 20px;
+        }
+        .kanji-card {
+            border: 1px solid #eee; padding: 12px; border-radius: 8px;
+            text-align: center; background: #fff; transition: all 0.2s;
+            position: relative;
+        }
+        .no-badge { position: absolute; top: 2px; left: 5px; font-size: 0.6em; color: #bbb; }
+        .question { font-size: 1.4em; font-weight: bold; color: #333; margin-bottom: 5px; }
+        .meaning { font-size: 0.75em; color: #666; height: 2.4em; display: flex; align-items: center; justify-content: center; }
+        .answer {
+            background: #f1f2f6; color: #f1f2f6; padding: 6px;
+            border-radius: 4px; cursor: pointer; font-weight: bold;
+            font-size: 0.9em; transition: all 0.3s; border: 1px dashed #ccc;
+        }
+        .answer.reveal { background: var(--accent-color); color: white; border-style: solid; }
+
+        .controls { text-align: center; margin-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1em; cursor: pointer;
+            background: var(--primary-color); color: white;
+            border: none; border-radius: 25px; margin: 0 10px;
+        }
+        button:disabled { background: #bdc3c7; cursor: not-allowed; }
+        
+        .footer {
+            margin-top: 40px; text-align: center; padding: 25px;
+            border-top: 1px solid #ddd; width: 100%;
+        }
+        .bmc-button {
+            display: inline-block; background-color: #FFDD00; color: #000;
+            padding: 12px 24px; border-radius: 8px; text-decoration: none;
+            font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 800px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>漢字読み練習：入門編</h1>
+
+    <div class="slide active" id="slide1">
+        <div class="topic-header">トピック3：たべもの</div>
+        <div class="grid" id="grid1"></div>
+        <div class="topic-header">トピック4：いえ</div>
+        <div class="grid" id="grid2"></div>
+    </div>
+
+    <div class="slide" id="slide2">
+        <div class="topic-header">トピック5：せいかつ</div>
+        <div class="grid" id="grid3"></div>
+        <div class="topic-header">トピック6：やすみのひ 1</div>
+        <div class="grid" id="grid4"></div>
+    </div>
+
+    <div class="slide" id="slide3">
+        <div class="topic-header">トピック7：まち / トピック8：かいもの</div>
+        <div class="grid" id="grid5"></div>
+        <div class="topic-header">トピック9：やすみのひ 2</div>
+        <div class="grid" id="grid6"></div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+        <span id="pageIndicator" style="font-weight: bold;">1 / 3</span>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <div class="footer">
+        <a class="bmc-button" href="https://buymeacoffee.com/ohayocenteh" target="_blank">☕ Buy me a coffee</a>
+        <p style="margin-top: 15px; font-weight: bold;">Thank you for your support!</p>
+    </div>
+</div>
+
+<script>
+    const kanjiData = {
+        g1: [
+            {n:1, q:"魚", a:"さかな", m:"Fish"}, {n:2, q:"肉", a:"にく", m:"Meat"}, {n:3, q:"卵", a:"たまご", m:"Egg"},
+            {n:4, q:"水", a:"みず", m:"Water"}, {n:5, q:"食べます", a:"たべます", m:"Eat"}, {n:6, q:"飲みます", a:"のみます", m:"Drink"}
+        ],
+        g2: [
+            {n:7, q:"大きい", a:"おおきい", m:"Big"}, {n:8, q:"小さい", a:"ちいさい", m:"Small"}, 
+            {n:9, q:"新しい", a:"あたらしい", m:"New"}, {n:10, q:"古い", a:"ふるい", m:"Old"}
+        ],
+        g3: [
+            {n:11, q:"~時", a:"じ", m:"~ o'clock"}, {n:12, q:"~分", a:"ふん/ぶん", m:"~ min"}, {n:13, q:"~半", a:"はん", m:"half past"},
+            {n:14, q:"月", a:"げつ", m:"Monday"}, {n:15, q:"火", a:"か", m:"Tuesday"}, {n:16, q:"水", a:"すい", m:"Wednesday"},
+            {n:17, q:"木", a:"もく", m:"Thursday"}, {n:18, q:"金", a:"きん", m:"Friday"}, {n:19, q:"土", a:"ど", m:"Saturday"},
+            {n:20, q:"日", a:"にち", m:"Sunday"}, {n:21, q:"~よう日", a:"ようび", m:"Day of the week"}
+        ],
+        g4: [
+            {n:22, q:"言います", a:"いいます", m:"Say"}, {n:23, q:"話します", a:"はなします", m:"Speak"}, {n:24, q:"読みます", a:"よみます", m:"Read"},
+            {n:25, q:"見ます", a:"みます", m:"See/Watch"}, {n:26, q:"聞きます", a:"ききます", m:"Hear/Listen"}, {n:27, q:"書きます", a:"かきます", m:"Write"},
+            {n:28, q:"一", a:"いち", m:"1"}, {n:29, q:"二", a:"に", m:"2"}, {n:30, q:"三", a:"さん", m:"3"}, {n:31, q:"四", a:"よん/し", m:"4"},
+            {n:32, q:"五", a:"ご", m:"5"}, {n:33, q:"六", a:"ろく", m:"6"}, {n:34, q:"七", a:"なな/しち", m:"7"}, {n:35, q:"八", a:"はち", m:"8"},
+            {n:36, q:"九", a:"きゅう/く", m:"9"}, {n:37, q:"十", a:"じゅう", m:"10"}, {n:38, q:"~年", a:"ねん", m:"Year"}, {n:39, q:"~月", a:"がつ", m:"Month"}, {n:40, q:"~日", a:"にち", m:"Day"}
+        ],
+        g5: [
+            {n:41, q:"東", a:"ひがし", m:"East"}, {n:42, q:"西", a:"にし", m:"West"}, {n:43, q:"南", a:"みなみ", m:"South"}, {n:44, q:"北", a:"きた", m:"North"},
+            {n:45, q:"~口", a:"ぐち", m:"Exit"}, {n:46, q:"東口", a:"ひがしぐち", m:"East Exit"}, {n:47, q:"西口", a:"にしぐち", m:"West Exit"},
+            {n:48, q:"南口", a:"みなみぐち", m:"South Exit"}, {n:49, q:"北口", a:"きたぐち", m:"North Exit"}, {n:50, q:"買います", a:"かいます", m:"Buy"},
+            {n:51, q:"買いもの", a:"かいもの", m:"Shopping"}, {n:52, q:"お金", a:"おかね", m:"Money"}, {n:53, q:"~円", a:"えん", m:"Yen"},
+            {n:54, q:"百", a:"ひゃく", m:"100"}, {n:55, q:"千", a:"せん", m:"1,000"}, {n:56, q:"万", a:"まん", m:"10,000"},
+            {n:57, q:"百円", a:"ひゃくえん", m:"100 Yen"}, {n:58, q:"千円", a:"せんえん", m:"1,000 Yen"}, {n:59, q:"一万円", a:"いちまんえん", m:"10,000 Yen"}
+        ],
+        g6: [
+            {n:60, q:"行きます", a:"いきます", m:"Go"}, {n:61, q:"来ます", a:"きます", m:"Come"}, {n:62, q:"会います", a:"あいます", m:"Meet"},
+            {n:63, q:"休みます", a:"やすみます", m:"Rest"}, {n:64, q:"日本", a:"にほん", m:"Japan"}, {n:65, q:"東京", a:"とうきょう", m:"Tokyo"}
+        ]
+    };
+
+    function populate(id, items) {
+        const grid = document.getElementById(id);
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'kanji-card';
+            card.innerHTML = `<span class="no-badge">${item.n}</span><div class="question">${item.q}</div><div class="meaning">${item.m}</div><div class="answer" onclick="this.classList.toggle('reveal')">${item.a}</div>`;
+            grid.appendChild(card);
+        });
+    }
+
+    Object.keys(kanjiData).forEach(key => populate('grid' + key.replace('g',''), kanjiData[key]));
+
+    let currentSlide = 1;
+    function changeSlide(n) {
+        document.getElementById(`slide${currentSlide}`).classList.remove('active');
+        currentSlide += n;
+        document.getElementById(`slide${currentSlide}`).classList.add('active');
+        document.getElementById('prevBtn').disabled = currentSlide === 1;
+        document.getElementById('nextBtn').disabled = currentSlide === 3;
+        document.getElementById('pageIndicator').innerText = `${currentSlide} / 3`;
+        window.scrollTo(0, 0);
+    }
+</script>
+</body>
+</html>

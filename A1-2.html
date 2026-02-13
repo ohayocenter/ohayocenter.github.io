@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>まるごと 漢字練習：初級1（No.66-221）トピック別版</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --bg-color: #f8faf9;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .container { max-width: 1100px; width: 100%; }
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.6em; margin-bottom: 20px; }
+        .slide {
+            display: none; background: var(--card-bg); padding: 30px;
+            border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            animation: fadeIn 0.4s ease;
+        }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .topic-label {
+            background: var(--accent-color); color: white;
+            display: inline-block; padding: 5px 15px; border-radius: 20px;
+            font-size: 0.9em; font-weight: bold; margin-bottom: 10px;
+        }
+        .topic-title {
+            font-size: 1.4em; font-weight: bold; color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px; margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px; margin-bottom: 30px;
+        }
+        .kanji-card {
+            border: 1px solid #eee; padding: 15px; border-radius: 10px;
+            text-align: center; background: #fff; transition: all 0.2s;
+            position: relative; border-bottom: 3px solid #ddd;
+        }
+        .kanji-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
+        .no-badge { position: absolute; top: 5px; left: 8px; font-size: 0.7em; color: #aaa; }
+        .question { font-size: 1.5em; font-weight: bold; color: #333; margin-bottom: 5px; }
+        .meaning { font-size: 0.8em; color: #666; min-height: 2.5em; display: flex; align-items: center; justify-content: center; line-height: 1.2; }
+        .answer {
+            background: #f1f2f6; color: #f1f2f6; padding: 8px;
+            border-radius: 5px; cursor: pointer; font-weight: bold;
+            font-size: 0.95em; transition: all 0.3s; border: 1px dashed #ccc;
+        }
+        .answer.reveal { background: var(--accent-color); color: white; border-style: solid; }
+
+        .controls { text-align: center; margin-top: 30px; }
+        button {
+            padding: 12px 35px; font-size: 1em; cursor: pointer;
+            background: var(--primary-color); color: white;
+            border: none; border-radius: 30px; margin: 0 10px; transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.8; }
+        button:disabled { background: #bdc3c7; cursor: not-allowed; }
+        
+        .footer {
+            margin-top: 50px; text-align: center; padding: 25px;
+            border-top: 1px solid #ddd; width: 100%;
+        }
+        .bmc-button {
+            display: inline-block; background-color: #FFDD00; color: #000;
+            padding: 12px 25px; border-radius: 10px; text-decoration: none;
+            font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>漢字読み練習：初級1（No.66 - 221）</h1>
+
+    <div class="slide active" id="slide1">
+        <div class="topic-label">Topic 1</div><div class="topic-title">私とかぞく [No.66-87]</div>
+        <div class="grid" id="gridT1"></div>
+        <div class="topic-label">Topic 2</div><div class="topic-title">きせつと天気 [No.88-104]</div>
+        <div class="grid" id="gridT2"></div>
+    </div>
+
+    <div class="slide" id="slide2">
+        <div class="topic-label">Topic 3</div><div class="topic-title">私の町 [No.105-122]</div>
+        <div class="grid" id="gridT3"></div>
+    </div>
+
+    <div class="slide" id="slide3">
+        <div class="topic-label">Topic 4</div><div class="topic-title">出かける [No.123-137]</div>
+        <div class="grid" id="gridT4"></div>
+        <div class="topic-label">Topic 5</div><div class="topic-title">外国語と外国文化 [No.138-154]</div>
+        <div class="grid" id="gridT5"></div>
+    </div>
+
+    <div class="slide" id="slide4">
+        <div class="topic-label">Topic 6</div><div class="topic-title">そとで食べる [No.155-168]</div>
+        <div class="grid" id="gridT6"></div>
+        <div class="topic-label">Topic 7</div><div class="topic-title">出張 [No.169-185]</div>
+        <div class="grid" id="gridT7"></div>
+    </div>
+
+    <div class="slide" id="slide5">
+        <div class="topic-label">Topic 8</div><div class="topic-title">けんこう [No.186-204]</div>
+        <div class="grid" id="gridT8"></div>
+    </div>
+
+    <div class="slide" id="slide6">
+        <div class="topic-label">Topic 9</div><div class="topic-title">お祝い [No.205-221]</div>
+        <div class="grid" id="gridT9"></div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+        <span id="pageIndicator" style="font-weight: bold; margin: 0 15px;">1 / 6</span>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <div class="footer">
+        <a class="bmc-button" href="https://buymeacoffee.com/ohayocenteh" target="_blank">☕ Buy me a coffee</a>
+        <p style="margin-top: 15px; font-weight: bold;">Thank you for your support!</p>
+    </div>
+</div>
+
+<script>
+    const data = {
+        T1: [
+            {n:66,q:"私",a:"わたし",m:"I/Me"},{n:67,q:"父",a:"ちち",m:"Father"},{n:68,q:"母",a:"はは",m:"Mother"},{n:69,q:"子ども",a:"こども",m:"Child"},{n:70,q:"男",a:"おとこ",m:"Man"},
+            {n:71,q:"女",a:"おんな",m:"Woman"},{n:72,q:"人",a:"ひと",m:"Person"},{n:73,q:"お父さん",a:"おとうさん",m:"Father (Polite)"},{n:74,q:"お母さん",a:"おかあさん",m:"Mother (Polite)"},{n:75,q:"何人",a:"なんにん",m:"How many people"},
+            {n:76,q:"国",a:"くに",m:"Country"},{n:77,q:"外国",a:"がいこく",m:"Foreign country"},{n:78,q:"~語",a:"ご",m:"Language"},{n:79,q:"日本語",a:"にほんご",m:"Japanese"},{n:80,q:"英語",a:"えいご",m:"English"},
+            {n:81,q:"中国語",a:"ちゅうごくご",m:"Chinese"},{n:82,q:"~人",a:"じん",m:"Nationality"},{n:83,q:"日本人",a:"にほんじん",m:"Japanese person"},{n:84,q:"好き",a:"すき",m:"Like"},{n:85,q:"本",a:"ほん",m:"Book"},
+            {n:86,q:"読書",a:"どくしょ",m:"Reading"},{n:87,q:"何",a:"なに",m:"What"}
+        ],
+        T2: [
+            {n:88,q:"春",a:"はる",m:"Spring"},{n:89,q:"夏",a:"なつ",m:"Summer"},{n:90,q:"秋",a:"あき",m:"Autumn"},{n:91,q:"冬",a:"ふゆ",m:"Winter"},{n:92,q:"今",a:"いま",m:"Now"},
+            {n:93,q:"花",a:"はな",m:"Flower"},{n:94,q:"海",a:"うみ",m:"Sea"},{n:95,q:"山",a:"やま",m:"Mountain"},{n:96,q:"川",a:"かわ",m:"River"},{n:97,q:"今日",a:"きょう",m:"Today"},
+            {n:98,q:"天気",a:"てんき",m:"Weather"},{n:99,q:"晴れ",a:"はれ",m:"Sunny"},{n:100,q:"雨",a:"あめ",m:"Rain"},{n:101,q:"雪",a:"ゆき",m:"Snow"},{n:102,q:"雲",a:"くも",m:"Cloud"},
+            {n:103,q:"風",a:"かぜ",m:"Wind"},{n:104,q:"空",a:"そら",m:"Sky"}
+        ],
+        T3: [
+            {n:105,q:"町",a:"まち",m:"Town"},{n:106,q:"店",a:"みせ",m:"Shop"},{n:107,q:"人気",a:"にんき",m:"Popular"},{n:108,q:"多い",a:"おおい",m:"Many"},{n:109,q:"少ない",a:"すくない",m:"Few"},
+            {n:110,q:"高い",a:"たかい",m:"High/Exp."},{n:111,q:"安い",a:"やすい",m:"Cheap"},{n:112,q:"広い",a:"ひろい",m:"Spacious"},{n:113,q:"道",a:"みち",m:"Road"},{n:114,q:"通り",a:"とおり",m:"Street"},
+            {n:115,q:"右",a:"みぎ",m:"Right"},{n:116,q:"左",a:"ひだり",m:"Left"},{n:117,q:"一つ",a:"ひとつ",m:"One"},{n:118,q:"二つ",a:"ふたつ",m:"Two"},{n:119,q:"赤い",a:"あかい",m:"Red"},
+            {n:120,q:"青い",a:"あおい",m:"Blue"},{n:121,q:"黒い",a:"くろい",m:"Black"},{n:122,q:"白い",a:"しろい",m:"White"}
+        ],
+        T4: [
+            {n:123,q:"時間",a:"じかん",m:"Time"},{n:124,q:"場所",a:"ばしょ",m:"Place"},{n:125,q:"駅",a:"えき",m:"Station"},{n:126,q:"日",a:"ひ",m:"Day"},{n:127,q:"出かけます",a:"でかけます",m:"To go out"},
+            {n:128,q:"待ちます",a:"まちます",m:"To wait"},{n:129,q:"止まります",a:"とまります",m:"To stop/stay"},{n:130,q:"食事",a:"しょくじ",m:"Meal"},{n:131,q:"仕事",a:"しごと",m:"Work"},{n:132,q:"前",a:"まえ",m:"Front/Before"},
+            {n:133,q:"後",a:"あと",m:"Back/After"},{n:134,q:"朝",a:"あさ",m:"Morning"},{n:135,q:"昼",a:"ひる",m:"Noon"},{n:136,q:"夜",a:"よる",m:"Night"},{n:137,q:"乗ります",a:"のります",m:"To ride"}
+        ],
+        T5: [
+            {n:138,q:"学校",a:"がっこう",m:"School"},{n:139,q:"小学校",a:"しょうがっこう",m:"Elem. School"},{n:140,q:"中学校",a:"ちゅうがっこう",m:"Middle School"},{n:141,q:"高校",a:"こうこう",m:"High School"},{n:142,q:"大学",a:"だいがく",m:"University"},
+            {n:143,q:"先生",a:"せんせい",m:"Teacher"},{n:144,q:"学生",a:"がくせい",m:"Student"},{n:145,q:"~年生",a:"ねんせい",m:"Year/Grade"},{n:146,q:"勉強",a:"べんきょう",m:"Study"},{n:147,q:"文化",a:"ぶんか",m:"Culture"},
+            {n:148,q:"音楽",a:"おんがく",m:"Music"},{n:149,q:"旅行",a:"りょこう",m:"Trip"},{n:150,q:"留学",a:"りゅうがく",m:"Study abroad"},{n:151,q:"友だち",a:"ともだち",m:"Friend"},{n:152,q:"楽しい",a:"たのしい",m:"Fun"},
+            {n:153,q:"週",a:"しゅう",m:"Week"},{n:154,q:"~回",a:"かい",m:"Times"}
+        ],
+        T6: [
+            {n:155,q:"食べ物",a:"たべもの",m:"Food"},{n:156,q:"飲み物",a:"のみもの",m:"Drink"},{n:157,q:"お茶",a:"おちゃ",m:"Tea"},{n:158,q:"お酒",a:"おさけ",m:"Alcohol"},{n:159,q:"作ります",a:"つくります",m:"To make"},
+            {n:160,q:"持っていきます",a:"もっていきます",m:"To take"},{n:161,q:"お願いします",a:"おねがいします",m:"Please"},{n:162,q:"料理",a:"りょうり",m:"Cooking"},{n:163,q:"味",a:"あじ",m:"Taste"},{n:164,q:"色",a:"いろ",m:"Color"},
+            {n:165,q:"野菜",a:"やさい",m:"Vegetable"},{n:166,q:"少し",a:"すこし",m:"A little"},{n:167,q:"中",a:"なか",m:"Inside"},{n:168,q:"入っています",a:"はいっています",m:"Is inside"}
+        ],
+        T7: [
+            {n:169,q:"会社",a:"かいしゃ",m:"Company"},{n:170,q:"本社",a:"ほんしゃ",m:"Head office"},{n:171,q:"支社",a:"ししゃ",m:"Branch office"},{n:172,q:"出張",a:"しゅっちょう",m:"Business trip"},{n:173,q:"空港",a:"くうこう",m:"Airport"},
+            {n:174,q:"出発",a:"しゅっぱつ",m:"Departure"},{n:175,q:"到着",a:"とうちゃく",m:"Arrival"},{n:176,q:"午前",a:"ごぜん",m:"AM"},{n:177,q:"午後",a:"ごご",m:"PM"},{n:178,q:"自分",a:"じぶん",m:"Self"},
+            {n:179,q:"電話",a:"でんわ",m:"Telephone"},{n:180,q:"電気",a:"でんき",m:"Electricity"},{n:181,q:"電車",a:"でんしゃ",m:"Train"},{n:182,q:"車",a:"くるま",m:"Car"},{n:183,q:"送ります",a:"おくります",m:"To send"},
+            {n:184,q:"使います",a:"つかいます",m:"To use"},{n:185,q:"借ります",a:"かります",m:"To borrow"}
+        ],
+        T8: [
+            {n:186,q:"体",a:"からだ",m:"Body"},{n:187,q:"頭",a:"あたま",m:"Head"},{n:188,q:"目",a:"め",m:"Eye"},{n:189,q:"口",a:"くち",m:"Mouth"},{n:190,q:"耳",a:"みみ",m:"Ear"},
+            {n:191,q:"手",a:"て",m:"Hand"},{n:192,q:"足",a:"あし",m:"Foot"},{n:193,q:"上",a:"うえ",m:"Above"},{n:194,q:"下",a:"した",m:"Below"},{n:195,q:"毎~",a:"まい",m:"Every"},
+            {n:196,q:"毎朝",a:"まいあさ",m:"Every morning"},{n:197,q:"毎日",a:"まいにち",m:"Every day"},{n:198,q:"週末",a:"しゅうまつ",m:"Weekend"},{n:199,q:"元気",a:"げんき",m:"Healthy"},{n:200,q:"外",a:"そと",m:"Outside"},
+            {n:201,q:"起きます",a:"おきます",m:"To wake up"},{n:202,q:"歩きます",a:"あるきます",m:"To walk"},{n:203,q:"走ります",a:"はしります",m:"To run"},{n:204,q:"泳ぎます",a:"およぎます",m:"To swim"}
+        ],
+        T9: [
+            {n:205,q:"お祝い",a:"おいわい",m:"Celebration"},{n:206,q:"誕生日",a:"たんじょうび",m:"Birthday"},{n:207,q:"結婚",a:"けっこん",m:"Marriage"},{n:208,q:"絵",a:"え",m:"Picture"},{n:209,q:"写真",a:"しゃしん",m:"Photo"},
+            {n:210,q:"時計",a:"とけい",m:"Clock"},{n:211,q:"着ます",a:"きます",m:"To wear"},{n:212,q:"先~",a:"せん",m:"Last ~"},{n:213,q:"先週",a:"せんしゅう",m:"Last week"},{n:214,q:"今~",a:"こん",m:"This ~"},
+            {n:215,q:"今月",a:"こんげつ",m:"This month"},{n:216,q:"来~",a:"らい",m:"Next ~"},{n:217,q:"来年",a:"らいねん",m:"Next year"},{n:218,q:"今年",a:"ことし",m:"This year"},{n:219,q:"去年",a:"きょねん",m:"Last year"},
+            {n:220,q:"家",a:"いえ",m:"House"},{n:221,q:"思います",a:"おもいます",m:"To think"}
+        ]
+    };
+
+    function populate() {
+        Object.keys(data).forEach(key => {
+            const grid = document.getElementById('grid' + key);
+            data[key].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'kanji-card';
+                card.innerHTML = `
+                    <span class="no-badge">${item.n}</span>
+                    <div class="question">${item.q}</div>
+                    <div class="meaning">${item.m}</div>
+                    <div class="answer" onclick="this.classList.toggle('reveal')">${item.a}</div>
+                `;
+                grid.appendChild(card);
+            });
+        });
+    }
+
+    let currentSlide = 1;
+    const totalSlides = 6;
+    function changeSlide(n) {
+        document.getElementById(`slide${currentSlide}`).classList.remove('active');
+        currentSlide += n;
+        document.getElementById(`slide${currentSlide}`).classList.add('active');
+        document.getElementById('prevBtn').disabled = currentSlide === 1;
+        document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        document.getElementById('pageIndicator').innerText = `${currentSlide} / ${totalSlides}`;
+        window.scrollTo(0, 0);
+    }
+
+    populate();
+</script>
+</body>
+</html>
