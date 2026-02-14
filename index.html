@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +12,11 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
         
-        /* ヘッダーの修正：高さを固定してズレを防止 */
         nav { 
             background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(5px); 
             padding: 0 5%; 
-            height: 70px; /* 高さをしっかり固定 */
+            height: 70px; 
             position: fixed; 
             width: 100%; 
             top: 0; 
@@ -32,7 +31,6 @@
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
 
-        /* メインビジュアル：ヘッダーの高さ分(70px)を避ける */
         .hero { 
             margin-top: 70px;
             height: 50vh; 
@@ -55,15 +53,22 @@
         .card { background: #fff; padding: 2.5rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
         .food-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
         .price { font-size: 1.6rem; font-weight: bold; color: var(--dark); }
+        .package-price { font-size: 0.85rem; color: var(--primary); font-weight: bold; background: var(--primary-light); padding: 2px 10px; border-radius: 20px; display: inline-block; margin-top: 5px; }
 
         .consultation-banner { background: #fff; padding: 2rem; border-radius: 25px; text-align: center; border: 1px solid #e0e6ed; max-width: 600px; margin: 0 auto; box-shadow: var(--shadow); }
 
-        .profile-box { background: #fff; padding: 3rem 1.5rem; border-radius: 30px; box-shadow: var(--shadow); max-width: 850px; margin: 0 auto; }
-        .profile-content { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center; }
+        .profile-box { background: #fff; padding: 3.5rem 2rem; border-radius: 30px; box-shadow: var(--shadow); max-width: 900px; margin: 0 auto; }
+        .profile-header { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; justify-content: center; margin-bottom: 3rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
         .profile-image-container { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: var(--primary-light); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; }
         .exp-item { margin-bottom: 0.8rem; display: flex; gap: 1rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 0.5rem; font-size: 0.9rem; }
         .exp-year { color: var(--primary); font-weight: bold; min-width: 70px; }
+
+        .profile-text-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; text-align: left; }
+        .profile-text-grid h3 { font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem; color: var(--dark); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .profile-text-grid h3 i { color: var(--primary); font-size: 1rem; }
+        .profile-text-grid p { font-size: 0.9rem; margin-bottom: 1rem; color: #555; }
+        .highlight-box { background: var(--primary-light); padding: 1.5rem; border-radius: 15px; border-left: 5px solid var(--primary); font-size: 0.9rem; margin-top: 1rem; }
 
         .unified-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
         .unified-card { background: #fff; padding: 2rem 1.2rem; border-radius: 25px; text-align: center; box-shadow: var(--shadow); text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; border: 1px solid rgba(0,0,0,0.02); transition: 0.3s; min-height: 240px; }
@@ -72,17 +77,17 @@
         .unified-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
         .unified-card p { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
 
-        .btn-bottom { margin-top: 10px; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; }
+        .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; }
 
         footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
         
-        /* スマホ対応：メニューが重ならないように調整 */
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
             .hero { height: 40vh; }
+            .profile-text-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -106,75 +111,123 @@
     <section id="lessons">
         <h2>Lesson Course</h2>
         <div class="lesson-grid">
-            <div class="card"><span class="food-icon">🍙</span><h3>30 min</h3><p class="price">1,800 yen</p></div>
-            <div class="card"><span class="food-icon">🥪</span><h3>45 min</h3><p class="price">3,000 yen</p></div>
-            <div class="card"><span class="food-icon">🍜</span><h3>60 min</h3><p class="price">3,500 yen</p></div>
+            <div class="card">
+                <span class="food-icon">🍙</span>
+                <h3>30 min</h3>
+                <p class="price">2,500 yen</p>
+                <span class="package-price">5 lessons: 12,000 yen</span>
+            </div>
+            <div class="card">
+                <span class="food-icon">🥪</span>
+                <h3>45 min</h3>
+                <p class="price">3,500 yen</p>
+                <span class="package-price">5 lessons: 17,000 yen</span>
+            </div>
+            <div class="card">
+                <span class="food-icon">🍜</span>
+                <h3>60 min</h3>
+                <p class="price">4,500 yen</p>
+                <span class="package-price">5 lessons: 20,000 yen</span>
+            </div>
         </div>
         <div class="consultation-banner">
-            <h3 style="font-size: 1.2rem;">日本語教師相談</h3>
-            <p style="color:#666; font-size:0.8rem; margin-bottom: 8px;">Career support for future Japanese teachers</p>
+            <h3 style="font-size: 1.2rem;">Career Consultation</h3>
+            <p style="color:#666; font-size:0.8rem; margin-bottom: 8px;">Support for future Japanese teachers</p>
             <p style="font-weight:bold; font-size:1.2rem;">45 mins / 2,000 yen</p>
         </div>
     </section>
 
     <section id="profile">
         <div class="profile-box">
-            <div class="profile-content">
+            <div class="profile-header">
                 <div class="profile-left">
                     <div class="profile-image-container">
-                        <picture>
-                            <source srcset="face.jpeg" type="image/jpeg">
-                            <img src="face.jpeg" alt="Teacher" class="profile-photo">
-                        </picture>
+                        <img src="face.jpeg" alt="Teacher Shinya" class="profile-photo">
                     </div>
-                    <p style="margin-top: 1.2rem; font-weight: bold; text-align: center;">Shinya / OHAYO CENTER</p>
+                    <p style="margin-top: 1.2rem; font-weight: bold; text-align: center;">Shinya | OHAYO CENTER</p>
                 </div>
                 <div class="profile-right">
                     <div class="exp-item"><span class="exp-year">2017</span><span>Japanese Teaching Certificate</span></div>
                     <div class="exp-item"><span class="exp-year">2017-18</span><span>Language school in Japan</span></div>
                     <div class="exp-item"><span class="exp-year">2018-19</span><span>High schools in Vietnam</span></div>
-                    <div class="exp-item"><span class="exp-year">2019-Now</span><span>Ohayo Center (JAPAN)</span></div>
+                    <div class="exp-item"><span class="exp-year">2019-Now</span><span>Founder of Ohayo Center</span></div>
                 </div>
+            </div>
+
+            <div class="profile-text-grid">
+                <div class="bio-section">
+                    <h3><i class="fa-solid fa-earth-americas"></i> My Journey</h3>
+                    <p>A lifelong lover of travel, I spent my 20s and 30s exploring diverse cultures across Asia, North America, and Europe. The kindness I received from people worldwide inspired my deep fascination with the power of communication.</p>
+                    <p>Now in my 40s, I balance my professional life as a <b>stay-at-home father</b> with my passion for teaching Japanese online. This role keeps me grounded, patient, and focused on helping others grow.</p>
+                </div>
+                <div class="philosophy-section">
+                    <h3><i class="fa-solid fa-dumbbell"></i> Like Fitness</h3>
+                    <p>Language learning is like weight training—something I've practiced for 20 years. You won't see results overnight, but consistency creates "muscle memory" that lasts a lifetime.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>Why a "Cheat Day"?</strong><br>
+                        Mastering a language requires a lot of self-study, which can sometimes feel exhausting. I want our lessons to be your <b>"Cheat Day"</b>—a refreshing space to rediscover the joy of Japanese and recharge your motivation so you never have to face the challenge alone.
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2.5rem; text-align: center; border-top: 1px solid #eee; padding-top: 2rem;">
+                <h3 style="font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem;">My Teaching Philosophy</h3>
+                <p style="font-size: 0.95rem; max-width: 750px; margin: 0 auto; color: #555;">
+                    <strong>Listen – Speak – Read – Write</strong><br>
+                    While I cover all four skills, my primary focus is on <b>Speaking and Listening</b>. I believe the best way to improve is to use the language as much as possible. I am here to ensure you can communicate naturally and confidently using "living Japanese."
+                </p>
             </div>
         </div>
     </section>
 
     <section id="resources">
-        <h2 style="margin-top: 4rem;">Kanji Study Material</h2>
-<div class="unified-grid" style="margin-bottom: 4rem;">
-    <a href="A1-1.html" class="unified-card">
-        <i class="fa-solid fa-pen-nib"></i>
-        <h3>漢字 A1-1</h3>
-        <p>Kanji Practice (入門)</p>
-        <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
-    </a>
-    <a href="A1-2.html" class="unified-card">
-        <i class="fa-solid fa-pen-nib"></i>
-        <h3>漢字 A1-2</h3>
-        <p>Kanji Practice (初級1)</p>
-        <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
-    </a>
-    <a href="A2.html" class="unified-card">
-        <i class="fa-solid fa-pen-nib"></i>
-        <h3>漢字 A2</h3>
-        <p>Kanji Practice (初級２)</p>
-        <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
-    </a>
-</div>
+        <h2 style="margin-top: 4rem;">Study Material</h2>
+        <div class="unified-grid" style="margin-bottom: 4rem;">
+            <a href="Kanji-N4-5.html" class="unified-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Kanji N4-5</h3>
+                <p>300 Essential Kanji Master</p>
+                <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
+            </a>
+            <a href="A1-1.html" class="unified-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Kanji A1-1</h3>
+                <p>Entry Level Practice</p>
+                <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
+            </a>
+            <a href="A1-2.html" class="unified-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Kanji A1-2</h3>
+                <p>Elementary 1 Practice</p>
+                <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
+            </a>
+            <a href="A2.html" class="unified-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Kanji A2</h3>
+                <p>Elementary 2 Practice</p>
+                <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
+            </a>
+        </div>
+
         <h2>Links & Payments</h2>
         <div class="unified-grid">
             <a href="https://marugotoweb.jp/ja/" class="unified-card" target="_blank">
-                <i class="fa-solid fa-book-open"></i><h3>Osusume Material</h3><p>Marugoto Plus</p>
+                <i class="fa-solid fa-book-open"></i><h3>Learning Material</h3><p>Marugoto Plus</p>
                 <div class="btn-bottom" style="color:var(--primary); border:1px solid;">VIEW MORE</div>
             </a>
             <a href="https://buymeacoffee.com/ohayocenteh" class="unified-card" target="_blank">
                 <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i><h3>Support Me</h3><p>Support my work</p>
                 <div class="btn-bottom"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;"></div>
             </a>
-            <a href="https://wise.com/pay/me/shinyau31" class="unified-card" target="_blank">
-                <i class="fa-solid fa-wallet" style="color: #00b894;"></i><h3>Payments</h3><p>Wise (@shinyau31)</p>
-                <div class="btn-bottom" style="background:#00b894; color:white;">PAY VIA WISE</div>
-            </a>
+            
+            <div class="unified-card">
+                <i class="fa-solid fa-wallet" style="color: #00b894;"></i>
+                <h3>Payments</h3>
+                <p>We accept Wise.<br>Please DM me for details.</p>
+                <div class="btn-bottom" style="background:#f0f0f0; color:#999; border:none;">INFO ONLY</div>
+            </div>
+
             <a href="https://www.instagram.com/ohayo_center" class="unified-card" target="_blank">
                 <i class="fa-brands fa-instagram" style="color: #E4405F;"></i><h3>Instagram</h3><p>@ohayo_center</p>
                 <div class="btn-bottom" style="color:#E4405F; border:1px solid;">FOLLOW ME</div>
@@ -187,8 +240,3 @@
 
 </body>
 </html>
-
-
-
-
-
