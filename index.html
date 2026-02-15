@@ -82,6 +82,37 @@
 
         footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
         
+        /* --- 追加：特商法モーダル用のスタイル（既存デザインに干渉しないようにプレフィックスを付けています） --- */
+        .legal-link { color: #888; text-decoration: underline; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
+        .legal-link:hover { color: var(--primary); }
+        
+        .legal-modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .legal-modal.show { display: flex; opacity: 1; }
+        
+        .legal-content {
+            background-color: #fff; border-radius: 25px; padding: 2.5rem 2rem;
+            width: 90%; max-width: 750px; max-height: 85vh; overflow-y: auto;
+            position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease-out; text-align: left;
+        }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: #ccc; cursor: pointer; transition: 0.2s; line-height: 1; }
+        .close-btn:hover { color: var(--dark); }
+        
+        .legal-content h2 { margin-bottom: 2rem; font-size: 1.4rem; color: var(--dark); }
+        
+        .legal-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; border-top: 2px solid var(--dark); font-size: 0.85rem; }
+        .legal-table th, .legal-table td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: top; }
+        .legal-table th { width: 35%; background-color: var(--primary-light); color: var(--dark); font-weight: bold; }
+        .legal-en { display: block; font-size: 0.7rem; color: #777; font-weight: normal; margin-top: 3px; }
+        
+        #mail-reveal { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
+        
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
@@ -89,6 +120,11 @@
             .nav-links a { font-size: 0.7rem; }
             .hero { height: 40vh; }
             .profile-text-grid { grid-template-columns: 1fr; }
+            /* モバイル時のモーダル調整 */
+            .legal-content { padding: 2rem 1.2rem; }
+            .legal-table th, .legal-table td { display: block; width: 100%; }
+            .legal-table th { background-color: transparent; padding-bottom: 2px; color: #666; font-size: 0.8rem; border-bottom: none; }
+            .legal-table td { padding-top: 2px; padding-bottom: 15px; }
         }
     </style>
 </head>
@@ -247,9 +283,131 @@
     </section>
 </div>
 
-<footer><p>&copy; 2026 Ohayo Center. All rights reserved.</p></footer>
+<footer>
+    <p><a class="legal-link" id="openLegalModal">特定商取引法に基づく表記 / Legal Notice</a></p>
+    <p style="margin-top: 10px;">&copy; 2026 Ohayo Center. All rights reserved.</p>
+</footer>
+
+<div id="legalModal" class="legal-modal">
+    <div class="legal-content">
+        <span class="close-btn" id="closeLegalModal">&times;</span>
+        <h2 style="font-family: 'Sawarabi Mincho', serif; margin-bottom: 2rem;">
+            特定商取引法に基づく表記<br>
+            <span style="font-size: 1rem; color: #888; font-family: 'Noto Sans JP', sans-serif;">Legal Notice</span>
+        </h2>
+        
+        <table class="legal-table">
+            <tr>
+                <th>販売事業者名<br><span class="legal-en">Legal Name of Business</span></th>
+                <td>OHAYO CENTER</td>
+            </tr>
+            <tr>
+                <th>運営責任者<br><span class="legal-en">Representative</span></th>
+                <td>Shinya</td>
+            </tr>
+            <tr>
+                <th>所在地<br><span class="legal-en">Address</span></th>
+                <td>個人情報保護のため、請求があった場合に遅滞なく開示いたします。<br>
+                <span class="legal-en">Information will be disclosed without delay upon request.</span></td>
+            </tr>
+            <tr>
+                <th>電話番号<br><span class="legal-en">Phone Number</span></th>
+                <td>個人情報保護のため、請求があった場合に遅滞なく開示いたします。<br>
+                <span class="legal-en">Information will be disclosed without delay upon request.</span></td>
+            </tr>
+            <tr>
+                <th>メールアドレス<br><span class="legal-en">Email Address</span></th>
+                <td>
+                    <span id="mail-reveal">表示する / Click to reveal</span>
+                </td>
+            </tr>
+            <tr>
+                <th>販売価格<br><span class="legal-en">Price</span></th>
+                <td>各サービスページに記載（消費税込み）<br>
+                <span class="legal-en">Listed on each service page (Tax included).</span></td>
+            </tr>
+            <tr>
+                <th>代金以外の必要料金<br><span class="legal-en">Additional Fees</span></th>
+                <td>銀行振込・Wise送金手数料、インターネット通信料<br>
+                <span class="legal-en">Bank/Wise transfer fees, Internet connection fees.</span></td>
+            </tr>
+            <tr>
+                <th>支払方法<br><span class="legal-en">Payment Methods</span></th>
+                <td>クレジットカード、Wise、銀行振込<br>
+                <span class="legal-en">Credit Card, Wise, Bank Transfer.</span></td>
+            </tr>
+            <tr>
+                <th>支払時期<br><span class="legal-en">Payment Timing</span></th>
+                <td>ご注文後3日以内（銀行振込の場合）<br>
+                <span class="legal-en">Within 3 days of order (for bank transfers).</span></td>
+            </tr>
+            <tr>
+                <th>サービス提供時期<br><span class="legal-en">Service Delivery</span></th>
+                <td>予約されたレッスン日時にオンラインで提供<br>
+                <span class="legal-en">Provided online at the scheduled lesson time.</span></td>
+            </tr>
+            <tr>
+                <th>キャンセル・返金<br><span class="legal-en">Cancellation & Refund</span></th>
+                <td>
+                    レッスン開始24時間前までのご連絡：無料（返金または振替）<br>
+                    それ以降：返金不可<br>
+                    <span class="legal-en">Up to 24h before: Free (Refund or Reschedule).<br>
+                    Less than 24h: Non-refundable.</span>
+                </td>
+            </tr>
+            <tr>
+                <th>動作環境<br><span class="legal-en">System Requirements</span></th>
+                <td>Zoom または Google Meet が利用可能な環境<br>
+                <span class="legal-en">Internet environment capable of using Zoom or Google Meet.</span></td>
+            </tr>
+        </table>
+        
+        <p style="font-size: 0.75rem; color: #999; text-align: center; margin-top: 1rem;">
+            ※本ページの内容について解釈に相違がある場合は、日本語版が優先されます。<br>
+            In case of any discrepancy between the Japanese and English versions, the Japanese version shall prevail.
+        </p>
+    </div>
+</div>
+
+<script>
+    // モーダルの開閉ロジック
+    const modal = document.getElementById("legalModal");
+    const openBtn = document.getElementById("openLegalModal");
+    const closeBtn = document.getElementById("closeLegalModal");
+
+    openBtn.onclick = function(e) {
+        e.preventDefault(); // ページトップへのジャンプを防ぐ
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden"; // 背景のスクロールを止める
+    }
+
+    closeBtn.onclick = function() {
+        modal.classList.remove("show");
+        document.body.style.overflow = "auto"; // スクロール再開
+    }
+
+    // モーダルの外側をクリックした時も閉じる
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.classList.remove("show");
+            document.body.style.overflow = "auto";
+        }
+    }
+
+    // スパム対策：メールアドレス表示ロジック
+    (function() {
+        var p1 = "ohayo";
+        var p2 = "center";
+        var p3 = "gmail";
+        var p4 = "com";
+        var el = document.getElementById('mail-reveal');
+        el.addEventListener('click', function() {
+            var addr = p1 + "." + p2 + "@" + p3 + "." + p4;
+            el.innerHTML = '<a href="mailto:' + addr + '" style="color:var(--primary); text-decoration:none;">' + addr + '</a>';
+            el.style.textDecoration = "none";
+        });
+    })();
+</script>
 
 </body>
 </html>
-
-
