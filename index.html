@@ -82,7 +82,7 @@
 
         footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
         
-        /* --- 追加：特商法モーダル用のスタイル（既存デザインに干渉しないようにプレフィックスを付けています） --- */
+        /* --- モーダル用スタイル --- */
         .legal-link { color: #888; text-decoration: underline; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
         .legal-link:hover { color: var(--primary); }
         
@@ -105,13 +105,16 @@
         .close-btn:hover { color: var(--dark); }
         
         .legal-content h2 { margin-bottom: 2rem; font-size: 1.4rem; color: var(--dark); }
-        
         .legal-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; border-top: 2px solid var(--dark); font-size: 0.85rem; }
         .legal-table th, .legal-table td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: top; }
         .legal-table th { width: 35%; background-color: var(--primary-light); color: var(--dark); font-weight: bold; }
         .legal-en { display: block; font-size: 0.7rem; color: #777; font-weight: normal; margin-top: 3px; }
         
-        #mail-reveal { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
+        .privacy-section { margin-bottom: 1.5rem; }
+        .privacy-section h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 0.5rem; border-left: 3px solid var(--primary); padding-left: 10px; }
+        .privacy-section p { font-size: 0.85rem; color: #555; margin-bottom: 0.8rem; line-height: 1.6; }
+
+        #mail-reveal, #mail-reveal-privacy { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
         
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
@@ -120,7 +123,6 @@
             .nav-links a { font-size: 0.7rem; }
             .hero { height: 40vh; }
             .profile-text-grid { grid-template-columns: 1fr; }
-            /* モバイル時のモーダル調整 */
             .legal-content { padding: 2rem 1.2rem; }
             .legal-table th, .legal-table td { display: block; width: 100%; }
             .legal-table th { background-color: transparent; padding-bottom: 2px; color: #666; font-size: 0.8rem; border-bottom: none; }
@@ -284,131 +286,87 @@
 </div>
 
 <footer>
-    <p><a class="legal-link" id="openLegalModal">特定商取引法に基づく表記 / Legal Notice</a></p>
+    <p>
+        <a class="legal-link" id="openLegalModal">特定商取引法に基づく表記</a> ｜ 
+        <a class="legal-link" id="openPrivacyModal">Privacy Policy</a>
+    </p>
     <p style="margin-top: 10px;">&copy; 2026 Ohayo Center. All rights reserved.</p>
 </footer>
 
 <div id="legalModal" class="legal-modal">
     <div class="legal-content">
         <span class="close-btn" id="closeLegalModal">&times;</span>
-        <h2 style="font-family: 'Sawarabi Mincho', serif; margin-bottom: 2rem;">
-            特定商取引法に基づく表記<br>
-            <span style="font-size: 1rem; color: #888; font-family: 'Noto Sans JP', sans-serif;">Legal Notice</span>
-        </h2>
-        
+        <h2 style="font-family: 'Sawarabi Mincho', serif;">特定商取引法に基づく表記</h2>
         <table class="legal-table">
-            <tr>
-                <th>販売事業者名<br><span class="legal-en">Legal Name of Business</span></th>
-                <td>OHAYO CENTER</td>
-            </tr>
-            <tr>
-                <th>運営責任者<br><span class="legal-en">Representative</span></th>
-                <td>Shinya</td>
-            </tr>
-            <tr>
-                <th>所在地<br><span class="legal-en">Address</span></th>
-                <td>個人情報保護のため、請求があった場合に遅滞なく開示いたします。<br>
-                <span class="legal-en">Information will be disclosed without delay upon request.</span></td>
-            </tr>
-            <tr>
-                <th>電話番号<br><span class="legal-en">Phone Number</span></th>
-                <td>個人情報保護のため、請求があった場合に遅滞なく開示いたします。<br>
-                <span class="legal-en">Information will be disclosed without delay upon request.</span></td>
-            </tr>
-            <tr>
-                <th>メールアドレス<br><span class="legal-en">Email Address</span></th>
-                <td>
-                    <span id="mail-reveal">表示する / Click to reveal</span>
-                </td>
-            </tr>
-            <tr>
-                <th>販売価格<br><span class="legal-en">Price</span></th>
-                <td>各サービスページに記載（消費税込み）<br>
-                <span class="legal-en">Listed on each service page (Tax included).</span></td>
-            </tr>
-            <tr>
-                <th>代金以外の必要料金<br><span class="legal-en">Additional Fees</span></th>
-                <td>銀行振込・Wise送金手数料、インターネット通信料<br>
-                <span class="legal-en">Bank/Wise transfer fees, Internet connection fees.</span></td>
-            </tr>
-            <tr>
-                <th>支払方法<br><span class="legal-en">Payment Methods</span></th>
-                <td>クレジットカード、Wise、銀行振込<br>
-                <span class="legal-en">Credit Card, Wise, Bank Transfer.</span></td>
-            </tr>
-            <tr>
-                <th>支払時期<br><span class="legal-en">Payment Timing</span></th>
-                <td>ご注文後3日以内（銀行振込の場合）<br>
-                <span class="legal-en">Within 3 days of order (for bank transfers).</span></td>
-            </tr>
-            <tr>
-                <th>サービス提供時期<br><span class="legal-en">Service Delivery</span></th>
-                <td>予約されたレッスン日時にオンラインで提供<br>
-                <span class="legal-en">Provided online at the scheduled lesson time.</span></td>
-            </tr>
-            <tr>
-                <th>キャンセル・返金<br><span class="legal-en">Cancellation & Refund</span></th>
-                <td>
-                    レッスン開始24時間前までのご連絡：無料（返金または振替）<br>
-                    それ以降：返金不可<br>
-                    <span class="legal-en">Up to 24h before: Free (Refund or Reschedule).<br>
-                    Less than 24h: Non-refundable.</span>
-                </td>
-            </tr>
-            <tr>
-                <th>動作環境<br><span class="legal-en">System Requirements</span></th>
-                <td>Google Meet が利用可能な環境<br>
-                <span class="legal-en">Internet environment capable of using Google Meet.</span></td>
-            </tr>
+            <tr><th>販売事業者名</th><td>OHAYO CENTER</td></tr>
+            <tr><th>運営責任者</th><td>Shinya</td></tr>
+            <tr><th>所在地・電話番号</th><td>個人情報保護のため、請求があった場合に遅滞なく開示いたします。</td></tr>
+            <tr><th>メールアドレス</th><td><span id="mail-reveal">表示する</span></td></tr>
+            <tr><th>販売価格</th><td>各コースに記載（税込）</td></tr>
+            <tr><th>支払方法</th><td>クレジットカード、Wise、銀行振込</td></tr>
+            <tr><th>キャンセル規定</th><td>24時間前までの連絡で振替または返金可。以降は不可。</td></tr>
         </table>
+    </div>
+</div>
+
+<div id="privacyModal" class="legal-modal">
+    <div class="legal-content">
+        <span class="close-btn" id="closePrivacyModal">&times;</span>
+        <h2 style="font-family: 'Sawarabi Mincho', serif;">Privacy Policy<br><span style="font-size:0.9rem; color:#888;">プライバシーポリシー</span></h2>
         
-        <p style="font-size: 0.75rem; color: #999; text-align: center; margin-top: 1rem;">
-            ※本ページの内容について解釈に相違がある場合は、日本語版が優先されます。<br>
-            In case of any discrepancy between the Japanese and English versions, the Japanese version shall prevail.
-        </p>
+        <div class="privacy-section">
+            <h4>1. Information We Collect</h4>
+            <p>We collect your name, email address, and lesson records to provide our services.</p>
+            <p>当センターでは、レッスンの提供、連絡、および本人確認のために、お名前、メールアドレス、レッスンの記録を収集いたします。</p>
+        </div>
+
+        <div class="privacy-section">
+            <h4>2. Use of Information</h4>
+            <p>Information is used for scheduling, processing payments via Stripe, and improving our lessons.</p>
+            <p>収集した情報は、レッスンの予約管理、Stripeを通じた決済処理、およびサービスの向上のみに使用されます。</p>
+        </div>
+
+        <div class="privacy-section">
+            <h4>3. Third-Party Services</h4>
+            <p>We use Stripe for secure payments and Google Workspace for lessons. We do not sell your data to third parties.</p>
+            <p>決済にはStripe、レッスンにはGoogle Workspaceなどの安全な外部サービスを使用します。収集した情報を第三者に販売することはありません。</p>
+        </div>
+
+        <div class="privacy-section">
+            <h4>4. Contact</h4>
+            <p>For any data requests, please contact: <span id="mail-reveal-privacy">Click to reveal</span></p>
+            <p>ご自身の情報の開示・訂正をご希望の場合は、上記までご連絡ください。</p>
+        </div>
     </div>
 </div>
 
 <script>
-    // モーダルの開閉ロジック
-    const modal = document.getElementById("legalModal");
-    const openBtn = document.getElementById("openLegalModal");
-    const closeBtn = document.getElementById("closeLegalModal");
+    // モーダル管理（共通）
+    function setupModal(modalId, openBtnId, closeBtnId) {
+        const modal = document.getElementById(modalId);
+        const openBtn = document.getElementById(openBtnId);
+        const closeBtn = document.getElementById(closeBtnId);
 
-    openBtn.onclick = function(e) {
-        e.preventDefault(); // ページトップへのジャンプを防ぐ
-        modal.classList.add("show");
-        document.body.style.overflow = "hidden"; // 背景のスクロールを止める
+        openBtn.onclick = (e) => { e.preventDefault(); modal.classList.add("show"); document.body.style.overflow = "hidden"; };
+        closeBtn.onclick = () => { modal.classList.remove("show"); document.body.style.overflow = "auto"; };
+        window.addEventListener('click', (event) => { if (event.target == modal) { modal.classList.remove("show"); document.body.style.overflow = "auto"; } });
     }
 
-    closeBtn.onclick = function() {
-        modal.classList.remove("show");
-        document.body.style.overflow = "auto"; // スクロール再開
-    }
+    setupModal("legalModal", "openLegalModal", "closeLegalModal");
+    setupModal("privacyModal", "openPrivacyModal", "closePrivacyModal");
 
-    // モーダルの外側をクリックした時も閉じる
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.classList.remove("show");
-            document.body.style.overflow = "auto";
-        }
-    }
-
-    // スパム対策：メールアドレス表示ロジック
-    (function() {
-        var p1 = "ohayo";
-        var p2 = "center";
-        var p3 = "gmail";
-        var p4 = "com";
-        var el = document.getElementById('mail-reveal');
+    // メール表示ロジック
+    function revealMail(id) {
+        const p1 = "ohayo", p2 = "center", p3 = "gmail", p4 = "com";
+        const el = document.getElementById(id);
         el.addEventListener('click', function() {
-            var addr = p1 + "." + p2 + "@" + p3 + "." + p4;
+            const addr = p1 + "." + p2 + "@" + p3 + "." + p4;
             el.innerHTML = '<a href="mailto:' + addr + '" style="color:var(--primary); text-decoration:none;">' + addr + '</a>';
-            el.style.textDecoration = "none";
         });
-    })();
+    }
+    revealMail('mail-reveal');
+    revealMail('mail-reveal-privacy');
 </script>
 
 </body>
 </html>
-
