@@ -163,6 +163,35 @@
     align-self: center;
     font-weight: bold;
   }
+
+  /* Buy me a coffee ボタン */
+  .bmc-container {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px dashed #e2e8f0;
+  }
+  .bmc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFDD00;
+    color: #000000;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  .bmc-btn:hover {
+    background-color: #FFC300;
+    transform: translateY(-2px);
+  }
+  .bmc-btn span {
+    margin-left: 8px;
+  }
 </style>
 </head>
 <body>
@@ -172,7 +201,6 @@
   
   <div id="slide1" class="slide active">
     <div class="topic-label">Topic: Housework - Cooking (Slide 1/5)</div>
-
     <div class="question-block">
       <div class="question-text">Q1. When preparing a meal like 'Nikujaga,' what is the Japanese term for the action of 'peeling' (e.g., peeling the skin off a potato)?</div>
       <ul class="options">
@@ -188,7 +216,6 @@
       <div id="hint1" class="info-box hint-text">Hint: Focus on the verb used specifically for removing the outer layer of fruits or vegetables.</div>
       <div id="ans1" class="info-box answer-text">Answer: D. 皮をむく (Kawa o muku)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q2. What is the correct term for "boiling water" to make tea or soup?</div>
       <ul class="options">
@@ -204,7 +231,6 @@
       <div id="hint2" class="info-box hint-text">Hint: The verb means "to bring to a boil," not just "to heat."</div>
       <div id="ans2" class="info-box answer-text">Answer: A. お湯を沸かす (O-yu o wakasu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q3. When making a salad, you need to "chop" the cabbage into small pieces. Which verb means "to chop/mince"?</div>
       <ul class="options">
@@ -220,7 +246,6 @@
       <div id="hint3" class="info-box hint-text">Hint: Think of the rhythmic sound of cutting something finely on a cutting board.</div>
       <div id="ans3" class="info-box answer-text">Answer: B. 刻む (Kizamu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q4. Before eating, you might want to "season" or "flavor" the dish. What is the phrase for this?</div>
       <ul class="options">
@@ -236,7 +261,6 @@
       <div id="hint4" class="info-box hint-text">Hint: The noun in this phrase literally means "taste" or "flavor".</div>
       <div id="ans4" class="info-box answer-text">Answer: A. 味をつける (Aji o tsukeru)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q5. How do you say "to cook/boil rice" in Japanese?</div>
       <ul class="options">
@@ -256,7 +280,6 @@
 
   <div id="slide2" class="slide">
     <div class="topic-label">Topic: Housework - Cleaning (Slide 2/5)</div>
-
     <div class="question-block">
       <div class="question-text">Q6. What is the Japanese verb for "sweeping" the floor with a broom?</div>
       <ul class="options">
@@ -272,7 +295,6 @@
       <div id="hint6" class="info-box hint-text">Hint: Think of the motion used with a broom (ほうき - hōki).</div>
       <div id="ans6" class="info-box answer-text">Answer: A. 床をはく (Yuka o haku)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q7. After eating, you need to "wipe" the table. Which verb is used for wiping?</div>
       <ul class="options">
@@ -288,7 +310,6 @@
       <div id="hint7" class="info-box hint-text">Hint: You use a wet towel (ふきん) to do this action.</div>
       <div id="ans7" class="info-box answer-text">Answer: B. ふく (Fuku)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q8. How do you say "to vacuum" in Japanese?</div>
       <ul class="options">
@@ -304,7 +325,6 @@
       <div id="hint8" class="info-box hint-text">Hint: This verb is often used with machines or devices, like an iron or engine.</div>
       <div id="ans8" class="info-box answer-text">Answer: B. 掃除機をかける (Sōjiki o kakeru)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q9. When your room is messy, you need to "tidy it up". What is the phrase?</div>
       <ul class="options">
@@ -320,7 +340,6 @@
       <div id="hint9" class="info-box hint-text">Hint: The kanji 片 means "one side" or "piece", implying putting pieces back in order.</div>
       <div id="ans9" class="info-box answer-text">Answer: C. 部屋を片付ける (Heya o katazukeru)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q10. What is the action of "taking out the trash" to the collection point?</div>
       <ul class="options">
@@ -340,7 +359,6 @@
 
   <div id="slide3" class="slide">
     <div class="topic-label">Topic: Housework - Laundry & Cleaning (Slide 3/5)</div>
-
     <div class="question-block">
       <div class="question-text">Q11. After washing clothes, you need to "hang them out to dry". What is the verb?</div>
       <ul class="options">
@@ -356,7 +374,6 @@
       <div id="hint11" class="info-box hint-text">Hint: This word means exposing something to the sun or air to dry it.</div>
       <div id="ans11" class="info-box answer-text">Answer: A. 干す (Hosu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q12. Once the clothes are dry, you "bring them inside". What is the phrase?</div>
       <ul class="options">
@@ -372,7 +389,6 @@
       <div id="hint12" class="info-box hint-text">Hint: A compound verb meaning to take (取る) something into (込む) the house.</div>
       <div id="ans12" class="info-box answer-text">Answer: A. 取り込む (Torikomu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q13. Before putting clothes in the drawer, you should "fold" them. What is the verb?</div>
       <ul class="options">
@@ -388,7 +404,6 @@
       <div id="hint13" class="info-box hint-text">Hint: You do the same action to an umbrella or a map when putting it away.</div>
       <div id="ans13" class="info-box answer-text">Answer: B. たたむ (Tatamu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q14. What is the Japanese term for "dust" that accumulates on furniture?</div>
       <ul class="options">
@@ -404,7 +419,6 @@
       <div id="hint14" class="info-box hint-text">Hint: You often "wipe" this off (〜をふく) or "sweep" it (〜を払う).</div>
       <div id="ans14" class="info-box answer-text">Answer: B. ほこり (Hokori)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q15. How do you say "to iron" a shirt?</div>
       <ul class="options">
@@ -424,7 +438,6 @@
 
   <div id="slide4" class="slide">
     <div class="topic-label">Topic: Housework & Childcare (Slide 4/5)</div>
-
     <div class="question-block">
       <div class="question-text">Q16. What is the Japanese word for "diaper", which you need to change for a baby?</div>
       <ul class="options">
@@ -440,7 +453,6 @@
       <div id="hint16" class="info-box hint-text">Hint: The phrase is often used as "〇〇を換える (to change a ...)".</div>
       <div id="ans16" class="info-box answer-text">Answer: A. おむつ (Omutsu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q17. Which verb means "to pick up and carry a child in one's arms" (to hug/hold)?</div>
       <ul class="options">
@@ -456,7 +468,6 @@
       <div id="hint17" class="info-box hint-text">Hint: A very common, affectionate word used when parents hold their babies in front of them.</div>
       <div id="ans17" class="info-box answer-text">Answer: B. だっこする (Dakkosuru)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q18. What is the verb for "to carry a child on one's back" (piggyback ride)?</div>
       <ul class="options">
@@ -472,7 +483,6 @@
       <div id="hint18" class="info-box hint-text">Hint: In contrast to holding a child in your arms, this means carrying them on your back.</div>
       <div id="ans18" class="info-box answer-text">Answer: C. おんぶする (Onbusuru)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q19. If parents give a child everything they want and never scold them, they "spoil" the child. What is the Japanese verb for "to spoil"?</div>
       <ul class="options">
@@ -488,7 +498,6 @@
       <div id="hint19" class="info-box hint-text">Hint: The kanji "甘" (sweet) is used to express being too lenient.</div>
       <div id="ans19" class="info-box answer-text">Answer: B. 甘やかす (Amayakasu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q20. How do you describe a child who is "selfish" or wants everything their own way?</div>
       <ul class="options">
@@ -508,7 +517,6 @@
 
   <div id="slide5" class="slide">
     <div class="topic-label">Topic: Commuting & Trains (Slide 5/5)</div>
-
     <div class="question-block">
       <div class="question-text">Q21. What is the Japanese term for a very "crowded train," especially during morning rush hour?</div>
       <ul class="options">
@@ -524,7 +532,6 @@
       <div id="hint21" class="info-box hint-text">Hint: "満員" (man'in) means "full capacity" or "packed with people."</div>
       <div id="ans21" class="info-box answer-text">Answer: C. 満員電車 (Man'in densha)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q22. If you fall asleep on the train and miss your station, what verb do you use?</div>
       <ul class="options">
@@ -540,7 +547,6 @@
       <div id="hint22" class="info-box hint-text">Hint: You pass (過ごす) the station you were supposed to get off at.</div>
       <div id="ans22" class="info-box answer-text">Answer: B. 乗り過ごす (Norisugosu)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q23. When you see an elderly person standing, it is polite to "give up your seat." What is the phrase?</div>
       <ul class="options">
@@ -556,7 +562,6 @@
       <div id="hint23" class="info-box hint-text">Hint: The verb means "to hand over" or "to yield."</div>
       <div id="ans23" class="info-box answer-text">Answer: D. 席をゆずる (Seki o yuzuru)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q24. If a train is NOT crowded and you can easily find a seat, how do you describe it?</div>
       <ul class="options">
@@ -572,7 +577,6 @@
       <div id="hint24" class="info-box hint-text">Hint: This is the opposite of 混んでいる (crowded).</div>
       <div id="ans24" class="info-box answer-text">Answer: B. すいている (Suite iru)</div>
     </div>
-
     <div class="question-block">
       <div class="question-text">Q25. What is the verb for "changing trains" at a station?</div>
       <ul class="options">
@@ -594,6 +598,12 @@
     <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
     <div id="slideIndicator" class="slide-indicator">Slide 1 of 5</div>
     <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
+  </div>
+
+  <div class="bmc-container">
+    <a href="https://buymeacoffee.com/ohayocenteh" target="_blank" class="bmc-btn">
+      ❤️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
   </div>
 
 </div>
