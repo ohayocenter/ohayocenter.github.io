@@ -46,6 +46,16 @@
         }
         .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.3; }
 
+        /* --- 追加：Heroセクションのボタン用スタイル --- */
+        .hero-btn-container { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
+        .hero-btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .hero-btn:hover { transform: translateY(-3px); }
+        .primary-btn { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(255,159,67,0.3); }
+        .primary-btn:hover { box-shadow: 0 6px 20px rgba(255,159,67,0.4); }
+        .secondary-btn { background: white; color: var(--dark); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); color: var(--primary); }
+        /* ------------------------------------------- */
+
         .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem; }
         section { margin-bottom: 5rem; scroll-margin-top: 90px; }
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
@@ -116,6 +126,8 @@
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
             .hero { height: 40vh; }
+            .hero-btn-container { flex-direction: column; width: 100%; max-width: 250px; margin: 2rem auto 0; }
+            .hero-btn { justify-content: center; width: 100%; }
             .profile-text-grid { grid-template-columns: 1fr; }
             .legal-content { padding: 2rem 1.2rem; }
             .legal-table th, .legal-table td { display: block; width: 100%; }
@@ -138,6 +150,11 @@
 <header class="hero">
     <p style="font-size: 0.9rem; letter-spacing: 2px;">ONLINE JAPANESE LESSON</p>
     <h1>ENJOY LEARNING<br>JAPANESE</h1>
+    
+    <div class="hero-btn-container">
+        <a href="#lessons" class="hero-btn primary-btn"><i class="fa-solid fa-seedling"></i>New Students | Lessons</a>
+        <a href="#materials" class="hero-btn secondary-btn"><i class="fa-solid fa-book-open"></i>Current Students | Materials</a>
+    </div>
 </header>
 
 <div class="container">
@@ -234,7 +251,7 @@
     </section>
 
     <section id="resources">
-        <h2 style="margin-top: 4rem;">Study Material</h2>
+        <h2 id="materials" style="margin-top: 4rem; scroll-margin-top: 90px;">Study Material</h2>
         <div class="unified-grid" style="margin-bottom: 4rem;">
             <a href="Kanji-N4-5.html" class="unified-card">
                 <i class="fa-solid fa-pen-nib"></i>
@@ -275,7 +292,6 @@
                 <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
             </a>
         </div>
-            
 
         <h2>Links & Payments</h2>
         <div class="unified-grid">
@@ -396,5 +412,3 @@
 </script>
 </body>
 </html>
-
-
