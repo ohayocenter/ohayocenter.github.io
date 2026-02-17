@@ -46,7 +46,7 @@
         }
         .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.3; }
 
-        /* --- 追加：Heroセクションのボタン用スタイル --- */
+        /* --- Heroセクションのボタン用スタイル --- */
         .hero-btn-container { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
         .hero-btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .hero-btn:hover { transform: translateY(-3px); }
@@ -75,6 +75,28 @@
         .exp-item { margin-bottom: 0.8rem; display: flex; gap: 1rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 0.5rem; font-size: 0.9rem; }
         .exp-year { color: var(--primary); font-weight: bold; min-width: 70px; }
 
+        /* --- YouTube 動画用のレスポンシブスタイル --- */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 のアスペクト比を維持 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin: 0 auto 3rem auto;
+            max-width: 800px;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* ------------------------------------------- */
+
         .profile-text-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; text-align: left; }
         .profile-text-grid h3 { font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem; color: var(--dark); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
         .profile-text-grid h3 i { color: var(--primary); font-size: 1rem; }
@@ -88,7 +110,7 @@
         .unified-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
         .unified-card p { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
 
-        .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; }
+        .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: 0.2s; }
 
         footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
         
@@ -166,18 +188,22 @@
                 <h3>30 min</h3>
                 <p class="price">2,000 yen</p>
                 <span class="package-price">5 lessons: 10,000 yen</span>
+                <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="display: inline-block; margin-top: 1.2rem; background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);">BOOK NOW</a>
             </div>
             <div class="card">
                 <span class="food-icon">🥪</span>
                 <h3>45 min</h3>
                 <p class="price">3,000 yen</p>
                 <span class="package-price">5 lessons: 15,000 yen</span>
+                <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="display: inline-block; margin-top: 1.2rem; background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);">BOOK NOW</a>
             </div>
             <div class="card">
                 <span class="food-icon">🍜</span>
                 <h3>60 min</h3>
                 <p class="price">4,000 yen</p>
                 <span class="package-price">5 lessons: 20,000 yen</span>
+                <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" 
+                class="btn-bottom" style="display: inline-block; margin-top: 1.2rem; background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);">BOOK NOW</a>
             </div>
         </div>
 
@@ -222,6 +248,10 @@
                     <div class="exp-item"><span class="exp-year">2018-19</span><span>High schools in Vietnam</span></div>
                     <div class="exp-item"><span class="exp-year">2019-Now</span><span>Founder of Ohayo Center</span></div>
                 </div>
+            </div>
+
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/WQMTbkMh5U8?si=TBQ6p6BGat42XON3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
 
             <div class="profile-text-grid">
@@ -277,14 +307,12 @@
                 <p>Elementary 2 Practice</p>
                 <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
             </a>
-              </a>
             <a href="N3-1" class="unified-card">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3>N3 Vocabulary-1</h3>
                 <p>Intermediate 1 Practice</p>
                 <div class="btn-bottom" style="color:var(--primary); border:1px solid;">STUDY NOW</div>
             </a>
-              </a>
             <a href="N3-2" class="unified-card">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3>N3 Vocabulary-2</h3>
@@ -311,11 +339,11 @@
             </a>
 
             <a href="https://buymeacoffee.com/ohayocenteh" class="unified-card" target="_blank">
-                <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i><h3>Support Me</h3><p>Support my work</p>
+                <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i><h3>Support OHAYO CENTER</h3><p>THANK YOU</p>
                 <div class="btn-bottom"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;"></div>
             </a>
             
-            <div class="unified-card">
+            <a href="#lessons" class="unified-card">
                 <i class="fa-solid fa-wallet" style="color: #00b894;"></i>
                 <h3>Payments</h3>
                 <p style="font-size: 0.8rem; line-height: 1.5;">
@@ -323,8 +351,8 @@
                     <strong>Apple Pay</strong>, <strong>Google Pay</strong><br>
                     and <strong>Wise</strong>.
                 </p>
-                <div class="btn-bottom" style="background:#f0f0f0; color:#666; border:none; font-size: 0.65rem;">SECURE PAYMENT</div>
-            </div>
+                <div class="btn-bottom" style="color:#00b894; border:1px solid #00b894;">SECURE PAYMENT</div>
+            </a>
 
             <a href="https://www.instagram.com/ohayo_center" class="unified-card" target="_blank">
                 <i class="fa-brands fa-instagram" style="color: #E4405F;"></i><h3>Instagram</h3><p>@ohayo_center</p>
@@ -412,4 +440,3 @@
 </script>
 </body>
 </html>
-
