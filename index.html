@@ -46,7 +46,6 @@
         }
         .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.3; }
 
-        /* --- Heroセクションのボタン用スタイル --- */
         .hero-btn-container { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
         .hero-btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .hero-btn:hover { transform: translateY(-3px); }
@@ -54,7 +53,6 @@
         .primary-btn:hover { box-shadow: 0 6px 20px rgba(255,159,67,0.4); }
         .secondary-btn { background: white; color: var(--dark); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); color: var(--primary); }
-        /* ------------------------------------------- */
 
         .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem; }
         section { margin-bottom: 5rem; scroll-margin-top: 90px; }
@@ -75,10 +73,9 @@
         .exp-item { margin-bottom: 0.8rem; display: flex; gap: 1rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 0.5rem; font-size: 0.9rem; }
         .exp-year { color: var(--primary); font-weight: bold; min-width: 70px; }
 
-        /* --- YouTube 動画用のレスポンシブスタイル --- */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 のアスペクト比を維持 */
+            padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
             border-radius: 20px;
@@ -95,7 +92,6 @@
             height: 100%;
             border: 0;
         }
-        /* ------------------------------------------- */
 
         .profile-text-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; text-align: left; }
         .profile-text-grid h3 { font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem; color: var(--dark); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
@@ -111,10 +107,15 @@
         .unified-card p { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
 
         .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: 0.2s; }
+        
+        /* --- 予約カレンダーボタン専用のホバー効果 --- */
+        .booking-btn:hover, .booking-btn:active { 
+            background-color: #9b59b6 !important; 
+            color: #ffffff !important; 
+        }
 
         footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
         
-        /* --- Modal Styles --- */
         .legal-link { color: #888; text-decoration: underline; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
         .legal-link:hover { color: var(--primary); }
         .legal-modal {
@@ -188,22 +189,30 @@
                 <h3>30 min</h3>
                 <p class="price">2,000 yen</p>
                 <span class="package-price">5 lessons: 10,000 yen</span>
-                <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="display: inline-block; margin-top: 1.2rem; background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);">BOOK NOW</a>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
+                    <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
+                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                </div>
             </div>
             <div class="card">
                 <span class="food-icon">🥪</span>
                 <h3>45 min</h3>
                 <p class="price">3,000 yen</p>
                 <span class="package-price">5 lessons: 15,000 yen</span>
-                <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="display: inline-block; margin-top: 1.2rem; background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);">BOOK NOW</a>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
+                    <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
+                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                </div>
             </div>
             <div class="card">
                 <span class="food-icon">🍜</span>
                 <h3>60 min</h3>
                 <p class="price">4,000 yen</p>
                 <span class="package-price">5 lessons: 20,000 yen</span>
-                <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" 
-                class="btn-bottom" style="display: inline-block; margin-top: 1.2rem; background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);">BOOK NOW</a>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
+                    <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
+                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                </div>
             </div>
         </div>
 
@@ -213,10 +222,10 @@
                 <h3 style="font-size: 1.2rem;">Trial Lesson</h3>
                 <p style="color:#666; font-size:0.8rem; margin-bottom: 8px;">For your first step</p>
                 <p style="font-weight:bold; font-size:1.2rem; margin-bottom: 10px;">30 mins / 1,500 yen</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScJZlAyBuoz-gAbi9wFlZRgyfsGmOmnbIDByyRM_rVuERwGuw/viewform?usp=dialog" 
-                   class="btn-bottom" 
-                   style="border: 1px solid var(--primary); color: var(--primary); text-decoration: none;" 
-                   target="_blank">INQUIRY</a>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1rem;">
+                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
+                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                </div>
             </div>
 
             <div class="consultation-banner" style="margin: 0; max-width: none;">
@@ -331,6 +340,17 @@
                    class="btn-bottom" 
                    style="color:#4285f4; border:1px solid; text-decoration:none;" 
                    target="_blank">OPEN FORM</a>
+            </div>
+
+            <div class="unified-card">
+                <i class="fa-regular fa-calendar-check" style="color: #9b59b6;"></i>
+                <h3>Booking Schedule</h3>
+                <p>For current students and<br>lesson pack members.</p>
+                <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: auto;">
+                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🍙</span> 30 MIN</a>
+                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🥪</span> 45 MIN</a>
+                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🍜</span> 60 MIN</a>
+                </div>
             </div>
 
             <a href="https://marugotoweb.jp/ja/" class="unified-card" target="_blank">
