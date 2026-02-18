@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Japanese Situational Quiz (1-25)</title>
+<style>
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px 80px;
+  }
+  .slide-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+  }
+  .topic-label {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* スライド切り替え用のクラス */
+  .slide {
+    display: none;
+    animation: fadeIn 0.4s;
+  }
+  .slide.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .question-block {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  .question-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .question-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  .options {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+  }
+  .options li {
+    background-color: #f7fafc;
+    border: 1px solid #cbd5e0;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+  }
+  .options li:hover {
+    background-color: #ebf4ff;
+    cursor: pointer;
+  }
+  .options label {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+  }
+  .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+  .action-btn {
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    font-weight: bold;
+  }
+  .hint-btn { background-color: #4299e1; }
+  .hint-btn:hover { background-color: #3182ce; }
+  .answer-btn { background-color: #48bb78; }
+  .answer-btn:hover { background-color: #38a169; }
+  
+  .info-box {
+    display: none;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-size: 0.95em;
+  }
+  .hint-text {
+    background-color: #fffaf0;
+    border-left: 4px solid #ed8936;
+    color: #555;
+    font-style: italic;
+  }
+  .answer-text {
+    background-color: #f0fff4;
+    border-left: 4px solid #48bb78;
+    color: #276749;
+    font-weight: bold;
+  }
+
+  /* ナビゲーションボタン */
+  .nav-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #e2e8f0;
+  }
+  .nav-btn {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .nav-btn:hover {
+    background-color: #1a252f;
+  }
+  .nav-btn:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+  }
+  .slide-indicator {
+    font-size: 0.9em;
+    color: #718096;
+    align-self: center;
+    font-weight: bold;
+  }
+
+  /* Buy me a coffee ボタン */
+  .bmc-container {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px dashed #e2e8f0;
+  }
+  .bmc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFDD00;
+    color: #000000;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  .bmc-btn:hover {
+    background-color: #FFC300;
+    transform: translateY(-2px);
+  }
+  .bmc-btn span {
+    margin-left: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .slide-container {
+      padding: 30px 20px 50px; 
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-container">
+  <h1>Japan Travel Situational Quiz (1-25)</h1>
+  
+  <div id="slide1" class="slide active">
+    <div class="topic-label">Situation 1: Station & Transportation (Slide 1/5)</div>
+    
+    <div class="question-block">
+      <div class="question-text">Q1. You are at the station and want to find the ticket gate. What do you ask a station staff member?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q1"> A. 切符はいくらですか。(Kippu wa ikura desu ka.)</label></li>
+        <li><label><input type="radio" name="q1"> B. 電車はどこですか。(Densha wa doko desu ka.)</label></li>
+        <li><label><input type="radio" name="q1"> C. 改札はどこですか。(Kaisatsu wa doko desu ka.)</label></li>
+        <li><label><input type="radio" name="q1"> D. トイレはありますか。(Toire wa arimasu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint1')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans1')">Show Answer</button>
+      </div>
+      <div id="hint1" class="info-box hint-text">Hint: The word for "ticket gate" is "kaisatsu" (改札).</div>
+      <div id="ans1" class="info-box answer-text">Answer: C. 改札はどこですか。(Kaisatsu wa doko desu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q2. You want to ask how much the train fare to Kyoto is. What do you say?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q2"> A. 京都までいくらですか。(Kyōto made ikura desu ka.)</label></li>
+        <li><label><input type="radio" name="q2"> B. 京都は何時ですか。(Kyōto wa nan-ji desu ka.)</label></li>
+        <li><label><input type="radio" name="q2"> C. 京都に行きたいです。(Kyōto ni ikitai desu.)</label></li>
+        <li><label><input type="radio" name="q2"> D. 京都はどうですか。(Kyōto wa dō desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint2')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans2')">Show Answer</button>
+      </div>
+      <div id="hint2" class="info-box hint-text">Hint: "How much" is "ikura" (いくら) and "up to/until" is "made" (まで).</div>
+      <div id="ans2" class="info-box answer-text">Answer: A. 京都までいくらですか。(Kyōto made ikura desu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q3. A train arrives, but you are not sure if it goes to Shinjuku. What do you ask someone nearby?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q3"> A. 新宿は大きいですか。(Shinjuku wa ōkii desu ka.)</label></li>
+        <li><label><input type="radio" name="q3"> B. この電車は新宿に行きますか。(Kono densha wa Shinjuku ni ikimasu ka.)</label></li>
+        <li><label><input type="radio" name="q3"> C. 新宿はどこですか。(Shinjuku wa doko desu ka.)</label></li>
+        <li><label><input type="radio" name="q3"> D. この電車は新宿から来ましたか。(Kono densha wa Shinjuku kara kimashita ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint3')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans3')">Show Answer</button>
+      </div>
+      <div id="hint3" class="info-box hint-text">Hint: You need to ask "Does this train go to...?" (Kono densha wa ... ni ikimasu ka.)</div>
+      <div id="ans3" class="info-box answer-text">Answer: B. この電車は新宿に行きますか。(Kono densha wa Shinjuku ni ikimasu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q4. You want to buy a Shinkansen ticket to Tokyo at the counter. What do you say?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q4"> A. 東京までの切符をください。(Tōkyō made no kippu o kudasai.)</label></li>
+        <li><label><input type="radio" name="q4"> B. 東京の新幹線はどこですか。(Tōkyō no shinkansen wa doko desu ka.)</label></li>
+        <li><label><input type="radio" name="q4"> C. 東京の切符を見せてください。(Tōkyō no kippu o misete kudasai.)</label></li>
+        <li><label><input type="radio" name="q4"> D. 東京まで歩きます。(Tōkyō made arukimasu.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint4')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans4')">Show Answer</button>
+      </div>
+      <div id="hint4" class="info-box hint-text">Hint: "Ticket" is "Kippu" (切符) and "Please give me" is "Kudasai" (ください).</div>
+      <div id="ans4" class="info-box answer-text">Answer: A. 東京までの切符をください。(Tōkyō made no kippu o kudasai.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q5. You want to store your heavy luggage before sightseeing. What do you look for?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q5"> A. 自動販売機 (Jidō hanbaiki)</label></li>
+        <li><label><input type="radio" name="q5"> B. コインロッカー (Koin rokkā)</label></li>
+        <li><label><input type="radio" name="q5"> C. エレベーター (Erebētā)</label></li>
+        <li><label><input type="radio" name="q5"> D. 券売機 (Kenbaiki)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint5')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans5')">Show Answer</button>
+      </div>
+      <div id="hint5" class="info-box hint-text">Hint: It's a loan word (Katakana) for a place where you put coins to lock your bags.</div>
+      <div id="ans5" class="info-box answer-text">Answer: B. コインロッカー (Koin rokkā)</div>
+    </div>
+  </div>
+
+  <div id="slide2" class="slide">
+    <div class="topic-label">Situation 2: At the Hotel (Slide 2/5)</div>
+    
+    <div class="question-block">
+      <div class="question-text">Q6. You arrive at your hotel and approach the front desk. What do you say first?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q6"> A. お会計をお願いします。(O-kaikei o onegaishimasu.)</label></li>
+        <li><label><input type="radio" name="q6"> B. チェックインをお願いします。(Chekkuin o onegaishimasu.)</label></li>
+        <li><label><input type="radio" name="q6"> C. 部屋を見せてください。(Heya o misete kudasai.)</label></li>
+        <li><label><input type="radio" name="q6"> D. 予約していません。(Yoyaku shite imasen.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans6')">Show Answer</button>
+      </div>
+      <div id="hint6" class="info-box hint-text">Hint: Use the English loan word for registering at a hotel + "onegaishimasu".</div>
+      <div id="ans6" class="info-box answer-text">Answer: B. チェックインをお願いします。(Chekkuin o onegaishimasu.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q7. You want to know if breakfast is included with your room. What do you ask?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q7"> A. 朝食はついていますか。(Chōshoku wa tsuite imasu ka.)</label></li>
+        <li><label><input type="radio" name="q7"> B. 朝食はどこで食べますか。(Chōshoku wa doko de tabemasu ka.)</label></li>
+        <li><label><input type="radio" name="q7"> C. 朝食はおいしいですか。(Chōshoku wa oishii desu ka.)</label></li>
+        <li><label><input type="radio" name="q7"> D. 朝食は何時ですか。(Chōshoku wa nan-ji desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint7')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans7')">Show Answer</button>
+      </div>
+      <div id="hint7" class="info-box hint-text">Hint: "Is it included/attached?" is "tsuite imasu ka".</div>
+      <div id="ans7" class="info-box answer-text">Answer: A. 朝食はついていますか。(Chōshoku wa tsuite imasu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q8. Oh no! You lost your room key. What do you tell the receptionist?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q8"> A. 鍵を部屋に忘れました。(Kagi o heya ni wasuremashita.)</label></li>
+        <li><label><input type="radio" name="q8"> B. 鍵をもらっていません。(Kagi o moratte imasen.)</label></li>
+        <li><label><input type="radio" name="q8"> C. 部屋の鍵をなくしてしまいました。(Heya no kagi o nakushite shimaimashita.)</label></li>
+        <li><label><input type="radio" name="q8"> D. 鍵が壊れました。(Kagi ga kowaremashita.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint8')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans8')">Show Answer</button>
+      </div>
+      <div id="hint8" class="info-box hint-text">Hint: "To lose" is "nakusu" (なくす). "...te shimaimashita" shows regret.</div>
+      <div id="ans8" class="info-box answer-text">Answer: C. 部屋の鍵をなくしてしまいました。(Heya no kagi o nakushite shimaimashita.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q9. You arrived early. You want to ask if the hotel can keep your luggage before check-in.</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q9"> A. 荷物を送ってください。(Nimotsu o okutte kudasai.)</label></li>
+        <li><label><input type="radio" name="q9"> B. 荷物を預かってもらえますか。(Nimotsu o azukatte moraemasu ka.)</label></li>
+        <li><label><input type="radio" name="q9"> C. 荷物を持ちたいです。(Nimotsu o mochitai desu.)</label></li>
+        <li><label><input type="radio" name="q9"> D. 荷物を持っていきますか。(Nimotsu o motte ikimasu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint9')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans9')">Show Answer</button>
+      </div>
+      <div id="hint9" class="info-box hint-text">Hint: "To keep/store something for someone" is "azukaru" (預かる).</div>
+      <div id="ans9" class="info-box answer-text">Answer: B. 荷物を預かってもらえますか。(Nimotsu o azukatte moraemasu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q10. You need a password to connect to the internet. What do you ask?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q10"> A. Wi-Fiのパスワードは何ですか。(Wi-Fi no pasuwādo wa nan desu ka.)</label></li>
+        <li><label><input type="radio" name="q10"> B. Wi-Fiはどこですか。(Wi-Fi wa doko desu ka.)</label></li>
+        <li><label><input type="radio" name="q10"> C. Wi-Fiをください。(Wi-Fi o kudasai.)</label></li>
+        <li><label><input type="radio" name="q10"> D. Wi-Fiは無料ですか。(Wi-Fi wa muryō desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint10')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans10')">Show Answer</button>
+      </div>
+      <div id="hint10" class="info-box hint-text">Hint: "What is it?" is "Nan desu ka".</div>
+      <div id="ans10" class="info-box answer-text">Answer: A. Wi-Fiのパスワードは何ですか。(Wi-Fi no pasuwādo wa nan desu ka.)</div>
+    </div>
+  </div>
+
+  <div id="slide3" class="slide">
+    <div class="topic-label">Situation 3: At a Restaurant (Slide 3/5)</div>
+    
+    <div class="question-block">
+      <div class="question-text">Q11. You enter a restaurant and the staff says "Nan-mei sama desu ka?" (How many people?). You are a group of 2.</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q11"> A. ふたつです。(Futatsu desu.)</label></li>
+        <li><label><input type="radio" name="q11"> B. ２名です。(Ni-mei desu.)</label></li>
+        <li><label><input type="radio" name="q11"> C. ２番です。(Ni-ban desu.)</label></li>
+        <li><label><input type="radio" name="q11"> D. ２回です。(Ni-kai desu.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint11')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans11')">Show Answer</button>
+      </div>
+      <div id="hint11" class="info-box hint-text">Hint: The counter for people in formal situations (like restaurants) is "-mei" (名).</div>
+      <div id="ans11" class="info-box answer-text">Answer: B. ２名です。(Ni-mei desu.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q12. You are ready to order your food. How do you get the waiter's attention?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q12"> A. いただきます。(Itadakimasu.)</label></li>
+        <li><label><input type="radio" name="q12"> B. ごちそうさまでした。(Gochisōsama deshita.)</label></li>
+        <li><label><input type="radio" name="q12"> C. すみません、注文をお願いします。(Sumimasen, chūmon o onegaishimasu.)</label></li>
+        <li><label><input type="radio" name="q12"> D. 料理を持ってきてください。(Ryōri o motte kite kudasai.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint12')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans12')">Show Answer</button>
+      </div>
+      <div id="hint12" class="info-box hint-text">Hint: Start with "Excuse me" (Sumimasen), followed by "Order, please" (Chūmon o onegaishimasu).</div>
+      <div id="ans12" class="info-box answer-text">Answer: C. すみません、注文をお願いします。(Sumimasen, chūmon o onegaishimasu.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q13. You cannot read the Japanese menu. How do you ask if they have an English menu?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q13"> A. 英語のメニューはありますか。(Eigo no menyū wa arimasu ka.)</label></li>
+        <li><label><input type="radio" name="q13"> B. 英語を話せますか。(Eigo o hanasemasu ka.)</label></li>
+        <li><label><input type="radio" name="q13"> C. メニューは英語ですか。(Menyū wa eigo desu ka.)</label></li>
+        <li><label><input type="radio" name="q13"> D. 英語で注文してもいいですか。(Eigo de chūmon shite mo ii desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint13')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans13')">Show Answer</button>
+      </div>
+      <div id="hint13" class="info-box hint-text">Hint: "Do you have...?" is "...wa arimasu ka".</div>
+      <div id="ans13" class="info-box answer-text">Answer: A. 英語のメニューはありますか。(Eigo no menyū wa arimasu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q14. You want to eat the restaurant's best dish. How do you ask "What do you recommend?"</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q14"> A. 一番安いのは何ですか。(Ichiban yasui no wa nan desu ka.)</label></li>
+        <li><label><input type="radio" name="q14"> B. おすすめは何ですか。(Osusume wa nan desu ka.)</label></li>
+        <li><label><input type="radio" name="q14"> C. 人気がありますか。(Ninki ga arimasu ka.)</label></li>
+        <li><label><input type="radio" name="q14"> D. どれがおいしいですか。(Dore ga oishii desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans14')">Show Answer</button>
+      </div>
+      <div id="hint14" class="info-box hint-text">Hint: The noun for "recommendation" is "Osusume" (おすすめ).</div>
+      <div id="ans14" class="info-box answer-text">Answer: B. おすすめは何ですか。(Osusume wa nan desu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q15. You are finished eating and want to pay the bill. What do you say?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q15"> A. お会計をお願いします。(O-kaikei o onegaishimasu.)</label></li>
+        <li><label><input type="radio" name="q15"> B. お金を出します。(O-kane o dashimasu.)</label></li>
+        <li><label><input type="radio" name="q15"> C. ごちそうさまでした。(Gochisōsama deshita.)</label></li>
+        <li><label><input type="radio" name="q15"> D. いくら払いますか。(Ikura haraimasu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint15')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans15')">Show Answer</button>
+      </div>
+      <div id="hint15" class="info-box hint-text">Hint: "Check / bill" at a restaurant is "O-kaikei" (お会計).</div>
+      <div id="ans15" class="info-box answer-text">Answer: A. お会計をお願いします。(O-kaikei o onegaishimasu.)</div>
+    </div>
+  </div>
+
+  <div id="slide4" class="slide">
+    <div class="topic-label">Situation 4: Shopping (Slide 4/5)</div>
+    
+    <div class="question-block">
+      <div class="question-text">Q16. You see a beautiful fan. You want to ask the clerk "How much is this?"</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q16"> A. これはいくらですか。(Kore wa ikura desu ka.)</label></li>
+        <li><label><input type="radio" name="q16"> B. これはいくつですか。(Kore wa ikutsu desu ka.)</label></li>
+        <li><label><input type="radio" name="q16"> C. これは何ですか。(Kore wa nan desu ka.)</label></li>
+        <li><label><input type="radio" name="q16"> D. これはどこですか。(Kore wa doko desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint16')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans16')">Show Answer</button>
+      </div>
+      <div id="hint16" class="info-box hint-text">Hint: "How much (money)" is "ikura".</div>
+      <div id="ans16" class="info-box answer-text">Answer: A. これはいくらですか。(Kore wa ikura desu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q17. You want to try on a t-shirt before buying it. How do you ask for permission?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q17"> A. これを着ます。(Kore o kimasu.)</label></li>
+        <li><label><input type="radio" name="q17"> B. 試着してもいいですか。(Shichaku shite mo ii desu ka.)</label></li>
+        <li><label><input type="radio" name="q17"> C. サイズは合いますか。(Saizu wa aimasu ka.)</label></li>
+        <li><label><input type="radio" name="q17"> D. 服を買ってもいいですか。(Fuku o katte mo ii desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint17')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans17')">Show Answer</button>
+      </div>
+      <div id="hint17" class="info-box hint-text">Hint: "Trying on clothes" is "Shichaku" (試着). "May I...?" is "...te mo ii desu ka".</div>
+      <div id="ans17" class="info-box answer-text">Answer: B. 試着してもいいですか。(Shichaku shite mo ii desu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q18. You are buying souvenirs and want to know if you can pay by credit card.</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q18"> A. クレジットカードは使えますか。(Kurejitto kādo wa tsukaemasu ka.)</label></li>
+        <li><label><input type="radio" name="q18"> B. クレジットカードはありますか。(Kurejitto kādo wa arimasu ka.)</label></li>
+        <li><label><input type="radio" name="q18"> C. クレジットカードをください。(Kurejitto kādo o kudasai.)</label></li>
+        <li><label><input type="radio" name="q18"> D. クレジットカードで作れますか。(Kurejitto kādo de tsukuremasu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint18')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans18')">Show Answer</button>
+      </div>
+      <div id="hint18" class="info-box hint-text">Hint: "Can I use...?" is "Tsukaemasu ka" (使えますか).</div>
+      <div id="ans18" class="info-box answer-text">Answer: A. クレジットカードは使えますか。(Kurejitto kādo wa tsukaemasu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q19. You want to buy this item. What is the most natural way to say "I'll take this"?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q19"> A. これにします。(Kore ni shimasu.)</label></li>
+        <li><label><input type="radio" name="q19"> B. これを取ります。(Kore o torimasu.)</label></li>
+        <li><label><input type="radio" name="q19"> C. これをお願いします。(Kore o onegaishimasu.)</label></li>
+        <li><label><input type="radio" name="q19"> D. A or C are both fine.</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
+      </div>
+      <div id="hint19" class="info-box hint-text">Hint: Both "Kore ni shimasu" (I've decided on this) and "Kore o onegaishimasu" (This one, please) are very common.</div>
+      <div id="ans19" class="info-box answer-text">Answer: D. A or C are both fine.</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q20. The cashier asks if you need a plastic shopping bag (Fukuro), but you have your own eco-bag. How do you decline politely?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q20"> A. 袋は結構です。(Fukuro wa kekkō desu.)</label></li>
+        <li><label><input type="radio" name="q20"> B. 袋はダメです。(Fukuro wa dame desu.)</label></li>
+        <li><label><input type="radio" name="q20"> C. 袋はいりません。(Fukuro wa irimasen.)</label></li>
+        <li><label><input type="radio" name="q20"> D. Both A and C are fine, but A is more polite.</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
+      </div>
+      <div id="hint20" class="info-box hint-text">Hint: "Kekkō desu" is a very standard and polite way to say "No thank you."</div>
+      <div id="ans20" class="info-box answer-text">Answer: D. Both A and C are fine, but A is more polite.</div>
+    </div>
+  </div>
+
+  <div id="slide5" class="slide">
+    <div class="topic-label">Situation 5: Sightseeing & Asking Directions (Slide 5/5)</div>
+    
+    <div class="question-block">
+      <div class="question-text">Q21. You are lost. You want to ask a passerby "Where is the station?"</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q21"> A. 駅はどこですか。(Eki wa doko desu ka.)</label></li>
+        <li><label><input type="radio" name="q21"> B. 駅はどうですか。(Eki wa dō desu ka.)</label></li>
+        <li><label><input type="radio" name="q21"> C. 駅はいつですか。(Eki wa itsu desu ka.)</label></li>
+        <li><label><input type="radio" name="q21"> D. 駅はだれですか。(Eki wa dare desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans21')">Show Answer</button>
+      </div>
+      <div id="hint21" class="info-box hint-text">Hint: "Where" is "doko". Start with "Sumimasen" to be polite!</div>
+      <div id="ans21" class="info-box answer-text">Answer: A. 駅はどこですか。(Eki wa doko desu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q22. You want to take a picture inside a museum, but you are not sure if it's allowed. What do you ask a staff member?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q22"> A. 写真をください。(Shashin o kudasai.)</label></li>
+        <li><label><input type="radio" name="q22"> B. 写真を見てもいいですか。(Shashin o mite mo ii desu ka.)</label></li>
+        <li><label><input type="radio" name="q22"> C. 写真を撮ってもいいですか。(Shashin o totte mo ii desu ka.)</label></li>
+        <li><label><input type="radio" name="q22"> D. 写真を撮ってください。(Shashin o totte kudasai.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint22')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans22')">Show Answer</button>
+      </div>
+      <div id="hint22" class="info-box hint-text">Hint: "To take (a picture)" is "toru" (撮る).</div>
+      <div id="ans22" class="info-box answer-text">Answer: C. 写真を撮ってもいいですか。(Shashin o totte mo ii desu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q23. You want someone to take a picture of you and your friends. How do you ask?</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q23"> A. 写真を撮りましょうか。(Shashin o torimashō ka.)</label></li>
+        <li><label><input type="radio" name="q23"> B. 写真を撮ってもらえませんか。(Shashin o totte moraemasen ka.)</label></li>
+        <li><label><input type="radio" name="q23"> C. 写真を撮りたいです。(Shashin o toritai desu.)</label></li>
+        <li><label><input type="radio" name="q23"> D. 写真を撮ります。(Shashin o torimasu.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint23')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans23')">Show Answer</button>
+      </div>
+      <div id="hint23" class="info-box hint-text">Hint: "...te moraemasen ka" means "Could you please (do something for me)?"</div>
+      <div id="ans23" class="info-box answer-text">Answer: B. 写真を撮ってもらえませんか。(Shashin o totte moraemasen ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q24. You are at a beautiful shrine and want to know what time it closes.</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q24"> A. 何時に終わりますか。(Nan-ji ni owarimasu ka.)</label></li>
+        <li><label><input type="radio" name="q24"> B. 何時に開きますか。(Nan-ji ni aite imasu ka.)</label></li>
+        <li><label><input type="radio" name="q24"> C. 何時に閉まりますか。(Nan-ji ni shimarimasu ka.)</label></li>
+        <li><label><input type="radio" name="q24"> D. 何時までですか。(Nan-ji made desu ka.)</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
+      </div>
+      <div id="hint24" class="info-box hint-text">Hint: "To close" is "shimaru" (閉まる). Also, D (Nan-ji made desu ka - Until what time is it?) is also perfectly acceptable and common!</div>
+      <div id="ans24" class="info-box answer-text">Answer: C. 何時に閉まりますか。(Nan-ji ni shimarimasu ka.)</div>
+    </div>
+
+    <div class="question-block">
+      <div class="question-text">Q25. You are showing a map on your phone to someone. You want to ask "How do I get here?"</div>
+      <ul class="options">
+        <li><label><input type="radio" name="q25"> A. ここへはどう行きますか。(Koko e wa dō ikimasu ka.)</label></li>
+        <li><label><input type="radio" name="q25"> B. ここはどこですか。(Koko wa doko desu ka.)</label></li>
+        <li><label><input type="radio" name="q25"> C. ここに行きたいです。(Koko ni ikitai desu.)</label></li>
+        <li><label><input type="radio" name="q25"> D. Both A and C will be understood.</label></li>
+      </ul>
+      <div class="btn-group">
+        <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
+        <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
+      </div>
+      <div id="hint25" class="info-box hint-text">Hint: "How" is "dō" (どう). "I want to go" is "ikitai desu" (行きたいです).</div>
+      <div id="ans25" class="info-box answer-text">Answer: D. Both A and C will be understood.</div>
+    </div>
+  </div>
+
+  <div class="nav-controls">
+    <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
+    <div id="slideIndicator" class="slide-indicator">Slide 1 of 5</div>
+    <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
+  </div>
+
+  <div class="bmc-container">
+    <a href="https://buymeacoffee.com/ohayocenteh" target="_blank" class="bmc-btn">
+    <span>SUPPORT OHAYO CENTER</span>
+    </a>
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 5;
+
+  function toggleDisplay(elementId) {
+    var element = document.getElementById(elementId);
+    if (element.style.display === "none" || element.style.display === "") {
+      element.style.display = "block";
+    } else {
+      element.style.display = "none";
+    }
+  }
+
+  function changeSlide(direction) {
+    document.getElementById('slide' + currentSlide).classList.remove('active');
+    currentSlide += direction;
+    document.getElementById('slide' + currentSlide).classList.add('active');
+    
+    document.getElementById('prevBtn').disabled = (currentSlide === 1);
+    document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    
+    document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
