@@ -11,7 +11,8 @@
     color: #333;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    /* 修正箇所1: 下部の余白だけ80pxに増やし、スクロール時の窮屈さを解消しました */
+    padding: 20px 20px 80px;
   }
   .slide-container {
     background-color: #ffffff;
@@ -191,6 +192,14 @@
   }
   .bmc-btn span {
     margin-left: 8px;
+  }
+
+  /* 修正箇所2: スマホ画面（幅600px以下）専用のレイアウト調整を追加 */
+  @media (max-width: 600px) {
+    .slide-container {
+      /* スマホでは左右の余白を少し狭めて画面を広く使い、下部にはゆとりを持たせます */
+      padding: 30px 20px 50px; 
+    }
   }
 </style>
 </head>
@@ -602,7 +611,7 @@
 
   <div class="bmc-container">
     <a href="https://buymeacoffee.com/ohayocenteh" target="_blank" class="bmc-btn">
-      ❤️ <span>SUPPORT OHAYO CENTER</span>
+    <span>SUPPORT OHAYO CENTER</span>
     </a>
   </div>
 
