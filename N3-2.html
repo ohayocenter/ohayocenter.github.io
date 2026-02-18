@@ -11,7 +11,8 @@
     color: #333;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    /* 下部の余白を80pxに増やし、スクロール時の窮屈さを解消しました */
+    padding: 20px 20px 80px; 
   }
   .main-wrapper {
     width: 100%;
@@ -186,6 +187,13 @@
   }
   .support-link:hover {
     background-color: #e57338;
+  }
+
+  /* スマホ画面（幅600px以下）専用のレイアウト調整を追加 */
+  @media (max-width: 600px) {
+    .slide-container {
+      padding: 30px 20px 50px; 
+    }
   }
 </style>
 </head>
@@ -624,7 +632,7 @@
   </div>
   
   <a href="https://buymeacoffee.com/ohayocenteh" target="_blank" class="support-link">
-     SUPPORT OHAYO CENTER
+    SUPPORT OHAYO CENTER
   </a>
 </div>
 
@@ -656,5 +664,4 @@
 </script>
 
 </body>
-
 </html>
