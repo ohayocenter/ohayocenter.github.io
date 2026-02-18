@@ -11,8 +11,8 @@
     color: #333;
     display: flex;
     justify-content: center;
-    /* 下部の余白を80pxに増やし、スクロール時の窮屈さを解消しました */
-    padding: 20px 20px 80px; 
+    /* 下部の余白はiPhone用に広めに確保 */
+    padding: 20px 20px 80px;
   }
   .main-wrapper {
     width: 100%;
@@ -142,6 +142,7 @@
   .nav-controls {
     display: flex;
     justify-content: space-between;
+    /* 余白を前のコードと同じ状態に戻しました */
     margin-top: 40px;
     padding-top: 20px;
     border-top: 2px solid #e2e8f0;
@@ -175,21 +176,23 @@
   .support-link {
     margin-top: 30px;
     display: inline-block;
-    background-color: #FF813F;
-    color: white;
+    /* 色を黄色で統一しました */
+    background-color: #FFDD00;
+    color: #000000;
     text-decoration: none;
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: bold;
     font-size: 1.1em;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.1s;
   }
   .support-link:hover {
-    background-color: #e57338;
+    background-color: #FFC300;
+    transform: translateY(-2px);
   }
 
-  /* スマホ画面（幅600px以下）専用のレイアウト調整を追加 */
+  /* スマホ画面（幅600px以下）専用のレイアウト調整 */
   @media (max-width: 600px) {
     .slide-container {
       padding: 30px 20px 50px; 
