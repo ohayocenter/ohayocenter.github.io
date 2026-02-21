@@ -65,12 +65,11 @@
         }
         /* ------------------------------------- */
 
-        /* bodyに上部余白(padding-top)を追加し、メニューに隠れないように調整 */
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             background-color: var(--bg-color);
             margin: 0;
-            padding-top: 90px; /* ここを追加しました */
+            padding-top: 90px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -157,35 +156,47 @@
         .nav-btn:hover { background-color: var(--accent-color); }
         .nav-btn:disabled { background-color: #ccc; cursor: not-allowed; }
 
-        /* フッターの修正箇所 */
-        .footer { 
-            width: 100%; /* 横幅いっぱいに広げる */
-            text-align: center; 
-            padding: 20px 0 40px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* 子要素を中央へ */
+        /* --- Support Section (新しく追加・修正した部分) --- */
+        .support-section {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 50px; /* 下部に余白を追加 */
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            width: 100%;
+            max-width: 1000px; /* 他のコンテンツと幅を合わせる */
         }
-        .footer p {
-            margin: 0 0 15px 0; /* 下にだけ余白を作る */
+        .support-section h2 {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .support-section p {
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.95em;
+            margin-bottom: 20px;
         }
-        .coffee-link {
-            display: inline-flex; /* inline-blockよりflexの方が整列しやすい */
+        .bmc-custom-btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             background-color: #FFDD00;
             color: #000;
             padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            font-size: 1.1em;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .coffee-link:hover {
-            transform: scale(1.05);
+        .bmc-custom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .bmc-custom-btn span {
+            margin-left: 8px;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -209,9 +220,12 @@
     <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">NEXT</button>
 </div>
 
-<div class="footer">
-    <p>Thank you for your support!</p>
-    <a href="https://buymeacoffee.com/ohayocenteh" class="coffee-link" target="_blank">☕ Buy me a coffee</a>
+<div class="support-section">
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
 </div>
 
 <script>
