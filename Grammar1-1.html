@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JLPT Grammar Practice - OHAYO CENTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #4A90E2;
@@ -12,7 +13,61 @@
             --accent-color: #E74C3C;
             --bmc-color: #FFDD00;
         }
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 20px; }
+
+        /* --- ナビゲーションバーのスタイル追加 --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            font-family: 'Noto Sans JP', sans-serif;
+            box-sizing: border-box; /* 横スクロール防止 */
+        }
+        .logo {
+            font-family: 'Sawarabi Mincho', serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+        .logo a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* スマホ用デザイン調整 */
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; }
+        }
+        /* ------------------------------------- */
+
+        /* bodyのpaddingを変更し、上部に90pxの余白を設ける（メニューに隠れないようにするため） */
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 90px 20px 20px; }
         .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
         h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
         .slide { display: none; }
@@ -29,7 +84,7 @@
         .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
         .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
         .word-btn:hover { background-color: var(--primary-color); color: #fff; }
-        .action-area { display: flex; align-items: center; gap: 15px; }
+        .action-area { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; }
         .check-btn { background-color: var(--primary-color); }
         .reset-btn { background-color: #95a5a6; }
@@ -50,6 +105,15 @@
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
 
 <div class="container">
     <h1>JLPT Grammar Practice (Sentence Builder)</h1>
