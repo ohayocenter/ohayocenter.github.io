@@ -29,6 +29,8 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
+        /* ロゴのリンク装飾を消すCSSを追加 */
+        .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
 
@@ -162,7 +164,7 @@
 <body>
 
 <nav>
-    <div class="logo">OHAYO CENTER</div>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
     <ul class="nav-links">
         <li><a href="#lessons">LESSONS</a></li>
         <li><a href="#profile">PROFILE</a></li>
@@ -330,12 +332,19 @@
             </a>
             <a href="A1-1.html" class="unified-card">
                 <i class="fa-solid fa-book" style="color: #3498db;"></i>
-                <h3>Kanji A1</h3>
+                <h3>Kanji A1-1</h3>
                 <p>Entry Level Practice</p>
                 <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
             
             </a>
             <a href="A1-2.html" class="unified-card">
+                <i class="fa-solid fa-book" style="color: #3498db;"></i>
+                <h3>Kanji A1-2</h3>
+                <p>Elementary 1 Practice</p>
+                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+
+            </a>
+            <a href="A2.html" class="unified-card">
                 <i class="fa-solid fa-book" style="color: #3498db;"></i>
                 <h3>Kanji A2</h3>
                 <p>Elementary 1 Practice</p>
@@ -392,7 +401,7 @@
             </a>
 
             <a href="https://buymeacoffee.com/ohayocenteh" class="unified-card" target="_blank">
-                <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i><h3>Support OHAYO CENTER</h3><p>THANK YOU</p>
+                <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i><h3>SUPPORT OHAYO CENTER</h3><p>THANK YOU❤️</p>
                 <div class="btn-bottom"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;"></div>
             </a>
             
