@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>N3 Vocabulary-2</title>
+<title>N3 Vocabulary Quiz: 50 Questions Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 <style>
   /* --- ナビゲーションバーのスタイル追加 --- */
@@ -64,7 +64,7 @@
     color: #333;
     display: flex;
     justify-content: center;
-    /* 修正箇所: メニューに隠れないよう上部を90pxにし、下部の余白は80pxのままにしました */
+    /* メニューに隠れないよう上部を90pxにし、下部の余白は80pxのままにしました */
     padding: 90px 20px 80px;
   }
   .main-wrapper {
@@ -224,23 +224,45 @@
     font-weight: bold;
   }
 
-  /* Support Link */
-  .support-link {
-    margin-top: 30px;
-    display: inline-block;
+  /* --- Support Section --- */
+  .support-section {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #e2e8f0;
+    width: 100%;
+  }
+  .support-section h2 {
+    color: #2c3e50;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .support-section p {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+  }
+  .bmc-custom-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: #FFDD00;
-    color: #000000;
-    text-decoration: none;
+    color: #000;
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: bold;
     font-size: 1.1em;
+    text-decoration: none;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.2s, transform 0.1s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .support-link:hover {
-    background-color: #FFC300;
+  .bmc-custom-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  .bmc-custom-btn span {
+    margin-left: 8px;
+    letter-spacing: 0.5px;
   }
 
   /* スマホ画面（幅600px以下）専用のレイアウト調整 */
@@ -264,425 +286,425 @@
 
 <div class="main-wrapper">
   <div class="slide-container">
-    <h1>N3 Vocabulary-2 (1-25)</h1>
+    <h1>N3 Vocabulary Quiz (1-25)</h1>
     
     <div id="slide1" class="slide active">
-      <div class="topic-label">Topic: Holiday - Going Out (Slide 1/5)</div>
+      <div class="topic-label">Topic: Housework - Cooking (Slide 1/5)</div>
 
       <div class="question-block">
-        <div class="question-text">Q1. What is the Japanese phrase for "making a plan" for a holiday or trip?</div>
+        <div class="question-text">Q1. When preparing a meal like 'Nikujaga,' what is the Japanese term for the action of 'peeling' (e.g., peeling the skin off a potato)?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q1"> A. 予定を立てる (Yotei o tateru)</label></li>
-          <li><label><input type="radio" name="q1"> B. 予定を消す (Yotei o kesu)</label></li>
-          <li><label><input type="radio" name="q1"> C. 計画を止める (Keikaku o yameru)</label></li>
-          <li><label><input type="radio" name="q1"> D. 時間を過ごす (Jikan o sugosu)</label></li>
+          <li><label><input type="radio" name="q1"> A. お湯を沸かす (O-yu o wakasu)</label></li>
+          <li><label><input type="radio" name="q1"> B. 味をつける (Aji o tsukeru)</label></li>
+          <li><label><input type="radio" name="q1"> C. 材料を刻む (Zairyō o kizamu)</label></li>
+          <li><label><input type="radio" name="q1"> D. 皮をむく (Kawa o muku)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint1')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans1')">Show Answer</button>
         </div>
-        <div id="hint1" class="info-box hint-text">Hint: The verb means "to stand" or "to build/set up."</div>
-        <div id="ans1" class="info-box answer-text">Answer: A. 予定を立てる (Yotei o tateru)</div>
+        <div id="hint1" class="info-box hint-text">Hint: Focus on the verb used specifically for removing the outer layer of fruits or vegetables.</div>
+        <div id="ans1" class="info-box answer-text">Answer: D. 皮をむく (Kawa o muku)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q2. How do you say "to pack one's bags" or "prepare for a trip" in Japanese?</div>
+        <div class="question-text">Q2. What is the correct term for "boiling water" to make tea or soup?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q2"> A. お土産を買う (Omiyage o kau)</label></li>
-          <li><label><input type="radio" name="q2"> B. 荷物をまとめる (Nimotsu o matomeru)</label></li>
-          <li><label><input type="radio" name="q2"> C. 荷物を捨てる (Nimotsu o suteru)</label></li>
-          <li><label><input type="radio" name="q2"> D. かばんを開ける (Kaban o akeru)</label></li>
+          <li><label><input type="radio" name="q2"> A. お湯を沸かす (O-yu o wakasu)</label></li>
+          <li><label><input type="radio" name="q2"> B. お湯を冷ます (O-yu o samasu)</label></li>
+          <li><label><input type="radio" name="q2"> C. 鍋を火にかける (Nabe o hi ni kakeru)</label></li>
+          <li><label><input type="radio" name="q2"> D. ご飯を炊く (Gohan o taku)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint2')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans2')">Show Answer</button>
         </div>
-        <div id="hint2" class="info-box hint-text">Hint: The verb implies bringing scattered things together into one place.</div>
-        <div id="ans2" class="info-box answer-text">Answer: B. 荷物をまとめる (Nimotsu o matomeru)</div>
+        <div id="hint2" class="info-box hint-text">Hint: The verb means "to bring to a boil," not just "to heat."</div>
+        <div id="ans2" class="info-box answer-text">Answer: A. お湯を沸かす (O-yu o wakasu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q3. What is the Japanese term for a "day trip" (a trip where you return on the same day)?</div>
+        <div class="question-text">Q3. When making a salad, you need to "chop" the cabbage into small pieces. Which verb means "to chop/mince"?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q3"> A. 日帰り (Higaeri)</label></li>
-          <li><label><input type="radio" name="q3"> B. 一泊 (Ippaku)</label></li>
-          <li><label><input type="radio" name="q3"> C. 外食 (Gaishoku)</label></li>
-          <li><label><input type="radio" name="q3"> D. 連休 (Renkyū)</label></li>
+          <li><label><input type="radio" name="q3"> A. 焼く (Yaku)</label></li>
+          <li><label><input type="radio" name="q3"> B. 刻む (Kizamu)</label></li>
+          <li><label><input type="radio" name="q3"> C. 混ぜる (Mazeru)</label></li>
+          <li><label><input type="radio" name="q3"> D. 煮る (Niru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint3')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans3')">Show Answer</button>
         </div>
-        <div id="hint3" class="info-box hint-text">Hint: It literally translates to "day return."</div>
-        <div id="ans3" class="info-box answer-text">Answer: A. 日帰り (Higaeri)</div>
+        <div id="hint3" class="info-box hint-text">Hint: Think of the rhythmic sound of cutting something finely on a cutting board.</div>
+        <div id="ans3" class="info-box answer-text">Answer: B. 刻む (Kizamu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q4. When you go on a trip, you need to "book" or "reserve" a hotel. What is the verb for "to reserve"?</div>
+        <div class="question-text">Q4. Before eating, you might want to "season" or "flavor" the dish. What is the phrase for this?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q4"> A. 予約する (Yoyaku suru)</label></li>
-          <li><label><input type="radio" name="q4"> B. 約束する (Yakusoku suru)</label></li>
-          <li><label><input type="radio" name="q4"> C. 招待する (Shōtai suru)</label></li>
-          <li><label><input type="radio" name="q4"> D. 案内する (Annai suru)</label></li>
+          <li><label><input type="radio" name="q4"> A. 味をつける (Aji o tsukeru)</label></li>
+          <li><label><input type="radio" name="q4"> B. 砂糖をはかる (Satō o hakaru)</label></li>
+          <li><label><input type="radio" name="q4"> C. 包丁をとぐ (Hōchō o togu)</label></li>
+          <li><label><input type="radio" name="q4"> D. 油を引く (Abura o hiku)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint4')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans4')">Show Answer</button>
         </div>
-        <div id="hint4" class="info-box hint-text">Hint: This word is commonly used for hotels, restaurants, and tickets.</div>
-        <div id="ans4" class="info-box answer-text">Answer: A. 予約する (Yoyaku suru)</div>
+        <div id="hint4" class="info-box hint-text">Hint: The noun in this phrase literally means "taste" or "flavor".</div>
+        <div id="ans4" class="info-box answer-text">Answer: A. 味をつける (Aji o tsukeru)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q5. How do you describe an "overseas trip"?</div>
+        <div class="question-text">Q5. How do you say "to cook/boil rice" in Japanese?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q5"> A. 国内旅行 (Kokunai ryokō)</label></li>
-          <li><label><input type="radio" name="q5"> B. 海外旅行 (Kaigai ryokō)</label></li>
-          <li><label><input type="radio" name="q5"> C. 温泉旅行 (Onsen ryokō)</label></li>
-          <li><label><input type="radio" name="q5"> D. 家族旅行 (Kazoku ryokō)</label></li>
+          <li><label><input type="radio" name="q5"> A. ご飯を炊く (Gohan o taku)</label></li>
+          <li><label><input type="radio" name="q5"> B. ご飯を蒸す (Gohan o musu)</label></li>
+          <li><label><input type="radio" name="q5"> C. ご飯を炒める (Gohan o itameru)</label></li>
+          <li><label><input type="radio" name="q5"> D. ご飯を揚げる (Gohan o ageru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint5')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans5')">Show Answer</button>
         </div>
-        <div id="hint5" class="info-box hint-text">Hint: The first kanji (海) means "ocean" or "sea."</div>
-        <div id="ans5" class="info-box answer-text">Answer: B. 海外旅行 (Kaigai ryokō)</div>
+        <div id="hint5" class="info-box hint-text">Hint: This verb is almost exclusively used for preparing rice using a rice cooker or pot.</div>
+        <div id="ans5" class="info-box answer-text">Answer: A. ご飯を炊く (Gohan o taku)</div>
       </div>
     </div>
 
     <div id="slide2" class="slide">
-      <div class="topic-label">Topic: Holiday - Relaxing at Home (Slide 2/5)</div>
+      <div class="topic-label">Topic: Housework - Cleaning (Slide 2/5)</div>
 
       <div class="question-block">
-        <div class="question-text">Q6. What is the phrase for "taking it easy" or "relaxing" at home on a day off?</div>
+        <div class="question-text">Q6. What is the Japanese verb for "sweeping" the floor with a broom?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q6"> A. のんびりする (Nonbiri suru)</label></li>
-          <li><label><input type="radio" name="q6"> B. びっくりする (Bikkuri suru)</label></li>
-          <li><label><input type="radio" name="q6"> C. がっかりする (Gakkari suru)</label></li>
-          <li><label><input type="radio" name="q6"> D. はっきりする (Hakkiri suru)</label></li>
+          <li><label><input type="radio" name="q6"> A. 床をはく (Yuka o haku)</label></li>
+          <li><label><input type="radio" name="q6"> B. 床をふく (Yuka o fuku)</label></li>
+          <li><label><input type="radio" name="q6"> C. 床を磨く (Yuka o migaku)</label></li>
+          <li><label><input type="radio" name="q6"> D. 床を汚す (Yuka o yogosu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans6')">Show Answer</button>
         </div>
-        <div id="hint6" class="info-box hint-text">Hint: It describes a slow, leisurely state without rushing or stressing.</div>
-        <div id="ans6" class="info-box answer-text">Answer: A. のんびりする (Nonbiri suru)</div>
+        <div id="hint6" class="info-box hint-text">Hint: Think of the motion used with a broom (ほうき - hōki).</div>
+        <div id="ans6" class="info-box answer-text">Answer: A. 床をはく (Yuka o haku)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q7. How do you say "to sleep in" or "oversleep" on a Sunday morning?</div>
+        <div class="question-text">Q7. After eating, you need to "wipe" the table. Which verb is used for wiping?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q7"> A. 昼寝をする (Hirune o suru)</label></li>
-          <li><label><input type="radio" name="q7"> B. 徹夜する (Tetsuya suru)</label></li>
-          <li><label><input type="radio" name="q7"> C. 寝坊する (Nebō suru)</label></li>
-          <li><label><input type="radio" name="q7"> D. 早起きする (Hayaoki suru)</label></li>
+          <li><label><input type="radio" name="q7"> A. こする (Kosuru)</label></li>
+          <li><label><input type="radio" name="q7"> B. ふく (Fuku)</label></li>
+          <li><label><input type="radio" name="q7"> C. はく (Haku)</label></li>
+          <li><label><input type="radio" name="q7"> D. しぼる (Shiboru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint7')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans7')">Show Answer</button>
         </div>
-        <div id="hint7" class="info-box hint-text">Hint: This word combines "sleep" (寝) and "late" (坊).</div>
-        <div id="ans7" class="info-box answer-text">Answer: C. 寝坊する (Nebō suru)</div>
+        <div id="hint7" class="info-box hint-text">Hint: You use a wet towel (ふきん) to do this action.</div>
+        <div id="ans7" class="info-box answer-text">Answer: B. ふく (Fuku)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q8. What is the term for "staying up late" to watch movies or play games?</div>
+        <div class="question-text">Q8. How do you say "to vacuum" in Japanese?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q8"> A. 夜更かしする (Yofukashi suru)</label></li>
-          <li><label><input type="radio" name="q8"> B. 夜遊びする (Yoasobi suru)</label></li>
-          <li><label><input type="radio" name="q8"> C. 昼寝する (Hirune suru)</label></li>
-          <li><label><input type="radio" name="q8"> D. 夕食を食べる (Yūshoku o taberu)</label></li>
+          <li><label><input type="radio" name="q8"> A. 掃除機を回す (Sōjiki o mawasu)</label></li>
+          <li><label><input type="radio" name="q8"> B. 掃除機をかける (Sōjiki o kakeru)</label></li>
+          <li><label><input type="radio" name="q8"> C. 掃除機を使う (Sōjiki o tsukau)</label></li>
+          <li><label><input type="radio" name="q8"> D. 掃除機を動かす (Sōjiki o ugokasu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint8')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans8')">Show Answer</button>
         </div>
-        <div id="hint8" class="info-box hint-text">Hint: The kanji "更" relates to growing late into the night.</div>
-        <div id="ans8" class="info-box answer-text">Answer: A. 夜更かしする (Yofukashi suru)</div>
+        <div id="hint8" class="info-box hint-text">Hint: This verb is often used with machines or devices, like an iron or engine.</div>
+        <div id="ans8" class="info-box answer-text">Answer: B. 掃除機をかける (Sōjiki o kakeru)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q9. If you are watching TV and want to "change the channel," what is the Japanese phrase?</div>
+        <div class="question-text">Q9. When your room is messy, you need to "tidy it up". What is the phrase?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q9"> A. チャンネルを変える (Channeru o kaeru)</label></li>
-          <li><label><input type="radio" name="q9"> B. チャンネルを回す (Channeru o mawasu)</label></li>
-          <li><label><input type="radio" name="q9"> C. チャンネルを消す (Channeru o kesu)</label></li>
-          <li><label><input type="radio" name="q9"> D. チャンネルをつける (Channeru o tsukeru)</label></li>
+          <li><label><input type="radio" name="q9"> A. 部屋を汚す (Heya o yogosu)</label></li>
+          <li><label><input type="radio" name="q9"> B. 部屋を飾る (Heya o kazaru)</label></li>
+          <li><label><input type="radio" name="q9"> C. 部屋を片付ける (Heya o katazukeru)</label></li>
+          <li><label><input type="radio" name="q9"> D. 部屋を空ける (Heya o akeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint9')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans9')">Show Answer</button>
         </div>
-        <div id="hint9" class="info-box hint-text">Hint: The verb means "to change" or "alter."</div>
-        <div id="ans9" class="info-box answer-text">Answer: A. チャンネルを変える (Channeru o kaeru)</div>
+        <div id="hint9" class="info-box hint-text">Hint: The kanji 片 means "one side" or "piece", implying putting pieces back in order.</div>
+        <div id="ans9" class="info-box answer-text">Answer: C. 部屋を片付ける (Heya o katazukeru)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q10. What is the Japanese word for "a nap" during the day?</div>
+        <div class="question-text">Q10. What is the action of "taking out the trash" to the collection point?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q10"> A. 休憩 (Kyūkei)</label></li>
-          <li><label><input type="radio" name="q10"> B. 睡眠 (Suimin)</label></li>
-          <li><label><input type="radio" name="q10"> C. 昼寝 (Hirune)</label></li>
-          <li><label><input type="radio" name="q10"> D. 居眠り (Inemuri)</label></li>
+          <li><label><input type="radio" name="q10"> A. ゴミを拾う (Gomi o hirou)</label></li>
+          <li><label><input type="radio" name="q10"> B. ゴミを捨てる (Gomi o suteru)</label></li>
+          <li><label><input type="radio" name="q10"> C. ゴミを分ける (Gomi o wakeru)</label></li>
+          <li><label><input type="radio" name="q10"> D. ゴミを出す (Gomi o dasu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint10')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans10')">Show Answer</button>
         </div>
-        <div id="hint10" class="info-box hint-text">Hint: It literally translates to "noon sleep."</div>
-        <div id="ans10" class="info-box answer-text">Answer: C. 昼寝 (Hirune)</div>
+        <div id="hint10" class="info-box hint-text">Hint: The focus is on moving it from inside the house to the outside collection point.</div>
+        <div id="ans10" class="info-box answer-text">Answer: D. ゴミを出す (Gomi o dasu)</div>
       </div>
     </div>
 
     <div id="slide3" class="slide">
-      <div class="topic-label">Topic: Study - School & Tests (Slide 3/5)</div>
+      <div class="topic-label">Topic: Housework - Laundry & Cleaning (Slide 3/5)</div>
 
       <div class="question-block">
-        <div class="question-text">Q11. What is the Japanese phrase for "attending a lecture" or "taking a class"?</div>
+        <div class="question-text">Q11. After washing clothes, you need to "hang them out to dry". What is the verb?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q11"> A. 授業に出る (Jugyō ni deru)</label></li>
-          <li><label><input type="radio" name="q11"> B. 授業を休む (Jugyō o yasumu)</label></li>
-          <li><label><input type="radio" name="q11"> C. 授業を教える (Jugyō o oshieru)</label></li>
-          <li><label><input type="radio" name="q11"> D. 授業を作る (Jugyō o tsukuru)</label></li>
+          <li><label><input type="radio" name="q11"> A. 干す (Hosu)</label></li>
+          <li><label><input type="radio" name="q11"> B. たたむ (Tatamu)</label></li>
+          <li><label><input type="radio" name="q11"> C. ぬらす (Nurasu)</label></li>
+          <li><label><input type="radio" name="q11"> D. しぼる (Shiboru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint11')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans11')">Show Answer</button>
         </div>
-        <div id="hint11" class="info-box hint-text">Hint: The verb normally means "to exit," but in this context, it means "to attend."</div>
-        <div id="ans11" class="info-box answer-text">Answer: A. 授業に出る (Jugyō ni deru)</div>
+        <div id="hint11" class="info-box hint-text">Hint: This word means exposing something to the sun or air to dry it.</div>
+        <div id="ans11" class="info-box answer-text">Answer: A. 干す (Hosu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q12. How do you say "to pass an exam" in Japanese?</div>
+        <div class="question-text">Q12. Once the clothes are dry, you "bring them inside". What is the phrase?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q12"> A. 試験に落ちる (Shiken ni ochiru)</label></li>
-          <li><label><input type="radio" name="q12"> B. 試験に合格する (Shiken ni gōkaku suru)</label></li>
-          <li><label><input type="radio" name="q12"> C. 試験を受ける (Shiken o ukeru)</label></li>
-          <li><label><input type="radio" name="q12"> D. 試験をあきらめる (Shiken o akirameru)</label></li>
+          <li><label><input type="radio" name="q12"> A. 取り込む (Torikomu)</label></li>
+          <li><label><input type="radio" name="q12"> B. 取り入れる (Toriireru)</label></li>
+          <li><label><input type="radio" name="q12"> C. しまう (Shimau)</label></li>
+          <li><label><input type="radio" name="q12"> D. 隠す (Kakusu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint12')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans12')">Show Answer</button>
         </div>
-        <div id="hint12" class="info-box hint-text">Hint: The kanji means "matching the standard."</div>
-        <div id="ans12" class="info-box answer-text">Answer: B. 試験に合格する (Shiken ni gōkaku suru)</div>
+        <div id="hint12" class="info-box hint-text">Hint: A compound verb meaning to take (取る) something into (込む) the house.</div>
+        <div id="ans12" class="info-box answer-text">Answer: A. 取り込む (Torikomu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q13. What is the action of "memorizing" vocabulary or kanji?</div>
+        <div class="question-text">Q13. Before putting clothes in the drawer, you should "fold" them. What is the verb?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q13"> A. 思い出す (Omoidasu)</label></li>
-          <li><label><input type="radio" name="q13"> B. 考える (Kangaeru)</label></li>
-          <li><label><input type="radio" name="q13"> C. 暗記する (Anki suru)</label></li>
-          <li><label><input type="radio" name="q13"> D. 復習する (Fukushū suru)</label></li>
+          <li><label><input type="radio" name="q13"> A. 丸める (Marumeru)</label></li>
+          <li><label><input type="radio" name="q13"> B. たたむ (Tatamu)</label></li>
+          <li><label><input type="radio" name="q13"> C. 重ねる (Kasaneru)</label></li>
+          <li><label><input type="radio" name="q13"> D. 広げる (Hirogeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint13')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans13')">Show Answer</button>
         </div>
-        <div id="hint13" class="info-box hint-text">Hint: This implies learning something by heart.</div>
-        <div id="ans13" class="info-box answer-text">Answer: C. 暗記する (Anki suru)</div>
+        <div id="hint13" class="info-box hint-text">Hint: You do the same action to an umbrella or a map when putting it away.</div>
+        <div id="ans13" class="info-box answer-text">Answer: B. たたむ (Tatamu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q14. Before a big test, you need to "review" what you learned. What is the word for "review"?</div>
+        <div class="question-text">Q14. What is the Japanese term for "dust" that accumulates on furniture?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q14"> A. 予習 (Yoshū)</label></li>
-          <li><label><input type="radio" name="q14"> B. 復習 (Fukushū)</label></li>
-          <li><label><input type="radio" name="q14"> C. 練習 (Renshū)</label></li>
-          <li><label><input type="radio" name="q14"> D. 実習 (Jisshū)</label></li>
+          <li><label><input type="radio" name="q14"> A. 泥 (Doro)</label></li>
+          <li><label><input type="radio" name="q14"> B. ほこり (Hokori)</label></li>
+          <li><label><input type="radio" name="q14"> C. 泡 (Awa)</label></li>
+          <li><label><input type="radio" name="q14"> D. 汗 (Ase)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans14')">Show Answer</button>
         </div>
-        <div id="hint14" class="info-box hint-text">Hint: The first kanji "復" means "to return" or "repeat."</div>
-        <div id="ans14" class="info-box answer-text">Answer: B. 復習 (Fukushū)</div>
+        <div id="hint14" class="info-box hint-text">Hint: You often "wipe" this off (〜をふく) or "sweep" it (〜を払う).</div>
+        <div id="ans14" class="info-box answer-text">Answer: B. ほこり (Hokori)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q15. If a student is absent from school without permission, they "skip class." What is the phrase?</div>
+        <div class="question-text">Q15. How do you say "to iron" a shirt?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q15"> A. 授業をサボる (Jugyō o saboru)</label></li>
-          <li><label><input type="radio" name="q15"> B. 授業に遅れる (Jugyō ni okureru)</label></li>
-          <li><label><input type="radio" name="q15"> C. 授業を始める (Jugyō o hajimeru)</label></li>
-          <li><label><input type="radio" name="q15"> D. 授業を終わる (Jugyō o owaru)</label></li>
+          <li><label><input type="radio" name="q15"> A. アイロンをあてる (Airon o ateru)</label></li>
+          <li><label><input type="radio" name="q15"> B. アイロンをひく (Airon o hiku)</label></li>
+          <li><label><input type="radio" name="q15"> C. アイロンをかける (Airon o kakeru)</label></li>
+          <li><label><input type="radio" name="q15"> D. アイロンをする (Airon o suru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint15')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans15')">Show Answer</button>
         </div>
-        <div id="hint15" class="info-box hint-text">Hint: The verb comes from the word "sabotage."</div>
-        <div id="ans15" class="info-box answer-text">Answer: A. 授業をサボる (Jugyō o saboru)</div>
+        <div id="hint15" class="info-box hint-text">Hint: This is the exact same verb used with a vacuum cleaner (掃除機).</div>
+        <div id="ans15" class="info-box answer-text">Answer: C. アイロンをかける (Airon o kakeru)</div>
       </div>
     </div>
 
     <div id="slide4" class="slide">
-      <div class="topic-label">Topic: Work - Office & Commuting (Slide 4/5)</div>
+      <div class="topic-label">Topic: Housework & Childcare (Slide 4/5)</div>
 
       <div class="question-block">
-        <div class="question-text">Q16. What is the Japanese term for "going to work" (arriving at the office)?</div>
+        <div class="question-text">Q16. What is the Japanese word for "diaper", which you need to change for a baby?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q16"> A. 退社する (Taisha suru)</label></li>
-          <li><label><input type="radio" name="q16"> B. 出勤する (Shukkin suru)</label></li>
-          <li><label><input type="radio" name="q16"> C. 残業する (Zangyō suru)</label></li>
-          <li><label><input type="radio" name="q16"> D. 帰宅する (Kitaku suru)</label></li>
+          <li><label><input type="radio" name="q16"> A. おむつ (Omutsu)</label></li>
+          <li><label><input type="radio" name="q16"> B. タオル (Taoru)</label></li>
+          <li><label><input type="radio" name="q16"> C. おもちゃ (Omocha)</label></li>
+          <li><label><input type="radio" name="q16"> D. ベビーカー (Bebīkā)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint16')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans16')">Show Answer</button>
         </div>
-        <div id="hint16" class="info-box hint-text">Hint: The first kanji means "to exit/go out" and the second relates to "work/duty."</div>
-        <div id="ans16" class="info-box answer-text">Answer: B. 出勤する (Shukkin suru)</div>
+        <div id="hint16" class="info-box hint-text">Hint: The phrase is often used as "〇〇を換える (to change a ...)".</div>
+        <div id="ans16" class="info-box answer-text">Answer: A. おむつ (Omutsu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q17. How do you say "overtime work" when you have to stay late at the office?</div>
+        <div class="question-text">Q17. Which verb means "to pick up and carry a child in one's arms" (to hug/hold)?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q17"> A. 出張 (Shutchō)</label></li>
-          <li><label><input type="radio" name="q17"> B. 休憩 (Kyūkei)</label></li>
-          <li><label><input type="radio" name="q17"> C. 残業 (Zangyō)</label></li>
-          <li><label><input type="radio" name="q17"> D. 有給 (Yūkyū)</label></li>
+          <li><label><input type="radio" name="q17"> A. おんぶする (Onbusuru)</label></li>
+          <li><label><input type="radio" name="q17"> B. だっこする (Dakkosuru)</label></li>
+          <li><label><input type="radio" name="q17"> C. ほめる (Homeru)</label></li>
+          <li><label><input type="radio" name="q17"> D. しかる (Shikaru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint17')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans17')">Show Answer</button>
         </div>
-        <div id="hint17" class="info-box hint-text">Hint: It literally translates to "remaining business/work."</div>
-        <div id="ans17" class="info-box answer-text">Answer: C. 残業 (Zangyō)</div>
+        <div id="hint17" class="info-box hint-text">Hint: A very common, affectionate word used when parents hold their babies in front of them.</div>
+        <div id="ans17" class="info-box answer-text">Answer: B. だっこする (Dakkosuru)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q18. What is the phrase for "taking a day off" from work?</div>
+        <div class="question-text">Q18. What is the verb for "to carry a child on one's back" (piggyback ride)?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q18"> A. 会社を休む (Kaisha o yasumu)</label></li>
-          <li><label><input type="radio" name="q18"> B. 会社を辞める (Kaisha o yameru)</label></li>
-          <li><label><input type="radio" name="q18"> C. 会社を作る (Kaisha o tsukuru)</label></li>
-          <li><label><input type="radio" name="q18"> D. 会社を出る (Kaisha o deru)</label></li>
+          <li><label><input type="radio" name="q18"> A. だっこする (Dakkosuru)</label></li>
+          <li><label><input type="radio" name="q18"> B. つなぐ (Tsunagu)</label></li>
+          <li><label><input type="radio" name="q18"> C. おんぶする (Onbusuru)</label></li>
+          <li><label><input type="radio" name="q18"> D. なでる (Naderu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint18')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans18')">Show Answer</button>
         </div>
-        <div id="hint18" class="info-box hint-text">Hint: The verb means "to rest."</div>
-        <div id="ans18" class="info-box answer-text">Answer: A. 会社を休む (Kaisha o yasumu)</div>
+        <div id="hint18" class="info-box hint-text">Hint: In contrast to holding a child in your arms, this means carrying them on your back.</div>
+        <div id="ans18" class="info-box answer-text">Answer: C. おんぶする (Onbusuru)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q19. When you travel to another city or country for business, what is it called?</div>
+        <div class="question-text">Q19. If parents give a child everything they want and never scold them, they "spoil" the child. What is the Japanese verb for "to spoil"?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q19"> A. 旅行 (Ryokō)</label></li>
-          <li><label><input type="radio" name="q19"> B. 転勤 (Tenkin)</label></li>
-          <li><label><input type="radio" name="q19"> C. 出張 (Shutchō)</label></li>
-          <li><label><input type="radio" name="q19"> D. 面接 (Mensetsu)</label></li>
+          <li><label><input type="radio" name="q19"> A. かわいがる (Kawaigaru)</label></li>
+          <li><label><input type="radio" name="q19"> B. 甘やかす (Amayakasu)</label></li>
+          <li><label><input type="radio" name="q19"> C. しつける (Shitsukeru)</label></li>
+          <li><label><input type="radio" name="q19"> D. 育てる (Sodateru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
         </div>
-        <div id="hint19" class="info-box hint-text">Hint: It means a "business trip."</div>
-        <div id="ans19" class="info-box answer-text">Answer: C. 出張 (Shutchō)</div>
+        <div id="hint19" class="info-box hint-text">Hint: The kanji "甘" (sweet) is used to express being too lenient.</div>
+        <div id="ans19" class="info-box answer-text">Answer: B. 甘やかす (Amayakasu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q20. What is the term for a "meeting" with coworkers or clients in a formal setting?</div>
+        <div class="question-text">Q20. How do you describe a child who is "selfish" or wants everything their own way?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q20"> A. パーティー (Pātī)</label></li>
-          <li><label><input type="radio" name="q20"> B. 会議 (Kaigi)</label></li>
-          <li><label><input type="radio" name="q20"> C. 授業 (Jugyō)</label></li>
-          <li><label><input type="radio" name="q20"> D. 挨拶 (Aisatsu)</label></li>
+          <li><label><input type="radio" name="q20"> A. わがまま（な） (Wagamama)</label></li>
+          <li><label><input type="radio" name="q20"> B. おとなしい (Otonashī)</label></li>
+          <li><label><input type="radio" name="q20"> C. かしこい (Kashikoi)</label></li>
+          <li><label><input type="radio" name="q20"> D. えらい (Erai)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
         </div>
-        <div id="hint20" class="info-box hint-text">Hint: It uses the kanji for "meet" and "discuss/consult."</div>
-        <div id="ans20" class="info-box answer-text">Answer: B. 会議 (Kaigi)</div>
+        <div id="hint20" class="info-box hint-text">Hint: The other options mean "quiet," "smart," and "admirable."</div>
+        <div id="ans20" class="info-box answer-text">Answer: A. わがまま（な） (Wagamama)</div>
       </div>
     </div>
 
     <div id="slide5" class="slide">
-      <div class="topic-label">Topic: Work - Business & Colleagues (Slide 5/5)</div>
+      <div class="topic-label">Topic: Commuting & Trains (Slide 5/5)</div>
 
       <div class="question-block">
-        <div class="question-text">Q21. What is the Japanese word for your "colleague" or "coworker"?</div>
+        <div class="question-text">Q21. What is the Japanese term for a very "crowded train," especially during morning rush hour?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q21"> A. 上司 (Jōshi)</label></li>
-          <li><label><input type="radio" name="q21"> B. 部下 (Buka)</label></li>
-          <li><label><input type="radio" name="q21"> C. 同僚 (Dōryō)</label></li>
-          <li><label><input type="radio" name="q21"> D. 社長 (Shachō)</label></li>
+          <li><label><input type="radio" name="q21"> A. 終電 (Shūden)</label></li>
+          <li><label><input type="radio" name="q21"> B. 急行電車 (Kyūkō densha)</label></li>
+          <li><label><input type="radio" name="q21"> C. 満員電車 (Man'in densha)</label></li>
+          <li><label><input type="radio" name="q21"> D. 始発電車 (Shihatsu densha)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans21')">Show Answer</button>
         </div>
-        <div id="hint21" class="info-box hint-text">Hint: It refers to someone at the same level as you in the workplace.</div>
-        <div id="ans21" class="info-box answer-text">Answer: C. 同僚 (Dōryō)</div>
+        <div id="hint21" class="info-box hint-text">Hint: "満員" (man'in) means "full capacity" or "packed with people."</div>
+        <div id="ans21" class="info-box answer-text">Answer: C. 満員電車 (Man'in densha)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q22. How do you refer to your "boss" or "superior" at work?</div>
+        <div class="question-text">Q22. If you fall asleep on the train and miss your station, what verb do you use?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q22"> A. 上司 (Jōshi)</label></li>
-          <li><label><input type="radio" name="q22"> B. 後輩 (Kōhai)</label></li>
-          <li><label><input type="radio" name="q22"> C. 同僚 (Dōryō)</label></li>
-          <li><label><input type="radio" name="q22"> D. お客様 (Okyakusama)</label></li>
+          <li><label><input type="radio" name="q22"> A. 乗り遅れる (Noriokureru)</label></li>
+          <li><label><input type="radio" name="q22"> B. 乗り過ごす (Norisugosu)</label></li>
+          <li><label><input type="radio" name="q22"> C. 乗り換える (Norikaeru)</label></li>
+          <li><label><input type="radio" name="q22"> D. 乗り越える (Norikoeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint22')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans22')">Show Answer</button>
         </div>
-        <div id="hint22" class="info-box hint-text">Hint: The first kanji means "up" or "above."</div>
-        <div id="ans22" class="info-box answer-text">Answer: A. 上司 (Jōshi)</div>
+        <div id="hint22" class="info-box hint-text">Hint: You pass (過ごす) the station you were supposed to get off at.</div>
+        <div id="ans22" class="info-box answer-text">Answer: B. 乗り過ごす (Norisugosu)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q23. When you swap business cards with someone, you are doing a "business card exchange." What is the word for a business card?</div>
+        <div class="question-text">Q23. When you see an elderly person standing, it is polite to "give up your seat." What is the phrase?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q23"> A. 手紙 (Tegami)</label></li>
-          <li><label><input type="radio" name="q23"> B. 切手 (Kitte)</label></li>
-          <li><label><input type="radio" name="q23"> C. 名刺 (Meishi)</label></li>
-          <li><label><input type="radio" name="q23"> D. 封筒 (Fūtō)</label></li>
+          <li><label><input type="radio" name="q23"> A. 席をとる (Seki o toru)</label></li>
+          <li><label><input type="radio" name="q23"> B. 席を立つ (Seki o tatsu)</label></li>
+          <li><label><input type="radio" name="q23"> C. 席を外す (Seki o hazusu)</label></li>
+          <li><label><input type="radio" name="q23"> D. 席をゆずる (Seki o yuzuru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint23')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans23')">Show Answer</button>
         </div>
-        <div id="hint23" class="info-box hint-text">Hint: It contains the kanji for "name" (名).</div>
-        <div id="ans23" class="info-box answer-text">Answer: C. 名刺 (Meishi)</div>
+        <div id="hint23" class="info-box hint-text">Hint: The verb means "to hand over" or "to yield."</div>
+        <div id="ans23" class="info-box answer-text">Answer: D. 席をゆずる (Seki o yuzuru)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q24. What is the phrase used to say "Good work today" to a colleague leaving the office?</div>
+        <div class="question-text">Q24. If a train is NOT crowded and you can easily find a seat, how do you describe it?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q24"> A. お待たせしました (Omatase shimashita)</label></li>
-          <li><label><input type="radio" name="q24"> B. お疲れ様でした (Otsukaresama deshita)</label></li>
-          <li><label><input type="radio" name="q24"> C. お世話になります (Osewa ni narimasu)</label></li>
-          <li><label><input type="radio" name="q24"> D. お先に失礼します (Osaki ni shitsurei shimasu)</label></li>
+          <li><label><input type="radio" name="q24"> A. 混んでいる (Konde iru)</label></li>
+          <li><label><input type="radio" name="q24"> B. すいている (Suite iru)</label></li>
+          <li><label><input type="radio" name="q24"> C. 動いている (Ugoite iru)</label></li>
+          <li><label><input type="radio" name="q24"> D. 遅れている (Okurete iru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
         </div>
-        <div id="hint24" class="info-box hint-text">Hint: It comes from the verb meaning "to get tired."</div>
-        <div id="ans24" class="info-box answer-text">Answer: B. お疲れ様でした (Otsukaresama deshita)</div>
+        <div id="hint24" class="info-box hint-text">Hint: This is the opposite of 混んでいる (crowded).</div>
+        <div id="ans24" class="info-box answer-text">Answer: B. すいている (Suite iru)</div>
       </div>
 
       <div class="question-block">
-        <div class="question-text">Q25. If you decide to "quit your job," what is the verb used?</div>
+        <div class="question-text">Q25. What is the verb for "changing trains" at a station?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q25"> A. 仕事を探す (Shigoto o sagasu)</label></li>
-          <li><label><input type="radio" name="q25"> B. 仕事を辞める (Shigoto o yameru)</label></li>
-          <li><label><input type="radio" name="q25"> C. 仕事を続ける (Shigoto o tsuzukeru)</label></li>
-          <li><label><input type="radio" name="q25"> D. 仕事を覚える (Shigoto o oboeru)</label></li>
+          <li><label><input type="radio" name="q25"> A. 見送る (Miokuru)</label></li>
+          <li><label><input type="radio" name="q25"> B. 待ち合わせる (Machiawaseru)</label></li>
+          <li><label><input type="radio" name="q25"> C. 引き返す (Hikikaesu)</label></li>
+          <li><label><input type="radio" name="q25"> D. 乗り換える (Norikaeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
         </div>
-        <div id="hint25" class="info-box hint-text">Hint: The verb means "to stop" or "to resign."</div>
-        <div id="ans25" class="info-box answer-text">Answer: B. 仕事を辞める (Shigoto o yameru)</div>
+        <div id="hint25" class="info-box hint-text">Hint: "乗る" (ride) + "換える" (change).</div>
+        <div id="ans25" class="info-box answer-text">Answer: D. 乗り換える (Norikaeru)</div>
       </div>
     </div>
 
@@ -692,11 +714,15 @@
       <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
     </div>
 
+    <div class="support-section">
+      <h2>Support OHAYO CENTER</h2>
+      <p>If you find these materials helpful, please consider supporting us!</p>
+      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+      </a>
+    </div>
+
   </div>
-  
-  <a href="https://buymeacoffee.com/ohayocenteh" target="_blank" class="support-link">
-    SUPPORT OHAYO CENTER
-  </a>
 </div>
 
 <script>
