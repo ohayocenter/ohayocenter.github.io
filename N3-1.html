@@ -4,15 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>N3 Vocabulary Quiz: 50 Questions Challenge</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 <style>
+  /* --- ナビゲーションバーのスタイル追加 --- */
+  nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 0 5%;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    font-family: 'Noto Sans JP', sans-serif;
+    box-sizing: border-box; /* 横スクロール防止 */
+  }
+  .logo {
+    font-family: 'Sawarabi Mincho', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+  .logo a {
+    text-decoration: none;
+    color: #2c3e50;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  /* スマホ用デザイン調整 (メニュー用) */
+  @media (max-width: 600px) {
+    nav { padding: 0 15px; }
+    .logo { font-size: 1rem; }
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.7rem; }
+  }
+  /* ------------------------------------- */
+
   body {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     background-color: #f0f4f8;
     color: #333;
     display: flex;
     justify-content: center;
-    /* 修正箇所1: 下部の余白だけ80pxに増やし、スクロール時の窮屈さを解消しました */
-    padding: 20px 20px 80px;
+    /* 修正箇所1: メニューに隠れないよう上部を90pxにし、下部の余白は80pxのままにしました */
+    padding: 90px 20px 80px;
   }
   .slide-container {
     background-color: #ffffff;
@@ -204,6 +257,15 @@
 </style>
 </head>
 <body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
 
 <div class="slide-container">
   <h1>N3 Vocabulary Quiz (1-25)</h1>
