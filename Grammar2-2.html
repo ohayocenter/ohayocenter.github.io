@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT Grammar Practice - OHAYO CENTER</title>
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #F5F7FA;
+            --text-color: #333;
+            --accent-color: #E74C3C;
+            --bmc-color: #FFDD00;
+        }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
+        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
+        .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
+        .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
+        .sentence-builder { font-size: 1.2em; line-height: 2.5em; margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; }
+        .text-part { margin: 0 5px; }
+        .drop-slot-wrapper { display: inline-flex; flex-direction: column; align-items: center; margin: 0 5px; }
+        .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; }
+        .drop-slot:hover { background-color: #eef; }
+        .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
+        .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .word-btn:hover { background-color: var(--primary-color); color: #fff; }
+        .action-area { display: flex; align-items: center; gap: 15px; }
+        .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; }
+        .check-btn { background-color: var(--primary-color); }
+        .reset-btn { background-color: #95a5a6; }
+        .result-display { font-weight: bold; font-size: 1.1em; }
+        .correct { color: #2ecc71; }
+        .incorrect { color: var(--accent-color); }
+        .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 10px; border-left: 4px solid var(--primary-color); font-size: 0.95em; }
+        .controls { display: flex; justify-content: space-between; margin-top: 30px; }
+        .nav-btn { background-color: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        .nav-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+        .progress { text-align: center; font-size: 1.1em; font-weight: bold; margin-top: 20px; }
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
+        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
+        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>JLPT Grammar Practice (Sentence Builder)</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 20px;">
+        Click the words below to build the correct sentence.<br>
+        <span style="font-size: 0.9em;">(Words will move into the blanks. Click a blank to return the word.)</span>
+    </p>
+    <div id="quiz-container"></div>
+    <div class="controls">
+        <button id="prev-btn" class="nav-btn" onclick="changeSlide(-1)">Previous Slide</button>
+        <span class="progress" id="progress-text">Slide 1 / 5</span>
+        <button id="next-btn" class="nav-btn" onclick="changeSlide(1)">Next Slide</button>
+    </div>
+    <div class="support-section">
+        <h2>Support OHAYO CENTER</h2>
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+            ☕️ <span>SUPPORT OHAYO CENTER</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        // ====== Slide 1 ======
+        [
+            { prefix: "すみません、ここで", suffix: "いいですか。", en: "Excuse me, may I eat my lunch box here?", choices: ["食べて", "お弁当", "を", "も"], ansOrder: [1, 2, 0, 3], ansText: "お弁当 を 食べて も" },
+            // ★以前いただいたQ2の複数正解も反映しています★
+            { prefix: "テストが近いので、", suffix: "なりません。", en: "Since the test is coming up, I must study every day.", choices: ["毎日", "しなければ", "勉強", "を"], ansOrder: [[0, 2, 3, 1], [2, 3, 0, 1]], ansText: "毎日 勉強 を しなければ (または：勉強 を 毎日 しなければ)" },
+            { prefix: "東京は", suffix: "。", en: "Tokyo has more people than Osaka.", choices: ["人が", "大阪", "多いです", "より"], ansOrder: [1, 3, 0, 2], ansText: "大阪 より 人が 多いです" },
+            { prefix: "暑いので、", suffix: "あります。", en: "Because it's hot, the room's window is kept open.", choices: ["窓", "が", "開けて", "部屋の"], ansOrder: [3, 0, 1, 2], ansText: "部屋の 窓 が 開けて" },
+            { prefix: "昨日の夜、", suffix: "しまいました。", en: "Last night, I fell asleep while leaving the TV on.", choices: ["見た", "テレビを", "寝て", "まま"], ansOrder: [1, 0, 3, 2], ansText: "テレビを 見た まま 寝て" }
+        ],
+        // ====== Slide 2 ======
+        [
+            { prefix: "もし", suffix: "買いたいです。", en: "If I had money, I would want to buy a new car.", choices: ["あった", "車を", "お金が", "ら、新しい"], ansOrder: [2, 0, 3, 1], ansText: "お金が あった ら、新しい 車を" },
+            { prefix: "週末は", suffix: "思います。", en: "I am thinking of going to see a movie with my friend this weekend.", choices: ["見に", "行こうと", "映画を", "友達と"], ansOrder: [3, 2, 0, 1], ansText: "友達と 映画を 見に 行こうと" },
+            { prefix: "先生が", suffix: "くれました。", en: "The teacher lent me a dictionary.", choices: ["私", "辞書を", "に", "貸して"], ansOrder: [0, 2, 1, 3], ansText: "私 に 辞書を 貸して" },
+            { prefix: "あの店で売っている", suffix: "ね。", en: "The cake sold at that shop looks very delicious, doesn't it?", choices: ["とても", "ケーキは", "おいしそう", "です"], ansOrder: [1, 0, 2, 3], ansText: "ケーキは とても おいしそう です" },
+            { prefix: "休みの日は、いつも娘に", suffix: "させています。", en: "On my days off, I always make my daughter help with cleaning the room.", choices: ["手伝い", "部屋の", "掃除の", "を"], ansOrder: [1, 2, 0, 3], ansText: "部屋の 掃除の 手伝い を" }
+        ],
+        // ====== Slide 3 ======
+        [
+            { prefix: "昨日、電車の中で", suffix: "。", en: "My bag was stolen on the train yesterday.", choices: ["カバン", "盗まれ", "を", "ました"], ansOrder: [0, 2, 1, 3], ansText: "カバン を 盗まれ ました" },
+            { prefix: "秋になると、", suffix: "ね。", en: "When autumn comes, it gradually gets cooler, doesn't it?", choices: ["なって", "だんだん", "涼しく", "きます"], ansOrder: [1, 2, 0, 3], ansText: "だんだん 涼しく なって きます" },
+            { prefix: "明日は", suffix: "ください。", en: "Please try to wake up early tomorrow.", choices: ["起きる", "ように", "早く", "して"], ansOrder: [2, 0, 1, 3], ansText: "早く 起きる ように して" },
+            { prefix: "山田さんは", suffix: "話せるはずです。", en: "Since Mr. Yamada lived in America, he should be able to speak English.", choices: ["アメリカに", "住んでいた", "英語が", "ので、"], ansOrder: [0, 1, 3, 2], ansText: "アメリカに 住んでいた ので、 英語が" },
+            { prefix: "今晩は、", suffix: "。", en: "Tonight, I will take a bath after eating dinner.", choices: ["食べて", "から、お風呂に", "ご飯を", "入ります"], ansOrder: [2, 0, 1, 3], ansText: "ご飯を 食べて から、お風呂に 入ります" }
+        ],
+        // ====== Slide 4 ======
+        [
+            { prefix: "これは", suffix: "おいしいですね。", en: "This is a dish that Mr. Tanaka made, and it's very delicious.", choices: ["さんが", "料理で、とても", "田中", "作った"], ansOrder: [2, 0, 3, 1], ansText: "田中 さんが 作った 料理で、とても" },
+            { prefix: "この仕事が", suffix: "頑張ります。", en: "No matter how difficult this job is, I will do my best until the end.", choices: ["難しく", "ても、", "どんなに", "最後まで"], ansOrder: [2, 0, 1, 3], ansText: "どんなに 難しく ても、 最後まで" },
+            // ★ここが新しく変更したQ18です。どちらの語順でも正解になります★
+            { prefix: "外国人に", suffix: "答えられませんでした。", en: "Even though I was asked for directions in English by a foreigner, I couldn't answer.", choices: ["聞かれた", "のに、", "道を", "英語で"], ansOrder: [[3, 2, 0, 1], [2, 3, 0, 1]], ansText: "英語で 道を 聞かれた のに、 (または：道を 英語で 聞かれた のに、)" },
+            { prefix: "新しい", suffix: "困っています。", en: "I am troubled because I don't know how to use the new computer.", choices: ["使い方が", "わから", "なくて", "パソコンの"], ansOrder: [3, 0, 1, 2], ansText: "パソコンの 使い方が わから なくて" },
+            { prefix: "彼は", suffix: "帰ってしまいました。", en: "He ended up going home without listening to the teacher's talk.", choices: ["話を", "聞かず", "先生の", "に"], ansOrder: [2, 0, 1, 3], ansText: "先生の 話を 聞かず に" }
+        ],
+        // ====== Slide 5 ======
+        [
+            { prefix: "今にも", suffix: "。", en: "Because it looks like rain at any moment, I'll take an umbrella.", choices: ["降りそう", "持って行きます", "傘を", "だから、"], ansOrder: [0, 3, 2, 1], ansText: "降りそう だから、 傘を 持って行きます" },
+            { prefix: "お客さんが", suffix: "おきましょう。", en: "Let's clean the room before the guests arrive.", choices: ["部屋を", "来る", "掃除して", "前に、"], ansOrder: [1, 3, 0, 2], ansText: "来る 前に、 部屋を 掃除して" },
+            { prefix: "病院でもらった", suffix: "下がりました。", en: "When I took the medicine I got at the hospital, my fever went down immediately.", choices: ["飲んだ", "ら、すぐに", "薬を", "熱が"], ansOrder: [2, 0, 1, 3], ansText: "薬を 飲んだ ら、すぐに 熱が" },
+            { prefix: "明日テストがあるので、", suffix: "なりません。", en: "Since there is a test tomorrow, I have to practice writing kanji.", choices: ["書く", "しなければ", "漢字を", "練習を"], ansOrder: [2, 0, 3, 1], ansText: "漢字を 書く 練習を しなければ" },
+            { prefix: "毎朝、", suffix: "読みます。", en: "Every morning, I read the newspaper while drinking coffee.", choices: ["飲み", "コーヒーを", "新聞を", "ながら、"], ansOrder: [1, 0, 3, 2], ansText: "コーヒーを 飲み ながら、 新聞を" }
+        ]
+    ];
+
+    let currentSlide = 0;
+    function renderQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        quizData.forEach((slideData, slideIndex) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${slideIndex === 0 ? 'active' : ''}`;
+            slideDiv.id = `slide-${slideIndex}`;
+            slideData.forEach((qData, qIndex) => {
+                const qId = `s${slideIndex}_q${qIndex}`;
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'question-block';
+                let choicesHTML = '';
+                
+                // ★選択肢をランダムに並び替える処理★
+                let shuffledIndices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
+                
+                shuffledIndices.forEach(idx => {
+                    const choice = qData.choices[idx];
+                    choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
+                });
+
+                // ★複数正解に対応するための文字列処理★
+                let correctStr = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder.map(arr => arr.join(',')).join('|') : qData.ansOrder.join(',');
+
+                questionBlock.innerHTML = `
+                    <div class="question-header">Q${(slideIndex * 5) + qIndex + 1}.</div>
+                    <div class="english-translation">${qData.en}</div>
+                    <div class="sentence-builder" id="builder-${qId}">
+                        ${qData.prefix ? `<span class="text-part">${qData.prefix}</span>` : ''}
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-0" onclick="returnWord('${qId}', 0)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-1" onclick="returnWord('${qId}', 1)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-2" onclick="returnWord('${qId}', 2)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-3" onclick="returnWord('${qId}', 3)"></span></div>
+                        ${qData.suffix ? `<span class="text-part">${qData.suffix}</span>` : ''}
+                    </div>
+                    <div class="word-bank" id="bank-${qId}">${choicesHTML}</div>
+                    <div class="action-area">
+                        <button class="check-btn" onclick="checkAnswer('${qId}', '${correctStr}')">Check Answer</button>
+                        <button class="reset-btn" onclick="resetQuestion('${qId}')">Reset</button>
+                        <span id="result-${qId}" class="result-display"></span>
+                    </div>
+                    <div id="explanation-${qId}" class="explanation">
+                        <strong>Correct Sentence:</strong><br>
+                        ${qData.prefix} <span style="color:var(--primary-color)">${qData.ansText}</span> ${qData.suffix}
+                    </div>
+                `;
+                slideDiv.appendChild(questionBlock);
+            });
+            container.appendChild(slideDiv);
+        });
+        updateButtons();
+    }
+    window.selectWord = function(qId, choiceIdx, text) { for(let i=0; i<4; i++) { const slot = document.getElementById(`slot-${qId}-${i}`); if(!slot.hasAttribute('data-choice')) { slot.innerText = text; slot.setAttribute('data-choice', choiceIdx); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none'; break; } } };
+    window.returnWord = function(qId, slotIdx) { const slot = document.getElementById(`slot-${qId}-${slotIdx}`); if(slot.hasAttribute('data-choice')) { const choiceIdx = slot.getAttribute('data-choice'); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; slot.innerText = ''; slot.removeAttribute('data-choice'); } };
+    window.resetQuestion = function(qId) { for(let i=0; i<4; i++) { returnWord(qId, i); } document.getElementById(`result-${qId}`).textContent = ''; document.getElementById(`explanation-${qId}`).style.display = 'none'; };
+    
+    // ★複数正解を判定するロジック★
+    window.checkAnswer = function(qId, correctStr) { 
+        let userArr = []; 
+        let isComplete = true; 
+        for(let i=0; i<4; i++) { 
+            const slot = document.getElementById(`slot-${qId}-${i}`); 
+            if(slot.hasAttribute('data-choice')) { 
+                userArr.push(slot.getAttribute('data-choice')); 
+            } else { 
+                isComplete = false; 
+            } 
+        } 
+        const resultSpan = document.getElementById(`result-${qId}`); 
+        const expDiv = document.getElementById(`explanation-${qId}`); 
+        if(!isComplete) { 
+            resultSpan.textContent = "Please place all words."; 
+            resultSpan.className = "result-display incorrect"; 
+            return; 
+        } 
+        if(correctStr.split('|').includes(userArr.join(','))) { 
+            resultSpan.textContent = "⭕️ Correct!"; 
+            resultSpan.className = "result-display correct"; 
+        } else { 
+            resultSpan.textContent = "❌ Incorrect"; 
+            resultSpan.className = "result-display incorrect"; 
+        } 
+        expDiv.style.display = "block"; 
+    };
+
+    window.changeSlide = function(direction) { const slides = document.querySelectorAll('.slide'); slides[currentSlide].classList.remove('active'); currentSlide += direction; slides[currentSlide].classList.add('active'); updateButtons(); };
+    function updateButtons() { const prevBtn = document.getElementById('prev-btn'); const nextBtn = document.getElementById('next-btn'); const progressText = document.getElementById('progress-text'); prevBtn.disabled = currentSlide === 0; nextBtn.disabled = currentSlide === 4; progressText.textContent = `Slide ${currentSlide + 1} / 5`; }
+    window.onload = renderQuiz;
+</script>
+</body>
+</html>
