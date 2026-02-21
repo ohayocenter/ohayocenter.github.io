@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JLPT N4/N5 漢字マスター 12スライド</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -11,10 +12,65 @@
             --bg-color: #f0f2f5;
             --card-bg: #ffffff;
         }
+
+        /* --- ナビゲーションバーのスタイル追加 --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            font-family: 'Noto Sans JP', sans-serif;
+            box-sizing: border-box; /* 横スクロール防止 */
+        }
+        .logo {
+            font-family: 'Sawarabi Mincho', serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+        .logo a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* スマホ用デザイン調整 */
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; }
+        }
+        /* ------------------------------------- */
+
+        /* bodyに上部余白(padding-top)を追加し、メニューに隠れないように調整 */
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             background-color: var(--bg-color);
             margin: 0;
+            padding-top: 90px; /* ここを追加しました */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -135,8 +191,17 @@
 </head>
 <body>
 
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
 <div class="container" id="slides-container">
-    </div>
+</div>
 
 <div class="nav-controls">
     <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">PREV</button>
