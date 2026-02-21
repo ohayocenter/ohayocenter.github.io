@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT Grammar Practice - OHAYO CENTER</title>
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #F5F7FA;
+            --text-color: #333;
+            --accent-color: #E74C3C;
+            --bmc-color: #FFDD00;
+        }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
+        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
+        .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
+        .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
+        .sentence-builder { font-size: 1.2em; line-height: 2.5em; margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; }
+        .text-part { margin: 0 5px; }
+        .drop-slot-wrapper { display: inline-flex; flex-direction: column; align-items: center; margin: 0 5px; }
+        .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; }
+        .drop-slot:hover { background-color: #eef; }
+        .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
+        .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .word-btn:hover { background-color: var(--primary-color); color: #fff; }
+        .action-area { display: flex; align-items: center; gap: 15px; }
+        .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; }
+        .check-btn { background-color: var(--primary-color); }
+        .reset-btn { background-color: #95a5a6; }
+        .result-display { font-weight: bold; font-size: 1.1em; }
+        .correct { color: #2ecc71; }
+        .incorrect { color: var(--accent-color); }
+        .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 10px; border-left: 4px solid var(--primary-color); font-size: 0.95em; }
+        .controls { display: flex; justify-content: space-between; margin-top: 30px; }
+        .nav-btn { background-color: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        .nav-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+        .progress { text-align: center; font-size: 1.1em; font-weight: bold; margin-top: 20px; }
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
+        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
+        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>JLPT Grammar Practice (Sentence Builder)</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 20px;">
+        Click the words below to build the correct sentence.<br>
+        <span style="font-size: 0.9em;">(Words will move into the blanks. Click a blank to return the word.)</span>
+    </p>
+    <div id="quiz-container"></div>
+    <div class="controls">
+        <button id="prev-btn" class="nav-btn" onclick="changeSlide(-1)">Previous Slide</button>
+        <span class="progress" id="progress-text">Slide 1 / 5</span>
+        <button id="next-btn" class="nav-btn" onclick="changeSlide(1)">Next Slide</button>
+    </div>
+    <div class="support-section">
+        <h2>Support OHAYO CENTER</h2>
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+            ☕️ <span>SUPPORT OHAYO CENTER</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        // ====== Slide 1 ======
+        [
+            { prefix: "健康のために、毎日", suffix: "ようにしています。", en: "I try to exercise every day for my health.", choices: ["する", "少し", "運動を", "でも"], ansOrder: [1, 3, 2, 0], ansText: "少し でも 運動を する" },
+            { prefix: "ニュース", suffix: "そうです。", en: "According to the news, I heard it will rain tomorrow.", choices: ["明日は", "よると", "雨だ", "に"], ansOrder: [3, 1, 0, 2], ansText: "に よると 明日は 雨だ" },
+            { prefix: "このパソコンは、先週", suffix: "です。", en: "I just bought this computer last week.", choices: ["な", "ん", "ばかり", "買った"], ansOrder: [3, 2, 0, 1], ansText: "買った ばかり な ん" },
+            { prefix: "出かける時は、", suffix: "ください。", en: "Please don't forget to lock the door when you leave.", choices: ["かけるのを", "忘れないで", "ドアの", "鍵を"], ansOrder: [2, 3, 0, 1], ansText: "ドアの 鍵を かけるのを 忘れないで" },
+            { prefix: "私は母に", suffix: "。", en: "I was made to eat vegetables I hate by my mother.", choices: ["嫌いな", "させられました", "野菜を", "食べ"], ansOrder: [0, 2, 3, 1], ansText: "嫌いな 野菜を 食べ させられました" }
+        ],
+        // ====== Slide 2 ======
+        [
+            { prefix: "日本語が", suffix: "なりたいです。", en: "I want to become able to speak Japanese fluently.", choices: ["ように", "話せる", "ペラペラ", "に"], ansOrder: [2, 3, 1, 0], ansText: "ペラペラ に 話せる ように" },
+            { prefix: "今夜は", suffix: "。", en: "It might snow tonight.", choices: ["雪が", "かも", "降る", "しれません"], ansOrder: [0, 2, 1, 3], ansText: "雪が 降る かも しれません" },
+            { prefix: "この本は", suffix: "読めません。", en: "This book is too difficult for me to read.", choices: ["は", "すぎて", "私に", "難し"], ansOrder: [2, 0, 3, 1], ansText: "私に は 難し すぎて" },
+            { prefix: "来年、", suffix: "と思っています。", en: "I am thinking of going to study abroad in Japan next year.", choices: ["しよう", "日本", "留学", "へ"], ansOrder: [1, 3, 2, 0], ansText: "日本 へ 留学 しよう" },
+            { prefix: "風邪を引いた時は、", suffix: "。", en: "You should sleep early when you catch a cold.", choices: ["ほうが", "早く", "いいですよ", "寝た"], ansOrder: [1, 3, 0, 2], ansText: "早く 寝た ほうが いいですよ" }
+        ],
+        // ====== Slide 3 ======
+        [
+            { prefix: "危ないですから、", suffix: "。", en: "It's dangerous, so please do not touch that machine.", choices: ["触らないで", "機械に", "ください", "その"], ansOrder: [3, 1, 0, 2], ansText: "その 機械に 触らないで ください" },
+            { prefix: "私は友達に", suffix: "。", en: "I had my friend help me with my difficult homework.", choices: ["手伝って", "難しい", "宿題を", "もらいました"], ansOrder: [1, 2, 0, 3], ansText: "難しい 宿題を 手伝って もらいました" },
+            { prefix: "ここに", suffix: "いけません。", en: "You must not park your car here.", choices: ["は", "車", "止めて", "を"], ansOrder: [1, 3, 2, 0], ansText: "車 を 止めて は" },
+            { prefix: "明日は", suffix: "つもりです。", en: "I plan to study at the library tomorrow.", choices: ["する", "図書館で", "勉強", "を"], ansOrder: [1, 2, 3, 0], ansText: "図書館で 勉強 を する" },
+            { prefix: "もし", suffix: "。", en: "If it is cheap, I will buy it.", choices: ["安けれ", "ます", "買い", "ば"], ansOrder: [0, 3, 2, 1], ansText: "安けれ ば 買い ます" }
+        ],
+        // ====== Slide 4 ======
+        [
+            { prefix: "この漫画は、", suffix: "面白くなります。", en: "The more you read this manga, the more interesting it becomes.", choices: ["読む", "読め", "ほど", "ば"], ansOrder: [1, 3, 0, 2], ansText: "読め ば 読む ほど" },
+            { prefix: "私は", suffix: "。", en: "I was praised by the teacher.", choices: ["先生に", "ました", "られ", "褒め"], ansOrder: [0, 3, 2, 1], ansText: "先生に 褒め られ ました" },
+            { prefix: "たくさん", suffix: "不合格でした。", en: "Even though I studied a lot, I failed the exam.", choices: ["のに", "を", "勉強", "した"], ansOrder: [2, 1, 3, 0], ansText: "勉強 を した のに" },
+            { prefix: "私は", suffix: "です。", en: "I am glad I came to Japan.", choices: ["へ", "日本", "よかった", "来て"], ansOrder: [1, 0, 3, 2], ansText: "日本 へ 来て よかった" },
+            { prefix: "あ、", suffix: "。", en: "Oh, it looks like the bus has arrived.", choices: ["みたい", "です", "来た", "バスが"], ansOrder: [3, 2, 0, 1], ansText: "バスが 来た みたい です" }
+        ],
+        // ====== Slide 5 ======
+        [
+            { prefix: "この時計は、兄が", suffix: "くれたものです。", en: "This is a watch that my older brother bought for me.", choices: ["ために", "買って", "の", "私"], ansOrder: [3, 2, 0, 1], ansText: "私 の ために 買って" },
+            { prefix: "このペンは、", suffix: "。", en: "This pen is very easy to write with.", choices: ["とても", "です", "やすい", "書き"], ansOrder: [0, 3, 2, 1], ansText: "とても 書き やすい です" },
+            { prefix: "しまった、", suffix: "。", en: "Oh no, I accidentally dropped my wallet.", choices: ["落として", "財布を", "ました", "しまい"], ansOrder: [1, 0, 3, 2], ansText: "財布を 落として しまい ました" },
+            { prefix: "新しい", suffix: "貯金しています。", en: "I am saving money in order to buy a car.", choices: ["ために", "車", "買う", "を"], ansOrder: [1, 3, 2, 0], ansText: "車 を 買う ために" },
+            { prefix: "初めて", suffix: "。", en: "I tried eating sushi for the first time.", choices: ["寿司", "みました", "食べて", "を"], ansOrder: [0, 3, 2, 1], ansText: "寿司 を 食べて みました" }
+        ]
+    ];
+
+    let currentSlide = 0;
+    function renderQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        quizData.forEach((slideData, slideIndex) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${slideIndex === 0 ? 'active' : ''}`;
+            slideDiv.id = `slide-${slideIndex}`;
+            slideData.forEach((qData, qIndex) => {
+                const qId = `s${slideIndex}_q${qIndex}`;
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'question-block';
+                let choicesHTML = '';
+                qData.choices.forEach((choice, idx) => {
+                    choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
+                });
+                questionBlock.innerHTML = `
+                    <div class="question-header">Q${(slideIndex * 5) + qIndex + 1}.</div>
+                    <div class="english-translation">${qData.en}</div>
+                    <div class="sentence-builder" id="builder-${qId}">
+                        ${qData.prefix ? `<span class="text-part">${qData.prefix}</span>` : ''}
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-0" onclick="returnWord('${qId}', 0)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-1" onclick="returnWord('${qId}', 1)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-2" onclick="returnWord('${qId}', 2)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-3" onclick="returnWord('${qId}', 3)"></span></div>
+                        ${qData.suffix ? `<span class="text-part">${qData.suffix}</span>` : ''}
+                    </div>
+                    <div class="word-bank" id="bank-${qId}">${choicesHTML}</div>
+                    <div class="action-area">
+                        <button class="check-btn" onclick="checkAnswer('${qId}', '${qData.ansOrder.join(',')}')">Check Answer</button>
+                        <button class="reset-btn" onclick="resetQuestion('${qId}')">Reset</button>
+                        <span id="result-${qId}" class="result-display"></span>
+                    </div>
+                    <div id="explanation-${qId}" class="explanation">
+                        <strong>Correct Sentence:</strong><br>
+                        ${qData.prefix} <span style="color:var(--primary-color)">${qData.ansText}</span> ${qData.suffix}
+                    </div>
+                `;
+                slideDiv.appendChild(questionBlock);
+            });
+            container.appendChild(slideDiv);
+        });
+        updateButtons();
+    }
+    window.selectWord = function(qId, choiceIdx, text) { for(let i=0; i<4; i++) { const slot = document.getElementById(`slot-${qId}-${i}`); if(!slot.hasAttribute('data-choice')) { slot.innerText = text; slot.setAttribute('data-choice', choiceIdx); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none'; break; } } };
+    window.returnWord = function(qId, slotIdx) { const slot = document.getElementById(`slot-${qId}-${slotIdx}`); if(slot.hasAttribute('data-choice')) { const choiceIdx = slot.getAttribute('data-choice'); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; slot.innerText = ''; slot.removeAttribute('data-choice'); } };
+    window.resetQuestion = function(qId) { for(let i=0; i<4; i++) { returnWord(qId, i); } document.getElementById(`result-${qId}`).textContent = ''; document.getElementById(`explanation-${qId}`).style.display = 'none'; };
+    window.checkAnswer = function(qId, correctStr) { let userArr = []; let isComplete = true; for(let i=0; i<4; i++) { const slot = document.getElementById(`slot-${qId}-${i}`); if(slot.hasAttribute('data-choice')) { userArr.push(slot.getAttribute('data-choice')); } else { isComplete = false; } } const resultSpan = document.getElementById(`result-${qId}`); const expDiv = document.getElementById(`explanation-${qId}`); if(!isComplete) { resultSpan.textContent = "Please place all words."; resultSpan.className = "result-display incorrect"; return; } if(userArr.join(',') === correctStr) { resultSpan.textContent = "⭕️ Correct!"; resultSpan.className = "result-display correct"; } else { resultSpan.textContent = "❌ Incorrect"; resultSpan.className = "result-display incorrect"; } expDiv.style.display = "block"; };
+    window.changeSlide = function(direction) { const slides = document.querySelectorAll('.slide'); slides[currentSlide].classList.remove('active'); currentSlide += direction; slides[currentSlide].classList.add('active'); updateButtons(); };
+    function updateButtons() { const prevBtn = document.getElementById('prev-btn'); const nextBtn = document.getElementById('next-btn'); const progressText = document.getElementById('progress-text'); prevBtn.disabled = currentSlide === 0; nextBtn.disabled = currentSlide === 4; progressText.textContent = `Slide ${currentSlide + 1} / 5`; }
+    window.onload = renderQuiz;
+</script>
+</body>
+</html>
