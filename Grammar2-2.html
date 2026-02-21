@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JLPT Grammar Practice - OHAYO CENTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #4A90E2;
@@ -12,7 +13,62 @@
             --accent-color: #E74C3C;
             --bmc-color: #FFDD00;
         }
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 20px; }
+
+        /* --- ナビゲーションバーのスタイル追加 --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            font-family: 'Noto Sans JP', sans-serif;
+            box-sizing: border-box; /* 横スクロール防止 */
+        }
+        .logo {
+            font-family: 'Sawarabi Mincho', serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+        .logo a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* スマホ用デザイン調整 */
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; }
+        }
+        /* ------------------------------------- */
+
+        /* bodyのpaddingを変更し、上部に90pxの余白を設ける（メニューに隠れないようにするため） */
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 90px 20px 20px; }
+        
         .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
         h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
         .slide { display: none; }
@@ -50,6 +106,16 @@
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
 <div class="container">
     <h1>JLPT Grammar Practice (Sentence Builder)</h1>
     <p style="text-align: center; color: #666; margin-bottom: 20px;">
@@ -131,7 +197,7 @@
                 questionBlock.className = 'question-block';
                 let choicesHTML = '';
                 
-                // ★選択肢をランダムに並び替える処理★
+                // ★ 選択肢をランダムにシャッフルして表示 ★
                 let shuffledIndices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
                 
                 shuffledIndices.forEach(idx => {
@@ -139,7 +205,7 @@
                     choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
                 });
 
-                // ★複数正解に対応するための文字列処理★
+                // ★ 複数正解対応のための文字列処理 ★
                 let correctStr = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder.map(arr => arr.join(',')).join('|') : qData.ansOrder.join(',');
 
                 questionBlock.innerHTML = `
@@ -174,7 +240,7 @@
     window.returnWord = function(qId, slotIdx) { const slot = document.getElementById(`slot-${qId}-${slotIdx}`); if(slot.hasAttribute('data-choice')) { const choiceIdx = slot.getAttribute('data-choice'); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; slot.innerText = ''; slot.removeAttribute('data-choice'); } };
     window.resetQuestion = function(qId) { for(let i=0; i<4; i++) { returnWord(qId, i); } document.getElementById(`result-${qId}`).textContent = ''; document.getElementById(`explanation-${qId}`).style.display = 'none'; };
     
-    // ★複数正解を判定するロジック★
+    // ★ 複数正解の判定ロジック ★
     window.checkAnswer = function(qId, correctStr) { 
         let userArr = []; 
         let isComplete = true; 
