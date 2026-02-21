@@ -75,7 +75,8 @@
     const quizData = [
         // ====== Slide 1 ======
         [
-            { prefix: "健康のために、毎日", suffix: "ようにしています。", en: "I try to exercise every day for my health.", choices: ["する", "少し", "運動を", "でも"], ansOrder: [1, 3, 2, 0], ansText: "少し でも 運動を する" },
+            // ★ Q1: 2パターンの正解に対応しました
+            { prefix: "健康のために、毎日", suffix: "ようにしています。", en: "I try to exercise every day for my health.", choices: ["する", "少し", "運動を", "でも"], ansOrder: [[1, 3, 2, 0], [2, 1, 3, 0]], ansText: "少し でも 運動を する (または：運動を 少し でも する)" },
             { prefix: "ニュース", suffix: "そうです。", en: "According to the news, I heard it will rain tomorrow.", choices: ["明日は", "よると", "雨だ", "に"], ansOrder: [3, 1, 0, 2], ansText: "に よると 明日は 雨だ" },
             { prefix: "このパソコンは、先週", suffix: "です。", en: "I just bought this computer last week.", choices: ["な", "ん", "ばかり", "買った"], ansOrder: [3, 2, 0, 1], ansText: "買った ばかり な ん" },
             { prefix: "出かける時は、", suffix: "ください。", en: "Please don't forget to lock the door when you leave.", choices: ["かけるのを", "忘れないで", "ドアの", "鍵を"], ansOrder: [2, 3, 0, 1], ansText: "ドアの 鍵を かけるのを 忘れないで" },
@@ -128,9 +129,18 @@
                 const questionBlock = document.createElement('div');
                 questionBlock.className = 'question-block';
                 let choicesHTML = '';
-                qData.choices.forEach((choice, idx) => {
+                
+                // ★ 選択肢をランダムにシャッフルして表示 ★
+                let shuffledIndices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
+                
+                shuffledIndices.forEach(idx => {
+                    const choice = qData.choices[idx];
                     choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
                 });
+
+                // ★ 複数正解対応のための文字列処理 ★
+                let correctStr = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder.map(arr => arr.join(',')).join('|') : qData.ansOrder.join(',');
+
                 questionBlock.innerHTML = `
                     <div class="question-header">Q${(slideIndex * 5) + qIndex + 1}.</div>
                     <div class="english-translation">${qData.en}</div>
@@ -144,7 +154,7 @@
                     </div>
                     <div class="word-bank" id="bank-${qId}">${choicesHTML}</div>
                     <div class="action-area">
-                        <button class="check-btn" onclick="checkAnswer('${qId}', '${qData.ansOrder.join(',')}')">Check Answer</button>
+                        <button class="check-btn" onclick="checkAnswer('${qId}', '${correctStr}')">Check Answer</button>
                         <button class="reset-btn" onclick="resetQuestion('${qId}')">Reset</button>
                         <span id="result-${qId}" class="result-display"></span>
                     </div>
@@ -162,7 +172,36 @@
     window.selectWord = function(qId, choiceIdx, text) { for(let i=0; i<4; i++) { const slot = document.getElementById(`slot-${qId}-${i}`); if(!slot.hasAttribute('data-choice')) { slot.innerText = text; slot.setAttribute('data-choice', choiceIdx); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none'; break; } } };
     window.returnWord = function(qId, slotIdx) { const slot = document.getElementById(`slot-${qId}-${slotIdx}`); if(slot.hasAttribute('data-choice')) { const choiceIdx = slot.getAttribute('data-choice'); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; slot.innerText = ''; slot.removeAttribute('data-choice'); } };
     window.resetQuestion = function(qId) { for(let i=0; i<4; i++) { returnWord(qId, i); } document.getElementById(`result-${qId}`).textContent = ''; document.getElementById(`explanation-${qId}`).style.display = 'none'; };
-    window.checkAnswer = function(qId, correctStr) { let userArr = []; let isComplete = true; for(let i=0; i<4; i++) { const slot = document.getElementById(`slot-${qId}-${i}`); if(slot.hasAttribute('data-choice')) { userArr.push(slot.getAttribute('data-choice')); } else { isComplete = false; } } const resultSpan = document.getElementById(`result-${qId}`); const expDiv = document.getElementById(`explanation-${qId}`); if(!isComplete) { resultSpan.textContent = "Please place all words."; resultSpan.className = "result-display incorrect"; return; } if(userArr.join(',') === correctStr) { resultSpan.textContent = "⭕️ Correct!"; resultSpan.className = "result-display correct"; } else { resultSpan.textContent = "❌ Incorrect"; resultSpan.className = "result-display incorrect"; } expDiv.style.display = "block"; };
+    
+    // ★ 複数正解の判定ロジック ★
+    window.checkAnswer = function(qId, correctStr) { 
+        let userArr = []; 
+        let isComplete = true; 
+        for(let i=0; i<4; i++) { 
+            const slot = document.getElementById(`slot-${qId}-${i}`); 
+            if(slot.hasAttribute('data-choice')) { 
+                userArr.push(slot.getAttribute('data-choice')); 
+            } else { 
+                isComplete = false; 
+            } 
+        } 
+        const resultSpan = document.getElementById(`result-${qId}`); 
+        const expDiv = document.getElementById(`explanation-${qId}`); 
+        if(!isComplete) { 
+            resultSpan.textContent = "Please place all words."; 
+            resultSpan.className = "result-display incorrect"; 
+            return; 
+        } 
+        if(correctStr.split('|').includes(userArr.join(','))) { 
+            resultSpan.textContent = "⭕️ Correct!"; 
+            resultSpan.className = "result-display correct"; 
+        } else { 
+            resultSpan.textContent = "❌ Incorrect"; 
+            resultSpan.className = "result-display incorrect"; 
+        } 
+        expDiv.style.display = "block"; 
+    };
+
     window.changeSlide = function(direction) { const slides = document.querySelectorAll('.slide'); slides[currentSlide].classList.remove('active'); currentSlide += direction; slides[currentSlide].classList.add('active'); updateButtons(); };
     function updateButtons() { const prevBtn = document.getElementById('prev-btn'); const nextBtn = document.getElementById('next-btn'); const progressText = document.getElementById('progress-text'); prevBtn.disabled = currentSlide === 0; nextBtn.disabled = currentSlide === 4; progressText.textContent = `Slide ${currentSlide + 1} / 5`; }
     window.onload = renderQuiz;
