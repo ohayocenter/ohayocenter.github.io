@@ -218,33 +218,45 @@
     font-weight: bold;
   }
 
-  /* Buy me a coffee ボタン */
-  .bmc-container {
+  /* --- Support Section (新しく追加・変更した部分) --- */
+  .support-section {
     text-align: center;
     margin-top: 40px;
     padding-top: 30px;
     border-top: 1px dashed #e2e8f0;
+    width: 100%;
   }
-  .bmc-btn {
+  .support-section h2 {
+    color: #2c3e50;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .support-section p {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+  }
+  .bmc-custom-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background-color: #FFDD00;
-    color: #000000;
-    text-decoration: none;
+    color: #000;
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.1em;
+    text-decoration: none;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.2s, transform 0.1s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .bmc-btn:hover {
-    background-color: #FFC300;
+  .bmc-custom-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   }
-  .bmc-btn span {
+  .bmc-custom-btn span {
     margin-left: 8px;
+    letter-spacing: 0.5px;
   }
 
   @media (max-width: 600px) {
@@ -694,10 +706,12 @@
     <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
   </div>
 
-  <div class="bmc-container">
-    <a href="https://buymeacoffee.com/ohayocenteh" target="_blank" class="bmc-btn">
-    <span>SUPPORT OHAYO CENTER</span>
-    </a>
+  <div class="support-section">
+      <h2>Support OHAYO CENTER</h2>
+      <p>If you find these materials helpful, please consider supporting us!</p>
+      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+      </a>
   </div>
 
 </div>
