@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JLPT Grammar Practice - OHAYO CENTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #4A90E2;
@@ -11,10 +12,51 @@
             --text-color: #333;
             --accent-color: #E74C3C;
             --bmc-color: #FFDD00;
+            --dark: #2c3e50; /* ナビゲーション用のカラーを追加 */
         }
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 20px; }
+        
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; 
+            background-color: var(--secondary-color); 
+            color: var(--text-color); 
+            margin: 0; 
+            /* ヘッダーの高さ(70px) + 元の余白(20px) を考慮して上部の余白を調整 */
+            padding: 100px 20px 20px 20px; 
+        }
+
+        /* --- ヘッダー（ナビゲーション）のスタイル --- */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            padding: 0 5%; 
+            height: 70px; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0;
+            z-index: 1000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; }
+        }
+        /* ------------------------------------- */
+
         .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
-        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 0; }
         .slide { display: none; }
         .slide.active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -50,6 +92,16 @@
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
 <div class="container">
     <h1>JLPT Grammar Practice (Sentence Builder)</h1>
     <p style="text-align: center; color: #666; margin-bottom: 20px;">
