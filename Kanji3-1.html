@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> 第1回 N3漢字クイズ - OHAYO CENTER</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+<style>
+  /* --- ナビゲーションバー --- */
+  nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box; }
+  .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+  .logo a { text-decoration: none; color: #2c3e50; }
+  .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+  @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } }
+
+  /* --- メインレイアウト --- */
+  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: #f0f4f8; color: #333; display: flex; justify-content: center; padding: 90px 20px 80px; }
+  .main-wrapper { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
+  .slide-container { background-color: #ffffff; width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); padding: 40px; box-sizing: border-box; position: relative; }
+  h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 30px; }
+  .topic-label { background-color: #e2e8f0; color: #4a5568; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; display: inline-block; margin-bottom: 20px; font-weight: bold; }
+  
+  /* --- スライド・クイズ部分 --- */
+  .slide { display: none; animation: fadeIn 0.4s; }
+  .slide.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .question-block { margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px dashed #e2e8f0; }
+  .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .question-text { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; line-height: 1.5; }
+  .english-translation { color: #666; font-size: 0.9em; margin-bottom: 15px; font-style: italic; }
+  .options { list-style: none; padding: 0; margin: 0 0 15px 0; }
+  .options li { background-color: #f7fafc; border: 1px solid #cbd5e0; margin-bottom: 8px; padding: 10px 15px; border-radius: 6px; transition: background-color 0.2s; }
+  .options li:hover { background-color: #ebf4ff; cursor: pointer; }
+  .options label { cursor: pointer; display: block; width: 100%; font-size: 1.05em;}
+  .btn-group { display: flex; gap: 10px; }
+  .action-btn { color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: background-color 0.2s; font-weight: bold; }
+  .hint-btn { background-color: #4299e1; }
+  .hint-btn:hover { background-color: #3182ce; }
+  .answer-btn { background-color: #48bb78; }
+  .answer-btn:hover { background-color: #38a169; }
+  .info-box { display: none; padding: 12px; margin-top: 10px; border-radius: 4px; font-size: 0.95em; }
+  .hint-text { background-color: #fffaf0; border-left: 4px solid #ed8936; color: #555; font-style: italic; }
+  .answer-text { background-color: #f0fff4; border-left: 4px solid #48bb78; color: #276749; font-weight: bold; }
+
+  /* --- ナビゲーション・フッター --- */
+  .nav-controls { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; }
+  .nav-btn { background-color: #2c3e50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 1em; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
+  .nav-btn:hover { background-color: #1a252f; }
+  .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
+  .slide-indicator { font-size: 0.9em; color: #718096; align-self: center; font-weight: bold; }
+  
+  .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; }
+  .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
+  .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+  .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+  .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+  .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
+
+  @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="main-wrapper">
+  <div class="slide-container">
+    <h1>第1回：N3 漢字・語彙マスタークイズ</h1>
+    
+    <div id="slide1" class="slide active">
+      <div class="topic-label">Topic: 交通 (Traffic) (Slide 1/5)</div>
+
+      <div class="question-block">
+        <div class="question-text">Q1. 事故で電車が<u>遅れて</u>います。</div>
+        <div class="english-translation">[The train is delayed due to an accident.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q1"> A. たおれて</label></li>
+          <li><label><input type="radio" name="q1"> B. わすれて</label></li>
+          <li><label><input type="radio" name="q1"> C. おくれて</label></li>
+          <li><label><input type="radio" name="q1"> D. はずれて</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint1')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans1')">Show Answer</button>
+        </div>
+        <div id="hint1" class="info-box hint-text">Hint: It means "to be late" or "to be delayed".</div>
+        <div id="ans1" class="info-box answer-text">Answer: C. おくれて (遅れる: okureru)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q2. 次の駅で<u>のりかえて</u>ください。</div>
+        <div class="english-translation">[Please transfer at the next station.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q2"> A. 乗り換えて</label></li>
+          <li><label><input type="radio" name="q2"> B. 乗り交えて</label></li>
+          <li><label><input type="radio" name="q2"> C. 乗り替えて</label></li>
+          <li><label><input type="radio" name="q2"> D. 乗り変えて</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint2')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans2')">Show Answer</button>
+        </div>
+        <div id="hint2" class="info-box hint-text">Hint: The second kanji means "to exchange" or "to substitute".</div>
+        <div id="ans2" class="info-box answer-text">Answer: A. 乗り換えて (乗り換える: norikaeru)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q3. 道が（　　　）いて、車が全然進まない。</div>
+        <div class="english-translation">[The road is congested, and the cars aren't moving at all.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q3"> A. 空んで (すんで)</label></li>
+          <li><label><input type="radio" name="q3"> B. 混んで (こんで)</label></li>
+          <li><label><input type="radio" name="q3"> C. 開いて (あいて)</label></li>
+          <li><label><input type="radio" name="q3"> D. 迷って (まよって)</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint3')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans3')">Show Answer</button>
+        </div>
+        <div id="hint3" class="info-box hint-text">Hint: Look for the verb that means "to be crowded/congested".</div>
+        <div id="ans3" class="info-box answer-text">Answer: B. 混んで (混む: komu)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q4. このバスは<u>急行</u>です。</div>
+        <div class="english-translation">[This bus is an express.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q4"> A. きゅこう</label></li>
+          <li><label><input type="radio" name="q4"> B. きゅうこ</label></li>
+          <li><label><input type="radio" name="q4"> C. きょうこう</label></li>
+          <li><label><input type="radio" name="q4"> D. きゅうこう</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint4')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans4')">Show Answer</button>
+        </div>
+        <div id="hint4" class="info-box hint-text">Hint: Both kanji have long vowel sounds.</div>
+        <div id="ans4" class="info-box answer-text">Answer: D. きゅうこう (急行: kyūkō)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q5. <u>しゅうてん</u>まで乗ります。</div>
+        <div class="english-translation">[I will ride until the last stop.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q5"> A. 終店</label></li>
+          <li><label><input type="radio" name="q5"> B. 秋点</label></li>
+          <li><label><input type="radio" name="q5"> C. 終点</label></li>
+          <li><label><input type="radio" name="q5"> D. 集中</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint5')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans5')">Show Answer</button>
+        </div>
+        <div id="hint5" class="info-box hint-text">Hint: The first kanji means "end", and the second means "point/dot".</div>
+        <div id="ans5" class="info-box answer-text">Answer: C. 終点 (終点: shūten)</div>
+      </div>
+    </div>
+
+    <div id="slide2" class="slide">
+      <div class="topic-label">Topic: 仕事 (Work) (Slide 2/5)</div>
+      
+      <div class="question-block">
+        <div class="question-text">Q6. <u>営業</u>の仕事をしています。</div>
+        <div class="english-translation">[I am doing sales work.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q6"> A. えいぎょ</label></li>
+          <li><label><input type="radio" name="q6"> B. けいぎょう</label></li>
+          <li><label><input type="radio" name="q6"> C. えいぎょう</label></li>
+          <li><label><input type="radio" name="q6"> D. えいご</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans6')">Show Answer</button>
+        </div>
+        <div id="hint6" class="info-box hint-text">Hint: The reading has two long vowel sounds.</div>
+        <div id="ans6" class="info-box answer-text">Answer: C. えいぎょう (営業: eigyō)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q7. 明日までに<u>しりょう</u>を作ります。</div>
+        <div class="english-translation">[I will prepare the materials/documents by tomorrow.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q7"> A. 試料</label></li>
+          <li><label><input type="radio" name="q7"> B. 資料</label></li>
+          <li><label><input type="radio" name="q7"> C. 支料</label></li>
+          <li><label><input type="radio" name="q7"> D. 知料</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint7')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans7')">Show Answer</button>
+        </div>
+        <div id="hint7" class="info-box hint-text">Hint: The first kanji is also used in 資格 (shikaku - qualifications) and 資本 (shihon - capital).</div>
+        <div id="ans7" class="info-box answer-text">Answer: B. 資料 (資料: shiryō)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q8. 会議の（　　　）を決める。</div>
+        <div class="english-translation">[Decide the schedule for the meeting.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q8"> A. 日常 (にちじょう)</label></li>
+          <li><label><input type="radio" name="q8"> B. 日記 (にっき)</label></li>
+          <li><label><input type="radio" name="q8"> C. 日光 (にっこう)</label></li>
+          <li><label><input type="radio" name="q8"> D. 日程 (にってい)</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint8')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans8')">Show Answer</button>
+        </div>
+        <div id="hint8" class="info-box hint-text">Hint: The word means "schedule" or "itinerary".</div>
+        <div id="ans8" class="info-box answer-text">Answer: D. 日程 (日程: nittei)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q9. 社長に<u>報告</u>します。</div>
+        <div class="english-translation">[I will report to the president.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q9"> A. ほこく</label></li>
+          <li><label><input type="radio" name="q9"> B. ほうごく</label></li>
+          <li><label><input type="radio" name="q9"> C. ほうこく</label></li>
+          <li><label><input type="radio" name="q9"> D. ぼうこく</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint9')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans9')">Show Answer</button>
+        </div>
+        <div id="hint9" class="info-box hint-text">Hint: The first character requires an elongated "o" sound. The second is an unvoiced "k".</div>
+        <div id="ans9" class="info-box answer-text">Answer: C. ほうこく (報告: hōkoku)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q10. <u>きゅうりょう</u>が上がった。</div>
+        <div class="english-translation">[My salary increased.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q10"> A. 給金</label></li>
+          <li><label><input type="radio" name="q10"> B. 給料</label></li>
+          <li><label><input type="radio" name="q10"> C. 急料</label></li>
+          <li><label><input type="radio" name="q10"> D. 級料</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint10')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans10')">Show Answer</button>
+        </div>
+        <div id="hint10" class="info-box hint-text">Hint: The first kanji relates to "supply/pay" (給).</div>
+        <div id="ans10" class="info-box answer-text">Answer: B. 給料 (給料: kyūryō)</div>
+      </div>
+    </div>
+
+    <div id="slide3" class="slide">
+      <div class="topic-label">Topic: 健康・病院 (Health & Hospital) (Slide 3/5)</div>
+      
+      <div class="question-block">
+        <div class="question-text">Q11. <u>具合</u>が悪いです。</div>
+        <div class="english-translation">[I'm not feeling well.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q11"> A. ちょうし</label></li>
+          <li><label><input type="radio" name="q11"> B. じょうたい</label></li>
+          <li><label><input type="radio" name="q11"> C. ぐあい</label></li>
+          <li><label><input type="radio" name="q11"> D. きぶん</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint11')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans11')">Show Answer</button>
+        </div>
+        <div id="hint11" class="info-box hint-text">Hint: The word means "condition" or "health state".</div>
+        <div id="ans11" class="info-box answer-text">Answer: C. ぐあい (具合: guai)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q12. 病院で<u>ちゅうしゃ</u>を打ちました。</div>
+        <div class="english-translation">[I got an injection at the hospital.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q12"> A. 駐車</label></li>
+          <li><label><input type="radio" name="q12"> B. 注写</label></li>
+          <li><label><input type="radio" name="q12"> C. 注者</label></li>
+          <li><label><input type="radio" name="q12"> D. 注射</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint12')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans12')">Show Answer</button>
+        </div>
+        <div id="hint12" class="info-box hint-text">Hint: The second kanji means "to shoot". (射)</div>
+        <div id="ans12" class="info-box answer-text">Answer: D. 注射 (注射: chūsha)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q13. 熱があるので、（　　　）を測ります。</div>
+        <div class="english-translation">[I have a fever, so I will measure my body temperature.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q13"> A. 体力 (たいりょく)</label></li>
+          <li><label><input type="radio" name="q13"> B. 体重 (たいじゅう)</label></li>
+          <li><label><input type="radio" name="q13"> C. 体温 (たいおん)</label></li>
+          <li><label><input type="radio" name="q13"> D. 身体 (しんたい)</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint13')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans13')">Show Answer</button>
+        </div>
+        <div id="hint13" class="info-box hint-text">Hint: "Body temperature" is composed of "Body" (体) + "Warm/Temp" (温).</div>
+        <div id="ans13" class="info-box answer-text">Answer: C. 体温 (体温: taion)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q14. 今日は<u>食欲</u>がありません。</div>
+        <div class="english-translation">[I don't have an appetite today.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q14"> A. しょっき</label></li>
+          <li><label><input type="radio" name="q14"> B. しょくよう</label></li>
+          <li><label><input type="radio" name="q14"> C. しょくのう</label></li>
+          <li><label><input type="radio" name="q14"> D. しょくよく</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans14')">Show Answer</button>
+        </div>
+        <div id="hint14" class="info-box hint-text">Hint: The second kanji 欲 means "desire".</div>
+        <div id="ans14" class="info-box answer-text">Answer: D. しょくよく (食欲: shokuyoku)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q15. 医者の<u>しんさつ</u>を受けます。</div>
+        <div class="english-translation">[I will receive a medical examination from the doctor.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q15"> A. 診断</label></li>
+          <li><label><input type="radio" name="q15"> B. 診察</label></li>
+          <li><label><input type="radio" name="q15"> C. 真察</label></li>
+          <li><label><input type="radio" name="q15"> D. 新札</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint15')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans15')">Show Answer</button>
+        </div>
+        <div id="hint15" class="info-box hint-text">Hint: The first kanji 診 is used for medical examination.</div>
+        <div id="ans15" class="info-box answer-text">Answer: B. 診察 (診察: shinsatsu)</div>
+      </div>
+    </div>
+
+    <div id="slide4" class="slide">
+      <div class="topic-label">Topic: 買い物・お金 (Shopping & Money) (Slide 4/5)</div>
+      
+      <div class="question-block">
+        <div class="question-text">Q16. このサービスは<u>無料</u>です。</div>
+        <div class="english-translation">[This service is free of charge.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q16"> A. むだい</label></li>
+          <li><label><input type="radio" name="q16"> B. ぶだい</label></li>
+          <li><label><input type="radio" name="q16"> C. むりょう</label></li>
+          <li><label><input type="radio" name="q16"> D. ぶりょう</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint16')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans16')">Show Answer</button>
+        </div>
+        <div id="hint16" class="info-box hint-text">Hint: 無 usually reads as "mu".</div>
+        <div id="ans16" class="info-box answer-text">Answer: C. むりょう (無料: muryō)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q17. スーパーで<u>わりびき</u>の肉を買った。</div>
+        <div class="english-translation">[I bought discounted meat at the supermarket.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q17"> A. 割安</label></li>
+          <li><label><input type="radio" name="q17"> B. 割引き</label></li>
+          <li><label><input type="radio" name="q17"> C. 割引</label></li>
+          <li><label><input type="radio" name="q17"> D. 割合</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint17')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans17')">Show Answer</button>
+        </div>
+        <div id="hint17" class="info-box hint-text">Hint: Generally written with just two kanji, meaning "cut/discount".</div>
+        <div id="ans17" class="info-box answer-text">Answer: C. 割引 (割引: waribiki)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q18. この靴はとても（　　　）が良いです。</div>
+        <div class="english-translation">[These shoes are of very good quality.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q18"> A. 量 (りょう)</label></li>
+          <li><label><input type="radio" name="q18"> B. 形 (かたち)</label></li>
+          <li><label><input type="radio" name="q18"> C. 柄 (がら)</label></li>
+          <li><label><input type="radio" name="q18"> D. 質 (しつ)</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint18')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans18')">Show Answer</button>
+        </div>
+        <div id="hint18" class="info-box hint-text">Hint: The word means "quality".</div>
+        <div id="ans18" class="info-box answer-text">Answer: D. 質 (質: shitsu)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q19. <u>領収書</u>をください。</div>
+        <div class="english-translation">[Please give me a receipt.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q19"> A. りょうしゅうしょ</label></li>
+          <li><label><input type="radio" name="q19"> B. りょうしゅしょ</label></li>
+          <li><label><input type="radio" name="q19"> C. りょしゅうしょ</label></li>
+          <li><label><input type="radio" name="q19"> D. りょうじゅうしょ</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
+        </div>
+        <div id="hint19" class="info-box hint-text">Hint: Both the first and second characters require long vowels.</div>
+        <div id="ans19" class="info-box answer-text">Answer: A. りょうしゅうしょ (領収書: ryōshūsho)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q20. <u>げんきん</u>で払います。</div>
+        <div class="english-translation">[I will pay in cash.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q20"> A. 減金</label></li>
+          <li><label><input type="radio" name="q20"> B. 元金</label></li>
+          <li><label><input type="radio" name="q20"> C. 限金</label></li>
+          <li><label><input type="radio" name="q20"> D. 現金</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
+        </div>
+        <div id="hint20" class="info-box hint-text">Hint: The first kanji "現" means "present/actual".</div>
+        <div id="ans20" class="info-box answer-text">Answer: D. 現金 (現金: genkin)</div>
+      </div>
+    </div>
+
+    <div id="slide5" class="slide">
+      <div class="topic-label">Topic: 日常生活 (Daily Life) (Slide 5/5)</div>
+      
+      <div class="question-block">
+        <div class="question-text">Q21. 部屋を<u>片付けました</u>。</div>
+        <div class="english-translation">[I tidied up the room.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q21"> A. かたづけりました</label></li>
+          <li><label><input type="radio" name="q21"> B. かたつけました</label></li>
+          <li><label><input type="radio" name="q21"> C. かたづけました</label></li>
+          <li><label><input type="radio" name="q21"> D. かたちゅけました</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans21')">Show Answer</button>
+        </div>
+        <div id="hint21" class="info-box hint-text">Hint: Notice the ten-ten (voicing marks) on "tsu".</div>
+        <div id="ans21" class="info-box answer-text">Answer: C. かたづけました (片付ける: katazukeru)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q22. 週末に<u>せんたく</u>をします。</div>
+        <div class="english-translation">[I do the laundry on weekends.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q22"> A. 選択</label></li>
+          <li><label><input type="radio" name="q22"> B. 洗濯</label></li>
+          <li><label><input type="radio" name="q22"> C. 洗たく</label></li>
+          <li><label><input type="radio" name="q22"> D. 選たく</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint22')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans22')">Show Answer</button>
+        </div>
+        <div id="hint22" class="info-box hint-text">Hint: Both kanji have the "water" radical on the left side.</div>
+        <div id="ans22" class="info-box answer-text">Answer: B. 洗濯 (洗濯: sentaku)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q23. ゴミは（　　　）に分けて捨ててください。</div>
+        <div class="english-translation">[Please sort and throw away the garbage by type.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q23"> A. 書類 (しょるい)</label></li>
+          <li><label><input type="radio" name="q23"> B. 種類 (しゅるい)</label></li>
+          <li><label><input type="radio" name="q23"> C. 人類 (じんるい)</label></li>
+          <li><label><input type="radio" name="q23"> D. 種族 (しゅぞく)</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint23')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans23')">Show Answer</button>
+        </div>
+        <div id="hint23" class="info-box hint-text">Hint: The correct word means "kind" or "type".</div>
+        <div id="ans23" class="info-box answer-text">Answer: B. 種類 (種類: shurui)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q24. <u>約束</u>の時間を守る。</div>
+        <div class="english-translation">[Keep the appointment time.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q24"> A. やっそく</label></li>
+          <li><label><input type="radio" name="q24"> B. やくぞく</label></li>
+          <li><label><input type="radio" name="q24"> C. やくそぐ</label></li>
+          <li><label><input type="radio" name="q24"> D. やくそく</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
+        </div>
+        <div id="hint24" class="info-box hint-text">Hint: There are no voiced consonants (ten-ten marks) in this reading.</div>
+        <div id="ans24" class="info-box answer-text">Answer: D. やくそく (約束: yakusoku)</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q25. 友達をパーティーに<u>しょうたい</u>した。</div>
+        <div class="english-translation">[I invited my friend to the party.]</div>
+        <ul class="options">
+          <li><label><input type="radio" name="q25"> A. 招待</label></li>
+          <li><label><input type="radio" name="q25"> B. 招持</label></li>
+          <li><label><input type="radio" name="q25"> C. 紹介</label></li>
+          <li><label><input type="radio" name="q25"> D. 昭待</label></li>
+        </ul>
+        <div class="btn-group">
+          <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
+          <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
+        </div>
+        <div id="hint25" class="info-box hint-text">Hint: The first kanji means "to invite" (招く).</div>
+        <div id="ans25" class="info-box answer-text">Answer: A. 招待 (招待: shōtai)</div>
+      </div>
+    </div>
+
+    <div class="nav-controls">
+      <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
+      <div id="slideIndicator" class="slide-indicator">Slide 1 of 5</div>
+      <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
+    </div>
+
+    <div class="support-section">
+      <h2>Support OHAYO CENTER</h2>
+      <p>If you find these materials helpful, please consider supporting us!</p>
+      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 5;
+
+  function toggleDisplay(elementId) {
+    var element = document.getElementById(elementId);
+    if (element.style.display === "none" || element.style.display === "") {
+      element.style.display = "block";
+    } else {
+      element.style.display = "none";
+    }
+  }
+
+  function changeSlide(direction) {
+    document.getElementById('slide' + currentSlide).classList.remove('active');
+    currentSlide += direction;
+    document.getElementById('slide' + currentSlide).classList.add('active');
+    
+    document.getElementById('prevBtn').disabled = (currentSlide === 1);
+    document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    
+    document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
