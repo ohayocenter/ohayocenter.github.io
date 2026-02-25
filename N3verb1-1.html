@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N3 100 Kanji Quiz | OHAYO CENTER</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f0f2f5; --card-bg: #ffffff; --correct-color: #2ecc71; --wrong-color: #e74c3c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 90px 20px 80px; }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box; }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .container { width: 100%; max-width: 1100px; position: relative; }
+        .slide { display: none; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); animation: fadeIn 0.4s; }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 25px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 15px; }
+        .question-box { border: 2px solid #edf2f7; padding: 15px 10px; text-align: center; border-radius: 12px; background: #fff; display: flex; flex-direction: column; justify-content: space-between; }
+        .kanji { font-size: 1.8rem; font-weight: bold; display: block; color: #333; margin-bottom: 8px; }
+        .english-container { font-size: 0.85rem; margin-bottom: 12px; cursor: pointer; min-height: 1.5em; background-color: #f8f9fa; border-radius: 4px; padding: 4px 8px; display: inline-block; border: 1px dashed #cbd5e1; transition: 0.2s; user-select: none; }
+        .english-container:hover { background-color: #e2e8f0; }
+        .eng-placeholder { color: #94a3b8; font-size: 0.75rem; }
+        .eng-text { display: none; color: #34495e; font-weight: bold; }
+        .english-container.show-eng { border-style: solid; background-color: #eaf2f8; border-color: #3498db; }
+        .english-container.show-eng .eng-placeholder { display: none; }
+        .english-container.show-eng .eng-text { display: inline; }
+        .options-container { display: flex; flex-direction: column; gap: 6px; }
+        .opt-btn { background-color: #f8f9fa; border: 1px solid #dce1e6; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; color: #2c3e50; transition: all 0.2s ease; width: 100%; font-family: 'Noto Sans JP', sans-serif; }
+        .opt-btn:hover:not(:disabled) { background-color: #e2e8f0; border-color: #cbd5e1; }
+        .opt-btn:disabled { cursor: default; }
+        .nav-controls { margin: 30px 0; display: flex; justify-content: center; gap: 15px; align-items: center; }
+        .nav-btn { background-color: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .nav-btn:hover { background-color: #1a252f; }
+        .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 1000px; }
+        .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
+        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } .grid { grid-template-columns: repeat(2, 1fr); } .kanji { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+<div class="container" id="slides-container"></div>
+<div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">PREV</button>
+    <span id="pageDisplay" style="font-weight:bold; color:var(--primary-color)">Slide 1 / X</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">NEXT</button>
+</div>
+<div class="support-section">
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+</div>
+<script>
+    const allData = {
+        1: {
+            title: "JLPT N3 100 漢字テスト 動詞編 (Verbs Part 1)",
+            words: [
+                { k: "止まる", e: "to stop", o: ["とまる", "どまる", "とうまる"], a: 0 },
+                { k: "過ぎる", e: "to pass", o: ["すきる", "すぐいる", "すぎる"], a: 2 },
+                { k: "確かめる", e: "to confirm", o: ["たじかめる", "たしかめる", "たちかめる"], a: 1 },
+                { k: "認める", e: "to admit / recognize", o: ["みとめる", "みどめる", "めとめる"], a: 0 },
+                { k: "信じる", e: "to believe", o: ["しんちる", "しんじいる", "しんじる"], a: 2 },
+                { k: "飛ぶ", e: "to fly", o: ["とぶ", "どぶ", "とおぶ"], a: 0 },
+                { k: "捨てる", e: "to throw away", o: ["すでる", "すてる", "すってる"], a: 1 },
+                { k: "備える", e: "to prepare / equip", o: ["ぞなえる", "そなれる", "そなえる"], a: 2 },
+                { k: "閉まる", e: "to close (intransitive)", o: ["しまる", "じまる", "しんまる"], a: 0 },
+                { k: "閉める", e: "to close (transitive)", o: ["じめる", "しえめる", "しめる"], a: 2 },
+                { k: "当たる", e: "to hit / win", o: ["あだる", "あたる", "あっだる"], a: 1 },
+                { k: "遊ぶ", e: "to play", o: ["あそぷ", "あそうぶ", "あそぶ"], a: 2 },
+                { k: "差し出す", e: "to submit / present", o: ["さじだす", "さしたす", "さしだす"], a: 2 },
+                { k: "折れる", e: "to break / be folded", o: ["おれる", "おおれる", "おれえる"], a: 0 },
+                { k: "折る", e: "to fold / break", o: ["おおる", "おる", "おるう"], a: 1 },
+                { k: "消える", e: "to disappear", o: ["ぎえる", "きええる", "きえる"], a: 2 },
+                { k: "消す", e: "to erase / turn off", o: ["けす", "げす", "けっす"], a: 0 },
+                { k: "防ぐ", e: "to prevent", o: ["ふせく", "ぶせぐ", "ふせぐ"], a: 2 },
+                { k: "救う", e: "to save / rescue", o: ["ずくう", "すくう", "すくぐ"], a: 1 },
+                { k: "困る", e: "to be in trouble", o: ["こまる", "ごまる", "こんまる"], a: 0 },
+                { k: "伝える", e: "to convey", o: ["つだえる", "つったえる", "つたえる"], a: 2 },
+                { k: "冷やす", e: "to cool / chill", o: ["びやす", "ひやす", "ひいやす"], a: 1 },
+                { k: "冷める", e: "to cool down", o: ["さめる", "ざめる", "さめん"], a: 0 },
+                { k: "凍る", e: "to freeze", o: ["こる", "ごおる", "こおる"], a: 2 },
+                { k: "召し上がる", e: "to eat / drink (respectful)", o: ["めじあがる", "めしあかる", "めしあがる"], a: 2 }
+            ]
+        },
+        2: {
+            title: "JLPT N3 漢字テスト 動詞編 (Verbs Part 2)",
+            words: [
+                { k: "限る", e: "to limit", o: ["がぎる", "かぎる", "かきる"], a: 1 },
+                { k: "造る", e: "to make / produce", o: ["つくる", "づくる", "つっくる"], a: 0 },
+                { k: "減る", e: "to decrease", o: ["べる", "へえる", "へる"], a: 2 },
+                { k: "減らす", e: "to reduce", o: ["へらず", "へらす", "べらす"], a: 1 },
+                { k: "増える", e: "to increase", o: ["ふえる", "ぶえる", "ふええる"], a: 0 },
+                { k: "増やす", e: "to increase / add", o: ["ぶやす", "ふいやす", "ふやす"], a: 2 },
+                { k: "返す", e: "to return", o: ["がえす", "かえす", "かえっす"], a: 1 },
+                { k: "混ぜる", e: "to mix", o: ["ませる", "まんぜる", "まぜる"], a: 2 },
+                { k: "焼く", e: "to bake / grill", o: ["やぐ", "やっく", "やく"], a: 2 },
+                { k: "焼ける", e: "to burn / be roasted", o: ["やける", "やげる", "やっける"], a: 0 },
+                { k: "直す", e: "to fix / repair", o: ["なごす", "なをす", "なおす"], a: 2 },
+                { k: "戻る", e: "to return / go back", o: ["もどる", "もとる", "もっどる"], a: 0 },
+                { k: "戻す", e: "to put back", o: ["もとす", "もどうす", "もどす"], a: 2 },
+                { k: "続ける", e: "to continue", o: ["つつける", "つづける", "つづげる"], a: 1 },
+                { k: "示す", e: "to show / indicate", o: ["じめす", "しんめす", "しめす"], a: 2 },
+                { k: "指す", e: "to point", o: ["さす", "さず", "ざす"], a: 0 },
+                { k: "登る", e: "to climb", o: ["のぽる", "のぼうる", "のぼる"], a: 2 },
+                { k: "払う", e: "to pay", o: ["はらう", "ばらう", "はろう"], a: 0 },
+                { k: "割れる", e: "to break / smash", o: ["わられる", "われる", "わっれる"], a: 1 },
+                { k: "割る", e: "to divide / break", o: ["わる", "わんる", "わある"], a: 0 },
+                { k: "振り込む", e: "to transfer money", o: ["ふりこむ", "ぶゅりこむ", "ふりごむ"], a: 0 },
+                { k: "残る", e: "to remain", o: ["のごる", "のっこる", "のこる"], a: 2 },
+                { k: "連れる", e: "to take along", o: ["づれる", "つれる", "つっれる"], a: 1 },
+                { k: "配る", e: "to distribute", o: ["ぐばる", "くぱる", "くばる"], a: 2 },
+                { k: "届く", e: "to reach / arrive", o: ["ととく", "とどく", "とどぐ"], a: 1 }
+            ]
+        },
+        3: {
+            title: "JLPT N3 漢字テスト 動詞編 (Verbs Part 3)",
+            words: [
+                { k: "届ける", e: "to deliver", o: ["とどける", "ととける", "とどげる"], a: 0 },
+                { k: "望む", e: "to desire / hope", o: ["のそむ", "のぞんむ", "のぞむ"], a: 2 },
+                { k: "預ける", e: "to entrust", o: ["あすける", "あずける", "あずげる"], a: 1 },
+                { k: "取る", e: "to take", o: ["とる", "どる", "とうる"], a: 0 },
+                { k: "通う", e: "to commute", o: ["がよう", "かようう", "かよう"], a: 2 },
+                { k: "伺う", e: "to ask / visit (humble)", o: ["うかがう", "うかかう", "うかがぐ"], a: 0 },
+                { k: "遅れる", e: "to be late", o: ["おぐれる", "おくれる", "おっくれる"], a: 1 },
+                { k: "笑う", e: "to laugh", o: ["わろう", "わらん", "わらう"], a: 2 },
+                { k: "流す", e: "to drain / flow", o: ["ながす", "なかす", "ながず"], a: 0 },
+                { k: "調べる", e: "to investigate", o: ["しらぺる", "じらべる", "しらべる"], a: 2 },
+                { k: "移す", e: "to transfer / move", o: ["うづす", "うつす", "うっつす"], a: 1 },
+                { k: "感じる", e: "to feel", o: ["かんじる", "かんちる", "かんじいる"], a: 0 },
+                { k: "違う", e: "to differ", o: ["ちがう", "ちかう", "じがう"], a: 0 },
+                { k: "間違える", e: "to make a mistake", o: ["まちかえる", "まじがえる", "まちがえる"], a: 2 },
+                { k: "辞める", e: "to quit", o: ["やめる", "じゃめる", "やっめる"], a: 0 },
+                { k: "治す", e: "to cure", o: ["なをす", "なおす", "なごす"], a: 1 },
+                { k: "寝る", e: "to sleep", o: ["ぬる", "ねえる", "ねる"], a: 2 },
+                { k: "並べる", e: "to line up", o: ["ならべる", "ならぺる", "なられる"], a: 0 },
+                { k: "吸う", e: "to breathe / smoke", o: ["すうう", "すう", "ずう"], a: 1 },
+                { k: "疲れる", e: "to get tired", o: ["つがれる", "つっかれる", "つかれる"], a: 2 },
+                { k: "吹く", e: "to blow", o: ["ぶく", "ふく", "ふっく"], a: 1 },
+                { k: "戦う", e: "to fight", o: ["たたかう", "ただかう", "たたがう"], a: 0 },
+                { k: "変わる", e: "to change (intransitive)", o: ["かわる", "がわる", "かわんる"], a: 0 },
+                { k: "変える", e: "to change (transitive)", o: ["がえる", "かええる", "かえる"], a: 2 },
+                { k: "欠ける", e: "to be chipped / lack", o: ["がける", "かっける", "かける"], a: 2 }
+            ]
+        },
+        4: {
+            title: "JLPT N3 漢字テスト 動詞編 (Verbs Part 4)",
+            words: [
+                { k: "求める", e: "to seek / request", o: ["もどめる", "もとっめる", "もとめる"], a: 2 },
+                { k: "渡す", e: "to hand over", o: ["わだす", "わたす", "わたっす"], a: 1 },
+                { k: "申し込む", e: "to apply", o: ["もうしこむ", "もしこむ", "もうじこむ"], a: 0 },
+                { k: "引き受ける", e: "to undertake", o: ["ひきうげる", "びきうける", "ひきうける"], a: 2 },
+                { k: "思い出す", e: "to remember", o: ["おもいだす", "おもいたす", "おもいだず"], a: 0 },
+                { k: "落ち着く", e: "to calm down", o: ["おじつく", "おちづく", "おちつく"], a: 2 },
+                { k: "繰り返す", e: "to repeat", o: ["くりかえす", "ぐりかえす", "くりがえす"], a: 0 },
+                { k: "立ち上がる", e: "to stand up", o: ["たちあかる", "だちあがる", "たちあがる"], a: 2 },
+                { k: "乗り越える", e: "to overcome", o: ["のりこえる", "のりごえる", "のんりこえる"], a: 0 },
+                { k: "間に合う", e: "to be in time", o: ["まにおう", "まにあう", "まんにあう"], a: 1 },
+                { k: "役に立つ", e: "to be useful", o: ["やくにだつ", "やぐにたつ", "やくにたつ"], a: 2 },
+                { k: "気がつく", e: "to notice", o: ["きがつく", "きかつく", "ぎがつぐ"], a: 0 },
+                { k: "受け取る", e: "to receive", o: ["うげとる", "うけとる", "うけどる"], a: 1 },
+                { k: "組み立てる", e: "to assemble", o: ["くみたてる", "ぐみたてる", "くみだてる"], a: 0 },
+                { k: "似合う", e: "to suit / match", o: ["におう", "にっあう", "にあう"], a: 2 },
+                { k: "怒る", e: "to get angry", o: ["おこる", "おごる", "おこんる"], a: 0 },
+                { k: "喜ぶ", e: "to rejoice", o: ["よろごぶ", "よろこっぷ", "よろこぶ"], a: 2 },
+                { k: "悲しむ", e: "to feel sad", o: ["がなしむ", "かなしむ", "かなじむ"], a: 1 },
+                { k: "楽しむ", e: "to enjoy", o: ["たのしむ", "だのしむ", "たのじむ"], a: 0 },
+                { k: "苦しむ", e: "to suffer", o: ["ぐるしむ", "くるじむ", "くるしむ"], a: 2 },
+                { k: "驚く", e: "to be surprised", o: ["おどろく", "おとろく", "おどろぐ"], a: 0 },
+                { k: "育てる", e: "to raise / rear", o: ["そたてる", "ぞだてる", "そだてる"], a: 2 },
+                { k: "倒れる", e: "to fall down", o: ["だおれる", "たおれる", "たをれる"], a: 1 },
+                { k: "隠れる", e: "to hide", o: ["かくれる", "がくれる", "かぐれる"], a: 0 },
+                { k: "逃げる", e: "to escape", o: ["にける", "にっげる", "にげる"], a: 2 }
+            ]
+        }
+    };
+
+    let current = 1;
+    const total = Object.keys(allData).length;
+
+    function init() {
+        const container = document.getElementById('slides-container');
+        for(let i=1; i<=total; i++){
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${i===1?'active':''}`;
+            slideDiv.id = `s${i}`;
+            let gridHTML = `<div class="grid">`;
+            allData[i].words.forEach(w => {
+                let optionsHTML = '';
+                w.o.forEach((optText, index) => {
+                    const isCorrect = (index === w.a);
+                    optionsHTML += `<button class="opt-btn" data-correct="${isCorrect}" onclick="checkAnswer(this)">${optText}</button>`;
+                });
+                gridHTML += `
+                    <div class="question-box">
+                        <div>
+                            <span class="kanji">${w.k}</span>
+                            <div class="english-container" onclick="this.classList.toggle('show-eng')">
+                                <span class="eng-placeholder">English</span>
+                                <span class="eng-text">${w.e}</span>
+                            </div>
+                        </div>
+                        <div class="options-container">
+                            ${optionsHTML}
+                        </div>
+                    </div>`;
+            });
+            gridHTML += `</div>`;
+            slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
+            container.appendChild(slideDiv);
+        }
+        updateControls();
+    }
+
+    function checkAnswer(btn) {
+        const isCorrect = btn.dataset.correct === 'true';
+        const box = btn.closest('.question-box');
+        const allButtons = box.querySelectorAll('.opt-btn');
+        allButtons.forEach(b => {
+            b.disabled = true;
+            if(b.dataset.correct === 'true') {
+                b.style.backgroundColor = 'var(--correct-color)';
+                b.style.color = '#fff';
+                b.style.borderColor = 'var(--correct-color)';
+            }
+        });
+        if (!isCorrect) {
+            btn.style.backgroundColor = 'var(--wrong-color)';
+            btn.style.color = '#fff';
+            btn.style.borderColor = 'var(--wrong-color)';
+        }
+    }
+
+    function changeSlide(dir) {
+        document.getElementById(`s${current}`).classList.remove('active');
+        current += dir;
+        document.getElementById(`s${current}`).classList.add('active');
+        updateControls();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateControls() {
+        document.getElementById('prevBtn').disabled = (current === 1);
+        document.getElementById('nextBtn').disabled = (current === total);
+        document.getElementById('pageDisplay').textContent = `Slide ${current} / ${total}`;
+    }
+
+    init();
+</script>
+</body>
+</html>
