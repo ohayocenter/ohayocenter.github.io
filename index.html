@@ -214,7 +214,39 @@
             color: #555;
             line-height: 1.5;
         }
-        
+
+        /* --- Category Filter Buttons --- */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2.5rem;
+            padding: 0 10px;
+        }
+        .category-btn {
+            background: #fff;
+            color: var(--dark);
+            border: 1px solid #e0e6ed;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .category-btn.c-grammar { border-left: 4px solid #f39c12; }
+        .category-btn.c-kanji { border-left: 4px solid #2980b9; }
+        .category-btn.c-trip { border-left: 4px solid #e74c3c; }
+
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
@@ -231,6 +263,10 @@
 
             .update-board { padding: 1.5rem 1.2rem; }
             .update-list li { flex-wrap: wrap; gap: 8px; }
+
+            /* Mobile adjustments for category buttons */
+            .category-nav { flex-direction: row; gap: 8px; }
+            .category-btn { padding: 8px 15px; font-size: 0.75rem; flex-grow: 1; justify-content: center; }
         }
     </style>
 </head>
@@ -353,7 +389,13 @@
     </section>
 
     <section id="resources">
-        <h2 id="materials" style="margin-top: 4rem; scroll-margin-top: 90px;">Study Material</h2>
+        <h2 id="materials" style="margin-bottom: 2rem; scroll-margin-top: 90px;">Study Material</h2>
+
+        <div class="category-nav">
+            <a href="#cat-grammar" class="category-btn c-grammar"><i class="fa-solid fa-puzzle-piece" style="color:#f39c12;"></i> Grammar</a>
+            <a href="#cat-kanji" class="category-btn c-kanji"><i class="fa-solid fa-book" style="color:#2980b9;"></i> Kanji & Vocab</a>
+            <a href="#cat-trip" class="category-btn c-trip"><i class="fa-solid fa-plane-departure" style="color:#e74c3c;"></i> Trip & Basics</a>
+        </div>
 
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
@@ -375,13 +417,13 @@
                 </li>
                 <li>
                     <span class="update-date">2026.Feb.05</span>
-                    <span class="update-badge" style="color: #8e44ad; background: #f4e9f7;">podcast</span>
+                    <span class="update-badge" style="color: #8e44ad; background: #f4e9f7;">Podcast</span>
                     <span class="update-text">Anime Titles のページを新しく追加しました。</span>
                 </li>
             </ul>
         </div>
 
-        <h3 style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #f39c12; margin-bottom: 1.5rem; margin-top: 2rem;">
+        <h3 id="cat-grammar" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #f39c12; margin-bottom: 1.5rem; margin-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-puzzle-piece"></i> Grammar & Sentence Making
         </h3>
         <div class="unified-grid" style="margin-bottom: 3rem;">
@@ -417,7 +459,7 @@
             </a>
         </div>
 
-        <h3 style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #2980b9; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem;">
+        <h3 id="cat-kanji" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #2980b9; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-book"></i> Kanji & Vocabulary
         </h3>
         <div class="unified-grid" style="margin-bottom: 3rem;">
@@ -427,6 +469,24 @@
                 <p>300 Essential Kanji Master JLPT N4<br>漢字</p>
                 <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div>
             </a>
+            <a href="N4-5verb1-1verb.html" class="unified-card">
+            <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
+            <p>N4/N5 100 Verbs Challenge <br> 漢字</p>
+            <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
+            </a>
+            
+            </a>
+            <a href="N4-5adj1-1.html" class="unified-card">
+            <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
+            <p>N4/N5 100 Adjectives Challenge <br> 漢字</p>
+            <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> </a>
+            </a>
+            <a href="N4-5noun1-1.html" class="unified-card">
+            <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
+            <p>N4/N5 100 Nouns Challenge <br> 漢字</p>
+            <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> </a>
+
+
             <a href="A1-1.html" class="unified-card">
                 <i class="fa-solid fa-book" style="color: #3498db;"></i>
                 <h3>Kanji A1-1</h3>
@@ -479,7 +539,7 @@
             </a>
         </div>
 
-        <h3 style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #e74c3c; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem;">
+        <h3 id="cat-trip" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #e74c3c; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-plane-departure"></i> Trip Japan & Basics
         </h3>
         <div class="unified-grid" style="margin-bottom: 4rem;">
