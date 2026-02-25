@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N4/N5 100 Kanji Quiz | OHAYO CENTER</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db; 
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --correct-color: #2ecc71;
+            --wrong-color: #e74c3c;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 90px 20px 80px;
+        }
+
+        /* --- ナビゲーションバー --- */
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            animation: fadeIn 0.4s;
+        }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+        
+        /* --- グリッドと問題ボックス --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 15px;
+        }
+        .question-box {
+            border: 2px solid #edf2f7;
+            padding: 15px 10px;
+            text-align: center;
+            border-radius: 12px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .kanji {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        /* --- 英語のトグル表示部分 --- */
+        .english-container {
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            cursor: pointer;
+            min-height: 1.5em;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 4px 8px;
+            display: inline-block;
+            border: 1px dashed #cbd5e1;
+            transition: 0.2s;
+            user-select: none;
+        }
+        .english-container:hover {
+            background-color: #e2e8f0;
+        }
+        .eng-placeholder {
+            color: #94a3b8;
+            font-size: 0.75rem;
+        }
+        .eng-text {
+            display: none;
+            color: #34495e;
+            font-weight: bold;
+        }
+        .english-container.show-eng {
+            border-style: solid;
+            background-color: #eaf2f8;
+            border-color: #3498db;
+        }
+        .english-container.show-eng .eng-placeholder {
+            display: none;
+        }
+        .english-container.show-eng .eng-text {
+            display: inline;
+        }
+        
+        /* --- 選択肢ボタン --- */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .opt-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #dce1e6;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            transition: all 0.2s ease;
+            width: 100%;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .opt-btn:hover:not(:disabled) {
+            background-color: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+        .opt-btn:disabled {
+            cursor: default;
+        }
+
+        .nav-controls {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+        }
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-btn:hover { background-color: #1a252f; }
+        .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
+
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 1000px; }
+        .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
+        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+
+        @media (max-width: 600px) { 
+            nav { padding: 0 15px; } 
+            .logo { font-size: 1rem; } 
+            .nav-links { gap: 0.8rem; } 
+            .nav-links a { font-size: 0.7rem; } 
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            .kanji { font-size: 1.5rem; }
+            .slide { padding: 15px; } /* スマホでは余白を少し小さく */
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="container" id="slides-container">
+</div>
+
+<div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">PREV</button>
+    <span id="pageDisplay" style="font-weight:bold; color:var(--primary-color)">Slide 1 / 4</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">NEXT</button>
+</div>
+
+<div class="support-section">
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span style="margin-left: 8px;">SUPPORT OHAYO CENTER</span>
+    </a>
+</div>
+
+<script>
+    // k: 漢字, e: 英語, o: 選択肢(配列), a: 正解のインデックス番号
+    const allData = {
+        1: {
+            title: "N4/N5 100 漢字テスト (Verbs Part 1 / 動詞 1)",
+            words: [
+                { k: "行く", e: "To go", o: ["ゆく", "いく", "うく"], a: 1 },
+                { k: "来る", e: "To come", o: ["くる", "きる", "こる"], a: 0 },
+                { k: "帰る", e: "To return", o: ["がえる", "かいる", "かえる"], a: 2 },
+                { k: "歩く", e: "To walk", o: ["あるく", "あろく", "あらく"], a: 0 },
+                { k: "走る", e: "To run", o: ["はじる", "ばしる", "はしる"], a: 2 },
+                { k: "泳ぐ", e: "To swim", o: ["およく", "およぐ", "あよぐ"], a: 1 },
+                { k: "飛ぶ", e: "To fly", o: ["とぶ", "どぶ", "とぷ"], a: 0 },
+                { k: "乗る", e: "To ride", o: ["のる", "ぬる", "のるる"], a: 0 },
+                { k: "降りる", e: "To get off", o: ["ありる", "おりる", "おれる"], a: 1 },
+                { k: "出る", e: "To go out", o: ["だす", "てる", "でる"], a: 2 },
+                { k: "入る", e: "To enter", o: ["いる", "はいる", "ばいる"], a: 1 },
+                { k: "着く", e: "To arrive", o: ["づく", "つく", "きく"], a: 1 },
+                { k: "休む", e: "To rest", o: ["やすむ", "やずむ", "やさむ"], a: 0 },
+                { k: "遊ぶ", e: "To play", o: ["あさぶ", "あそぷ", "あそぶ"], a: 2 },
+                { k: "働く", e: "To work", o: ["ばたらく", "はだらく", "はたらく"], a: 2 },
+                { k: "疲れる", e: "To get tired", o: ["つかれる", "づかれる", "つがれる"], a: 0 },
+                { k: "終わる", e: "To finish", o: ["あわる", "おわる", "おおわる"], a: 1 },
+                { k: "始まる", e: "To begin", o: ["はしまる", "ばじまる", "はじまる"], a: 2 },
+                { k: "起きる", e: "To wake up", o: ["あきる", "おぎる", "おきる"], a: 2 },
+                { k: "寝る", e: "To sleep", o: ["ねる", "ぬる", "なる"], a: 0 },
+                { k: "住む", e: "To live", o: ["すむ", "ずむ", "そむ"], a: 0 },
+                { k: "生まれる", e: "To be born", o: ["おまれる", "うまれる", "いまれる"], a: 1 },
+                { k: "死ぬ", e: "To die", o: ["しの", "じぬ", "しぬ"], a: 2 },
+                { k: "待つ", e: "To wait", o: ["もつ", "まづ", "まつ"], a: 2 },
+                { k: "止まる", e: "To stop", o: ["とまる", "どまる", "とめる"], a: 0 }
+            ]
+        },
+        2: {
+            title: "N4/N5 漢字テスト (Verbs Part 2 / 動詞 2)",
+            words: [
+                { k: "見る", e: "To see", o: ["みる", "める", "みえる"], a: 0 },
+                { k: "聞く", e: "To listen", o: ["ぎく", "きく", "かく"], a: 1 },
+                { k: "読む", e: "To read", o: ["やむ", "ゆむ", "よむ"], a: 2 },
+                { k: "書く", e: "To write", o: ["かく", "がく", "こく"], a: 0 },
+                { k: "話す", e: "To speak", o: ["ばなす", "はねす", "はなす"], a: 2 },
+                { k: "言う", e: "To say", o: ["えう", "いう", "ゆう"], a: 1 },
+                { k: "思う", e: "To think", o: ["あもう", "おもう", "おもふ"], a: 1 },
+                { k: "考える", e: "To consider", o: ["かんがえる", "がんかえる", "かんかえる"], a: 0 },
+                { k: "分かる", e: "To understand", o: ["わかる", "ばかる", "わがる"], a: 0 },
+                { k: "知る", e: "To know", o: ["じる", "しる", "ちる"], a: 1 },
+                { k: "覚える", e: "To remember", o: ["あぼえる", "おぽえる", "おぼえる"], a: 2 },
+                { k: "忘れる", e: "To forget", o: ["わづれる", "わすれる", "ぼうれる"], a: 1 },
+                { k: "教える", e: "To teach", o: ["おしえる", "おじえる", "おしょうる"], a: 0 },
+                { k: "習う", e: "To learn", o: ["なろう", "ならう", "なろふ"], a: 1 },
+                { k: "歌う", e: "To sing", o: ["うたう", "うだう", "うとお"], a: 0 },
+                { k: "呼ぶ", e: "To call", o: ["よぷ", "ゆぶ", "よぶ"], a: 2 },
+                { k: "泣く", e: "To cry", o: ["なぐ", "なく", "ねく"], a: 1 },
+                { k: "笑う", e: "To laugh", o: ["ばらう", "わらう", "わろう"], a: 1 },
+                { k: "怒る", e: "To get angry", o: ["おこる", "あこる", "おごる"], a: 0 },
+                { k: "困る", e: "To be troubled", o: ["ごまる", "こめる", "こまる"], a: 2 },
+                { k: "喜ぶ", e: "To rejoice", o: ["よろこぷ", "よろこぶ", "よろごぶ"], a: 1 },
+                { k: "頼む", e: "To request", o: ["だのむ", "たぬむ", "たのむ"], a: 2 },
+                { k: "答える", e: "To answer", o: ["こたえる", "こたい", "こだえ"], a: 0 },
+                { k: "急ぐ", e: "To hurry", o: ["いそく", "いぞぐ", "いそぐ"], a: 2 },
+                { k: "渡る", e: "To cross", o: ["わたる", "わだる", "わてる"], a: 0 }
+            ]
+        },
+        3: {
+            title: "N4/N5 漢字テスト (Verbs Part 3 / 動詞 3)",
+            words: [
+                { k: "食べる", e: "To eat", o: ["たべる", "だべる", "たへる"], a: 0 },
+                { k: "飲む", e: "To drink", o: ["のぬ", "のむ", "ぬむ"], a: 1 },
+                { k: "買う", e: "To buy", o: ["かふ", "かぬ", "かう"], a: 2 },
+                { k: "売る", e: "To sell", o: ["おる", "うる", "いる"], a: 1 },
+                { k: "払う", e: "To pay", o: ["ほらう", "ばらう", "はらう"], a: 2 },
+                { k: "持つ", e: "To hold", o: ["もつ", "まつ", "もづ"], a: 0 },
+                { k: "取る", e: "To take", o: ["とる", "どる", "てる"], a: 0 },
+                { k: "落とす", e: "To drop", o: ["おどす", "おとす", "あとす"], a: 1 },
+                { k: "拾う", e: "To pick up", o: ["ひらう", "ひろう", "びろう"], a: 1 },
+                { k: "探す", e: "To look for", o: ["さがす", "さかす", "ざがす"], a: 0 },
+                { k: "見つける", e: "To find", o: ["みづける", "めつける", "みつける"], a: 2 },
+                { k: "捨てる", e: "To throw away", o: ["すてる", "ずてる", "そてる"], a: 0 },
+                { k: "置く", e: "To put", o: ["おぐ", "あく", "おく"], a: 2 },
+                { k: "作る", e: "To make", o: ["つぐる", "つくる", "づくる"], a: 1 },
+                { k: "使う", e: "To use", o: ["つかう", "つふ", "つがう"], a: 0 },
+                { k: "切る", e: "To cut", o: ["きる", "くる", "きいる"], a: 0 },
+                { k: "洗う", e: "To wash", o: ["あろふ", "あらう", "あろう"], a: 1 },
+                { k: "磨く", e: "To polish/brush", o: ["みがく", "みかく", "めがく"], a: 0 },
+                { k: "脱ぐ", e: "To take off (clothes)", o: ["ぬぐ", "ぬく", "のぐ"], a: 0 },
+                { k: "着る", e: "To wear", o: ["ける", "きる", "ぎる"], a: 1 },
+                { k: "履く", e: "To wear (shoes)", o: ["はぐ", "ばく", "はく"], a: 2 },
+                { k: "被る", e: "To wear (hat)", o: ["かぶる", "かぷる", "がぶる"], a: 0 },
+                { k: "締める", e: "To tie/fasten", o: ["じめる", "しめる", "しむる"], a: 1 },
+                { k: "引く", e: "To pull", o: ["はく", "びく", "ひく"], a: 2 },
+                { k: "押す", e: "To push", o: ["おす", "おず", "あす"], a: 0 }
+            ]
+        },
+        4: {
+            title: "N4/N5 漢字テスト (Verbs Part 4 / 動詞 4)",
+            words: [
+                { k: "開ける", e: "To open (smth)", o: ["はける", "おける", "あける"], a: 2 },
+                { k: "閉める", e: "To close (smth)", o: ["じめる", "しめる", "しむる"], a: 1 },
+                { k: "開く", e: "To open (itself)", o: ["ひらく", "あぐ", "おく"], a: 0 },
+                { k: "閉まる", e: "To be closed", o: ["しまる", "しめる", "じまる"], a: 0 },
+                { k: "点ける", e: "To turn on", o: ["つける", "づける", "てける"], a: 0 },
+                { k: "消す", e: "To turn off", o: ["げす", "けす", "きす"], a: 1 },
+                { k: "貸す", e: "To lend", o: ["かづ", "かす", "がす"], a: 1 },
+                { k: "借りる", e: "To borrow", o: ["かりる", "かる", "かいる"], a: 0 },
+                { k: "返す", e: "To return (smth)", o: ["かえす", "かえず", "がえす"], a: 0 },
+                { k: "送る", e: "To send", o: ["あくる", "おごる", "おくる"], a: 2 },
+                { k: "渡す", e: "To hand over", o: ["わたず", "わたす", "わだす"], a: 1 },
+                { k: "もらう", e: "To receive", o: ["もろう", "むらう", "もらう"], a: 2 },
+                { k: "助ける", e: "To help", o: ["たすける", "だすける", "たずける"], a: 0 },
+                { k: "手伝う", e: "To assist", o: ["てつだう", "てつたう", "でつだう"], a: 0 },
+                { k: "直す", e: "To fix", o: ["なうす", "なおす", "なおず"], a: 1 },
+                { k: "治る", e: "To be cured", o: ["なおる", "なある", "なおるる"], a: 0 },
+                { k: "変わる", e: "To change", o: ["かわる", "がわる", "かえる"], a: 0 },
+                { k: "続ける", e: "To continue", o: ["つづける", "つつける", "づづける"], a: 0 },
+                { k: "集める", e: "To collect", o: ["あずめる", "あつめる", "おつめる"], a: 1 },
+                { k: "決める", e: "To decide", o: ["きめる", "ぎめる", "けめる"], a: 0 },
+                { k: "比べる", e: "To compare", o: ["くたべる", "ぐらべる", "くらべる"], a: 2 },
+                { k: "調べる", e: "To investigate", o: ["しらべる", "じらべる", "しらへる"], a: 0 },
+                { k: "違う", e: "To differ", o: ["ちがう", "ぢがう", "ちかふ"], a: 0 },
+                { k: "込む", e: "To be crowded", o: ["こぬ", "ごむ", "こむ"], a: 2 },
+                { k: "間に合う", e: "To be in time", o: ["まにあう", "まねあう", "まにあふ"], a: 0 }
+            ]
+        }
+    };
+    
+    let current = 1;
+    const total = Object.keys(allData).length;
+
+    function init() {
+        const container = document.getElementById('slides-container');
+        for(let i=1; i<=total; i++){
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${i===1?'active':''}`;
+            slideDiv.id = `s${i}`;
+            
+            let gridHTML = `<div class="grid">`;
+            allData[i].words.forEach(w => {
+                let optionsHTML = '';
+                w.o.forEach((optText, index) => {
+                    const isCorrect = (index === w.a);
+                    optionsHTML += `<button class="opt-btn" data-correct="${isCorrect}" onclick="checkAnswer(this)">${optText}</button>`;
+                });
+
+                gridHTML += `
+                    <div class="question-box">
+                        <div>
+                            <span class="kanji">${w.k}</span>
+                            <div class="english-container" onclick="this.classList.toggle('show-eng')">
+                                <span class="eng-placeholder">English</span>
+                                <span class="eng-text">${w.e}</span>
+                            </div>
+                        </div>
+                        <div class="options-container">
+                            ${optionsHTML}
+                        </div>
+                    </div>`;
+            });
+            gridHTML += `</div>`;
+            
+            slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
+            container.appendChild(slideDiv);
+        }
+        updateControls();
+    }
+
+    function checkAnswer(btn) {
+        const isCorrect = btn.dataset.correct === 'true';
+        const box = btn.closest('.question-box');
+        const allButtons = box.querySelectorAll('.opt-btn');
+
+        allButtons.forEach(b => {
+            b.disabled = true;
+            if(b.dataset.correct === 'true') {
+                b.style.backgroundColor = 'var(--correct-color)';
+                b.style.color = '#fff';
+                b.style.borderColor = 'var(--correct-color)';
+            }
+        });
+
+        if (!isCorrect) {
+            btn.style.backgroundColor = 'var(--wrong-color)';
+            btn.style.color = '#fff';
+            btn.style.borderColor = 'var(--wrong-color)';
+        }
+    }
+
+    function changeSlide(dir) {
+        document.getElementById(`s${current}`).classList.remove('active');
+        current += dir;
+        document.getElementById(`s${current}`).classList.add('active');
+        updateControls();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateControls() {
+        document.getElementById('prevBtn').disabled = (current === 1);
+        document.getElementById('nextBtn').disabled = (current === total);
+        document.getElementById('pageDisplay').textContent = `Slide ${current} / ${total}`;
+    }
+
+    init();
+</script>
+</body>
+</html>

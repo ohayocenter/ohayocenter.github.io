@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N4/N5 100 Kanji Quiz | OHAYO CENTER</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f0f2f5; --card-bg: #ffffff; --correct-color: #2ecc71; --wrong-color: #e74c3c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 90px 20px 80px; }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box; }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .container { width: 100%; max-width: 1100px; position: relative; }
+        .slide { display: none; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); animation: fadeIn 0.4s; }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 25px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 15px; }
+        .question-box { border: 2px solid #edf2f7; padding: 15px 10px; text-align: center; border-radius: 12px; background: #fff; display: flex; flex-direction: column; justify-content: space-between; }
+        .kanji { font-size: 1.8rem; font-weight: bold; display: block; color: #333; margin-bottom: 8px; }
+        .english-container { font-size: 0.85rem; margin-bottom: 12px; cursor: pointer; min-height: 1.5em; background-color: #f8f9fa; border-radius: 4px; padding: 4px 8px; display: inline-block; border: 1px dashed #cbd5e1; transition: 0.2s; user-select: none; }
+        .english-container:hover { background-color: #e2e8f0; }
+        .eng-placeholder { color: #94a3b8; font-size: 0.75rem; }
+        .eng-text { display: none; color: #34495e; font-weight: bold; }
+        .english-container.show-eng { border-style: solid; background-color: #eaf2f8; border-color: #3498db; }
+        .english-container.show-eng .eng-placeholder { display: none; }
+        .english-container.show-eng .eng-text { display: inline; }
+        .options-container { display: flex; flex-direction: column; gap: 6px; }
+        .opt-btn { background-color: #f8f9fa; border: 1px solid #dce1e6; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; color: #2c3e50; transition: all 0.2s ease; width: 100%; font-family: 'Noto Sans JP', sans-serif; }
+        .opt-btn:hover:not(:disabled) { background-color: #e2e8f0; border-color: #cbd5e1; }
+        .opt-btn:disabled { cursor: default; }
+        .nav-controls { margin: 30px 0; display: flex; justify-content: center; gap: 15px; align-items: center; }
+        .nav-btn { background-color: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .nav-btn:hover { background-color: #1a252f; }
+        .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 1000px; }
+        .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
+        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } .grid { grid-template-columns: repeat(2, 1fr); } .kanji { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+<div class="container" id="slides-container"></div>
+<div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">PREV</button>
+    <span id="pageDisplay" style="font-weight:bold; color:var(--primary-color)">Slide 1 / X</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">NEXT</button>
+</div>
+<div class="support-section">
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+</div>
+<script>
+    const allData = {
+        1: {
+            title: "N5 100 漢字テスト (名詞 1: 人・時間 / Nouns 1)",
+            words: [
+                { k: "人", e: "person", o: ["びと", "ひと", "ひど"], a: 1 },
+                { k: "男", e: "man", o: ["おどこ", "おとこ", "おとうこ"], a: 1 },
+                { k: "女", e: "woman", o: ["おんあ", "おおな", "おんな"], a: 2 },
+                { k: "子", e: "child", o: ["こ", "ご", "こう"], a: 0 },
+                { k: "父", e: "father", o: ["ちち", "じじ", "ちぢ"], a: 0 },
+                { k: "母", e: "mother", o: ["ばば", "ぱぱ", "はは"], a: 2 },
+                { k: "兄", e: "older brother", o: ["あに", "あにい", "あん"], a: 0 },
+                { k: "姉", e: "older sister", o: ["あね", "あねえ", "あぬ"], a: 0 },
+                { k: "弟", e: "younger brother", o: ["おとと", "おとうと", "おどうと"], a: 1 },
+                { k: "妹", e: "younger sister", o: ["いもと", "いもうと", "いもおと"], a: 1 },
+                { k: "友", e: "friend", o: ["とも", "どう", "ども"], a: 0 },
+                { k: "今", e: "now", o: ["いま", "いん", "いーま"], a: 0 },
+                { k: "昔", e: "old days", o: ["むがし", "むかじ", "むかし"], a: 2 },
+                { k: "朝", e: "morning", o: ["あさ", "あざ", "あっさ"], a: 0 },
+                { k: "昼", e: "noon / daytime", o: ["びる", "ひる", "ぴる"], a: 1 },
+                { k: "夜", e: "night", o: ["よる", "よう", "よっる"], a: 0 },
+                { k: "春", e: "spring", o: ["はる", "ばる", "はーる"], a: 0 },
+                { k: "夏", e: "summer", o: ["なつ", "なづ", "なっつ"], a: 0 },
+                { k: "秋", e: "autumn", o: ["あき", "あぎ", "あっき"], a: 0 },
+                { k: "冬", e: "winter", o: ["ふゆ", "ぶゆ", "ふーゆ"], a: 0 },
+                { k: "年", e: "year", o: ["とし", "どし", "とおし"], a: 0 },
+                { k: "月", e: "month / moon", o: ["つき", "づき", "つぎ"], a: 0 },
+                { k: "日", e: "day / sun", o: ["ひ", "び", "ぴ"], a: 0 },
+                { k: "水", e: "water", o: ["みす", "みず", "みっず"], a: 1 },
+                { k: "木", e: "tree / wood", o: ["ぎ", "きい", "き"], a: 2 }
+            ]
+        },
+        2: {
+            title: "N5 漢字テスト (名詞 2: 場所・自然・体 / Nouns 2)",
+            words: [
+                { k: "山", e: "mountain", o: ["やま", "やーま", "やまっ"], a: 0 },
+                { k: "川", e: "river", o: ["がわ", "かーわ", "かわ"], a: 2 },
+                { k: "空", e: "sky", o: ["そら", "ぞら", "そうら"], a: 0 },
+                { k: "海", e: "sea", o: ["おみ", "うみ", "うーみ"], a: 1 },
+                { k: "天", e: "heaven", o: ["でん", "てん", "てーん"], a: 1 },
+                { k: "気", e: "spirit / air", o: ["ぎ", "き", "きい"], a: 1 },
+                { k: "雨", e: "rain", o: ["あめ", "あめい", "あんめ"], a: 0 },
+                { k: "雪", e: "snow", o: ["ゆうき", "ゆき", "ゆっき"], a: 1 },
+                { k: "風", e: "wind", o: ["かせ", "がぜ", "かぜ"], a: 2 },
+                { k: "道", e: "road", o: ["みち", "みじ", "みっち"], a: 0 },
+                { k: "町", e: "town", o: ["まち", "まじ", "まっち"], a: 0 },
+                { k: "店", e: "shop", o: ["みせ", "みぜ", "みっせ"], a: 0 },
+                { k: "国", e: "country", o: ["くに", "ぐに", "くーに"], a: 0 },
+                { k: "外", e: "outside", o: ["そと", "ぞと", "そうと"], a: 0 },
+                { k: "中", e: "inside / middle", o: ["なか", "なが", "なーか"], a: 0 },
+                { k: "上", e: "up / above", o: ["うえ", "うぇ", "おえ"], a: 0 },
+                { k: "下", e: "down / below", o: ["しだ", "した", "しった"], a: 1 },
+                { k: "前", e: "front / before", o: ["まえ", "まえー", "まえい"], a: 0 },
+                { k: "後", e: "back / after", o: ["あど", "あっと", "あと"], a: 2 },
+                { k: "目", e: "eye", o: ["めえ", "め", "めー"], a: 1 },
+                { k: "口", e: "mouth", o: ["ぐち", "くち", "くじ"], a: 1 },
+                { k: "耳", e: "ear", o: ["みーみ", "みんみ", "みみ"], a: 2 },
+                { k: "手", e: "hand", o: ["で", "て", "てえ"], a: 1 },
+                { k: "足", e: "leg / foot", o: ["あし", "あじ", "あっし"], a: 0 },
+                { k: "体", e: "body", o: ["かだら", "からだ", "がらだ"], a: 1 }
+            ]
+        },
+        3: {
+            title: "N4 漢字テスト (名詞 3: 生活・学校・社会 / Nouns 3)",
+            words: [
+                { k: "本", e: "book", o: ["ぼん", "ぽん", "ほん"], a: 2 },
+                { k: "字", e: "letter / character", o: ["し", "じ", "じい"], a: 1 },
+                { k: "音", e: "sound", o: ["おど", "おとう", "おと"], a: 2 },
+                { k: "色", e: "color", o: ["いろ", "いろう", "いる"], a: 0 },
+                { k: "声", e: "voice", o: ["こえ", "ごえ", "こえい"], a: 0 },
+                { k: "心", e: "heart / mind", o: ["ごごろ", "こころ", "ここーろ"], a: 1 },
+                { k: "力", e: "power", o: ["じから", "ちから", "ちがら"], a: 1 },
+                { k: "門", e: "gate", o: ["もん", "もーん", "ぼん"], a: 0 },
+                { k: "肉", e: "meat", o: ["にぐ", "にっく", "にく"], a: 2 },
+                { k: "魚", e: "fish", o: ["さがな", "ざかな", "さかな"], a: 2 },
+                { k: "車", e: "car", o: ["くるま", "ぐるま", "くるーま"], a: 0 },
+                { k: "金", e: "money / gold", o: ["がね", "かね", "かーね"], a: 1 },
+                { k: "花", e: "flower", o: ["はな", "ばな", "はんな"], a: 0 },
+                { k: "茶", e: "tea", o: ["じゃ", "ちや", "ちゃ"], a: 2 },
+                { k: "薬", e: "medicine", o: ["くずり", "ぐすり", "くすり"], a: 2 },
+                { k: "靴", e: "shoes", o: ["くつ", "ぐつ", "くづ"], a: 0 },
+                { k: "服", e: "clothes", o: ["ふぐ", "ふく", "ぶく"], a: 1 },
+                { k: "歌", e: "song", o: ["うだ", "うった", "うた"], a: 2 },
+                { k: "話", e: "story / talk", o: ["ばなし", "はなし", "はなじ"], a: 1 },
+                { k: "絵", e: "picture", o: ["ええ", "え", "い"], a: 1 },
+                { k: "糸", e: "thread", o: ["いと", "いど", "いいと"], a: 0 },
+                { k: "家", e: "house", o: ["いえ", "いいえ", "や"], a: 0 },
+                { k: "部屋", e: "room", o: ["べや", "へや", "へえや"], a: 1 },
+                { k: "時計", e: "clock / watch", o: ["とけ", "どけい", "とけい"], a: 2 },
+                { k: "辞書", e: "dictionary", o: ["じしょ", "しじょ", "じしょう"], a: 0 }
+            ]
+        },
+        4: {
+            title: "N4/N5 漢字テスト (名詞 4: 交通・物・その他 / Nouns 4)",
+            words: [
+                { k: "駅", e: "station", o: ["えき", "えぎ", "えーき"], a: 0 },
+                { k: "旅", e: "trip / travel", o: ["たび", "だび", "たぴ"], a: 0 },
+                { k: "海岸", e: "coast / beach", o: ["かいがん", "がいがん", "かいかん"], a: 0 },
+                { k: "電車", e: "train", o: ["でんしゃ", "てんしゃ", "でんじゃ"], a: 0 },
+                { k: "切符", e: "ticket", o: ["きふ", "きっぷ", "ぎっぷ"], a: 1 },
+                { k: "病院", e: "hospital", o: ["びょいん", "びょういん", "ひょういん"], a: 1 },
+                { k: "映画", e: "movie", o: ["えいが", "えが", "えいか"], a: 0 },
+                { k: "写真", e: "photograph", o: ["じゃしん", "しゃじん", "しゃしん"], a: 2 },
+                { k: "手紙", e: "letter", o: ["てかみ", "てがみ", "でがみ"], a: 1 },
+                { k: "電話", e: "telephone", o: ["でんわ", "てんわ", "でんぱ"], a: 0 },
+                { k: "名前", e: "name", o: ["なまえ", "なまい", "なめえ"], a: 0 },
+                { k: "荷物", e: "luggage", o: ["にもづ", "にもつ", "じもつ"], a: 1 },
+                { k: "料理", e: "cooking / food", o: ["りょり", "りょうり", "りようり"], a: 1 },
+                { k: "食堂", e: "dining hall", o: ["しょくどう", "しょくど", "じょくどう"], a: 0 },
+                { k: "建物", e: "building", o: ["だてもの", "たてもの", "たでもの"], a: 1 },
+                { k: "銀行", e: "bank", o: ["ぎんこう", "きんこう", "ぎんこ"], a: 0 },
+                { k: "図書館", e: "library", o: ["としょかん", "とじょかん", "どしょかん"], a: 0 },
+                { k: "授業", e: "class / lesson", o: ["しゅぎょう", "じゅきょう", "じゅぎょう"], a: 2 },
+                { k: "先生", e: "teacher", o: ["せんせい", "せんせ", "ぜんせい"], a: 0 },
+                { k: "学生", e: "student", o: ["がくせい", "かくせい", "がぐせい"], a: 0 },
+                { k: "子供", e: "children", o: ["ごども", "こども", "ことも"], a: 1 },
+                { k: "両親", e: "parents", o: ["りょしん", "りょうじん", "りょうしん"], a: 2 },
+                { k: "友達", e: "friend", o: ["ともだち", "どもだち", "ともたち"], a: 0 },
+                { k: "意味", e: "meaning", o: ["いみ", "いみい", "いーみ"], a: 0 },
+                { k: "問題", e: "problem / question", o: ["もんだい", "もんたい", "もんただい"], a: 0 }
+            ]
+        }
+    };
+
+    let current = 1;
+    const total = Object.keys(allData).length;
+    function init() {
+        const container = document.getElementById('slides-container');
+        for(let i=1; i<=total; i++){
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${i===1?'active':''}`;
+            slideDiv.id = `s${i}`;
+            let gridHTML = `<div class="grid">`;
+            allData[i].words.forEach(w => {
+                let optionsHTML = '';
+                w.o.forEach((optText, index) => {
+                    const isCorrect = (index === w.a);
+                    optionsHTML += `<button class="opt-btn" data-correct="${isCorrect}" onclick="checkAnswer(this)">${optText}</button>`;
+                });
+                gridHTML += `
+                    <div class="question-box">
+                        <div>
+                            <span class="kanji">${w.k}</span>
+                            <div class="english-container" onclick="this.classList.toggle('show-eng')">
+                                <span class="eng-placeholder">English</span>
+                                <span class="eng-text">${w.e}</span>
+                            </div>
+                        </div>
+                        <div class="options-container">
+                            ${optionsHTML}
+                        </div>
+                    </div>`;
+            });
+            gridHTML += `</div>`;
+            slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
+            container.appendChild(slideDiv);
+        }
+        updateControls();
+    }
+    function checkAnswer(btn) {
+        const isCorrect = btn.dataset.correct === 'true';
+        const box = btn.closest('.question-box');
+        const allButtons = box.querySelectorAll('.opt-btn');
+        allButtons.forEach(b => {
+            b.disabled = true;
+            if(b.dataset.correct === 'true') {
+                b.style.backgroundColor = 'var(--correct-color)';
+                b.style.color = '#fff';
+                b.style.borderColor = 'var(--correct-color)';
+            }
+        });
+        if (!isCorrect) {
+            btn.style.backgroundColor = 'var(--wrong-color)';
+            btn.style.color = '#fff';
+            btn.style.borderColor = 'var(--wrong-color)';
+        }
+    }
+    function changeSlide(dir) {
+        document.getElementById(`s${current}`).classList.remove('active');
+        current += dir;
+        document.getElementById(`s${current}`).classList.add('active');
+        updateControls();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function updateControls() {
+        document.getElementById('prevBtn').disabled = (current === 1);
+        document.getElementById('nextBtn').disabled = (current === total);
+        document.getElementById('pageDisplay').textContent = `Slide ${current} / ${total}`;
+    }
+    init();
+</script>
+</body>
+</html>
