@@ -147,6 +147,73 @@
         .privacy-section h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 0.5rem; border-left: 3px solid var(--primary); padding-left: 10px; }
         .privacy-section p { font-size: 0.85rem; color: #555; margin-bottom: 0.8rem; line-height: 1.6; }
         #mail-reveal, #mail-reveal-privacy { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
+
+        /* --- Update Board Styles --- */
+        .update-board {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin: 2rem auto 3rem;
+            max-width: 800px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        .update-board h3 {
+            font-family: 'Sawarabi Mincho', serif;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.8rem;
+            text-align: left;
+        }
+        .update-list {
+            list-style: none;
+        }
+        .update-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.9rem;
+        }
+        
+        /* 常に最新3件のみ表示させる設定 */
+        .update-list li:nth-child(n+4) {
+            display: none;
+        }
+        
+        /* 最後の線の処理 */
+        .update-list li:last-child,
+        .update-list li:nth-child(3) {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .update-date {
+            font-weight: bold;
+            color: var(--primary);
+            min-width: 90px;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+        .update-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .update-text {
+            color: #555;
+            line-height: 1.5;
+        }
         
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
@@ -161,6 +228,9 @@
             .legal-table th, .legal-table td { display: block; width: 100%; }
             .legal-table th { background-color: transparent; padding-bottom: 2px; color: #666; font-size: 0.8rem; border-bottom: none; }
             .legal-table td { padding-top: 2px; padding-bottom: 15px; }
+
+            .update-board { padding: 1.5rem 1.2rem; }
+            .update-list li { flex-wrap: wrap; gap: 8px; }
         }
     </style>
 </head>
@@ -221,8 +291,8 @@
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 3rem auto 0;">
-            <div class="consultation-banner" style="margin: 0; max-width: none;">
+        <div style="display: flex; justify-content: center; margin: 3rem auto 0;">
+            <div class="consultation-banner" style="margin: 0; width: 100%; max-width: 450px;">
                 <span style="font-size: 1.5rem;">🍫</span>
                 <h3 style="font-size: 1.2rem;">Trial Lesson</h3>
                 <p style="color:#666; font-size:0.8rem; margin-bottom: 8px;">For your first step</p>
@@ -231,18 +301,6 @@
                     <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
                     <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
                 </div>
-            </div>
-
-            <div class="consultation-banner" style="margin: 0; max-width: none;">
-                <span style="font-size: 1.5rem;">💼</span>
-                <h3 style="font-size: 1.2rem;">Teacher Mentorship</h3>
-                <p style="color:var(--primary); font-size:0.7rem; font-weight:bold; margin-top:-5px; margin-bottom:10px;">新人日本語教師向け相談</p>
-                <p style="color:#666; font-size:0.8rem; margin-bottom: 8px;">Support for your journey as an educator</p>
-                <p style="font-weight:bold; font-size:1.2rem; margin-bottom: 10px;">45 mins / 1,800 yen</p>
-                <a href="https://forms.gle/PUECFo4NfcrW6Wy38" 
-                   class="btn-bottom" 
-                   style="border: 1px solid var(--dark); color: var(--dark); text-decoration: none;" 
-                   target="_blank">INQUIRY</a>
             </div>
         </div>
     </section>
@@ -297,6 +355,32 @@
     <section id="resources">
         <h2 id="materials" style="margin-top: 4rem; scroll-margin-top: 90px;">Study Material</h2>
 
+        <div class="update-board">
+            <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
+            <ul class="update-list">
+                <li>
+                    <span class="update-date">2026.Feb.25</span>
+                    <span class="update-badge" style="color: #2980b9; background: #eaf4fc;">Kanji</span>
+                    <span class="update-text">Kanji Materials updated!</span>
+                </li>
+                <li>
+                    <span class="update-date">2026.Feb.25</span>
+                    <span class="update-badge" style="color: #f39c12; background: #fef5e7;">Grammar</span>
+                    <span class="update-text">Grammar Materials updated!</span>
+                </li>
+                <li>
+                    <span class="update-date">2026.Feb.25</span>
+                    <span class="update-badge" style="color: #e4405f; background: #fcecf0;">Anime</span>
+                    <span class="update-text">Anime Materials updated!</span>
+                </li>
+                <li>
+                    <span class="update-date">2026.Feb.05</span>
+                    <span class="update-badge" style="color: #8e44ad; background: #f4e9f7;">podcast</span>
+                    <span class="update-text">Anime Titles のページを新しく追加しました。</span>
+                </li>
+            </ul>
+        </div>
+
         <h3 style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #f39c12; margin-bottom: 1.5rem; margin-top: 2rem;">
             <i class="fa-solid fa-puzzle-piece"></i> Grammar & Sentence Making
         </h3>
@@ -304,31 +388,31 @@
             <a href="Grammar1-1.html" class="unified-card">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>Grammar 1-1</h3>
-                <p>Sentence Builder Practice  ⭐️</p>
+                <p>Sentence Builder Practice  JLPT N5⭐️ <br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
             <a href="Grammar1-2.html" class="unified-card">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>Grammar 1-2</h3>
-                <p>Sentence Builder Practice  ⭐️</p>
+                <p>Sentence Builder Practice  JLPT N5⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
             <a href="Grammar2-1.html" class="unified-card">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>Grammar 2-1</h3>
-                <p>Sentence Builder Practice ⭐️⭐️</p>
+                <p>Sentence Builder Practice JLPT N4⭐️⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
             <a href="Grammar2-2.html" class="unified-card">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>Grammar 2-2</h3>
-                <p>Sentence Builder Practice ⭐️⭐️</p>
+                <p>Sentence Builder Practice JLPT N4⭐️⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
             <a href="conditional1.html" class="unified-card">
                 <i class="fa-solid fa-code-branch" style="color: #f39c12;"></i>
                 <h3>Conditionals</h3>
-                <p>Conditional Sentence Practice ⭐️⭐️⭐️</p>
+                <p>Conditional Sentence Practice JLPT N4⭐️⭐️⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
         </div>
@@ -340,7 +424,7 @@
             <a href="Kanji-N4-5.html" class="unified-card">
                 <i class="fa-solid fa-language" style="color: #27ae60;"></i>
                 <h3>Kanji Level</h3>
-                <p>300 Essential Kanji Master</p>
+                <p>300 Essential Kanji Master JLPT N4<br>漢字</p>
                 <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div>
             </a>
             <a href="A1-1.html" class="unified-card">
@@ -365,32 +449,32 @@
             <a href="Kanji3-1.html" class="unified-card">
                 <i class="fa-solid fa-book" style="color: #9b59b6;"></i>
                 <h3>Kanji 3-1</h3>
-                <p>Intermediate Kanji Practice</p>
+                <p>Intermediate Kanji Practice JLPT N3<br>漢字</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
             <a href="Kanji3-2.html" class="unified-card">
                 <i class="fa-solid fa-book" style="color: #9b59b6;"></i>
                 <h3>Kanji 3-2</h3>
-                <p>Intermediate Kanji Practice</p>
+                <p>Intermediate Kanji Practice JLPT N3<br>漢字</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
 
             <a href="N3-1.html" class="unified-card">
                 <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i>
                 <h3>N3 Vocabulary-1</h3>
-                <p>Intermediate 1 Practice</p>
+                <p>Intermediate 1 Practice <br>JLPT N3<br>語彙</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
             <a href="N3-2.html" class="unified-card">
                 <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i>
                 <h3>N3 Vocabulary-2</h3>
-                <p>Intermediate 1 Practice</p>
+                <p>Intermediate 1 Practice <br>JLPT N3<br>語彙</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
             <a href="N3-3.html" class="unified-card">
                 <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i>
                 <h3>N3 Vocabulary-3</h3>
-                <p>Intermediate 1 Practice</p>
+                <p>Intermediate 1 Practice <br>JLPT N3<br>語彙</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
         </div>
@@ -499,12 +583,12 @@
         <a class="legal-link" id="openLegalModal">特定商取引法に基づく表記</a> ｜ 
         <a class="legal-link" id="openPrivacyModal">Privacy Policy</a>
     </p>
-    <p style="margin-top: 10px;">&copy; 2026 Ohayo Center. All rights reserved.</p>
+    <p style="margin-top: 10px;">© 2026 Ohayo Center. All rights reserved.</p>
 </footer>
 
 <div id="legalModal" class="legal-modal">
     <div class="legal-content">
-        <span class="close-btn" id="closeLegalModal">&times;</span>
+        <span class="close-btn" id="closeLegalModal">×</span>
         <h2 style="font-family: 'Sawarabi Mincho', serif;">特定商取引法に基づく表記</h2>
         <table class="legal-table">
             <tr><th>販売事業者名</th><td>OHAYO CENTER</td></tr>
@@ -520,7 +604,7 @@
 
 <div id="privacyModal" class="legal-modal">
     <div class="legal-content">
-        <span class="close-btn" id="closePrivacyModal">&times;</span>
+        <span class="close-btn" id="closePrivacyModal">×</span>
         <h2 style="font-family: 'Sawarabi Mincho', serif;">Privacy Policy<br><span style="font-size:0.9rem; color:#888;">プライバシーポリシー</span></h2>
         <div class="privacy-section">
             <h4>1. Information We Collect</h4>
