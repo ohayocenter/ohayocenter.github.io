@@ -14,9 +14,11 @@
             --accent-color: #3498db;
             --bg-color: #f0f2f5;
             --card-bg: #ffffff;
+            --hiragana-color: #e74c3c;
+            --english-color: #3498db;
         }
 
-        /* --- ナビゲーションバーのスタイル追加 --- */
+        /* --- ナビゲーションバー --- */
         nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
@@ -32,7 +34,7 @@
             align-items: center;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             font-family: 'Noto Sans JP', sans-serif;
-            box-sizing: border-box; /* 横スクロール防止 */
+            box-sizing: border-box;
         }
         .logo {
             font-family: 'Sawarabi Mincho', serif;
@@ -59,15 +61,14 @@
             letter-spacing: 1px;
         }
 
-        /* スマホ用デザイン調整 */
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
         }
-        /* ------------------------------------- */
 
+        /* --- メインコンテンツ --- */
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             background-color: var(--bg-color);
@@ -103,17 +104,29 @@
             border-bottom: 3px solid var(--accent-color);
             padding-bottom: 10px;
         }
+        
+        /* スマホ向けのグリッド調整 */
         .grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 10px;
         }
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         .question-box {
             border: 2px solid #edf2f7;
-            padding: 12px 2px;
+            padding: 12px 6px;
             text-align: center;
             border-radius: 10px;
             background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .kanji {
             font-size: 1.5rem;
@@ -122,23 +135,80 @@
             margin-bottom: 5px;
             color: #333;
         }
-        .answer {
-            color: #e74c3c;
+        
+        /* --- 解答部分（独立して表示切り替え） --- */
+        .answer-container {
+            min-height: 2.8em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        
+        .reading, .meaning {
+            visibility: hidden; /* 初期状態は非表示 */
+        }
+        .reading.show, .meaning.show {
+            visibility: visible;
+        }
+
+        .reading {
+            color: var(--hiragana-color);
             font-weight: bold;
             font-size: 1rem;
-            min-height: 1.2em;
-            visibility: hidden;
+            line-height: 1.2;
         }
-        .answer.show { visibility: visible; }
-        .btn-ans {
+        .meaning {
+            color: #7f8c8d;
+            font-size: 0.75rem;
+            font-weight: normal;
+            margin-top: 4px;
+            line-height: 1.1;
+        }
+
+        /* --- ボタンのレイアウト --- */
+        .btn-group {
+            display: flex;
+            gap: 5px;
+            margin-top: auto;
+        }
+        
+        .btn-check, .btn-en {
             background-color: #f8f9fa;
             border: 1px solid #ddd;
-            padding: 4px 8px;
+            padding: 5px 0;
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.7rem;
             color: #777;
+            flex: 1; /* ボタンの幅を均等にする */
+            font-weight: bold;
+            transition: 0.2s;
         }
+
+        /* アクティブ（表示中）の時のボタンスタイル */
+        .btn-check.active {
+            background-color: var(--hiragana-color);
+            color: #fff;
+            border-color: var(--hiragana-color);
+        }
+        .btn-en.active {
+            background-color: var(--english-color);
+            color: #fff;
+            border-color: var(--english-color);
+        }
+
+        /* --- スマホ表示時のボタン縦並び設定 --- */
+        @media (max-width: 600px) {
+            .btn-group {
+                flex-direction: column; /* ここで縦並びに変更 */
+            }
+            .btn-check, .btn-en {
+                padding: 8px 0; /* スマホでタップしやすいように高さを出す */
+            }
+        }
+        
+        /* --- ページ送りボタン --- */
         .nav-controls {
             margin: 20px 0;
             display: flex;
@@ -159,15 +229,15 @@
         .nav-btn:hover { background-color: var(--accent-color); }
         .nav-btn:disabled { background-color: #ccc; cursor: not-allowed; }
 
-        /* --- Support Section (新しく追加・修正した部分) --- */
+        /* --- Support Section --- */
         .support-section {
             text-align: center;
             margin-top: 30px;
-            margin-bottom: 50px; /* 下部に余白を追加 */
+            margin-bottom: 50px;
             padding-top: 30px;
             border-top: 2px solid #e2e8f0;
             width: 100%;
-            max-width: 1000px; /* 他のコンテンツと幅を合わせる */
+            max-width: 1000px;
         }
         .support-section h2 {
             color: var(--primary-color);
@@ -233,18 +303,18 @@
 
 <script>
     const allData = {
-        1: { title: "生活 (Daily Life)", words: [['学校','がっこう'],['先生','せんせい'],['学生','がくせい'],['友達','ともだち'],['本屋','ほんや'],['名前','なまえ'],['電話','でんわ'],['電気','でんき'],['車','くるま'],['電車','でんしゃ'],['家族','かぞく'],['父','ちち'],['母','はは'],['兄','あに'],['姉','あね'],['弟','おとうと'],['妹','いもうと'],['家','いえ'],['部屋','へや'],['机','つくえ'],['椅子','いす'],['窓','まど'],['料理','りょうり'],['朝ご飯','あさごはん'],['体','からだ']] },
-        2: { title: "数字・時 (Numbers & Time)", words: [['一人','ひとり'],['二日','ふつか'],['三日','みっか'],['四日','よっか'],['五日','いつか'],['六日','むいか'],['七日','なのか'],['八日','ようか'],['九日','ここのか'],['十日','とおか'],['今月','こんげつ'],['去年','きょねん'],['来週','らいしゅう'],['毎日','まいにち'],['午前','ごぜん'],['午後','ごご'],['今朝','けさ'],['今晩','こんばん'],['一時間','いちじかん'],['半年','はんねん'],['何曜日','なんようび'],['週末','しゅうまつ'],['時計','とけい'],['正月','しょうがつ'],['誕生日','たんじょうび']] },
-        3: { title: "動詞 1 (Basic Verbs)", words: [['食べる','たべる'],['飲む','のむ'],['行く','いく'],['来る','くる'],['帰る','かえる'],['寝る','ねる'],['起きる','おきる'],['見る','みる'],['聞く','きく'],['書く','かく'],['読む','よむ'],['買う','かう'],['売る','うる'],['会う','あう'],['遊ぶ','あそぶ'],['待つ','まつ'],['持つ','もつ'],['知る','しる'],['作る','つくる'],['使う','つかう'],['泳ぐ','およぐ'],['歩く','あるく'],['走る','はしる'],['乗る','のる'],['降る','ふる']] },
-        4: { title: "形容詞・方向 (Adjectives & Directions)", words: [['大きい','おおきい'],['小さい','ちいさい'],['新しい','あたらしい'],['古い','ふるい'],['高い','たかい'],['安い','やすい'],['長い','ながい'],['短い','みじかい'],['暑い','あつい'],['寒い','さむい'],['上','うえ'],['下','した'],['左','ひだり'],['右','みぎ'],['中','なか'],['外','そと'],['前','まえ'],['後ろ','うしろ'],['東','ひがし'],['西','にし'],['南','みなみ'],['北','きた'],['有名','ゆうめい'],['親切','しんせつ'],['便利','べんり']] },
-        5: { title: "仕事と動作 (Work & Actions)", words: [['仕事','しごと'],['会社','かいしゃ'],['休む','やすむ'],['働く','はたらく'],['勉強','べんきょう'],['習う','ならう'],['教える','おしえる'],['送る','おくる'],['考える','かんがえる'],['思い出す','おもいだす'],['終わる','おわる'],['始まる','はじまる'],['止まる','とまる'],['出す','だす'],['入れる','いれる'],['開ける','あける'],['閉める','しめる'],['消す','けす'],['つける','点ける'],['忘れる','わすれる'],['頼む','たのむ'],['貸す','かす'],['借りる','かりる'],['洗う','あらう'],['歌う','うたう']] },
-        6: { title: "感情と状態 (Feelings & States)", words: [['好き','すき'],['嫌い','きらい'],['上手','じょうず'],['下手','へた'],['大切','たいせつ'],['忙しい','いそがしい'],['面白い','おもしろい'],['楽しい','たのしい'],['嬉しい','うれしい'],['悲しい','かなしい'],['痛い','いたい'],['元気','げんき'],['病気','びょうき'],['安心','あんしん'],['心配','しんぱい'],['薬','くすり'],['眠い','ねむい'],['悪い','わるい'],['重い','おもい'],['軽い','かるい'],['広い','ひろい'],['狭い','せまい'],['早い','はやい'],['遅い','おそい'],['静か','しずか']] },
-        7: { title: "街と建物 (Town & Buildings)", words: [['地下鉄','ちかてつ'],['銀行','ぎんこう'],['病院','びょういん'],['郵便局','ゆうびんきょく'],['公園','こうえん'],['動物園','どうぶつえん'],['大使館','たいしかん'],['映画館','えいが館'],['交番','こうばん'],['橋','はし'],['道','みち'],['門','もん'],['店','みせ'],['売店','ばいてん'],['食堂','しょくどう'],['喫茶店','きっさてん'],['階段','かいだん'],['建物','たてもの'],['場所','ばしょ'],['地図','ちず'],['右側','みぎがわ'],['向こう','むこう'],['近く','ちかく'],['遠く','とおく'],['隣','となり']] },
-        8: { title: "自然と食べ物 (Nature & Food)", words: [['山','やま'],['川','かわ'],['海','うみ'],['空','そら'],['太陽','たいよう'],['風','かぜ'],['雨','あめ'],['雪','ゆき'],['電気','でんき'],['光','ひかり'],['花','はな'],['林','はやし'],['森','もり'],['米','こめ'],['牛肉','ぎゅうにく'],['豚肉','ぶたにく'],['鶏肉','とりにく'],['魚','さかな'],['野菜','やさい'],['果物','くだもの'],['お茶','おちゃ'],['牛乳','ぎゅうにゅう'],['砂糖','さとう'],['塩','しお'],['弁当','べんとう']] },
-        9: { title: "乗り物と移動 (Transport & Movement)", words: [['自転車','じてんしゃ'],['空港','くうこう'],['飛行機','ひこうき'],['船','ふね'],['地下鉄','ちかてつ'],['自動','じどう'],['場所','ばしょ'],['通る','とおる'],['急ぐ','いそぐ'],['運ぶ','はこぶ'],['回る','まわる'],['飛ぶ','とぶ'],['道','みち'],['旅行','りょこう'],['地図','ちず'],['港','みなと'],['駅','えき'],['荷物','にもつ'],['切符','きっぷ'],['特急','とっきゅう'],['入口','いりぐち'],['出口','でぐち'],['交差点','こうさてん'],['信号','しんごう'],['遠い','とおい']] },
-        10: { title: "季節・天気・体調 (Season, Weather, Health)", words: [['春','はる'],['夏','なつ'],['秋','あき'],['冬','ふゆ'],['天気','てんき'],['晴れ','はれ'],['曇り','くもり'],['台風','たいふう'],['地震','じしん'],['気温','きおん'],['入院','にゅういん'],['退院','たいいん'],['頭痛','ずつう'],['熱','ねつ'],['顔','かお'],['目','め'],['耳','みみ'],['鼻','はな'],['口','くち'],['手','て'],['足','あし'],['背','せ'],['心','こころ'],['力','ちから'],['声','こえ']] },
-        11: { title: "産業・材料・道具 (Industry, Tools, Materials)", words: [['工業','こうぎょう'],['農業','のうぎょう'],['商業','しょうぎょう'],['貿易','ぼうえき'],['材料','ざいりょう'],['道具','どうぐ'],['鉄','てつ'],['金','きん/かね'],['銀','ぎん'],['石','いし'],['紙','かみ'],['竹','たけ'],['糸','いと'],['服','ふく'],['工場','こうじょう'],['生産','せいさん'],['技術','ぎじゅつ'],['機械','きかい'],['発明','はつめい'],['注意','ちゅうい'],['準備','じゅんび'],['方法','ほうほう'],['利用','りよう'],['計画','けいかく'],['研究','けんきゅう']] },
-        12: { title: "総復習・抽象概念 (Concepts & Review)", words: [['意味','いみ'],['理由','りゆう'],['意見','いけん'],['相談','そうだん'],['特別','とくべつ'],['反対','はんたい'],['賛成','さんせい'],['最近','さいきん'],['最後','さいご'],['最初','さいしょ'],['一生懸命','いっしょうけんめい'],['自分','じぶん'],['他人','たにん'],['相手','あいて'],['世界','せかい'],['社会','しゃかい'],['文化','ぶんか'],['歴史','れきし'],['科学','かがく'],['法律','ほうりつ'],['経済','けいざい'],['政治','せいじ'],['平和','へいわ'],['目的','もくてき'],['成功','せいこう']] }
+        1: { title: "生活 (Daily Life)", words: [['学校','がっこう','School'],['先生','せんせい','Teacher'],['学生','がくせい','Student'],['友達','ともだち','Friend'],['本屋','ほんや','Bookstore'],['名前','なまえ','Name'],['電話','でんわ','Telephone'],['電気','でんき','Electricity'],['車','くるま','Car'],['電車','でんしゃ','Train'],['家族','かぞく','Family'],['父','ちち','Father'],['母','はは','Mother'],['兄','あに','Older brother'],['姉','あね','Older sister'],['弟','おとうと','Younger brother'],['妹','いもうと','Younger sister'],['家','いえ','House'],['部屋','へや','Room'],['机','つくえ','Desk'],['椅子','いす','Chair'],['窓','まど','Window'],['料理','りょうり','Cooking'],['朝ご飯','あさごはん','Breakfast'],['体','からだ','Body']] },
+        2: { title: "数字・時 (Numbers & Time)", words: [['一人','ひとり','One person'],['二日','ふつか','2nd day / 2 days'],['三日','みっか','3rd day / 3 days'],['四日','よっか','4th day / 4 days'],['五日','いつか','5th day / 5 days'],['六日','むいか','6th day / 6 days'],['七日','なのか','7th day / 7 days'],['八日','ようか','8th day / 8 days'],['九日','ここのか','9th day / 9 days'],['十日','とおか','10th day / 10 days'],['今月','こんげつ','This month'],['去年','きょねん','Last year'],['来週','らいしゅう','Next week'],['毎日','まいにち','Every day'],['午前','ごぜん','A.M. / Morning'],['午後','ごご','P.M. / Afternoon'],['今朝','けさ','This morning'],['今晩','こんばん','Tonight'],['一時間','いちじかん','One hour'],['半年','はんねん','Half a year'],['何曜日','なんようび','What day of the week'],['週末','しゅうまつ','Weekend'],['時計','とけい','Clock / Watch'],['正月','しょうがつ','New Year'],['誕生日','たんじょうび','Birthday']] },
+        3: { title: "動詞 1 (Basic Verbs)", words: [['食べる','たべる','Eat'],['飲む','のむ','Drink'],['行く','いく','Go'],['来る','くる','Come'],['帰る','かえる','Return / Go home'],['寝る','ねる','Sleep'],['起きる','おきる','Wake up'],['見る','みる','See / Watch'],['聞く','きく','Listen / Hear'],['書く','かく','Write'],['読む','よむ','Read'],['買う','かう','Buy'],['売る','うる','Sell'],['会う','あう','Meet'],['遊ぶ','あそぶ','Play'],['待つ','まつ','Wait'],['持つ','もつ','Hold / Have'],['知る','しる','Know'],['作る','つくる','Make'],['使う','つかう','Use'],['泳ぐ','およぐ','Swim'],['歩く','あるく','Walk'],['走る','はしる','Run'],['乗る','のる','Ride'],['降る','ふる','Fall (rain/snow)']] },
+        4: { title: "形容詞・方向 (Adjectives & Directions)", words: [['大きい','おおきい','Big'],['小さい','ちいさい','Small'],['新しい','あたらしい','New'],['古い','ふるい','Old'],['高い','たかい','High / Expensive'],['安い','やすい','Cheap'],['長い','ながい','Long'],['短い','みじかい','Short'],['暑い','あつい','Hot (weather)'],['寒い','さむい','Cold (weather)'],['上','うえ','Up / Above'],['下','した','Down / Below'],['左','ひだり','Left'],['右','みぎ','Right'],['中','なか','Inside'],['外','そと','Outside'],['前','まえ','Front / Before'],['後ろ','うしろ','Back / Behind'],['東','ひがし','East'],['西','にし','West'],['南','みなみ','South'],['北','きた','North'],['有名','ゆうめい','Famous'],['親切','しんせつ','Kind'],['便利','べんり','Convenient']] },
+        5: { title: "仕事と動作 (Work & Actions)", words: [['仕事','しごと','Work / Job'],['会社','かいしゃ','Company'],['休む','やすむ','Rest / Be absent'],['働く','はたらく','Work'],['勉強','べんきょう','Study'],['習う','ならう','Learn'],['教える','おしえる','Teach'],['送る','おくる','Send'],['考える','かんがえる','Think'],['思い出す','おもいだす','Remember / Recall'],['終わる','おわる','Finish'],['始まる','はじまる','Begin / Start'],['止まる','とまる','Stop'],['出す','だす','Take out / Submit'],['入れる','いれる','Put in'],['開ける','あける','Open'],['閉める','しめる','Close'],['消す','けす','Erase / Turn off'],['点ける','つける','Turn on'],['忘れる','わすれる','Forget'],['頼む','たのむ','Ask / Request'],['貸す','かす','Lend'],['借りる','かりる','Borrow'],['洗う','あらう','Wash'],['歌う','うたう','Sing']] },
+        6: { title: "感情と状態 (Feelings & States)", words: [['好き','すき','Like'],['嫌い','きらい','Dislike'],['上手','じょうず','Skillful / Good at'],['下手','へた','Unskillful / Bad at'],['大切','たいせつ','Important'],['忙しい','いそがしい','Busy'],['面白い','おもしろい','Interesting / Funny'],['楽しい','たのしい','Fun / Enjoyable'],['嬉しい','うれしい','Happy / Glad'],['悲しい','かなしい','Sad'],['痛い','いたい','Painful / Hurt'],['元気','げんき','Healthy / Energetic'],['病気','びょうき','Illness / Sick'],['安心','あんしん','Relief'],['心配','しんぱい','Worry'],['薬','くすり','Medicine'],['眠い','ねむい','Sleepy'],['悪い','わるい','Bad'],['重い','おもい','Heavy'],['軽い','かるい','Light (weight)'],['広い','ひろい','Wide / Spacious'],['狭い','せまい','Narrow'],['早い','はやい','Early / Fast'],['遅い','おそい','Late / Slow'],['静か','しずか','Quiet']] },
+        7: { title: "街と建物 (Town & Buildings)", words: [['地下鉄','ちかてつ','Subway'],['銀行','ぎんこう','Bank'],['病院','びょういん','Hospital'],['郵便局','ゆうびんきょく','Post Office'],['公園','こうえん','Park'],['動物園','どうぶつえん','Zoo'],['大使館','たいしかん','Embassy'],['映画館','えいがかん','Movie Theater'],['交番','こうばん','Police Box'],['橋','はし','Bridge'],['道','みち','Road / Street'],['門','もん','Gate'],['店','みせ','Shop / Store'],['売店','ばいてん','Kiosk / Stand'],['食堂','しょくどう','Dining Hall'],['喫茶店','きっさてん','Coffee Shop'],['階段','かいだん','Stairs'],['建物','たてもの','Building'],['場所','ばしょ','Place'],['地図','ちず','Map'],['右側','みぎがわ','Right side'],['向こう','むこう','Over there'],['近く','ちかく','Near'],['遠く','とおく','Far'],['隣','となり','Next to']] },
+        8: { title: "自然と食べ物 (Nature & Food)", words: [['山','やま','Mountain'],['川','かわ','River'],['海','うみ','Sea / Ocean'],['空','そら','Sky'],['太陽','たいよう','Sun'],['風','かぜ','Wind'],['雨','あめ','Rain'],['雪','ゆき','Snow'],['電気','でんき','Electricity'],['光','ひかり','Light'],['花','はな','Flower'],['林','はやし','Woods'],['森','もり','Forest'],['米','こめ','Rice'],['牛肉','ぎゅうにく','Beef'],['豚肉','ぶたにく','Pork'],['鶏肉','とりにく','Chicken'],['魚','さかな','Fish'],['野菜','やさい','Vegetable'],['果物','くだもの','Fruit'],['お茶','おちゃ','Tea'],['牛乳','ぎゅうにゅう','Milk'],['砂糖','さとう','Sugar'],['塩','しお','Salt'],['弁当','べんとう','Bento / Box lunch']] },
+        9: { title: "乗り物と移動 (Transport & Movement)", words: [['自転車','じてんしゃ','Bicycle'],['空港','くうこう','Airport'],['飛行機','ひこうき','Airplane'],['船','ふね','Ship / Boat'],['地下鉄','ちかてつ','Subway'],['自動','じどう','Automatic'],['場所','ばしょ','Place'],['通る','とおる','Pass / Go through'],['急ぐ','いそぐ','Hurry'],['運ぶ','はこぶ','Carry / Transport'],['回る','まわる','Turn / Rotate'],['飛ぶ','とぶ','Fly'],['道','みち','Road'],['旅行','りょこう','Travel / Trip'],['地図','ちず','Map'],['港','みなと','Port / Harbor'],['駅','えき','Station'],['荷物','にもつ','Luggage / Baggage'],['切符','きっぷ','Ticket'],['特急','とっきゅう','Limited Express'],['入口','いりぐち','Entrance'],['出口','でぐち','Exit'],['交差点','こうさてん','Intersection'],['信号','しんごう','Traffic Light'],['遠い','とおい','Far']] },
+        10: { title: "季節・天気・体調 (Season, Weather, Health)", words: [['春','はる','Spring'],['夏','なつ','Summer'],['秋','あき','Autumn'],['冬','ふゆ','Winter'],['天気','てんき','Weather'],['晴れ','はれ','Sunny / Clear'],['曇り','くもり','Cloudy'],['台風','たいふう','Typhoon'],['地震','じしん','Earthquake'],['気温','きおん','Temperature'],['入院','にゅういん','Hospitalization'],['退院','たいいん','Discharge'],['頭痛','ずつう','Headache'],['熱','ねつ','Fever / Heat'],['顔','かお','Face'],['目','め','Eye'],['耳','みみ','Ear'],['鼻','はな','Nose'],['口','くち','Mouth'],['手','て','Hand'],['足','あし','Foot / Leg'],['背','せ','Back / Height'],['心','こころ','Heart / Mind'],['力','ちから','Power / Strength'],['声','こえ','Voice']] },
+        11: { title: "産業・材料・道具 (Industry, Tools, Materials)", words: [['工業','こうぎょう','Industry'],['農業','のうぎょう','Agriculture'],['商業','しょうぎょう','Commerce'],['貿易','ぼうえき','Trade'],['材料','ざいりょう','Material'],['道具','どうぐ','Tool'],['鉄','てつ','Iron'],['金','きん / かね','Gold / Money'],['銀','ぎん','Silver'],['石','いし','Stone'],['紙','かみ','Paper'],['竹','たけ','Bamboo'],['糸','いと','Thread'],['服','ふく','Clothes'],['工場','こうじょう','Factory'],['生産','せいさん','Production'],['技術','ぎじゅつ','Technology'],['機械','きかい','Machine'],['発明','はつめい','Invention'],['注意','ちゅうい','Caution / Attention'],['準備','じゅんび','Preparation'],['方法','ほうほう','Method / Way'],['利用','りよう','Utilization / Use'],['計画','けいかく','Plan'],['研究','けんきゅう','Research']] },
+        12: { title: "総復習・抽象概念 (Concepts & Review)", words: [['意味','いみ','Meaning'],['理由','りゆう','Reason'],['意見','いけん','Opinion'],['相談','そうだん','Consultation'],['特別','とくべつ','Special'],['反対','はんたい','Opposition / Opposite'],['賛成','さんせい','Agreement'],['最近','さいきん','Recently'],['最後','さいご','Last / End'],['最初','さいしょ','First / Beginning'],['一生懸命','いっしょうけんめい','With utmost effort'],['自分','じぶん','Oneself'],['他人','たにん','Other people'],['相手','あいて','Partner / Opponent'],['世界','せかい','World'],['社会','しゃかい','Society'],['文化','ぶんか','Culture'],['歴史','れきし','History'],['科学','かがく','Science'],['法律','ほうりつ','Law'],['経済','けいざい','Economy'],['政治','せいじ','Politics'],['平和','へいわ','Peace'],['目的','もくてき','Purpose'],['成功','せいこう','Success']] }
     };
 
     let current = 1;
@@ -262,8 +332,14 @@
                 gridHTML += `
                     <div class="question-box">
                         <span class="kanji">${w[0]}</span>
-                        <div class="answer">${w[1]}</div>
-                        <button class="btn-ans" onclick="toggleAns(this)">Check</button>
+                        <div class="answer-container">
+                            <span class="reading">${w[1]}</span>
+                            <span class="meaning">${w[2]}</span>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-check" onclick="toggleReading(this)">Check</button>
+                            <button class="btn-en" onclick="toggleMeaning(this)">English</button>
+                        </div>
                     </div>`;
             });
             gridHTML += `</div>`;
@@ -274,10 +350,20 @@
         updateControls();
     }
 
-    function toggleAns(btn) {
-        const ans = btn.previousElementSibling;
-        ans.classList.toggle('show');
-        btn.textContent = ans.classList.contains('show') ? 'Hide' : 'Check';
+    // ひらがな（読み）の表示切り替え
+    function toggleReading(btn) {
+        const box = btn.closest('.question-box');
+        const reading = box.querySelector('.reading');
+        reading.classList.toggle('show');
+        btn.classList.toggle('active');
+    }
+
+    // 英語（意味）の表示切り替え
+    function toggleMeaning(btn) {
+        const box = btn.closest('.question-box');
+        const meaning = box.querySelector('.meaning');
+        meaning.classList.toggle('show');
+        btn.classList.toggle('active');
     }
 
     function changeSlide(dir) {
@@ -298,5 +384,3 @@
 </script>
 </body>
 </html>
-
-
