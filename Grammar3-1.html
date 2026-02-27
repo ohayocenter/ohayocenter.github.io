@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT Grammar Practice | OHAYO CENTER</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" sizes="192x192" href="icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f0f2f5; --card-bg: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 90px 20px 80px; }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .container { width: 100%; max-width: 800px; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 30px;}
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 20px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
+        .question-list { display: flex; flex-direction: column; gap: 20px; }
+        .slide { display: none; flex-direction: column; gap: 20px; animation: fadeIn 0.4s; }
+        .slide.active { display: flex; }
+        .question-box { border: 2px solid #edf2f7; padding: 20px; border-radius: 10px; background: #fff; text-align: left; }
+        .question-text { font-size: 1.2rem; font-weight: bold; color: #333; margin-bottom: 15px; }
+        .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .choice-item { background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 1rem; color: #555; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
+        .choice-item:hover { background: #e2e8f0; }
+        .choice-item.selected { border-color: var(--accent-color); background: #ebf5fb; }
+        .choice-item.correct { background: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
+        .choice-item.incorrect { background: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
+        .answer-area { display: none; background: #eef2f5; padding: 15px; border-radius: 5px; margin-top: 10px; border-left: 4px solid var(--accent-color); }
+        .answer-area.show { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .correct-ans { font-weight: bold; color: #2ecc71; font-size: 1.1rem; margin-bottom: 5px; }
+        .en-translation { color: #666; font-size: 0.9rem; }
+        .btn-ans { background-color: var(--primary-color); border: none; padding: 10px 16px; border-radius: 5px; cursor: pointer; font-size: 1rem; color: white; font-weight: bold; transition: 0.2s; width: 100%; margin-top: 5px; }
+        .btn-ans:hover { background-color: #1a252f; }
+        .btn-ans:disabled { background-color: #95a5a6; cursor: not-allowed; }
+        
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+        .page-btn { padding: 10px 15px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--primary-color); transition: 0.2s; font-size: 1rem; }
+        .page-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+        .page-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+
+        .support-section { text-align: center; margin-top: 20px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 800px; }
+        .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
+        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .bmc-custom-btn span { margin-left: 8px; }
+        @media (max-width: 600px) { nav { padding: 0 15px; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } .choices { grid-template-columns: 1fr; } .page-btn { padding: 8px 12px; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="container" id="slides-container">
+    <h1 id="page-title">JLPT Grammar Practice (Slide 1)</h1>
+    <div class="question-list" id="q-list"></div>
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<div class="support-section">
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these materials helpful, please consider supporting us via Buy Me a Coffee or Stripe!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+</div>
+
+<script>
+    const allData = [
+        { q: "先生が教えてくれた＿＿＿、試験に合格することができました。", choices: ["おかげで", "せいで", "ついでに", "かわりに"], ans: 1, en: "Thanks to the teacher's instruction, I was able to pass the exam." },
+        { q: "昨日は飲みすぎた＿＿＿、今日は一日中頭が痛いです。", choices: ["おかげで", "せいで", "ついでに", "わけで"], ans: 2, en: "Because I drank too much yesterday, my head hurts all day today." },
+        { q: "この写真を見る＿＿＿、楽しかった子供のころを思い出します。", choices: ["うちに", "最中に", "たびに", "とたんに"], ans: 3, en: "Every time I look at this photo, I remember my fun childhood." },
+        { q: "犬の散歩の＿＿＿、郵便局で手紙を出してきました。", choices: ["あいまに", "ついでに", "とおりに", "おかげで"], ans: 2, en: "While walking the dog, I dropped off a letter at the post office." },
+        { q: "大事な会議の＿＿＿、携帯電話が鳴ってしまった。", choices: ["あとで", "前に", "最中に", "次第に"], ans: 3, en: "My cell phone rang right in the middle of an important meeting." },
+        
+        { q: "窓を開け＿＿＿、冷たい風が入ってきた。", choices: ["たとたん", "たまま", "たきり", "たところ"], ans: 1, en: "The moment I opened the window, a cold wind blew in." },
+        { q: "泣きたい＿＿＿痛かったが、最後まで我慢した。", choices: ["ぐらい", "みたい", "らしい", "っぽい"], ans: 1, en: "It hurt so much I wanted to cry, but I endured it until the end." },
+        { q: "こんな難しい問題、私にわかる＿＿＿。", choices: ["わけがありません", "ことはありません", "ものがありません", "どころではありません"], ans: 1, en: "There is no way I can understand such a difficult problem." },
+        { q: "終電に乗り遅れてしまったので、歩いて帰る＿＿＿。", choices: ["しかない", "わけがない", "はずがない", "べきではない"], ans: 1, en: "Since I missed the last train, I have no choice but to walk home." },
+        { q: "彼は留学生＿＿＿日本にやって来た。", choices: ["にとって", "にたいして", "として", "にしては"], ans: 3, en: "He came to Japan as an international student." },
+        
+        { q: "漢字を覚えることは、外国人の学生＿＿＿とても大変です。", choices: ["について", "にとって", "にたいして", "として"], ans: 2, en: "Memorizing kanji is very difficult for foreign students." },
+        { q: "兄がスポーツが得意なの＿＿＿、弟は勉強が得意だ。", choices: ["にたいして", "について", "にとって", "によって"], ans: 1, en: "In contrast to the older brother who is good at sports, the younger brother is good at studying." },
+        { q: "あんなに練習したのだから、明日の試合は勝つ＿＿＿。", choices: ["にきまっている", "にかわっている", "にすぎない", "にきめている"], ans: 1, en: "Because they practiced so much, they will definitely win tomorrow's game." },
+        { q: "明日の会議は、何時からでした＿＿＿。", choices: ["っけ", "かな", "もの", "こと"], ans: 1, en: "What time was tomorrow's meeting again?" },
+        { q: "彼女はまるで本当の家族＿＿＿私に優しくしてくれた。", choices: ["らしい", "みたいに", "っぽく", "ぐらい"], ans: 2, en: "She was kind to me as if we were real family." },
+        
+        { q: "今日は春＿＿＿、とても暖かくていい天気ですね。", choices: ["みたい", "らしい", "っぽくて", "のような"], ans: 2, en: "It's a very warm and nice day today, typical of spring." },
+        { q: "彼はまだ若いのに、言うことが少し年寄り＿＿＿。", choices: ["らしい", "そうだ", "っぽい", "くらいだ"], ans: 3, en: "Even though he is still young, the things he says sound a bit old." },
+        { q: "私は子供のころ、体が弱くてよく病気をし＿＿＿でした。", choices: ["がち", "気味", "だらけ", "かけ"], ans: 1, en: "When I was a child, my body was weak and I tended to get sick often." },
+        { q: "最近ずっと忙しくて、少し風邪＿＿＿です。", choices: ["がち", "気味", "だらけ", "になった"], ans: 2, en: "I've been busy lately, so I feel a slight cold coming on." },
+        { q: "一生懸命書いたのに、彼の作文は間違い＿＿＿だった。", choices: ["だらけ", "ぐらい", "がち", "気味"], ans: 1, en: "Even though he wrote it with all his effort, his essay was full of mistakes." },
+        
+        { q: "テーブルの上に、飲み＿＿＿のコーヒーが置いてある。", choices: ["かけ", "きり", "がち", "ぬき"], ans: 1, en: "There is a half-finished cup of coffee on the table." },
+        { q: "彼女とは10年前に会った＿＿＿、一度も連絡を取っていない。", choices: ["まま", "きり", "以来", "ほど"], ans: 2, en: "I haven't contacted her even once since we met 10 years ago." },
+        { q: "彼は私の話を聞いていないのに、聞いている＿＿＿をした。", choices: ["つもり", "ふり", "わけ", "はず"], ans: 2, en: "Even though he wasn't listening to me, he pretended to listen." },
+        { q: "英語を教えてもらう＿＿＿、彼に日本語を教えている。", choices: ["ついでに", "かわりに", "くせに", "おかげで"], ans: 2, en: "In exchange for him teaching me English, I am teaching him Japanese." },
+        { q: "一人暮らしは寂しくて、家族に会いたくて＿＿＿。", choices: ["しかたがない", "わけがない", "べきではない", "ことはない"], ans: 1, en: "Living alone is lonely, and I miss my family so much I can't stand it." }
+    ];
+
+    const questionsPerPage = 5;
+    const totalPages = Math.ceil(allData.length / questionsPerPage);
+
+    function init() {
+        const list = document.getElementById('q-list');
+        const pagination = document.getElementById('pagination');
+        
+        for (let p = 1; p <= totalPages; p++) {
+            const slide = document.createElement('div');
+            slide.className = 'slide' + (p === 1 ? ' active' : '');
+            slide.id = `slide-${p}`;
+            
+            const start = (p - 1) * questionsPerPage;
+            const end = start + questionsPerPage;
+            const pageData = allData.slice(start, end);
+
+            pageData.forEach((q, i) => {
+                const absoluteIndex = start + i;
+                const box = document.createElement('div');
+                box.className = 'question-box';
+                box.innerHTML = `
+                    <div class="question-text">Q${absoluteIndex + 1}. ${q.q}</div>
+                    <div class="choices" id="choices-${absoluteIndex}">
+                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 1)">1. ${q.choices[0]}</div>
+                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 2)">2. ${q.choices[1]}</div>
+                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 3)">3. ${q.choices[2]}</div>
+                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 4)">4. ${q.choices[3]}</div>
+                    </div>
+                    <button class="btn-ans" onclick="checkAnswer(this, ${absoluteIndex})">Check Answer</button>
+                    <div class="answer-area" id="ans-area-${absoluteIndex}">
+                        <div class="correct-ans">Correct Answer: ${q.ans} (${q.choices[q.ans - 1]})</div>
+                        <div class="en-translation">${q.en}</div>
+                    </div>
+                `;
+                slide.appendChild(box);
+            });
+            list.appendChild(slide);
+
+            const btn = document.createElement('button');
+            btn.className = 'page-btn' + (p === 1 ? ' active' : '');
+            btn.textContent = `Slide ${p}`;
+            btn.onclick = () => changePage(p);
+            pagination.appendChild(btn);
+        }
+    }
+
+    function changePage(pageNum) {
+        for (let i = 1; i <= totalPages; i++) {
+            document.getElementById(`slide-${i}`).classList.remove('active');
+        }
+        document.getElementById(`slide-${pageNum}`).classList.add('active');
+
+        const btns = document.getElementById('pagination').children;
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].classList.remove('active');
+        }
+        btns[pageNum - 1].classList.add('active');
+        
+        document.getElementById('page-title').textContent = `JLPT Grammar Practice (Slide ${pageNum})`;
+        window.scrollTo({ top: document.getElementById('slides-container').offsetTop - 90, behavior: 'smooth' });
+    }
+
+    function selectChoice(elem, qIndex, choiceNum) {
+        const choicesContainer = document.getElementById('choices-' + qIndex);
+        if (choicesContainer.dataset.answered === "true") return;
+
+        const choices = choicesContainer.children;
+        for(let i=0; i<choices.length; i++) {
+            choices[i].classList.remove('selected');
+        }
+        elem.classList.add('selected');
+        choicesContainer.dataset.selected = choiceNum;
+    }
+
+    function checkAnswer(btn, qIndex) {
+        const choicesContainer = document.getElementById('choices-' + qIndex);
+        const selected = choicesContainer.dataset.selected;
+        const ansArea = document.getElementById('ans-area-' + qIndex);
+        const correctAnswer = allData[qIndex].ans;
+        const choices = choicesContainer.children;
+
+        if (!selected) {
+            return;
+        }
+
+        choicesContainer.dataset.answered = "true";
+
+        if (parseInt(selected) === correctAnswer) {
+            choices[parseInt(selected) - 1].classList.add('correct');
+        } else {
+            choices[parseInt(selected) - 1].classList.add('incorrect');
+            choices[correctAnswer - 1].classList.add('correct');
+        }
+
+        ansArea.classList.add('show');
+        btn.textContent = 'Checked';
+        btn.disabled = true;
+    }
+
+    init();
+</script>
+</body>
+</html>
