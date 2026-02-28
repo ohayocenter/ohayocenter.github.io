@@ -12,11 +12,28 @@
         :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f0f2f5; --card-bg: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 90px 20px 80px; }
-        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; }
-        .logo a { text-decoration: none; color: #2c3e50; }
+        
+        /* トップページと完全に揃えたヘッダーCSS */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            padding: 0 5%; 
+            height: 70px; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0;
+            z-index: 1000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: #2c3e50; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
         .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
         .container { width: 100%; max-width: 800px; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 30px;}
         h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 20px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
         .question-list { display: flex; flex-direction: column; gap: 20px; }
@@ -51,14 +68,16 @@
         .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
         .bmc-custom-btn span { margin-left: 8px; }
         
-        /* スマホ用（修正版） */
-        @media (max-width: 600px) { 
-            nav { padding: 0 10px; } 
-            .logo { font-size: 0.95rem; } 
-            .nav-links { gap: 0.5rem; } 
-            .nav-links a { font-size: 0.65rem; letter-spacing: 0; } 
-            .choices { grid-template-columns: 1fr; } 
-            .page-btn { padding: 8px 12px; font-size: 0.9rem; } 
+        /* トップページと完全に揃えたスマホ用CSS */
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; }
+            
+            /* マテリアル固有のスマホ設定 */
+            .choices { grid-template-columns: 1fr; }
+            .page-btn { padding: 8px 12px; font-size: 0.9rem; }
         }
     </style>
 </head>
