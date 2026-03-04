@@ -244,6 +244,8 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
+        /* Color themes for categories */
+        .category-btn.c-culture { border-left: 4px solid #9b59b6; }
         .category-btn.c-grammar { border-left: 4px solid #f39c12; }
         .category-btn.c-kanji { border-left: 4px solid #2980b9; }
         .category-btn.c-trip { border-left: 4px solid #e74c3c; }
@@ -393,6 +395,7 @@
         <h2 id="materials" style="margin-bottom: 2rem; scroll-margin-top: 90px;">Study Material</h2>
 
         <div class="category-nav">
+            <a href="#cat-culture" class="category-btn c-culture"><i class="fa-solid fa-star" style="color:#9b59b6;"></i> Culture & Fun</a>
             <a href="#cat-grammar" class="category-btn c-grammar"><i class="fa-solid fa-puzzle-piece" style="color:#f39c12;"></i> Grammar</a>
             <a href="#cat-kanji" class="category-btn c-kanji"><i class="fa-solid fa-book" style="color:#2980b9;"></i> Kanji & Vocab</a>
             <a href="#cat-trip" class="category-btn c-trip"><i class="fa-solid fa-plane-departure" style="color:#e74c3c;"></i> Trip & Basics</a>
@@ -401,6 +404,11 @@
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
             <ul class="update-list">
+                <li>
+                    <span class="update-date">2026.Mar.05</span>
+                    <span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Culture</span>
+                    <span class="update-text">New Culture & Fun section added!</span>
+                </li>
                 <li>
                     <span class="update-date">2026.Feb.27</span>
                     <span class="update-badge" style="color: #2980b9; background: #eaf4fc;">Kanji</span>
@@ -411,20 +419,28 @@
                     <span class="update-badge" style="color: #f39c12; background: #fef5e7;">Grammar</span>
                     <span class="update-text">Grammar Materials updated!</span>
                 </li>
-                <li>
-                    <span class="update-date">2026.Feb.27</span>
-                    <span class="update-badge" style="color: #e4405f; background: #fcecf0;">Anime</span>
-                    <span class="update-text">Anime Materials updated!</span>
-                </li>
-                <li>
-                    <span class="update-date">2026.Feb.05</span>
-                    <span class="update-badge" style="color: #8e44ad; background: #f4e9f7;">Podcast</span>
-                    <span class="update-text">Anime Titles のページを新しく追加しました。</span>
-                </li>
             </ul>
         </div>
 
-        <h3 id="cat-grammar" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #f39c12; margin-bottom: 1.5rem; margin-top: 2rem; scroll-margin-top: 90px;">
+        <h3 id="cat-culture" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #9b59b6; margin-bottom: 1.5rem; margin-top: 2rem; scroll-margin-top: 90px;">
+            <i class="fa-solid fa-star"></i> Culture & Fun (Idioms & Anime)
+        </h3>
+        <div class="unified-grid" style="margin-bottom: 3rem;">
+            <a href="idioms.html" class="unified-card">
+                <i class="fa-solid fa-comments" style="color: #9b59b6;"></i>
+                <h3>Idioms</h3>
+                <p>Essential Daily Idioms <br>ことわざ・慣用句</p>
+                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+            </a>
+            <a href="anime1.html" class="unified-card">
+                <i class="fa-solid fa-book-open-reader" style="color: #8e44ad;"></i>
+                <h3>Anime Titles</h3>
+                <p>For Fun😎<br>アニメタイトル</p>
+                <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
+            </a>
+        </div>
+
+        <h3 id="cat-grammar" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #f39c12; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-puzzle-piece"></i> Grammar & Sentence Making
         </h3>
         <div class="unified-grid" style="margin-bottom: 3rem;">
@@ -464,14 +480,12 @@
                 <p>Grammar Practice <br>JLPT N3⭐️⭐️⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
-
         </div>
 
         <h3 id="cat-kanji" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #2980b9; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-book"></i> Kanji & Vocabulary
         </h3>
         <div class="unified-grid" style="margin-bottom: 3rem;">
-            
             <a href="N4-5verb1-1.html" class="unified-card">
             <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
             <p>N4/N5 100 <b>Verbs</b> Challenge <br> 漢字⭐</p>
@@ -571,33 +585,24 @@
                 <p>Travel Survival Japanese</p>
                 <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
             </a>
-           <a href="Hiragana.html" class="unified-card">
-    <i class="fa-solid fa-book-open-reader" style="color: #2980b9;"></i>
-    <h3>Hiragana</h3>
-    <p>Hiragana Practice 1</p>
-    <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
-</a>
-
-<a href="Katakana1.html" class="unified-card">
-    <i class="fa-solid fa-book-open-reader" style="color: #d35400;"></i>
-    <h3>Katakana</h3>
-    <p>Katakana Practice 1</p>
-    <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
-</a>
-
-<a href="Katakana1-2.html" class="unified-card">
-    <i class="fa-solid fa-book-open-reader" style="color: #e67e22;"></i>
-    <h3>Katakana</h3>
-    <p>Practical Words</p>
-    <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
-</a>
-
-<a href="anime1.html" class="unified-card">
-    <i class="fa-solid fa-book-open-reader" style="color: #8e44ad;"></i>
-    <h3>Anime Titles</h3>
-    <p>For Fun😎</p>
-    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
-</a>
+            <a href="Hiragana.html" class="unified-card">
+                <i class="fa-solid fa-book-open-reader" style="color: #2980b9;"></i>
+                <h3>Hiragana</h3>
+                <p>Hiragana Practice 1</p>
+                <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
+            </a>
+            <a href="Katakana1.html" class="unified-card">
+                <i class="fa-solid fa-book-open-reader" style="color: #d35400;"></i>
+                <h3>Katakana</h3>
+                <p>Katakana Practice 1</p>
+                <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
+            </a>
+            <a href="Katakana1-2.html" class="unified-card">
+                <i class="fa-solid fa-book-open-reader" style="color: #e67e22;"></i>
+                <h3>Katakana</h3>
+                <p>Practical Words</p>
+                <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
+            </a>
         </div>
 
         <h2 style="border-top: 1px solid #ccc; padding-top: 3rem;">Links & Payments</h2>
@@ -744,4 +749,3 @@
 </script>
 </body>
 </html>
-
