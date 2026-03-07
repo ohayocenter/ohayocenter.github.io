@@ -3,593 +3,581 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Japanese Idioms (慣用句) Study Material - OHAYO CENTER Online Japanese Lessons">
+    <meta name="description" content="Japanese Idioms Study Material - OHAYO CENTER">
     <title>Japanese Idioms | OHAYO CENTER</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 10px 30px rgba(0,0,0,0.06); }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
+        :root {
+            --primary: #ff9f43;
+            --primary-hover: #ee8a2e;
+            --primary-light: #fff5eb;
+            --dark: #2c3e50;
+            --text: #444;
+            --bg: #fdfdfd;
+            --card-bg: #ffffff;
+            --border: #edf2f7;
+            --shadow: 0 10px 25px rgba(0,0,0,0.05);
+            --radius: 20px;
+        }
 
-        /* ── NAV ── */
+        body.dark-mode {
+            --bg: #1a202c;
+            --card-bg: #2d3748;
+            --text: #e2e8f0;
+            --dark: #f7fafc;
+            --border: #4a5568;
+            --primary-light: #3e362e;
+            --shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.8;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
             padding: 0 5%;
-            height: 70px;
+            height: 75px;
             position: fixed;
             width: 100%;
             top: 0;
-            left: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: background 0.3s;
         }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
-        .logo a { text-decoration: none; color: inherit; }
+
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.4rem; }
+        .logo a { text-decoration: none; color: #000; transition: color 0.3s; }
+        body.dark-mode .logo a { color: #fff; }
+
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text); 
+            font-weight: 500; 
+            font-size: 0.8rem; 
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
         .nav-links a:hover { color: var(--primary); }
 
-        /* ── CONTAINER ── */
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.2rem 5rem; margin-top: 70px; }
-
-        /* ── PROGRESS ── */
-        .progress-wrap { max-width: 500px; margin: 0 auto 0.5rem; }
-        .progress-bar-bg { background: #eee; border-radius: 50px; height: 8px; overflow: hidden; }
-        .progress-bar-fill { height: 100%; background: var(--primary); border-radius: 50px; transition: width 0.5s ease; width: 0%; }
-        .progress-label { text-align: center; font-size: 0.8rem; color: #888; margin-bottom: 2.5rem; margin-top: 0.5rem; }
-        .progress-label span { color: var(--primary); font-weight: bold; }
-
-        /* ── FILTER BUTTONS ── */
-        .filter-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 2.5rem; }
-        .filter-btn {
-            background: #fff; color: var(--dark); border: 1px solid #e0e6ed;
-            padding: 10px 20px; border-radius: 50px; font-size: 0.82rem;
-            font-weight: bold; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-            display: flex; align-items: center; gap: 8px;
-            font-family: 'Noto Sans JP', sans-serif;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--primary); color: white;
-            border-color: var(--primary); transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,159,67,0.3);
-        }
-
-        /* ── CARDS ── */
-        .idioms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-        .idiom-card {
-            background: #fff; border-radius: 24px;
-            box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.03);
-            overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
+        .theme-toggle {
+            background: var(--primary-light);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--primary);
             display: flex;
-            flex-direction: column;
-        }
-        .idiom-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .idiom-card.learned { border: 2px solid #2ecc71; }
-        .idiom-card.learned .learned-badge { display: flex; }
-
-        .learned-badge {
-            display: none; position: absolute; top: 12px; right: 12px;
-            background: #2ecc71; color: white; border-radius: 50%;
-            width: 28px; height: 28px; align-items: center; justify-content: center;
-            font-size: 0.75rem; box-shadow: 0 3px 8px rgba(46,204,113,0.4);
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: 0.3s;
         }
 
-        .card-top { padding: 1.8rem 1.5rem 1.2rem; text-align: center; }
-        .idiom-image {
-            width: 100%;
-            height: auto;
-            max-height: 150px;
-            object-fit: contain;
-            margin-bottom: 0.8rem;
-            border-radius: 12px;
+        .container { max-width: 1100px; margin: 90px auto 0; padding: 2rem 1.5rem; }
+
+        .header-section { text-align: center; margin-bottom: 3rem; }
+        .section-title { font-family: 'Sawarabi Mincho', serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 0.5rem; }
+        
+        .search-container { max-width: 500px; margin: 1.5rem auto; position: relative; }
+        .search-input {
+            width: 100%; padding: 12px 20px 12px 45px; border-radius: 50px;
+            border: 2px solid var(--border); background: var(--card-bg);
+            color: var(--text); font-size: 0.9rem; outline: none;
         }
+        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #a0aec0; }
 
-        .category-tag { font-size: 0.72rem; font-weight: bold; padding: 3px 12px; border-radius: 50px; display: inline-block; margin-bottom: 0.8rem; }
-        .tag-body    { background: #fdebd0; color: #e67e22; }
-        .tag-animal  { background: #d5f5e3; color: #27ae60; }
-        .tag-nature  { background: #d6eaf8; color: #2980b9; }
-        .tag-food    { background: #fadbd8; color: #e74c3c; }
-        .tag-work    { background: #e8daef; color: #8e44ad; }
+        .progress-container {
+            background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius);
+            margin-bottom: 2rem; box-shadow: var(--shadow); border: 1px solid var(--border);
+        }
+        .progress-bar-bg { background: var(--border); border-radius: 50px; height: 10px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #ffbd69); transition: width 0.6s; width: 0%; }
+        .progress-stats { display: flex; justify-content: space-between; margin-top: 0.8rem; font-size: 0.85rem; font-weight: bold; }
 
-        .idiom-jp { font-family: 'Sawarabi Mincho', serif; font-size: 1.35rem; color: var(--dark); margin-bottom: 0.3rem; font-weight: bold; }
-        .idiom-reading { font-size: 0.78rem; color: #999; margin-bottom: 0.4rem; }
-        .idiom-en { font-size: 0.85rem; color: var(--primary); font-weight: bold; font-style: italic; }
-        .card-divider { height: 1px; background: #f5f5f5; }
-        .card-bottom { padding: 1.2rem 1.5rem 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .meaning-label { font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; color: #aaa; margin-bottom: 0.4rem; text-transform: uppercase; }
-        .meaning-text { font-size: 0.87rem; color: #555; margin-bottom: 1rem; line-height: 1.6; }
+        .filter-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+        .filter-btn {
+            background: var(--card-bg); color: var(--text); border: 1px solid var(--border);
+            padding: 8px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; transition: 0.2s;
+        }
+        .filter-btn.active { background: var(--primary); color: white; }
+
+        .idioms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .idiom-card {
+            background: var(--card-bg); border-radius: var(--radius);
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
+        }
+        
+        .card-image-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #f8f9fa; }
+        body.dark-mode .card-image-wrap { background: #1a202c; }
+        .idiom-image { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
+
+        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .idiom-jp { font-family: 'Sawarabi Mincho', serif; font-size: 1.4rem; color: var(--dark); font-weight: 700; }
+        .idiom-reading { font-size: 0.8rem; color: #a0aec0; }
+        .literal-translation { font-size: 0.75rem; color: #e53e3e; font-style: italic; margin: 5px 0 10px; font-weight: 500; }
+        .idiom-en { font-size: 0.9rem; color: var(--primary); font-weight: bold; margin-bottom: 10px; }
+
+        .meaning-box { 
+            background: var(--bg); padding: 10px; border-radius: 10px; 
+            font-size: 0.85rem; margin-bottom: 15px; border-left: 3px solid var(--primary);
+        }
 
         .example-toggle {
-            background: var(--primary-light); border: none; border-radius: 12px;
-            padding: 0.6rem 1rem; width: 100%; text-align: left;
-            font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem;
-            color: var(--primary); font-weight: bold; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center; transition: 0.2s;
-            margin-top: auto;
+            background: var(--primary-light); border: none; border-radius: 8px;
+            padding: 8px 12px; width: 100%; text-align: left;
+            font-size: 0.8rem; color: var(--primary); font-weight: 700; cursor: pointer;
+            display: flex; justify-content: space-between; margin-bottom: 10px;
         }
-        .example-toggle:hover { background: #ffe8cc; }
-        .example-body { display: none; padding: 0.8rem 0.2rem 0; font-size: 0.85rem; color: #555; line-height: 1.7; animation: fadeIn 0.3s ease; }
+        
+        .example-body { display: none; padding: 10px; border-bottom: 1px dashed var(--border); margin-bottom: 10px; font-size: 0.85rem; }
         .example-body.open { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-        .example-jp { color: var(--dark); font-weight: bold; margin-bottom: 3px; }
-        .example-en { color: #888; font-size: 0.8rem; }
+        .ex-en { color: #718096; font-style: italic; font-size: 0.75rem; display: block; margin-top: 4px; }
 
         .mark-btn {
-            margin-top: 1rem; background: none; border: 1px solid #e0e6ed;
-            border-radius: 50px; padding: 6px 16px; font-size: 0.75rem;
-            font-family: 'Noto Sans JP', sans-serif; color: #aaa; cursor: pointer;
-            transition: 0.2s; display: flex; align-items: center; gap: 6px;
-            width: 100%; justify-content: center;
+            margin-top: auto; background: var(--bg); border: 1px solid var(--border);
+            border-radius: 10px; padding: 8px; font-size: 0.8rem; font-weight: bold;
+            color: #718096; cursor: pointer;
         }
-        .mark-btn:hover { border-color: #2ecc71; color: #2ecc71; }
-        .idiom-card.learned .mark-btn { border-color: #2ecc71; color: #2ecc71; background: #f0fdf4; }
+        .idiom-card.learned { border: 2px solid #48bb78; }
 
-        .section-title { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; }
-        .section-sub { text-align: center; font-size: 0.87rem; color: #888; margin-bottom: 2.5rem; }
-
-        /* ── SUPPORT CARD ── */
-        .unified-card {
-            background: #fff; padding: 2rem 1.2rem; border-radius: 25px;
-            text-align: center; box-shadow: var(--shadow);
-            text-decoration: none; color: inherit;
-            display: flex; flex-direction: column; align-items: center;
-            border: 1px solid rgba(0,0,0,0.02); transition: 0.3s;
-            min-height: 240px; max-width: 260px; margin: 4rem auto 0;
-        }
-        .unified-card:hover { transform: translateY(-5px); }
-        .unified-card i { font-size: 2rem; margin-bottom: 0.8rem; }
-        .unified-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
-        .unified-card p { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
-        .btn-bottom {
-            margin-top: auto; font-size: 0.7rem; font-weight: bold;
-            padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: 0.2s;
-        }
-
-        footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
-
-        @media (max-width: 600px) {
-            nav { padding: 0 15px; }
-            .logo { font-size: 1rem; }
-            .nav-links { gap: 0.8rem; }
-            .nav-links a { font-size: 0.7rem; }
-            .idioms-grid { grid-template-columns: 1fr; }
-        }
+        footer { padding: 4rem 1rem; text-align: center; font-size: 0.8rem; color: #a0aec0; }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
-        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
-        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
-        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-    </ul>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+            <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+            <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+    </div>
 </nav>
 
 <div class="container">
-
-    <h2 class="section-title" style="margin-top:1rem;">Idiom and Slang Collection</h2>
-    <p class="section-sub">Click <strong>EXAMPLE</strong> to see a sample sentence · Mark cards to track your progress!</p>
-
-    <div class="progress-wrap">
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="header-section">
+        <h2 class="section-title">Japanese Idioms and Slang Collection</h2>
+        <p>Master Japanese with literal fun!</p>
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search..." onkeyup="searchIdioms()">
+        </div>
     </div>
-    <p class="progress-label"><span id="learnedCount">0</span> / 15 learned</p>
+
+    <div class="progress-container">
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="progress-stats">
+            <span>Progress</span>
+            <span><span id="learnedCount">0</span> / 23</span>
+        </div>
+    </div>
 
     <div class="filter-nav">
-        <button class="filter-btn active" onclick="filterCards('all',this)"><i class="fa-solid fa-grip"></i> All</button>
-        <button class="filter-btn" onclick="filterCards('animal',this)"><i class="fa-solid fa-paw"></i> Animal</button>
-        <button class="filter-btn" onclick="filterCards('body',this)"><i class="fa-solid fa-person"></i> Body</button>
-        <button class="filter-btn" onclick="filterCards('nature',this)"><i class="fa-solid fa-leaf"></i> Nature</button>
-        <button class="filter-btn" onclick="filterCards('food',this)"><i class="fa-solid fa-utensils"></i> Food</button>
-        <button class="filter-btn" onclick="filterCards('work',this)"><i class="fa-solid fa-briefcase"></i> Work</button>
+        <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
+        <button class="filter-btn" onclick="filterCards('animal',this)">Animal</button>
+        <button class="filter-btn" onclick="filterCards('body',this)">Body</button>
+        <button class="filter-btn" onclick="filterCards('food',this)">Food</button>
+        <button class="filter-btn" onclick="filterCards('nature',this)">Nature</button>
+        <button class="filter-btn" onclick="filterCards('work',this)">Work</button>
     </div>
 
     <div class="idioms-grid" id="idiomsGrid">
-
         <div class="idiom-card" data-category="animal">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="nekonote.webp" alt="nekonote" class="idiom-image" width="280" height="150" fetchpriority="high">
-                <span class="category-tag tag-animal">Animal</span>
+            <div class="card-image-wrap"><img src="nekonote.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">猫の手も借りたい</p>
                 <p class="idiom-reading">ねこのてもかりたい</p>
-                <p class="idiom-en">"I'd even borrow a cat's paw"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">So busy you'd accept help from anyone — even a cat!</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Want to borrow even a cat's paw</p>
+                <p class="idiom-en">"Extremely busy"</p>
+                <div class="meaning-box">So busy you'd take help from anyone.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">年末は猫の手も借りたいほど忙しい。</p>
-                    <p class="example-en">At year-end, we're so busy we'd take help from anyone.</p>
+                    年末は忙しくて、猫の手も借りたい状況だ。
+                    <span class="ex-en">(I'm so busy at the end of the year, I'd take any help I can get.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="food">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="saba.webp" alt="saba" class="idiom-image" width="280" height="150" loading="lazy">
-                <span class="category-tag tag-food">Food</span>
+            <div class="card-image-wrap"><img src="saba.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">サバを読む</p>
                 <p class="idiom-reading">さばをよむ</p>
-                <p class="idiom-en">"To read the mackerel"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To fudge the numbers to one's advantage (often used for age or weight).</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Reading the mackerel</p>
+                <p class="idiom-en">"To fudge numbers"</p>
+                <div class="meaning-box">Manipulating counts or age to one's advantage.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">彼女は年齢を2歳サバを読んでいる。</p>
-                    <p class="example-en">She fudged her age by two years.</p>
+                    彼は年齢を２歳ほどサバを読んでいる。
+                    <span class="ex-en">(He is fudging his age by about two years.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
-        <div class="idiom-card" data-category="work">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="bottakuri.webp" alt="bottakuri" class="idiom-image" width="280" height="150" loading="lazy">
-                <span class="category-tag tag-work">Work</span>
-                <p class="idiom-jp">ぼったくり</p>
-                <p class="idiom-reading">ぼったくり</p>
-                <p class="idiom-en">"Rip-off"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">Being charged an outrageous or unfair price for goods or services.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="example-body">
-                    <p class="example-jp">あのバーは完全にぼったくりだ。</p>
-                    <p class="example-en">That bar is a complete rip-off.</p>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
-            </div>
-        </div>
-
         <div class="idiom-card" data-category="body">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="atama.webp" alt="atama" class="idiom-image" width="280" height="150" loading="lazy">
-                <span class="category-tag tag-body">Body</span>
+            <div class="card-image-wrap"><img src="atama.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">頭が固い</p>
                 <p class="idiom-reading">あたまがかたい</p>
-                <p class="idiom-en">"Hard head"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To be stubborn, inflexible, or narrow-minded.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Hard head</p>
+                <p class="idiom-en">"Stubborn / Inflexible"</p>
+                <div class="meaning-box">Unwilling to change ideas or ways.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">うちの上司は頭が固くて、新しいアイデアを受け入れない。</p>
-                    <p class="example-en">My boss is so stubborn that he won't accept new ideas.</p>
+                    彼は頭が固くて、新しい方法を認めようとしない。
+                    <span class="ex-en">(He is so stubborn that he won't accept new methods.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
-        <div class="idiom-card" data-category="animal">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="unomi.webp" alt="unomi" class="idiom-image" width="280" height="150" loading="lazy">
-                <span class="category-tag tag-animal">Animal</span>
-                <p class="idiom-jp">鵜呑みにする</p>
-                <p class="idiom-reading">うのみにする</p>
-                <p class="idiom-en">"To swallow whole like a cormorant"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To swallow a story whole; to accept information at face value without questioning it.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="example-body">
-                    <p class="example-jp">ネットの情報をすべて鵜呑みにしてはいけない。</p>
-                    <p class="example-en">You shouldn't swallow everything you read on the internet whole.</p>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
-            </div>
-        </div>
-
         <div class="idiom-card" data-category="food">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="yakimochi.webp" alt="yakimochi" class="idiom-image" width="280" height="150" loading="lazy">
-                <span class="category-tag tag-food">Food</span>
+            <div class="card-image-wrap"><img src="yakimochi.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">やきもちを焼く</p>
                 <p class="idiom-reading">やきもちをやく</p>
-                <p class="idiom-en">"To bake a roasted mochi"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To be jealous (usually in a romantic or affectionate context).</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Grilling mochi</p>
+                <p class="idiom-en">"To be jealous"</p>
+                <div class="meaning-box">Feeling romantic jealousy.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">彼が他の女の子と話しているのを見て、やきもちを焼いた。</p>
-                    <p class="example-en">I got jealous seeing him talk to another girl.</p>
+                    彼女が他の人と楽しそうに話していると、彼はやきもちを焼く。
+                    <span class="ex-en">(He gets jealous when she talks happily with others.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="body">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="mimi.webp" alt="mimi" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/fdebd0/e67e22?text=Mimi'">
-                <span class="category-tag tag-body">Body</span>
+            <div class="card-image-wrap"><img src="mimi.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">耳が痛い</p>
                 <p class="idiom-reading">みみがいたい</p>
-                <p class="idiom-en">"Ears hurt"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">Painful to hear because it is true (often a valid criticism or harsh truth).</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Ears are aching</p>
+                <p class="idiom-en">"Hard to hear the truth"</p>
+                <div class="meaning-box">Finding a direct criticism painful to hear.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">親の忠告は耳が痛いが、その通りだ。</p>
-                    <p class="example-en">My parents' advice hurts to hear, but they are right.</p>
+                    生活習慣を注意されて、耳が痛い。
+                    <span class="ex-en">(It's hard to hear the truth when someone warns me about my lifestyle.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="nature">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="mizu.webp" alt="mizu" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/d6eaf8/2980b9?text=Mizu'">
-                <span class="category-tag tag-nature">Nature</span>
+            <div class="card-image-wrap"><img src="mizu.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">水に流す</p>
                 <p class="idiom-reading">みずにながす</p>
-                <p class="idiom-en">"Let flow in the water"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To forgive and forget; let bygones be bygones (water under the bridge).</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Let it flow into the water</p>
+                <p class="idiom-en">"Forgive and forget"</p>
+                <div class="meaning-box">To wash away past grudges.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">昨日の喧嘩は水に流して、仲直りしよう。</p>
-                    <p class="example-en">Let's let yesterday's fight be water under the bridge and make up.</p>
+                    喧嘩のことは水に流して、仲直りしよう。
+                    <span class="ex-en">(Let's forgive and forget the fight and make up.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="food">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="asameshi.webp" alt="asameshi" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/fadbd8/e74c3c?text=asameshi'">
-                <span class="category-tag tag-food">Food</span>
+            <div class="card-image-wrap"><img src="asameshi.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">朝飯前</p>
                 <p class="idiom-reading">あさめしまえ</p>
-                <p class="idiom-en">"Before breakfast"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">A piece of cake; very easy to do (something you can easily do before eating breakfast).</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Before breakfast</p>
+                <p class="idiom-en">"Piece of cake"</p>
+                <div class="meaning-box">Something very easy to finish.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">このくらいの仕事なら、朝飯前だよ。</p>
-                    <p class="example-en">A job like this is a piece of cake for me.</p>
+                    この程度の修理なら朝飯前だよ。
+                    <span class="ex-en">(A simple repair like this is a piece of cake.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="body">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="hone.webp" alt="hone" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/fdebd0/e67e22?text=Hone'">
-                <span class="category-tag tag-body">Body</span>
+            <div class="card-image-wrap"><img src="hone.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">骨を折る</p>
                 <p class="idiom-reading">ほねをおる</p>
-                <p class="idiom-en">"To break a bone"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To make a great effort; to take pains or go out of one's way to do something.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Breaking a bone</p>
+                <p class="idiom-en">"Take great pains"</p>
+                <div class="meaning-box">To work very hard on something.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">イベントの準備にずいぶん骨を折った。</p>
-                    <p class="example-en">We took great pains preparing for the event.</p>
+                    交渉のためにずいぶんと骨を折った。
+                    <span class="ex-en">(I took great pains to handle the negotiations.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="work">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="abura.webp" alt="abura" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/e8daef/8e44ad?text=Abura'">
-                <span class="category-tag tag-work">Work</span>
+            <div class="card-image-wrap"><img src="abura.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">油を売る</p>
                 <p class="idiom-reading">あぶらをうる</p>
-                <p class="idiom-en">"To sell oil"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To slack off, idle away time, or stop to chat while working or doing errands.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Selling oil</p>
+                <p class="idiom-en">"To idle away time"</p>
+                <div class="meaning-box">Spending time chatting instead of working.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">仕事中に油を売ってはいけません。</p>
-                    <p class="example-en">Don't slack off and chat during work hours.</p>
+                    仕事の途中で油を売っていて、怒られた。
+                    <span class="ex-en">(I got scolded for idling away my time during work.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="nature">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="nemawashi.webp" alt="nemawashi" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/d6eaf8/2980b9?text=Nemawashi'">
-                <span class="category-tag tag-nature">Nature</span>
+            <div class="card-image-wrap"><img src="nemawashi.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">根回し</p>
                 <p class="idiom-reading">ねまわし</p>
-                <p class="idiom-en">"To dig around the roots"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">Laying the groundwork or getting consensus behind the scenes before making a formal decision.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Digging around the roots</p>
+                <p class="idiom-en">"Laying groundwork"</p>
+                <div class="meaning-box">Building informal consensus beforehand.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">会議の前に十分な根回しが必要だ。</p>
-                    <p class="example-en">We need to lay enough groundwork before the meeting.</p>
+                    会議の前に根回しをしておいた。
+                    <span class="ex-en">(I laid the groundwork before the meeting.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
-        <div class="idiom-card" data-category="work">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="moto.webp" alt="moto" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/e8daef/8e44ad?text=Moto'">
-                <span class="category-tag tag-work">Work</span>
-                <p class="idiom-jp">元を取る</p>
-                <p class="idiom-reading">もとをとる</p>
-                <p class="idiom-en">"To take back the origin"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To get one's money's worth; to recoup one's investment or expenses.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="example-body">
-                    <p class="example-jp">食べ放題で元を取るのは難しい。</p>
-                    <p class="example-en">It's hard to get your money's worth at an all-you-can-eat buffet.</p>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
-            </div>
-        </div>
-
         <div class="idiom-card" data-category="body">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="kao.webp" alt="kao" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/fdebd0/e67e22?text=Kao'">
-                <span class="category-tag tag-body">Body</span>
+            <div class="card-image-wrap"><img src="kao.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">顔が広い</p>
                 <p class="idiom-reading">かおがひろい</p>
-                <p class="idiom-en">"Wide face"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To be well-connected; to have a large circle of acquaintances.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Wide face</p>
+                <p class="idiom-en">"Well-connected"</p>
+                <div class="meaning-box">Knowing many influential people.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">彼は顔が広いので、いい仕事を紹介してくれた。</p>
-                    <p class="example-en">Because he is well-connected, he introduced me to a good job.</p>
+                    彼は政界に顔が広い。
+                    <span class="ex-en">(He is well-connected in the political world.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
         <div class="idiom-card" data-category="animal">
-            <div class="learned-badge"><i class="fa-solid fa-check"></i></div>
-            <div class="card-top">
-                <img src="neko.webp" alt="neko" class="idiom-image" width="280" height="150" loading="lazy" onerror="this.src='https://placehold.co/200x150/d5f5e3/27ae60?text=neko'">
-                <span class="category-tag tag-animal">Animal</span>
+            <div class="card-image-wrap"><img src="neko.webp" class="idiom-image"></div>
+            <div class="card-content">
                 <p class="idiom-jp">猫をかぶる</p>
                 <p class="idiom-reading">ねこをかぶる</p>
-                <p class="idiom-en">"To wear a cat"</p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="card-bottom">
-                <p class="meaning-label">Meaning</p>
-                <p class="meaning-text">To play innocent; to feign friendliness or hide one's true nature.</p>
-                <button class="example-toggle" onclick="toggleExample(this)">
-                    <span><i class="fa-solid fa-comment-dots" style="margin-right:6px"></i>EXAMPLE</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
+                <p class="literal-translation">Wearing a cat</p>
+                <p class="idiom-en">"Playing innocent"</p>
+                <div class="meaning-box">Feigning gentleness or ignorance.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
                 <div class="example-body">
-                    <p class="example-jp">彼女は先生の前では猫をかぶっている。</p>
-                    <p class="example-en">She plays innocent in front of the teacher.</p>
+                    彼は家では荒いが、外では猫をかぶっている。
+                    <span class="ex-en">(He is rough at home but plays innocent in public.)</span>
                 </div>
-                <button class="mark-btn" onclick="toggleLearned(this)"><i class="fa-regular fa-circle-check"></i> Mark as Learned</button>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
         </div>
-
-    </div>
-    
-    <a href="https://buymeacoffee.com/ohayocenteh" class="unified-card" target="_blank">
-        <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i>
-        <h3>SUPPORT OHAYO CENTER</h3>
-        <p>If you find these materials helpful, please consider supporting us!</p>
-        <div class="btn-bottom" style="border: none; padding: 0;">
-            <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px;">
+        <div class="idiom-card" data-category="animal">
+            <div class="card-image-wrap"><img src="saru.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">猿も木から落ちる</p>
+                <p class="idiom-reading">さるもきからおちる</p>
+                <p class="literal-translation">Even monkeys fall from trees</p>
+                <p class="idiom-en">"Even experts fail"</p>
+                <div class="meaning-box">Anyone, no matter how skilled, can make a mistake.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    名医がまさかのミス。猿も木から落ちるね。
+                    <span class="ex-en">(Even a great doctor made a mistake. Anyone can fail.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
         </div>
-    </a>
-
+        <div class="idiom-card" data-category="nature">
+            <div class="card-image-wrap"><img src="unagi.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">鰻登り</p>
+                <p class="idiom-reading">うなぎのぼり</p>
+                <p class="literal-translation">Climbing like an eel</p>
+                <p class="idiom-en">"Skyrocketing"</p>
+                <div class="meaning-box">Rising rapidly and steeply.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    新商品の売れ行きが鰻登りだ。
+                    <span class="ex-en">(The sales of the new product are skyrocketing.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="work">
+            <div class="card-image-wrap"><img src="enjo.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">炎上する</p>
+                <p class="idiom-reading">えんじょうする</p>
+                <p class="literal-translation">Going up in flames</p>
+                <p class="idiom-en">"Social media backlash"</p>
+                <div class="meaning-box">Huge criticism or controversy online.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    失言がネットで炎上した。
+                    <span class="ex-en">(The slip of the tongue caused a huge backlash online.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="nature">
+            <div class="card-image-wrap"><img src="megaderu.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">芽が出る</p>
+                <p class="idiom-reading">めがでる</p>
+                <p class="literal-translation">Sprouting a bud</p>
+                <p class="idiom-en">"Showing signs of success"</p>
+                <div class="meaning-box">Efforts finally starting to show results.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    下積み時代を経て、ようやく芽が出た。
+                    <span class="ex-en">(After years of struggling, I'm finally seeing success.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="kigamizikai.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">気が短い</p>
+                <p class="idiom-reading">きがみじかい</p>
+                <p class="literal-translation">Short energy</p>
+                <p class="idiom-en">"Short-tempered"</p>
+                <div class="meaning-box">Losing patience quickly.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼は気が短いので、すぐ怒る。
+                    <span class="ex-en">(He is short-tempered, so he gets angry easily.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="food">
+            <div class="card-image-wrap"><img src="hanayori.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">花より団子</p>
+                <p class="idiom-reading">はなよりだんご</p>
+                <p class="literal-translation">Dumplings over flowers</p>
+                <p class="idiom-en">"Practicality over beauty"</p>
+                <div class="meaning-box">Choosing substance over aesthetics.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    景色よりも食事。まさに花より団子だ。
+                    <span class="ex-en">(Food over views. It's truly dumplings over flowers.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="nature">
+            <div class="card-image-wrap"><img src="fukusen.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">伏線回収</p>
+                <p class="idiom-reading">ふくせんかいしゅう</p>
+                <p class="literal-translation">Collecting hidden lines</p>
+                <p class="idiom-en">"Payoff of foreshadowing"</p>
+                <div class="meaning-box">Earlier hints finally being explained.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    最終回での伏線回収に感動した。
+                    <span class="ex-en">(I was moved by how the foreshadowing paid off in the finale.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="animal">
+            <div class="card-image-wrap"><img src="unomi.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">鵜呑みにする</p>
+                <p class="idiom-reading">うのみにする</p>
+                <p class="literal-translation">Swallow like a cormorant</p>
+                <p class="idiom-en">"Accept without question"</p>
+                <div class="meaning-box">Believing everything without thinking.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    ニュースを鵜呑みにするのは危険だ。
+                    <span class="ex-en">(It's dangerous to accept news without question.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="work">
+            <div class="card-image-wrap"><img src="netabare.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">ネタバレ</p>
+                <p class="idiom-reading">ねたばれ</p>
+                <p class="literal-translation">Material leak</p>
+                <p class="idiom-en">"Spoiler"</p>
+                <div class="meaning-box">Revealing the plot of a story.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    映画の結末をネタバレされた。
+                    <span class="ex-en">(The ending of the movie was spoiled for me.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="work">
+            <div class="card-image-wrap"><img src="moto.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">元を取る</p>
+                <p class="idiom-reading">もとをとる</p>
+                <p class="literal-translation">Taking the origin</p>
+                <p class="idiom-en">"Get money's worth"</p>
+                <div class="meaning-box">To recoup the costs spent.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    食べ放題で元を取ろうと頑張る。
+                    <span class="ex-en">(I'll try my best to get my money's worth at the buffet.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="work">
+            <div class="card-image-wrap"><img src="bottakuri.webp" class="idiom-image"></div>
+            <div class="card-content">
+                <p class="idiom-jp">ぼったくり</p>
+                <p class="idiom-reading">ぼったくり</p>
+                <p class="literal-translation">Plucking/Stripping</p>
+                <p class="idiom-en">"Rip-off"</p>
+                <div class="meaning-box">Unfairly high prices charged to customers.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    この店はぼったくりだから気をつけろ。
+                    <span class="ex-en">(Be careful, this shop is a rip-off.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer>
@@ -597,33 +585,42 @@
 </footer>
 
 <script>
-    const TOTAL = 15;
-    function toggleExample(btn) {
-        const body = btn.nextElementSibling;
-        const icon = btn.querySelector('i.fa-chevron-down, i.fa-chevron-up');
-        body.classList.toggle('open');
-        icon.className = body.classList.contains('open') ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+    const TOTAL = 23;
+    function setTheme(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').innerHTML = '<i class="fa-solid fa-sun"></i>';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('themeToggle').innerHTML = '<i class="fa-solid fa-moon"></i>';
+            localStorage.setItem('theme', 'light');
+        }
     }
+    document.getElementById('themeToggle').addEventListener('click', () => setTheme(!document.body.classList.contains('dark-mode')));
+    if (localStorage.getItem('theme') === 'dark') setTheme(true);
+
+    function toggleExample(btn) { btn.nextElementSibling.classList.toggle('open'); }
     function toggleLearned(btn) {
-        const card = btn.closest('.idiom-card');
-        card.classList.toggle('learned');
-        const isLearned = card.classList.contains('learned');
-        btn.innerHTML = isLearned
-            ? '<i class="fa-solid fa-circle-check"></i> Learned ✓'
-            : '<i class="fa-regular fa-circle-check"></i> Mark as Learned';
+        btn.closest('.idiom-card').classList.toggle('learned');
+        btn.innerText = btn.closest('.idiom-card').classList.contains('learned') ? "Mastered ✓" : "Mark as Learned";
         updateProgress();
     }
     function updateProgress() {
         const learned = document.querySelectorAll('.idiom-card.learned').length;
-        document.getElementById('progressFill').style.width = Math.round((learned / TOTAL) * 100) + '%';
-        document.getElementById('learnedCount').textContent = learned;
+        document.getElementById('progressFill').style.width = (learned / TOTAL * 100) + '%';
+        document.getElementById('learnedCount').innerText = learned;
     }
     function filterCards(category, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        document.querySelectorAll('.idiom-card').forEach(card => card.style.display = (category === 'all' || card.dataset.category === category) ? '' : 'none');
+    }
+    function searchIdioms() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
         document.querySelectorAll('.idiom-card').forEach(card => {
-            const cardCategory = card.dataset.category ? card.dataset.category.toLowerCase() : '';
-            card.style.display = (category === 'all' || cardCategory === category) ? '' : 'none';
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(query) ? '' : 'none';
         });
     }
 </script>
