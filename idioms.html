@@ -48,11 +48,12 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
+        /* ヘッダーの最適化（スマホ対応） */
         nav {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             padding: 0 5%;
-            height: 75px;
+            height: 70px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -64,17 +65,23 @@
             transition: background 0.3s;
         }
 
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.4rem; }
+        .logo { 
+            font-family: 'Sawarabi Mincho', serif; 
+            font-weight: bold; 
+            font-size: 1.3rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
         .logo a { text-decoration: none; color: #000; transition: color 0.3s; }
         body.dark-mode .logo a { color: #fff; }
 
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-        .nav-links { list-style: none; display: flex; gap: 1.2rem; }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-links { list-style: none; display: flex; gap: 1rem; }
         .nav-links a { 
             text-decoration: none; 
             color: var(--text); 
             font-weight: 500; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             transition: 0.2s;
             text-transform: uppercase;
         }
@@ -91,15 +98,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 3%; }
+            .logo { font-size: 1.1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.65rem; }
+            .container { margin-top: 80px; padding: 1rem; }
         }
 
         .container { max-width: 1100px; margin: 90px auto 0; padding: 2rem 1.5rem; }
 
+        /* タイトル・検索・プログレス */
         .header-section { text-align: center; margin-bottom: 3rem; }
         .section-title { font-family: 'Sawarabi Mincho', serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 0.5rem; }
-        
         .search-container { max-width: 500px; margin: 1.5rem auto; position: relative; }
         .search-input {
             width: 100%; padding: 12px 20px 12px 45px; border-radius: 50px;
@@ -107,7 +122,6 @@
             color: var(--text); font-size: 0.9rem; outline: none;
         }
         .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #a0aec0; }
-
         .progress-container {
             background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius);
             margin-bottom: 2rem; box-shadow: var(--shadow); border: 1px solid var(--border);
@@ -116,6 +130,7 @@
         .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #ffbd69); transition: width 0.6s; width: 0%; }
         .progress-stats { display: flex; justify-content: space-between; margin-top: 0.8rem; font-size: 0.85rem; font-weight: bold; }
 
+        /* フィルター */
         .filter-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
         .filter-btn {
             background: var(--card-bg); color: var(--text); border: 1px solid var(--border);
@@ -124,45 +139,57 @@
         }
         .filter-btn.active { background: var(--primary); color: white; }
 
+        /* グリッドとカード */
         .idioms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
         .idiom-card {
             background: var(--card-bg); border-radius: var(--radius);
             box-shadow: var(--shadow); border: 1px solid var(--border);
             overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
         }
-        
         .card-image-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #f8f9fa; }
         body.dark-mode .card-image-wrap { background: #1a202c; }
         .idiom-image { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
-
         .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
         .idiom-jp { font-family: 'Sawarabi Mincho', serif; font-size: 1.4rem; color: var(--dark); font-weight: 700; }
         .idiom-reading { font-size: 0.8rem; color: #a0aec0; }
         .literal-translation { font-size: 0.75rem; color: #e53e3e; font-style: italic; margin: 5px 0 10px; font-weight: 500; }
         .idiom-en { font-size: 0.9rem; color: var(--primary); font-weight: bold; margin-bottom: 10px; }
-
         .meaning-box { 
             background: var(--bg); padding: 10px; border-radius: 10px; 
             font-size: 0.85rem; margin-bottom: 15px; border-left: 3px solid var(--primary);
         }
-
         .example-toggle {
             background: var(--primary-light); border: none; border-radius: 8px;
             padding: 8px 12px; width: 100%; text-align: left;
             font-size: 0.8rem; color: var(--primary); font-weight: 700; cursor: pointer;
             display: flex; justify-content: space-between; margin-bottom: 10px;
         }
-        
         .example-body { display: none; padding: 10px; border-bottom: 1px dashed var(--border); margin-bottom: 10px; font-size: 0.85rem; }
         .example-body.open { display: block; }
         .ex-en { color: #718096; font-style: italic; font-size: 0.75rem; display: block; margin-top: 4px; }
-
         .mark-btn {
             margin-top: auto; background: var(--bg); border: 1px solid var(--border);
             border-radius: 10px; padding: 8px; font-size: 0.8rem; font-weight: bold;
             color: #718096; cursor: pointer;
         }
         .idiom-card.learned { border: 2px solid #48bb78; }
+
+        /* サポートセクション */
+        .support-section {
+            margin: 4rem auto; text-align: center; padding: 3rem 2rem;
+            background: var(--card-bg); border-radius: var(--radius);
+            box-shadow: var(--shadow); border: 1px solid var(--border); max-width: 800px;
+        }
+        .support-section h2 { font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem; color: var(--dark); }
+        .support-section p { margin-bottom: 2rem; color: #718096; }
+        .bmc-custom-btn {
+            display: inline-flex; align-items: center; background-color: #FFDD00;
+            color: #000000; padding: 12px 24px; border-radius: 12px;
+            text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 221, 0, 0.3);
+        }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 221, 0, 0.4); }
+        .bmc-custom-btn span { margin-left: 8px; }
 
         footer { padding: 4rem 1rem; text-align: center; font-size: 0.8rem; color: #a0aec0; }
     </style>
@@ -210,7 +237,7 @@
 
     <div class="idioms-grid" id="idiomsGrid">
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="nekonote.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="nekonote.webp" class="idiom-image" alt="nekonote"></div>
             <div class="card-content">
                 <p class="idiom-jp">猫の手も借りたい</p>
                 <p class="idiom-reading">ねこのてもかりたい</p>
@@ -226,7 +253,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="saba.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="saba.webp" class="idiom-image" alt="saba"></div>
             <div class="card-content">
                 <p class="idiom-jp">サバを読む</p>
                 <p class="idiom-reading">さばをよむ</p>
@@ -242,7 +269,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="atama.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="atama.webp" class="idiom-image" alt="atama"></div>
             <div class="card-content">
                 <p class="idiom-jp">頭が固い</p>
                 <p class="idiom-reading">あたまがかたい</p>
@@ -258,7 +285,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="yakimochi.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="yakimochi.webp" class="idiom-image" alt="yakimochi"></div>
             <div class="card-content">
                 <p class="idiom-jp">やきもちを焼く</p>
                 <p class="idiom-reading">やきもちをやく</p>
@@ -274,7 +301,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="mimi.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="mimi.webp" class="idiom-image" alt="mimi"></div>
             <div class="card-content">
                 <p class="idiom-jp">耳が痛い</p>
                 <p class="idiom-reading">みみがいたい</p>
@@ -290,7 +317,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="mizu.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="mizu.webp" class="idiom-image" alt="mizu"></div>
             <div class="card-content">
                 <p class="idiom-jp">水に流す</p>
                 <p class="idiom-reading">みずにながす</p>
@@ -306,7 +333,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="asameshi.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="asameshi.webp" class="idiom-image" alt="asameshi"></div>
             <div class="card-content">
                 <p class="idiom-jp">朝飯前</p>
                 <p class="idiom-reading">あさめしまえ</p>
@@ -322,7 +349,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="hone.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="hone.webp" class="idiom-image" alt="hone"></div>
             <div class="card-content">
                 <p class="idiom-jp">骨を折る</p>
                 <p class="idiom-reading">ほねをおる</p>
@@ -338,7 +365,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="abura.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="abura.webp" class="idiom-image" alt="abura"></div>
             <div class="card-content">
                 <p class="idiom-jp">油を売る</p>
                 <p class="idiom-reading">あぶらをうる</p>
@@ -354,7 +381,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="nemawashi.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="nemawashi.webp" class="idiom-image" alt="nemawashi"></div>
             <div class="card-content">
                 <p class="idiom-jp">根回し</p>
                 <p class="idiom-reading">ねまわし</p>
@@ -370,7 +397,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="kao.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="kao.webp" class="idiom-image" alt="kao"></div>
             <div class="card-content">
                 <p class="idiom-jp">顔が広い</p>
                 <p class="idiom-reading">かおがひろい</p>
@@ -386,7 +413,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="neko.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="neko.webp" class="idiom-image" alt="neko"></div>
             <div class="card-content">
                 <p class="idiom-jp">猫をかぶる</p>
                 <p class="idiom-reading">ねこをかぶる</p>
@@ -402,7 +429,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="saru.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="saru.webp" class="idiom-image" alt="saru"></div>
             <div class="card-content">
                 <p class="idiom-jp">猿も木から落ちる</p>
                 <p class="idiom-reading">さるもきからおちる</p>
@@ -418,7 +445,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="unagi.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="unagi.webp" class="idiom-image" alt="unagi"></div>
             <div class="card-content">
                 <p class="idiom-jp">鰻登り</p>
                 <p class="idiom-reading">うなぎのぼり</p>
@@ -434,7 +461,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="enjo.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="enjo.webp" class="idiom-image" alt="enjo"></div>
             <div class="card-content">
                 <p class="idiom-jp">炎上する</p>
                 <p class="idiom-reading">えんじょうする</p>
@@ -450,7 +477,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="megaderu.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="megaderu.webp" class="idiom-image" alt="megaderu"></div>
             <div class="card-content">
                 <p class="idiom-jp">芽が出る</p>
                 <p class="idiom-reading">めがでる</p>
@@ -466,7 +493,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="kigamizikai.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="kigamizikai.webp" class="idiom-image" alt="kigamizikai"></div>
             <div class="card-content">
                 <p class="idiom-jp">気が短い</p>
                 <p class="idiom-reading">きがみじかい</p>
@@ -482,7 +509,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="hanayori.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="hanayori.webp" class="idiom-image" alt="hanayori"></div>
             <div class="card-content">
                 <p class="idiom-jp">花より団子</p>
                 <p class="idiom-reading">はなよりだんご</p>
@@ -498,7 +525,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="fukusen.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="fukusen.webp" class="idiom-image" alt="fukusen"></div>
             <div class="card-content">
                 <p class="idiom-jp">伏線回収</p>
                 <p class="idiom-reading">ふくせんかいしゅう</p>
@@ -514,7 +541,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="unomi.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="unomi.webp" class="idiom-image" alt="unomi"></div>
             <div class="card-content">
                 <p class="idiom-jp">鵜呑みにする</p>
                 <p class="idiom-reading">うのみにする</p>
@@ -530,7 +557,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="netabare.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="netabare.webp" class="idiom-image" alt="netabare"></div>
             <div class="card-content">
                 <p class="idiom-jp">ネタバレ</p>
                 <p class="idiom-reading">ねたばれ</p>
@@ -546,7 +573,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="moto.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="moto.webp" class="idiom-image" alt="moto"></div>
             <div class="card-content">
                 <p class="idiom-jp">元を取る</p>
                 <p class="idiom-reading">もとをとる</p>
@@ -562,7 +589,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="bottakuri.webp" class="idiom-image"></div>
+            <div class="card-image-wrap"><img src="bottakuri.webp" class="idiom-image" alt="bottakuri"></div>
             <div class="card-content">
                 <p class="idiom-jp">ぼったくり</p>
                 <p class="idiom-reading">ぼったくり</p>
@@ -578,6 +605,14 @@
             </div>
         </div>
     </div>
+
+    <div class="support-section">
+        <h2>Support OHAYO CENTER</h2>
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+            ☕️ <span>SUPPORT OHAYO CENTER</span>
+        </a>
+    </div>
 </div>
 
 <footer>
@@ -586,6 +621,8 @@
 
 <script>
     const TOTAL = 23;
+
+    // ダークモード制御
     function setTheme(isDark) {
         if (isDark) {
             document.body.classList.add('dark-mode');
@@ -597,25 +634,45 @@
             localStorage.setItem('theme', 'light');
         }
     }
-    document.getElementById('themeToggle').addEventListener('click', () => setTheme(!document.body.classList.contains('dark-mode')));
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        setTheme(!document.body.classList.contains('dark-mode'));
+    });
     if (localStorage.getItem('theme') === 'dark') setTheme(true);
 
-    function toggleExample(btn) { btn.nextElementSibling.classList.toggle('open'); }
+    // 例文の表示切り替え
+    function toggleExample(btn) {
+        btn.nextElementSibling.classList.toggle('open');
+    }
+
+    // 学習済みマークの制御
     function toggleLearned(btn) {
-        btn.closest('.idiom-card').classList.toggle('learned');
-        btn.innerText = btn.closest('.idiom-card').classList.contains('learned') ? "Mastered ✓" : "Mark as Learned";
+        const card = btn.closest('.idiom-card');
+        card.classList.toggle('learned');
+        btn.innerText = card.classList.contains('learned') ? "Mastered ✓" : "Mark as Learned";
         updateProgress();
     }
+
+    // 進捗バーの更新
     function updateProgress() {
         const learned = document.querySelectorAll('.idiom-card.learned').length;
         document.getElementById('progressFill').style.width = (learned / TOTAL * 100) + '%';
         document.getElementById('learnedCount').innerText = learned;
     }
+
+    // カテゴリーフィルター
     function filterCards(category, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        document.querySelectorAll('.idiom-card').forEach(card => card.style.display = (category === 'all' || card.dataset.category === category) ? '' : 'none');
+        document.querySelectorAll('.idiom-card').forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
     }
+
+    // 検索機能
     function searchIdioms() {
         const query = document.getElementById('searchInput').value.toLowerCase();
         document.querySelectorAll('.idiom-card').forEach(card => {
