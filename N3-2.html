@@ -25,7 +25,7 @@
     align-items: center;
     box-shadow: 0 2px 15px rgba(0,0,0,0.05);
     font-family: 'Noto Sans JP', sans-serif;
-    box-sizing: border-box; /* 横スクロール防止 */
+    box-sizing: border-box; 
   }
   .logo {
     font-family: 'Sawarabi Mincho', serif;
@@ -52,14 +52,12 @@
     letter-spacing: 1px;
   }
 
-  /* スマホ用デザイン調整 (メニュー用) */
   @media (max-width: 600px) {
     nav { padding: 0 15px; }
     .logo { font-size: 1rem; }
     .nav-links { gap: 0.8rem; }
     .nav-links a { font-size: 0.7rem; }
   }
-  /* ------------------------------------- */
 
   body {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
@@ -67,7 +65,6 @@
     color: #333;
     display: flex;
     justify-content: center;
-    /* 修正箇所1: メニューに隠れないよう上部を90pxにし、下部の余白は80pxのままにしました */
     padding: 90px 20px 80px;
   }
   .main-wrapper {
@@ -104,7 +101,6 @@
     font-weight: bold;
   }
   
-  /* スライド切り替え用のクラス */
   .slide {
     display: none;
     animation: fadeIn 0.4s;
@@ -194,40 +190,37 @@
     font-weight: bold;
   }
 
-  /* ナビゲーションボタン */
+  /* --- 新しいスライドボタンのデザイン --- */
   .nav-controls {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     margin-top: 40px;
     padding-top: 20px;
     border-top: 2px solid #e2e8f0;
   }
-  .nav-btn {
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+  .slide-jump-btn {
+    background-color: #edf2f7;
+    color: #2c3e50;
+    border: 2px solid #cbd5e0;
+    padding: 10px 18px;
     border-radius: 6px;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
   }
-  .nav-btn:hover {
-    background-color: #1a252f;
+  .slide-jump-btn:hover {
+    background-color: #e2e8f0;
+    border-color: #a0aec0;
   }
-  .nav-btn:disabled {
-    background-color: #a0aec0;
-    cursor: not-allowed;
-  }
-  .slide-indicator {
-    font-size: 0.9em;
-    color: #718096;
-    align-self: center;
-    font-weight: bold;
+  .slide-jump-btn.active {
+    background-color: #2c3e50;
+    color: white;
+    border-color: #2c3e50;
   }
 
-  /* --- Support Section --- */
   .support-section {
     text-align: center;
     margin-top: 50px;
@@ -263,16 +256,11 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   }
-  .bmc-custom-btn span {
-    margin-left: 8px;
-    letter-spacing: 0.5px;
-  }
 
-  /* スマホ画面（幅600px以下）専用のレイアウト調整 */
   @media (max-width: 600px) {
-    .slide-container {
-      padding: 30px 20px 50px; 
-    }
+    .slide-container { padding: 30px 20px 50px; }
+    .nav-controls { gap: 5px; }
+    .slide-jump-btn { padding: 8px 12px; font-size: 0.8em; }
   }
 </style>
 </head>
@@ -293,7 +281,6 @@
     
     <div id="slide1" class="slide active">
       <div class="topic-label">Topic: Holiday - Going Out (Slide 1/5)</div>
-
       <div class="question-block">
         <div class="question-text">Q1. What is the Japanese phrase for "making a plan" for a holiday or trip?</div>
         <ul class="options">
@@ -309,7 +296,6 @@
         <div id="hint1" class="info-box hint-text">Hint: The verb means "to stand" or "to build/set up."</div>
         <div id="ans1" class="info-box answer-text">Answer: A. 予定を立てる (Yotei o tateru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q2. How do you say "to pack one's bags" or "prepare for a trip" in Japanese?</div>
         <ul class="options">
@@ -325,7 +311,6 @@
         <div id="hint2" class="info-box hint-text">Hint: The verb implies bringing scattered things together into one place.</div>
         <div id="ans2" class="info-box answer-text">Answer: B. 荷物をまとめる (Nimotsu o matomeru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q3. What is the Japanese term for a "day trip" (a trip where you return on the same day)?</div>
         <ul class="options">
@@ -341,7 +326,6 @@
         <div id="hint3" class="info-box hint-text">Hint: It literally translates to "day return."</div>
         <div id="ans3" class="info-box answer-text">Answer: A. 日帰り (Higaeri)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q4. When you go on a trip, you need to "book" or "reserve" a hotel. What is the verb for "to reserve"?</div>
         <ul class="options">
@@ -357,7 +341,6 @@
         <div id="hint4" class="info-box hint-text">Hint: This word is commonly used for hotels, restaurants, and tickets.</div>
         <div id="ans4" class="info-box answer-text">Answer: A. 予約する (Yoyaku suru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q5. How do you describe an "overseas trip"?</div>
         <ul class="options">
@@ -377,7 +360,6 @@
 
     <div id="slide2" class="slide">
       <div class="topic-label">Topic: Holiday - Relaxing at Home (Slide 2/5)</div>
-
       <div class="question-block">
         <div class="question-text">Q6. What is the phrase for "taking it easy" or "relaxing" at home on a day off?</div>
         <ul class="options">
@@ -393,7 +375,6 @@
         <div id="hint6" class="info-box hint-text">Hint: It describes a slow, leisurely state without rushing or stressing.</div>
         <div id="ans6" class="info-box answer-text">Answer: A. のんびりする (Nonbiri suru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q7. How do you say "to sleep in" or "oversleep" on a Sunday morning?</div>
         <ul class="options">
@@ -409,7 +390,6 @@
         <div id="hint7" class="info-box hint-text">Hint: This word combines "sleep" (寝) and "late" (坊).</div>
         <div id="ans7" class="info-box answer-text">Answer: C. 寝坊する (Nebō suru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q8. What is the term for "staying up late" to watch movies or play games?</div>
         <ul class="options">
@@ -425,7 +405,6 @@
         <div id="hint8" class="info-box hint-text">Hint: The kanji "更" relates to growing late into the night.</div>
         <div id="ans8" class="info-box answer-text">Answer: A. 夜更かしする (Yofukashi suru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q9. If you are watching TV and want to "change the channel," what is the Japanese phrase?</div>
         <ul class="options">
@@ -441,7 +420,6 @@
         <div id="hint9" class="info-box hint-text">Hint: The verb means "to change" or "alter."</div>
         <div id="ans9" class="info-box answer-text">Answer: A. チャンネルを変える (Channeru o kaeru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q10. What is the Japanese word for "a nap" during the day?</div>
         <ul class="options">
@@ -461,7 +439,6 @@
 
     <div id="slide3" class="slide">
       <div class="topic-label">Topic: Study - School & Tests (Slide 3/5)</div>
-
       <div class="question-block">
         <div class="question-text">Q11. What is the Japanese phrase for "attending a lecture" or "taking a class"?</div>
         <ul class="options">
@@ -477,7 +454,6 @@
         <div id="hint11" class="info-box hint-text">Hint: The verb normally means "to exit," but in this context, it means "to attend."</div>
         <div id="ans11" class="info-box answer-text">Answer: A. 授業に出る (Jugyō ni deru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q12. How do you say "to pass an exam" in Japanese?</div>
         <ul class="options">
@@ -493,7 +469,6 @@
         <div id="hint12" class="info-box hint-text">Hint: The kanji means "matching the standard."</div>
         <div id="ans12" class="info-box answer-text">Answer: B. 試験に合格する (Shiken ni gōkaku suru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q13. What is the action of "memorizing" vocabulary or kanji?</div>
         <ul class="options">
@@ -509,7 +484,6 @@
         <div id="hint13" class="info-box hint-text">Hint: This implies learning something by heart.</div>
         <div id="ans13" class="info-box answer-text">Answer: C. 暗記する (Anki suru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q14. Before a big test, you need to "review" what you learned. What is the word for "review"?</div>
         <ul class="options">
@@ -525,7 +499,6 @@
         <div id="hint14" class="info-box hint-text">Hint: The first kanji "復" means "to return" or "repeat."</div>
         <div id="ans14" class="info-box answer-text">Answer: B. 復習 (Fukushū)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q15. If a student is absent from school without permission, they "skip class." What is the phrase?</div>
         <ul class="options">
@@ -545,7 +518,6 @@
 
     <div id="slide4" class="slide">
       <div class="topic-label">Topic: Work - Office & Commuting (Slide 4/5)</div>
-
       <div class="question-block">
         <div class="question-text">Q16. What is the Japanese term for "going to work" (arriving at the office)?</div>
         <ul class="options">
@@ -561,7 +533,6 @@
         <div id="hint16" class="info-box hint-text">Hint: The first kanji means "to exit/go out" and the second relates to "work/duty."</div>
         <div id="ans16" class="info-box answer-text">Answer: B. 出勤する (Shukkin suru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q17. How do you say "overtime work" when you have to stay late at the office?</div>
         <ul class="options">
@@ -577,7 +548,6 @@
         <div id="hint17" class="info-box hint-text">Hint: It literally translates to "remaining business/work."</div>
         <div id="ans17" class="info-box answer-text">Answer: C. 残業 (Zangyō)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q18. What is the phrase for "taking a day off" from work?</div>
         <ul class="options">
@@ -593,7 +563,6 @@
         <div id="hint18" class="info-box hint-text">Hint: The verb means "to rest."</div>
         <div id="ans18" class="info-box answer-text">Answer: A. 会社を休む (Kaisha o yasumu)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q19. When you travel to another city or country for business, what is it called?</div>
         <ul class="options">
@@ -609,7 +578,6 @@
         <div id="hint19" class="info-box hint-text">Hint: It means a "business trip."</div>
         <div id="ans19" class="info-box answer-text">Answer: C. 出張 (Shutchō)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q20. What is the term for a "meeting" with coworkers or clients in a formal setting?</div>
         <ul class="options">
@@ -629,7 +597,6 @@
 
     <div id="slide5" class="slide">
       <div class="topic-label">Topic: Work - Business & Colleagues (Slide 5/5)</div>
-
       <div class="question-block">
         <div class="question-text">Q21. What is the Japanese word for your "colleague" or "coworker"?</div>
         <ul class="options">
@@ -645,7 +612,6 @@
         <div id="hint21" class="info-box hint-text">Hint: It refers to someone at the same level as you in the workplace.</div>
         <div id="ans21" class="info-box answer-text">Answer: C. 同僚 (Dōryō)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q22. How do you refer to your "boss" or "superior" at work?</div>
         <ul class="options">
@@ -661,7 +627,6 @@
         <div id="hint22" class="info-box hint-text">Hint: The first kanji means "up" or "above."</div>
         <div id="ans22" class="info-box answer-text">Answer: A. 上司 (Jōshi)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q23. When you swap business cards with someone, you are doing a "business card exchange." What is the word for a business card?</div>
         <ul class="options">
@@ -677,7 +642,6 @@
         <div id="hint23" class="info-box hint-text">Hint: It contains the kanji for "name" (名).</div>
         <div id="ans23" class="info-box answer-text">Answer: C. 名刺 (Meishi)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q24. What is the phrase used to say "Good work today" to a colleague leaving the office?</div>
         <ul class="options">
@@ -693,7 +657,6 @@
         <div id="hint24" class="info-box hint-text">Hint: It comes from the verb meaning "to get tired."</div>
         <div id="ans24" class="info-box answer-text">Answer: B. お疲れ様でした (Otsukaresama deshita)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q25. If you decide to "quit your job," what is the verb used?</div>
         <ul class="options">
@@ -712,9 +675,11 @@
     </div>
 
     <div class="nav-controls">
-      <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
-      <div id="slideIndicator" class="slide-indicator">Slide 1 of 5</div>
-      <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
+      <button class="slide-jump-btn active" onclick="jumpToSlide(1)">SLIDE 1</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(2)">SLIDE 2</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(3)">SLIDE 3</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(4)">SLIDE 4</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(5)">SLIDE 5</button>
     </div>
 
     <div class="support-section">
@@ -730,7 +695,6 @@
 
 <script>
   let currentSlide = 1;
-  const totalSlides = 5;
 
   function toggleDisplay(elementId) {
     var element = document.getElementById(elementId);
@@ -741,23 +705,20 @@
     }
   }
 
-  function changeSlide(direction) {
-    document.getElementById('slide' + currentSlide).classList.remove('active');
-    currentSlide += direction;
-    document.getElementById('slide' + currentSlide).classList.add('active');
+  function jumpToSlide(slideNumber) {
+    // 全スライドからactiveを削除
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    // 全ボタンからactiveを削除
+    document.querySelectorAll('.slide-jump-btn').forEach(b => b.classList.remove('active'));
     
-    document.getElementById('prevBtn').disabled = (currentSlide === 1);
-    document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    // 指定のスライドとボタンをactiveにする
+    document.getElementById('slide' + slideNumber).classList.add('active');
+    document.querySelectorAll('.slide-jump-btn')[slideNumber - 1].classList.add('active');
     
-    document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
-    
+    currentSlide = slideNumber;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 
 </body>
 </html>
-
-
-
-
