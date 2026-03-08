@@ -15,7 +15,7 @@
             --text-color: #333;
             --accent-color: #E74C3C;
             --bmc-color: #FFDD00;
-            --dark: #2c3e50; /* ナビゲーション用のカラーを追加 */
+            --dark: #2c3e50;
         }
         
         * { box-sizing: border-box; }
@@ -25,11 +25,10 @@
             background-color: var(--secondary-color); 
             color: var(--text-color); 
             margin: 0; 
-            /* ヘッダーの高さ(70px) + 元の余白(20px) を考慮して上部の余白を調整 */
             padding: 100px 20px 20px 20px; 
         }
 
-        /* --- ヘッダー（ナビゲーション）のスタイル --- */
+        /* --- ヘッダー --- */
         nav { 
             background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(5px); 
@@ -50,48 +49,54 @@
         .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
 
+        .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
+        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 0; font-size: 1.5rem; }
+        
+        /* スライド制御 */
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
+        .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
+        .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
+        .sentence-builder { font-size: 1.2em; line-height: 2.5em; margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; }
+        .drop-slot-wrapper { display: inline-flex; flex-direction: column; align-items: center; margin: 0 5px; }
+        .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; }
+        
+        .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
+        .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .word-btn:hover { background-color: var(--primary-color); color: #fff; }
+        
+        .action-area { display: flex; align-items: center; gap: 15px; }
+        .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; font-weight: bold; }
+        .check-btn { background-color: var(--primary-color); }
+        .reset-btn { background-color: #95a5a6; }
+        
+        .result-display { font-weight: bold; font-size: 1.1em; }
+        .correct { color: #2ecc71; }
+        .incorrect { color: var(--accent-color); }
+        .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 10px; border-left: 4px solid var(--primary-color); font-size: 0.95em; line-height: 1.6; }
+
+        /* スライド切り替えボタン（新規追加） */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid #eee; }
+        .page-btn { padding: 10px 18px; border: 2px solid var(--dark); background: #fff; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--dark); transition: 0.3s; font-size: 0.9rem; }
+        .page-btn:hover { background: var(--dark); color: #fff; }
+        .page-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3); }
+
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
+        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
+        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
+            .page-btn { padding: 8px 12px; font-size: 0.8rem; }
         }
-        /* ------------------------------------- */
-
-        .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
-        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 0; }
-        .slide { display: none; }
-        .slide.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
-        .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
-        .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
-        .sentence-builder { font-size: 1.2em; line-height: 2.5em; margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; }
-        .text-part { margin: 0 5px; }
-        .drop-slot-wrapper { display: inline-flex; flex-direction: column; align-items: center; margin: 0 5px; }
-        .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; }
-        .drop-slot:hover { background-color: #eef; }
-        .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
-        .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
-        .word-btn:hover { background-color: var(--primary-color); color: #fff; }
-        .action-area { display: flex; align-items: center; gap: 15px; }
-        .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; }
-        .check-btn { background-color: var(--primary-color); }
-        .reset-btn { background-color: #95a5a6; }
-        .result-display { font-weight: bold; font-size: 1.1em; }
-        .correct { color: #2ecc71; }
-        .incorrect { color: var(--accent-color); }
-        .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 10px; border-left: 4px solid var(--primary-color); font-size: 0.95em; }
-        .controls { display: flex; justify-content: space-between; margin-top: 30px; }
-        .nav-btn { background-color: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; }
-        .nav-btn:disabled { background-color: #ccc; cursor: not-allowed; }
-        .progress { text-align: center; font-size: 1.1em; font-weight: bold; margin-top: 20px; }
-        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
-        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
-        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-        .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -106,17 +111,15 @@
 </nav>
 
 <div class="container">
-    <h1>N4/5 Conditional type Practice (Sentence Builder)</h1>
+    <h1 id="page-title">N4/5 Conditional type (Slide 1)</h1>
     <p style="text-align: center; color: #666; margin-bottom: 20px;">
-        Click the words below to build the correct sentence.<br>
-        <span style="font-size: 0.9em;">(Words will move into the blanks. Click a blank to return the word.)</span>
+        Click the words below to build the correct sentence.
     </p>
+    
     <div id="quiz-container"></div>
-    <div class="controls">
-        <button id="prev-btn" class="nav-btn" onclick="changeSlide(-1)">Previous Slide</button>
-        <span class="progress" id="progress-text">Slide 1 / 5</span>
-        <button id="next-btn" class="nav-btn" onclick="changeSlide(1)">Next Slide</button>
-    </div>
+    
+    <div class="pagination" id="pagination"></div>
+
     <div class="support-section">
         <h2>Support OHAYO CENTER</h2>
         <p>If you find these materials helpful, please consider supporting us!</p>
@@ -128,231 +131,61 @@
 
 <script>
     const quizData = [
-        // ====== Slide 1: 条件形「と」 ======
+        // Slide 1
         [
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When spring comes, cherry blossoms bloom.", 
-                choices: ["桜が", "春に", "咲きます", "なると、"], 
-                ansOrder: [1, 3, 0, 2], 
-                ansText: "春に なると、 桜が 咲きます" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When you turn right at the next corner, you will see the station.", 
-                choices: ["曲がると、", "駅が", "次の角を", "見えます"], 
-                ansOrder: [2, 0, 1, 3], 
-                ansText: "次の角を 曲がると、 駅が 見えます" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you touch that machine, it will stop suddenly.", 
-                choices: ["触ると、", "その機械に", "止まってしまいます", "急に"], 
-                ansOrder: [1, 0, 3, 2], 
-                ansText: "その機械に 触ると、 急に 止まってしまいます" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When it becomes night, it gets dark.", 
-                choices: ["夜に", "暗く", "なると、", "なります"], 
-                ansOrder: [0, 2, 1, 3], 
-                ansText: "夜に なると、 暗く なります" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When I drink alcohol, my face turns red.", 
-                choices: ["顔が", "飲むと、", "お酒を", "赤くなります"], 
-                ansOrder: [2, 1, 0, 3], 
-                ansText: "お酒を 飲むと、 顔が 赤くなります" 
-            }
+            { prefix: "", suffix: "。", en: "When spring comes, cherry blossoms bloom.", choices: ["桜が", "春に", "咲きます", "なると、"], ansOrder: [1, 3, 0, 2], ansText: "春に なると、 桜が 咲きます" },
+            { prefix: "", suffix: "。", en: "When you turn right at the next corner, you will see the station.", choices: ["曲がると、", "駅が", "次の角を", "見えます"], ansOrder: [2, 0, 1, 3], ansText: "次の角を 曲がると、 駅が 見えます" },
+            { prefix: "", suffix: "。", en: "If you touch that machine, it will stop suddenly.", choices: ["触ると、", "その機械に", "止まってしまいます", "急に"], ansOrder: [1, 0, 3, 2], ansText: "その機械に 触ると、 急に 止まってしまいます" },
+            { prefix: "", suffix: "。", en: "When it becomes night, it gets dark.", choices: ["夜に", "暗く", "なると、", "なります"], ansOrder: [0, 2, 1, 3], ansText: "夜に なると、 暗く なります" },
+            { prefix: "", suffix: "。", en: "When I drink alcohol, my face turns red.", choices: ["顔が", "飲むと、", "お酒を", "赤くなります"], ansOrder: [2, 1, 0, 3], ansText: "お酒を 飲むと、 顔が 赤くなります" }
         ],
-        // ====== Slide 2: 条件形「ば」 ======
+        // Slide 2
         [
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If the weather is good, let's go to the sea.", 
-                choices: ["海へ", "天気が", "行きましょう", "良ければ、"], 
-                ansOrder: [1, 3, 0, 2], 
-                ansText: "天気が 良ければ、 海へ 行きましょう" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If it is close from here, let's walk.", 
-                choices: ["歩いて", "行きましょう", "近ければ、", "ここから"], 
-                ansOrder: [3, 2, 0, 1], 
-                ansText: "ここから 近ければ、 歩いて 行きましょう" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If I have time, I will read a book.", 
-                choices: ["読みます", "本を", "時間が", "あれば、"], 
-                ansOrder: [2, 3, 1, 0], 
-                ansText: "時間が あれば、 本を 読みます" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you wait for 5 minutes, the next bus will come.", 
-                choices: ["次のバスが", "来ます", "待てば、", "五分"], 
-                ansOrder: [3, 2, 0, 1], 
-                ansText: "五分 待てば、 次のバスが 来ます" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you wake up early, you will be in time for the train.", 
-                choices: ["間に合います", "電車に", "起きれば、", "早く"], 
-                ansOrder: [3, 2, 1, 0], 
-                ansText: "早く 起きれば、 電車に 間に合います" 
-            }
+            { prefix: "", suffix: "。", en: "If the weather is good, let's go to the sea.", choices: ["海へ", "天気が", "行きましょう", "良ければ、"], ansOrder: [1, 3, 0, 2], ansText: "天気が 良ければ、 海へ 行きましょう" },
+            { prefix: "", suffix: "。", en: "If it is close from here, let's walk.", choices: ["歩いて", "行きましょう", "近ければ、", "ここから"], ansOrder: [3, 2, 0, 1], ansText: "ここから 近ければ、 歩いて 行きましょう" },
+            { prefix: "", suffix: "。", en: "If I have time, I will read a book.", choices: ["読みます", "本を", "時間が", "あれば、"], ansOrder: [2, 3, 1, 0], ansText: "時間が あれば、 本を 読みます" },
+            { prefix: "", suffix: "。", en: "If you wait for 5 minutes, the next bus will come.", choices: ["次のバスが", "来ます", "待てば、", "五分"], ansOrder: [3, 2, 0, 1], ansText: "五分 待てば、 次のバスが 来ます" },
+            { prefix: "", suffix: "。", en: "If you wake up early, you will be in time for the train.", choices: ["間に合います", "電車に", "起きれば、", "早く"], ansOrder: [3, 2, 1, 0], ansText: "早く 起きれば、 電車に 間に合います" }
         ],
-        // ====== Slide 3: 条件形「たら」 ======
+        // Slide 3
         [
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If it rains, the match will be canceled.", 
-                choices: ["降ったら、", "試合は", "雨が", "中止です"], 
-                ansOrder: [2, 0, 1, 3], 
-                ansText: "雨が 降ったら、 試合は 中止です" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If I had money, I would want to go on a trip.", 
-                choices: ["旅行に", "あったら、", "行きたいです", "お金が"], 
-                ansOrder: [3, 1, 0, 2], 
-                ansText: "お金が あったら、 旅行に 行きたいです" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When you arrive at the station, please call me.", 
-                choices: ["駅に", "してください", "電話を", "着いたら、"], 
-                ansOrder: [0, 3, 2, 1], 
-                ansText: "駅に 着いたら、 電話を してください" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When work is finished, let's go drinking.", 
-                choices: ["行きましょう", "飲みに", "仕事が", "終わったら、"], 
-                ansOrder: [2, 3, 1, 0], 
-                ansText: "仕事が 終わったら、 飲みに 行きましょう" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When summer vacation comes, I will return to my country.", 
-                choices: ["帰ります", "夏休みに", "国へ", "なったら、"], 
-                ansOrder: [1, 3, 2, 0], 
-                ansText: "夏休みに なったら、 国へ 帰ります" 
-            }
+            { prefix: "", suffix: "。", en: "If it rains, the match will be canceled.", choices: ["降ったら、", "試合は", "雨が", "中止です"], ansOrder: [2, 0, 1, 3], ansText: "雨が 降ったら、 試合は 中止です" },
+            { prefix: "", suffix: "。", en: "If I had money, I would want to go on a trip.", choices: ["旅行に", "あったら、", "行きたいです", "お金が"], ansOrder: [3, 1, 0, 2], ansText: "お金が あったら、 旅行に 行きたいです" },
+            { prefix: "", suffix: "。", en: "When you arrive at the station, please call me.", choices: ["駅に", "してください", "電話を", "着いたら、"], ansOrder: [0, 3, 2, 1], ansText: "駅に 着いたら、 電話を してください" },
+            { prefix: "", suffix: "。", en: "When work is finished, let's go drinking.", choices: ["行きましょう", "飲みに", "仕事が", "終わったら、"], ansOrder: [2, 3, 1, 0], ansText: "仕事が 終わったら、 飲みに 行きましょう" },
+            { prefix: "", suffix: "。", en: "When summer vacation comes, I will return to my country.", choices: ["帰ります", "夏休みに", "国へ", "なったら、"], ansOrder: [1, 3, 2, 0], ansText: "夏休みに なったら、 国へ 帰ります" }
         ],
-        // ====== Slide 4: 条件形「なら」 ======
+        // Slide 4
         [
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you are going to Hokkaido, summer is the best.", 
-                choices: ["行くなら、", "北海道へ", "一番いいです", "夏が"], 
-                ansOrder: [1, 0, 3, 2], 
-                ansText: "北海道へ 行くなら、 夏が 一番いいです" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you are going to buy a computer, that store is cheap.", 
-                choices: ["買うなら、", "安いです", "あの店が", "パソコンを"], 
-                ansOrder: [3, 0, 2, 1], 
-                ansText: "パソコンを 買うなら、 あの店が 安いです" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you don't like it, you don't have to force yourself to go.", 
-                choices: ["行かなくても", "無理に", "嫌なら、", "いいです"], 
-                ansOrder: [2, 1, 0, 3], 
-                ansText: "嫌なら、 無理に 行かなくても いいです" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you are studying Japanese, this book is recommended.", 
-                choices: ["この本が", "おすすめです", "勉強するなら、", "日本語を"], 
-                ansOrder: [3, 2, 0, 1], 
-                ansText: "日本語を 勉強するなら、 この本が おすすめです" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you are free tomorrow, would you like to watch a movie together?", 
-                choices: ["暇なら、", "映画を見ませんか", "一緒に", "明日"], 
-                ansOrder: [3, 0, 2, 1], 
-                ansText: "明日 暇なら、 一緒に 映画を見ませんか" 
-            }
+            { prefix: "", suffix: "。", en: "If you are going to Hokkaido, summer is the best.", choices: ["行くなら、", "北海道へ", "一番いいです", "夏が"], ansOrder: [1, 0, 3, 2], ansText: "北海道へ 行くなら、 夏が 一番いいです" },
+            { prefix: "", suffix: "。", en: "If you are going to buy a computer, that store is cheap.", choices: ["買うなら、", "安いです", "あの店が", "パソコンを"], ansOrder: [3, 0, 2, 1], ansText: "パソコンを 買うなら、 あの店が 安いです" },
+            { prefix: "", suffix: "。", en: "If you don't like it, you don't have to force yourself to go.", choices: ["行かなくても", "無理に", "嫌なら、", "いいです"], ansOrder: [2, 1, 0, 3], ansText: "嫌なら、 無理に 行かなくても いいです" },
+            { prefix: "", suffix: "。", en: "If you are studying Japanese, this book is recommended.", choices: ["この本が", "おすすめです", "勉強するなら、", "日本語を"], ansOrder: [3, 2, 0, 1], ansText: "日本語を 勉強するなら、 この本が おすすめです" },
+            { prefix: "", suffix: "。", en: "If you are free tomorrow, would you like to watch a movie together?", choices: ["暇なら、", "映画を見ませんか", "一緒に", "明日"], ansOrder: [3, 0, 2, 1], ansText: "明日 暇なら、 一緒に 映画を見ませんか" }
         ],
-        // ====== Slide 5: 条件形ミックス（と・ば・たら・なら） ======
+        // Slide 5
         [
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "When I opened the window, a cool breeze came in.", 
-                choices: ["涼しい風が", "開けると、", "入ってきました", "窓を"], 
-                ansOrder: [3, 1, 0, 2], 
-                ansText: "窓を 開けると、 涼しい風が 入ってきました" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you read the manual, you will understand how to use it.", 
-                choices: ["読めば、", "説明書を", "わかります", "使い方が"], 
-                ansOrder: [1, 0, 3, 2], 
-                ansText: "説明書を 読めば、 使い方が わかります" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If I win the lottery, I want to buy a house.", 
-                choices: ["当たったら、", "もし", "宝くじが", "家を買いたいです"], 
-                ansOrder: [1, 2, 0, 3], 
-                ansText: "もし 宝くじが 当たったら、 家を買いたいです" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you are going to drive a car, you must not drink alcohol.", 
-                choices: ["車を", "お酒を", "飲んではいけません", "運転するなら、"], 
-                ansOrder: [0, 3, 1, 2], 
-                ansText: "車を 運転するなら、 お酒を 飲んではいけません" 
-            },
-            { 
-                prefix: "", 
-                suffix: "。", 
-                en: "If you are a student, you can watch this movie cheaply.", 
-                choices: ["安く", "学生なら、", "この映画が", "見られます"], 
-                ansOrder: [[1, 2, 0, 3], [1, 0, 2, 3]], 
-                ansText: "学生なら、 この映画が 安く 見られます<br><span style=\"color:#666; font-size:0.9em; margin-top:5px; display:inline-block;\">※「学生なら、 安く この映画が 見られます」も正解です。</span>" 
-            }
+            { prefix: "", suffix: "。", en: "When I opened the window, a cool breeze came in.", choices: ["涼しい風が", "開けると、", "入ってきました", "窓を"], ansOrder: [3, 1, 0, 2], ansText: "窓を 開けると、 涼しい風が 入ってきました" },
+            { prefix: "", suffix: "。", en: "If you read the manual, you will understand how to use it.", choices: ["読めば、", "説明書を", "わかります", "使い方が"], ansOrder: [1, 0, 3, 2], ansText: "説明書を 読めば、 使い方が わかります" },
+            { prefix: "", suffix: "。", en: "If I win the lottery, I want to buy a house.", choices: ["当たったら、", "もし", "宝くじが", "家を買いたいです"], ansOrder: [1, 2, 0, 3], ansText: "もし 宝くじが 当たったら、 家を買いたいです" },
+            { prefix: "", suffix: "。", en: "If you are driving a car, you must not drink alcohol.", choices: ["車を", "お酒を", "飲んではいけません", "運転するなら、"], ansOrder: [0, 3, 1, 2], ansText: "車を 運転するなら、 お酒を 飲んではいけません" },
+            { prefix: "", suffix: "。", en: "If you are a student, you can watch this movie cheaply.", choices: ["安く", "学生なら、", "この映画が", "見られます"], ansOrder: [[1, 2, 0, 3], [1, 0, 2, 3]], ansText: "学生なら、 この映画が 安く 見られます" }
         ]
     ];
 
     let currentSlide = 0;
+
     function renderQuiz() {
         const container = document.getElementById('quiz-container');
+        const pagination = document.getElementById('pagination');
         container.innerHTML = '';
+        pagination.innerHTML = '';
+
         quizData.forEach((slideData, slideIndex) => {
             const slideDiv = document.createElement('div');
-            slideDiv.className = `slide ${slideIndex === 0 ? 'active' : ''}`;
+            slideDiv.className = `slide ${slideIndex === currentSlide ? 'active' : ''}`;
             slideDiv.id = `slide-${slideIndex}`;
+            
             slideData.forEach((qData, qIndex) => {
                 const qId = `s${slideIndex}_q${qIndex}`;
                 const questionBlock = document.createElement('div');
@@ -362,7 +195,6 @@
                     choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
                 });
                 
-                // 複数正解の配列に対応
                 let correctStr = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder.map(arr => arr.join(',')).join('|') : qData.ansOrder.join(',');
 
                 questionBlock.innerHTML = `
@@ -384,29 +216,73 @@
                     </div>
                     <div id="explanation-${qId}" class="explanation">
                         <strong>Correct Sentence:</strong><br>
-                        ${qData.prefix} <span style="color:var(--primary-color)">${qData.ansText}</span> ${qData.suffix}
+                        ${qData.ansText}
                     </div>
                 `;
                 slideDiv.appendChild(questionBlock);
             });
             container.appendChild(slideDiv);
+
+            // ページネーションボタン作成
+            const btn = document.createElement('button');
+            btn.className = `page-btn ${slideIndex === currentSlide ? 'active' : ''}`;
+            btn.textContent = `SLIDE ${slideIndex + 1}`;
+            btn.onclick = () => goToSlide(slideIndex);
+            pagination.appendChild(btn);
         });
-        updateButtons();
     }
-    window.selectWord = function(qId, choiceIdx, text) { for(let i=0; i<4; i++) { const slot = document.getElementById(`slot-${qId}-${i}`); if(!slot.hasAttribute('data-choice')) { slot.innerText = text; slot.setAttribute('data-choice', choiceIdx); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none'; break; } } };
-    window.returnWord = function(qId, slotIdx) { const slot = document.getElementById(`slot-${qId}-${slotIdx}`); if(slot.hasAttribute('data-choice')) { const choiceIdx = slot.getAttribute('data-choice'); document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; slot.innerText = ''; slot.removeAttribute('data-choice'); } };
-    window.resetQuestion = function(qId) { for(let i=0; i<4; i++) { returnWord(qId, i); } document.getElementById(`result-${qId}`).textContent = ''; document.getElementById(`explanation-${qId}`).style.display = 'none'; };
+
+    window.goToSlide = function(index) {
+        const slides = document.querySelectorAll('.slide');
+        const btns = document.querySelectorAll('.page-btn');
+        
+        slides[currentSlide].classList.remove('active');
+        btns[currentSlide].classList.remove('active');
+        
+        currentSlide = index;
+        
+        slides[currentSlide].classList.add('active');
+        btns[currentSlide].classList.add('active');
+        
+        document.getElementById('page-title').textContent = `N4/5 Conditional type (Slide ${currentSlide + 1})`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.selectWord = function(qId, choiceIdx, text) { 
+        for(let i=0; i<4; i++) { 
+            const slot = document.getElementById(`slot-${qId}-${i}`); 
+            if(!slot.hasAttribute('data-choice')) { 
+                slot.innerText = text; 
+                slot.setAttribute('data-choice', choiceIdx); 
+                document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none'; 
+                break; 
+            } 
+        } 
+    };
+    
+    window.returnWord = function(qId, slotIdx) { 
+        const slot = document.getElementById(`slot-${qId}-${slotIdx}`); 
+        if(slot.hasAttribute('data-choice')) { 
+            const choiceIdx = slot.getAttribute('data-choice'); 
+            document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; 
+            slot.innerText = ''; 
+            slot.removeAttribute('data-choice'); 
+        } 
+    };
+    
+    window.resetQuestion = function(qId) { 
+        for(let i=0; i<4; i++) { returnWord(qId, i); } 
+        document.getElementById(`result-${qId}`).textContent = ''; 
+        document.getElementById(`explanation-${qId}`).style.display = 'none'; 
+    };
     
     window.checkAnswer = function(qId, correctStr) { 
         let userArr = []; 
         let isComplete = true; 
         for(let i=0; i<4; i++) { 
             const slot = document.getElementById(`slot-${qId}-${i}`); 
-            if(slot.hasAttribute('data-choice')) { 
-                userArr.push(slot.getAttribute('data-choice')); 
-            } else { 
-                isComplete = false; 
-            } 
+            if(slot.hasAttribute('data-choice')) { userArr.push(slot.getAttribute('data-choice')); } 
+            else { isComplete = false; } 
         } 
         const resultSpan = document.getElementById(`result-${qId}`); 
         const expDiv = document.getElementById(`explanation-${qId}`); 
@@ -415,10 +291,8 @@
             resultSpan.className = "result-display incorrect"; 
             return; 
         } 
-        
         const userAns = userArr.join(',');
-        const correctArr = correctStr.split('|'); // | で区切られた複数正解に対応
-
+        const correctArr = correctStr.split('|');
         if(correctArr.includes(userAns)) { 
             resultSpan.textContent = "⭕️ Correct!"; 
             resultSpan.className = "result-display correct"; 
@@ -429,12 +303,7 @@
         expDiv.style.display = "block"; 
     };
 
-    window.changeSlide = function(direction) { const slides = document.querySelectorAll('.slide'); slides[currentSlide].classList.remove('active'); currentSlide += direction; slides[currentSlide].classList.add('active'); updateButtons(); };
-    function updateButtons() { const prevBtn = document.getElementById('prev-btn'); const nextBtn = document.getElementById('next-btn'); const progressText = document.getElementById('progress-text'); prevBtn.disabled = currentSlide === 0; nextBtn.disabled = currentSlide === 4; progressText.textContent = `Slide ${currentSlide + 1} / 5`; }
     window.onload = renderQuiz;
 </script>
 </body>
 </html>
-
-
-
