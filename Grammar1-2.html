@@ -17,7 +17,7 @@
             --bmc-color: #FFDD00;
         }
 
-        /* --- ナビゲーションバーのスタイル追加 --- */
+        /* --- ナビゲーションバー --- */
         nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
@@ -33,43 +33,20 @@
             align-items: center;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             font-family: 'Noto Sans JP', sans-serif;
-            box-sizing: border-box; /* 横スクロール防止 */
+            box-sizing: border-box; 
         }
-        .logo {
-            font-family: 'Sawarabi Mincho', serif;
-            font-weight: bold;
-            font-size: 1.2rem;
-            white-space: nowrap;
-        }
-        .logo a {
-            text-decoration: none;
-            color: #2c3e50;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.2rem;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
 
-        /* スマホ用デザイン調整 */
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
         }
-        /* ------------------------------------- */
 
-        /* bodyのpaddingを変更し、上部に90pxの余白を設ける（メニューに隠れないようにするため） */
         body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 90px 20px 20px; }
         
         .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
@@ -77,6 +54,7 @@
         .slide { display: none; }
         .slide.active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
         .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
         .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
         .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
@@ -85,9 +63,11 @@
         .drop-slot-wrapper { display: inline-flex; flex-direction: column; align-items: center; margin: 0 5px; }
         .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; }
         .drop-slot:hover { background-color: #eef; }
+        
         .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
         .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
         .word-btn:hover { background-color: var(--primary-color); color: #fff; }
+        
         .action-area { display: flex; align-items: center; gap: 15px; }
         .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; }
         .check-btn { background-color: var(--primary-color); }
@@ -96,16 +76,21 @@
         .correct { color: #2ecc71; }
         .incorrect { color: var(--accent-color); }
         .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 10px; border-left: 4px solid var(--primary-color); font-size: 0.95em; line-height: 1.5; }
-        .controls { display: flex; justify-content: space-between; margin-top: 30px; }
-        .nav-btn { background-color: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; }
-        .nav-btn:disabled { background-color: #ccc; cursor: not-allowed; }
-        .progress { text-align: center; font-size: 1.1em; font-weight: bold; margin-top: 20px; }
+        
+        /* スライド切り替えボタンのデザイン */
+        .slide-controls { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .slide-jump-container { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .jump-btn { background-color: #fff; border: 2px solid #333; color: #333; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.3s; }
+        .jump-btn:hover { background-color: #333; color: #fff; }
+        .jump-btn.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3); }
+
+        .progress { text-align: center; font-size: 1em; font-weight: bold; color: #666; }
+        
         .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
         .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
         .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
         .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
         .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-        .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -125,12 +110,20 @@
         Click the words below to build the correct sentence.<br>
         <span style="font-size: 0.9em;">(Words will move into the blanks. Click a blank to return the word.)</span>
     </p>
+    
     <div id="quiz-container"></div>
-    <div class="controls">
-        <button id="prev-btn" class="nav-btn" onclick="changeSlide(-1)">Previous Slide</button>
-        <span class="progress" id="progress-text">Slide 1 / 5</span>
-        <button id="next-btn" class="nav-btn" onclick="changeSlide(1)">Next Slide</button>
+
+    <div class="slide-controls">
+        <span class="progress" id="progress-text">SELECT SLIDE</span>
+        <div class="slide-jump-container">
+            <button class="jump-btn" id="jbtn-0" onclick="jumpToSlide(0)">SLIDE 1</button>
+            <button class="jump-btn" id="jbtn-1" onclick="jumpToSlide(1)">SLIDE 2</button>
+            <button class="jump-btn" id="jbtn-2" onclick="jumpToSlide(2)">SLIDE 3</button>
+            <button class="jump-btn" id="jbtn-3" onclick="jumpToSlide(3)">SLIDE 4</button>
+            <button class="jump-btn" id="jbtn-4" onclick="jumpToSlide(4)">SLIDE 5</button>
+        </div>
     </div>
+
     <div class="support-section">
         <h2>Support OHAYO CENTER</h2>
         <p>If you find these materials helpful, please consider supporting us!</p>
@@ -142,170 +135,41 @@
 
 <script>
     const quizData = [
-        // ====== Slide 1 ======
+        // Slide 1 - 5 (Data remains same)
         [
-            { 
-                prefix: "これは", suffix: "です。", en: "This is a book I bought yesterday.", 
-                choices: ["買った", "きのう", "本", "私が"], 
-                ansOrder: [[3, 1, 0, 2], [1, 3, 0, 2]], 
-                ansText: "私が きのう 買った 本 <br><span style='font-size: 0.9em; color: #666;'>(または: きのう 私が 買った 本)</span>" 
-            },
-            { 
-                prefix: "図書館で", suffix: "はいけません。", en: "You must not talk in a loud voice in the library.", 
-                choices: ["声で", "絶対に", "話して", "大きな"], 
-                ansOrder: [[1, 3, 0, 2], [3, 0, 1, 2]], 
-                ansText: "絶対に 大きな 声で 話して <br><span style='font-size: 0.9em; color: #666;'>(または: 大きな 声で 絶対に 話して)</span>" 
-            },
-            { 
-                prefix: "スーパーへ", suffix: "に行きます。", en: "I am going to the supermarket to buy today's meat and vegetables.", 
-                choices: ["野菜を", "買い", "今日の", "肉や"], 
-                ansOrder: [2, 3, 0, 1], 
-                ansText: "今日の 肉や 野菜を 買い" 
-            },
-            { 
-                prefix: "山田さんは", suffix: "います。", en: "Mr. Yamada is reading a book sitting over there.", 
-                choices: ["本を", "座って", "読んで", "あそこで"], 
-                ansOrder: [[3, 1, 0, 2], [3, 0, 1, 2], [0, 3, 1, 2]], 
-                ansText: "あそこで 座って 本を 読んで <br><span style='font-size: 0.9em; color: #666;'>(または: あそこで 本を 座って 読んで / 本を あそこで 座って 読んで)</span>" 
-            },
-            { 
-                prefix: "この", suffix: "ください。", en: "Please read the documents on the desk.", 
-                choices: ["上にある", "机の", "読んで", "資料を"], 
-                ansOrder: [1, 0, 3, 2], 
-                ansText: "机の 上にある 資料を 読んで" 
-            }
+            { prefix: "これは", suffix: "です。", en: "This is a book I bought yesterday.", choices: ["買った", "きのう", "本", "私が"], ansOrder: [[3, 1, 0, 2], [1, 3, 0, 2]], ansText: "私が きのう 買った 本 <br><span style='font-size: 0.9em; color: #666;'>(または: きのう 私が 買った 本)</span>" },
+            { prefix: "図書館で", suffix: "はいけません。", en: "You must not talk in a loud voice in the library.", choices: ["声で", "絶対に", "話して", "大きな"], ansOrder: [[1, 3, 0, 2], [3, 0, 1, 2]], ansText: "絶対に 大きな 声で 話して <br><span style='font-size: 0.9em; color: #666;'>(または: 大きな 声で 絶対に 話して)</span>" },
+            { prefix: "スーパーへ", suffix: "に行きます。", en: "I am going to the supermarket to buy today's meat and vegetables.", choices: ["野菜を", "買い", "今日の", "肉や"], ansOrder: [2, 3, 0, 1], ansText: "今日の 肉や 野菜を 買い" },
+            { prefix: "山田さんは", suffix: "います。", en: "Mr. Yamada is reading a book sitting over there.", choices: ["本を", "座って", "読んで", "あそこで"], ansOrder: [[3, 1, 0, 2], [3, 0, 1, 2], [0, 3, 1, 2]], ansText: "あそこで 座って 本を 読んで <br><span style='font-size: 0.9em; color: #666;'>(または: あそこで 本を 座って 読んで / 本を あそこで 座って 読んで)</span>" },
+            { prefix: "この", suffix: "ください。", en: "Please read the documents on the desk.", choices: ["上にある", "机の", "読んで", "資料を"], ansOrder: [1, 0, 3, 2], ansText: "机の 上にある 資料を 読んで" }
         ],
-        // ====== Slide 2 ======
         [
-            { 
-                prefix: "日本で", suffix: "ですか。", en: "Which is the most famous mountain in Japan?", 
-                choices: ["有名な", "一番", "どれ", "山は"], 
-                ansOrder: [1, 0, 3, 2], 
-                ansText: "一番 有名な 山は どれ" 
-            },
-            { 
-                prefix: "私は", suffix: "ありません。", en: "I have never eaten Japanese sushi before.", 
-                choices: ["ことが", "お寿司を", "日本の", "食べた"], 
-                ansOrder: [2, 1, 3, 0], 
-                ansText: "日本の お寿司を 食べた ことが" 
-            },
-            { 
-                prefix: "新幹線と", suffix: "速いです。", en: "Compared to airplanes, airplanes are overwhelmingly faster.", 
-                choices: ["ほうが", "圧倒的に", "飛行機では", "飛行機の"], 
-                ansOrder: [[2, 3, 0, 1], [2, 1, 3, 0]], 
-                ansText: "飛行機では 飛行機の ほうが 圧倒的に <br><span style='font-size: 0.9em; color: #666;'>(または: 飛行機では 圧倒的に 飛行機の ほうが)</span>" 
-            },
-            { 
-                prefix: "毎日", suffix: "上手になりました。", en: "Thanks to practicing every day, I became very good at swimming.", 
-                choices: ["泳ぐのが", "練習した", "とても", "おかげで"], 
-                ansOrder: [[1, 3, 0, 2], [0, 1, 3, 2], [1, 3, 2, 0]], 
-                ansText: "練習した おかげで 泳ぐのが とても <br><span style='font-size: 0.9em; color: #666;'>(または: 泳ぐのが 練習した おかげで とても)</span>" 
-            },
-            { 
-                prefix: "部屋が", suffix: "開けてもいいですか。", en: "Since the room is small and a bit hot, may I open the window?", 
-                choices: ["少し", "窓を", "狭くて", "暑いので"], 
-                ansOrder: [[2, 0, 3, 1], [0, 2, 3, 1], [2, 3, 0, 1]], 
-                ansText: "狭くて 少し 暑いので 窓を <br><span style='font-size: 0.9em; color: #666;'>(または: 少し 狭くて 暑いので 窓を)</span>" 
-            }
+            { prefix: "日本で", suffix: "ですか。", en: "Which is the most famous mountain in Japan?", choices: ["有名な", "一番", "どれ", "山は"], ansOrder: [1, 0, 3, 2], ansText: "一番 有名な 山は どれ" },
+            { prefix: "私は", suffix: "ありません。", en: "I have never eaten Japanese sushi before.", choices: ["ことが", "お寿司を", "日本の", "食べた"], ansOrder: [2, 1, 3, 0], ansText: "日本の お寿司を 食べた ことが" },
+            { prefix: "新幹線と", suffix: "速いです。", en: "Compared to airplanes, airplanes are overwhelmingly faster.", choices: ["ほうが", "圧倒的に", "飛行機では", "飛行機の"], ansOrder: [[2, 3, 0, 1], [2, 1, 3, 0]], ansText: "飛行機では 飛行機の ほうが 圧倒的に <br><span style='font-size: 0.9em; color: #666;'>(または: 飛行機では 圧倒的に 飛行機の ほうが)</span>" },
+            { prefix: "毎日", suffix: "上手になりました。", en: "Thanks to practicing every day, I became very good at swimming.", choices: ["泳ぐのが", "練習した", "とても", "おかげで"], ansOrder: [[1, 3, 0, 2], [0, 1, 3, 2], [1, 3, 2, 0]], ansText: "練習した おかげで 泳ぐのが とても <br><span style='font-size: 0.9em; color: #666;'>(または: 泳ぐのが 練習した おかげで とても)</span>" },
+            { prefix: "部屋が", suffix: "開けてもいいですか。", en: "Since the room is small and a bit hot, may I open the window?", choices: ["少し", "窓を", "狭くて", "暑いので"], ansOrder: [[2, 0, 3, 1], [0, 2, 3, 1], [2, 3, 0, 1]], ansText: "狭くて 少し 暑いので 窓を <br><span style='font-size: 0.9em; color: #666;'>(または: 少し 狭くて 暑いので 窓を)</span>" }
         ],
-        // ====== Slide 3 ======
         [
-            { 
-                prefix: "誕生日に", suffix: "大切にしています。", en: "I always cherish the watch my friend gave me.", 
-                choices: ["時計を", "いつも", "友達が", "くれた"], 
-                ansOrder: [[2, 3, 0, 1], [1, 2, 3, 0]], 
-                ansText: "友達が くれた 時計を いつも <br><span style='font-size: 0.9em; color: #666;'>(または: いつも 友達が くれた 時計を)</span>" 
-            },
-            { 
-                prefix: "この", suffix: "美味しいです。", en: "The cake my mother made is really delicious.", 
-                choices: ["作った", "本当に", "ケーキは", "母が"], 
-                ansOrder: [3, 0, 2, 1], 
-                ansText: "母が 作った ケーキは 本当に" 
-            },
-            { 
-                prefix: "旅行の", suffix: "おいてください。", en: "Before the trip, please book the hotel we will stay at.", 
-                choices: ["ホテルを", "前に", "予約して", "泊まる"], 
-                ansOrder: [[1, 3, 0, 2], [3, 0, 1, 2]], 
-                ansText: "前に 泊まる ホテルを 予約して <br><span style='font-size: 0.9em; color: #666;'>(または: 泊まる ホテルを 前に 予約して)</span>" 
-            },
-            { 
-                prefix: "先生に", suffix: "分かりません。", en: "Even if I ask the teacher, I don't understand the meaning of this word.", 
-                choices: ["言葉の", "意味が", "この", "聞いても"], 
-                ansOrder: [3, 2, 0, 1], 
-                ansText: "聞いても この 言葉の 意味が" 
-            },
-            { 
-                prefix: "雨が", suffix: "出かけましょう。", en: "Let's go out to the nearby park after the rain stops.", 
-                choices: ["近くの", "やんで", "公園へ", "から"], 
-                ansOrder: [1, 3, 0, 2], 
-                ansText: "やんで から 近くの 公園へ" 
-            }
+            { prefix: "誕生日に", suffix: "大切にしています。", en: "I always cherish the watch my friend gave me.", choices: ["時計を", "いつも", "友達が", "くれた"], ansOrder: [[2, 3, 0, 1], [1, 2, 3, 0]], ansText: "友達が くれた 時計を いつも <br><span style='font-size: 0.9em; color: #666;'>(または: いつも 友達が くれた 時計を)</span>" },
+            { prefix: "この", suffix: "美味しいです。", en: "The cake my mother made is really delicious.", choices: ["作った", "本当に", "ケーキは", "母が"], ansOrder: [3, 0, 2, 1], ansText: "母が 作った ケーキは 本当に" },
+            { prefix: "旅行の", suffix: "おいてください。", en: "Before the trip, please book the hotel we will stay at.", choices: ["ホテルを", "前に", "予約して", "泊まる"], ansOrder: [[1, 3, 0, 2], [3, 0, 1, 2]], ansText: "前に 泊まる ホテルを 予約して <br><span style='font-size: 0.9em; color: #666;'>(または: 泊まる ホテルを 前に 予約して)</span>" },
+            { prefix: "先生に", suffix: "分かりません。", en: "Even if I ask the teacher, I don't understand the meaning of this word.", choices: ["言葉の", "意味が", "この", "聞いても"], ansOrder: [3, 2, 0, 1], ansText: "聞いても この 言葉の 意味が" },
+            { prefix: "雨が", suffix: "出かけましょう。", en: "Let's go out to the nearby park after the rain stops.", choices: ["近くの", "やんで", "公園へ", "から"], ansOrder: [1, 3, 0, 2], ansText: "やんで から 近くの 公園へ" }
         ],
-        // ====== Slide 4 ======
         [
-            { 
-                prefix: "もし", suffix: "教えてください。", en: "If you don't know the way to the station, please let me know.", 
-                choices: ["なかったら", "わから", "駅までの", "道が"], 
-                ansOrder: [2, 3, 1, 0], 
-                ansText: "駅までの 道が わから なかったら" 
-            },
-            { 
-                prefix: "将来は", suffix: "と思っています。", en: "In the future, I intend to become a doctor and cure sick people.", 
-                choices: ["なって", "人を治そう", "病気の", "医者に"], 
-                ansOrder: [3, 0, 2, 1], 
-                ansText: "医者に なって 病気の 人を治そう" 
-            },
-            { 
-                prefix: "窓の", suffix: "あります。", en: "Beautiful flowers are displayed near the window.", 
-                choices: ["花が", "飾って", "近くに", "きれいな"], 
-                ansOrder: [2, 3, 0, 1], 
-                ansText: "近くに きれいな 花が 飾って" 
-            },
-            { 
-                prefix: "昨日", suffix: "眠いです。", en: "I am sleepy because I studied until late yesterday.", 
-                choices: ["した", "勉強", "ので", "遅くまで"], 
-                ansOrder: [3, 1, 0, 2], 
-                ansText: "遅くまで 勉強 した ので" 
-            },
-            { 
-                prefix: "道を", suffix: "しまいました。", en: "I accidentally dropped my wallet while walking on the road.", 
-                choices: ["落として", "財布を", "歩いている", "ときに"], 
-                ansOrder: [2, 3, 1, 0], 
-                ansText: "歩いている ときに 財布を 落として" 
-            }
+            { prefix: "もし", suffix: "教えてください。", en: "If you don't know the way to the station, please let me know.", choices: ["なかったら", "わから", "駅までの", "道が"], ansOrder: [2, 3, 1, 0], ansText: "駅までの 道が わから なかったら" },
+            { prefix: "将来は", suffix: "と思っています。", en: "In the future, I intend to become a doctor and cure sick people.", choices: ["なって", "人を治そう", "病気の", "医者に"], ansOrder: [3, 0, 2, 1], ansText: "医者に なって 病気の 人を治そう" },
+            { prefix: "窓の", suffix: "あります。", en: "Beautiful flowers are displayed near the window.", choices: ["花が", "飾って", "近くに", "きれいな"], ansOrder: [2, 3, 0, 1], ansText: "近くに きれいな 花が 飾って" },
+            { prefix: "昨日", suffix: "眠いです。", en: "I am sleepy because I studied until late yesterday.", choices: ["した", "勉強", "ので", "遅くまで"], ansOrder: [3, 1, 0, 2], ansText: "遅くまで 勉強 した ので" },
+            { prefix: "道を", suffix: "しまいました。", en: "I accidentally dropped my wallet while walking on the road.", choices: ["落として", "財布を", "歩いている", "ときに"], ansOrder: [2, 3, 1, 0], ansText: "歩いている ときに 財布を 落として" }
         ],
-        // ====== Slide 5 ======
         [
-            { 
-                prefix: "あの", suffix: "そうです。", en: "I heard that the new restaurant is very delicious.", 
-                choices: ["とても", "美味しい", "レストランは", "新しい"], 
-                ansOrder: [3, 2, 0, 1], 
-                ansText: "新しい レストランは とても 美味しい" 
-            },
-            { 
-                prefix: "熱が", suffix: "ほうがいいですよ。", en: "Since you have a fever, you had better take medicine and sleep early.", 
-                choices: ["飲んで", "あるんだから", "早く寝た", "薬を"], 
-                ansOrder: [1, 3, 0, 2], 
-                ansText: "あるんだから 薬を 飲んで 早く寝た" 
-            },
-            { 
-                prefix: "子供の", suffix: "できました。", en: "When I was a child, I was able to play the piano.", 
-                choices: ["弾く", "ころは", "ことが", "ピアノを"], 
-                ansOrder: [1, 3, 0, 2], 
-                ansText: "ころは ピアノを 弾く ことが" 
-            },
-            { 
-                prefix: "どんなに", suffix: "あきらめません。", en: "No matter how difficult the problem is, I will never give up.", 
-                choices: ["私は", "問題", "でも", "難しい"], 
-                ansOrder: [3, 1, 2, 0], 
-                ansText: "難しい 問題 でも 私は" 
-            },
-            { 
-                prefix: "会議が", suffix: "帰ってもいいですか。", en: "Since the meeting is already over, may I go home right now?", 
-                choices: ["ので", "今すぐ", "終わった", "もう"], 
-                ansOrder: [3, 2, 0, 1], 
-                ansText: "もう 終わった ので 今すぐ" 
-            }
+            { prefix: "あの", suffix: "そうです。", en: "I heard that the new restaurant is very delicious.", choices: ["とても", "美味しい", "レストランは", "新しい"], ansOrder: [3, 2, 0, 1], ansText: "新しい レストランは とても 美味しい" },
+            { prefix: "熱が", suffix: "ほうがいいですよ。", en: "Since you have a fever, you had better take medicine and sleep early.", choices: ["飲んで", "あるんだから", "早く寝た", "薬を"], ansOrder: [1, 3, 0, 2], ansText: "あるんだから 薬を 飲んで 早く寝た" },
+            { prefix: "子供の", suffix: "できました。", en: "When I was a child, I was able to play the piano.", choices: ["弾く", "ころは", "ことが", "ピアノを"], ansOrder: [1, 3, 0, 2], ansText: "ころは ピアノを 弾く ことが" },
+            { prefix: "どんなに", suffix: "あきらめません。", en: "No matter how difficult the problem is, I will never give up.", choices: ["私は", "問題", "でも", "難しい"], ansOrder: [3, 1, 2, 0], ansText: "難しい 問題 でも 私は" },
+            { prefix: "会議が", suffix: "帰ってもいいですか。", en: "Since the meeting is already over, may I go home right now?", choices: ["ので", "今すぐ", "終わった", "もう"], ansOrder: [3, 2, 0, 1], ansText: "もう 終わった ので 今すぐ" }
         ]
     ];
 
@@ -352,7 +216,7 @@
             });
             container.appendChild(slideDiv);
         });
-        updateButtons();
+        updateStatus();
     }
 
     window.selectWord = function(qId, choiceIdx, text) { 
@@ -388,70 +252,50 @@
         const sIdx = parseInt(parts[0]);
         const qIdx = parseInt(parts[1]);
         const qData = quizData[sIdx][qIdx];
-
         let userArr = []; 
         let isComplete = true; 
         for(let i=0; i<4; i++) { 
             const slot = document.getElementById(`slot-${qId}-${i}`); 
-            if(slot.hasAttribute('data-choice')) { 
-                userArr.push(parseInt(slot.getAttribute('data-choice'))); 
-            } else { 
-                isComplete = false; 
-            } 
+            if(slot.hasAttribute('data-choice')) { userArr.push(parseInt(slot.getAttribute('data-choice'))); } 
+            else { isComplete = false; } 
         } 
-
         const resultSpan = document.getElementById(`result-${qId}`); 
         const expDiv = document.getElementById(`explanation-${qId}`); 
-
         if(!isComplete) { 
             resultSpan.textContent = "Please place all words."; 
             resultSpan.className = "result-display incorrect"; 
             return; 
         } 
-
         const validOrders = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder : [qData.ansOrder];
         const userStr = userArr.join(',');
-        
         let isCorrect = false;
-        for(let order of validOrders) {
-            if (userStr === order.join(',')) {
-                isCorrect = true;
-                break;
-            }
-        }
-
-        if(isCorrect) { 
-            resultSpan.textContent = "⭕️ Correct!"; 
-            resultSpan.className = "result-display correct"; 
-        } else { 
-            resultSpan.textContent = "❌ Incorrect"; 
-            resultSpan.className = "result-display incorrect"; 
-        } 
+        for(let order of validOrders) { if (userStr === order.join(',')) { isCorrect = true; break; } }
+        if(isCorrect) { resultSpan.textContent = "⭕️ Correct!"; resultSpan.className = "result-display correct"; } 
+        else { resultSpan.textContent = "❌ Incorrect"; resultSpan.className = "result-display incorrect"; } 
         expDiv.style.display = "block"; 
     };
 
-    window.changeSlide = function(direction) { 
+    // 直接ジャンプ用関数
+    window.jumpToSlide = function(slideIndex) {
         const slides = document.querySelectorAll('.slide'); 
         slides[currentSlide].classList.remove('active'); 
-        currentSlide += direction; 
+        currentSlide = slideIndex;
         slides[currentSlide].classList.add('active'); 
-        updateButtons(); 
+        window.scrollTo(0,0);
+        updateStatus();
     };
 
-    function updateButtons() { 
-        const prevBtn = document.getElementById('prev-btn'); 
-        const nextBtn = document.getElementById('next-btn'); 
+    function updateStatus() { 
         const progressText = document.getElementById('progress-text'); 
-        prevBtn.disabled = currentSlide === 0; 
-        nextBtn.disabled = currentSlide === 4; 
+        const jumpButtons = document.querySelectorAll('.jump-btn');
         progressText.textContent = `Slide ${currentSlide + 1} / 5`; 
+        jumpButtons.forEach((btn, idx) => {
+            if(idx === currentSlide) { btn.classList.add('active'); } 
+            else { btn.classList.remove('active'); }
+        });
     }
     
     window.onload = renderQuiz;
 </script>
 </body>
 </html>
-
-
-
-
