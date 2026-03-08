@@ -46,12 +46,11 @@
   .hint-text { background-color: #fffaf0; border-left: 4px solid #ed8936; color: #555; font-style: italic; }
   .answer-text { background-color: #f0fff4; border-left: 4px solid #48bb78; color: #276749; font-weight: bold; }
 
-  /* --- ナビゲーション・フッター --- */
-  .nav-controls { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; }
-  .nav-btn { background-color: #2c3e50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 1em; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
+  /* --- 下部のナビゲーションボタン --- */
+  .nav-controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; }
+  .nav-btn { background-color: #2c3e50; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; font-weight: bold; cursor: pointer; transition: background-color 0.2s; min-width: 80px; }
   .nav-btn:hover { background-color: #1a252f; }
-  .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
-  .slide-indicator { font-size: 0.9em; color: #718096; align-self: center; font-weight: bold; }
+  .nav-btn.active-btn { background-color: #4299e1; }
   
   .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; }
   .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
@@ -60,7 +59,7 @@
   .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
   .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
 
-  @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } }
+  @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } .nav-btn { font-size: 0.8em; padding: 8px 10px; min-width: 60px; } }
 </style>
 </head>
 <body>
@@ -80,7 +79,6 @@
     
     <div id="slide1" class="slide active">
       <div class="topic-label">Topic: 駐車場とサイン (Parking & Signs) (Slide 1/5)</div>
-
       <div class="question-block">
         <div class="question-text">Q1. この駐車場は<u>くうしゃ</u>です。</div>
         <div class="english-translation">[This parking lot is empty/available.]</div>
@@ -97,7 +95,6 @@
         <div id="hint1" class="info-box hint-text">Hint: Represents "empty/available vehicle space". The opposite of full (満車).</div>
         <div id="ans1" class="info-box answer-text">Answer: B. 空車 (空車: kūsha)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q2. 車を<u>まえむき</u>に駐車してください。</div>
         <div class="english-translation">[Please park the car facing forward.]</div>
@@ -114,7 +111,6 @@
         <div id="hint2" class="info-box hint-text">Hint: The kanji 前 means "front", and 向き means "facing".</div>
         <div id="ans2" class="info-box answer-text">Answer: D. 前向き (前向き: maemuki)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q3. この駐車場の<u>りょうきん</u>はいくらですか。</div>
         <div class="english-translation">[How much is the fee for this parking lot?]</div>
@@ -131,7 +127,6 @@
         <div id="hint3" class="info-box hint-text">Hint: Both kanji mean "fee/money". The first kanji is also used in 料理 (ryōri).</div>
         <div id="ans3" class="info-box answer-text">Answer: B. 料金 (料金: ryōkin)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q4. 駐車場が<u>まんしゃ</u>で入れない。</div>
         <div class="english-translation">[I can't enter because the parking lot is full.]</div>
@@ -148,7 +143,6 @@
         <div id="hint4" class="info-box hint-text">Hint: The first kanji means "full" or "satisfied".</div>
         <div id="ans4" class="info-box answer-text">Answer: C. 満車 (満車: mansha)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q5. <u>あんない</u>板を見て行きましょう。</div>
         <div class="english-translation">[Let's go looking at the information board.]</div>
@@ -169,7 +163,6 @@
 
     <div id="slide2" class="slide">
       <div class="topic-label">Topic: 駅と電車 (Station & Train) (Slide 2/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q6. <u>とっきゅう</u>電車に乗ります。</div>
         <div class="english-translation">[I will take the limited express train.]</div>
@@ -186,7 +179,6 @@
         <div id="hint6" class="info-box hint-text">Hint: "Special" (特) + "Express" (急).</div>
         <div id="ans6" class="info-box answer-text">Answer: B. 特急 (特急: tokkyū)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q7. 白い<u>せん</u>の内側でお待ちください。</div>
         <div class="english-translation">[Please wait inside the white line.]</div>
@@ -203,7 +195,6 @@
         <div id="hint7" class="info-box hint-text">Hint: Do not confuse with "thread" (糸) or "cotton" (綿). The kanji for "line" is 線.</div>
         <div id="ans7" class="info-box answer-text">Answer: D. 線 (線: sen)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q8. 間もなく電車が<u>はっしゃ</u>します。</div>
         <div class="english-translation">[The train will depart shortly.]</div>
@@ -220,7 +211,6 @@
         <div id="hint8" class="info-box hint-text">Hint: The first kanji means "to depart/emit".</div>
         <div id="ans8" class="info-box answer-text">Answer: D. 発車 (発車: hassha)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q9. この電車は<u>かくえき</u>停車です。</div>
         <div class="english-translation">[This train stops at every station.]</div>
@@ -237,7 +227,6 @@
         <div id="hint9" class="info-box hint-text">Hint: The first kanji means "each" or "every".</div>
         <div id="ans9" class="info-box answer-text">Answer: B. 各駅 (各駅: kakueki)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q10. <u>じょうしゃ</u>券を拝見します。</div>
         <div class="english-translation">[Please show me your boarding ticket.]</div>
@@ -258,7 +247,6 @@
 
     <div id="slide3" class="slide">
       <div class="topic-label">Topic: バスと乗り物 (Bus & Transit) (Slide 3/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q11. 次の<u>ていりゅうじょ</u>でバスを降ります。</div>
         <div class="english-translation">[I will get off the bus at the next stop.]</div>
@@ -275,7 +263,6 @@
         <div id="hint11" class="info-box hint-text">Hint: Means a place to stop and stay (for a bus).</div>
         <div id="ans11" class="info-box answer-text">Answer: A. 停留所 (停留所: teiryūjo)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q12. バスに乗るときに<u>せいりけん</u>を取ります。</div>
         <div class="english-translation">[Take a numbered ticket when you get on the bus.]</div>
@@ -292,7 +279,6 @@
         <div id="hint12" class="info-box hint-text">Hint: 券 means "ticket".</div>
         <div id="ans12" class="info-box answer-text">Answer: C. 整理券 (整理券: seiriken)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q13. バスの<u>うんちん</u>を払います。</div>
         <div class="english-translation">[I will pay the bus fare.]</div>
@@ -309,7 +295,6 @@
         <div id="hint13" class="info-box hint-text">Hint: 賃 implies a charge or fare.</div>
         <div id="ans13" class="info-box answer-text">Answer: D. 運賃 (運賃: unchin)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q14. 次の駅で電車を<u>おります</u>。</div>
         <div class="english-translation">[I will get off the train at the next station.]</div>
@@ -326,7 +311,6 @@
         <div id="hint14" class="info-box hint-text">Hint: To "get off" a vehicle is written with the kanji that means descend/fall.</div>
         <div id="ans14" class="info-box answer-text">Answer: C. 降ります (降りる: oriru)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q15. お年寄りに席を<u>ゆずり</u>ました。</div>
         <div class="english-translation">[I offered my seat to an elderly person.]</div>
@@ -347,7 +331,6 @@
 
     <div id="slide4" class="slide">
       <div class="topic-label">Topic: 道と交通 (Roads & Traffic) (Slide 4/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q16. 次の<u>こうさてん</u>を右に曲がります。</div>
         <div class="english-translation">[Turn right at the next intersection.]</div>
@@ -364,7 +347,6 @@
         <div id="hint16" class="info-box hint-text">Hint: An intersection is a "point" (点) where lines "cross" (交差).</div>
         <div id="ans16" class="info-box answer-text">Answer: C. 交差点 (交差点: kōsaten)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q17. <u>しんごう</u>が赤に変わりました。</div>
         <div class="english-translation">[The traffic light turned red.]</div>
@@ -381,7 +363,6 @@
         <div id="hint17" class="info-box hint-text">Hint: The first kanji implies trust or signal (信).</div>
         <div id="ans17" class="info-box answer-text">Answer: A. 信号 (信号: shingō)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q18. <u>おうだん</u>歩道を渡りましょう。</div>
         <div class="english-translation">[Let's cross the pedestrian crossing.]</div>
@@ -398,7 +379,6 @@
         <div id="hint18" class="info-box hint-text">Hint: The word implies cutting "across" (横).</div>
         <div id="ans18" class="info-box answer-text">Answer: D. 横断 (横断: ōdan)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q19. <u>ふみきり</u>の前で一時停止します。</div>
         <div class="english-translation">[Stop temporarily before the railway crossing.]</div>
@@ -415,7 +395,6 @@
         <div id="hint19" class="info-box hint-text">Hint: It is a crossing where the train "cuts" (切) through the path you "step on" (踏).</div>
         <div id="ans19" class="info-box answer-text">Answer: A. 踏切 (踏切: fumikiri)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q20. 道が<u>こんで</u>いて、全然進みません。</div>
         <div class="english-translation">[The road is congested and not moving at all.]</div>
@@ -436,7 +415,6 @@
 
     <div id="slide5" class="slide">
       <div class="topic-label">Topic: 移動と安全 (Movement & Safety) (Slide 5/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q21. ここで遊ぶのは<u>きけん</u>です。</div>
         <div class="english-translation">[It is dangerous to play here.]</div>
@@ -453,7 +431,6 @@
         <div id="hint21" class="info-box hint-text">Hint: The opposite of safety. Both kanji represent "danger" or "peril".</div>
         <div id="ans21" class="info-box answer-text">Answer: D. 危険 (危険: kiken)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q22. <u>あんぜん</u>第一で運転してください。</div>
         <div class="english-translation">[Please drive with safety first.]</div>
@@ -470,7 +447,6 @@
         <div id="hint22" class="info-box hint-text">Hint: Meaning "peaceful" (安) and "complete/entire" (全).</div>
         <div id="ans22" class="info-box answer-text">Answer: B. 安全 (安全: anzen)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q23. 電車が駅を<u>つうか</u>しました。</div>
         <div class="english-translation">[The train passed through the station.]</div>
@@ -487,7 +463,6 @@
         <div id="hint23" class="info-box hint-text">Hint: The second kanji is the same one used in 過去 (past) and 過ぎる (to pass).</div>
         <div id="ans23" class="info-box answer-text">Answer: C. 通過 (通過: tsūka)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q24. 新幹線が間もなく<u>とうちゃく</u>します。</div>
         <div class="english-translation">[The bullet train will arrive shortly.]</div>
@@ -504,7 +479,6 @@
         <div id="hint24" class="info-box hint-text">Hint: The first kanji has the "knife/sword" radical on the right (刂).</div>
         <div id="ans24" class="info-box answer-text">Answer: A. 到着 (到着: tōchaku)</div>
       </div>
-
       <div class="question-block">
         <div class="question-text">Q25. ここを<u>まっすぐ</u>進んでください。</div>
         <div class="english-translation">[Please go straight ahead here.]</div>
@@ -524,9 +498,11 @@
     </div>
 
     <div class="nav-controls">
-      <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
-      <div id="slideIndicator" class="slide-indicator">Slide 1 of 5</div>
-      <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
+      <button id="jumpBtn1" class="nav-btn active-btn" onclick="jumpToSlide(1)">SLIDE 1</button>
+      <button id="jumpBtn2" class="nav-btn" onclick="jumpToSlide(2)">SLIDE 2</button>
+      <button id="jumpBtn3" class="nav-btn" onclick="jumpToSlide(3)">SLIDE 3</button>
+      <button id="jumpBtn4" class="nav-btn" onclick="jumpToSlide(4)">SLIDE 4</button>
+      <button id="jumpBtn5" class="nav-btn" onclick="jumpToSlide(5)">SLIDE 5</button>
     </div>
 
     <div class="support-section">
@@ -553,20 +529,21 @@
     }
   }
 
-  function changeSlide(direction) {
-    document.getElementById('slide' + currentSlide).classList.remove('active');
-    currentSlide += direction;
+  function jumpToSlide(slideNumber) {
+    // 全スライドとボタンの状態をリセット
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+      document.getElementById('jumpBtn' + i).classList.remove('active-btn');
+    }
+    
+    // 選択されたスライドを表示し、ボタンをハイライト
+    currentSlide = slideNumber;
     document.getElementById('slide' + currentSlide).classList.add('active');
-    
-    document.getElementById('prevBtn').disabled = (currentSlide === 1);
-    document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
-    
-    document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+    document.getElementById('jumpBtn' + currentSlide).classList.add('active-btn');
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 
 </body>
-
 </html>
