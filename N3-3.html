@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第3回 N3語彙 25問 - OHAYO CENTER</title>
-  <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" sizes="192x192" href="icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 <style>
   nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box; }
@@ -15,14 +15,17 @@
   .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
   .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
   @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } }
-  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: #f0f4f8; color: #333; display: flex; justify-content: center; padding: 90px 20px 80px; }
+  
+  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: #f0f4f8; color: #333; display: flex; flex-direction: column; align-items: center; padding: 90px 20px 80px; }
   .main-wrapper { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
   .slide-container { background-color: #ffffff; width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); padding: 40px; box-sizing: border-box; position: relative; }
   h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 30px; }
   .topic-label { background-color: #e2e8f0; color: #4a5568; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; display: inline-block; margin-bottom: 20px; font-weight: bold; }
+  
   .slide { display: none; animation: fadeIn 0.4s; }
   .slide.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  
   .question-block { margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px dashed #e2e8f0; }
   .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .question-text { font-size: 1.1em; font-weight: bold; margin-bottom: 15px; line-height: 1.5; }
@@ -30,27 +33,31 @@
   .options li { background-color: #f7fafc; border: 1px solid #cbd5e0; margin-bottom: 8px; padding: 10px 15px; border-radius: 6px; transition: background-color 0.2s; }
   .options li:hover { background-color: #ebf4ff; cursor: pointer; }
   .options label { cursor: pointer; display: block; width: 100%; }
+  
   .btn-group { display: flex; gap: 10px; }
   .action-btn { color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: background-color 0.2s; font-weight: bold; }
   .hint-btn { background-color: #4299e1; }
   .hint-btn:hover { background-color: #3182ce; }
   .answer-btn { background-color: #48bb78; }
   .answer-btn:hover { background-color: #38a169; }
+  
   .info-box { display: none; padding: 12px; margin-top: 10px; border-radius: 4px; font-size: 0.95em; }
   .hint-text { background-color: #fffaf0; border-left: 4px solid #ed8936; color: #555; font-style: italic; }
   .answer-text { background-color: #f0fff4; border-left: 4px solid #48bb78; color: #276749; font-weight: bold; }
-  .nav-controls { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; }
-  .nav-btn { background-color: #2c3e50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 1em; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
-  .nav-btn:hover { background-color: #1a252f; }
-  .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
-  .slide-indicator { font-size: 0.9em; color: #718096; align-self: center; font-weight: bold; }
+  
+  /* Slide Buttons Pagination */
+  .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; flex-wrap: wrap; }
+  .page-btn { padding: 10px 15px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; cursor: pointer; font-weight: bold; color: #2c3e50; transition: 0.2s; font-size: 0.9rem; }
+  .page-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+  .page-btn.active { background: #3498db; color: white; border-color: #3498db; }
+
   .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; }
   .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
   .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
   .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
   .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
   .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
-  @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } }
+  @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } .page-btn { padding: 8px 12px; font-size: 0.8rem; } }
 </style>
 </head>
 <body>
@@ -66,11 +73,10 @@
 
 <div class="main-wrapper">
   <div class="slide-container">
-    <h1>第3回 N3語彙 25問</h1>
+    <h1 id="page-title">第3回 N3語彙 (SLIDE 1)</h1>
     
     <div id="slide1" class="slide active">
       <div class="topic-label">Topic: Commuting / Going to work (Slide 1/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q1. I have to go to work by 9:00 AM every day. The word for "going to work" is...</div>
         <ul class="options">
@@ -154,7 +160,6 @@
 
     <div id="slide2" class="slide">
       <div class="topic-label">Topic: Actions at the workplace (Slide 2/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q6. I need to make a copy of these ______.</div>
         <ul class="options">
@@ -238,7 +243,6 @@
 
     <div id="slide3" class="slide">
       <div class="topic-label">Topic: Meetings / Discussions (Slide 3/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q11. The meeting is scheduled to ______ at 2 PM.</div>
         <ul class="options">
@@ -322,7 +326,6 @@
 
     <div id="slide4" class="slide">
       <div class="topic-label">Topic: Clients / Business trips (Slide 4/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q16. Tomorrow, I will go on a ______ to Osaka.</div>
         <ul class="options">
@@ -406,7 +409,6 @@
 
     <div id="slide5" class="slide">
       <div class="topic-label">Topic: Leaving work / Overtime (Slide 5/5)</div>
-      
       <div class="question-block">
         <div class="question-text">Q21. Because there is a lot of work, I have to do ______ tonight.</div>
         <ul class="options">
@@ -488,10 +490,12 @@
       </div>
     </div>
 
-    <div class="nav-controls">
-      <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
-      <div id="slideIndicator" class="slide-indicator">Slide 1 of 5</div>
-      <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
+    <div class="pagination">
+      <button class="page-btn active" onclick="goToSlide(1)">SLIDE 1</button>
+      <button class="page-btn" onclick="goToSlide(2)">SLIDE 2</button>
+      <button class="page-btn" onclick="goToSlide(3)">SLIDE 3</button>
+      <button class="page-btn" onclick="goToSlide(4)">SLIDE 4</button>
+      <button class="page-btn" onclick="goToSlide(5)">SLIDE 5</button>
     </div>
 
     <div class="support-section">
@@ -518,25 +522,31 @@
     }
   }
 
-  function changeSlide(direction) {
+  function goToSlide(slideNumber) {
+    // Hide previous slide
     document.getElementById('slide' + currentSlide).classList.remove('active');
-    currentSlide += direction;
+    
+    // Set new slide
+    currentSlide = slideNumber;
     document.getElementById('slide' + currentSlide).classList.add('active');
     
-    document.getElementById('prevBtn').disabled = (currentSlide === 1);
-    document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    // Update title
+    document.getElementById('page-title').textContent = `第3回 N3語彙 (SLIDE ${currentSlide})`;
+
+    // Update button active state
+    const btns = document.querySelectorAll('.page-btn');
+    btns.forEach((btn, index) => {
+      if (index + 1 === slideNumber) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
     
-    document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to top of container
+    window.scrollTo({ top: document.querySelector('.slide-container').offsetTop - 90, behavior: 'smooth' });
   }
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
