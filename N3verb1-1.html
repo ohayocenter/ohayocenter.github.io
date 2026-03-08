@@ -34,16 +34,19 @@
         .opt-btn { background-color: #f8f9fa; border: 1px solid #dce1e6; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; color: #2c3e50; transition: all 0.2s ease; width: 100%; font-family: 'Noto Sans JP', sans-serif; }
         .opt-btn:hover:not(:disabled) { background-color: #e2e8f0; border-color: #cbd5e1; }
         .opt-btn:disabled { cursor: default; }
-        .nav-controls { margin: 30px 0; display: flex; justify-content: center; gap: 15px; align-items: center; }
-        .nav-btn { background-color: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .nav-btn:hover { background-color: #1a252f; }
-        .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
+
+        /* スライド切り替えボタンのスタイル */
+        .nav-controls { margin: 30px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .jump-btn { background-color: #fff; color: var(--primary-color); border: 2px solid var(--primary-color); padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; min-width: 100px; }
+        .jump-btn:hover { background-color: #edf2f7; }
+        .jump-btn.active-page { background-color: var(--primary-color); color: white; }
+
         .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 1000px; }
         .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
         .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
         .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
         .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-        @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } .grid { grid-template-columns: repeat(2, 1fr); } .kanji { font-size: 1.5rem; } }
+        @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } .grid { grid-template-columns: repeat(2, 1fr); } .kanji { font-size: 1.5rem; } .jump-btn { padding: 8px 15px; min-width: 80px; font-size: 0.8rem; } }
     </style>
 </head>
 <body>
@@ -56,11 +59,10 @@
     </ul>
 </nav>
 <div class="container" id="slides-container"></div>
-<div class="nav-controls">
-    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">PREV</button>
-    <span id="pageDisplay" style="font-weight:bold; color:var(--primary-color)">Slide 1 / X</span>
-    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">NEXT</button>
-</div>
+
+<div class="nav-controls" id="navControls">
+    </div>
+
 <div class="support-section">
     <h2>Support OHAYO CENTER</h2>
     <p>If you find these materials helpful, please consider supporting us!</p>
@@ -172,7 +174,7 @@
                 { k: "繰り返す", e: "to repeat", o: ["くりかえす", "ぐりかえす", "くりがえす"], a: 0 },
                 { k: "立ち上がる", e: "to stand up", o: ["たちあかる", "だちあがる", "たちあがる"], a: 2 },
                 { k: "乗り越える", e: "to overcome", o: ["のりこえる", "のりごえる", "のんりこえる"], a: 0 },
-                { k: "間に合う", e: "to be in time", o: ["まにおう", "まにあう", "まんにあう"], a: 1 },
+                { k: "間に合う", e: "to be in time", o: ["まにおう", "まニアう", "まんにあう"], a: 1 },
                 { k: "役に立つ", e: "to be useful", o: ["やくにだつ", "やぐにたつ", "やくにたつ"], a: 2 },
                 { k: "気がつく", e: "to notice", o: ["きがつく", "きかつく", "ぎがつぐ"], a: 0 },
                 { k: "受け取る", e: "to receive", o: ["うげとる", "うけとる", "うけどる"], a: 1 },
@@ -197,7 +199,10 @@
 
     function init() {
         const container = document.getElementById('slides-container');
+        const navControls = document.getElementById('navControls');
+
         for(let i=1; i<=total; i++){
+            // スライド生成
             const slideDiv = document.createElement('div');
             slideDiv.className = `slide ${i===1?'active':''}`;
             slideDiv.id = `s${i}`;
@@ -225,8 +230,15 @@
             gridHTML += `</div>`;
             slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
             container.appendChild(slideDiv);
+
+            // ジャンプボタン生成
+            const jumpBtn = document.createElement('button');
+            jumpBtn.className = `jump-btn ${i===1?'active-page':''}`;
+            jumpBtn.id = `btn${i}`;
+            jumpBtn.textContent = `SLIDE ${i}`;
+            jumpBtn.onclick = () => goToSlide(i);
+            navControls.appendChild(jumpBtn);
         }
-        updateControls();
     }
 
     function checkAnswer(btn) {
@@ -248,18 +260,15 @@
         }
     }
 
-    function changeSlide(dir) {
+    function goToSlide(slideNum) {
         document.getElementById(`s${current}`).classList.remove('active');
-        current += dir;
+        document.getElementById(`btn${current}`).classList.remove('active-page');
+        
+        current = slideNum;
         document.getElementById(`s${current}`).classList.add('active');
-        updateControls();
+        document.getElementById(`btn${current}`).classList.add('active-page');
+        
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function updateControls() {
-        document.getElementById('prevBtn').disabled = (current === 1);
-        document.getElementById('nextBtn').disabled = (current === total);
-        document.getElementById('pageDisplay').textContent = `Slide ${current} / ${total}`;
     }
 
     init();
