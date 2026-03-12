@@ -65,8 +65,9 @@
         section { margin-bottom: 5rem; scroll-margin-top: 90px; }
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
 
-        /* --- Lesson Grid & Tabs --- */
-        .lesson-tabs { display: none; justify-content: center; gap: 8px; margin-bottom: 2rem; }
+        /* --- Tabs & Grids (Desktop: Tabs hidden) --- */
+        .lesson-tabs, .grammar-tabs, .kanji-tabs, .trip-tabs { display: none; justify-content: center; gap: 8px; margin-bottom: 2rem; }
+        
         .tab-btn { 
             background: #fff; border: 1px solid #ddd; padding: 10px 15px; border-radius: 12px; 
             font-size: 0.85rem; font-weight: bold; color: var(--dark); cursor: pointer; transition: 0.3s;
@@ -75,7 +76,6 @@
         .tab-btn span { font-size: 1.2rem; }
         .tab-btn.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
 
-        /* Modified Grid for 4 Columns */
         .lesson-grid { 
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
@@ -223,10 +223,29 @@
             .hero-btn-container { flex-direction: column; width: 100%; max-width: 250px; margin: 2rem auto 0; }
             .hero-btn { justify-content: center; width: 100%; }
             
+            /* Lesson Tabs */
             .lesson-tabs { display: flex; }
             .lesson-grid { display: block; }
             .lesson-grid .card { display: none; }
             .lesson-grid .card.active { display: flex; animation: fadeIn 0.4s ease; }
+
+            /* Tab Visibility on Mobile */
+            .grammar-tabs, .kanji-tabs, .trip-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem; }
+
+            /* Grammar Logic on Mobile */
+            .grammar-grid.show-n5 .unified-card:not(.g-n5) { display: none; }
+            .grammar-grid.show-n4 .unified-card:not(.g-n4) { display: none; }
+            .grammar-grid.show-n3 .unified-card:not(.g-n3) { display: none; }
+
+            /* Kanji Logic on Mobile */
+            .kanji-grid.show-n54 .unified-card:not(.k-n54) { display: none; }
+            .kanji-grid.show-n3 .unified-card:not(.k-n3) { display: none; }
+            .kanji-grid.show-marugoto .unified-card:not(.k-marugoto) { display: none; }
+
+            /* Trip Logic on Mobile */
+            .trip-grid.show-trip .unified-card:not(.t-trip) { display: none; }
+            .trip-grid.show-hira .unified-card:not(.t-hira) { display: none; }
+            .trip-grid.show-kata .unified-card:not(.t-kata) { display: none; }
             
             .profile-text-grid { grid-template-columns: 1fr; }
             .legal-content { padding: 2rem 1.2rem; }
@@ -389,21 +408,9 @@
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
             <ul class="update-list">
-                <li>
-                    <span class="update-date">2026.Mar.07</span>
-                    <span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Culture</span>
-                    <span class="update-text">New Culture & Fun section super updated!</span>
-                </li>
-                <li>
-                    <span class="update-date">2026.Feb.27</span>
-                    <span class="update-badge" style="color: #2980b9; background: #eaf4fc;">Kanji</span>
-                    <span class="update-text">Kanji Materials updated!</span>
-                </li>
-                <li>
-                    <span class="update-date">2026.Feb.27</span>
-                    <span class="update-badge" style="color: #f39c12; background: #fef5e7;">Grammar</span>
-                    <span class="update-text">Grammar Materials updated!</span>
-                </li>
+                <li><span class="update-date">2026.Mar.07</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Culture</span><span class="update-text">New Culture & Fun section super updated!</span></li>
+                <li><span class="update-date">2026.Feb.27</span><span class="update-badge" style="color: #2980b9; background: #eaf4fc;">Kanji</span><span class="update-text">Kanji Materials updated!</span></li>
+                <li><span class="update-date">2026.Feb.27</span><span class="update-badge" style="color: #f39c12; background: #fef5e7;">Grammar</span><span class="update-text">Grammar Materials updated!</span></li>
             </ul>
         </div>
 
@@ -428,38 +435,45 @@
         <h3 id="cat-grammar" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #f39c12; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-puzzle-piece"></i> Grammar & Sentence Making
         </h3>
-        <div class="unified-grid" style="margin-bottom: 3rem;">
-            <a href="Grammar1-1.html" class="unified-card">
+
+        <div class="lesson-tabs grammar-tabs">
+            <button class="tab-btn g-tab active" onclick="switchGrammar(0, 'n5')"><span>⭐</span>N5</button>
+            <button class="tab-btn g-tab" onclick="switchGrammar(1, 'n4')"><span>⭐⭐</span>N4</button>
+            <button class="tab-btn g-tab" onclick="switchGrammar(2, 'n3')"><span>⭐⭐⭐</span>N3</button>
+        </div>
+
+        <div class="unified-grid grammar-grid show-n5" id="grammarGrid" style="margin-bottom: 3rem;">
+            <a href="Grammar1-1.html" class="unified-card g-n5">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>N5 Grammar 1-1</h3>
                 <p>Sentence Builder Practice  JLPT N5⭐️ <br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
-            <a href="Grammar1-2.html" class="unified-card">
+            <a href="Grammar1-2.html" class="unified-card g-n5">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>N5 Grammar 1-2</h3>
                 <p>Sentence Builder Practice  JLPT N5⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
-            <a href="Grammar2-1.html" class="unified-card">
+            <a href="Grammar2-1.html" class="unified-card g-n4">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>N4 Grammar 2-1</h3>
                 <p>Sentence Builder Practice JLPT N4⭐️⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
-            <a href="Grammar2-2.html" class="unified-card">
+            <a href="Grammar2-2.html" class="unified-card g-n4">
                 <i class="fa-solid fa-puzzle-piece" style="color: #f39c12;"></i>
                 <h3>N4 Grammar 2-2</h3>
                 <p>Sentence Builder Practice JLPT N4⭐️⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
-            <a href="conditional1.html" class="unified-card">
+            <a href="conditional1.html" class="unified-card g-n4">
                 <i class="fa-solid fa-code-branch" style="color: #f39c12;"></i>
                 <h3>N4 Conditionals</h3>
                 <p>Conditional Sentence Practice JLPT N4⭐️⭐️<br>文法</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
-           <a href="Grammar3-1.html" class="unified-card">
+            <a href="Grammar3-1.html" class="unified-card g-n3">
                 <i class="fa-solid fa-code-branch" style="color:#9b59b6;"></i>
                 <h3>N3 Grammar 1-1</h3>
                 <p>Grammar Practice <br>JLPT N3⭐️⭐️⭐️<br>文法</p>
@@ -470,119 +484,116 @@
         <h3 id="cat-kanji" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #2980b9; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-book"></i> Kanji & Vocabulary
         </h3>
-        <div class="unified-grid" style="margin-bottom: 3rem;">
-            <a href="N4-5verb1-1.html" class="unified-card">
-            <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
-            <p>N4/N5 100 <b>Verbs</b> Challenge <br> 漢字⭐</p>
-            <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-            </a>
-            
-            <a href="N4-5adj1-1.html" class="unified-card">
-            <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
-            <p>N4/N5 100 <b>Adjectives</b> Challenge <br> 漢字⭐</p>
-            <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-            </a>
-            
-            <a href="N4-5noun1-1.html" class="unified-card">
-            <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
-            <p>N4/N5 100 <b>Nouns</b> Challenge <br> 漢字⭐</p>
-            <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-            </a>
 
-              <a href="Kanji-N4-5.html" class="unified-card">
-                <i class="fa-solid fa-language" style="color: #27ae60;"></i>
-                <h3>Kanji Level</h3>
+        <div class="lesson-tabs kanji-tabs">
+            <button class="tab-btn k-tab active" onclick="switchKanji(0, 'n54')"><span>⭐</span>N5/N4</button>
+            <button class="tab-btn k-tab" onclick="switchKanji(1, 'n3')"><span>⭐⭐</span>N3</button>
+            <button class="tab-btn k-tab" onclick="switchKanji(2, 'marugoto')"><span>📖</span>Marugoto</button>
+        </div>
+
+        <div class="unified-grid kanji-grid show-n54" id="kanjiGrid" style="margin-bottom: 3rem;">
+            <a href="N4-5verb1-1.html" class="unified-card k-n54">
+                <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
+                <p>N4/N5 100 <b>Verbs</b> Challenge <br> 漢字⭐</p>
+                <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
+            </a>
+            <a href="N4-5adj1-1.html" class="unified-card k-n54">
+                <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
+                <p>N4/N5 100 <b>Adjectives</b> Challenge <br> 漢字⭐</p>
+                <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
+            </a>
+            <a href="N4-5noun1-1.html" class="unified-card k-n54">
+                <i class="fa-regular fa-circle-check" style="color: #27ae60;"></i> <h3>Kanji 100 Quiz</h3>
+                <p>N4/N5 100 <b>Nouns</b> Challenge <br> 漢字⭐</p>
+                <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
+            </a>
+            <a href="Kanji-N4-5.html" class="unified-card k-n54">
+                <i class="fa-solid fa-language" style="color: #27ae60;"></i> <h3>Kanji Level</h3>
                 <p>300 Essential Kanji Master JLPT N4<br>漢字⭐</p>
                 <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div>
             </a>
-            <a href="A1-1.html" class="unified-card">
-                <i class="fa-solid fa-book" style="color: #3498db;"></i>
-                <h3>Kanji A1-1</h3>
-                <p>Entry Level Practice Marugoto A1</p>
-                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+            <a href="N3verb1-1.html" class="unified-card k-n3">
+                <i class="fa-regular fa-circle-check" style="color: #9b59b6;"></i> <h3>Kanji 100 Quiz</h3>
+                <p>N3 100 <b>Verbs</b> Challenge <br>漢字⭐⭐</p>
+                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
             </a>
-            <a href="A1-2.html" class="unified-card">
-                <i class="fa-solid fa-book" style="color: #3498db;"></i>
-                <h3>Kanji A1-2</h3>
-                <p>Elementary 1 Practice Marugoto A1-2</p>
-                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+            <a href="N3noun1-1.html" class="unified-card k-n3">
+                <i class="fa-regular fa-circle-check" style="color: #9b59b6;"></i> <h3>Kanji 100 Quiz</h3>
+                <p>N3 100 <b>Nouns</b> Challenge <br>漢字⭐⭐</p>
+                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
             </a>
-            <a href="A2.html" class="unified-card">
-                <i class="fa-solid fa-book" style="color: #3498db;"></i>
-                <h3>Kanji A2</h3>
-                <p>Elementary 1 Practice Marugoto A2</p>
-                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
-            </a>
-            
-            <a href="N3verb1-1.html" class="unified-card">
-            <i class="fa-regular fa-circle-check" style="color: #9b59b6;"></i> <h3>Kanji 100 Quiz</h3>
-            <p>N3 100 <b>Verbs</b> Challenge <br>漢字⭐⭐</p>
-            <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
-            </a>
-
-            <a href="N3noun1-1.html" class="unified-card">
-            <i class="fa-regular fa-circle-check" style="color: #9b59b6;"></i> <h3>Kanji 100 Quiz</h3>
-            <p>N3 100 <b>Nouns</b> Challenge <br>漢字⭐⭐</p>
-            <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
-            </a>
-
-
-            <a href="Kanji3-1.html" class="unified-card">
-                <i class="fa-solid fa-book" style="color: #9b59b6;"></i>
-                <h3>Kanji 3-1</h3>
+            <a href="Kanji3-1.html" class="unified-card k-n3">
+                <i class="fa-solid fa-book" style="color: #9b59b6;"></i> <h3>Kanji 3-1</h3>
                 <p>Intermediate Kanji Practice JLPT N3<br>漢字</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
-            <a href="Kanji3-2.html" class="unified-card">
-                <i class="fa-solid fa-book" style="color: #9b59b6;"></i>
-                <h3>Kanji 3-2</h3>
+            <a href="Kanji3-2.html" class="unified-card k-n3">
+                <i class="fa-solid fa-book" style="color: #9b59b6;"></i> <h3>Kanji 3-2</h3>
                 <p>Intermediate Kanji Practice JLPT N3<br>漢字</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
-
-            <a href="N3-1.html" class="unified-card">
-                <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i>
-                <h3>N3 Vocabulary-1</h3>
-                <p>Intermediate 1 Practice with English questions <br>JLPT N3<br>語彙</p>
+            <a href="N3-1.html" class="unified-card k-n3">
+                <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i> <h3>N3 Vocabulary-1</h3>
+                <p>Practice JLPT N3<br>語彙</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
-            <a href="N3-2.html" class="unified-card">
-                <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i>
-                <h3>N3 Vocabulary-2</h3>
-                <p>Intermediate 1 Practice with English questions <br>JLPT N3<br>語彙</p>
+            <a href="N3-2.html" class="unified-card k-n3">
+                <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i> <h3>N3 Vocabulary-2</h3>
+                <p>Practice JLPT N3<br>語彙</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
             </a>
-            <a href="N3-3.html" class="unified-card">
-                <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i>
-                <h3>N3 Vocabulary-3</h3>
-                <p>Intermediate 1 Practice with English questions <br>JLPT N3<br>語彙</p>
+            <a href="N3-3.html" class="unified-card k-n3">
+                <i class="fa-solid fa-list-ul" style="color: #9b59b6;"></i> <h3>N3 Vocabulary-3</h3>
+                <p>Practice JLPT N3<br>語彙</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+            </a>
+            <a href="A1-1.html" class="unified-card k-marugoto">
+                <i class="fa-solid fa-book" style="color: #3498db;"></i> <h3>Kanji A1-1</h3>
+                <p>Entry Level Marugoto A1</p>
+                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+            </a>
+            <a href="A1-2.html" class="unified-card k-marugoto">
+                <i class="fa-solid fa-book" style="color: #3498db;"></i> <h3>Kanji A1-2</h3>
+                <p>Elementary Marugoto A1-2</p>
+                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+            </a>
+            <a href="A2.html" class="unified-card k-marugoto">
+                <i class="fa-solid fa-book" style="color: #3498db;"></i> <h3>Kanji A2</h3>
+                <p>Elementary Marugoto A2</p>
+                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
             </a>
         </div>
 
         <h3 id="cat-trip" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #e74c3c; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-plane-departure"></i> Trip Japan & Basics
         </h3>
-        <div class="unified-grid" style="margin-bottom: 4rem;">
-            <a href="trip.html" class="unified-card">
+
+        <div class="lesson-tabs trip-tabs">
+            <button class="tab-btn t-tab active" onclick="switchTrip(0, 'trip')"><span>✈️</span>Trip</button>
+            <button class="tab-btn t-tab" onclick="switchTrip(1, 'hira')"><span>あ</span>Hira</button>
+            <button class="tab-btn t-tab" onclick="switchTrip(2, 'kata')"><span>ア</span>Kata</button>
+        </div>
+
+        <div class="unified-grid trip-grid show-trip" id="tripGrid" style="margin-bottom: 4rem;">
+            <a href="trip.html" class="unified-card t-trip">
                 <i class="fa-solid fa-plane-departure" style="color: #e74c3c;"></i>
                 <h3>TRIP JAPAN</h3>
                 <p>Travel Survival Japanese</p>
                 <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
             </a>
-            <a href="Hiragana.html" class="unified-card">
+            <a href="Hiragana.html" class="unified-card t-hira">
                 <i class="fa-solid fa-book-open-reader" style="color: #2980b9;"></i>
                 <h3>Hiragana</h3>
                 <p>Hiragana Practice 1</p>
                 <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
             </a>
-            <a href="Katakana1.html" class="unified-card">
+            <a href="Katakana1.html" class="unified-card t-kata">
                 <i class="fa-solid fa-book-open-reader" style="color: #d35400;"></i>
                 <h3>Katakana</h3>
                 <p>Katakana Practice 1</p>
                 <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
             </a>
-            <a href="Katakana1-2.html" class="unified-card">
+            <a href="Katakana1-2.html" class="unified-card t-kata">
                 <i class="fa-solid fa-book-open-reader" style="color: #e67e22;"></i>
                 <h3>Katakana</h3>
                 <p>Practical Words</p>
@@ -702,15 +713,43 @@
 </div>
 
 <script>
-    // Tab Switching Function (Updated for 4 items)
+    // Lesson Tabs Logic
     function switchLesson(index) {
         const cards = document.querySelectorAll('.lesson-grid .card');
-        const btns = document.querySelectorAll('.tab-btn');
-        
+        const btns = document.querySelectorAll('.lesson-tabs .tab-btn');
         cards.forEach(card => card.classList.remove('active'));
         btns.forEach(btn => btn.classList.remove('active'));
-        
         if(cards[index]) cards[index].classList.add('active');
+        if(btns[index]) btns[index].classList.add('active');
+    }
+
+    // Grammar Tabs Logic
+    function switchGrammar(index, levelClass) {
+        const grid = document.getElementById('grammarGrid');
+        const btns = document.querySelectorAll('.grammar-tabs .tab-btn');
+        grid.classList.remove('show-n5', 'show-n4', 'show-n3');
+        grid.classList.add('show-' + levelClass);
+        btns.forEach(btn => btn.classList.remove('active'));
+        if(btns[index]) btns[index].classList.add('active');
+    }
+
+    // Kanji Tabs Logic
+    function switchKanji(index, levelClass) {
+        const grid = document.getElementById('kanjiGrid');
+        const btns = document.querySelectorAll('.kanji-tabs .tab-btn');
+        grid.classList.remove('show-n54', 'show-n3', 'show-marugoto');
+        grid.classList.add('show-' + levelClass);
+        btns.forEach(btn => btn.classList.remove('active'));
+        if(btns[index]) btns[index].classList.add('active');
+    }
+
+    // Trip Tabs Logic
+    function switchTrip(index, levelClass) {
+        const grid = document.getElementById('tripGrid');
+        const btns = document.querySelectorAll('.trip-tabs .tab-btn');
+        grid.classList.remove('show-trip', 'show-hira', 'show-kata');
+        grid.classList.add('show-' + levelClass);
+        btns.forEach(btn => btn.classList.remove('active'));
         if(btns[index]) btns[index].classList.add('active');
     }
 
@@ -719,18 +758,10 @@
         const modal = document.getElementById(modalId);
         const openBtn = document.getElementById(openBtnId);
         const closeBtn = document.getElementById(closeBtnId);
-
         openBtn.onclick = (e) => { e.preventDefault(); modal.classList.add("show"); document.body.style.overflow = "hidden"; };
         closeBtn.onclick = () => { modal.classList.remove("show"); document.body.style.overflow = "auto"; };
-        
-        window.addEventListener('click', (event) => { 
-            if (event.target == modal) { 
-                modal.classList.remove("show"); 
-                document.body.style.overflow = "auto"; 
-            } 
-        });
+        window.addEventListener('click', (event) => { if (event.target == modal) { modal.classList.remove("show"); document.body.style.overflow = "auto"; } });
     }
-
     setupModal("legalModal", "openLegalModal", "closeLegalModal");
     setupModal("privacyModal", "openPrivacyModal", "closePrivacyModal");
 
