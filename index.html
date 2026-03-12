@@ -59,19 +59,44 @@
         .primary-btn { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(255,159,67,0.3); }
         .primary-btn:hover { box-shadow: 0 6px 20px rgba(255,159,67,0.4); }
         .secondary-btn { background: white; color: var(--dark); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); color: var(--primary); }
+        .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,1); color: var(--primary); }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem; }
         section { margin-bottom: 5rem; scroll-margin-top: 90px; }
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
 
-        .lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .card { background: #fff; padding: 2.5rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
+        /* --- Lesson Grid & Tabs --- */
+        .lesson-tabs { display: none; justify-content: center; gap: 8px; margin-bottom: 2rem; }
+        .tab-btn { 
+            background: #fff; border: 1px solid #ddd; padding: 10px 15px; border-radius: 12px; 
+            font-size: 0.85rem; font-weight: bold; color: var(--dark); cursor: pointer; transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center; min-width: 80px;
+        }
+        .tab-btn span { font-size: 1.2rem; }
+        .tab-btn.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+
+        /* Modified Grid for 4 Columns */
+        .lesson-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1rem; 
+            margin-bottom: 2rem; 
+            align-items: stretch;
+        }
+        .card { 
+            background: #fff; 
+            padding: 2.5rem 1rem; 
+            border-radius: 20px; 
+            text-align: center; 
+            box-shadow: var(--shadow); 
+            border: 1px solid rgba(0,0,0,0.02); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
         .food-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
         .price { font-size: 1.6rem; font-weight: bold; color: var(--dark); }
         .package-price { font-size: 0.85rem; color: var(--primary); font-weight: bold; background: var(--primary-light); padding: 2px 10px; border-radius: 20px; display: inline-block; margin-top: 5px; }
-
-        .consultation-banner { background: #fff; padding: 2rem; border-radius: 25px; text-align: center; border: 1px solid #e0e6ed; box-shadow: var(--shadow); }
 
         .profile-box { background: #fff; padding: 3.5rem 2rem; border-radius: 30px; box-shadow: var(--shadow); max-width: 900px; margin: 0 auto; }
         .profile-header { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; justify-content: center; margin-bottom: 3rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
@@ -149,106 +174,45 @@
         .privacy-section p { font-size: 0.85rem; color: #555; margin-bottom: 0.8rem; line-height: 1.6; }
         #mail-reveal, #mail-reveal-privacy { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
 
-        /* --- Update Board Styles --- */
         .update-board {
-            background: #fff;
-            border-radius: 20px;
-            padding: 1.8rem 2rem;
-            margin: 2rem auto 3rem;
-            max-width: 800px;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.02);
+            background: #fff; border-radius: 20px; padding: 1.8rem 2rem; margin: 2rem auto 3rem;
+            max-width: 800px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02);
         }
         .update-board h3 {
-            font-family: 'Sawarabi Mincho', serif;
-            font-size: 1.3rem;
-            color: var(--dark);
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 0.8rem;
-            text-align: left;
+            font-family: 'Sawarabi Mincho', serif; font-size: 1.3rem; color: var(--dark);
+            margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px;
+            border-bottom: 2px solid #f0f0f0; padding-bottom: 0.8rem; text-align: left;
         }
-        .update-list {
-            list-style: none;
-        }
+        .update-list { list-style: none; }
         .update-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 10px 0;
-            border-bottom: 1px dashed #eee;
-            font-size: 0.9rem;
+            display: flex; align-items: flex-start; gap: 15px; padding: 10px 0;
+            border-bottom: 1px dashed #eee; font-size: 0.9rem;
         }
-        
-        /* 常に最新3件のみ表示させる設定 */
-        .update-list li:nth-child(n+4) {
-            display: none;
-        }
-        
-        /* 最後の線の処理 */
-        .update-list li:last-child,
-        .update-list li:nth-child(3) {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
+        .update-list li:nth-child(n+4) { display: none; }
+        .update-list li:last-child, .update-list li:nth-child(3) { border-bottom: none; padding-bottom: 0; }
 
-        .update-date {
-            font-weight: bold;
-            color: var(--primary);
-            min-width: 90px;
-            font-family: monospace;
-            font-size: 0.95rem;
-        }
+        .update-date { font-weight: bold; color: var(--primary); min-width: 90px; font-family: monospace; font-size: 0.95rem; }
         .update-badge {
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            white-space: nowrap;
+            background: var(--primary-light); color: var(--primary); padding: 3px 10px;
+            border-radius: 50px; font-size: 0.75rem; font-weight: bold; white-space: nowrap;
         }
-        .update-text {
-            color: #555;
-            line-height: 1.5;
-        }
+        .update-text { color: #555; line-height: 1.5; }
 
-        /* --- Category Filter Buttons --- */
-        .category-nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 2.5rem;
-            padding: 0 10px;
-        }
+        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 2.5rem; padding: 0 10px; }
         .category-btn {
-            background: #fff;
-            color: var(--dark);
-            border: 1px solid #e0e6ed;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            background: #fff; color: var(--dark); border: 1px solid #e0e6ed; padding: 10px 20px;
+            border-radius: 50px; font-size: 0.85rem; font-weight: bold; text-decoration: none;
+            transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: flex; align-items: center; gap: 8px;
         }
-        .category-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        /* Color themes for categories */
+        .category-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .category-btn.c-culture { border-left: 4px solid #9b59b6; }
         .category-btn.c-grammar { border-left: 4px solid #f39c12; }
         .category-btn.c-kanji { border-left: 4px solid #2980b9; }
         .category-btn.c-trip { border-left: 4px solid #e74c3c; }
+
+        @media (max-width: 900px) {
+            .lesson-grid { grid-template-columns: repeat(2, 1fr); }
+        }
 
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
@@ -258,6 +222,12 @@
             .hero { height: 40vh; }
             .hero-btn-container { flex-direction: column; width: 100%; max-width: 250px; margin: 2rem auto 0; }
             .hero-btn { justify-content: center; width: 100%; }
+            
+            .lesson-tabs { display: flex; }
+            .lesson-grid { display: block; }
+            .lesson-grid .card { display: none; }
+            .lesson-grid .card.active { display: flex; animation: fadeIn 0.4s ease; }
+            
             .profile-text-grid { grid-template-columns: 1fr; }
             .legal-content { padding: 2rem 1.2rem; }
             .legal-table th, .legal-table td { display: block; width: 100%; }
@@ -266,11 +236,10 @@
 
             .update-board { padding: 1.5rem 1.2rem; }
             .update-list li { flex-wrap: wrap; gap: 8px; }
-
-            /* Mobile adjustments for category buttons */
             .category-nav { flex-direction: row; gap: 8px; }
             .category-btn { padding: 8px 15px; font-size: 0.75rem; flex-grow: 1; justify-content: center; }
         }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -297,48 +266,64 @@
 <div class="container">
     <section id="lessons">
         <h2>Lesson Course</h2>
-        <div class="lesson-grid">
+
+        <div class="lesson-tabs">
+            <button class="tab-btn active" onclick="switchLesson(0)"><span>🍫</span>Trial</button>
+            <button class="tab-btn" onclick="switchLesson(1)"><span>🍙</span>30m</button>
+            <button class="tab-btn" onclick="switchLesson(2)"><span>🥪</span>45m</button>
+            <button class="tab-btn" onclick="switchLesson(3)"><span>🍜</span>60m</button>
+        </div>
+
+        <div class="lesson-grid" id="lessonGrid">
+            <div class="card active">
+                <div>
+                    <span class="food-icon">🍫</span>
+                    <h3>Trial Lesson</h3>
+                    <p class="price">1,500 yen</p>
+                    <span class="package-price">30 mins / First time</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
+                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
+                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                </div>
+            </div>
+
             <div class="card">
-                <span class="food-icon">🍙</span>
-                <h3>30 min</h3>
-                <p class="price">2,000 yen</p>
-                <span class="package-price">5 lessons: 10,000 yen</span>
+                <div>
+                    <span class="food-icon">🍙</span>
+                    <h3>30 min</h3>
+                    <p class="price">2,000 yen</p>
+                    <span class="package-price">5 lessons: 10,000 yen</span>
+                </div>
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
                     <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
                     <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
                 </div>
             </div>
+
             <div class="card">
-                <span class="food-icon">🥪</span>
-                <h3>45 min</h3>
-                <p class="price">3,000 yen</p>
-                <span class="package-price">5 lessons: 15,000 yen</span>
+                <div>
+                    <span class="food-icon">🥪</span>
+                    <h3>45 min</h3>
+                    <p class="price">3,000 yen</p>
+                    <span class="package-price">5 lessons: 15,000 yen</span>
+                </div>
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
                     <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
                     <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
                 </div>
             </div>
+
             <div class="card">
-                <span class="food-icon">🍜</span>
-                <h3>60 min</h3>
-                <p class="price">4,000 yen</p>
-                <span class="package-price">5 lessons: 20,000 yen</span>
+                <div>
+                    <span class="food-icon">🍜</span>
+                    <h3>60 min</h3>
+                    <p class="price">4,000 yen</p>
+                    <span class="package-price">5 lessons: 20,000 yen</span>
+                </div>
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
                     <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
                     <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
-                </div>
-            </div>
-        </div>
-
-        <div style="display: flex; justify-content: center; margin: 3rem auto 0;">
-            <div class="consultation-banner" style="margin: 0; width: 100%; max-width: 450px;">
-                <span style="font-size: 1.5rem;">🍫</span>
-                <h3 style="font-size: 1.2rem;">Trial Lesson</h3>
-                <p style="color:#666; font-size:0.8rem; margin-bottom: 8px;">For your first step</p>
-                <p style="font-weight:bold; font-size:1.2rem; margin-bottom: 10px;">30 mins / 1,500 yen</p>
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1rem;">
-                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
-                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
                 </div>
             </div>
         </div>
@@ -717,6 +702,19 @@
 </div>
 
 <script>
+    // Tab Switching Function (Updated for 4 items)
+    function switchLesson(index) {
+        const cards = document.querySelectorAll('.lesson-grid .card');
+        const btns = document.querySelectorAll('.tab-btn');
+        
+        cards.forEach(card => card.classList.remove('active'));
+        btns.forEach(btn => btn.classList.remove('active'));
+        
+        if(cards[index]) cards[index].classList.add('active');
+        if(btns[index]) btns[index].classList.add('active');
+    }
+
+    // Modal logic
     function setupModal(modalId, openBtnId, closeBtnId) {
         const modal = document.getElementById(modalId);
         const openBtn = document.getElementById(openBtnId);
@@ -749,8 +747,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
