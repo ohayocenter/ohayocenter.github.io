@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ja" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ひらがな・カタカナ マッチング - OHAYO CENTER</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=M+PLUS+Rounded+1c:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- ナビゲーションバー --- */
+    nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 65px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'M PLUS Rounded 1c', sans-serif; box-sizing: border-box; }
+    .logo { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.4rem; white-space: nowrap; letter-spacing: 0.5px; }
+    .logo a { text-decoration: none; color: #5d4e37; }
+    .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.5px; }
+    
+    @media (max-width: 600px) { 
+      nav { padding: 0 15px; height: 60px; }
+      .logo { font-size: 1.1rem; }
+      .nav-links { gap: 0.8rem; }
+      .nav-links a { font-size: 0.7rem; }
+      #app { padding-top: 85px !important; } /* スマホの余白をさらに調整 */
+    }
+
+    /* タイトルを少し上に配置するための余白調整 */
+    #app { padding-top: 110px !important; }
+
+    /* --- Support Section --- */
+    .support-section { text-align: center; margin-top: 50px; padding: 40px 15px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .support-section h2 { color: #5d4e37; font-size: 1.2em; margin-bottom: 10px; font-weight: bold; }
+    .support-section p { color: #8b7355; font-size: 0.9em; margin-bottom: 20px; }
+    .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 10px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; font-family: 'Fredoka', sans-serif; }
+    .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+
+    /* --- ゲーム本体 --- */
+    * { font-family: 'Zen Maru Gothic', sans-serif; }
+    .card { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; min-height: 85px; display: flex; align-items: center; justify-content: center; }
+    .card.selected { transform: scale(1.05); box-shadow: 0 0 0 4px #ff9a9e; }
+    .card.matched { opacity: 0.5; transform: scale(0.92); pointer-events: none; }
+    .card.wrong { animation: shake 0.4s ease-in-out; }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+ </head>
+ <body class="h-full overflow-auto" style="background: linear-gradient(135deg, #fef3e2 0%, #fce7d6 100%);">
+  
+  <nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+  </nav>
+
+  <div id="app" class="w-full min-h-full p-4 md:p-8">
+   <header class="text-center mb-6 opacity-0 fade-in">
+    <h1 id="game-title" class="text-2xl md:text-3xl font-bold mb-2 text-[#5d4e37]">ひらがな・カタカナ マッチング</h1>
+    <p class="text-sm md:text-lg text-[#8b7355]">同じ音のカードをみつけよう！</p>
+   </header>
+
+   <div class="max-w-2xl mx-auto mb-6 opacity-0 fade-in">
+    <div class="bg-white/90 backdrop-blur rounded-3xl p-5 shadow-lg">
+     <div class="flex justify-between items-center mb-3">
+      <div class="text-base font-bold text-[#5d4e37]">⭐ <span id="score">0</span> てん</div>
+      <div class="text-base font-bold text-[#5d4e37]">🎯 <span id="matches">0</span> / <span id="total-pairs">6</span></div>
+     </div>
+     <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden">
+      <div id="progress-bar" class="h-full bg-gradient-to-r from-[#ff9a9e] to-[#fecfef] transition-all duration-500" style="width: 0%;"></div>
+     </div>
+    </div>
+    <button id="learn-btn" class="w-full mt-4 py-3 rounded-full text-white font-bold text-lg bg-gradient-to-r from-[#4ecdc4] to-[#44a5a5] shadow-lg active:scale-95 transition">📚 べんきょう する ▶</button>
+   </div>
+
+   <div class="max-w-5xl mx-auto opacity-0 fade-in">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+     <section>
+      <h2 class="text-center font-bold mb-3 py-2 rounded-2xl bg-[#ff9a9e] text-white shadow-sm">ひらがな</h2>
+      <div id="hiragana-cards" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+     </section>
+     <section>
+      <h2 class="text-center font-bold mb-3 py-2 rounded-2xl bg-[#a8edea] text-[#2d7d7d] shadow-sm">カタカナ</h2>
+      <div id="katakana-cards" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+     </section>
+    </div>
+   </div>
+
+   <div class="max-w-2xl mx-auto mt-10 mb-10 opacity-0 fade-in">
+    <div class="bg-white/80 rounded-3xl p-5 shadow-md text-center border border-white/50">
+     <p class="text-sm font-bold text-[#5d4e37] mb-3">レベルをえらぼう</p>
+     <div class="flex flex-wrap justify-center gap-2">
+      <button data-level="easy" class="level-btn px-4 py-2 rounded-full font-bold bg-[#a8edea] text-[#2d7d7d]">🌸 かんたん</button>
+      <button data-level="beginner" class="level-btn px-4 py-2 rounded-full font-bold bg-[#ffd3a5] text-[#996633]">⭐ やさしい</button>
+      <button data-level="medium" class="level-btn px-4 py-2 rounded-full font-bold bg-[#ffb3ba] text-[#993333]">🌻 ふつう</button>
+      <button data-level="hard" class="level-btn px-4 py-2 rounded-full font-bold bg-[#ff9a9e] text-[#993333]">🔥 むずかしい</button>
+      <button data-level="veryhard" class="level-btn px-4 py-2 rounded-full font-bold bg-[#b088cc] text-white">⚡ ぜんぶ</button>
+     </div>
+    </div>
+   </div>
+
+   <div class="support-section">
+     <p>If you like the material please support us！</p>
+     <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
+       ☕️ <span>SUPPORT OHAYO CENTER</span>
+     </a>
+   </div>
+  </div>
+
+  <div id="success-modal" class="hidden fixed inset-0 flex items-center justify-center z-[2000] p-4 bg-black/40 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl p-10 text-center shadow-2xl max-w-xs w-full">
+     <div class="text-6xl mb-4">🎉</div>
+     <h2 class="text-xl font-bold mb-2 text-[#5d4e37]">すごい！かんぺき！</h2>
+     <p class="text-2xl font-bold text-[#ff6b6b] mb-8">スコア: <span id="final-score">0</span></p>
+     <button id="restart-btn" class="w-full py-3 rounded-full text-white font-bold bg-[#ff9a9e]">もういちど あそぶ</button>
+    </div>
+  </div>
+
+  <div id="study-modal" class="hidden fixed inset-0 flex items-center justify-center z-[2000] p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white rounded-[2.5rem] p-8 shadow-2xl max-w-sm w-full relative">
+     <button id="close-study" class="absolute top-5 right-6 text-2xl text-gray-400">✕</button>
+     <h2 class="text-xl font-bold mb-6 text-center text-[#5d4e37]">📚 べんきょう モード</h2>
+     <div class="flex flex-col items-center gap-6 py-6 bg-gray-50 rounded-3xl mb-6">
+       <div class="text-7xl font-bold text-[#ff9a9e]" id="study-hiragana">あ</div>
+       <div class="text-3xl font-bold text-[#5d4e37]" id="study-romaji">a</div>
+       <div class="text-7xl font-bold text-[#4ecdc4]" id="study-katakana">ア</div>
+     </div>
+     <div class="flex justify-between gap-3">
+       <button id="study-prev" class="flex-1 py-3 bg-gray-100 rounded-2xl font-bold text-gray-600">◀ まえ</button> 
+       <button id="study-next" class="flex-1 py-3 rounded-2xl text-white font-bold bg-[#ff9a9e]">つぎ ▶</button>
+     </div>
+     <p class="text-center text-xs mt-4 text-gray-300" id="study-counter">1 / 46</p>
+    </div>
+  </div>
+
+  <script>
+    const allCharacters = [
+      { hiragana: 'あ', katakana: 'ア', romaji: 'a' }, { hiragana: 'い', katakana: 'イ', romaji: 'i' }, { hiragana: 'う', katakana: 'ウ', romaji: 'u' }, { hiragana: 'え', katakana: 'エ', romaji: 'e' }, { hiragana: 'お', katakana: 'オ', romaji: 'o' },
+      { hiragana: 'か', katakana: 'カ', romaji: 'ka' }, { hiragana: 'き', katakana: 'キ', romaji: 'ki' }, { hiragana: 'く', katakana: 'ク', romaji: 'ku' }, { hiragana: 'け', katakana: 'ケ', romaji: 'ke' }, { hiragana: 'こ', katakana: 'コ', romaji: 'ko' },
+      { hiragana: 'さ', katakana: 'サ', romaji: 'sa' }, { hiragana: 'し', katakana: 'シ', romaji: 'shi' }, { hiragana: 'す', katakana: 'ス', romaji: 'su' }, { hiragana: 'せ', katakana: 'セ', romaji: 'se' }, { hiragana: 'そ', katakana: 'ソ', romaji: 'so' },
+      { hiragana: 'た', katakana: 'タ', romaji: 'ta' }, { hiragana: 'ち', katakana: 'チ', romaji: 'chi' }, { hiragana: 'つ', katakana: 'ツ', romaji: 'tsu' }, { hiragana: 'て', katakana: 'テ', romaji: 'te' }, { hiragana: 'と', katakana: 'ト', romaji: 'to' },
+      { hiragana: 'な', katakana: 'ナ', romaji: 'na' }, { hiragana: 'に', katakana: 'ニ', romaji: 'ni' }, { hiragana: 'ぬ', katakana: 'ヌ', romaji: 'nu' }, { hiragana: 'ね', katakana: 'ネ', romaji: 'ne' }, { hiragana: 'の', katakana: 'ノ', romaji: 'no' },
+      { hiragana: 'は', katakana: 'ハ', romaji: 'ha' }, { hiragana: 'ひ', katakana: 'ヒ', romaji: 'hi' }, { hiragana: 'ふ', katakana: 'フ', romaji: 'fu' }, { hiragana: 'へ', katakana: 'ヘ', romaji: 'he' }, { hiragana: 'ほ', katakana: 'ホ', romaji: 'ho' },
+      { hiragana: 'ま', katakana: 'マ', romaji: 'ma' }, { hiragana: 'み', katakana: 'ミ', romaji: 'mi' }, { hiragana: 'む', katakana: 'ム', romaji: 'mu' }, { hiragana: 'め', katakana: 'メ', romaji: 'me' }, { hiragana: 'も', katakana: 'モ', romaji: 'mo' },
+      { hiragana: 'や', katakana: 'ヤ', romaji: 'ya' }, { hiragana: 'ゆ', katakana: 'ユ', romaji: 'yu' }, { hiragana: 'よ', katakana: 'ヨ', romaji: 'yo' },
+      { hiragana: 'ら', katakana: 'ラ', romaji: 'ra' }, { hiragana: 'り', katakana: 'リ', romaji: 'ri' }, { hiragana: 'る', katakana: 'ル', romaji: 'ru' }, { hiragana: 'れ', katakana: 'レ', romaji: 're' }, { hiragana: 'ろ', katakana: 'ロ', romaji: 'ro' },
+      { hiragana: 'わ', katakana: 'ワ', romaji: 'wa' }, { hiragana: 'を', katakana: 'ヲ', romaji: 'wo' }, { hiragana: 'ん', katakana: 'ン', romaji: 'n' }
+    ];
+    const characterSets = { easy: allCharacters.slice(0, 5), beginner: allCharacters.slice(0, 10), medium: allCharacters.slice(0, 15), hard: allCharacters.slice(0, 25), veryhard: allCharacters };
+    let currentLevel = 'easy', selectedCard = null, score = 0, matchedPairs = 0, currentPairs = [], studyIndex = 0;
+    function shuffle(array) { const arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+    function createCard(char, type, index) {
+      const card = document.createElement('div');
+      card.className = 'card bg-white rounded-2xl shadow-md cursor-pointer border-b-4 border-gray-100 active:border-b-0 active:translate-y-1';
+      card.innerHTML = `<span class="text-3xl md:text-5xl font-bold text-[#5d4e37]">${char}</span>`;
+      card.onclick = () => handleCardClick(card, type, index);
+      return card;
+    }
+    function handleCardClick(card, type, index) {
+      if (card.classList.contains('matched') || card.classList.contains('selected')) return;
+      if (!selectedCard) { selectedCard = { card, type, index }; card.classList.add('selected'); } else {
+        if (selectedCard.type === type) { selectedCard.card.classList.remove('selected'); selectedCard = { card, type, index }; card.classList.add('selected'); return; }
+        if (selectedCard.index === index) {
+          selectedCard.card.classList.replace('selected', 'matched');
+          card.classList.add('matched');
+          score += 100; matchedPairs++; updateScore();
+          if (matchedPairs === currentPairs.length) setTimeout(showSuccess, 500);
+        } else {
+          card.classList.add('wrong'); selectedCard.card.classList.add('wrong'); score = Math.max(0, score - 10); updateScore();
+          const prev = selectedCard.card; setTimeout(() => { prev.classList.remove('selected', 'wrong'); card.classList.remove('wrong'); }, 400);
+        }
+        selectedCard = null;
+      }
+    }
+    function updateScore() {
+      document.getElementById('score').textContent = score;
+      document.getElementById('matches').textContent = matchedPairs;
+      document.getElementById('progress-bar').style.width = `${(matchedPairs/currentPairs.length)*100}%`;
+    }
+    function showSuccess() { document.getElementById('final-score').textContent = score; document.getElementById('success-modal').classList.remove('hidden'); }
+    function startGame(level) {
+      currentLevel = level; currentPairs = shuffle(characterSets[level]);
+      selectedCard = null; score = 0; matchedPairs = 0;
+      document.getElementById('total-pairs').textContent = currentPairs.length; updateScore();
+      document.getElementById('success-modal').classList.add('hidden');
+      const hContainer = document.getElementById('hiragana-cards'), kContainer = document.getElementById('katakana-cards');
+      hContainer.innerHTML = ''; kContainer.innerHTML = '';
+      shuffle(currentPairs.map((p, i) => ({ char: p.hiragana, index: i }))).forEach(item => hContainer.appendChild(createCard(item.char, 'h', item.index)));
+      shuffle(currentPairs.map((p, i) => ({ char: p.katakana, index: i }))).forEach(item => kContainer.appendChild(createCard(item.char, 'k', item.index)));
+    }
+    function updateStudyDisplay() {
+      const char = allCharacters[studyIndex];
+      document.getElementById('study-hiragana').textContent = char.hiragana;
+      document.getElementById('study-katakana').textContent = char.katakana;
+      document.getElementById('study-romaji').textContent = char.romaji;
+      document.getElementById('study-counter').textContent = `${studyIndex + 1} / ${allCharacters.length}`;
+    }
+    document.getElementById('learn-btn').onclick = () => { studyIndex = 0; updateStudyDisplay(); document.getElementById('study-modal').classList.remove('hidden'); };
+    document.getElementById('close-study').onclick = () => document.getElementById('study-modal').classList.add('hidden');
+    document.getElementById('study-next').onclick = () => { if(studyIndex < 45) { studyIndex++; updateStudyDisplay(); } };
+    document.getElementById('study-prev').onclick = () => { if(studyIndex > 0) { studyIndex--; updateStudyDisplay(); } };
+    document.getElementById('restart-btn').onclick = () => startGame(currentLevel);
+    document.querySelectorAll('.level-btn').forEach(btn => btn.onclick = () => startGame(btn.dataset.level));
+    startGame('easy');
+  </script>
+ </body>
+</html>
