@@ -145,10 +145,11 @@
             color: #ffffff !important; 
         }
 
+        /* --- Footer & Modals --- */
         footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
-        
         .legal-link { color: #888; text-decoration: underline; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
         .legal-link:hover { color: var(--primary); }
+        
         .legal-modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
@@ -164,6 +165,7 @@
         @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .close-btn { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: #ccc; cursor: pointer; transition: 0.2s; line-height: 1; }
         .close-btn:hover { color: var(--dark); }
+        
         .legal-content h2 { margin-bottom: 2rem; font-size: 1.4rem; color: var(--dark); }
         .legal-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; border-top: 2px solid var(--dark); font-size: 0.85rem; }
         .legal-table th, .legal-table td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: top; }
@@ -229,20 +231,18 @@
             .lesson-grid .card { display: none; }
             .lesson-grid .card.active { display: flex; animation: fadeIn 0.4s ease; }
 
-            /* Tab Visibility on Mobile */
+            /* Material Section Tab Visibility */
             .grammar-tabs, .kanji-tabs, .trip-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem; }
 
-            /* Grammar Logic on Mobile */
+            /* Logic to hide items based on class on mobile */
             .grammar-grid.show-n5 .unified-card:not(.g-n5) { display: none; }
             .grammar-grid.show-n4 .unified-card:not(.g-n4) { display: none; }
             .grammar-grid.show-n3 .unified-card:not(.g-n3) { display: none; }
 
-            /* Kanji Logic on Mobile */
             .kanji-grid.show-n54 .unified-card:not(.k-n54) { display: none; }
             .kanji-grid.show-n3 .unified-card:not(.k-n3) { display: none; }
             .kanji-grid.show-marugoto .unified-card:not(.k-marugoto) { display: none; }
 
-            /* Trip Logic on Mobile */
             .trip-grid.show-trip .unified-card:not(.t-trip) { display: none; }
             .trip-grid.show-hira .unified-card:not(.t-hira) { display: none; }
             .trip-grid.show-kata .unified-card:not(.t-kata) { display: none; }
@@ -278,7 +278,7 @@
     
     <div class="hero-btn-container">
         <a href="#lessons" class="hero-btn primary-btn"><i class="fa-solid fa-seedling"></i>New Students | Lessons</a>
-        <a href="#materials" class="hero-btn secondary-btn"><i class="fa-solid fa-book-open"></i>Current Students | Materials</a>
+        <a href="#resources" class="hero-btn secondary-btn"><i class="fa-solid fa-book-open"></i>Current Students | Materials</a>
     </div>
 </header>
 
@@ -408,9 +408,9 @@
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
             <ul class="update-list">
+                <li><span class="update-date">2026.Mar.14</span><span class="update-badge" style="color: #ff9a9e; background: #fff5f5;">Basics</span><span class="update-text">Matching Game is now available! Enjoy learning Hira/Kata!</span></li>
                 <li><span class="update-date">2026.Mar.07</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Culture</span><span class="update-text">New Culture & Fun section super updated!</span></li>
                 <li><span class="update-date">2026.Feb.27</span><span class="update-badge" style="color: #2980b9; background: #eaf4fc;">Kanji</span><span class="update-text">Kanji Materials updated!</span></li>
-                <li><span class="update-date">2026.Feb.27</span><span class="update-badge" style="color: #f39c12; background: #fef5e7;">Grammar</span><span class="update-text">Grammar Materials updated!</span></li>
             </ul>
         </div>
 
@@ -575,6 +575,13 @@
         </div>
 
         <div class="unified-grid trip-grid show-trip" id="tripGrid" style="margin-bottom: 4rem;">
+            <a href="matching.html" class="unified-card t-hira t-kata">
+                <i class="fa-solid fa-gamepad" style="color: #ff9a9e;"></i>
+                <h3>Matching Game</h3>
+                <p>Hira & Kata Matching<br>ひらがな・カタカナ合わせ</p>
+                <div class="btn-bottom" style="color:#ff9a9e; border:1px solid #ff9a9e;">PLAY NOW</div>
+            </a>
+            
             <a href="trip.html" class="unified-card t-trip">
                 <i class="fa-solid fa-plane-departure" style="color: #e74c3c;"></i>
                 <h3>TRIP JAPAN</h3>
@@ -758,9 +765,27 @@
         const modal = document.getElementById(modalId);
         const openBtn = document.getElementById(openBtnId);
         const closeBtn = document.getElementById(closeBtnId);
-        openBtn.onclick = (e) => { e.preventDefault(); modal.classList.add("show"); document.body.style.overflow = "hidden"; };
-        closeBtn.onclick = () => { modal.classList.remove("show"); document.body.style.overflow = "auto"; };
-        window.addEventListener('click', (event) => { if (event.target == modal) { modal.classList.remove("show"); document.body.style.overflow = "auto"; } });
+        
+        openBtn.onclick = (e) => { 
+            e.preventDefault(); 
+            modal.style.display = "flex"; 
+            setTimeout(() => modal.classList.add("show"), 10);
+            document.body.style.overflow = "hidden"; 
+        };
+        
+        closeBtn.onclick = () => { 
+            modal.classList.remove("show"); 
+            setTimeout(() => modal.style.display = "none", 300);
+            document.body.style.overflow = "auto"; 
+        };
+        
+        window.addEventListener('click', (event) => { 
+            if (event.target == modal) { 
+                modal.classList.remove("show"); 
+                setTimeout(() => modal.style.display = "none", 300);
+                document.body.style.overflow = "auto"; 
+            } 
+        });
     }
     setupModal("legalModal", "openLegalModal", "closeLegalModal");
     setupModal("privacyModal", "openPrivacyModal", "closePrivacyModal");
