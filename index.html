@@ -85,7 +85,7 @@
         }
         .card { 
             background: #fff; 
-            padding: 2.5rem 1rem; 
+            padding: 2rem 1rem; 
             border-radius: 20px; 
             text-align: center; 
             box-shadow: var(--shadow); 
@@ -97,6 +97,12 @@
         .food-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
         .price { font-size: 1.6rem; font-weight: bold; color: var(--dark); }
         .package-price { font-size: 0.85rem; color: var(--primary); font-weight: bold; background: var(--primary-light); padding: 2px 10px; border-radius: 20px; display: inline-block; margin-top: 5px; }
+
+        .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        
+        /* Icon Hover Effect */
+        .btn-bottom i { transition: all 0.3s ease; }
+        .btn-bottom:hover i { color: #ffe66d !important; transform: scale(1.2) rotate(5deg); }
 
         .profile-box { background: #fff; padding: 3.5rem 2rem; border-radius: 30px; box-shadow: var(--shadow); max-width: 900px; margin: 0 auto; }
         .profile-header { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; justify-content: center; margin-bottom: 3rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
@@ -137,8 +143,6 @@
         .unified-card i { font-size: 2rem; margin-bottom: 0.8rem; color: var(--primary); }
         .unified-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
         .unified-card p { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
-
-        .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: 0.2s; }
         
         .booking-btn:hover, .booking-btn:active { 
             background-color: #9b59b6 !important; 
@@ -301,9 +305,9 @@
                     <p class="price">1,500 yen</p>
                     <span class="package-price">30 mins / First time</span>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
-                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
-                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.5rem;">
+                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card"></i> PAY NOW</a>
+                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
 
@@ -312,11 +316,17 @@
                     <span class="food-icon">🍙</span>
                     <h3>30 min</h3>
                     <p class="price">2,000 yen</p>
-                    <span class="package-price">5 lessons: 10,000 yen</span>
+                    <span class="package-price">Casual Practice</span>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
-                    <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
-                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.2rem;">
+                    <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 2,000 yen</a>
+                    <a href="https://buy.stripe.com/8x2bJ01P0en85Yj5fPbjW04" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;">
+                        <i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 8,000 yen
+                    </a>
+                    <a href="https://buy.stripe.com/4gMcN4alw6UGfyTbEdbjW05" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;">
+                        <i class="fa-solid fa-dumbbell"></i> 10 Lessons / 16,000 yen
+                    </a>
+                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
 
@@ -325,11 +335,17 @@
                     <span class="food-icon">🥪</span>
                     <h3>45 min</h3>
                     <p class="price">3,000 yen</p>
-                    <span class="package-price">5 lessons: 15,000 yen</span>
+                    <span class="package-price">Standard Practice</span>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
-                    <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
-                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.2rem;">
+                    <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 3,000 yen</a>
+                    <a href="https://buy.stripe.com/28E00igJU2EqcmHeQpbjW06" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;">
+                        <i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 12,000 yen
+                    </a>
+                    <a href="https://buy.stripe.com/fZu7sK8doen872ndMlbjW07" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;">
+                        <i class="fa-solid fa-dumbbell"></i> 10 Lessons / 24,000 yen
+                    </a>
+                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
 
@@ -338,17 +354,22 @@
                     <span class="food-icon">🍜</span>
                     <h3>60 min</h3>
                     <p class="price">4,000 yen</p>
-                    <span class="package-price">5 lessons: 20,000 yen</span>
+                    <span class="package-price">Intensive Focus</span>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem;">
-                    <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card" style="margin-right: 5px;"></i> PAY NOW</a>
-                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check" style="margin-right: 5px;"></i> SCHEDULE</a>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.2rem;">
+                    <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 4,000 yen</a>
+                    <a href="https://buy.stripe.com/28E14mdxIfrc1I38s1bjW08" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;">
+                        <i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 16,000 yen
+                    </a>
+                    <a href="https://buy.stripe.com/7sY28qctE3IucmH23DbjW09" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;">
+                        <i class="fa-solid fa-dumbbell"></i> 10 Lessons / 32,000 yen
+                    </a>
+                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="profile">
+<section id="profile">
         <div class="profile-box">
             <div class="profile-header">
                 <div class="profile-left">
@@ -640,17 +661,17 @@
         
         <a href="https://marugotoweb.jp/ja/" target="_blank" class="btn-bottom booking-btn" 
            style="color:var(--primary); border:1px solid var(--primary); text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;">
-           <span>📚</span> MARUGOTO PLUS
+            <span>📚</span> MARUGOTO PLUS
         </a>
 
         <a href="https://jisho.org/" target="_blank" class="btn-bottom booking-btn" 
            style="color:var(--primary); border:1px solid var(--primary); text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;">
-           <span>🔍</span> JISHO.ORG
+            <span>🔍</span> JISHO.ORG
         </a>
 
         <a href="https://www.irodori.jpf.go.jp/index.html" target="_blank" class="btn-bottom booking-btn" 
            style="color:var(--primary); border:1px solid var(--primary); text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;">
-           <span>🎨</span> IRODORI
+            <span>🎨</span> IRODORI
         </a>
 
     </div>
@@ -683,6 +704,7 @@
             </a>
         </div>
     </section>
+
 </div>
 
 <footer>
