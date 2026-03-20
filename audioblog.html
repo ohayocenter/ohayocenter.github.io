@@ -41,6 +41,7 @@
         .vol-badge { background: var(--primary); color: white; padding: 3px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-right: 1rem; }
         .card-title { flex-grow: 1; font-weight: bold; color: var(--dark); }
         .card-header i { color: #ccc; transition: 0.3s; }
+        details .card-header i { transition: transform 0.3s; }
         details[open] .card-header i { transform: rotate(180deg); color: var(--primary); }
 
         /* Tabs System */
@@ -49,15 +50,16 @@
         .tab-label { padding: 10px 20px; background: #f0f0f0; cursor: pointer; border-radius: 10px 10px 0 0; margin-right: 5px; font-size: 0.85rem; font-weight: bold; }
         .tab-panel { display: none; width: 100%; border-top: 3px solid var(--primary); padding-top: 2rem; }
 
-        #v1-low:checked ~ label[for="v1-low"], #v1-high:checked ~ label[for="v1-high"] { background: var(--primary); color: white; }
+        .level-tabs input:checked + .tab-label { background: var(--primary); color: white; }
         #v1-low:checked ~ .panel-low, #v1-high:checked ~ .panel-high { display: block; }
 
+        /* Audio Player Responsive */
         .audio-unit { background: var(--primary-light); padding: 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 2rem; }
-        .audio-unit audio { width: 100%; max-width: 400px; height: 35px; margin-top: 10px; }
+        .audio-unit audio { width: 100%; max-width: 500px; height: 40px; margin-top: 10px; }
         .script-box { font-size: 1.05rem; line-height: 2.3; color: var(--text); padding: 0 10px; }
         ruby rt { color: #888; font-size: 0.6em; }
 
-        /* --- Support Details (English & Vocab) --- */
+        /* Support Details */
         .support-details { margin-top: 1.5rem; border: 1px solid #eee; border-radius: 12px; background: #fff; }
         .support-details summary { padding: 12px 15px; background: #fafafa; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); list-style: none; display: flex; align-items: center; gap: 8px; }
         .support-details summary::-webkit-details-marker { display: none; }
@@ -67,7 +69,31 @@
         .vocab-table th { color: #aaa; font-size: 0.75rem; text-transform: uppercase; }
         .vocab-table tr:last-child td { border-bottom: none; }
 
+        /* --- Support OHAYO CENTER (Unified Style) --- */
+        .bmc-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            color: #000000;
+            background-color: #FFDD00;
+            border-radius: 8px;
+            font-family: 'Noto Sans JP', sans-serif; /* Study Materialと同じ見やすいフォント */
+            font-size: 14px; /* 少し小さく調整 */
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+            transition: 0.2s opacity ease;
+            margin-top: 10px;
+        }
+        .bmc-btn:hover { opacity: 0.9; }
+        .bmc-btn img {
+            height: 18px;
+            width: auto;
+            margin-right: 8px;
+        }
+
         footer { padding: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+        .support-section { margin-bottom: 2rem; }
 
         @media (max-width: 600px) {
             .card-header { padding: 1.2rem; }
@@ -79,11 +105,11 @@
 <body>
 
 <nav>
-    <div class="logo"><a href="#">OHAYO CENTER</a></div>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
     <ul class="nav-links">
-        <li><a href="#lessons">LESSONS</a></li>
-        <li><a href="#profile">PROFILE</a></li>
-        <li><a href="#resources">MATERIAL</a></li>
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
     </ul>
 </nav>
 
@@ -102,7 +128,7 @@
     <section id="audio-blog" class="audio-section">
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
         
-        <details class="audio-card" open>
+        <details class="audio-card">
             <summary class="card-header">
                 <span class="vol-badge">Vol.1</span>
                 <span class="card-title">自己紹介：WHO IS OHAYO CENTER?</span>
@@ -126,7 +152,7 @@
                         <p>私は <ruby>しんや<rt>Shinya</rt></ruby>です。よろしくおねがいします！少し <ruby>自己紹介<rt>じこしょうかい</rt></ruby>を しますね。</p>
                         <p>私は <ruby>千葉<rt>ちば</rt>出身<rt>しゅっしん</rt></ruby>です。みなさんは <ruby>東京<rt>とうきょう</rt></ruby>ディズニーランドを <ruby>知<rt>し</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>とうきょう</rt></ruby>に ありません。<strong><ruby>千葉<rt>ちば</rt></ruby>に あります！（笑）</strong></p>
                         <p>私の 家から 東京ディズニーランドは とても 近いです。千葉は 東京の となりに ある 町です。東京ほど 有名では ありませんが、とても いい ところです。</p>
-                        <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語の 先生の アシスタントを しました。</p>
+                        <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語의 先生の アシスタントを しました。</p>
                         <p>やく 3年間、ベトナムで 生活しました。日本に 一度 帰って、また ベトナムに もどりました。そこで「OHAYO CENTER」として 日本語を 教えはじめました。でも、コロナで 大変に なりましたね……そこで、オンラインレッスンを はじめました。2021年 8月に 日本に 帰ってきて、今は OHAYO  CENTERは 全部 オンラインです！</p>
                         <p>このオーディオブログでは、毎回 日本の 文化や 生活に ついて 話します。楽しく 日本語を 勉強しましょう！聞いてくれて ありがとうございます。また 次回も 聞いてくださいね。じゃあね〜！</p>
 
@@ -146,7 +172,7 @@
                                     <tr><td>出身</td><td>しゅっしん / Hometown / From</td></tr>
                                     <tr><td>じつは</td><td>Actually / In fact</td></tr>
                                     <tr><td>となり</td><td>Next to / Neighboring</td></tr>
-                                    <tr><td>田舎（いなか）</td><td>Country袖side / Rural area</td></tr>
+                                    <tr><td>田舎（いなか）</td><td>Countryside / Rural area</td></tr>
                                     <tr><td>教えはじめる</td><td>To start teaching</td></tr>
                                     <tr><td>文化</td><td>ぶんか / Culture</td></tr>
                                 </table>
@@ -203,11 +229,18 @@
                 <p><i class="fa-solid fa-microphone-lines"></i> 現在、録音中です。お楽しみに！</p>
             </div>
         </details>
-    </section
+    </section>
 
 </div>
 
 <footer>
+    <div class="support-section">
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+            <span>Support OHAYO CENTER</span>
+        </a>
+    </div>
     <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
 </footer>
 
