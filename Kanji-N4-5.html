@@ -16,6 +16,7 @@
             --card-bg: #ffffff;
             --hiragana-color: #e74c3c;
             --english-color: #3498db;
+            --done-color: #2ecc71;
         }
 
         /* --- ナビゲーションバー --- */
@@ -61,11 +62,23 @@
             letter-spacing: 1px;
         }
 
+        /* プログレスバー */
+        .progress-fixed {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            z-index: 999;
+        }
+        #mainBar { height: 100%; width: 0%; background: var(--done-color); transition: width 0.4s ease; }
+
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
-            .nav-links { gap: 0.8rem; }
-            .nav-links a { font-size: 0.7rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.65rem; }
         }
 
         /* --- メインコンテンツ --- */
@@ -84,6 +97,13 @@
             max-width: 1000px;
             margin-top: 20px;
             position: relative;
+        }
+        .stats-overall {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.9rem;
         }
         .slide {
             display: none;
@@ -105,7 +125,6 @@
             padding-bottom: 10px;
         }
         
-        /* スマホ向けのグリッド調整 */
         .grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -127,7 +146,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: 0.3s;
         }
+        /* 学習済み（Check済み）のスタイル */
+        .question-box.is-done {
+            border-color: var(--done-color);
+            background-color: #f0fff4;
+        }
+
         .kanji {
             font-size: 1.5rem;
             font-weight: bold;
@@ -136,7 +162,6 @@
             color: #333;
         }
         
-        /* --- 解答部分（独立して表示切り替え） --- */
         .answer-container {
             min-height: 2.8em;
             display: flex;
@@ -146,7 +171,7 @@
         }
         
         .reading, .meaning {
-            visibility: hidden; /* 初期状態は非表示 */
+            visibility: hidden;
         }
         .reading.show, .meaning.show {
             visibility: visible;
@@ -166,7 +191,6 @@
             line-height: 1.1;
         }
 
-        /* --- ボタンのレイアウト --- */
         .btn-group {
             display: flex;
             gap: 5px;
@@ -181,12 +205,11 @@
             cursor: pointer;
             font-size: 0.7rem;
             color: #777;
-            flex: 1; /* ボタンの幅を均等にする */
+            flex: 1;
             font-weight: bold;
             transition: 0.2s;
         }
 
-        /* アクティブ（表示中）の時のボタンスタイル */
         .btn-check.active {
             background-color: var(--hiragana-color);
             color: #fff;
@@ -198,44 +221,40 @@
             border-color: var(--english-color);
         }
 
-        /* --- スマホ表示時のボタン縦並び設定 --- */
         @media (max-width: 600px) {
-            .btn-group {
-                flex-direction: column; /* ここで縦並びに変更 */
-            }
-            .btn-check, .btn-en {
-                padding: 8px 0; /* スマホでタップしやすいように高さを出す */
-            }
+            .btn-group { flex-direction: column; }
+            .btn-check, .btn-en { padding: 8px 0; }
         }
         
-        /* --- ページ送りボタン（ジャンプボタン形式に修正） --- */
         .nav-controls {
             margin: 30px 0;
             display: flex;
             justify-content: center;
             gap: 8px;
-            flex-wrap: wrap; /* ボタンが多いので折り返し許可 */
+            flex-wrap: wrap;
             max-width: 95%;
         }
         .nav-btn {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 10px 12px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: 0.2s;
-            min-width: 80px;
+            min-width: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+        .nav-btn small { font-size: 0.65rem; margin-top: 4px; opacity: 0.8; }
         .nav-btn:hover { background-color: var(--accent-color); }
         .nav-btn.active-slide {
             background-color: var(--accent-color);
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
         }
 
-        /* --- Support Section --- */
         .support-section {
             text-align: center;
             margin-top: 30px;
@@ -245,16 +264,7 @@
             width: 100%;
             max-width: 1000px;
         }
-        .support-section h2 {
-            color: var(--primary-color);
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-        .support-section p {
-            color: #666;
-            font-size: 0.95em;
-            margin-bottom: 20px;
-        }
+        .reset-link { color: #999; font-size: 0.8rem; cursor: pointer; margin-top: 20px; display: block; text-decoration: underline; }
         .bmc-custom-btn {
             display: inline-flex;
             align-items: center;
@@ -264,18 +274,8 @@
             padding: 12px 24px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 1.1em;
             text-decoration: none;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .bmc-custom-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .bmc-custom-btn span {
-            margin-left: 8px;
-            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -290,18 +290,21 @@
     </ul>
 </nav>
 
-<div class="container" id="slides-container">
+<div class="progress-fixed"><div id="mainBar"></div></div>
+
+<div class="container">
+    <div class="stats-overall" id="statsOverall">Progress: 0 / 300 (0%)</div>
+    <div id="slides-container"></div>
 </div>
 
-<div class="nav-controls" id="jump-controls">
-    </div>
+<div class="nav-controls" id="jump-controls"></div>
 
 <div class="support-section">
-    <h2>Support OHAYO CENTER</h2>
     <p>If you find these materials helpful, please consider supporting us!</p>
     <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
         ☕️ <span>SUPPORT OHAYO CENTER</span>
     </a>
+    <span class="reset-link" onclick="resetProgress()">Reset Progress</span>
 </div>
 
 <script>
@@ -321,76 +324,100 @@
     };
 
     let current = 1;
-    const total = 12;
+    let kanjiMasterProgress = JSON.parse(localStorage.getItem('kanji_master_300_v1')) || {};
 
     function init() {
         const container = document.getElementById('slides-container');
         const jumpContainer = document.getElementById('jump-controls');
 
-        for(let i=1; i<=total; i++){
-            // スライド生成
+        for(let i=1; i<=12; i++){
             const slideDiv = document.createElement('div');
             slideDiv.className = `slide ${i===1?'active':''}`;
             slideDiv.id = `s${i}`;
             
             let gridHTML = `<div class="grid">`;
-            allData[i].words.forEach(w => {
+            allData[i].words.forEach((w, idx) => {
+                const key = `${i}_${idx}`;
+                const isDone = kanjiMasterProgress[key] ? 'is-done' : '';
                 gridHTML += `
-                    <div class="question-box">
+                    <div class="question-box ${isDone}" id="box-${key}">
                         <span class="kanji">${w[0]}</span>
                         <div class="answer-container">
-                            <span class="reading">${w[1]}</span>
-                            <span class="meaning">${w[2]}</span>
+                            <span class="reading" id="read-${key}">${w[1]}</span>
+                            <span class="meaning" id="mean-${key}">${w[2]}</span>
                         </div>
                         <div class="btn-group">
-                            <button class="btn-check" onclick="toggleReading(this)">Check</button>
-                            <button class="btn-en" onclick="toggleMeaning(this)">English</button>
+                            <button class="btn-check" id="btn-read-${key}" onclick="toggleReading(this, '${key}')">Check</button>
+                            <button class="btn-en" id="btn-mean-${key}" onclick="toggleMeaning(this, '${key}')">English</button>
                         </div>
                     </div>`;
             });
             gridHTML += `</div>`;
-            
             slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
             container.appendChild(slideDiv);
 
-            // ジャンプボタン生成
             const jumpBtn = document.createElement('button');
             jumpBtn.className = `nav-btn ${i===1?'active-slide':''}`;
             jumpBtn.id = `jumpBtn${i}`;
-            jumpBtn.textContent = `SLIDE ${i}`;
+            jumpBtn.innerHTML = `<span>SLIDE ${i}</span><small id="badge-${i}">0/25</small>`;
             jumpBtn.onclick = () => jumpToSlide(i);
             jumpContainer.appendChild(jumpBtn);
         }
+        updateStats();
     }
 
-    // 指定のスライドにジャンプする関数
     function jumpToSlide(targetNum) {
-        // 現在のスライドを非表示
         document.getElementById(`s${current}`).classList.remove('active');
         document.getElementById(`jumpBtn${current}`).classList.remove('active-slide');
-
-        // 新しいスライドを表示
         current = targetNum;
         document.getElementById(`s${current}`).classList.add('active');
         document.getElementById(`jumpBtn${current}`).classList.add('active-slide');
-
         window.scrollTo(0, 0);
     }
 
-    // ひらがな（読み）の表示切り替え
-    function toggleReading(btn) {
-        const box = btn.closest('.question-box');
-        const reading = box.querySelector('.reading');
+    function toggleReading(btn, key) {
+        const box = document.getElementById(`box-${key}`);
+        const reading = document.getElementById(`read-${key}`);
         reading.classList.toggle('show');
+        btn.classList.toggle('active');
+        
+        // Checkボタンが押されたら「学習済み」として保存
+        if (!kanjiMasterProgress[key]) {
+            kanjiMasterProgress[key] = true;
+            box.classList.add('is-done');
+            localStorage.setItem('kanji_master_300_v1', JSON.stringify(kanjiMasterProgress));
+            updateStats();
+        }
+    }
+
+    function toggleMeaning(btn, key) {
+        const meaning = document.getElementById(`mean-${key}`);
+        meaning.classList.toggle('show');
         btn.classList.toggle('active');
     }
 
-    // 英語（意味）の表示切り替え
-    function toggleMeaning(btn) {
-        const box = btn.closest('.question-box');
-        const meaning = box.querySelector('.meaning');
-        meaning.classList.toggle('show');
-        btn.classList.toggle('active');
+    function updateStats() {
+        const total = 300;
+        const doneCount = Object.keys(kanjiMasterProgress).length;
+        const percent = Math.round((doneCount / total) * 100);
+
+        document.getElementById('mainBar').style.width = percent + '%';
+        document.getElementById('statsOverall').innerText = `Progress: ${doneCount} / ${total} (${percent}%)`;
+
+        for (let i = 1; i <= 12; i++) {
+            let sCount = 0;
+            allData[i].words.forEach((_, idx) => {
+                if (kanjiMasterProgress[`${i}_${idx}`]) sCount++;
+            });
+            document.getElementById(`badge-${i}`).innerText = `${sCount}/25`;
+        }
+    }
+
+    function resetProgress() {
+        if (confirm("学習記録をリセットしますか？")) {
+            localStorage.removeItem('kanji_master_300_v1');
+            location.reload();
+        }
     }
 
     init();
