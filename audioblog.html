@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OHAYO CENTER: Professional online Japanese lessons.">
+    <title>OHAYO CENTER - Audio Blog</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 10px 30px rgba(0,0,0,0.06); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
+        
+        /* Navigation */
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 100px 1.2rem 3rem; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
+        h2 i { color: var(--primary); margin-right: 10px; }
+
+        /* Update Board */
+        .update-board { background: #fff; border-radius: 20px; padding: 1.5rem; margin-bottom: 3rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
+        .update-list { list-style: none; }
+        .update-list li { display: flex; align-items: center; gap: 15px; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.85rem; }
+        .update-date { font-weight: bold; color: var(--primary); min-width: 90px; }
+        .update-badge { background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; }
+
+        /* Audio Blog Styles */
+        .audio-section { margin-bottom: 5rem; }
+        .audio-card { background: #fff; border-radius: 25px; margin-bottom: 1.5rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); overflow: hidden; }
+        .card-header { padding: 1.5rem 2rem; cursor: pointer; display: flex; align-items: center; list-style: none; }
+        .card-header::-webkit-details-marker { display: none; }
+        .vol-badge { background: var(--primary); color: white; padding: 3px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-right: 1rem; }
+        .card-title { flex-grow: 1; font-weight: bold; color: var(--dark); }
+        .card-header i { color: #ccc; transition: 0.3s; }
+        details[open] .card-header i { transform: rotate(180deg); color: var(--primary); }
+
+        /* Tabs System */
+        .level-tabs { display: flex; flex-wrap: wrap; padding: 0 2rem 2rem; }
+        .level-tabs input { display: none; }
+        .tab-label { padding: 10px 20px; background: #f0f0f0; cursor: pointer; border-radius: 10px 10px 0 0; margin-right: 5px; font-size: 0.85rem; font-weight: bold; }
+        .tab-panel { display: none; width: 100%; border-top: 3px solid var(--primary); padding-top: 2rem; }
+
+        #v1-low:checked ~ label[for="v1-low"], #v1-high:checked ~ label[for="v1-high"] { background: var(--primary); color: white; }
+        #v1-low:checked ~ .panel-low, #v1-high:checked ~ .panel-high { display: block; }
+
+        .audio-unit { background: var(--primary-light); padding: 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 2rem; }
+        .audio-unit audio { width: 100%; max-width: 400px; height: 35px; margin-top: 10px; }
+        .script-box { font-size: 1.05rem; line-height: 2.3; color: var(--text); padding: 0 10px; }
+        ruby rt { color: #888; font-size: 0.6em; }
+
+        /* --- Support Details (English & Vocab) --- */
+        .support-details { margin-top: 1.5rem; border: 1px solid #eee; border-radius: 12px; background: #fff; }
+        .support-details summary { padding: 12px 15px; background: #fafafa; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); list-style: none; display: flex; align-items: center; gap: 8px; }
+        .support-details summary::-webkit-details-marker { display: none; }
+        .support-content { padding: 15px; font-size: 0.9rem; color: #666; border-top: 1px solid #eee; line-height: 1.7; }
+        .vocab-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
+        .vocab-table th, .vocab-table td { padding: 10px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        .vocab-table th { color: #aaa; font-size: 0.75rem; text-transform: uppercase; }
+        .vocab-table tr:last-child td { border-bottom: none; }
+
+        footer { padding: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+
+        @media (max-width: 600px) {
+            .card-header { padding: 1.2rem; }
+            .card-title { font-size: 0.95rem; }
+            .tab-label { padding: 8px 12px; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="#">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="#lessons">LESSONS</a></li>
+        <li><a href="#profile">PROFILE</a></li>
+        <li><a href="#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <div class="update-board">
+        <ul class="update-list">
+            <li>
+                <span class="update-date">2026.03.20</span>
+                <span class="update-badge">NEW</span>
+                <span class="update-text">AUDIO BLOG を開始しました！Vol.1 公開中。</span>
+            </li>
+        </ul>
+    </div>
+
+    <section id="audio-blog" class="audio-section">
+        <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
+        
+        <details class="audio-card" open>
+            <summary class="card-header">
+                <span class="vol-badge">Vol.1</span>
+                <span class="card-title">自己紹介：WHO IS OHAYO CENTER?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+
+            <div class="level-tabs">
+                <input type="radio" name="v1-tabs" id="v1-low" checked>
+                <label for="v1-low" class="tab-label">📗 初中級</label>
+
+                <input type="radio" name="v1-tabs" id="v1-high">
+                <label for="v1-high" class="tab-label">📕 上級</label>
+
+                <div class="tab-panel panel-low">
+                    <div class="audio-unit">
+                        <p><small>🎵 少しゆっくり・でも自然に話します</small></p>
+                        <audio controls src="vol1-1.mp3"></audio>
+                    </div>
+                    <div class="script-box">
+                        <p>こんにちは！OHAYO CENTERの オーディオブログへ ようこそ。</p>
+                        <p>私は <ruby>しんや<rt>Shinya</rt></ruby>です。よろしくおねがいします！少し <ruby>自己紹介<rt>じこしょうかい</rt></ruby>を しますね。</p>
+                        <p>私は <ruby>千葉<rt>ちば</rt>出身<rt>しゅっしん</rt></ruby>です。みなさんは <ruby>東京<rt>とうきょう</rt></ruby>ディズニーランドを <ruby>知<rt>し</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>とうきょう</rt></ruby>に ありません。<strong><ruby>千葉<rt>ちば</rt></ruby>に あります！（笑）</strong></p>
+                        <p>私の 家から 東京ディズニーランドは とても 近いです。千葉は 東京の となりに ある 町です。東京ほど 有名では ありませんが、とても いい ところです。</p>
+                        <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語の 先生の アシスタントを しました。</p>
+                        <p>やく 3年間、ベトナムで 生活しました。日本に 一度 帰って、また ベトナムに もどりました。そこで「OHAYO CENTER」として 日本語を 教えはじめました。でも、コロナで 大変に なりましたね……そこで、オンラインレッスンを はじめました。2021年 8月に 日本に 帰ってきて、今は OHAYO  CENTERは 全部 オンラインです！</p>
+                        <p>このオーディオブログでは、毎回 日本の 文化や 生活に ついて 話します。楽しく 日本語を 勉強しましょう！聞いてくれて ありがとうございます。また 次回も 聞いてくださいね。じゃあね〜！</p>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
+                            <div class="support-content">
+                                Hello! Welcome to OHAYO Center's Audio Blog. I'm Shinya. Nice to meet you! Let me introduce myself. I'm from Chiba. You all know Tokyo Disneyland, right? Actually, Tokyo Disneyland is not in Tokyo. It's in Chiba! (laughs). So, my house is very close to Tokyo Disneyland. Chiba is a city next to Tokyo. It's not as famous as Tokyo, but it's a very nice place. I became a Japanese teacher in 2017. Then I taught at a Japanese language school in Chiba for one year. After that, I went to Vietnam through a national program called "Japanese Partners." I worked as an assistant to a Vietnamese Japanese teacher at a high school in the countryside. I lived in Vietnam for about 3 years. I returned to Japan once and then went back to Vietnam again. There, I started teaching Japanese as "OHAYO Center." But then things became difficult because of COVID... so I started online lessons. I came back to Japan in August 2021, and now OHAYO Center is entirely online! In this audio blog, I will talk about Japanese culture and life every time. Let's enjoy studying Japanese! Thank you for listening. Please listen next time too. Bye!
+                            </div>
+                        </details>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
+                            <div class="support-content">
+                                <table class="vocab-table">
+                                    <tr><th>Word</th><th>Reading / Meaning</th></tr>
+                                    <tr><td>自己紹介</td><td>じこしょうかい / Self-introduction</td></tr>
+                                    <tr><td>出身</td><td>しゅっしん / Hometown / From</td></tr>
+                                    <tr><td>じつは</td><td>Actually / In fact</td></tr>
+                                    <tr><td>となり</td><td>Next to / Neighboring</td></tr>
+                                    <tr><td>田舎（いなか）</td><td>Country袖side / Rural area</td></tr>
+                                    <tr><td>教えはじめる</td><td>To start teaching</td></tr>
+                                    <tr><td>文化</td><td>ぶんか / Culture</td></tr>
+                                </table>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="tab-panel panel-high">
+                    <div class="audio-unit">
+                        <p><small>🎵 普通に話します</small></p>
+                        <audio controls src="vol1-2.mp3"></audio>
+                    </div>
+                    <div class="script-box">
+                        <p>こんにちは〜！OHAYO CENTERのオーディオブログへようこそ。第1回目ということで、まず自己紹介から始めたいと思います。</p>
+                        <p>名前はしんやといいます。出身は千葉—東京の隣です。千葉って何が有名なのって言われるんですけど、ディズニーランドです。</p>
+                        <p>経歴をざっくり話すと、2017年に日本語教師の資格を取って、千葉の日本語学校で1年間教えたのが最初のスタートでした。で、その後が少し面白くて——「日本語パートナーズ」っていう国のプログラムに参加して、ベトナムに派遣されました。
+                        ベトナムの田舎の高校で、現地の日本語の先生のアシスタントとして約1年間働きました。ベトナムの田舎、ほんとに何もないところで（笑）私が住んでいた街には二人しか日本人がいませんでした。でも、それがすごくいい経験で。ベトナム語も少し上手になりました。<p>一時帰国してからまたベトナムに戻って、今度は「OHAYO CENTER」として自分で日本語を教えはじめました。オンラインじゃなくて対面でね、現地の生徒さんたちと一緒に。</p>
+                        <p>……でも、そこにコロナが来たんですよね。もうがらっと環境が変わって、オンライン授業に切り替えました。2021年の8月に完全帰国して、それ以来ずっとオンラインで活動しています。日本語の勉強はもちろん、日本のことをもっと好きになるきっかけになったらいいなって思ってます。聴いてくれてありがとうございます！次回もぜひ聴いてくださいね。またね〜！</p>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-language"></i> English Translation (Advanced Summary)</summary>
+                            <div class="support-content">
+                                Hi there! Welcome to the OHAYO Center Audio Blog. For this first episode, I'd like to start with an introduction. My name is Shinya, and I'm from Chiba, right next to Tokyo. When people ask, 'What's famous in Chiba?', I always tell them it's Disneyland. To give you a brief overview of my career: I became a certified Japanese teacher in 2017 and started at a language school in Chiba. Then, I joined a government program called "Japanese Partners" and was sent to Vietnam. I spent a year as an assistant at a high school in the Vietnamese countryside—a place with truly nothing around,There were only two Japanese people in the whole town. but it was a fantastic experience. After a brief return to Japan, I went back to Vietnam and started "OHAYO Center" to teach my own students in person. Then COVID hit, changing everything. I shifted to online lessons, returned to Japan for good in August 2021, and have been operating online ever since. I hope this blog helps you not only with your studies but also in finding more reasons to love Japan. Thanks for listening!
+                            </div>
+                        </details>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-book"></i> Key Vocabulary</summary>
+                            <div class="support-content">
+                                <table class="vocab-table">
+                                    <tr><th>Word</th><th>Reading / Meaning</th></tr>
+                                    <tr><td>経歴</td><td>けいれき / Career / Background</td></tr>
+                                    <tr><td>ざっくり</td><td>Roughly / Briefly</td></tr>
+                                    <tr><td>派遣される</td><td>はけんされる / To be dispatched</td></tr>
+                                    <tr><td>対面</td><td>たいめん / In-person / Face-to-face</td></tr>
+                                    <tr><td>切り替える</td><td>きりかえる / To switch / To change over</td></tr>
+                                    <tr><td>きっかけ</td><td>Trigger / Opportunity / Chance</td></tr>
+                                </table>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="audio-card">
+            <summary class="card-header">
+                <span class="vol-badge">Vol.2</span>
+                <span class="card-title">COMING SOON🌸</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div style="padding: 2rem; text-align: center; color: #999;">
+                <p><i class="fa-solid fa-microphone-lines"></i> 現在、録音中です。お楽しみに！</p>
+            </div>
+        </details>
+    </section
+
+</div>
+
+<footer>
+    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
