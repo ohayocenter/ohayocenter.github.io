@@ -211,6 +211,8 @@
             transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: flex; align-items: center; gap: 8px;
         }
         .category-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* Category specific borders */
+        .category-btn.c-audio { border-left: 4px solid #2ecc71; }
         .category-btn.c-culture { border-left: 4px solid #9b59b6; }
         .category-btn.c-grammar { border-left: 4px solid #f39c12; }
         .category-btn.c-kanji { border-left: 4px solid #2980b9; }
@@ -420,6 +422,7 @@
         <h2 id="materials" style="margin-bottom: 2rem; scroll-margin-top: 90px;">Study Material</h2>
 
         <div class="category-nav">
+            <a href="#cat-audio" class="category-btn c-audio"><i class="fa-solid fa-microphone-lines" style="color:#2ecc71;"></i> Audio Blog</a>
             <a href="#cat-culture" class="category-btn c-culture"><i class="fa-solid fa-star" style="color:#9b59b6;"></i> Culture & Fun</a>
             <a href="#cat-grammar" class="category-btn c-grammar"><i class="fa-solid fa-puzzle-piece" style="color:#f39c12;"></i> Grammar</a>
             <a href="#cat-kanji" class="category-btn c-kanji"><i class="fa-solid fa-book" style="color:#2980b9;"></i> Kanji & Vocab</a>
@@ -429,13 +432,25 @@
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
             <ul class="update-list">
+                <li><span class="update-date">2026.Mar.20</span><span class="update-badge" style="color: #2ecc71; background: #eafaf1;">NEW</span><span class="update-text">AUDIO BLOG is now available! Listen to natural Japanese.</span></li>
                 <li><span class="update-date">2026.Mar.14</span><span class="update-badge" style="color: #ff9a9e; background: #fff5f5;">Basics</span><span class="update-text">Matching Game is now available! Enjoy learning Hiragana/Katakana!</span></li>
                 <li><span class="update-date">2026.Mar.07</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Culture</span><span class="update-text">New Culture & Fun section super updated!</span></li>
-                <li><span class="update-date">2026.Feb.27</span><span class="update-badge" style="color: #2980b9; background: #eaf4fc;">Kanji</span><span class="update-text">Kanji Materials updated!</span></li>
             </ul>
         </div>
 
-        <h3 id="cat-culture" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #9b59b6; margin-bottom: 1.5rem; margin-top: 2rem; scroll-margin-top: 90px;">
+        <h3 id="cat-audio" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #2ecc71; margin-bottom: 1.5rem; margin-top: 2rem; scroll-margin-top: 90px;">
+            <i class="fa-solid fa-microphone-lines"></i> Audio Blog (Listening)
+        </h3>
+        <div class="unified-grid" style="margin-bottom: 3rem;">
+            <a href="audioblog.html" class="unified-card">
+                <i class="fa-solid fa-circle-play" style="color: #2ecc71;"></i>
+                <h3>AUDIO BLOG</h3>
+                <p>Listen & Learn Japanese<br>音声ブログでリスニング</p>
+                <div class="btn-bottom" style="color:#2ecc71; border:1px solid #2ecc71;">LISTEN NOW</div>
+            </a>
+        </div>
+
+        <h3 id="cat-culture" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #9b59b6; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
             <i class="fa-solid fa-star"></i> Culture & Fun (Idioms & Anime)
         </h3>
         <div class="unified-grid" style="margin-bottom: 3rem;">
