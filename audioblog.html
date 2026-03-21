@@ -17,10 +17,10 @@
         
         /* Navigation */
         nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
         .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 100px 1.2rem 3rem; }
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
@@ -77,8 +77,8 @@
             color: #000000;
             background-color: #FFDD00;
             border-radius: 8px;
-            font-family: 'Noto Sans JP', sans-serif; /* Study Materialと同じ見やすいフォント */
-            font-size: 14px; /* 少し小さく調整 */
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
             font-weight: 700;
             text-decoration: none;
             box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
@@ -96,6 +96,10 @@
         .support-section { margin-bottom: 2rem; }
 
         @media (max-width: 600px) {
+            nav { padding: 0 3%; } /* 余白を少し削って横幅を確保 */
+            .logo { font-size: 0.95rem; margin-right: 5px; } /* ロゴサイズ微調整 */
+            .nav-links { gap: 0.6rem; } /* メニューの間隔を狭く */
+            .nav-links a { font-size: 0.7rem; letter-spacing: 0.5px; } /* 文字サイズと間隔を微調整 */
             .card-header { padding: 1.2rem; }
             .card-title { font-size: 0.95rem; }
             .tab-label { padding: 8px 12px; font-size: 0.75rem; }
@@ -131,7 +135,7 @@
         <details class="audio-card">
             <summary class="card-header">
                 <span class="vol-badge">Vol.1</span>
-                <span class="card-title">自己紹介：WHO IS OHAYO CENTER?</span>
+                <span class="card-title">自己紹介：Who is OHAYO CENTER?</span>
                 <i class="fa-solid fa-chevron-down"></i>
             </summary>
 
@@ -152,8 +156,8 @@
                         <p>私は <ruby>しんや<rt>Shinya</rt></ruby>です。よろしくおねがいします！少し <ruby>自己紹介<rt>じこしょうかい</rt></ruby>を しますね。</p>
                         <p>私は <ruby>千葉<rt>ちば</rt>出身<rt>しゅっしん</rt></ruby>です。みなさんは <ruby>東京<rt>とうきょう</rt></ruby>ディズニーランドを <ruby>知<rt>し</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>とうきょう</rt></ruby>に ありません。<strong><ruby>千葉<rt>ちば</rt></ruby>に あります！（笑）</strong></p>
                         <p>私の 家から 東京ディズニーランドは とても 近いです。千葉は 東京の となりに ある 町です。東京ほど 有名では ありませんが、とても いい ところです。</p>
-                        <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語의 先生の アシスタントを しました。</p>
-                        <p>やく 3年間、ベトナムで 生活しました。日本に 一度 帰って、また ベトナムに もどりました。そこで「OHAYO CENTER」として 日本語を 教えはじめました。でも、コロナで 大変に なりましたね……そこで、オンラインレッスンを はじめました。2021年 8月に 日本に 帰ってきて、今は OHAYO  CENTERは 全部 オンラインです！</p>
+                        <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語の 先生の アシスタントを しました。</p>
+                        <p>やく 3年間、ベトナムで 生活しました。日本に 一度 帰って、また ベトナムに もどりました。そこで「OHAYO CENTER」として 日本語を 教えはじめました。でも、コロナで 大変に なりましたね……そこで、オンラインレッスンを はじめました。2021年 8月に 日本に 帰ってきて、今は OHAYO CENTERは 全部 オンラインです！</p>
                         <p>このオーディオブログでは、毎回 日本の 文化や 生活に ついて 話します。楽しく 日本語を 勉強しましょう！聞いてくれて ありがとうございます。また 次回も 聞いてくださいね。じゃあね〜！</p>
 
                         <details class="support-details">
@@ -190,7 +194,8 @@
                         <p>こんにちは〜！OHAYO CENTERのオーディオブログへようこそ。第1回目ということで、まず自己紹介から始めたいと思います。</p>
                         <p>名前はしんやといいます。出身は千葉—東京の隣です。千葉って何が有名なのって言われるんですけど、ディズニーランドです。</p>
                         <p>経歴をざっくり話すと、2017年に日本語教師の資格を取って、千葉の日本語学校で1年間教えたのが最初のスタートでした。で、その後が少し面白くて——「日本語パートナーズ」っていう国のプログラムに参加して、ベトナムに派遣されました。
-                        ベトナムの田舎の高校で、現地の日本語の先生のアシスタントとして約1年間働きました。ベトナムの田舎、ほんとに何もないところで（笑）私が住んでいた街には二人しか日本人がいませんでした。でも、それがすごくいい経験で。ベトナム語も少し上手になりました。<p>一時帰国してからまたベトナムに戻って、今度は「OHAYO CENTER」として自分で日本語を教えはじめました。オンラインじゃなくて対面でね、現地の生徒さんたちと一緒に。</p>
+                        ベトナムの田舎の高校で、現地の日本語の先生のアシスタントとして約1年間働きました。ベトナムの田舎、ほんとに何もないところで（笑）私が住んでいた街には二人しか日本人がいませんでした。でも、それがすごくいい経験で。ベトナム語も少し上手になりました。</p>
+                        <p>一時帰国してからまたベトナムに戻って、今度は「OHAYO CENTER」として自分で日本語を教えはじめました。オンラインじゃなくて対面でね、現地の生徒さんたちと一緒に。</p>
                         <p>……でも、そこにコロナが来たんですよね。もうがらっと環境が変わって、オンライン授業に切り替えました。2021年の8月に完全帰国して、それ以来ずっとオンラインで活動しています。日本語の勉強はもちろん、日本のことをもっと好きになるきっかけになったらいいなって思ってます。聴いてくれてありがとうございます！次回もぜひ聴いてくださいね。またね〜！</p>
 
                         <details class="support-details">
