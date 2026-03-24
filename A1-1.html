@@ -37,65 +37,23 @@
             font-family: 'Noto Sans JP', sans-serif;
             box-sizing: border-box;
         }
-        .logo {
-            font-family: 'Sawarabi Mincho', serif;
-            font-weight: bold;
-            font-size: 1.2rem;
-            white-space: nowrap;
-        }
-        .logo a {
-            text-decoration: none;
-            color: #2c3e50;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.2rem;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
 
         /* --- 学習状況表示エリア --- */
         .tracker-container {
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            text-align: center;
+            background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;
         }
-        .progress-text {
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        .progress-outer {
-            width: 100%;
-            background: #eee;
-            height: 12px;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .progress-inner {
-            width: 0%;
-            height: 100%;
-            background: var(--success-color);
-            transition: width 0.5s ease;
-        }
+        .progress-text { font-size: 0.9rem; margin-bottom: 8px; color: var(--primary-color); font-weight: bold; }
+        .progress-outer { width: 100%; background: #eee; height: 12px; border-radius: 6px; overflow: hidden; }
+        .progress-inner { width: 0%; height: 100%; background: var(--success-color); transition: width 0.5s ease; }
 
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
-            background-color: var(--bg-color);
-            margin: 0; 
-            padding: 90px 20px 20px;
+            background-color: var(--bg-color); margin: 0; padding: 90px 20px 20px;
             display: flex; flex-direction: column; align-items: center;
         }
         
@@ -112,70 +70,49 @@
         
         .topic-header {
             font-size: 1.1em; font-weight: bold; color: var(--primary-color);
-            border-left: 5px solid var(--accent-color);
-            padding-left: 10px; margin: 15px 0 10px 0;
-            background: #fdf2e9; padding-top: 5px; padding-bottom: 5px;
+            border-left: 5px solid var(--accent-color); padding-left: 10px;
+            margin: 15px 0 10px 0; background: #fdf2e9; padding-top: 5px; padding-bottom: 5px;
         }
 
-        .grid {
-            display: grid; grid-template-columns: repeat(5, 1fr);
-            gap: 12px; margin-bottom: 20px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
         
-        /* --- 漢字カード --- */
         .kanji-card {
             border: 1px solid #eee; padding: 12px; border-radius: 8px;
-            text-align: center; background: #fff; transition: all 0.2s;
-            position: relative;
+            text-align: center; background: #fff; transition: all 0.2s; position: relative;
         }
-        /* 習得済みカードのスタイル */
-        .kanji-card.mastered {
-            background-color: #f0fff4;
-            border-color: var(--success-color);
-        }
-        
+        .kanji-card.mastered { background-color: #f0fff4; border-color: var(--success-color); }
         .no-badge { position: absolute; top: 2px; left: 5px; font-size: 0.6em; color: #bbb; }
-        
-        /* チェックボックスのスタイル */
-        .master-check {
-            position: absolute; top: 5px; right: 5px;
-            cursor: pointer; transform: scale(1.1);
-        }
+        .master-check { position: absolute; top: 5px; right: 5px; cursor: pointer; transform: scale(1.1); }
 
         .question { font-size: 1.4em; font-weight: bold; color: #333; margin-bottom: 5px; }
         .meaning { font-size: 0.75em; color: #666; height: 2.4em; display: flex; align-items: center; justify-content: center; }
         .answer {
-            background: #f1f2f6; color: #f1f2f6; padding: 6px;
-            border-radius: 4px; cursor: pointer; font-weight: bold;
-            font-size: 0.9em; transition: all 0.3s; border: 1px dashed #ccc;
+            background: #f1f2f6; color: #f1f2f6; padding: 6px; border-radius: 4px;
+            cursor: pointer; font-weight: bold; font-size: 0.9em; transition: all 0.3s; border: 1px dashed #ccc;
         }
         .answer.reveal { background: var(--accent-color); color: white; border-style: solid; }
 
         .controls { text-align: center; margin-top: 25px; }
         button {
             padding: 12px 30px; font-size: 1em; cursor: pointer;
-            background: var(--primary-color); color: white;
-            border: none; border-radius: 25px; margin: 0 10px;
+            background: var(--primary-color); color: white; border: none; border-radius: 25px; margin: 0 10px;
         }
         button:disabled { background: #bdc3c7; cursor: not-allowed; }
-        
-        .footer {
-            margin-top: 40px; text-align: center; padding: 25px;
-            border-top: 1px solid #ddd; width: 100%;
-            box-sizing: border-box;
-        }
-        .bmc-button {
-            display: inline-block; background-color: #FFDD00; color: #000;
-            padding: 12px 24px; border-radius: 8px; text-decoration: none;
-            font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
 
+        /* --- 指定スタイルのリセットリンク --- */
+        .reset-link { color: #999; font-size: 0.8rem; cursor: pointer; margin-top: 20px; display: block; text-decoration: underline; }
+        
+        .footer { margin-top: 40px; text-align: center; padding: 25px; border-top: 1px solid #ddd; width: 100%; box-sizing: border-box; }
+        .bmc-button { display: inline-block; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        /* --- モバイル対応設定 --- */
         @media (max-width: 800px) { .grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
+            .question { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -229,47 +166,20 @@
 
     <div class="footer">
         <a class="bmc-button" href="http://buymeacoffee.com/ohayocenter" target="_blank">SUPPORT OHAYO CENTER</a>
+        <span class="reset-link" onclick="resetProgress()">Reset Progress</span>
     </div>
 </div>
 
 <script>
     const kanjiData = {
-        g1: [
-            {n:1, q:"魚", a:"さかな", m:"Fish"}, {n:2, q:"肉", a:"にく", m:"Meat"}, {n:3, q:"卵", a:"たまご", m:"Egg"},
-            {n:4, q:"水", a:"みず", m:"Water"}, {n:5, q:"食べます", a:"たべます", m:"Eat"}, {n:6, q:"飲みます", a:"のみます", m:"Drink"}
-        ],
-        g2: [
-            {n:7, q:"大きい", a:"おおきい", m:"Big"}, {n:8, q:"小さい", a:"ちいさい", m:"Small"}, 
-            {n:9, q:"新しい", a:"あたらしい", m:"New"}, {n:10, q:"古い", a:"ふるい", m:"Old"}
-        ],
-        g3: [
-            {n:11, q:"~時", a:"じ", m:"~ o'clock"}, {n:12, q:"~分", a:"ふん/ぶん", m:"~ min"}, {n:13, q:"~半", a:"はん", m:"half past"},
-            {n:14, q:"月", a:"げつ", m:"Monday"}, {n:15, q:"火", a:"か", m:"Tuesday"}, {n:16, q:"水", a:"すい", m:"Wednesday"},
-            {n:17, q:"木", a:"もく", m:"Thursday"}, {n:18, q:"金", a:"きん", m:"Friday"}, {n:19, q:"土", a:"ど", m:"Saturday"},
-            {n:20, q:"日", a:"にち", m:"Sunday"}, {n:21, q:"~よう日", a:"ようび", m:"Day of the week"}
-        ],
-        g4: [
-            {n:22, q:"言います", a:"いいます", m:"Say"}, {n:23, q:"話します", a:"はなします", m:"Speak"}, {n:24, q:"読みます", a:"よみます", m:"Read"},
-            {n:25, q:"見ます", a:"みます", m:"See/Watch"}, {n:26, q:"聞きます", a:"ききます", m:"Hear/Listen"}, {n:27, q:"書きます", a:"かきます", m:"Write"},
-            {n:28, q:"一", a:"いち", m:"1"}, {n:29, q:"二", a:"に", m:"2"}, {n:30, q:"三", a:"さん", m:"3"}, {n:31, q:"四", a:"よん/し", m:"4"},
-            {n:32, q:"五", a:"ご", m:"5"}, {n:33, q:"六", a:"ろく", m:"6"}, {n:34, q:"七", a:"なな/しち", m:"7"}, {n:35, q:"八", a:"はち", m:"8"},
-            {n:36, q:"九", a:"きゅう/く", m:"9"}, {n:37, q:"十", a:"じゅう", m:"10"}, {n:38, q:"~年", a:"ねん", m:"Year"}, {n:39, q:"~月", a:"がつ", m:"Month"}, {n:40, q:"~日", a:"にち", m:"Day"}
-        ],
-        g5: [
-            {n:41, q:"東", a:"ひがし", m:"East"}, {n:42, q:"西", a:"にし", m:"West"}, {n:43, q:"南", a:"みなみ", m:"South"}, {n:44, q:"北", a:"きた", m:"North"},
-            {n:45, q:"~口", a:"ぐち", m:"Exit"}, {n:46, q:"東口", a:"ひがしぐち", m:"East Exit"}, {n:47, q:"西口", a:"にしぐち", m:"West Exit"},
-            {n:48, q:"南口", a:"みなみぐち", m:"South Exit"}, {n:49, q:"北口", a:"きたぐち", m:"North Exit"}, {n:50, q:"買います", a:"かいます", m:"Buy"},
-            {n:51, q:"買いもの", a:"かいもの", m:"Shopping"}, {n:52, q:"お金", a:"おかね", m:"Money"}, {n:53, q:"~円", a:"えん", m:"Yen"},
-            {n:54, q:"百", a:"ひゃく", m:"100"}, {n:55, q:"千", a:"せん", m:"1,000"}, {n:56, q:"万", a:"まん", m:"10,000"},
-            {n:57, q:"百円", a:"ひゃくえん", m:"100 Yen"}, {n:58, q:"千円", a:"せんえん", m:"1,000 Yen"}, {n:59, q:"一万円", a:"いちまんえん", m:"10,000 Yen"}
-        ],
-        g6: [
-            {n:60, q:"行きます", a:"いきます", m:"Go"}, {n:61, q:"来ます", a:"きます", m:"Come"}, {n:62, q:"会います", a:"あいます", m:"Meet"},
-            {n:63, q:"休みます", a:"やすみます", m:"Rest"}, {n:64, q:"日本", a:"にほん", m:"Japan"}, {n:65, q:"東京", a:"とうきょう", m:"Tokyo"}
-        ]
+        g1: [{n:1, q:"魚", a:"さかな", m:"Fish"}, {n:2, q:"肉", a:"にく", m:"Meat"}, {n:3, q:"卵", a:"たまご", m:"Egg"}, {n:4, q:"水", a:"みず", m:"Water"}, {n:5, q:"食べます", a:"たべます", m:"Eat"}, {n:6, q:"飲みます", a:"のみます", m:"Drink"}],
+        g2: [{n:7, q:"大きい", a:"おおきい", m:"Big"}, {n:8, q:"小さい", a:"ちいさい", m:"Small"}, {n:9, q:"新しい", a:"あたらしい", m:"New"}, {n:10, q:"古い", a:"ふるい", m:"Old"}],
+        g3: [{n:11, q:"~時", a:"じ", m:"~ o'clock"}, {n:12, q:"~分", a:"ふん/ぶん", m:"~ min"}, {n:13, q:"~半", a:"はん", m:"half past"}, {n:14, q:"月", a:"げつ", m:"Monday"}, {n:15, q:"火", a:"か", m:"Tuesday"}, {n:16, q:"水", a:"すい", m:"Wednesday"}, {n:17, q:"木", a:"もく", m:"Thursday"}, {n:18, q:"金", a:"きん", m:"Friday"}, {n:19, q:"土", a:"ど", m:"Saturday"}, {n:20, q:"日", a:"にち", m:"Sunday"}, {n:21, q:"~よう日", a:"ようび", m:"Day of the week"}],
+        g4: [{n:22, q:"言います", a:"いいます", m:"Say"}, {n:23, q:"話します", a:"はなします", m:"Speak"}, {n:24, q:"読みます", a:"よみます", m:"Read"}, {n:25, q:"見ます", a:"みます", m:"See/Watch"}, {n:26, q:"聞きます", a:"ききます", m:"Hear/Listen"}, {n:27, q:"書きます", a:"かきます", m:"Write"}, {n:28, q:"一", a:"いち", m:"1"}, {n:29, q:"二", a:"に", m:"2"}, {n:30, q:"三", a:"さん", m:"3"}, {n:31, q:"四", a:"よん/し", m:"4"}, {n:32, q:"五", a:"ご", m:"5"}, {n:33, q:"六", a:"ろく", m:"6"}, {n:34, q:"七", a:"なな/しち", m:"7"}, {n:35, q:"八", a:"はち", m:"8"}, {n:36, q:"九", a:"きゅう/く", m:"9"}, {n:37, q:"十", a:"じゅう", m:"10"}, {n:38, q:"~年", a:"ねん", m:"Year"}, {n:39, q:"~月", a:"がつ", m:"Month"}, {n:40, q:"~日", a:"にち", m:"Day"}],
+        g5: [{n:41, q:"東", a:"ひがし", m:"East"}, {n:42, q:"西", a:"にし", m:"West"}, {n:43, q:"南", a:"みなみ", m:"South"}, {n:44, q:"北", a:"きた", m:"North"}, {n:45, q:"~口", a:"ぐち", m:"Exit"}, {n:46, q:"東口", a:"ひがしぐち", m:"East Exit"}, {n:47, q:"西口", a:"にしぐち", m:"West Exit"}, {n:48, q:"南口", a:"みなみぐち", m:"South Exit"}, {n:49, q:"北口", a:"きたぐち", m:"North Exit"}, {n:50, q:"買います", a:"かいます", m:"Buy"}, {n:51, q:"買いもの", a:"かいもの", m:"Shopping"}, {n:52, q:"お金", a:"おかね", m:"Money"}, {n:53, q:"~円", a:"えん", m:"Yen"}, {n:54, q:"百", a:"ひゃく", m:"100"}, {n:55, q:"千", a:"せん", m:"1,000"}, {n:56, q:"万", a:"まん", m:"10,000"}, {n:57, q:"百円", a:"ひゃくえん", m:"100 Yen"}, {n:58, q:"千円", a:"せんえん", m:"1,000 Yen"}, {n:59, q:"一万円", a:"いちまんえん", m:"10,000 Yen"}],
+        g6: [{n:60, q:"行きます", a:"いきます", m:"Go"}, {n:61, q:"来ます", a:"きます", m:"Come"}, {n:62, q:"会います", a:"あいます", m:"Meet"}, {n:63, q:"休みます", a:"やすみます", m:"Rest"}, {n:64, q:"日本", a:"にほん", m:"Japan"}, {n:65, q:"東京", a:"とうきょう", m:"Tokyo"}]
     };
 
-    // 保存データの取得
     let masteredData = JSON.parse(localStorage.getItem('kanji_mastered_list')) || [];
 
     function populate(id, items) {
@@ -290,11 +200,9 @@
         });
     }
 
-    // マスター状態の切り替え
     function toggleMaster(event, n) {
-        event.stopPropagation(); // 親要素のクリックイベントを防ぐ
+        event.stopPropagation();
         const card = document.getElementById(`card-${n}`);
-        
         if (event.target.checked) {
             if (!masteredData.includes(n)) masteredData.push(n);
             card.classList.add('mastered');
@@ -302,25 +210,26 @@
             masteredData = masteredData.filter(id => id !== n);
             card.classList.remove('mastered');
         }
-        
         localStorage.setItem('kanji_mastered_list', JSON.stringify(masteredData));
         updateProgressBar();
     }
 
-    // 進捗バーの更新
     function updateProgressBar() {
         const total = 65;
         const count = masteredData.length;
         const percent = Math.round((count / total) * 100);
-        
         document.getElementById('masteredCount').innerText = count;
         document.getElementById('progressPercent').innerText = percent;
         document.getElementById('progressInner').style.width = percent + '%';
     }
 
-    // 初期化
-    Object.keys(kanjiData).forEach(key => populate('grid' + key.replace('g',''), kanjiData[key]));
-    updateProgressBar();
+    function resetProgress() {
+        if (confirm("Reset progress?")) {
+            masteredData = [];
+            localStorage.removeItem('kanji_mastered_list');
+            location.reload();
+        }
+    }
 
     let currentSlide = 1;
     function changeSlide(n) {
@@ -332,6 +241,9 @@
         document.getElementById('pageIndicator').innerText = `${currentSlide} / 3`;
         window.scrollTo(0, 0);
     }
+
+    Object.keys(kanjiData).forEach(key => populate('grid' + key.replace('g',''), kanjiData[key]));
+    updateProgressBar();
 </script>
 </body>
 </html>
