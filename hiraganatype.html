@@ -7,11 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&family=Klee+One:wght@600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 目に優しいセージグリーン・パレット */
-            --primary-color: #5D8A82;   /* メイン：落ち着いた緑 */
-            --secondary-color: #F2F5F4; /* 背景：反射を抑えた薄いグレーグリーン */
-            --text-color: #3C4745;      /* 文字：真っ黒を避けた濃いグレー */
-            --accent-color: #D98880;    /* アクセント：温かみのあるコーラル */
+            --primary-color: #5D8A82;   
+            --secondary-color: #F2F5F4; 
+            --text-color: #3C4745;      
+            --accent-color: #D98880;    
             --bmc-color: #FFDD00;
             --textbook-font: 'Klee One', cursive;
         }
@@ -26,7 +25,6 @@
             line-height: 1.6;
         }
 
-        /* --- ナビゲーションバー (既存ページと完全一致) --- */
         nav {
             background: rgba(250, 252, 251, 0.95);
             backdrop-filter: blur(8px);
@@ -49,7 +47,6 @@
         .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; opacity: 0.8; }
         .nav-links a:hover { color: var(--primary-color); opacity: 1; }
 
-        /* --- メインコンテンツ --- */
         .container { 
             max-width: 900px; 
             margin: 0 auto 40px; 
@@ -70,7 +67,6 @@
             font-size: 1.8rem;
         }
 
-        /* --- モードセレクター --- */
         .mode-selector { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
         .mode-btn { 
             padding: 10px 18px; 
@@ -91,7 +87,6 @@
             box-shadow: 0 4px 10px rgba(93, 138, 130, 0.2); 
         }
 
-        /* --- ゲームエリア --- */
         .game-card { 
             position: relative; 
             background: #FAFBFA; 
@@ -130,7 +125,6 @@
         }
         input[type="text"]:focus { border-color: var(--primary-color); box-shadow: 0 0 15px rgba(93, 138, 130, 0.1); }
 
-        /* --- オーバーレイ --- */
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 20px; }
         .btn-start { 
             background-color: var(--primary-color); 
@@ -146,7 +140,6 @@
         }
         .btn-start:active { transform: translateY(3px); box-shadow: none; }
 
-        /* --- コレクション・チャート --- */
         .chart-section { margin-top: 50px; }
         .lib-title { font-weight: bold; color: #A4B0AE; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px; }
         .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 600px; margin: 0 auto; }
@@ -157,7 +150,6 @@
         .char-item.collected .en { color: var(--primary-color); }
         .char-item.empty { visibility: hidden; }
 
-        /* --- サポートセクション (既存ページと完全一致) --- */
         .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
         .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
         .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
@@ -264,15 +256,36 @@
             {j:'しゃ',e:['sha','sya']},{j:'しゅ',e:['shu','syu']},{j:'しょ',e:['sho','syo']},null,null,
             {j:'ちゃ',e:['cha','tya']},{j:'ちゅ',e:['chu','tyu']},{j:'ちょ',e:['cho','tyo']},null,null,
             {j:'にゃ',e:['nya']},{j:'にゅ',e:['nyu']},{j:'にょ',e:['nyo']},null,null,
-            {j:'じゃ',e:['ja','zya']},{j:'じゅ',e:['ju','zyu']},{j:'じょ',e:['jo','zyo']},null,null
+            {j:'じゃ',e:['ja','zya']},{j:'じゅ',e:['ju','zyu']},{j:'じょ',e:['jo','zyo']},null,null,
+            {j:'りゃ',e:['rya']},{j:'りゅ',e:['ryu']},{j:'りょ',e:['ryo']},null,null,
+            {j:'ひゃ',e:['hya']},{j:'ひゅ',e:['hyu']},{j:'ひょ',e:['hyo']},null,null
         ],
         words: [
+            // Greetings & Basics
             {j:'ありがとう',e:['arigatou']},{j:'こんにちは',e:['konnichiwa']},{j:'おはよう',e:['ohayou']},
-            {j:'すみません',e:['sumimasen']},{j:'にほんご',e:['nihongo']},{j:'おねがいします',e:['onegaishimasu']}
+            {j:'すみません',e:['sumimasen']},{j:'にほんご',e:['nihongo']},{j:'おねがいします',e:['onegaishimasu']},
+            {j:'さようなら',e:['sayounara']},{j:'おやすみ',e:['oyasumi']},{j:'はじめまして',e:['hajimemashite']},
+            // Numbers & Time
+            {j:'いち',e:['ichi']},{j:'に',e:['ni']},{j:'さん',e:['san']},{j:'よん',e:['yon']},{j:'ご',e:['go']},
+            {j:'きょう',e:['kyou']},{j:'あした',e:['ashita']},{j:'いま',e:['ima']},
+            // Nature & Food
+            {j:'すし',e:['sushi']},{j:'てんぷら',e:['tenpura']},{j:'みず',e:['mizu']},
+            {j:'おちゃ',e:['ocha']},{j:'さかな',e:['sakana']},{j:'にく',e:['niku']},
+            {j:'ごはん',e:['gohan']},{j:'やさい',e:['yasai']},{j:'くだもの',e:['kudamono']},
+            {j:'さくら',e:['sakura']},{j:'うみ',e:['umi']},{j:'やま',e:['yama']},
+            // Animals & Objects
+            {j:'ねこ',e:['neko']},{j:'いぬ',e:['inu']},{j:'うさぎ',e:['usagi']},
+            {j:'とり',e:['tori']},{j:'くるま',e:['kuruma']},{j:'でんしゃ',e:['densha']},
+            {j:'ほん',e:['hon']},{j:'かさ',e:['kasa']},{j:'くつ',e:['kutsu']},
+            // Descriptive / Verbs
+            {j:'かわいい',e:['kawaii']},{j:'すごい',e:['sugoi']},{j:'おいしい',e:['oishii']},
+            {j:'たべる',e:['taberu']},{j:'のむ',e:['nomu']},{j:'みる',e:['miru']},
+            {j:'きく',e:['kiku']},{j:'はなす',e:['hanasu']},{j:'よむ',e:['yomu']},
+            {j:'ともだち',e:['tomodachi']},{j:'かぞく',e:['kazoku']},{j:'せんせい',e:['sensei']}
         ]
     };
 
-    let currentMode = 'basic', score = 0, time = 60, current = null, timerInterval;
+    let currentMode = 'basic', score = 0, time = 60, current = null, timerInterval, lastChar = '';
     let savedCollection = JSON.parse(localStorage.getItem('ohayo_master_v1')) || [];
 
     const input = document.getElementById('game-input');
@@ -318,7 +331,14 @@
 
     function spawn() {
         const pool = dataSet[currentMode].filter(i => i !== null);
-        current = pool[Math.floor(Math.random() * pool.length)];
+        let next;
+        // 前回と同じ単語が出ないようにする
+        do {
+            next = pool[Math.floor(Math.random() * pool.length)];
+        } while (next.j === lastChar && pool.length > 1);
+        
+        current = next;
+        lastChar = current.j;
         display.innerText = current.j;
         displayBox.className = current.j.length > 2 ? "target-char long" : "target-char";
     }
