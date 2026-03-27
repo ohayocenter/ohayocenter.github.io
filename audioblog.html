@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="OHAYO CENTER: Professional online Japanese lessons.">
     <title>OHAYO CENTER - Audio Blog</title>
+    
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -19,7 +19,6 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
         
-        /* Navigation */
         nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
         .logo a { text-decoration: none; color: inherit; }
@@ -30,14 +29,12 @@
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
         h2 i { color: var(--primary); margin-right: 10px; }
 
-        /* Update Board */
         .update-board { background: #fff; border-radius: 20px; padding: 1.5rem; margin-bottom: 3rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
         .update-list { list-style: none; }
         .update-list li { display: flex; align-items: center; gap: 15px; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.85rem; }
         .update-date { font-weight: bold; color: var(--primary); min-width: 90px; }
         .update-badge { background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; }
 
-        /* Audio Blog Styles */
         .audio-section { margin-bottom: 5rem; }
         .audio-card { background: #fff; border-radius: 25px; margin-bottom: 1.5rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); overflow: hidden; }
         .card-header { padding: 1.5rem 2rem; cursor: pointer; display: flex; align-items: center; list-style: none; }
@@ -45,25 +42,24 @@
         .vol-badge { background: var(--primary); color: white; padding: 3px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-right: 1rem; }
         .card-title { flex-grow: 1; font-weight: bold; color: var(--dark); }
         .card-header i { color: #ccc; transition: 0.3s; }
-        details .card-header i { transition: transform 0.3s; }
         details[open] .card-header i { transform: rotate(180deg); color: var(--primary); }
 
-        /* Tabs System */
         .level-tabs { display: flex; flex-wrap: wrap; padding: 0 2rem 2rem; }
         .level-tabs input { display: none; }
         .tab-label { padding: 10px 20px; background: #f0f0f0; cursor: pointer; border-radius: 10px 10px 0 0; margin-right: 5px; font-size: 0.85rem; font-weight: bold; }
         .tab-panel { display: none; width: 100%; border-top: 3px solid var(--primary); padding-top: 2rem; }
-
         .level-tabs input:checked + .tab-label { background: var(--primary); color: white; }
-        #v1-low:checked ~ .panel-low, #v1-high:checked ~ .panel-high { display: block; }
+        
+        #v1-low:checked ~ .panel-v1-low, #v1-high:checked ~ .panel-v1-high,
+        #v2-low:checked ~ .panel-v2-low, #v2-high:checked ~ .panel-v2-high { display: block; }
 
-        /* Audio Player Responsive */
         .audio-unit { background: var(--primary-light); padding: 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 2rem; }
         .audio-unit audio { width: 100%; max-width: 500px; height: 40px; margin-top: 10px; }
         .script-box { font-size: 1.05rem; line-height: 2.3; color: var(--text); padding: 0 10px; }
+        .quote-box { border-left: 4px solid var(--primary); padding: 20px; background: #fafafa; margin: 25px 0; font-family: 'Sawarabi Mincho', serif; }
+        .quote-en { display: block; margin-top: 15px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; color: #777; font-style: italic; line-height: 1.6; }
         ruby rt { color: #888; font-size: 0.6em; }
 
-        /* Support Details */
         .support-details { margin-top: 1.5rem; border: 1px solid #eee; border-radius: 12px; background: #fff; }
         .support-details summary { padding: 12px 15px; background: #fafafa; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); list-style: none; display: flex; align-items: center; gap: 8px; }
         .support-details summary::-webkit-details-marker { display: none; }
@@ -71,43 +67,12 @@
         .vocab-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
         .vocab-table th, .vocab-table td { padding: 10px; text-align: left; border-bottom: 1px solid #f0f0f0; }
         .vocab-table th { color: #aaa; font-size: 0.75rem; text-transform: uppercase; }
-        .vocab-table tr:last-child td { border-bottom: none; }
 
-        /* --- Support OHAYO CENTER (Unified Style) --- */
-        .bmc-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 12px;
-            color: #000000;
-            background-color: #FFDD00;
-            border-radius: 8px;
-            font-family: 'Noto Sans JP', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-            transition: 0.2s opacity ease;
-            margin-top: 10px;
-        }
+        .bmc-btn { display: inline-flex; align-items: center; padding: 6px 12px; color: #000000; background-color: #FFDD00; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0px 1px 2px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; }
         .bmc-btn:hover { opacity: 0.9; }
-        .bmc-btn img {
-            height: 18px;
-            width: auto;
-            margin-right: 8px;
-        }
+        .bmc-btn img { height: 18px; width: auto; margin-right: 8px; }
 
         footer { padding: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
-        .support-section { margin-bottom: 2rem; }
-
-        @media (max-width: 600px) {
-            nav { padding: 0 3%; } /* 余白を少し削って横幅を確保 */
-            .logo { font-size: 0.95rem; margin-right: 5px; } /* ロゴサイズ微調整 */
-            .nav-links { gap: 0.6rem; } /* メニューの間隔を狭く */
-            .nav-links a { font-size: 0.7rem; letter-spacing: 0.5px; } /* 文字サイズと間隔を微調整 */
-            .card-header { padding: 1.2rem; }
-            .card-title { font-size: 0.95rem; }
-            .tab-label { padding: 8px 12px; font-size: 0.75rem; }
-        }
     </style>
 </head>
 <body>
@@ -126,8 +91,12 @@
     <div class="update-board">
         <ul class="update-list">
             <li>
-                <span class="update-date">2026.03.20</span>
+                <span class="update-date">2026.03.24</span>
                 <span class="update-badge">NEW</span>
+                <span class="update-text">AUDIO BLOG Vol.2「時を待つ心」を公開しました🌸</span>
+            </li>
+            <li>
+                <span class="update-date">2026.03.20</span>
                 <span class="update-text">AUDIO BLOG を開始しました！Vol.1 公開中。</span>
             </li>
         </ul>
@@ -136,23 +105,191 @@
     <section id="audio-blog" class="audio-section">
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
         
+        <details class="audio-card" open>
+            <summary class="card-header">
+                <span class="vol-badge">Vol.2</span>
+                <span class="card-title">🌸Wait for the Bloom: My 20-Year Language Journey</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+
+            <div class="level-tabs">
+                <input type="radio" name="v2-tabs" id="v2-low" checked>
+                <label for="v2-low" class="tab-label">📗 中上級</label>
+
+                <input type="radio" name="v2-tabs" id="v2-high">
+                <label for="v2-high" class="tab-label">📕 上級</label>
+
+                <div class="tab-panel panel-v2-low">
+                    <div class="audio-unit">
+                        <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
+                        <audio controls src="vol2-1.mp3"></audio>
+                    </div>
+                    <div class="script-box">
+                        <p>皆さん、こんにちは。OHAYO CENTERの Shinyaです。</p>
+                        <p><ruby>千葉<rt>ちば</rt></ruby>の <ruby>桜<rt>さくら</rt></ruby>も, もうすぐ <ruby>咲<rt>さ</rt></ruby>きそうです。今日は、私の好きな「桜」にまつわる <ruby>言葉<rt>ことば</rt></ruby>を <ruby>紹介<rt>しょうかい</rt></ruby>します。むずかしい言葉ですが、きいてください。英語の翻訳(Translation)を読んでみてください。</p>
+                        <div class="quote-box">
+                            「<ruby>時<rt>とき</rt></ruby>を <ruby>待<rt>ま</rt></ruby>つ <ruby>心<rt>こころ</rt></ruby>は、<ruby>春<rt>はる</rt></ruby>を <ruby>待<rt>ま</rt></ruby>つ <ruby>桜<rt>さくら</rt></ruby>の <ruby>姿<rt>すがた</rt></ruby>といえよう。だが <ruby>何<rt>なに</rt></ruby>もせずに <ruby>待<rt>ま</rt></ruby>つことは、ただのラッキー（<ruby>僥倖<rt>ぎょうこう</rt></ruby>）を <ruby>待<rt>ま</rt></ruby>つことと <ruby>同<rt>おな</rt></ruby>じだ。<ruby>静<rt>しず</rt></ruby>かに <ruby>春<rt>はる</rt></ruby>を <ruby>待<rt>ま</rt></ruby>つ <ruby>桜<rt>さくら</rt></ruby>は、<ruby>一瞬<rt>いっしゅん</rt></ruby>も <ruby>休<rt>やす</rt></ruby>まずに <ruby>力<rt>ちから</rt></ruby>を <ruby>蓄<rt>たくわ</rt></ruby>えている。その <ruby>力<rt>ちから</rt></ruby>がなければ、<ruby>時<rt>とき</rt></ruby>が <ruby>来<rt>き</rt></ruby>ても <ruby>花<rt>はな</rt></ruby>は <ruby>咲<rt>さ</rt></ruby>かない。」
+                            <span class="quote-en"><b>"Having a heart that waits for the right time is like a cherry blossom awaiting spring. However, waiting without doing anything is the same as merely waiting for a stroke of luck (windfall). The cherry blossom, waiting quietly for spring, is accumulating its strength without a moment's rest. Without that stored power, the flower will not bloom even when the time comes."</b></span>
+                        </div>
+                        <p>これは、ある有名な日本人の言葉です。 皆さんは、日本語を勉強していて「全然上手にならないな」と悲しくなることはありませんか？ 実は、私にも同じ経験があります。</p>
+                        <p>私は20年前から「英語が上手になりたい」と思って、ずっと勉強を続けてきました。でも、10年経っても15年経っても、自分が上手くなっている実感が全くありませんでした。「自分には才能がないのかな」と思ったこともあります。</p>
+                        <p>ところが最近、オンラインレッスンを始めて驚いたことがあります。 生徒さんから、「先生は英語ができるから、私は先生を選びました」と言われたんです。</p>
+                        <p>その時、私は気づきました。 自分では「ずっと止まっている」と思っていました。でも、20年間、少しずつ続けてきたことが、私の中に「力」として貯まっていたんです。</p>
+                        <p>冬の桜の木を見て、「枯れている」と思う人はいませんよね。桜は、寒い冬の間も、春にきれいな花を咲かせるために、一瞬も休まずに準備をしています。皆さんの日本語も同じです。 毎日単語を覚えたり、私のサイトで記事を読んだりしている時間は、力をためている時間です。自分では気づかなくても、ある日突然、周りの人から「日本語、すごいね！」と言われる時が必ず来ます。</p>
+                        <p>今はまだ、蕾（つぼみ）の状態かもしれません。 でも、その「待つ時間」を大切にしてください。 春が来た時、皆さんの努力はきっと大きな花を咲かせます。私も皆さんと一緒に、これからも言語の勉強を頑張ります。 今日も一歩ずつ、一緒に進みましょう。 OHAYO CENTERのShinyaでした。今日もきいてくれてありがとうございました。</p>
+                        
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
+                            <div class="support-content">
+                                <p>"Having a heart that waits for the right time is like a cherry blossom awaiting spring. However, waiting without doing anything is the same as merely waiting for a stroke of luck. The cherry blossom, waiting quietly for spring, is accumulating its strength without a moment's rest. Without that stored power, the flower will not bloom even when the time comes."</p>
+                                <p>This is a quote from a famous Japanese person. When studying Japanese, do you ever feel sad, thinking, "I'm not getting any better"? Actually, I have had the same experience. I have been studying English for 20 years, but for the longest time, I didn't feel like I was improving at all. I even thought I had no talent.</p>
+                                <p>However, after starting my online lessons, a student told me, "I chose you because you are good at English." At that moment, I realized that my 20 years of small, consistent efforts had been accumulating inside me as "strength." Even if you feel like you've stopped, you are gathering strength every day. The time will surely come when your efforts bloom into a beautiful flower. Let's keep moving forward together, one step at a time.</p>
+                            </div>
+                        </details>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-earth-asia"></i> Chinese Translation / 中文翻译</summary>
+                            <div class="support-content">
+                                <p>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸的降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股力量，时机成熟时花儿也无法绽放。”</p>
+                                <p>这是一位日本名人的名言。大家在学习日语时，会不会因为觉得“一点进步都没有”而感到悲伤呢？其实，我也有过同样的经历。我从20年前开始学英语，曾长期感觉不到进步，甚至怀疑过自己的天赋。</p>
+                                <p>但最近有学生对我说：“因为老师英语好，我才选了您。”那一刻我才发现，20年来的点滴努力已化作“力量”积蓄在体内。樱花在寒冬也从未停止准备。大家的日语学习也一样，每天的积累都在蓄力。请珍惜这段“等待的时间”，春天来临时，你的努力定会灿烂绽放。</p>
+                            </div>
+                        </details>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
+                            <div class="support-content">
+                                <table class="vocab-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Word / 单词</th>
+                                            <th>Reading / Meaning / 意思</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>～にまつわる</td><td>Associated with / 与……有关</td></tr>
+                                        <tr><td>紹介する</td><td>しょうかいする / To introduce / 介绍</td></tr>
+                                        <tr><td>姿</td><td>すがた / Figure; Appearance / 姿态</td></tr>
+                                        <tr><td>同じ</td><td>おなじ / Same / 相同</td></tr>
+                                        <tr><td>一瞬も休まず</td><td>いっしゅんもやすまず / Without a moment's rest / 一刻也不休息</td></tr>
+                                        <tr><td>（力を）蓄える</td><td>（ちからを）たくわえる / To accumulate (strength) / 积蓄（力量）</td></tr>
+                                        <tr><td>咲く</td><td>さく / To bloom / 开放</td></tr>
+                                        <tr><td>全然～ない</td><td>ぜんぜん～ない / Not at all / 完全不……</td></tr>
+                                        <tr><td>上手になる</td><td>じょうずになる / To improve / 进步</td></tr>
+                                        <tr><td>実は</td><td>じつは / Actually / 其实</td></tr>
+                                        <tr><td>経験</td><td>けいけん / Experience / 经验</td></tr>
+                                        <tr><td>続ける</td><td>つづける / To continue / 继续</td></tr>
+                                        <tr><td>～が経つ</td><td>～がたつ / (Time) passes / （时间）流逝</td></tr>
+                                        <tr><td>実感</td><td>じっかん / Real feel / 真实感受</td></tr>
+                                        <tr><td>才能</td><td>さいのう / Talent / 天赋</td></tr>
+                                        <tr><td>驚く</td><td>おどろく / To be surprised / 惊讶</td></tr>
+                                        <tr><td>準備</td><td>じゅんび / Preparation / 准备</td></tr>
+                                        <tr><td>蕾（つぼみ）</td><td>つぼみ / Bud / 花蕾</td></tr>
+                                        <tr><td>努力</td><td>どりょく / Effort / 努力</td></tr>
+                                        <tr><td>一歩ずつ</td><td>いっぽずつ / Step by step / 一步步地</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="tab-panel panel-v2-high">
+                    <div class="audio-unit">
+                        <p><small>🎵 普通に話します😊</small></p>
+                        <audio controls src="vol2-2.mp3"></audio>
+                    </div>
+                    <div class="script-box">
+                        <p>皆さん、こんにちは。OHAYO CENTERのShinyaです。 千葉もようやく春の気配がしてきましたね。……あ、そういえば、スタバでも桜シリーズが出ていますね。来週子どもと一緒にチェックしに行こうかな、なんて思っています。……まあ、そんな話はさておいて（笑）。</p>
+                        <p>今日は、私がずっと大切にしている「時を待つ」っていう言葉について、少しお話ししようと思います。松下幸之助さんの有名な言葉に、こんな格言があるんです。松下さんといえば、Panasonicですね！</p>
+                        <div class="quote-box">
+                            「時を待つ心は、春を待つ桜の姿といえよう。だが何もせずに待つ事は、僥倖を待つに等しい。静かに春を待つ桜は、一瞬の休みもなく力を蓄えている。たくわえられた力がなければ、時が来ても花は咲かない。」
+                            <span class="quote-en"><b>"To wait for the right moment is to be like a cherry blossom awaiting spring. But remember, waiting in idleness is nothing more than hoping for a fluke (windfall). The cherry tree never rests, silently gathering the strength it needs. For without that inner preparation, no flower can bloom."</b></span>
+                        </div>
+                        <p>……「僥倖（ぎょうこう）」、つまり、ただのラッキーを待つんじゃなくて、見えないところで虎視眈々と準備をすること。これって、言語の学習にそっくりだなって思うんですよね。実は、私の話をすると……私、もう20年以上「英語が上手になりたいな」と思って勉強を続けてるんですよ。でも、なんて言うか……10年経っても、15年経っても、ちっとも上手くなってる実感が持てなかったんです。「あぁ、言語の才能ないのかな」なんて思うことも、正直ありました。</p>
+                        <p>ところが、最近オンラインでレッスンを始めて、驚いたことがあって。 ……生徒さんから、「先生は英語ができるから、私は先生のレッスンを選びました」って、不意に言われたんです。その時、ハッとしたんですよね。 自分では「ずっと足踏みしている」と思っていた20年間。でも、その間も細々と続けていた積み重ねが、知らないうちに私の中にエネルギーとして「蓄えられていた」んだなって。あぁ、自分の成長をしっかり認めてもらえたんだなって、すごく勇気をもらいました。</p>
+                        <p>桜も、冬の間はただ枯れているように見えますよね。でも、実は一瞬も休まずに、春に花を咲かせるための力を溜めている。 皆さんの日本語も、今は「全然進んでないな」と感じるかもしれません。でも、ある日突然、周りの誰かがあなたの「花」に気づく時が必ず来ます。だから、今は焦らず、静かに力を蓄えていきましょう。 時が来れば、必ず咲きますから。……まあ、私も次の20年に向けて、またコツコツ言語の勉強を続けていこうかな、なんて思っています。でも、次の20年だと60歳なのでおじいちゃんですね。それでは、今日も素敵な一日を。 OHAYO CENTERのShinyaでした。今日もきいてくれてありがとうございました！</p>
+                        
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
+                            <div class="support-content">
+                                <p>Hello everyone, I'm Shinya from OHAYO CENTER. It feels like spring is finally in the air here in Chiba. By the way, Starbucks has released their cherry blossom series! I’m thinking of checking it out with my child next week. Well, let’s set that aside for now (haha).</p>
+                                <p>Today, I want to talk about a phrase I’ve always held dear: "Waiting for the right time." There’s a famous maxim by Konosuke Matsushita—the founder of Panasonic!</p>
+                                <p><i>"Having a heart that waits for the right time is like a cherry blossom awaiting spring. However, waiting in idleness is nothing more than hoping for a windfall. The cherry blossom, waiting quietly for spring, is accumulating its strength without a moment's rest. Without that stored power, the flower will not bloom even when the time comes."</i></p>
+                                <p>Waiting for "gyoko" (a fluke or stroke of luck) isn't the goal; instead, it's about vigilantly preparing behind the scenes. I feel this is exactly like language learning. To be honest, I’ve been studying English for over 20 years because I wanted to be proficient. But for the longest time—10 years, 15 years—I didn't feel like I was improving at all. I truly wondered if I just had no talent for languages.</p>
+                                <p>However, since I started my online lessons recently, something surprised me. A student suddenly said, "I chose your lesson because you are good at English." That moment was an epiphany for me. I thought I had been "treading water" for 20 years. But in reality, those small, consistent efforts had been accumulating inside me as energy without me even realizing it. Having my growth recognized like that gave me so much courage.</p>
+                                <p>During winter, a cherry tree looks as if it has simply withered. But in truth, it never rests, gathering the strength it needs to bloom in spring. Your Japanese studies might feel stagnant right now. But the day will surely come when someone notices your "flower." So, don't rush; quietly accumulate your strength. When the time comes, you will surely bloom. As for me, I’ll keep working steadily toward the next 20 years... though I’ll be a grandpa by then! Have a wonderful day. This was Shinya from OHAYO CENTER. Thank you for listening!</p>
+                            </div>
+                        </details>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-earth-asia"></i> Chinese Translation / 中文翻译</summary>
+                            <div class="support-content">
+                                <p>大家好，我是 OHAYO CENTER 的 Shinya。千叶终于有了春天的气息。对了，星巴克也出了樱花系列呢，我在想下周要不要带孩子去看看。好啦，闲话休提（笑）。</p>
+                                <p>今天我想聊聊我一直很珍惜的一句话——“等待时机”。松下幸之助先生（就是松下电器的创始人！）有一句著名的格言：</p>
+                                <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸的降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股积蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
+                                <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不见的地方虎视眈眈地做准备。我觉得这和语言学习简直一模一样。说实话，我为了“想学好英语”已经坚持了20多年。但怎么说呢，过了10年、15年，我完全没有进步的实感，甚至真的怀疑过自己是不是没有语言天赋。</p>
+                                <p>然而最近开始在线授课后，发生了一件让我惊讶的事。一位学生突然对我说：“因为老师英语很好，所以我选了您的课。”那一刻，我猛然醒悟。我以为自己这20年一直“停滞不前”，但其实那些琐碎的积累，早已在不知不觉中化作能量积蓄在体内。自己的成长能得到认可，真的给了我很大的勇气。</p>
+                                <p>冬天的樱花树看起来像枯萎了一样，但其实它一刻不停地在为春天开花而蓄力。大家的日语学习也许现在正处于“感觉不到进步”的阶段，但总有一天，一定会有人发现你的“花朵”。所以，请不要焦急，静静地积蓄力量吧。时机成熟时，一定能绽放。我也打算为了下一个20年继续努力学语言……不过那时我就60岁，成老爷爷了呢（笑）。祝大家度过美好的一天，我是 OHAYO CENTER 的 Shinya。谢谢大家的收听！</p>
+                            </div>
+                        </details>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
+                            <div class="support-content">
+                                <table class="vocab-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Word / 单词</th>
+                                            <th>Meaning / 意思</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>～の気配がする</td><td>Signs of... / 有……的迹象</td></tr>
+                                        <tr><td>～はさておき</td><td>Setting aside... / 暂且不提……</td></tr>
+                                        <tr><td>格言</td><td>Maxim; Adage / 格言</td></tr>
+                                        <tr><td>僥倖（ぎょうこう）</td><td>Windfall; A stroke of luck / 侥幸</td></tr>
+                                        <tr><td>～に等しい</td><td>Equivalent to / 等同于……</td></tr>
+                                        <tr><td>虎視眈々と</td><td>Vigilantly waiting / 虎视眈眈地</td></tr>
+                                        <tr><td>そっくりだ</td><td>Exactly like / 一模一样</td></tr>
+                                        <tr><td>ちっとも～ない</td><td>Not at all / 一点也不……</td></tr>
+                                        <tr><td>実感が持てない</td><td>Cannot feel the reality of / 没真实感</td></tr>
+                                        <tr><td>正直</td><td>To be honest / 老实说</td></tr>
+                                        <tr><td>不意に</td><td>Unexpectedly; Suddenly / 意外地; 突然</td></tr>
+                                        <tr><td>ハッとする</td><td>To suddenly realize / 猛然意识到</td></tr>
+                                        <tr><td>足踏みしている</td><td>Stagnating; At a standstill / 停滞不前</td></tr>
+                                        <tr><td>細々と（ほそぼそと）</td><td>In a small way; Modestly / 勉强地; 零碎地</td></tr>
+                                        <tr><td>積み重ね</td><td>Accumulation / 积累</td></tr>
+                                        <tr><td>認めてもらう</td><td>To be recognized / 得到认可</td></tr>
+                                        <tr><td>勇気をもらう</td><td>To be encouraged / 获得勇气</td></tr>
+                                        <tr><td>枯れる</td><td>To wither; Die (plants) / 枯萎</td></tr>
+                                        <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏实実地</td></tr>
+                                        <tr><td>一歩ずつ</td><td>Step by step / 一步步地</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </details>
+
         <details class="audio-card">
             <summary class="card-header">
                 <span class="vol-badge">Vol.1</span>
-                <span class="card-title">自己紹介：Who is OHAYO CENTER?</span>
+                <span class="card-title">🎉My first Audio Blog：Who is OHAYO CENTER?</span>
                 <i class="fa-solid fa-chevron-down"></i>
             </summary>
 
             <div class="level-tabs">
                 <input type="radio" name="v1-tabs" id="v1-low" checked>
                 <label for="v1-low" class="tab-label">📗 初中級</label>
-
                 <input type="radio" name="v1-tabs" id="v1-high">
                 <label for="v1-high" class="tab-label">📕 上級</label>
 
-                <div class="tab-panel panel-low">
+                <div class="tab-panel panel-v1-low">
                     <div class="audio-unit">
-                        <p><small>🎵 少しゆっくり・でも自然に話します</small></p>
+                        <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
                         <audio controls src="vol1-1.mp3"></audio>
                     </div>
                     <div class="script-box">
@@ -189,13 +326,13 @@
                     </div>
                 </div>
 
-                <div class="tab-panel panel-high">
+                <div class="tab-panel panel-v1-high">
                     <div class="audio-unit">
-                        <p><small>🎵 普通に話します</small></p>
+                        <p><small>🎵 普通に話します😊</small></p>
                         <audio controls src="vol1-2.mp3"></audio>
                     </div>
                     <div class="script-box">
-                        <p>こんにちは〜！OHAYO CENTERのオーディオブログへようこそ。第1回目ということで、まず自己紹介から始めたいと思います。</p>
+                        <p>こんにちは〜！OHAYO CENTER'sオーディオブログへようこそ。第1回目ということで、まず自己紹介から始めたいと思います。</p>
                         <p>名前はしんやといいます。出身は千葉—東京の隣です。千葉って何が有名なのって言われるんですけど、ディズニーランドです。</p>
                         <p>経歴をざっくり話すと、2017年に日本語教師の資格を取って、千葉の日本語学校で1年間教えたのが最初のスタートでした。で、その後が少し面白くて——「日本語パートナーズ」っていう国のプログラムに参加して、ベトナムに派遣されました。
                         ベトナムの田舎の高校で、現地の日本語の先生のアシスタントとして約1年間働きました。ベトナムの田舎、ほんとに何もないところで（笑）私が住んでいた街には二人しか日本人がいませんでした。でも、それがすごくいい経験で。ベトナム語も少し上手になりました。</p>
@@ -225,17 +362,6 @@
                         </details>
                     </div>
                 </div>
-            </div>
-        </details>
-
-        <details class="audio-card">
-            <summary class="card-header">
-                <span class="vol-badge">Vol.2</span>
-                <span class="card-title">COMING SOON🌸</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </summary>
-            <div style="padding: 2rem; text-align: center; color: #999;">
-                <p><i class="fa-solid fa-microphone-lines"></i> 現在、録音中です。お楽しみに！</p>
             </div>
         </details>
     </section>
