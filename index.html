@@ -381,10 +381,30 @@
                     <p style="margin-top: 1.2rem; font-weight: bold; text-align: center;">Shinya | OHAYO CENTER</p>
                 </div>
                 <div class="profile-right">
-                    <div class="exp-item"><span class="exp-year">2017</span><span>Japanese Teaching Certificate</span></div>
-                    <div class="exp-item"><span class="exp-year">2017-18</span><span>Language school in Japan</span></div>
-                    <div class="exp-item"><span class="exp-year">2018-19</span><span>High schools in Vietnam</span></div>
-                    <div class="exp-item"><span class="exp-year">2019-Now</span><span>Founder of Ohayo Center</span></div>
+<div class="exp-item" style="border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 12px;">
+    <span class="exp-year" style="font-weight: bold; color: #d9534f;">Experience</span>
+    <span style="font-weight: bold;">10+ Years & 4,000+ Online Lessons</span>
+</div>
+
+<div class="exp-item">
+    <span class="exp-year">2019-Now</span>
+    <span>Founder of OHAYO CENTER</span>
+</div>
+
+<div class="exp-item">
+    <span class="exp-year">2018-19</span>
+    <span>High schools in Vietnam</span>
+</div>
+
+<div class="exp-item">
+    <span class="exp-year">2017-18</span>
+    <span>Language school in Japan</span>
+</div>
+
+<div class="exp-item">
+    <span class="exp-year">2017</span>
+    <span>Japanese Teaching Certificate</span>
+</div>
                 </div>
             </div>
 
@@ -432,9 +452,9 @@
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
             <ul class="update-list">
-                <li><span class="update-date">2026.Mar.21</span><span class="update-badge" style="color: #2ecc71; background: #eafaf1;">NEW</span><span class="update-text">AUDIO BLOG is now available! Listen to natural Japanese.</span></li>
-                <li><span class="update-date">2026.Mar.14</span><span class="update-badge" style="color: #ff9a9e; background: #fff5f5;">Basics</span><span class="update-text">Matching Game is now available! Enjoy learning Hiragana/Katakana!</span></li>
-                <li><span class="update-date">2026.Mar.21</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Kanji</span><span class="update-text">Kanji Progress System is now live! Track your learning journey.</span></li>
+                <li><span class="update-date">2026.April.1</span><span class="update-badge" style="color: #2ecc71; background: #eafaf1;">Blog</span><span class="update-text">AUDIO BLOG is now available! Listen to natural Japanese.</span></li>
+                <li><span class="update-date">2026.April.1</span><span class="update-badge" style="color: #ff9a9e; background: #fff5f5;">Basics</span><span class="update-text">Hiragana & Katakana Typing Game is now available!</span></li>
+                <li><span class="update-date">2026.April.1</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Kanji</span><span class="update-text">Kanji Progress System is now live! Track your learning journey.</span></li>
             </ul>
         </div>
 
@@ -624,12 +644,21 @@
                 <p>Travel Survival Japanese</p>
                 <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
             </a>
+
             <a href="Hiragana.html" class="unified-card t-hira">
                 <i class="fa-solid fa-book-open-reader" style="color: #2980b9;"></i>
                 <h3>Hiragana</h3>
                 <p>Hiragana Practice 1</p>
                 <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
             </a>
+
+            <a href="hiraganatype.html" class="unified-card t-hira">
+                <i class="fa-solid fa-keyboard" style="color: #2980b9;"></i>
+                <h3>Hiragana Master</h3>
+                <p>Typing & Reading Practice<br>ひらがなタイピング</p>
+                <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">PLAY NOW</div>
+            </a>
+
             <a href="Katakana1.html" class="unified-card t-kata">
                 <i class="fa-solid fa-book-open-reader" style="color: #d35400;"></i>
                 <h3>Katakana</h3>
@@ -641,6 +670,13 @@
                 <h3>Katakana</h3>
                 <p>Practical Words</p>
                 <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
+            </a>
+
+            <a href="katakanatype.html" class="unified-card t-kata">
+                <i class="fa-solid fa-keyboard" style="color: #d35400;"></i>
+                <h3>Katakana Master</h3>
+                <p>Typing & Reading Practice<br>カタカナタイピング</p>
+                <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">PLAY NOW</div>
             </a>
         </div>
 
@@ -836,7 +872,7 @@
         window.addEventListener('click', (event) => { 
             if (event.target == modal) { 
                 modal.classList.remove("show"); 
-                setTimeout(() => modal.style.display = "none", 300);
+                setTimeout(() => modal.style.display = "none", 300); 
                 document.body.style.overflow = "auto"; 
             } 
         });
