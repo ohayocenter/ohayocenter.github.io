@@ -19,10 +19,28 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
         
-        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
+        /* ナビゲーションバー：デザイン維持＋スマホ最適化 */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            padding: 0 5%; 
+            height: 70px; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            overflow-x: auto; /* 横幅が足りない場合にスクロール可能に */
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; margin-right: 15px; }
         .logo a { text-decoration: none; color: inherit; }
-        .nav-links { list-style: none; display: flex; gap: 1.2rem; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; flex-shrink: 0; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 100px 1.2rem 3rem; }
@@ -73,6 +91,14 @@
         .bmc-btn img { height: 18px; width: auto; margin-right: 8px; }
 
         footer { padding: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+
+        /* スマホ向け：デザインを崩さず微調整 */
+        @media (max-width: 600px) {
+            .logo { font-size: 1rem; margin-right: 10px; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; letter-spacing: 0.5px; }
+            nav { padding: 0 4%; }
+        }
     </style>
 </head>
 <body>
@@ -92,7 +118,7 @@
         <ul class="update-list">
             <li>
                 <span class="update-date">2026.03.24</span>
-                <span class="update-badge">NEW</span>
+                
                 <span class="update-text">AUDIO BLOG Vol.2「時を待つ心」を公開しました🌸</span>
             </li>
             <li>
@@ -105,7 +131,7 @@
     <section id="audio-blog" class="audio-section">
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
         
-        <details class="audio-card" open>
+        <details class="audio-card">
             <summary class="card-header">
                 <span class="vol-badge">Vol.2</span>
                 <span class="card-title">🌸Wait for the Bloom: My 20-Year Language Journey</span>
@@ -115,7 +141,6 @@
             <div class="level-tabs">
                 <input type="radio" name="v2-tabs" id="v2-low" checked>
                 <label for="v2-low" class="tab-label">📗 中上級</label>
-
                 <input type="radio" name="v2-tabs" id="v2-high">
                 <label for="v2-high" class="tab-label">📕 上級</label>
 
@@ -128,7 +153,7 @@
                         <p>皆さん、こんにちは。OHAYO CENTERの Shinyaです。</p>
                         <p><ruby>千葉<rt>ちば</rt></ruby>の <ruby>桜<rt>さくら</rt></ruby>も, もうすぐ <ruby>咲<rt>さ</rt></ruby>きそうです。今日は、私の好きな「桜」にまつわる <ruby>言葉<rt>ことば</rt></ruby>を <ruby>紹介<rt>しょうかい</rt></ruby>します。むずかしい言葉ですが、きいてください。英語の翻訳(Translation)を読んでみてください。</p>
                         <div class="quote-box">
-                            「<ruby>時<rt>とき</rt></ruby>を <ruby>待<rt>ま</rt></ruby>つ <ruby>心<rt>こころ</rt></ruby>は、<ruby>春<rt>はる</rt></ruby>を <ruby>待<rt>ま</rt></ruby>つ <ruby>桜<rt>さくら</rt></ruby>の <ruby>姿<rt>すがた</rt></ruby>といえよう。だが <ruby>何<rt>なに</rt></ruby>もせずに <ruby>待<rt>ま</rt></ruby>つことは、ただのラッキー（<ruby>僥倖<rt>ぎょうこう</rt></ruby>）を <ruby>待<rt>ま</rt></ruby>つことと <ruby>同<rt>おな</rt></ruby>じだ。<ruby>静<rt>しず</rt></ruby>かに <ruby>春<rt>はる</rt></ruby>を <ruby>待<rt>ま</rt></ruby>つ <ruby>桜<rt>さくら</rt></ruby>は、<ruby>一瞬<rt>いっしゅん</rt></ruby>も <ruby>休<rt>やす</rt></ruby>まずに <ruby>力<rt>ちから</rt></ruby>を <ruby>蓄<rt>たくわ</rt></ruby>えている。その <ruby>力<rt>ちから</rt></ruby>がなければ、<ruby>時<rt>とき</rt></ruby>が <ruby>来<rt>き</rt></ruby>ても <ruby>花<rt>はな</rt></ruby>は <ruby>咲<rt>さ</rt></ruby>かない。」
+                            「<ruby>時<rt>とき</rt></ruby>を <ruby>待<rt>ま</rt></ruby>つ <ruby>心<rt>こころ</rt></ruby>は、<ruby>春<rt>haru</rt></ruby>を <ruby>待<rt>ma</rt></ruby>つ <ruby>桜<rt>sakura</rt></ruby>の <ruby>姿<rt>sugata</rt></ruby>といえよう。だが <ruby>何<rt>nani</rt></ruby>もせずに <ruby>待<rt>ma</rt></ruby>つことは、ただのラッキー（<ruby>僥倖<rt>gyoko</rt></ruby>）を <ruby>待<rt>ma</rt></ruby>つことと <ruby>同<rt>ona</rt></ruby>じだ。<ruby>静<rt>shizu</rt></ruby>かに <ruby>春<rt>haru</rt></ruby>を <ruby>待<rt>ma</rt></ruby>つ <ruby>桜<rt>sakura</rt></ruby>は、<ruby>一瞬<rt>isshun</rt></ruby>も <ruby>休<rt>yasu</rt></ruby>まずに <ruby>力<rt>chikara</rt></ruby>を <ruby>蓄<rt>takuwa</rt></ruby>えている。その <ruby>力<rt>chikara</rt></ruby>がなければ、<ruby>時<rt>toki</rt></ruby>が <ruby>来<rt>ki</rt></ruby>ても <ruby>花<rt>hana</rt></ruby>は <ruby>咲<rt>sa</rt></ruby>かない。」
                             <span class="quote-en"><b>"Having a heart that waits for the right time is like a cherry blossom awaiting spring. However, waiting without doing anything is the same as merely waiting for a stroke of luck (windfall). The cherry blossom, waiting quietly for spring, is accumulating its strength without a moment's rest. Without that stored power, the flower will not bloom even when the time comes."</b></span>
                         </div>
                         <p>これは、ある有名な日本人の言葉です。 皆さんは、日本語を勉強していて「全然上手にならないな」と悲しくなることはありませんか？ 実は、私にも同じ経験があります。</p>
@@ -228,9 +253,9 @@
                                 <p>大家好，我是 OHAYO CENTER 的 Shinya。千叶终于有了春天的气息。对了，星巴克也出了樱花系列呢，我在想下周要不要带孩子去看看。好啦，闲话休提（笑）。</p>
                                 <p>今天我想聊聊我一直很珍惜的一句话——“等待时机”。松下幸之助先生（就是松下电器的创始人！）有一句著名的格言：</p>
                                 <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸的降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股积蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
-                                <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不见的地方虎视眈眈地做准备。我觉得这和语言学习简直一模一样。说实话，我为了“想学好英语”已经坚持了20多年。但怎么说呢，过了10年、15年，我完全没有进步的实感，甚至真的怀疑过自己是不是没有语言天赋。</p>
-                                <p>然而最近开始在线授课后，发生了一件让我惊讶的事。一位学生突然对我说：“因为老师英语很好，所以我选了您的课。”那一刻，我猛然醒悟。我以为自己这20年一直“停滞不前”，但其实那些琐碎的积累，早已在不知不觉中化作能量积蓄在体内。自己的成长能得到认可，真的给了我很大的勇气。</p>
-                                <p>冬天的樱花树看起来像枯萎了一样，但其实它一刻不停地在为春天开花而蓄力。大家的日语学习也许现在正处于“感觉不到进步”的阶段，但总有一天，一定会有人发现你的“花朵”。所以，请不要焦急，静静地积蓄力量吧。时机成熟时，一定能绽放。我也打算为了下一个20年继续努力学语言……不过那时我就60岁，成老爷爷了呢（笑）。祝大家度过美好的一天，我是 OHAYO CENTER 的 Shinya。谢谢大家的收听！</p>
+                                <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不见的地方虎视眈眈地做准备。我觉得这和语言学习简直一模一样。说实话，我为了“想学好英语”已经坚持了20多年。但怎么说呢，过了10年、15年，我完全没有进步の实感，甚至真的怀疑过自己是不是没有语言天赋。</p>
+                                <p>然而最近开始在线授课后，发生了一件让我惊讶的事。一位学生突然对我说：“因为老师英语很好，所以我选了您的课。”那一刻，我猛然醒悟。我以为自己这20年一直“停滞不前”，但其实那些琐碎の积累，早已在不知不覚中化作能量积蓄在体内。自分の成長能得到认可，真的给了我很大的勇气。</p>
+                                <p>冬天的樱花树看起来像枯萎了一样，但其实它一刻不停地在为春天开花而蓄力。大家的日语学習也许現在正处于「感觉不到進歩」の阶段，但总有一天，一定会有人发现你的「花朵」。所以，請不要焦急，静静地积蓄力量吧。時機成熟時，一定能綻放。我也打算為了下一個20年繼續努力学语言……不过那时我就60岁，成老爷爷了呢（笑）。祝大家度过美好の一天，我是 OHAYO CENTER 的 Shinya。谢谢大家的收听！</p>
                             </div>
                         </details>
 
@@ -254,17 +279,17 @@
                                         <tr><td>そっくりだ</td><td>Exactly like / 一模一样</td></tr>
                                         <tr><td>ちっとも～ない</td><td>Not at all / 一点也不……</td></tr>
                                         <tr><td>実感が持てない</td><td>Cannot feel the reality of / 没真实感</td></tr>
-                                        <tr><td>正直</td><td>To be honest / 老实说</td></tr>
+                                        <tr><td>正直</td><td>To be honest / 老実説</td></tr>
                                         <tr><td>不意に</td><td>Unexpectedly; Suddenly / 意外地; 突然</td></tr>
                                         <tr><td>ハッとする</td><td>To suddenly realize / 猛然意识到</td></tr>
                                         <tr><td>足踏みしている</td><td>Stagnating; At a standstill / 停滞不前</td></tr>
-                                        <tr><td>細々と（ほそぼそと）</td><td>In a small way; Modestly / 勉强地; 零碎地</td></tr>
+                                        <tr><td>細々と（ほそぼそと）</td><td>In a small way; Modestly / 勉強地; 零砕地</td></tr>
                                         <tr><td>積み重ね</td><td>Accumulation / 积累</td></tr>
                                         <tr><td>認めてもらう</td><td>To be recognized / 得到认可</td></tr>
-                                        <tr><td>勇気をもらう</td><td>To be encouraged / 获得勇气</td></tr>
+                                        <tr><td>勇気をもらう</td><td>To be encouraged / 獲得勇气</td></tr>
                                         <tr><td>枯れる</td><td>To wither; Die (plants) / 枯萎</td></tr>
-                                        <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏实実地</td></tr>
-                                        <tr><td>一歩ずつ</td><td>Step by step / 一步步地</td></tr>
+                                        <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏実実地</td></tr>
+                                        <tr><td>一歩ずつ</td><td>Step by step / 一歩歩地</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -294,8 +319,8 @@
                     </div>
                     <div class="script-box">
                         <p>こんにちは！OHAYO CENTERの オーディオブログへ ようこそ。</p>
-                        <p>私は <ruby>しんや<rt>Shinya</rt></ruby>です。よろしくおねがいします！少し <ruby>自己紹介<rt>じこしょうかい</rt></ruby>を しますね。</p>
-                        <p>私は <ruby>千葉<rt>ちば</rt>出身<rt>しゅっしん</rt></ruby>です。みなさんは <ruby>東京<rt>とうきょう</rt></ruby>ディズニーランドを <ruby>知<rt>し</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>とうきょう</rt></ruby>に ありません。<strong><ruby>千葉<rt>ちば</rt></ruby>に あります！（笑）</strong></p>
+                        <p>私は <ruby>しんや<rt>Shinya</rt></ruby>です。よろしくおねがいします！少し <ruby>自己紹介<rt>jiko shokai</rt></ruby>を しますね。</p>
+                        <p>私は <ruby>千葉<rt>Chiba</rt>出身<rt>shusshin</rt></ruby>です。みなさんは <ruby>東京<rt>Tokyo</rt></ruby>ディズニーランドを <ruby>知<rt>shi</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>Tokyo</rt></ruby>に ありません。<strong><ruby>千葉<rt>Chiba</rt></ruby>に あります！（笑）</strong></p>
                         <p>私の 家から 東京ディズニーランドは とても 近いです。千葉は 東京の となりに ある 町です。東京ほど 有名では ありませんが、とても いい ところです。</p>
                         <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語の 先生の アシスタントを しました。</p>
                         <p>やく 3年間、ベトナムで 生活しました。日本に 一度 帰って、また ベトナムに もどりました。そこで「OHAYO CENTER」として 日本語を 教えはじめました。でも、コロナで 大変に なりましたね……そこで、オンラインレッスンを はじめました。2021年 8月に 日本に 帰ってきて、今は OHAYO CENTERは 全部 オンラインです！</p>
