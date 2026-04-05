@@ -19,21 +19,24 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
         
+        /* ナビゲーションの基本設定 */
         nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
         .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 100px 1.2rem 3rem; }
-        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
-        h2 i { color: var(--primary); margin-right: 10px; }
+        /* スマホ表示でのナビゲーション調整（はみ出し防止） */
+        @media (max-width: 480px) {
+            nav { padding: 0 3%; } /* 左右の余白を少し詰める */
+            .nav-links { gap: 0.7rem; } /* リンク同士の間隔を詰めて収める */
+            .logo { font-size: 1.1rem; } /* ロゴサイズを微調整 */
+            .nav-links a { font-size: 0.75rem; letter-spacing: 0.5px; } /* 文字をわずかに詰め、MATERIALまで表示 */
+        }
 
-        .update-board { background: #fff; border-radius: 20px; padding: 1.5rem; margin-bottom: 3rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
-        .update-list { list-style: none; }
-        .update-list li { display: flex; align-items: center; gap: 15px; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.85rem; }
-        .update-date { font-weight: bold; color: var(--primary); min-width: 90px; }
-        .update-badge { background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 120px 1.2rem 3rem; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
+        h2 i { color: var(--primary); margin-right: 10px; }
 
         .audio-section { margin-bottom: 5rem; }
         .audio-card { background: #fff; border-radius: 25px; margin-bottom: 1.5rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); overflow: hidden; }
@@ -88,20 +91,6 @@
 
 <div class="container">
 
-    <div class="update-board">
-        <ul class="update-list">
-            <li>
-                <span class="update-date">2026.03.24</span>
-                <span class="update-badge">NEW</span>
-                <span class="update-text">AUDIO BLOG Vol.2「時を待つ心」を公開しました🌸</span>
-            </li>
-            <li>
-                <span class="update-date">2026.03.20</span>
-                <span class="update-text">AUDIO BLOG を開始しました！Vol.1 公開中。</span>
-            </li>
-        </ul>
-    </div>
-
     <section id="audio-blog" class="audio-section">
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
         
@@ -151,8 +140,8 @@
                             <summary><i class="fa-solid fa-earth-asia"></i> Chinese Translation / 中文翻译</summary>
                             <div class="support-content">
                                 <p>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸的降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股力量，时机成熟时花儿也无法绽放。”</p>
-                                <p>这是一位日本名人的名言。大家在学习日语时，会不会因为觉得“一点进步都没有”而感到悲伤呢？其实，我也有过同样的经历。我从20年前开始学英语，曾长期感觉不到进步，甚至怀疑过自己的天赋。</p>
-                                <p>但最近有学生对我说：“因为老师英语好，我才选了您。”那一刻我才发现，20年来的点滴努力已化作“力量”积蓄在体内。樱花在寒冬也从未停止准备。大家的日语学习也一样，每天的积累都在蓄力。请珍惜这段“等待的时间”，春天来临时，你的努力定会灿烂绽放。</p>
+                                <p>这是一位日本名人の名言。大家在学习日语时，会不会因为觉得“一点进步都没有”而感到悲伤呢？其实，我也有过同样的经历。我从20年前開始学英語，曾长期感觉不到进步，甚至怀疑过自己的天赋。</p>
+                                <p>但最近有学生对我说：“因为老师英語好，我才选了您。”那一刻我才发现，20年来的点滴努力已化作“力量”積蓄在体内。樱花在寒冬也从未停止準備。大家的日语学习也一样，每天的积累都在蓄力。请珍惜这段“等待的时间”，春天来临时，你的努力定会灿烂绽放。</p>
                             </div>
                         </details>
 
@@ -227,10 +216,10 @@
                             <div class="support-content">
                                 <p>大家好，我是 OHAYO CENTER 的 Shinya。千叶终于有了春天的气息。对了，星巴克也出了樱花系列呢，我在想下周要不要带孩子去看看。好啦，闲话休提（笑）。</p>
                                 <p>今天我想聊聊我一直很珍惜的一句话——“等待时机”。松下幸之助先生（就是松下电器的创始人！）有一句著名的格言：</p>
-                                <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸的降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股积蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
-                                <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不见的地方虎视眈眈地做准备。我觉得这和语言学习简直一模一样。说实话，我为了“想学好英语”已经坚持了20多年。但怎么说呢，过了10年、15年，我完全没有进步的实感，甚至真的怀疑过自己是不是没有语言天赋。</p>
-                                <p>然而最近开始在线授課后，发生了一件让我惊讶的事。一位学生突然对我说：“因为老师英语很好，所以我选了您的課。”那一刻，我猛然醒悟。我以为自己这20年一直“停滞不前”，但其实那些琐碎的积累，早已在不知不觉中化作能量积蓄在体内。自分の成長能得到认可，真的给了我很大的勇气。</p>
-                                <p>冬天的樱花树看起来像枯萎了一样，但其实它一刻不停地在为春天开花而蓄力。大家的日语学习也许现在正处于“感觉不到进步”的阶段，但总有一天，一定会有人发现你的“花朵”。所以，请不要焦急，静静地积蓄力量吧。时机成熟时，一定能绽放。我也打算为了下一个20年继续努力学语言……不过那时我就60岁，成老爷爷了呢（笑）。祝大家度过美好的一天，我是 OHAYO CENTER 的 Shinya。谢谢大家的收听！</p>
+                                <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸の降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股積蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
+                                <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不見的地方虎視眈眈地做準備。我覺得這和語言学習簡直一模一樣。說實話，我為了“想学好英語”已經堅持了20多年。但怎麼說呢，過了10年、15年，我完全没有進步の實感，甚至真的怀疑過自己是不是没有語言天賦。</p>
+                                <p>然而最近開始在线授課后，發生了一件讓我驚訝的事。一位学生突然對我說：“因為老師英語很好，所以我選了您的課。”那一刻，我猛然醒悟。我以為自己這20年一直“停滯不前”，但其實那些瑣碎的積累，早已在不知不覺中化作能量積蓄在体內。自分の成長能得到認可，真的给了我很大的勇气。</p>
+                                <p>冬天的櫻花樹看起來像枯萎了一樣，但其實它一刻不停地在為春天開花而蓄力。大家的日語学習也許現在正處於“感覺不到進步”の段階，但總有一天，一定會有人發現你的“花朵”。所以，請不要焦急，靜靜地積蓄力量吧。時機成熟時，一定能綻放。我也打算為了下一個20年繼續努力学語言……不過那時我就60歲，成老爺爺了ね（笑）。祝大家度過美好的一天，我是 OHAYO CENTER 的 Shinya。謝謝大家的收聽！</p>
                             </div>
                         </details>
 
@@ -263,7 +252,7 @@
                                         <tr><td>認めてもらう</td><td>To be recognized / 得到认可</td></tr>
                                         <tr><td>勇気をもらう</td><td>To be encouraged / 获得勇气</td></tr>
                                         <tr><td>枯れる</td><td>To wither; Die (plants) / 枯萎</td></tr>
-                                        <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏实実地</td></tr>
+                                        <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏実実地</td></tr>
                                         <tr><td>一歩ずつ</td><td>Step by step / 一步步地</td></tr>
                                     </tbody>
                                 </table>
