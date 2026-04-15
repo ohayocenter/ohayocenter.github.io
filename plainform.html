@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OHAYO CENTER: Professional online Japanese lessons.">
+    <title>OHAYO CENTER - Plain Form Practice</title>
+    
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" sizes="192x192" href="icon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- オリジナルの基本設定 --- */
+        :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 10px 30px rgba(0,0,0,0.06); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
+        
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
+
+        @media (max-width: 480px) {
+            nav { padding: 0 3%; }
+            .nav-links { gap: 0.7rem; }
+            .logo { font-size: 1.1rem; }
+            .nav-links a { font-size: 0.75rem; letter-spacing: 0.5px; }
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 120px 1.2rem 3rem; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
+        h2 i { color: var(--primary); margin-right: 10px; }
+
+        /* --- タブ切り替えデザイン --- */
+        .level-tabs { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; border-bottom: 3px solid var(--primary); }
+        .level-tabs input { display: none; }
+        .tab-label { padding: 12px 25px; background: #f0f0f0; cursor: pointer; border-radius: 10px 10px 0 0; margin-right: 5px; font-size: 0.95rem; font-weight: bold; color: #777; transition: 0.2s; }
+        .level-tabs input:checked + .tab-label { background: var(--primary); color: white; }
+
+        /* --- 1枚表示フラッシュカードのCSS --- */
+        .fc-app {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .progress-bar { font-size: 0.9rem; color: #888; margin-bottom: 15px; font-weight: bold; }
+
+        .card-area {
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 12px;
+            background: #fafafa;
+            border: 2px dashed #ddd;
+            transition: 0.3s;
+        }
+
+        .card-area:hover { background: var(--primary-light); border-color: var(--primary); }
+
+        .masu-text { font-size: 2.2rem; font-weight: bold; color: var(--dark); margin-bottom: 5px; font-family: 'Sawarabi Mincho', serif; }
+        .en-text { color: #777; font-size: 1rem; margin-bottom: 20px; font-style: italic; }
+
+        .answers-area { display: none; text-align: left; width: 100%; max-width: 300px; margin: 0 auto; animation: fadeIn 0.3s ease; }
+        .answer-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .answer-label { font-size: 0.75rem; background: var(--dark); color: #fff; padding: 3px 10px; border-radius: 5px; }
+        .hint-text { font-size: 0.85rem; color: var(--primary); margin-top: 15px; font-weight: bold; }
+
+        .controls { display: flex; justify-content: space-between; margin-top: 25px; gap: 10px; }
+        .btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.2s; color: #fff; }
+        .btn-prev { background-color: #bdc3c7; }
+        .btn-prev:hover { background-color: #95a5a6; }
+        .btn-next { background-color: var(--primary); }
+        .btn-next:hover { opacity: 0.9; }
+
+        /* --- リスト表示（テーブル）のCSS --- */
+        .list-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+        .list-title { text-align: center; margin-bottom: 15px; color: var(--dark); font-size: 1.2rem; font-weight: bold; }
+        
+        .vocab-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .vocab-table th, .vocab-table td { padding: 12px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        .vocab-table th { color: #888; font-size: 0.8rem; text-transform: uppercase; background: #fafafa; }
+        .vocab-table td { color: var(--text); font-size: 0.95rem; }
+        .vocab-table tr:hover td { background: var(--primary-light); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .bmc-btn { display: inline-flex; align-items: center; padding: 6px 12px; color: #000000; background-color: #FFDD00; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0px 1px 2px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; }
+        .bmc-btn:hover { opacity: 0.9; }
+        .bmc-btn img { height: 18px; width: auto; margin-right: 8px; }
+        footer { padding: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <h2><i class="fa-solid fa-layer-group"></i> PLAIN FORM PRACTICE</h2>
+
+    <div class="level-tabs">
+        <input type="radio" name="g-tabs" id="g1" checked onchange="setGroup(1)">
+        <label for="g1" class="tab-label">1グループ (Group 1)</label>
+
+        <input type="radio" name="g-tabs" id="g2" onchange="setGroup(2)">
+        <label for="g2" class="tab-label">2グループ (Group 2)</label>
+
+        <input type="radio" name="g-tabs" id="g3" onchange="setGroup(3)">
+        <label for="g3" class="tab-label">3グループ (Group 3)</label>
+    </div>
+
+    <div class="fc-app">
+        <div class="progress-bar" id="progress-text">1 / 20</div>
+
+        <div class="card-area" onclick="showAnswer()">
+            <div class="masu-text" id="verb-masu">読込中...</div>
+            <div class="en-text" id="verb-en">Loading...</div>
+            
+            <div class="hint-text" id="hint-msg">👆 Tap to see answers</div>
+
+            <div class="answers-area" id="answers-area">
+                <div class="answer-row"><span class="answer-label">辞書</span> <span id="verb-dict">-</span></div>
+                <div class="answer-row"><span class="answer-label">ない</span> <span id="verb-nai">-</span></div>
+                <div class="answer-row"><span class="answer-label">た</span> <span id="verb-ta">-</span></div>
+                <div class="answer-row"><span class="answer-label">なかった</span> <span id="verb-nakatta">-</span></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-prev" onclick="prevCard()"><i class="fa-solid fa-arrow-left"></i> BACK</button>
+            <button class="btn btn-next" onclick="nextCard()">NEXT <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div class="list-section">
+        <div class="list-title" id="list-title">動詞一覧 (Verb List)</div>
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>ます形 (Masu)</th>
+                    <th>英語 (English)</th>
+                    <th>辞書形 (Dict)</th>
+                    <th>ない形 (Nai)</th>
+                    <th>た形 (Ta)</th>
+                    <th>なかった形 (Nakatta)</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<footer>
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+        <span>Support OHAYO CENTER</span>
+    </a>
+    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
+</footer>
+
+<script>
+    const verbData = [
+        // --- Group 1 (20 verbs) ---
+        { group: 1, masu: "行きます", en: "to go", dict: "行く", nai: "行かない", ta: "行った", nakatta: "行かなかった" },
+        { group: 1, masu: "飲みます", en: "to drink", dict: "飲む", nai: "飲まない", ta: "飲んだ", nakatta: "飲まなかった" },
+        { group: 1, masu: "買います", en: "to buy", dict: "買う", nai: "買わない", ta: "買った", nakatta: "買わなかった" },
+        { group: 1, masu: "話します", en: "to speak", dict: "話す", nai: "話さない", ta: "話した", nakatta: "話さなかった" },
+        { group: 1, masu: "待ちます", en: "to wait", dict: "待つ", nai: "待たない", ta: "待った", nakatta: "待たなかった" },
+        { group: 1, masu: "帰ります", en: "to return", dict: "帰る", nai: "帰らない", ta: "帰った", nakatta: "帰らなかった" },
+        { group: 1, masu: "書きます", en: "to write", dict: "書く", nai: "書かない", ta: "書いた", nakatta: "書かなかった" },
+        { group: 1, masu: "聞きます", en: "to listen / ask", dict: "聞く", nai: "聞かない", ta: "聞いた", nakatta: "聞かなかった" },
+        { group: 1, masu: "泳ぎます", en: "to swim", dict: "泳ぐ", nai: "泳がない", ta: "泳いだ", nakatta: "泳がなかった" },
+        { group: 1, masu: "遊びます", en: "to play", dict: "遊ぶ", nai: "遊ばない", ta: "遊んだ", nakatta: "遊ばなかった" },
+        { group: 1, masu: "読みます", en: "to read", dict: "読む", nai: "読まない", ta: "読んだ", nakatta: "読まなかった" },
+        { group: 1, masu: "呼びます", en: "to call", dict: "呼ぶ", nai: "呼ばない", ta: "呼んだ", nakatta: "呼ばなかった" },
+        { group: 1, masu: "分かります", en: "to understand", dict: "分かる", nai: "分からない", ta: "分かった", nakatta: "分からなかった" },
+        { group: 1, masu: "乗ります", en: "to ride", dict: "乗る", nai: "乗らない", ta: "乗った", nakatta: "乗らなかった" },
+        { group: 1, masu: "作ります", en: "to make", dict: "作る", nai: "作らない", ta: "作った", nakatta: "作らなかった" },
+        { group: 1, masu: "入ります", en: "to enter", dict: "入る", nai: "入らない", ta: "入った", nakatta: "入らなかった" },
+        { group: 1, masu: "知ります", en: "to know", dict: "知る", nai: "知らない", ta: "知った", nakatta: "知らなかった" },
+        { group: 1, masu: "会います", en: "to meet", dict: "会う", nai: "会わない", ta: "会った", nakatta: "会わなかった" },
+        { group: 1, masu: "洗います", en: "to wash", dict: "洗う", nai: "洗わない", ta: "洗った", nakatta: "洗わなかった" },
+        { group: 1, masu: "歌います", en: "to sing", dict: "歌う", nai: "歌わない", ta: "歌った", nakatta: "歌わなかった" },
+        
+        // --- Group 2 (20 verbs) ---
+        { group: 2, masu: "食べます", en: "to eat", dict: "食べる", nai: "食べない", ta: "食べた", nakatta: "食べなかった" },
+        { group: 2, masu: "見ます", en: "to see / watch", dict: "見る", nai: "見ない", ta: "見た", nakatta: "見なかった" },
+        { group: 2, masu: "寝ます", en: "to sleep", dict: "寝る", nai: "寝ない", ta: "寝た", nakatta: "寝なかった" },
+        { group: 2, masu: "起きます", en: "to wake up", dict: "起きる", nai: "起きない", ta: "起きた", nakatta: "起きなかった" },
+        { group: 2, masu: "開けます", en: "to open", dict: "開ける", nai: "開けない", ta: "開けた", nakatta: "開けなかった" },
+        { group: 2, masu: "閉めます", en: "to close", dict: "閉める", nai: "閉めない", ta: "閉めた", nakatta: "閉めなかった" },
+        { group: 2, masu: "教えます", en: "to teach", dict: "教える", nai: "教えない", ta: "教えた", nakatta: "教えなかった" },
+        { group: 2, masu: "忘れます", en: "to forget", dict: "忘れる", nai: "忘れない", ta: "忘れた", nakatta: "忘れなかった" },
+        { group: 2, masu: "覚えます", en: "to memorize / remember", dict: "覚える", nai: "覚えない", ta: "覚えた", nakatta: "覚えなかった" },
+        { group: 2, masu: "借ります", en: "to borrow", dict: "借りる", nai: "借りない", ta: "借りた", nakatta: "借りなかった" },
+        { group: 2, masu: "降ります", en: "to get off", dict: "降りる", nai: "降りない", ta: "降りた", nakatta: "降りなかった" },
+        { group: 2, masu: "浴びます", en: "to take a shower", dict: "浴びる", nai: "浴びない", ta: "浴びた", nakatta: "浴びなかった" },
+        { group: 2, masu: "着ます", en: "to wear", dict: "着る", nai: "着ない", ta: "着た", nakatta: "着なかった" },
+        { group: 2, masu: "見せます", en: "to show", dict: "見せる", nai: "見せない", ta: "見せた", nakatta: "見せなかった" },
+        { group: 2, masu: "入れます", en: "to put in", dict: "入れる", nai: "入れない", ta: "入れた", nakatta: "入れなかった" },
+        { group: 2, masu: "疲れます", en: "to get tired", dict: "疲れる", nai: "疲れない", ta: "疲れた", nakatta: "疲れなかった" },
+        { group: 2, masu: "調べます", en: "to investigate / check", dict: "調べる", nai: "調べない", ta: "調べた", nakatta: "調べなかった" },
+        { group: 2, masu: "出かけます", en: "to go out", dict: "出かける", nai: "出かけない", ta: "出かけた", nakatta: "出かけなかった" },
+        { group: 2, masu: "負けます", en: "to lose", dict: "負ける", nai: "負けない", ta: "負けた", nakatta: "負けなかった" },
+        { group: 2, masu: "止めます", en: "to stop", dict: "止める", nai: "止めない", ta: "止めた", nakatta: "止めなかった" },
+        
+        // --- Group 3 (20 verbs) ---
+        { group: 3, masu: "します", en: "to do", dict: "する", nai: "しない", ta: "した", nakatta: "しなかった" },
+        { group: 3, masu: "来ます（きます）", en: "to come", dict: "来る（くる）", nai: "来ない（こない）", ta: "来た（きた）", nakatta: "来なかった（こなかった）" },
+        { group: 3, masu: "勉強します", en: "to study", dict: "勉強する", nai: "勉強しない", ta: "勉強した", nakatta: "勉強しなかった" },
+        { group: 3, masu: "結婚します", en: "to marry", dict: "結婚する", nai: "結婚しない", ta: "結婚した", nakatta: "結婚しなかった" },
+        { group: 3, masu: "買い物します", en: "to shop", dict: "買い物する", nai: "買い物しない", ta: "買い物した", nakatta: "買い物しなかった" },
+        { group: 3, masu: "食事します", en: "to have a meal", dict: "食事する", nai: "食事しない", ta: "食事した", nakatta: "食事しなかった" },
+        { group: 3, masu: "散歩します", en: "to take a walk", dict: "散歩する", nai: "散歩しない", ta: "散歩した", nakatta: "散歩しなかった" },
+        { group: 3, masu: "掃除します", en: "to clean", dict: "掃除する", nai: "掃除しない", ta: "掃除した", nakatta: "掃除しなかった" },
+        { group: 3, masu: "洗濯します", en: "to do laundry", dict: "洗濯する", nai: "洗濯しない", ta: "洗濯した", nakatta: "洗濯しなかった" },
+        { group: 3, masu: "料理します", en: "to cook", dict: "料理する", nai: "料理しない", ta: "料理した", nakatta: "料理しなかった" },
+        { group: 3, masu: "旅行します", en: "to travel", dict: "旅行する", nai: "旅行しない", ta: "旅行した", nakatta: "旅行しなかった" },
+        { group: 3, masu: "電話します", en: "to call / phone", dict: "電話する", nai: "電話しない", ta: "電話した", nakatta: "電話しなかった" },
+        { group: 3, masu: "仕事します", en: "to work", dict: "仕事する", nai: "仕事しない", ta: "仕事した", nakatta: "仕事しなかった" },
+        { group: 3, masu: "紹介します", en: "to introduce", dict: "紹介する", nai: "紹介しない", ta: "紹介した", nakatta: "紹介しなかった" },
+        { group: 3, masu: "運転します", en: "to drive", dict: "運転する", nai: "運転しない", ta: "運転した", nakatta: "運転しなかった" },
+        { group: 3, masu: "運動します", en: "to exercise", dict: "運動する", nai: "運動しない", ta: "運動した", nakatta: "運動しなかった" },
+        { group: 3, masu: "質問します", en: "to ask a question", dict: "質問する", nai: "質問しない", ta: "質問した", nakatta: "質問しなかった" },
+        { group: 3, masu: "説明します", en: "to explain", dict: "説明する", nai: "説明しない", ta: "説明した", nakatta: "説明しなかった" },
+        { group: 3, masu: "約束します", en: "to promise", dict: "約束する", nai: "約束しない", ta: "約束した", nakatta: "約束しなかった" },
+        { group: 3, masu: "心配します", en: "to worry", dict: "心配する", nai: "心配しない", ta: "心配した", nakatta: "心配しなかった" }
+    ];
+
+    let currentGroupVerbs = [];
+    let currentIndex = 0;
+
+    const uiMasu = document.getElementById('verb-masu');
+    const uiEn = document.getElementById('verb-en');
+    const uiDict = document.getElementById('verb-dict');
+    const uiNai = document.getElementById('verb-nai');
+    const uiTa = document.getElementById('verb-ta');
+    const uiNakatta = document.getElementById('verb-nakatta');
+    const answersArea = document.getElementById('answers-area');
+    const hintMsg = document.getElementById('hint-msg');
+    const progressText = document.getElementById('progress-text');
+    const tableBody = document.getElementById('table-body');
+    const listTitle = document.getElementById('list-title');
+
+    function setGroup(groupNumber) {
+        currentGroupVerbs = verbData.filter(v => v.group === groupNumber);
+        currentIndex = 0;
+        
+        listTitle.textContent = `動詞一覧 (Group ${groupNumber} Verb List)`;
+        
+        updateCard();
+        renderTable();
+    }
+
+    function updateCard() {
+        if (currentGroupVerbs.length === 0) return;
+
+        const currentVerb = currentGroupVerbs[currentIndex];
+        uiMasu.textContent = currentVerb.masu;
+        uiEn.textContent = currentVerb.en;
+        uiDict.textContent = currentVerb.dict;
+        uiNai.textContent = currentVerb.nai;
+        uiTa.textContent = currentVerb.ta;
+        uiNakatta.textContent = currentVerb.nakatta;
+
+        progressText.textContent = `${currentIndex + 1} / ${currentGroupVerbs.length}`;
+        
+        answersArea.style.display = 'none';
+        hintMsg.style.display = 'block';
+    }
+
+    function renderTable() {
+        tableBody.innerHTML = ""; 
+        
+        currentGroupVerbs.forEach(verb => {
+            const row = `<tr>
+                <td><b>${verb.masu}</b></td>
+                <td>${verb.en}</td>
+                <td>${verb.dict}</td>
+                <td>${verb.nai}</td>
+                <td>${verb.ta}</td>
+                <td>${verb.nakatta}</td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    function showAnswer() {
+        answersArea.style.display = 'block';
+        hintMsg.style.display = 'none';
+    }
+
+    function nextCard() {
+        if (currentGroupVerbs.length === 0) return;
+        currentIndex++;
+        if (currentIndex >= currentGroupVerbs.length) currentIndex = 0;
+        updateCard();
+    }
+
+    function prevCard() {
+        if (currentGroupVerbs.length === 0) return;
+        currentIndex--;
+        if (currentIndex < 0) currentIndex = currentGroupVerbs.length - 1;
+        updateCard();
+    }
+
+    setGroup(1);
+
+</script>
+</body>
+</html>
