@@ -53,8 +53,10 @@
         .tab-panel { display: none; width: 100%; border-top: 3px solid var(--primary); padding-top: 2rem; }
         .level-tabs input:checked + .tab-label { background: var(--primary); color: white; }
         
+        /* タブ切り替えロジック */
         #v1-low:checked ~ .panel-v1-low, #v1-high:checked ~ .panel-v1-high,
-        #v2-low:checked ~ .panel-v2-low, #v2-high:checked ~ .panel-v2-high { display: block; }
+        #v2-low:checked ~ .panel-v2-low, #v2-high:checked ~ .panel-v2-high,
+        #v3-low:checked ~ .panel-v3-low, #v3-high:checked ~ .panel-v3-high { display: block; }
 
         .audio-unit { background: var(--primary-light); padding: 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 2rem; }
         .audio-unit audio { width: 100%; max-width: 500px; height: 40px; margin-top: 10px; }
@@ -94,6 +96,151 @@
     <section id="audio-blog" class="audio-section">
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
         
+        <details class="audio-card">
+            <summary class="card-header">
+                <span class="vol-badge">Vol.3</span>
+                <span class="card-title">🏠持ち家と賃貸：Owned House or Rental?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+
+            <div class="level-tabs">
+                <input type="radio" name="v3-tabs" id="v3-low" checked>
+                <label for="v3-low" class="tab-label">📗 初中級</label>
+
+                <input type="radio" name="v3-tabs" id="v3-high">
+                <label for="v3-high" class="tab-label">📕 上級</label>
+
+                <div class="tab-panel panel-v3-low">
+                    <div class="audio-unit">
+                        <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
+                        <audio controls src="vol3-1.mp3"></audio>
+                    </div>
+                    <div class="script-box">
+                        <p>みなさん、こんにちは。<br>
+                        <ruby>今日<rt>きょう</rt></ruby>のテーマは「<ruby>持<rt>も</rt></ruby>ち<ruby>家<rt>いえ</rt></ruby>と<ruby>賃貸<rt>ちんたい</rt></ruby>」です。</p>
+                        <p>みなさんは、<ruby>持<rt>も</rt></ruby>ち<ruby>家<rt>いえ</rt></ruby>と<ruby>賃貸<rt>ちんたい</rt></ruby>、どっちがお<ruby>得<rt>とく</rt></ruby>だと<ruby>思<rt>おも</rt></ruby>いますか。これは<ruby>日本<rt>にほん</rt></ruby>でもよく<ruby>話題<rt>わだい</rt></ruby>になるテーマです。</p>
+                        <p><strong><ruby>持<rt>も</rt></ruby>ち<ruby>家<rt>いえ</rt></ruby>のメリット：</strong><br>
+                        ・<ruby>自分<rt>じぶん</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>なので、<ruby>自由<rt>じゆう</rt></ruby>にリフォームできます<br>
+                        ・ローンを<ruby>払<rt>はら</rt></ruby>い<ruby>終<rt>お</rt></ruby>えたら、<ruby>自分<rt>じぶん</rt></ruby>の<ruby>財産<rt>ざいさん</rt></ruby>になります<br>
+                        ・<ruby>家族<rt>かぞく</rt></ruby>が<ruby>安心<rt>あんしん</rt></ruby>して<ruby>住<rt>す</rt></ruby>めます<br>
+                        ・ペットも<ruby>自由<rt>じゆう</rt></ruby>に<ruby>飼<rt>か</rt></ruby>えます</p>
+                        <p><strong><ruby>賃貸<rt>ちんたい</rt></ruby>のメリット：</strong><br>
+                        ・<ruby>引<rt>ひ</rt></ruby>っ<ruby>越<rt>こ</rt></ruby>しが<ruby>簡単<rt>かんたん</rt></ruby>です<br>
+                        ・<ruby>修理<rt>しゅうり</rt></ruby>はオーナーがしてくれます<br>
+                        ・<ruby>大<rt>おお</rt></ruby>きなローンを<ruby>組<rt>く</rt></ruby>まなくていいです<br>
+                        ・<ruby>仕事<rt>しごと</rt></ruby>や<ruby>生活<rt>せいかつ</rt></ruby>に<ruby>合<rt>あ</rt></ruby>わせて、<ruby>住<rt>す</rt></ruby>む<ruby>場所<rt>ばしょ</rt></ruby>を<ruby>変<rt>か</rt></ruby>えられます</p>
+                        <p><ruby>今<rt>いま</rt></ruby>、<ruby>日本<rt>にほん</rt></ruby>では<ruby>世界<rt>せかい</rt></ruby>のインフレとは反対に、デフレが<ruby>続<rt>つづ</rt></ruby>いています。そのため、<ruby>不動産<rt>ふどうさん</rt></ruby>の<ruby>価格<rt>かかく</rt></ruby>が<ruby>安<rt>やす</rt></ruby>いと<ruby>個人的<rt>こじんてき</rt></ruby>には<ruby>思<rt>おも</rt></ruby>っています。<ruby>私<rt>わたし</rt></ruby>の<ruby>住<rt>す</rt></ruby>んでいる<ruby>町<rt>まち</rt></ruby>では、2000<ruby>万<rt>まん</rt></ruby><ruby>円<rt>えん</rt></ruby>あればすごくきれいな<ruby>家<rt>いえ</rt></ruby>が<ruby>買<rt>か</rt></ruby>えます。<ruby>今日<rt>きょう</rt></ruby>のレートだと、<ruby>約<rt>やく</rt></ruby>13<ruby>万<rt>まん</rt></ruby>アメリカドルですね。<ruby>古<rt>ふる</rt></ruby>い<ruby>家<rt>いえ</rt></ruby>であれば、ただ、つまり<ruby>無料<rt>むりょう</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>もあります。信じられないかもしれませんが、本当です。</p>
+                        <p><ruby>最近<rt>さいきん</rt></ruby>は、DIYといって、<ruby>無料<rt>むりょう</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>を<ruby>自分<rt>じぶん</rt></ruby>でリフォームする<ruby>人<rt>ひと</rt></ruby>も<ruby>多<rt>おお</rt></ruby>いです。「DIY」は「Do It Yourself」という意味で、「自分でやる」という意味です。<ruby>私<rt>わたし</rt></ruby>もやってみたいのですが、<ruby>日曜大工<rt>にちようだいく</rt></ruby>が<ruby>苦手<rt>にがて</rt></ruby>なので、YouTubeで<ruby>見<rt>み</rt></ruby>て<ruby>楽<rt>たの</rt></ruby>しんでいます。</p>
+                        <p><ruby>日本<rt>にほん</rt></ruby>では<ruby>少子高齢化<rt>しょうしこうれいか</rt></ruby>が<ruby>進<rt>すす</rt></ruby>んでいます。将来は空き家が増えると言われています。もしかすると今後もっと価格は下がるかもしれません。</p>
+                        <p><ruby>私<rt>わたし</rt></ruby>の<ruby>夢<rt>ゆめ</rt></ruby>は、いつか<ruby>大<rt>おお</rt></ruby>きい<ruby>家<rt>いえ</rt></ruby>を<ruby>買<rt>か</rt></ruby>うことです。<ruby>庭<rt>にわ</rt></ruby>がある<ruby>家<rt>いえ</rt></ruby>がいいなあと思っています。みなさんは、どんな<ruby>家<rt>いえ</rt></ruby>に<ruby>住<rt>す</rt></ruby>みたいですか。</p>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
+                            <div class="support-content">
+                                Hello, everyone!
+Today’s theme is "Owning a Home vs. Renting."
+Which do you think is a better deal? This is a topic that is often discussed here in Japan.
+
+The Benefits of Owning a Home:
+Freedom to Renovate: Since it’s your own house, you can remodel it however you like.
+
+Asset Value: Once you finish paying off the mortgage, the house becomes your personal property.
+
+Stability: It provides a sense of security for your family.
+
+Pet-Friendly: You are free to keep pets without restrictions.
+
+The Benefits of Renting:
+Easy to Move: It’s very simple to relocate whenever you want.
+
+No Maintenance Stress: The landlord or owner handles all the repairs.
+
+No Large Debt: You don’t need to take out a massive long-term loan.
+
+Flexibility: You can change where you live to match your job or lifestyle changes.
+
+Currently, while the rest of the world faces inflation, Japan has continued to experience deflation. Because of this, I personally feel that real estate prices here are quite low. In the town where I live, you can buy a very beautiful house for 20 million yen. At today’s exchange rate, that’s about 130,000 U.S. dollars. There are even "free" houses—houses that cost zero yen—if they are old. It might be hard to believe, but it’s true!
+
+Recently, many people have been doing "DIY"—which stands for "Do It Yourself"—to renovate these free houses. I’d love to try it myself, but since I’m not very good at carpentry, I just enjoy watching others do it on YouTube.
+
+Japan’s population is aging, and the birthrate is declining. It’s predicted that the number of vacant houses will increase in the future. Because of this, prices might drop even further.
+
+My dream is to one day buy a big house. I’d love a place with a garden. How about you? What kind of house would you like to live in?
+                            </div>
+                        </details>
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
+                            <div class="support-content">
+                                <table class="vocab-table">
+                                    <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>持ち家</td><td>owned house</td></tr>
+                                        <tr><td>賃貸</td><td>rental</td></tr>
+                                        <tr><td>お得</td><td>good deal, profitable</td></tr>
+                                        <tr><td>財産</td><td>property, asset</td></tr>
+                                        <tr><td>不動産</td><td>real estate</td></tr>
+                                        <tr><td>日曜大工</td><td>DIY, carpentry as a hobby</td></tr>
+                                        <tr><td>少子高齢化</td><td>declining birthrate and aging population</td></tr>
+                                        <tr><td>空き家</td><td>vacant house</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="tab-panel panel-v3-high">
+                    <div class="audio-unit">
+                        <p><small>🎵 ナチュラルスピードで挑戦してみましょう！🔥</small></p>
+                        <audio controls src="vol3-2.mp3"></audio>
+                    </div>
+                    <div class="script-box">
+                        <p>みなさん、こんにちは。今回は、日本人なら誰もが一度は悩む永遠のテーマ、「持ち家と賃貸」について語りたいと思います。</p>
+                        <p>この問題は、単なる経済的な損得だけでなく、ライフスタイルや価値観とも深く関わっています。資産形成の観点から言えば、住宅ローンを完済すれば不動産という実物資産が手に入り、老後の家賃負担がないというのは大きな安心材料です。一方で、賃貸の魅力は柔軟性だと思います。転勤や家族構成の変化に応じて住む場所を変えられる自由さは、現代の働き方に合っていますね。最近では、「デジタルノマド」という言葉も流行っています。</p>
+                        <p>現在、日本では長年のデフレが続いており、世界的なインフレに比べて不動産価格が安いと感じられます。特に地方や過疎地域での「ゼロ円空き家」など、DIYリノベーションをして新しい住まいの形を模索する人も増えています。</p>
+                        <p>日本が直面している少子高齢化により、2033年には空き家率が30%を超えるという予測もあります。不動産を単なる「住む場所」ではなく、投資対象として冷静に分析する視点も必要かもしれません。人生の大半を過ごす「家」という空間をどう選び、どう活用するかは、まさに人生そのものの選択だと思います。</p>
+                        <p>みなさんも、もし興味があれば、日本の不動産サイトを覗いてみてください。もしかすると掘り出し物に出会えるかもしれませんよ。それでは、今日も最後まで聞いてくださり、ありがとうございました。さようなら！</p>
+
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
+                            <div class="support-content">
+                                Hello, everyone. Today, I’d like to talk about a topic that almost every Japanese person has wrestled with at least once: the "eternal debate" of owning a home versus renting.
+
+This issue isn't just about financial gains or losses; it’s deeply connected to our lifestyles and personal values. From an asset-building perspective, owning a home offers a huge sense of security. Once the mortgage is paid off, you own a tangible physical asset, and the absence of rent payments in your later years provides a significant safety net.
+
+On the other hand, the greatest appeal of renting is flexibility. The freedom to move in response to job transfers or changes in family structure is perfectly suited to modern ways of working. In fact, the term "digital nomad" has become quite popular recently!
+
+Currently, Japan has experienced long-term deflation, which makes real estate prices feel relatively cheap compared to the global inflation seen elsewhere. We’re also seeing a rise in people exploring new ways of living—such as taking over "zero-yen vacant houses" in rural or depopulated areas and performing their own DIY renovations.
+
+However, with Japan’s declining birthrate and aging population, some forecasts suggest that the vacant house rate will exceed 30% by 2033. It might be necessary to look at real estate not just as a "place to live," but through a cool, analytical lens as an investment, carefully weighing the balance of supply and demand. How we choose and utilize the space we call "home"—where we spend the majority of our lives—is, in many ways, a choice about how we want to live our lives.
+
+If you’re interested, I encourage you to take a look at some Japanese real estate websites. You might just stumble upon a real hidden gem.
+
+Thank you for listening until the end. Goodbye for now!
+                            </div>
+                        </details>
+                        <details class="support-details">
+                            <summary><i class="fa-solid fa-book"></i> Key Vocabulary</summary>
+                            <div class="support-content">
+                                <table class="vocab-table">
+                                    <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>資産形成</td><td>asset building</td></tr>
+                                        <tr><td>実物資産</td><td>tangible asset</td></tr>
+                                        <tr><td>モビリティ</td><td>mobility</td></tr>
+                                        <tr><td>築浅</td><td>recently built</td></tr>
+                                        <tr><td>過疎地域</td><td>depopulated area</td></tr>
+                                        <tr><td>少子高齢化</td><td>declining birthrate and aging population</td></tr>
+                                        <tr><td>掘り出し物</td><td>bargain find, hidden gem</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </details>
+
         <details class="audio-card">
             <summary class="card-header">
                 <span class="vol-badge">Vol.2</span>
@@ -141,7 +288,7 @@
                             <div class="support-content">
                                 <p>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸的降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股力量，时机成熟时花儿也无法绽放。”</p>
                                 <p>这是一位日本名人の名言。大家在学习日语时，会不会因为觉得“一点进步都没有”而感到悲伤呢？其实，我也有过同样的经历。我从20年前開始学英語，曾长期感觉不到进步，甚至怀疑过自己的天赋。</p>
-                                <p>但最近有学生对我说：“因为老师英語好，我才选了您。”那一刻我才发现，20年来的点滴努力已化作“力量”積蓄在体内。樱花在寒冬也从未停止準備。大家的日语学习也一样，每天的积累都在蓄力。请珍惜这段“等待的时间”，春天来临时，你的努力定会灿烂绽放。</p>
+                                <p>但最近有学生对我说：“因为老师英語好，我才选了您。”那一刻我才发现，20年来的点滴努力已化作“力量”積蓄在体内。樱花在寒冬也从未停止準備。大家的日语学习也一样，每天の积累都在蓄力。请珍惜这段“等待的时间”，春天来临时，你的努力定会灿烂绽放。</p>
                             </div>
                         </details>
 
@@ -170,7 +317,7 @@
                                         <tr><td>続ける</td><td>つづける / To continue / 继续</td></tr>
                                         <tr><td>～が経つ</td><td>～がたつ / (Time) passes / （时间）流逝</td></tr>
                                         <tr><td>実感</td><td>じっかん / Real feel / 真实感受</td></tr>
-                                        <tr><td>才能</td><td>さいのう / Talent / 天赋</td></tr>
+                                        <tr><td>才能</td><td>さいのう / Talent / 天賦</td></tr>
                                         <tr><td>驚く</td><td>おどろく / To be surprised / 惊讶</td></tr>
                                         <tr><td>準備</td><td>じゅんび / Preparation / 准备</td></tr>
                                         <tr><td>蕾（つぼみ）</td><td>つぼみ / Bud / 花蕾</td></tr>
@@ -195,9 +342,9 @@
                             「時を待つ心は、春を待つ桜の姿といえよう。だが何もせずに待つ事は、僥倖を待つに等しい。静かに春を待つ桜は、一瞬の休みもなく力を蓄えている。たくわえられた力がなければ、時が来ても花は咲かない。」
                             <span class="quote-en"><b>"To wait for the right moment is to be like a cherry blossom awaiting spring. But remember, waiting in idleness is nothing more than hoping for a fluke (windfall). The cherry tree never rests, silently gathering the strength it needs. For without that inner preparation, no flower can bloom."</b></span>
                         </div>
-                        <p>……「僥倖（ぎょうこう）」、つまり、ただのラッキーを待つんじゃなくて、見えないところで虎視眈々と準備をすること。これって、言語の学習にそっくりだなって思うんですよね。実は、私の話をすると……私、もう20年以上「英語が上手になりたいな」と思って勉強を続けてるんですよ。でも、なんて言うか……10年経っても、15年経っても、ちっとも上手くなってる実感が持てなかったんです。「あぁ、言語の才能ないのかな」なんて思うことも、正直ありました。</p>
+                        <p>……「僥倖（ぎょうこう）」、つまり、ただのラッキーを待つんじゃなくて、見えないところで虎視眈々と準備をすること。これって、言語の学習にそっくりだなって思うんですよね。実は、私の話をすると……私、もう20年以上「英語が上手になりたいな」と思って勉強を続けてるんですよ。でも, なんて言うか……10年経っても, 15年経っても, ちっとも上手くなってる実感が持てなかったんです。「あぁ, 言語の才能ないのかな」なんて思うことも, 正直ありました。</p>
                         <p>ところが、最近オンラインでレッスンを始めて、驚いたことがあって。 ……生徒さんから、「先生は英語ができるから、私は先生のレッスンを選びました」って、不意に言われたんです。その時、ハッとしたんですよね。 自分では「ずっと足踏みしている」と思っていた20年間。でも、その間も細々と続けていた積み重ねが、知らないうちに私の中にエネルギーとして「蓄えられていた」んだなって。あぁ、自分の成長をしっかり認めてもらえたんだなって、すごく勇気をもらいました。</p>
-                        <p>桜も、冬の間はただ枯れているように見えますよね。でも、実は一瞬も休まずに、春に花を咲かせるための力を溜めている。 皆さんの日本語も、今は「全然進んでないな」と感じるかもしれません。でも、ある日突然、周りの誰かがあなたの「花」に気づく時が必ず来ます。だから、今は焦らず、静かに力を蓄えていきましょう。 時が来れば、必ず咲きますから。……まあ、私も次の20年に向けて、またコツコツ言語の勉強を続けていこうかな、なんて思っています。でも、次の20年だと60歳なのでおじいちゃんですね。それでは、今日も素敵な一日を。 OHAYO CENTERのShinyaでした。今日もきいてくれてありがとうございました！</p>
+                        <p>桜も, 冬の間はただ枯れているように見えますよね。でも, 実は一瞬も休まずに, 春に花を咲かせるための力を溜めている。 皆さんの日本語も, 今は「全然進んでないな」と感じるかもしれません。耳慣れてきたある日突然, 周りの誰かがあなたの「花」に気づく時が必ず来ます。だから, 今は焦らず, 静かに力を蓄えていきましょう。 時が来れば, 必ず咲きますから。……まあ, 私も次の20年に向けて, またコツコツ言語の勉強を続けていこうかな, なんて思っています。でも, 次の20年だと60歳なのでおじいちゃんですね。それでは, 今日も素敵な一日を。 OHAYO CENTERのShinyaでした。今日もきいてくれてありがとうございました！</p>
                         
                         <details class="support-details">
                             <summary><i class="fa-solid fa-language"></i> English Translation</summary>
@@ -216,7 +363,7 @@
                             <div class="support-content">
                                 <p>大家好，我是 OHAYO CENTER 的 Shinya。千叶终于有了春天的气息。对了，星巴克也出了樱花系列呢，我在想下周要不要带孩子去看看。好啦，闲话休提（笑）。</p>
                                 <p>今天我想聊聊我一直很珍惜的一句话——“等待时机”。松下幸之助先生（就是松下电器的创始人！）有一句著名的格言：</p>
-                                <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸の降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股積蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
+                                <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸の降临。静静等待春天的樱花，其实一刻不停地在積蓄力量。如果没有那股積蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
                                 <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不見的地方虎視眈眈地做準備。我覺得這和語言学習簡直一模一樣。說實話，我為了“想学好英語”已經堅持了20多年。但怎麼說呢，過了10年、15年，我完全没有進步の實感，甚至真的怀疑過自己是不是没有語言天賦。</p>
                                 <p>然而最近開始在线授課后，發生了一件讓我驚訝的事。一位学生突然對我說：“因為老師英語很好，所以我選了您的課。”那一刻，我猛然醒悟。我以為自己這20年一直“停滯不前”，但其實那些瑣碎的積累，早已在不知不覺中化作能量積蓄在体內。自分の成長能得到認可，真的给了我很大的勇气。</p>
                                 <p>冬天的櫻花樹看起來像枯萎了一樣，但其實它一刻不停地在為春天開花而蓄力。大家的日語学習也許現在正處於“感覺不到進步”の段階，但總有一天，一定會有人發現你的“花朵”。所以，請不要焦急，靜靜地積蓄力量吧。時機成熟時，一定能綻放。我也打算為了下一個20年繼續努力学語言……不過那時我就60歲，成老爺爺了ね（笑）。祝大家度過美好的一天，我是 OHAYO CENTER 的 Shinya。謝謝大家的收聽！</p>
@@ -250,7 +397,7 @@
                                         <tr><td>細々と（ほそぼそと）</td><td>In a small way; Modestly / 勉强地; 零碎地</td></tr>
                                         <tr><td>積み重ね</td><td>Accumulation / 积累</td></tr>
                                         <tr><td>認めてもらう</td><td>To be recognized / 得到认可</td></tr>
-                                        <tr><td>勇気をもらう</td><td>To be encouraged / 获得勇气</td></tr>
+                                        <tr><td>勇気をもらう</td><td>To be encouraged / 獲得勇气</td></tr>
                                         <tr><td>枯れる</td><td>To wither; Die (plants) / 枯萎</td></tr>
                                         <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏実実地</td></tr>
                                         <tr><td>一歩ずつ</td><td>Step by step / 一步步地</td></tr>
