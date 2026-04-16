@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オノマトペ - Onomatopoeia | OHAYO CENTER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Manrope:wght@400;600;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E63946;
+            --primary-light: #FF5766;
+            --secondary: #F4A261;
+            --accent: #2A9D8F;
+            --dark: #264653;
+            --light-bg: #FAF9F6;
+            --card-bg: #FFFFFF;
+            --text-dark: #1D3557;
+            --text-muted: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #FAF9F6 0%, #F0EDE5 100%);
+            color: var(--text-dark);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- 共通ナビゲーションバー --- */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            padding: 0 5%; 
+            height: 70px; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0;
+            z-index: 1000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        nav .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: #2c3e50; font-size: 1.2rem; white-space: nowrap; text-decoration: none; }
+        nav .logo a { text-decoration: none; color: inherit; }
+        nav .nav-links { list-style: none; display: flex; gap: 1.2rem; }
+        nav .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            nav .logo { font-size: 1rem; }
+            nav .nav-links { gap: 0.8rem; }
+            nav .nav-links a { font-size: 0.7rem; }
+        }
+
+        /* --- 共通フッター --- */
+        footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+        .bmc-btn { display: inline-flex; align-items: center; padding: 6px 12px; color: #000000; background-color: #FFDD00; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0px 1px 2px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; margin-bottom: 10px; }
+        .bmc-btn:hover { opacity: 0.9; }
+        .bmc-btn img { height: 18px; width: auto; margin-right: 8px; }
+
+        /* Hero Section */
+        .hero {
+            padding: 110px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.1); }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .hero .subtitle {
+            font-family: 'Manrope', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Tabs & View Toggle */
+        .filter-section {
+            padding: 30px 0 40px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 40px;
+            border-radius: 16px;
+        }
+
+        .view-controls {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 30px 20px;
+        }
+
+        .view-toggle {
+            display: inline-flex;
+            background: #f1f3f5;
+            border-radius: 10px;
+            padding: 4px;
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .view-btn.active {
+            background: #fff;
+            color: var(--primary);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .filter-tab {
+            padding: 12px 28px;
+            background: transparent;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-tab::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--primary);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .filter-tab span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-tab.active::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Grid */
+        .onomatopoeia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+            padding: 20px 0 80px;
+            transition: all 0.3s ease;
+        }
+
+        /* Card Mode (Default) */
+        .ono-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ono-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ono-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .ono-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sound-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card-title {
+            flex: 1;
+        }
+
+        .japanese {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--dark);
+            letter-spacing: 0.02em;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .romaji {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: lowercase;
+        }
+
+        .meaning {
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding: 12px;
+            background: rgba(230, 57, 70, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .examples {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .example {
+            padding: 16px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .example:hover {
+            background: #F0EDE5;
+            transform: translateX(4px);
+        }
+
+        .example-ja {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        .example-en {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 16px;
+            align-self: flex-start;
+        }
+
+        /* --- List View Mode --- */
+        .onomatopoeia-grid.list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .list-view .ono-card {
+            flex-direction: row;
+            align-items: center;
+            padding: 16px 24px;
+            gap: 24px;
+        }
+
+        .list-view .card-header {
+            margin-bottom: 0;
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .list-view .sound-icon {
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        .list-view .japanese {
+            font-size: 22px;
+            margin-bottom: 0;
+        }
+
+        .list-view .meaning {
+            margin-bottom: 0;
+            padding: 0;
+            background: transparent;
+            border-left: none;
+            flex: 1;
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        /* リスト表示の時は例文とタグを隠す */
+        .list-view .examples,
+        .list-view .category-tag {
+            display: none;
+        }
+
+        /* Stagger animation delays (reset by JS) */
+        .ono-card:nth-child(1) { animation-delay: 0s; }
+        .ono-card:nth-child(2) { animation-delay: 0.1s; }
+        .ono-card:nth-child(3) { animation-delay: 0.2s; }
+        .ono-card:nth-child(4) { animation-delay: 0.1s; }
+        .ono-card:nth-child(5) { animation-delay: 0.2s; }
+        .ono-card:nth-child(6) { animation-delay: 0.3s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 40px; }
+            .hero .subtitle { font-size: 20px; }
+
+            .onomatopoeia-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .filter-tabs { gap: 8px; }
+            .filter-tab { padding: 10px 20px; font-size: 14px; }
+            .view-controls { justify-content: center; padding: 0 16px 20px; }
+
+            /* スマホでのリストビュー調整 */
+            .list-view .ono-card {
+                padding: 16px;
+                gap: 16px;
+            }
+            .list-view .card-header {
+                width: auto;
+                min-width: 140px;
+            }
+            .list-view .japanese {
+                font-size: 18px;
+            }
+            .list-view .sound-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+            .list-view .meaning {
+                font-size: 14px;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+        <ul class="nav-links">
+            <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+            <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+            <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>オノマトペ</h1>
+                <div class="subtitle">Japanese Onomatopoeia</div>
+                <p>音や様子を表現する日本語の擬音語・擬態語を学びましょう</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="filter-section">
+                <div class="view-controls">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid"><i class="fa-solid fa-border-all"></i> カード</button>
+                        <button class="view-btn" data-view="list"><i class="fa-solid fa-list"></i> リスト</button>
+                    </div>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all"><span>すべて (All)</span></button>
+                    <button class="filter-tab" data-category="sounds"><span>音 (Sounds)</span></button>
+                    <button class="filter-tab" data-category="feelings"><span>感情 (Feelings)</span></button>
+                    <button class="filter-tab" data-category="movement"><span>動き (Movement)</span></button>
+                    <button class="filter-tab" data-category="weather"><span>天気 (Weather)</span></button>
+                </div>
+            </div>
+
+            <div class="onomatopoeia-grid" id="grid">
+                
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🔔</div>
+                        <div class="card-title">
+                            <div class="japanese">ピンポン</div>
+                            <div class="romaji">pinpon</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Ding-dong (doorbell sound)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">ピンポンと呼び鈴が鳴った。</div>
+                            <div class="example-en">The doorbell rang with a ding-dong.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">玄関でピンポンが聞こえた。</div>
+                            <div class="example-en">I heard the doorbell chime at the entrance.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">💧</div>
+                        <div class="card-title">
+                            <div class="japanese">ぽたぽた</div>
+                            <div class="romaji">pota pota</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Drip-drop (sound of water drops)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">蛇口から水がぽたぽた落ちている。</div>
+                            <div class="example-en">Water is dripping drop by drop from the faucet.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">雨がぽたぽたと窓を打つ音がする。</div>
+                            <div class="example-en">I hear the sound of rain pattering against the window.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🐾</div>
+                        <div class="card-title">
+                            <div class="japanese">ばたばた</div>
+                            <div class="romaji">bata bata</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Flapping, clattering (rapid movement)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">子どもたちがばたばたと走り回っている。</div>
+                            <div class="example-en">The children are running around noisily.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">朝からばたばたと忙しかった。</div>
+                            <div class="example-en">It was hectic and rushed since morning.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🥤</div>
+                        <div class="card-title">
+                            <div class="japanese">ごくごく</div>
+                            <div class="romaji">goku goku</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Gulping down a drink</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">冷たい水をごくごく飲んだ。</div>
+                            <div class="example-en">I gulped down the cold water.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">彼はビールをごくごくと飲み干した。</div>
+                            <div class="example-en">He chugged the beer down.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🗣️</div>
+                        <div class="card-title">
+                            <div class="japanese">ぺらぺら</div>
+                            <div class="romaji">pera pera</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Fluent / speaking non-stop</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">彼女は英語がぺらぺらだ。</div>
+                            <div class="example-en">She is fluent in English.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">秘密をぺらぺらと話してしまった。</div>
+                            <div class="example-en">I blabbed the secret easily.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🐶</div>
+                        <div class="card-title">
+                            <div class="japanese">わんわん</div>
+                            <div class="romaji">wan wan</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Bow-wow / crying loudly</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">犬がわんわん吠えている。</div>
+                            <div class="example-en">The dog is barking loudly.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">赤ちゃんがわんわん泣き出した。</div>
+                            <div class="example-en">The baby started crying loudly.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🐱</div>
+                        <div class="card-title">
+                            <div class="japanese">にゃあにゃあ</div>
+                            <div class="romaji">nyaa nyaa</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Meow (cat sound)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">外で猫がにゃあにゃあ鳴いている。</div>
+                            <div class="example-en">A cat is meowing outside.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">お腹が空いてにゃあにゃあ言っている。</div>
+                            <div class="example-en">It's meowing because it's hungry.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🥁</div>
+                        <div class="card-title">
+                            <div class="japanese">どんどん</div>
+                            <div class="romaji">don don</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Knocking / steadily progressing</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">ドアをどんどん叩いた。</div>
+                            <div class="example-en">I knocked on the door loudly.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">日本語がどんどん上達している。</div>
+                            <div class="example-en">My Japanese is improving rapidly.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">💥</div>
+                        <div class="card-title">
+                            <div class="japanese">がちゃん</div>
+                            <div class="romaji">gachan</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Clank / crash (breaking or slamming)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">お皿ががちゃんと割れた。</div>
+                            <div class="example-en">The plate broke with a crash.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">ドアががちゃんと閉まった。</div>
+                            <div class="example-en">The door shut with a loud clank.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+                <div class="ono-card" data-category="sounds">
+                    <div class="card-header">
+                        <div class="sound-icon">🍜</div>
+                        <div class="card-title">
+                            <div class="japanese">ちゅるちゅる</div>
+                            <div class="romaji">churu churu</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Slurping (noodles)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">ラーメンをちゅるちゅる食べる。</div>
+                            <div class="example-en">I slurp the ramen noodles.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">子どもがうどんをちゅるちゅる吸っている。</div>
+                            <div class="example-en">The child is slurping udon loudly.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">sounds</span>
+                </div>
+
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">💓</div>
+                        <div class="card-title">
+                            <div class="japanese">どきどき</div>
+                            <div class="romaji">doki doki</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Heart pounding (excitement/nervous)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">試験の前で心臓がどきどきした。</div>
+                            <div class="example-en">My heart was pounding before the exam.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">好きな人に会うとどきどきする。</div>
+                            <div class="example-en">My heart races when I see my crush.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">😊</div>
+                        <div class="card-title">
+                            <div class="japanese">わくわく</div>
+                            <div class="romaji">waku waku</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Excited, thrilled (anticipation)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">旅行が楽しみでわくわくしている。</div>
+                            <div class="example-en">I'm excited and looking forward to the trip.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">新しいプロジェクトにわくわくする。</div>
+                            <div class="example-en">I feel thrilled about the new project.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">😰</div>
+                        <div class="card-title">
+                            <div class="japanese">いらいら</div>
+                            <div class="romaji">ira ira</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Irritated, frustrated</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">渋滞でいらいらしてきた。</div>
+                            <div class="example-en">I'm getting irritated by the traffic jam.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">待たされていらいらする。</div>
+                            <div class="example-en">Being kept waiting makes me frustrated.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">☕</div>
+                        <div class="card-title">
+                            <div class="japanese">ほっと</div>
+                            <div class="romaji">hotto</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Relieved, feeling at ease</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">テストが終わってほっとした。</div>
+                            <div class="example-en">I felt relieved after the test was over.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">温かいお茶を飲んでほっとする。</div>
+                            <div class="example-en">I feel relaxed drinking warm tea.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">😲</div>
+                        <div class="card-title">
+                            <div class="japanese">びっくり</div>
+                            <div class="romaji">bikkuri</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Surprised, startled</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">大きな音にびっくりした。</div>
+                            <div class="example-en">I was surprised by the loud noise.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">急に話しかけられてびっくりしたよ。</div>
+                            <div class="example-en">I was startled when you suddenly talked to me.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">🎵</div>
+                        <div class="card-title">
+                            <div class="japanese">うきうき</div>
+                            <div class="romaji">uki uki</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Cheerful, bouncing with joy</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">デートの前でうきうきしている。</div>
+                            <div class="example-en">I'm so cheerful before the date.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">春になって気分がうきうきする。</div>
+                            <div class="example-en">Spring makes me feel upbeat and happy.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">😞</div>
+                        <div class="card-title">
+                            <div class="japanese">がっかり</div>
+                            <div class="romaji">gakkari</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Disappointed, let down</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">試合に負けてがっかりした。</div>
+                            <div class="example-en">I was disappointed losing the game.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">そのニュースを聞いてがっかりした。</div>
+                            <div class="example-en">I was let down hearing that news.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">😶</div>
+                        <div class="card-title">
+                            <div class="japanese">ぼんやり</div>
+                            <div class="romaji">bonyari</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Absent-minded, spacing out</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">授業中、ぼんやりしていた。</div>
+                            <div class="example-en">I was spacing out during class.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">遠くの山がぼんやり見える。</div>
+                            <div class="example-en">The distant mountain looks blurry.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">✨</div>
+                        <div class="card-title">
+                            <div class="japanese">すっきり</div>
+                            <div class="romaji">sukkiri</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Refreshed, clear-headed</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">シャワーを浴びてすっきりした。</div>
+                            <div class="example-en">I felt refreshed after taking a shower.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">部屋を片付けて気分がすっきりした。</div>
+                            <div class="example-en">I feel good after cleaning up my room.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">🫣</div>
+                        <div class="card-title">
+                            <div class="japanese">そわそわ</div>
+                            <div class="romaji">sowa sowa</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Restless, fidgety</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">面接の前でそわそわしている。</div>
+                            <div class="example-en">I'm fidgeting nervously before the interview.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">結果が気になってそわそわする。</div>
+                            <div class="example-en">I'm restless worrying about the results.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+                <div class="ono-card" data-category="feelings">
+                    <div class="card-header">
+                        <div class="sound-icon">🏃‍♀️</div>
+                        <div class="card-title">
+                            <div class="japanese">いそいそ</div>
+                            <div class="romaji">iso iso</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Joyfully hurrying</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">彼女はいそいそと出かけた。</div>
+                            <div class="example-en">She hurried out happily.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">いそいそとパーティーの準備をする。</div>
+                            <div class="example-en">I cheerfully rush to prepare for the party.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">feelings</span>
+                </div>
+
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">🏃</div>
+                        <div class="card-title">
+                            <div class="japanese">さっと</div>
+                            <div class="romaji">satto</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Quickly, swiftly</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">彼女はさっと部屋を出て行った。</div>
+                            <div class="example-en">She quickly left the room.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">さっと掃除を済ませた。</div>
+                            <div class="example-en">I finished cleaning swiftly.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">🌀</div>
+                        <div class="card-title">
+                            <div class="japanese">ぐるぐる</div>
+                            <div class="romaji">guru guru</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Round and round (spinning)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">頭がぐるぐる回っている。</div>
+                            <div class="example-en">My head is spinning.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">子どもがぐるぐると回っている。</div>
+                            <div class="example-en">The child is spinning around and around.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">✨</div>
+                        <div class="card-title">
+                            <div class="japanese">ぴかぴか</div>
+                            <div class="romaji">pika pika</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Sparkling, shiny</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">床をぴかぴかに磨いた。</div>
+                            <div class="example-en">I polished the floor until it was gleaming.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">新しい靴がぴかぴか光っている。</div>
+                            <div class="example-en">The new shoes are sparkling brightly.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">😴</div>
+                        <div class="card-title">
+                            <div class="japanese">ぐっすり</div>
+                            <div class="romaji">gussuri</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Sleeping soundly</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">昨日はぐっすり眠れた。</div>
+                            <div class="example-en">I slept soundly yesterday.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">赤ちゃんがぐっすり寝ている。</div>
+                            <div class="example-en">The baby is fast asleep.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">🚶</div>
+                        <div class="card-title">
+                            <div class="japanese">うろうろ</div>
+                            <div class="romaji">uro uro</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Wandering, pacing around</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">道に迷ってうろうろした。</div>
+                            <div class="example-en">I wandered around completely lost.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">怪しい人がうろうろしている。</div>
+                            <div class="example-en">A suspicious person is loitering around.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">🤫</div>
+                        <div class="card-title">
+                            <div class="japanese">こっそり</div>
+                            <div class="romaji">kossori</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Secretly, stealthily</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">夜中にこっそりケーキを食べた。</div>
+                            <div class="example-en">I secretly ate cake in the middle of the night.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">部屋をこっそり抜け出した。</div>
+                            <div class="example-en">I sneaked out of the room.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">🛍️</div>
+                        <div class="card-title">
+                            <div class="japanese">ぶらぶら</div>
+                            <div class="romaji">bura bura</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Strolling, wandering aimlessly</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">週末は町をぶらぶらした。</div>
+                            <div class="example-en">I strolled aimlessly around town on the weekend.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">公園をぶらぶら歩く。</div>
+                            <div class="example-en">I wander through the park.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">☁️</div>
+                        <div class="card-title">
+                            <div class="japanese">ふわふわ</div>
+                            <div class="romaji">fuwa fuwa</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Fluffy, floating lightly</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">ふわふわのパンを食べた。</div>
+                            <div class="example-en">I ate some fluffy bread.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">雲がふわふわ浮かんでいる。</div>
+                            <div class="example-en">Clouds are floating lightly in the sky.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">👁️</div>
+                        <div class="card-title">
+                            <div class="japanese">じっと</div>
+                            <div class="romaji">jitto</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Staring fixedly, remaining still</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">痛みをじっと我慢した。</div>
+                            <div class="example-en">I remained still and endured the pain.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">彼女の顔をじっと見つめた。</div>
+                            <div class="example-en">I stared fixedly at her face.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">🍃</div>
+                        <div class="card-title">
+                            <div class="japanese">ゆらゆら</div>
+                            <div class="romaji">yura yura</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Swaying, swinging gently</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">火がゆらゆら揺れている。</div>
+                            <div class="example-en">The fire is swaying gently.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">波にゆらゆら揺られる。</div>
+                            <div class="example-en">Swaying slowly on the waves.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+                <div class="ono-card" data-category="movement">
+                    <div class="card-header">
+                        <div class="sound-icon">🐢</div>
+                        <div class="card-title">
+                            <div class="japanese">のろのろ</div>
+                            <div class="romaji">noro noro</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Sluggishly, very slowly</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">渋滞で車がのろのろ進んでいる。</div>
+                            <div class="example-en">The cars are crawling along in traffic.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">のろのろ歩かないで！</div>
+                            <div class="example-en">Don't walk so sluggishly!</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">movement</span>
+                </div>
+
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">☀️</div>
+                        <div class="card-title">
+                            <div class="japanese">かんかん</div>
+                            <div class="romaji">kankan</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Blazing hot (scorching sun)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">太陽がかんかん照りつけている。</div>
+                            <div class="example-en">The sun is blazing down.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">夏はかんかん照りで暑い。</div>
+                            <div class="example-en">Summer is scorching hot with the blazing sun.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">🌧️</div>
+                        <div class="card-title">
+                            <div class="japanese">しとしと</div>
+                            <div class="romaji">shito shito</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Gently, softly (light rain)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">雨がしとしと降っている。</div>
+                            <div class="example-en">It's drizzling gently.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">しとしとと静かな雨が続く。</div>
+                            <div class="example-en">The quiet gentle rain continues.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">⚡</div>
+                        <div class="card-title">
+                            <div class="japanese">ざあざあ</div>
+                            <div class="romaji">zaa zaa</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Pouring (heavy rain)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">雨がざあざあ降っている。</div>
+                            <div class="example-en">The rain is pouring down.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">ざあざあと激しい雨が降り続けた。</div>
+                            <div class="example-en">The heavy rain continued pouring intensely.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">💧</div>
+                        <div class="card-title">
+                            <div class="japanese">じめじめ</div>
+                            <div class="romaji">jime jime</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Damp, humid</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">梅雨はじめじめして不快だ。</div>
+                            <div class="example-en">The rainy season is damp and uncomfortable.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">部屋がじめじめしている。</div>
+                            <div class="example-en">The room feels humid and muggy.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">🌬️</div>
+                        <div class="card-title">
+                            <div class="japanese">ぴゅーぴゅー</div>
+                            <div class="romaji">pyuu pyuu</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Howling (wind)</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">冷たい風がぴゅーぴゅー吹いている。</div>
+                            <div class="example-en">The cold wind is howling.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">外は風の音がぴゅーぴゅー鳴っている。</div>
+                            <div class="example-en">You can hear the wind whistling outside.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">🎐</div>
+                        <div class="card-title">
+                            <div class="japanese">そよそよ</div>
+                            <div class="romaji">soyo soyo</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Gentle breeze</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">春の風がそよそよ吹く。</div>
+                            <div class="example-en">A gentle spring breeze is blowing.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">窓からそよそよと風が入ってくる。</div>
+                            <div class="example-en">A soft breeze is coming in through the window.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">☁️</div>
+                        <div class="card-title">
+                            <div class="japanese">どんより</div>
+                            <div class="romaji">donyori</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Overcast, gloomy</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">空がどんよりと曇っている。</div>
+                            <div class="example-en">The sky is heavily overcast.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">今日はどんよりした天気だ。</div>
+                            <div class="example-en">It's a gloomy weather today.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">☀️</div>
+                        <div class="card-title">
+                            <div class="japanese">ぽかぽか</div>
+                            <div class="romaji">poka poka</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Pleasantly warm</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">春になってぽかぽか暖かい。</div>
+                            <div class="example-en">It's pleasantly warm now that it's spring.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">温泉に入って体がぽかぽかする。</div>
+                            <div class="example-en">My body feels nice and warm after the hot spring.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">🌩️</div>
+                        <div class="card-title">
+                            <div class="japanese">ごろごろ</div>
+                            <div class="romaji">goro goro</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Thunder rumbling</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">雷がごろごろ鳴っている。</div>
+                            <div class="example-en">Thunder is rumbling.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">休日は家でごろごろする。</div>
+                            <div class="example-en">I lounge around at home on my days off.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+                <div class="ono-card" data-category="weather">
+                    <div class="card-header">
+                        <div class="sound-icon">☔</div>
+                        <div class="card-title">
+                            <div class="japanese">びしょびしょ</div>
+                            <div class="romaji">bisho bisho</div>
+                        </div>
+                    </div>
+                    <div class="meaning">Soaking wet</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">雨で服がびしょびしょになった。</div>
+                            <div class="example-en">My clothes got soaking wet in the rain.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">傘を忘れて髪がびしょびしょだ。</div>
+                            <div class="example-en">I forgot my umbrella and my hair is drenched.</div>
+                        </div>
+                    </div>
+                    <span class="category-tag">weather</span>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+            <span>Support OHAYO CENTER</span>
+        </a>
+        <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- Filter functionality ---
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const cards = document.querySelectorAll('.ono-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const category = tab.dataset.category;
+
+                // Filter cards
+                let visibleIndex = 0;
+                cards.forEach((card) => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.classList.remove('hidden');
+                        card.style.animationDelay = `${(visibleIndex % 10) * 0.1}s`;
+                        visibleIndex++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // --- View Toggle functionality (Card vs List) ---
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const gridContainer = document.getElementById('grid');
+
+        viewBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                viewBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Switch view
+                if (btn.dataset.view === 'list') {
+                    gridContainer.classList.add('list-view');
+                } else {
+                    gridContainer.classList.remove('list-view');
+                }
+            });
+        });
+
+        // --- Smooth scroll ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
