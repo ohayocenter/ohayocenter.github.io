@@ -130,6 +130,17 @@
         .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #ffbd69); transition: width 0.6s; width: 0%; }
         .progress-stats { display: flex; justify-content: space-between; margin-top: 0.8rem; font-size: 0.85rem; font-weight: bold; }
 
+        /* ── VIEW CONTROLS (追加部分) ── */
+        .view-controls { display: flex; justify-content: flex-end; margin-bottom: 15px; }
+        .view-toggle { display: inline-flex; background: var(--border); border-radius: 10px; padding: 4px; }
+        .view-btn {
+            padding: 8px 16px; border: none; background: transparent; border-radius: 8px;
+            cursor: pointer; font-size: 14px; font-weight: 700; color: var(--text);
+            transition: all 0.3s ease; display: flex; align-items: center; gap: 6px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .view-btn.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+
         /* フィルター */
         .filter-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
         .filter-btn {
@@ -174,24 +185,38 @@
         }
         .idiom-card.learned { border: 2px solid #48bb78; }
 
-        /* サポートセクション */
-        .support-section {
-            margin: 4rem auto; text-align: center; padding: 3rem 2rem;
-            background: var(--card-bg); border-radius: var(--radius);
-            box-shadow: var(--shadow); border: 1px solid var(--border); max-width: 800px;
-        }
-        .support-section h2 { font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem; color: var(--dark); }
-        .support-section p { margin-bottom: 2rem; color: #718096; }
-        .bmc-custom-btn {
-            display: inline-flex; align-items: center; background-color: #FFDD00;
-            color: #000000; padding: 12px 24px; border-radius: 12px;
-            text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 221, 0, 0.3);
-        }
-        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 221, 0, 0.4); }
-        .bmc-custom-btn span { margin-left: 8px; }
+        /* ── CARDS (LIST VIEW MODE 追加部分) ── */
+        .idioms-grid.list-view { display: flex; flex-direction: column; gap: 12px; }
+        .list-view .idiom-card { flex-direction: row; align-items: center; padding: 16px 24px; gap: 20px; border-radius: 16px; }
+        .list-view .card-image-wrap { display: none; }
+        .list-view .card-content { padding: 0; flex-direction: row; align-items: center; flex: 1; gap: 15px; }
+        .list-view .idiom-jp { font-size: 1.15rem; margin-bottom: 0; min-width: 200px; flex-shrink: 0;}
+        .list-view .idiom-reading, .list-view .literal-translation, .list-view .idiom-en { display: none; }
+        .list-view .meaning-box { margin-bottom: 0; font-size: 0.9rem; flex: 1; border-left: none; padding: 0; background: transparent;}
+        .list-view .example-toggle, .list-view .example-body { display: none; }
+        .list-view .mark-btn { margin-top: 0; width: auto; flex-shrink: 0; padding: 6px 12px; }
 
-        footer { padding: 4rem 1rem; text-align: center; font-size: 0.8rem; color: #a0aec0; }
+        @media (max-width: 768px) {
+            /* スマホでのリストビュー調整 */
+            .list-view .idiom-card { flex-direction: column; align-items: flex-start; padding: 16px; gap: 10px; }
+            .list-view .card-content { width: 100%; flex-direction: column; align-items: flex-start; gap: 10px; }
+            .list-view .idiom-jp { min-width: auto;}
+            .list-view .mark-btn { width: 100%; }
+        }
+
+        /* ── FOOTER & BMC BUTTON ── */
+        footer { padding: 4rem 1rem 3rem; text-align: center; font-size: 0.85rem; color: #718096; }
+        footer p { margin-bottom: 0.8rem; }
+        .bmc-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: #FFDD00; color: #000000; padding: 10px 20px;
+            border-radius: 12px; font-weight: 700; font-size: 1rem;
+            text-decoration: none; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 221, 0, 0.3);
+            margin: 10px 0 20px;
+        }
+        .bmc-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 221, 0, 0.4); }
+        .bmc-btn img { height: 22px; width: auto; margin-right: 10px; }
     </style>
 </head>
 <body>
@@ -223,6 +248,13 @@
         <div class="progress-stats">
             <span>Progress</span>
             <span><span id="learnedCount">0</span> / 24</span>
+        </div>
+    </div>
+
+    <div class="view-controls">
+        <div class="view-toggle">
+            <button class="view-btn active" data-view="grid"><i class="fa-solid fa-border-all"></i> カード</button>
+            <button class="view-btn" data-view="list"><i class="fa-solid fa-list"></i> リスト</button>
         </div>
     </div>
 
@@ -605,39 +637,35 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-    <div class="card-image-wrap">
-        <img src="buzz.webp" class="idiom-image" alt="buzz">
-    </div>
-    <div class="card-content">
-        <p class="idiom-jp">バズる</p>
-        <p class="idiom-reading">ばずる</p>
-        <p class="literal-translation">Creating a buzz</p>
-        <p class="idiom-en">"To go viral"</p>
-        <div class="meaning-box">For content on the internet to spread rapidly.</div>
-        <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-        <div class="example-body">
-            彼女がSNSに投稿した猫の動画が瞬く間にバズった。
-            <span class="ex-en">(The cat video she posted on social media went viral in no time.)</span>
+            <div class="card-image-wrap">
+                <img src="buzz.webp" class="idiom-image" alt="buzz">
+            </div>
+            <div class="card-content">
+                <p class="idiom-jp">バズる</p>
+                <p class="idiom-reading">ばずる</p>
+                <p class="literal-translation">Creating a buzz</p>
+                <p class="idiom-en">"To go viral"</p>
+                <div class="meaning-box">For content on the internet to spread rapidly.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼女がSNSに投稿した猫の動画が瞬く間にバズった。
+                    <span class="ex-en">(The cat video she posted on social media went viral in no time.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
         </div>
-        <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-    </div>
-</div>
 
     </div>
 
-    </div>
-
-    <div class="support-section">
-        <h2>Support OHAYO CENTER</h2>
-        <p>If you find these materials helpful, please consider supporting us!</p>
-        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-            ☕️ <span>SUPPORT OHAYO CENTER</span>
-        </a>
-    </div>
 </div>
 
 <footer>
-    <p>© 2026 Ohayo Center. All rights reserved.</p>
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+        <span>Support OHAYO CENTER</span>
+    </a>
+    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
 </footer>
 
 <script>
@@ -701,7 +729,25 @@
             card.style.display = text.includes(query) ? '' : 'none';
         });
     }
+
+    // --- View Toggle functionality (Card vs List) 追加部分 ---
+    const viewBtns = document.querySelectorAll('.view-btn');
+    const gridContainer = document.getElementById('idiomsGrid');
+
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            viewBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Switch view
+            if (btn.dataset.view === 'list') {
+                gridContainer.classList.add('list-view');
+            } else {
+                gridContainer.classList.remove('list-view');
+            }
+        });
+    });
 </script>
 </body>
 </html>
-
