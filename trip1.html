@@ -244,7 +244,7 @@
             steps: [
                 { clerk: "お弁当、温めますか？", romaji: "O-bento atatamemasu ka? (Warm up your bento?)", choices: [ { text: "Onegaishimasu. (Yes, please)", isCorrect: true, feedback: "Perfect! Warm food is on the way." }, { text: "Omae wa mou shindeiru. (You are already dead)", isCorrect: false, feedback: "The clerk is confused! Use real Japanese instead." } ] },
                 { clerk: "お箸はお付けしますか？", romaji: "O-hashi wa otsuke shimasu ka? (Do you need chopsticks?)", choices: [ { text: "Hai, onegaishimasu. (Yes, please)", isCorrect: true, feedback: "Great! Now you can eat." }, { text: "Iie, watashi wa hashi desu. (No, I am chopsticks)", isCorrect: false, feedback: "Wait, you are a human, not chopsticks!" } ] },
-                { clerk: "ポイントカードはお持ちですか？", romaji: "Pointo kaado wa o-mochi desu ka? (Do you have a point card?)", choices: [ { text: "Motte imasen. (I don't have one)", isCorrect: true, feedback: "No problem. Let's move on." }, { text: "Doroo! Monsutaa kaado! (Draw! Monster Card!)", isCorrect: false, feedback: "You can't duel the cashier with Yu-Gi-Oh cards!" } ] },
+                { clerk: "ポイントカードはお持ちですか？", romaji: "Pointo kaado wa o-mochi desu ka? (Do you have a point card?)", choices: [ { text: "Motte imasen. (I don't have one)", isCorrect: true, feedback: "No problem. Let's move on." }, { text: "Visa? (Visa card?)", isCorrect: false, feedback: "Not asking your credit card!" } ] },
                 { clerk: "袋はご利用ですか？", romaji: "Fukuro wa go-riyou desu ka? (Would you like a plastic bag?)", choices: [ { text: "Daijoubu desu. (No thanks / I'm fine)", isCorrect: true, feedback: "Eco-friendly choice!" }, { text: "Kaban o kudasai. (Give me a suitcase)", isCorrect: false, feedback: "They only sell plastic bags, not luggage!" } ] },
                 { clerk: "お会計 800円になります。", romaji: "O-kaikei 800-yen ni narimasu. (That will be 800 yen.)", choices: [ { text: "Suica de. (By Suica)", isCorrect: true, feedback: "BEEP! Payment successful." }, { text: "Butsubutsu koukan de. (By barter)", isCorrect: false, feedback: "You can't trade your watch for a bento!" } ] }
             ]
@@ -415,7 +415,7 @@
             setTimeout(() => {
                 currentStepIndex++;
                 renderStep();
-            }, 2500); // フィードバックを少し長く読めるように1.5秒から2.5秒に調整しました
+            }, 1000); // フィードバックを少し長く読めるように1.5秒から2.5秒に調整しました
         } else {
             uiFeedback.className = "feedback wrong";
             uiFeedback.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${choice.feedback}`;
