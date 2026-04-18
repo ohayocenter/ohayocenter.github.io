@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OHAYO CENTER: Travel Japanese Survival Quest.">
+    <title>OHAYO CENTER - Survival Quests</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 基本設定（OHAYO CENTER共通） --- */
+        :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 10px 30px rgba(0,0,0,0.06); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
+        
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        .container { max-width: 850px; margin: 0 auto; padding: 120px 1.2rem 3rem; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--dark); }
+        .intro-text { text-align: center; color: #777; margin-bottom: 2rem; font-size: 0.95rem; }
+
+        .quest-card { background: #fff; border-radius: 20px; box-shadow: var(--shadow); padding: 30px; border: 1px solid rgba(0,0,0,0.02); min-height: 400px; }
+        
+        /* --- クエスト選択メニュー --- */
+        #quest-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; animation: fadeIn 0.5s; }
+        .stage-btn { display: flex; align-items: center; padding: 20px; background: #fff; border: 2px solid #eee; border-radius: 15px; cursor: pointer; transition: 0.2s; text-align: left; }
+        .stage-btn:hover { border-color: var(--primary); background: var(--primary-light); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,159,67,0.15); }
+        .stage-icon { font-size: 2rem; color: var(--primary); width: 60px; text-align: center; }
+        .stage-info { flex: 1; }
+        .stage-title { font-size: 1.1rem; font-weight: bold; color: var(--dark); font-family: 'Sawarabi Mincho', serif; margin-bottom: 3px; }
+        .stage-desc { font-size: 0.8rem; color: #777; line-height: 1.4; }
+
+        /* --- モダンな会話UI --- */
+        #play-area { display: none; animation: fadeIn 0.3s; max-width: 600px; margin: 0 auto; }
+        .quest-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .back-btn { background: none; border: none; color: #888; cursor: pointer; font-size: 1rem; transition: 0.2s; }
+        .back-btn:hover { color: var(--primary); }
+        .quest-title-play { font-weight: bold; color: var(--dark); font-family: 'Sawarabi Mincho', serif; }
+        .progress-text { font-size: 0.85rem; color: #aaa; font-weight: bold; width: 60px; text-align: right; }
+
+        .dialogue-area { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
+        .clerk-icon { width: 50px; height: 50px; background: var(--primary-light); color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; flex-shrink: 0; }
+        .bubble { background: #f0f4f8; padding: 15px 20px; border-radius: 0 20px 20px 20px; position: relative; max-width: 100%; }
+        
+        .jp-text { font-size: 1.3rem; font-weight: bold; color: var(--dark); font-family: 'Sawarabi Mincho', serif; margin-bottom: 5px; }
+        .en-text { color: #666; font-size: 0.9rem; }
+
+        /* 選択肢ボタン */
+        .choices-area { display: flex; flex-direction: column; gap: 12px; }
+        .choice-btn { padding: 16px; border: 2px solid #eee; background: #fff; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.2s; color: var(--dark); text-align: left; display: flex; align-items: center; }
+        .choice-btn i { margin-right: 10px; color: #ccc; transition: 0.2s; }
+        .choice-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+        .choice-btn:hover i { color: var(--primary); }
+        
+        /* フィードバックメッセージ */
+        .feedback { text-align: center; margin-bottom: 20px; font-weight: bold; height: 1.5rem; font-size: 0.95rem; }
+        .feedback.correct { color: #2ecc71; }
+        .feedback.wrong { color: #e74c3c; }
+
+        /* 最終画面用 */
+        #result-area { display: none; text-align: center; animation: fadeIn 0.5s; max-width: 600px; margin: 0 auto; }
+        .result-title { font-size: 1.8rem; color: var(--primary); font-family: 'Sawarabi Mincho', serif; margin-bottom: 10px; font-weight: bold; }
+        .survival-list { background: var(--primary-light); padding: 25px; border-radius: 15px; text-align: left; margin-top: 25px; }
+        .survival-list h3 { font-size: 1.1rem; color: var(--dark); margin-bottom: 15px; border-bottom: 2px solid #fff; padding-bottom: 10px; }
+        .survival-item { margin-bottom: 12px; font-size: 1rem; color: var(--text); }
+        .survival-item b { color: var(--primary); font-size: 1.1rem; display: block; }
+
+        .action-btns { display: flex; gap: 10px; justify-content: center; margin-top: 25px; }
+        .restart-btn { background: var(--primary); color: #fff; border: none; padding: 12px 25px; border-radius: 30px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; flex: 1; max-width: 200px;}
+        .restart-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(255, 159, 67, 0.3); }
+        .map-btn { background: #eee; color: var(--dark); border: none; padding: 12px 25px; border-radius: 30px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; flex: 1; max-width: 200px;}
+        .map-btn:hover { background: #ddd; transform: translateY(-2px); }
+
+        footer { padding: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* スマホ対応 */
+        @media (max-width: 768px) {
+            #quest-menu { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .quest-card { padding: 20px 15px; }
+            .jp-text { font-size: 1.1rem; }
+            .choice-btn { font-size: 0.9rem; padding: 12px; }
+            .action-btns { flex-direction: column; align-items: center; }
+            .restart-btn, .map-btn { width: 100%; max-width: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2><i class="fa-solid fa-map-location-dot"></i> Survival Quests</h2>
+    <p class="intro-text">Level up your Japanese! Choose your destination.</p>
+
+    <div class="quest-card">
+        
+        <div id="quest-menu">
+            <div class="stage-btn" onclick="selectQuest('konbini')">
+                <div class="stage-icon"><i class="fa-solid fa-store"></i></div>
+                <div class="stage-info">
+                    <div class="stage-title">Quest 1: The Konbini</div>
+                    <div class="stage-desc">Master the fast-paced convenience store checkout. (5 Qs)</div>
+                </div>
+            </div>
+
+            <div class="stage-btn" onclick="selectQuest('izakaya')">
+                <div class="stage-icon"><i class="fa-solid fa-beer-mug-empty"></i></div>
+                <div class="stage-info">
+                    <div class="stage-title">Quest 2: The Izakaya</div>
+                    <div class="stage-desc">Order food and drinks at a Japanese pub. (5 Qs)</div>
+                </div>
+            </div>
+
+            <div class="stage-btn" onclick="selectQuest('station')">
+                <div class="stage-icon"><i class="fa-solid fa-train-subway"></i></div>
+                <div class="stage-info">
+                    <div class="stage-title">Quest 3: The Station</div>
+                    <div class="stage-desc">Ask for directions, buy tickets, and charge IC cards. (5 Qs)</div>
+                </div>
+            </div>
+
+            <div class="stage-btn" onclick="selectQuest('taxi')">
+                <div class="stage-icon"><i class="fa-solid fa-taxi"></i></div>
+                <div class="stage-info">
+                    <div class="stage-title">Quest 4: The Taxi</div>
+                    <div class="stage-desc">Tell the driver your destination and give directions. (5 Qs)</div>
+                </div>
+            </div>
+
+            <div class="stage-btn" onclick="selectQuest('hotel')">
+                <div class="stage-icon"><i class="fa-solid fa-bell-concierge"></i></div>
+                <div class="stage-info">
+                    <div class="stage-title">Quest 5: The Hotel</div>
+                    <div class="stage-desc">Check in smoothly and ask about luggage and Wi-Fi. (5 Qs)</div>
+                </div>
+            </div>
+
+            <div class="stage-btn" onclick="selectQuest('shrine')">
+                <div class="stage-icon"><i class="fa-solid fa-torii-gate"></i></div>
+                <div class="stage-info">
+                    <div class="stage-title">Quest 6: The Shrine</div>
+                    <div class="stage-desc">Buy an Omamori, get a Goshuin, and ask to take photos. (5 Qs)</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="play-area">
+            <div class="quest-header">
+                <button class="back-btn" onclick="showMenu()"><i class="fa-solid fa-arrow-left"></i> Map</button>
+                <div class="quest-title-play" id="current-quest-title">Quest Title</div>
+                <div class="progress-text" id="progress-text">1 / 5</div>
+            </div>
+
+            <div class="dialogue-area">
+                <div class="clerk-icon" id="npc-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="bubble">
+                    <div class="jp-text" id="dialog-text">Loading...</div>
+                    <div class="en-text" id="romaji-text"></div>
+                </div>
+            </div>
+
+            <div id="feedback-msg" class="feedback"></div>
+
+            <div class="choices-area" id="choices-area">
+                </div>
+        </div>
+
+        <div id="result-area">
+            <div class="result-title"><i class="fa-solid fa-check-circle"></i> Quest Cleared!</div>
+            <p>Great job! You survived this situation.</p>
+            
+            <div class="survival-list">
+                <h3><i class="fa-solid fa-star"></i> Key Phrases Learned</h3>
+                <div id="summary-list">
+                    </div>
+            </div>
+
+            <div class="action-btns">
+                <button class="restart-btn" onclick="startCurrentQuest()"><i class="fa-solid fa-rotate-right"></i> Play Again</button>
+                <button class="map-btn" onclick="showMenu()"><i class="fa-solid fa-map"></i> Back to Map</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
+</footer>
+
+<script>
+    // --- クエストデータ (すべて5問に統一) ---
+    const questsData = {
+        konbini: {
+            title: "The Konbini (Convenience Store)", icon: "fa-cash-register",
+            summary: [
+                { jp: "お願いします (Onegaishimasu)", en: "Yes, please." },
+                { jp: "大丈夫です (Daijoubu desu)", en: "No thanks / I'm fine." },
+                { jp: "持っていません (Motte imasen)", en: "I don't have it." }
+            ],
+            steps: [
+                {
+                    clerk: "お弁当、温めますか？", romaji: "O-bento atatamemasu ka? (Warm up your bento?)",
+                    choices: [
+                        { text: "Onegaishimasu. (Yes, please)", isCorrect: true, feedback: "Perfect! Warm food is on the way." },
+                        { text: "Omae wa mou shindeiru. (You are already dead)", isCorrect: false, feedback: "The clerk is confused! Use real Japanese instead." }
+                    ]
+                },
+                {
+                    clerk: "お箸はお付けしますか？", romaji: "O-hashi wa otsuke shimasu ka? (Do you need chopsticks?)",
+                    choices: [
+                        { text: "Hai, onegaishimasu. (Yes, please)", isCorrect: true, feedback: "Great! Now you can eat." },
+                        { text: "Iie, watashi wa hashi desu. (No, I am chopsticks)", isCorrect: false, feedback: "Wait, you are a human, not chopsticks!" }
+                    ]
+                },
+                {
+                    clerk: "ポイントカードはお持ちですか？", romaji: "Pointo kaado wa o-mochi desu ka? (Do you have a point card?)",
+                    choices: [
+                        { text: "Motte imasen. (I don't have one)", isCorrect: true, feedback: "No problem. Let's move on." },
+                        { text: "Doroo! Monsutaa kaado! (Draw! Monster Card!)", isCorrect: false, feedback: "You can't duel the cashier with Yu-Gi-Oh cards!" }
+                    ]
+                },
+                {
+                    clerk: "袋はご利用ですか？", romaji: "Fukuro wa go-riyou desu ka? (Would you like a plastic bag?)",
+                    choices: [
+                        { text: "Daijoubu desu. (No thanks / I'm fine)", isCorrect: true, feedback: "Eco-friendly choice!" },
+                        { text: "Kaban o kudasai. (Give me a suitcase)", isCorrect: false, feedback: "They only sell plastic bags, not luggage!" }
+                    ]
+                },
+                {
+                    clerk: "お会計 800円になります。", romaji: "O-kaikei 800-yen ni narimasu. (That will be 800 yen.)",
+                    choices: [
+                        { text: "Suica de. (By Suica)", isCorrect: true, feedback: "BEEP! Payment successful." },
+                        { text: "Butsubutsu koukan de. (By barter)", isCorrect: false, feedback: "You can't trade your watch for a bento!" }
+                    ]
+                }
+            ]
+        },
+        izakaya: {
+            title: "The Izakaya (Japanese Pub)", icon: "fa-bowl-food",
+            summary: [
+                { jp: "2人です (Futari desu)", en: "Two people." },
+                { jp: "とりあえず生で (Toriaezu nama de)", en: "Draft beer for now." },
+                { jp: "別々で (Betsubetsu de)", en: "Separately, please." }
+            ],
+            steps: [
+                {
+                    clerk: "いらっしゃいませ！何名様ですか？", romaji: "Irasshaimase! Nan-mei sama desu ka? (Welcome! How many people?)",
+                    choices: [
+                        { text: "Futari desu. (Two people)", isCorrect: true, feedback: "This way, please." },
+                        { text: "Watashi wa neko desu. (I am a cat)", isCorrect: false, feedback: "Sorry, pets are not allowed!" }
+                    ]
+                },
+                {
+                    clerk: "お飲み物はいかがですか？", romaji: "O-nomimono wa ikaga desu ka? (Would you like a drink?)",
+                    choices: [
+                        { text: "Toriaezu nama de! (Draft beer for now!)", isCorrect: true, feedback: "Cheers! (Kanpai!)" },
+                        { text: "Suiton no jutsu! (Water Release Jutsu!)", isCorrect: false, feedback: "This is a pub, not a ninja village!" }
+                    ]
+                },
+                {
+                    clerk: "ご注文はお決まりですか？", romaji: "Go-chuumon wa okimari desu ka? (Are you ready to order food?)",
+                    choices: [
+                        { text: "Kore to, kore o kudasai. (This one and this one, please)", isCorrect: true, feedback: "Coming right up!" },
+                        { text: "Akuma no mi o kudasai. (Give me a Devil Fruit)", isCorrect: false, feedback: "We only serve regular fruit here..." }
+                    ]
+                },
+                {
+                    clerk: "空いたお皿、お下げしますね。", romaji: "Aita o-sara, osage shimasu ne. (I'll take your empty plates.)",
+                    choices: [
+                        { text: "Hai, onegaishimasu. (Yes, please)", isCorrect: true, feedback: "Table cleared!" },
+                        { text: "Tabenai de! (Don't eat it!)", isCorrect: false, feedback: "Don't worry, the staff won't eat your leftovers!" }
+                    ]
+                },
+                {
+                    clerk: "お会計はご一緒でよろしいですか？", romaji: "O-kaikei wa go-issho de yoroshii desu ka? (Will you pay together?)",
+                    choices: [
+                        { text: "Betsubetsu de onegaishimasu. (Separately, please)", isCorrect: true, feedback: "Sure, let me split the bill." },
+                        { text: "Ogotte kudasai. (Please treat me)", isCorrect: false, feedback: "Nice try, but you have to pay for your own food!" }
+                    ]
+                }
+            ]
+        },
+        station: {
+            title: "The Station (Train/Subway)", icon: "fa-train",
+            summary: [
+                { jp: "〇〇はどこですか？ (〇〇 wa doko desu ka?)", en: "Where is 〇〇?" },
+                { jp: "チャージしたいです (Chaaji shitai desu)", en: "I want to charge my card." },
+                { jp: "使えますか？ (Tsukaemasu ka?)", en: "Can I use this?" }
+            ],
+            steps: [
+                {
+                    clerk: "どうされましたか？", romaji: "Dousaremashita ka? (May I help you?)",
+                    choices: [
+                        { text: "Shinjuku eki wa doko desu ka? (Where is Shinjuku station?)", isCorrect: true, feedback: "Ah, you want to go to Shinjuku!" },
+                        { text: "Watashi wa maigo desu. (I am a lost child)", isCorrect: false, feedback: "Oh no! But you look like an adult..." }
+                    ]
+                },
+                {
+                    clerk: "新宿駅なら、3番線ですよ。", romaji: "Shinjuku eki nara, 3-bansen desu yo. (For Shinjuku, it's platform 3.)",
+                    choices: [
+                        { text: "Kyuukou wa tomarimasu ka? (Does the express stop there?)", isCorrect: true, feedback: "Yes, the express train stops there." },
+                        { text: "Kintoun wa doko desu ka? (Where is the Flying Nimbus?)", isCorrect: false, feedback: "Goku took it. You have to take the train." }
+                    ]
+                },
+                {
+                    clerk: "特急券はお持ちですか？", romaji: "Tokkyuu-ken wa o-mochi desu ka? (Do you have an express ticket?)",
+                    choices: [
+                        { text: "Iie, doko de kaemasu ka? (No, where can I buy one?)", isCorrect: true, feedback: "At the red machine over there." },
+                        { text: "katana o motte imasu. (I have a sword)", isCorrect: false, feedback: "A sword (katana) is not a ticket (ken)! Put that away!" }
+                    ]
+                },
+                {
+                    clerk: "Suicaの残高が足りないようですね。", romaji: "Suica no zandaka ga tarinai you desu ne. (Your Suica balance seems low.)",
+                    choices: [
+                        { text: "Chaaji shitai desu. (I want to charge it)", isCorrect: true, feedback: "You can charge it at the ticket machine." },
+                        { text: "Kiai o chaaji shimasu! (I will charge my fighting spirit!)", isCorrect: false, feedback: "Spirit won't open the ticket gates!" }
+                    ]
+                },
+                {
+                    clerk: "切符かICカードをお使いください。", romaji: "Kippu ka IC kaado o o-tsukai kudasai. (Please use a ticket or IC card.)",
+                    choices: [
+                        { text: "Kono kaado wa tsukaemasu ka? (Can I use this card?)", isCorrect: true, feedback: "Yes, that credit card works for tickets." },
+                        { text: "iie, kekko desu! (No thank you!)", isCorrect: false, feedback: "You have to pay!" }
+                    ]
+                }
+            ]
+        },
+        taxi: {
+            title: "The Taxi", icon: "fa-car",
+            summary: [
+                { jp: "〇〇までお願いします (〇〇 made onegaishimasu)", en: "To 〇〇, please." },
+                { jp: "次を左です (Tsugi o hidari desu)", en: "Take a left at the next light/corner." },
+                { jp: "ここで降ります (Koko de orimasu)", en: "I'll get off here." }
+            ],
+            steps: [
+                {
+                    clerk: "どちらまで行きますか？", romaji: "Dochira made ikimasu ka? (Where to?)",
+                    choices: [
+                        { text: "Maihama eki made onegaishimasu. (To Maihama station, please)", isCorrect: true, feedback: "Understood. Off to the theme park!" },
+                        { text: "Ryouiki Tenkai! (Domain Expansion!)", isCorrect: false, feedback: "The driver is a normal human, he can't survive your domain!" }
+                    ]
+                },
+                {
+                    clerk: "かしこまりました。高速を使いますか？", romaji: "Kashikomarimashita. Kousoku o tsukaimasu ka? (Understood. Shall I use the highway?)",
+                    choices: [
+                        { text: "Iie, shita-michi de. (No, regular roads are fine)", isCorrect: true, feedback: "Alright, taking the scenic route." },
+                        { text: "Sora o tonde kudasai. (Please fly in the sky)", isCorrect: false, feedback: "This is a taxi, not a magic broom!" }
+                    ]
+                },
+                {
+                    clerk: "（交差点に近づいて）この先はどうしますか？", romaji: "(Approaching intersection) Kono saki wa dou shimasu ka? (How about ahead?)",
+                    choices: [
+                        { text: "Tsugi no shingou o hidari desu. (Left at the next traffic light.)", isCorrect: true, feedback: "Turning left!" },
+                        { text: "Gohan wo tabemasu.  (I will eat.)", isCorrect: false, feedback: "Are you going to eat?" }
+                    ]
+                },
+                {
+                    clerk: "駅の近くに着きましたよ。", romaji: "Eki no chikaku ni tsukimashita yo. (We are near the station.)",
+                    choices: [
+                        { text: "Koko de orimasu. (I'll get off here)", isCorrect: true, feedback: "Stopping the car here." },
+                        { text: "America ni ikitai (I want to go to America!)", isCorrect: false, feedback: "Go to the airport!" }
+                    ]
+                },
+                {
+                    clerk: "お支払いはどうされますか？", romaji: "O-shiharai wa dou saremasu ka? (How will you pay?)",
+                    choices: [
+                        { text: "Kurejitto kaado de. (By credit card)", isCorrect: true, feedback: "Thank you for riding with us!" },
+                        { text: "Akuma to no keiyaku de. (By a contract with a devil)", isCorrect: false, feedback: "He only accepts Yen, not your soul!" }
+                    ]
+                }
+            ]
+        },
+        hotel: {
+            title: "The Hotel", icon: "fa-bed",
+            summary: [
+                { jp: "予約した〇〇です (Yoyaku shita 〇〇 desu)", en: "I have a reservation under 〇〇." },
+                { jp: "朝食は何時ですか？ (Choushoku wa nan-ji desu ka?)", en: "What time is breakfast?" },
+                { jp: "荷物を預かってもらえますか？ (Nimotsu o azukatte mo...)", en: "Can I leave my luggage?" }
+            ],
+            steps: [
+                {
+                    clerk: "いらっしゃいませ。ご宿泊ですか？", romaji: "Irasshaimase. Go-shukuhaku desu ka? (Welcome. Are you staying with us?)",
+                    choices: [
+                        { text: "Hai, chekku-in onegaishimasu. (Yes, check-in please)", isCorrect: true, feedback: "Welcome! May I have your name?" },
+                        { text: "Kaizoku-ou ni ore wa naru! (I will be the Pirate King!)", isCorrect: false, feedback: "Sir, this is a hotel, not the Grand Line." }
+                    ]
+                },
+                {
+                    clerk: "お名前をお願いいたします。", romaji: "O-namae o onegai itashimasu. (Your name, please.)",
+                    choices: [
+                        { text: "Yoyaku shita [Name] desu. (I have a reservation under [Name])", isCorrect: true, feedback: "Thank you, I found your reservation." },
+                        { text: "Wagahai wa neko de aru. Na wa mada nai. (I am a cat. I have no name yet.)", isCorrect: false, feedback: "Classic literature, but I need your actual name!" }
+                    ]
+                },
+                {
+                    clerk: "朝食付きのプランですね。", romaji: "Choushoku-tsuki no puran desu ne. (You have the breakfast plan.)",
+                    choices: [
+                        { text: "Hai. Nan-ji kara desu ka? (Yes. What time does it start?)", isCorrect: true, feedback: "It starts at 7:00 AM." },
+                        { text: "Pankeeki no mahou o tsukatte. (Use pancake magic.)", isCorrect: false, feedback: "Our chefs cook with fire, not magic!" }
+                    ]
+                },
+                {
+                    clerk: "こちらがルームキーになります。", romaji: "Kochira ga ruumu kii ni narimasu. (Here is your room key.)",
+                    choices: [
+                        { text: "Wi-Fi no pasuwaado wa nan desu ka? (What is the Wi-Fi password?)", isCorrect: true, feedback: "It is written on the card holder." },
+                        { text: "Hirake Goma! (Open Sesame!)", isCorrect: false, feedback: "You need the card key to open the door, not a spell!" }
+                    ]
+                },
+                {
+                    clerk: "お部屋のご用意ができるまで少々お待ちください。", romaji: "O-heya no go-youi ga dekiru made shoushou o-machi kudasai. (Please wait while we prepare your room.)",
+                    choices: [
+                        { text: "Nimotsu o azukatte mo ii desu ka? (Can I leave my luggage here?)", isCorrect: true, feedback: "Certainly, we will keep it at the front desk." },
+                        { text: "Kono ishi o azukatte! (Hold onto this stone!)", isCorrect: false, feedback: "We only store luggage, not mysterious glowing stones!" }
+                    ]
+                }
+            ]
+        },
+        shrine: {
+            title: "The Shrine / Temple", icon: "fa-vihara",
+            summary: [
+                { jp: "写真を撮ってもいいですか？ (Shashin o totte mo ii desu ka?)", en: "Can I take a picture?" },
+                { jp: "御朱印をお願いします (Goshuin o onegaishimasu)", en: "Goshuin (shrine stamp), please." },
+                { jp: "見ているだけです (Miteiru dake desu)", en: "I'm just looking." }
+            ],
+            steps: [
+                {
+                    clerk: "（手水舎にて）まずは手を清めてくださいね。", romaji: "(At the Chozuya) Please purify your hands first.",
+                    choices: [
+                        { text: "Te o araimasu. (I will wash my hands.)", isCorrect: true, feedback: "Yes, left hand, then right hand." },
+                        { text: "Mizu no Kokyuu! Ichi no kata! (Water Breathing! First Form!)", isCorrect: false, feedback: "Please don't use sword techniques at the water basin!" }
+                    ]
+                },
+                {
+                    clerk: "（お守り売り場にて）ようこそ。", romaji: "(At the charm shop) Youkoso. (Welcome.)",
+                    choices: [
+                        { text: "kon ni chiwa. (Hello)", isCorrect: true, feedback: "Take your time looking around!" },
+                        { text: "Zorutoraaku! (Zoltraak!)", isCorrect: false, feedback: "Please don't blast the shrine with soul-track magic!" }
+                    ]
+                },
+                {
+                    clerk: "こちらのお守りですね。500円です。", romaji: "Kochira no omamori desu ne. 500-yen desu. (This charm, right? It's 500 yen.)",
+                    choices: [
+                        { text: "Kore o kudasai. (This one, please)", isCorrect: true, feedback: "May it bring you good luck!" },
+                        { text: "Ryouiki Tenkai! (Domain Expansion!)", isCorrect: false, feedback: "This is a sacred place, no curses allowed!" }
+                    ]
+                },
+                {
+                    clerk: "御朱印帳はお持ちですか？", romaji: "Goshuinchou wa o-mochi desu ka? (Do you have a Goshuin stamp book?)",
+                    choices: [
+                        { text: "Hai. Goshuin o onegaishimasu. (Yes. A stamp, please.)", isCorrect: true, feedback: "Beautiful calligraphy, just for you." },
+                        { text: "hai. Pokemon card ga arimasu. (Yes. I have pokemon card.)", isCorrect: false, feedback: "You came to the wrong place." }
+                    ]
+                },
+                {
+                    clerk: "本殿の中は撮影禁止となっております。", romaji: "Honden no naka wa satsuei kinshi to natte orimasu. (Photography is prohibited inside the main hall.)",
+                    choices: [
+                        { text: "Soto de shashin o totte mo ii desu ka? (Can I take photos outside?)", isCorrect: true, feedback: "Yes, outside is perfectly fine!" },
+                        { text: "Bunshin no Jutsu! (Clone Jutsu!)", isCorrect: false, feedback: "Making copies of yourself won't change the rules!" }
+                    ]
+                }
+            ]
+        }
+    };
+
+    let activeQuestId = null;
+    let currentStepIndex = 0;
+
+    // --- UI要素 ---
+    const uiMenu = document.getElementById('quest-menu');
+    const uiPlayArea = document.getElementById('play-area');
+    const uiResultArea = document.getElementById('result-area');
+    const uiDialog = document.getElementById('dialog-text');
+    const uiRomaji = document.getElementById('romaji-text');
+    const uiChoices = document.getElementById('choices-area');
+    const uiFeedback = document.getElementById('feedback-msg');
+    const uiQuestTitle = document.getElementById('current-quest-title');
+    const uiProgress = document.getElementById('progress-text');
+    const uiNpcIcon = document.getElementById('npc-icon');
+    const uiSummaryList = document.getElementById('summary-list');
+
+    // --- 制御関数 ---
+    function showMenu() {
+        uiMenu.style.display = 'grid';
+        uiPlayArea.style.display = 'none';
+        uiResultArea.style.display = 'none';
+        activeQuestId = null;
+    }
+
+    function selectQuest(questId) {
+        activeQuestId = questId;
+        uiMenu.style.display = 'none';
+        uiPlayArea.style.display = 'block';
+        uiResultArea.style.display = 'none';
+        startCurrentQuest();
+    }
+
+    function startCurrentQuest() {
+        currentStepIndex = 0;
+        const quest = questsData[activeQuestId];
+        uiQuestTitle.textContent = quest.title;
+        uiNpcIcon.innerHTML = `<i class="fa-solid ${quest.icon}"></i>`;
+        
+        uiPlayArea.style.display = 'block';
+        uiResultArea.style.display = 'none';
+        
+        renderStep();
+    }
+
+    function renderStep() {
+        const quest = questsData[activeQuestId];
+        
+        if (currentStepIndex >= quest.steps.length) {
+            showResult();
+            return;
+        }
+
+        uiProgress.textContent = `${currentStepIndex + 1} / ${quest.steps.length}`;
+
+        const step = quest.steps[currentStepIndex];
+        uiDialog.textContent = step.clerk;
+        uiRomaji.textContent = step.romaji;
+        uiFeedback.textContent = "";
+        uiChoices.innerHTML = "";
+
+        step.choices.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.className = 'choice-btn';
+            btn.innerHTML = `<i class="fa-solid fa-chevron-right"></i> ${choice.text}`;
+            btn.onclick = () => handleChoice(choice);
+            uiChoices.appendChild(btn);
+        });
+    }
+
+    function handleChoice(choice) {
+        if (choice.isCorrect) {
+            uiFeedback.className = "feedback correct";
+            uiFeedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${choice.feedback}`;
+            
+            // 全ボタンを無効化
+            const btns = uiChoices.querySelectorAll('.choice-btn');
+            btns.forEach(b => b.style.pointerEvents = 'none');
+
+            // 1.5秒後に次へ
+            setTimeout(() => {
+                currentStepIndex++;
+                renderStep();
+            }, 1500);
+        } else {
+            uiFeedback.className = "feedback wrong";
+            uiFeedback.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${choice.feedback}`;
+        }
+    }
+
+    function showResult() {
+        uiPlayArea.style.display = 'none';
+        uiResultArea.style.display = 'block';
+        
+        // まとめリストの生成
+        const quest = questsData[activeQuestId];
+        uiSummaryList.innerHTML = "";
+        quest.summary.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'survival-item';
+            div.innerHTML = `<b>${index + 1}. ${item.jp}</b> ${item.en}`;
+            uiSummaryList.appendChild(div);
+        });
+    }
+
+</script>
+
+</body>
+</html>
