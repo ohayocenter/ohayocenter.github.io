@@ -37,6 +37,12 @@
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
         h2 i { color: var(--primary); margin-right: 10px; }
 
+        /* --- モード切り替えボタン (追加) --- */
+        .mode-toggle { display: flex; justify-content: center; gap: 15px; margin-bottom: 2rem; }
+        .mode-btn { padding: 10px 25px; border: 2px solid var(--primary); background: transparent; color: var(--primary); border-radius: 30px; font-weight: bold; font-size: 0.95rem; cursor: pointer; transition: 0.3s; }
+        .mode-btn i { margin-right: 5px; }
+        .mode-btn.active { background: var(--primary); color: #fff; box-shadow: 0 4px 10px rgba(255, 159, 67, 0.3); }
+
         /* --- タブ切り替えデザイン --- */
         .level-tabs { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; border-bottom: 3px solid var(--primary); }
         .level-tabs input { display: none; }
@@ -44,42 +50,16 @@
         .level-tabs input:checked + .tab-label { background: var(--primary); color: white; }
 
         /* --- 1枚表示フラッシュカードのCSS --- */
-        .fc-app {
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            text-align: center;
-            max-width: 500px;
-            margin: 0 auto 3rem;
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
+        .fc-app { background: #fff; border-radius: 20px; box-shadow: var(--shadow); padding: 30px; text-align: center; max-width: 500px; margin: 0 auto 3rem; border: 1px solid rgba(0,0,0,0.02); }
         .progress-bar { font-size: 0.9rem; color: #888; margin-bottom: 15px; font-weight: bold; }
-
-        .card-area {
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            cursor: pointer;
-            padding: 20px;
-            border-radius: 12px;
-            background: #fafafa;
-            border: 2px dashed #ddd;
-            transition: 0.3s;
-        }
-
+        .card-area { min-height: 250px; display: flex; flex-direction: column; justify-content: center; cursor: pointer; padding: 20px; border-radius: 12px; background: #fafafa; border: 2px dashed #ddd; transition: 0.3s; }
         .card-area:hover { background: var(--primary-light); border-color: var(--primary); }
-
         .masu-text { font-size: 2.2rem; font-weight: bold; color: var(--dark); margin-bottom: 5px; font-family: 'Sawarabi Mincho', serif; }
         .en-text { color: #777; font-size: 1rem; margin-bottom: 20px; font-style: italic; }
-
         .answers-area { display: none; text-align: left; width: 100%; max-width: 300px; margin: 0 auto; animation: fadeIn 0.3s ease; }
         .answer-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         .answer-label { font-size: 0.75rem; background: var(--dark); color: #fff; padding: 3px 10px; border-radius: 5px; }
         .hint-text { font-size: 0.85rem; color: var(--primary); margin-top: 15px; font-weight: bold; }
-
         .controls { display: flex; justify-content: space-between; margin-top: 25px; gap: 10px; }
         .btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.2s; color: #fff; }
         .btn-prev { background-color: #bdc3c7; }
@@ -87,16 +67,23 @@
         .btn-next { background-color: var(--primary); }
         .btn-next:hover { opacity: 0.9; }
 
-        /* --- リスト表示（テーブル）のCSS --- */
-        .list-section {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            overflow-x: auto;
-        }
-        .list-title { text-align: center; margin-bottom: 15px; color: var(--dark); font-size: 1.2rem; font-weight: bold; }
+        /* --- クイズアプリのCSS (追加) --- */
+        .quiz-app { background: #fff; border-radius: 20px; box-shadow: var(--shadow); padding: 30px; text-align: center; max-width: 500px; margin: 0 auto 3rem; border: 1px solid rgba(0,0,0,0.02); display: none; }
+        .quiz-question { font-size: 1.8rem; font-weight: bold; color: var(--dark); margin: 20px 0 30px; font-style: italic; }
+        .quiz-choices { display: flex; flex-direction: column; gap: 12px; }
+        .choice-btn { padding: 16px; border: 2px solid #eee; border-radius: 12px; background: #fafafa; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: 0.2s; color: var(--dark); font-family: 'Sawarabi Mincho', serif; width: 100%; }
+        .choice-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+        .choice-btn.correct { background: #2ecc71; border-color: #2ecc71; color: white; }
+        .choice-btn.wrong { background: #e74c3c; border-color: #e74c3c; color: white; }
+        .choice-btn:disabled { cursor: default; }
         
+        .result-screen { padding: 30px 0; }
+        .result-score { font-size: 2.5rem; color: var(--primary); font-family: 'Sawarabi Mincho', serif; margin-bottom: 10px; font-weight: bold;}
+        .result-msg { font-size: 1.1rem; color: #777; margin-bottom: 25px; }
+
+        /* --- リスト表示（テーブル）のCSS --- */
+        .list-section { background: #fff; padding: 20px; border-radius: 15px; box-shadow: var(--shadow); overflow-x: auto; }
+        .list-title { text-align: center; margin-bottom: 15px; color: var(--dark); font-size: 1.2rem; font-weight: bold; }
         .vocab-table { width: 100%; border-collapse: collapse; min-width: 600px; }
         .vocab-table th, .vocab-table td { padding: 12px; text-align: left; border-bottom: 1px solid #f0f0f0; }
         .vocab-table th { color: #888; font-size: 0.8rem; text-transform: uppercase; background: #fafafa; }
@@ -126,6 +113,11 @@
 
     <h2><i class="fa-solid fa-layer-group"></i> PLAIN FORM PRACTICE</h2>
 
+    <div class="mode-toggle">
+        <button id="btn-study" class="mode-btn active" onclick="setMode('study')"><i class="fa-solid fa-book-open"></i> 学習 (Study)</button>
+        <button id="btn-quiz" class="mode-btn" onclick="setMode('quiz')"><i class="fa-solid fa-gamepad"></i> クイズ (Quiz)</button>
+    </div>
+
     <div class="level-tabs">
         <input type="radio" name="g-tabs" id="g1" checked onchange="setGroup(1)">
         <label for="g1" class="tab-label">1グループ (Group 1)</label>
@@ -137,8 +129,8 @@
         <label for="g3" class="tab-label">3グループ (Group 3)</label>
     </div>
 
-    <div class="fc-app">
-        <div class="progress-bar" id="progress-text">1 / 20</div>
+    <div class="fc-app" id="fc-app">
+        <div class="progress-bar" id="progress-text">1 / 100</div>
 
         <div class="card-area" onclick="showAnswer()">
             <div class="masu-text" id="verb-masu">読込中...</div>
@@ -160,7 +152,22 @@
         </div>
     </div>
 
-    <div class="list-section">
+    <div class="quiz-app" id="quiz-app">
+        <div id="quiz-play-area">
+            <div class="progress-bar" id="quiz-progress-text">Q 1 / 10</div>
+            <div class="quiz-question" id="quiz-question">English</div>
+            <div class="quiz-choices" id="quiz-choices-area">
+                </div>
+        </div>
+
+        <div class="result-screen" id="quiz-result-area" style="display: none;">
+            <div class="result-score" id="quiz-final-score">8 / 10</div>
+            <div class="result-msg">Great Job! Keep practicing.</div>
+            <button class="btn btn-next" style="width: 100%; max-width: 200px; margin: 0 auto;" onclick="startQuiz()"><i class="fa-solid fa-rotate-right"></i> もう一度 (Retry)</button>
+        </div>
+    </div>
+
+    <div class="list-section" id="list-section">
         <div class="list-title" id="list-title">動詞一覧 (Verb List)</div>
         <table class="vocab-table">
             <thead>
@@ -191,7 +198,7 @@
 
 <script>
     const verbData = [
-        // --- Group 1 (20 verbs) ---
+        // --- Group 1 (100 verbs) ---
         { group: 1, masu: "行きます", en: "to go", dict: "行く", nai: "行かない", ta: "行った", nakatta: "行かなかった" },
         { group: 1, masu: "飲みます", en: "to drink", dict: "飲む", nai: "飲まない", ta: "飲んだ", nakatta: "飲まなかった" },
         { group: 1, masu: "買います", en: "to buy", dict: "買う", nai: "買わない", ta: "買った", nakatta: "買わなかった" },
@@ -212,8 +219,88 @@
         { group: 1, masu: "会います", en: "to meet", dict: "会う", nai: "会わない", ta: "会った", nakatta: "会わなかった" },
         { group: 1, masu: "洗います", en: "to wash", dict: "洗う", nai: "洗わない", ta: "洗った", nakatta: "洗わなかった" },
         { group: 1, masu: "歌います", en: "to sing", dict: "歌う", nai: "歌わない", ta: "歌った", nakatta: "歌わなかった" },
-        
-        // --- Group 2 (20 verbs) ---
+        { group: 1, masu: "貸します", en: "to lend", dict: "貸す", nai: "貸さない", ta: "貸した", nakatta: "貸さなかった" },
+        { group: 1, masu: "消します", en: "to turn off / erase", dict: "消す", nai: "消さない", ta: "消した", nakatta: "消さなかった" },
+        { group: 1, masu: "出します", en: "to take out / submit", dict: "出す", nai: "出さない", ta: "出した", nakatta: "出さなかった" },
+        { group: 1, masu: "立ちます", en: "to stand", dict: "立つ", nai: "立たない", ta: "立った", nakatta: "立たなかった" },
+        { group: 1, masu: "座ります", en: "to sit", dict: "座る", nai: "座らない", ta: "座った", nakatta: "座らなかった" },
+        { group: 1, masu: "置きます", en: "to put / place", dict: "置く", nai: "置かない", ta: "置いた", nakatta: "置かなかった" },
+        { group: 1, masu: "働きます", en: "to work", dict: "働く", nai: "働かない", ta: "働いた", nakatta: "働かなかった" },
+        { group: 1, masu: "磨きます", en: "to polish / brush", dict: "磨く", nai: "磨かない", ta: "磨いた", nakatta: "磨かなかった" },
+        { group: 1, masu: "歩きます", en: "to walk", dict: "歩く", nai: "歩かない", ta: "歩いた", nakatta: "歩かなかった" },
+        { group: 1, masu: "走ります", en: "to run", dict: "走る", nai: "走らない", ta: "走った", nakatta: "走らなかった" },
+        { group: 1, masu: "終わります", en: "to end / finish", dict: "終わる", nai: "終わらない", ta: "終わった", nakatta: "終わらなかった" },
+        { group: 1, masu: "始まります", en: "to begin / start", dict: "始まる", nai: "始まらない", ta: "始まった", nakatta: "始まらなかった" },
+        { group: 1, masu: "泊まります", en: "to stay (overnight)", dict: "泊まる", nai: "泊まらない", ta: "泊まった", nakatta: "泊まらなかった" },
+        { group: 1, masu: "撮ります", en: "to take (a photo)", dict: "撮る", nai: "撮らない", ta: "撮った", nakatta: "撮らなかった" },
+        { group: 1, masu: "使います", en: "to use", dict: "使う", nai: "使わない", ta: "使った", nakatta: "使わなかった" },
+        { group: 1, masu: "払います", en: "to pay", dict: "払う", nai: "払わない", ta: "払った", nakatta: "払わなかった" },
+        { group: 1, masu: "習います", en: "to learn", dict: "習う", nai: "習わない", ta: "習った", nakatta: "習わなかった" },
+        { group: 1, masu: "貰います", en: "to receive", dict: "貰う", nai: "貰わない", ta: "貰った", nakatta: "貰わなかった" },
+        { group: 1, masu: "間に合います", en: "to be in time", dict: "間に合う", nai: "間に合わない", ta: "間に合った", nakatta: "間に合わなかった" },
+        { group: 1, masu: "違います", en: "to be different / wrong", dict: "違う", nai: "違わない", ta: "違った", nakatta: "違わなかった" },
+        { group: 1, masu: "転びます", en: "to fall down", dict: "転ぶ", nai: "転ばない", ta: "転んだ", nakatta: "転ばなかった" },
+        { group: 1, masu: "選びます", en: "to choose", dict: "選ぶ", nai: "選ばない", ta: "選んだ", nakatta: "選ばなかった" },
+        { group: 1, masu: "運びます", en: "to carry / transport", dict: "運ぶ", nai: "運ばない", ta: "運んだ", nakatta: "運ばなかった" },
+        { group: 1, masu: "包みます", en: "to wrap", dict: "包む", nai: "包まない", ta: "包んだ", nakatta: "包まなかった" },
+        { group: 1, masu: "休みます", en: "to rest / take a day off", dict: "休む", nai: "休まない", ta: "休んだ", nakatta: "休まなかった" },
+        { group: 1, masu: "頼みます", en: "to request / ask", dict: "頼む", nai: "頼まない", ta: "頼んだ", nakatta: "頼まなかった" },
+        { group: 1, masu: "噛みます", en: "to bite / chew", dict: "噛む", nai: "噛まない", ta: "噛んだ", nakatta: "噛まなかった" },
+        { group: 1, masu: "踏みます", en: "to step on", dict: "踏む", nai: "踏まない", ta: "踏んだ", nakatta: "踏まなかった" },
+        { group: 1, masu: "刺します", en: "to sting / stab", dict: "刺す", nai: "刺さない", ta: "刺した", nakatta: "刺さなかった" },
+        { group: 1, masu: "楽しみます", en: "to enjoy", dict: "楽しむ", nai: "楽しまない", ta: "楽しんだ", nakatta: "楽しまなかった" },
+        { group: 1, masu: "泣きます", en: "to cry", dict: "泣く", nai: "泣かない", ta: "泣いた", nakatta: "泣かなかった" },
+        { group: 1, masu: "笑います", en: "to laugh", dict: "笑う", nai: "笑わない", ta: "笑った", nakatta: "笑わなかった" },
+        { group: 1, masu: "怒ります", en: "to get angry", dict: "怒る", nai: "怒らない", ta: "怒った", nakatta: "怒らなかった" },
+        { group: 1, masu: "喜びます", en: "to be glad", dict: "喜ぶ", nai: "喜ばない", ta: "喜んだ", nakatta: "喜ばなかった" },
+        { group: 1, masu: "驚きます", en: "to be surprised", dict: "驚く", nai: "驚かない", ta: "驚いた", nakatta: "驚かなかった" },
+        { group: 1, masu: "飛びます", en: "to fly", dict: "飛ぶ", nai: "飛ばない", ta: "飛んだ", nakatta: "飛ばなかった" },
+        { group: 1, masu: "咲きます", en: "to bloom", dict: "咲く", nai: "咲かない", ta: "咲いた", nakatta: "咲かなかった" },
+        { group: 1, masu: "押します", en: "to push", dict: "押す", nai: "押さない", ta: "押した", nakatta: "押さなかった" },
+        { group: 1, masu: "引きます", en: "to pull", dict: "引く", nai: "引かない", ta: "引いた", nakatta: "引かなかった" },
+        { group: 1, masu: "直します", en: "to fix / repair", dict: "直す", nai: "直さない", ta: "直した", nakatta: "直さなかった" },
+        { group: 1, masu: "探します", en: "to search", dict: "探す", nai: "探さない", ta: "探した", nakatta: "探さなかった" },
+        { group: 1, masu: "渡します", en: "to hand over", dict: "渡す", nai: "渡さない", ta: "渡した", nakatta: "渡さなかった" },
+        { group: 1, masu: "渡ります", en: "to cross", dict: "渡る", nai: "渡らない", ta: "渡った", nakatta: "渡らなかった" },
+        { group: 1, masu: "登ります", en: "to climb", dict: "登る", nai: "登らない", ta: "登った", nakatta: "登らなかった" },
+        { group: 1, masu: "下ります", en: "to descend", dict: "下る", nai: "下らない", ta: "下った", nakatta: "下らなかった" },
+        { group: 1, masu: "戻ります", en: "to return", dict: "戻る", nai: "戻らない", ta: "戻った", nakatta: "戻らなかった" },
+        { group: 1, masu: "通ります", en: "to pass", dict: "通る", nai: "通らない", ta: "通った", nakatta: "通らなかった" },
+        { group: 1, masu: "急ぎます", en: "to hurry", dict: "急ぐ", nai: "急がない", ta: "急いだ", nakatta: "急がなかった" },
+        { group: 1, masu: "騒ぎます", en: "to make noise", dict: "騒ぐ", nai: "騒がない", ta: "騒いだ", nakatta: "騒がなかった" },
+        { group: 1, masu: "叩きます", en: "to hit / knock", dict: "叩く", nai: "叩かない", ta: "叩いた", nakatta: "叩かなかった" },
+        { group: 1, masu: "盗みます", en: "to steal", dict: "盗む", nai: "盗まない", ta: "盗んだ", nakatta: "盗まなかった" },
+        { group: 1, masu: "祈ります", en: "to pray", dict: "祈る", nai: "祈らない", ta: "祈った", nakatta: "祈らなかった" },
+        { group: 1, masu: "飾ります", en: "to decorate", dict: "飾る", nai: "飾らない", ta: "飾った", nakatta: "飾らなかった" },
+        { group: 1, masu: "滑ります", en: "to slip", dict: "滑る", nai: "滑らない", ta: "滑った", nakatta: "滑らなかった" },
+        { group: 1, masu: "踊ります", en: "to dance", dict: "踊る", nai: "踊らない", ta: "踊った", nakatta: "踊らなかった" },
+        { group: 1, masu: "頑張ります", en: "to do one's best", dict: "頑張る", nai: "頑張らない", ta: "頑張った", nakatta: "頑張らなかった" },
+        { group: 1, masu: "謝ります", en: "to apologize", dict: "謝る", nai: "謝らない", ta: "謝った", nakatta: "謝らなかった" },
+        { group: 1, masu: "断ります", en: "to refuse", dict: "断る", nai: "断らない", ta: "断った", nakatta: "断らなかった" },
+        { group: 1, masu: "誘います", en: "to invite", dict: "誘う", nai: "誘わない", ta: "誘った", nakatta: "誘わなかった" },
+        { group: 1, masu: "祝います", en: "to celebrate", dict: "祝う", nai: "祝わない", ta: "祝った", nakatta: "祝わなかった" },
+        { group: 1, masu: "拾います", en: "to pick up", dict: "拾う", nai: "拾わない", ta: "拾った", nakatta: "拾わなかった" },
+        { group: 1, masu: "預かります", en: "to keep / take care of", dict: "預かる", nai: "預からない", ta: "預かった", nakatta: "預からなかった" },
+        { group: 1, masu: "守ります", en: "to protect", dict: "守る", nai: "守らない", ta: "守った", nakatta: "守らなかった" },
+        { group: 1, masu: "残ります", en: "to remain", dict: "残る", nai: "残らない", ta: "残った", nakatta: "残らなかった" },
+        { group: 1, masu: "減ります", en: "to decrease", dict: "減る", nai: "減らない", ta: "減った", nakatta: "減らなかった" },
+        { group: 1, masu: "太ります", en: "to gain weight", dict: "太る", nai: "太らない", ta: "太った", nakatta: "太らなかった" },
+        { group: 1, masu: "眠ります", en: "to sleep", dict: "眠る", nai: "眠らない", ta: "眠った", nakatta: "眠らなかった" },
+        { group: 1, masu: "曇ります", en: "to get cloudy", dict: "曇る", nai: "曇らない", ta: "曇った", nakatta: "曇らなかった" },
+        { group: 1, masu: "触ります", en: "to touch", dict: "触る", nai: "触らない", ta: "触った", nakatta: "触らなかった" },
+        { group: 1, masu: "貼ります", en: "to paste / stick", dict: "貼る", nai: "貼らない", ta: "貼った", nakatta: "貼らなかった" },
+        { group: 1, masu: "込みます", en: "to get crowded", dict: "込む", nai: "込まない", ta: "込んだ", nakatta: "込まなかった" },
+        { group: 1, masu: "渇きます", en: "to get thirsty", dict: "渇く", nai: "渇かない", ta: "渇いた", nakatta: "渇かなかった" },
+        { group: 1, masu: "乾きます", en: "to get dry", dict: "乾く", nai: "乾かない", ta: "乾いた", nakatta: "乾かなかった" },
+        { group: 1, masu: "空きます", en: "to become empty", dict: "空く", nai: "空かない", ta: "空いた", nakatta: "空かなかった" },
+        { group: 1, masu: "脱ぎます", en: "to take off (clothes)", dict: "脱ぐ", nai: "脱がない", ta: "脱いだ", nakatta: "脱がなかった" },
+        { group: 1, masu: "向かいます", en: "to head towards", dict: "向かう", nai: "向かわない", ta: "向かった", nakatta: "向かわなかった" },
+        { group: 1, masu: "迷います", en: "to get lost", dict: "迷う", nai: "迷わない", ta: "迷った", nakatta: "迷わなかった" },
+        { group: 1, masu: "届きます", en: "to arrive / reach", dict: "届く", nai: "届かない", ta: "届いた", nakatta: "届かなかった" },
+        { group: 1, masu: "鳴ります", en: "to ring", dict: "鳴る", nai: "鳴らない", ta: "鳴った", nakatta: "鳴らなかった" },
+        { group: 1, masu: "治ります", en: "to be cured / healed", dict: "治る", nai: "治らない", ta: "治った", nakatta: "治らなかった" },
+
+        // --- Group 2 (100 verbs) ---
         { group: 2, masu: "食べます", en: "to eat", dict: "食べる", nai: "食べない", ta: "食べた", nakatta: "食べなかった" },
         { group: 2, masu: "見ます", en: "to see / watch", dict: "見る", nai: "見ない", ta: "見た", nakatta: "見なかった" },
         { group: 2, masu: "寝ます", en: "to sleep", dict: "寝る", nai: "寝ない", ta: "寝た", nakatta: "寝なかった" },
@@ -234,8 +321,88 @@
         { group: 2, masu: "出かけます", en: "to go out", dict: "出かける", nai: "出かけない", ta: "出かけた", nakatta: "出かけなかった" },
         { group: 2, masu: "負けます", en: "to lose", dict: "負ける", nai: "負けない", ta: "負けた", nakatta: "負けなかった" },
         { group: 2, masu: "止めます", en: "to stop", dict: "止める", nai: "止めない", ta: "止めた", nakatta: "止めなかった" },
-        
-        // --- Group 3 (20 verbs) ---
+        { group: 2, masu: "答えます", en: "to answer", dict: "答える", nai: "答えない", ta: "答えた", nakatta: "答えなかった" },
+        { group: 2, masu: "変えます", en: "to change", dict: "変える", nai: "変えない", ta: "変えた", nakatta: "変えなかった" },
+        { group: 2, masu: "換えます", en: "to exchange", dict: "換える", nai: "換えない", ta: "換えた", nakatta: "換えなかった" },
+        { group: 2, masu: "決めます", en: "to decide", dict: "決める", nai: "決めない", ta: "決めた", nakatta: "決めなかった" },
+        { group: 2, masu: "考えます", en: "to think / consider", dict: "考える", nai: "考えない", ta: "考えた", nakatta: "考えなかった" },
+        { group: 2, masu: "続けます", en: "to continue", dict: "続ける", nai: "続けない", ta: "続けた", nakatta: "続けなかった" },
+        { group: 2, masu: "助けます", en: "to help / save", dict: "助ける", nai: "助けない", ta: "助けた", nakatta: "助けなかった" },
+        { group: 2, masu: "育てます", en: "to raise / bring up", dict: "育てる", nai: "育てない", ta: "育てた", nakatta: "育てなかった" },
+        { group: 2, masu: "集めます", en: "to collect", dict: "集める", nai: "集めない", ta: "集めた", nakatta: "集めなかった" },
+        { group: 2, masu: "並べます", en: "to line up / arrange", dict: "並べる", nai: "並べない", ta: "並べた", nakatta: "並べなかった" },
+        { group: 2, masu: "届けます", en: "to deliver", dict: "届ける", nai: "届けない", ta: "届けた", nakatta: "届けなかった" },
+        { group: 2, masu: "捨てます", en: "to throw away", dict: "捨てる", nai: "捨てない", ta: "捨てた", nakatta: "捨てなかった" },
+        { group: 2, masu: "乗り換えます", en: "to transfer (trains)", dict: "乗り換える", nai: "乗り換えない", ta: "乗り換えた", nakatta: "乗り換えなかった" },
+        { group: 2, masu: "やめます", en: "to quit / stop", dict: "やめる", nai: "やめない", ta: "やめた", nakatta: "やめなかった" },
+        { group: 2, masu: "閉じます", en: "to close (book/eyes)", dict: "閉じる", nai: "閉じない", ta: "閉じた", nakatta: "閉じなかった" },
+        { group: 2, masu: "信じます", en: "to believe", dict: "信じる", nai: "信じない", ta: "信じた", nakatta: "信じなかった" },
+        { group: 2, masu: "足ります", en: "to be sufficient", dict: "足りる", nai: "足りない", ta: "足りた", nakatta: "足りなかった" },
+        { group: 2, masu: "出来ます", en: "to be able to do", dict: "出来る", nai: "出来ない", ta: "出来た", nakatta: "出来なかった" },
+        { group: 2, masu: "煮ます", en: "to boil / cook", dict: "煮る", nai: "煮ない", ta: "煮た", nakatta: "煮なかった" },
+        { group: 2, masu: "落ちます", en: "to fall / drop", dict: "落ちる", nai: "落ちない", ta: "落ちた", nakatta: "落ちなかった" },
+        { group: 2, masu: "感じます", en: "to feel", dict: "感じる", nai: "感じない", ta: "感じた", nakatta: "感じなかった" },
+        { group: 2, masu: "生まれます", en: "to be born", dict: "生まれる", nai: "生まれない", ta: "生まれた", nakatta: "生まれなかった" },
+        { group: 2, masu: "晴れます", en: "to clear up (weather)", dict: "晴れる", nai: "晴れない", ta: "晴れた", nakatta: "晴れなかった" },
+        { group: 2, masu: "壊れます", en: "to break", dict: "壊れる", nai: "壊れない", ta: "壊れた", nakatta: "壊れなかった" },
+        { group: 2, masu: "遅れます", en: "to be late", dict: "遅れる", nai: "遅れない", ta: "遅れた", nakatta: "遅れなかった" },
+        { group: 2, masu: "濡れます", en: "to get wet", dict: "濡れる", nai: "濡れない", ta: "濡れた", nakatta: "濡れなかった" },
+        { group: 2, masu: "枯れます", en: "to wither", dict: "枯れる", nai: "枯れない", ta: "枯れた", nakatta: "枯れなかった" },
+        { group: 2, masu: "揺れます", en: "to shake / sway", dict: "揺れる", nai: "揺れない", ta: "揺れた", nakatta: "揺れなかった" },
+        { group: 2, masu: "痩せます", en: "to lose weight", dict: "痩せる", nai: "痩せない", ta: "痩せた", nakatta: "痩せなかった" },
+        { group: 2, masu: "数えます", en: "to count", dict: "数える", nai: "数えない", ta: "数えた", nakatta: "数えなかった" },
+        { group: 2, masu: "迎えます", en: "to welcome", dict: "迎える", nai: "迎えない", ta: "迎えた", nakatta: "迎えなかった" },
+        { group: 2, masu: "伝えます", en: "to convey", dict: "伝える", nai: "伝えない", ta: "伝えた", nakatta: "伝えなかった" },
+        { group: 2, masu: "逃げます", en: "to escape", dict: "逃げる", nai: "逃げない", ta: "逃げた", nakatta: "逃げなかった" },
+        { group: 2, masu: "投げます", en: "to throw", dict: "投げる", nai: "投げない", ta: "投げた", nakatta: "投げなかった" },
+        { group: 2, masu: "諦めます", en: "to give up", dict: "諦める", nai: "諦めない", ta: "諦めた", nakatta: "諦めなかった" },
+        { group: 2, masu: "褒めます", en: "to praise", dict: "褒める", nai: "褒めない", ta: "褒めた", nakatta: "褒めなかった" },
+        { group: 2, masu: "慰めます", en: "to comfort", dict: "慰める", nai: "慰めない", ta: "慰めた", nakatta: "慰めなかった" },
+        { group: 2, masu: "辞めます", en: "to resign", dict: "辞める", nai: "辞めない", ta: "辞めた", nakatta: "辞めなかった" },
+        { group: 2, masu: "勤めます", en: "to work for", dict: "勤める", nai: "勤めない", ta: "勤めた", nakatta: "勤めなかった" },
+        { group: 2, masu: "確かめます", en: "to confirm", dict: "確かめる", nai: "確かめない", ta: "確かめた", nakatta: "確かめなかった" },
+        { group: 2, masu: "認めます", en: "to admit", dict: "認める", nai: "認めない", ta: "認めた", nakatta: "認めなかった" },
+        { group: 2, masu: "比べます", en: "to compare", dict: "比べる", nai: "比べない", ta: "比べた", nakatta: "比べなかった" },
+        { group: 2, masu: "間違えます", en: "to make a mistake", dict: "間違える", nai: "間違えない", ta: "間違えた", nakatta: "間違えなかった" },
+        { group: 2, masu: "植えます", en: "to plant", dict: "植える", nai: "植えない", ta: "植えた", nakatta: "植えなかった" },
+        { group: 2, masu: "燃えます", en: "to burn", dict: "燃える", nai: "燃えない", ta: "燃えた", nakatta: "燃えなかった" },
+        { group: 2, masu: "割れます", en: "to break / crack", dict: "割れる", nai: "割れない", ta: "割れた", nakatta: "割れなかった" },
+        { group: 2, masu: "折れます", en: "to snap / break", dict: "折れる", nai: "折れない", ta: "折れた", nakatta: "折れなかった" },
+        { group: 2, masu: "倒れます", en: "to fall down", dict: "倒れる", nai: "倒れない", ta: "倒れた", nakatta: "倒れなかった" },
+        { group: 2, masu: "汚れます", en: "to get dirty", dict: "汚れる", nai: "汚れない", ta: "汚れた", nakatta: "汚れなかった" },
+        { group: 2, masu: "流れます", en: "to flow", dict: "流れる", nai: "流れない", ta: "流れた", nakatta: "流れなかった" },
+        { group: 2, masu: "逃れます", en: "to escape from", dict: "逃れる", nai: "逃れない", ta: "逃れた", nakatta: "逃れなかった" },
+        { group: 2, masu: "慣れます", en: "to get used to", dict: "慣れる", nai: "慣れない", ta: "慣れた", nakatta: "慣れなかった" },
+        { group: 2, masu: "腫れます", en: "to swell", dict: "腫れる", nai: "腫れない", ta: "腫れた", nakatta: "腫れなかった" },
+        { group: 2, masu: "似ます", en: "to resemble", dict: "似る", nai: "似ない", ta: "似た", nakatta: "似なかった" },
+        { group: 2, masu: "見つけます", en: "to find", dict: "見つける", nai: "見つけない", ta: "見つけた", nakatta: "見つけなかった" },
+        { group: 2, masu: "片付けます", en: "to tidy up", dict: "片付ける", nai: "片付けない", ta: "片付けた", nakatta: "片付けなかった" },
+        { group: 2, masu: "気をつけます", en: "to be careful", dict: "気をつける", nai: "気をつけない", ta: "気をつけた", nakatta: "気をつけなかった" },
+        { group: 2, masu: "生きます", en: "to live", dict: "生きる", nai: "生きない", ta: "生きた", nakatta: "生きなかった" },
+        { group: 2, masu: "過ぎます", en: "to pass (time)", dict: "過ぎる", nai: "過ぎない", ta: "過ぎた", nakatta: "過ぎなかった" },
+        { group: 2, masu: "伸びます", en: "to grow / stretch", dict: "伸びる", nai: "伸びない", ta: "伸びた", nakatta: "伸びなかった" },
+        { group: 2, masu: "延びます", en: "to be extended", dict: "延びる", nai: "延びない", ta: "延びた", nakatta: "延びなかった" },
+        { group: 2, masu: "着替えます", en: "to change clothes", dict: "着替える", nai: "着替えない", ta: "着替えた", nakatta: "着替えなかった" },
+        { group: 2, masu: "求めます", en: "to seek / demand", dict: "求める", nai: "求めない", ta: "求めた", nakatta: "求めなかった" },
+        { group: 2, masu: "避けます", en: "to avoid", dict: "避ける", nai: "避けない", ta: "避けた", nakatta: "避けなかった" },
+        { group: 2, masu: "溶けます", en: "to melt", dict: "溶ける", nai: "溶けない", ta: "溶けた", nakatta: "溶けなかった" },
+        { group: 2, masu: "隠れます", en: "to hide", dict: "隠れる", nai: "隠れない", ta: "隠れた", nakatta: "隠れなかった" },
+        { group: 2, masu: "溢れます", en: "to overflow", dict: "溢れる", nai: "溢れない", ta: "溢れた", nakatta: "溢れなかった" },
+        { group: 2, masu: "外れます", en: "to come off", dict: "外れる", nai: "外れない", ta: "外れた", nakatta: "外れなかった" },
+        { group: 2, masu: "離れます", en: "to separate", dict: "離れる", nai: "離れない", ta: "離れた", nakatta: "離れなかった" },
+        { group: 2, masu: "売れます", en: "to sell (well)", dict: "売れる", nai: "売れない", ta: "売れた", nakatta: "売れなかった" },
+        { group: 2, masu: "知らせます", en: "to notify", dict: "知らせる", nai: "知らせない", ta: "知らせた", nakatta: "知らせなかった" },
+        { group: 2, masu: "合わせます", en: "to match", dict: "合わせる", nai: "合わせない", ta: "合わせた", nakatta: "合わせなかった" },
+        { group: 2, masu: "まとめます", en: "to summarize", dict: "まとめる", nai: "まとめない", ta: "まとめた", nakatta: "まとめなかった" },
+        { group: 2, masu: "勧めます", en: "to recommend", dict: "勧める", nai: "勧めない", ta: "勧めた", nakatta: "勧めなかった" },
+        { group: 2, masu: "浮かべます", en: "to float", dict: "浮かべる", nai: "浮かべない", ta: "浮かべた", nakatta: "浮かべなかった" },
+        { group: 2, masu: "述べます", en: "to state / express", dict: "述べる", nai: "述べない", ta: "述べた", nakatta: "述べなかった" },
+        { group: 2, masu: "預けます", en: "to deposit / entrust", dict: "預ける", nai: "預けない", ta: "預けた", nakatta: "預けなかった" },
+        { group: 2, masu: "受けます", en: "to receive / take (an exam)", dict: "受ける", nai: "受けない", ta: "受けた", nakatta: "受けなかった" },
+        { group: 2, masu: "分けます", en: "to divide", dict: "分ける", nai: "分けない", ta: "分けた", nakatta: "分けなかった" },
+        { group: 2, masu: "儲けます", en: "to make a profit", dict: "儲ける", nai: "儲けない", ta: "儲けた", nakatta: "儲けなかった" },
+
+        // --- Group 3 (100 verbs) ---
         { group: 3, masu: "します", en: "to do", dict: "する", nai: "しない", ta: "した", nakatta: "しなかった" },
         { group: 3, masu: "来ます（きます）", en: "to come", dict: "来る（くる）", nai: "来ない（こない）", ta: "来た（きた）", nakatta: "来なかった（こなかった）" },
         { group: 3, masu: "勉強します", en: "to study", dict: "勉強する", nai: "勉強しない", ta: "勉強した", nakatta: "勉強しなかった" },
@@ -255,12 +422,95 @@
         { group: 3, masu: "質問します", en: "to ask a question", dict: "質問する", nai: "質問しない", ta: "質問した", nakatta: "質問しなかった" },
         { group: 3, masu: "説明します", en: "to explain", dict: "説明する", nai: "説明しない", ta: "説明した", nakatta: "説明しなかった" },
         { group: 3, masu: "約束します", en: "to promise", dict: "約束する", nai: "約束しない", ta: "約束した", nakatta: "約束しなかった" },
-        { group: 3, masu: "心配します", en: "to worry", dict: "心配する", nai: "心配しない", ta: "心配した", nakatta: "心配しなかった" }
+        { group: 3, masu: "心配します", en: "to worry", dict: "心配する", nai: "心配しない", ta: "心配した", nakatta: "心配しなかった" },
+        { group: 3, masu: "予約します", en: "to reserve", dict: "予約する", nai: "予約しない", ta: "予約した", nakatta: "予約しなかった" },
+        { group: 3, masu: "案内します", en: "to guide / show around", dict: "案内する", nai: "案内しない", ta: "案内した", nakatta: "案内しなかった" },
+        { group: 3, masu: "相談します", en: "to consult", dict: "相談する", nai: "相談しない", ta: "相談した", nakatta: "相談しなかった" },
+        { group: 3, masu: "注意します", en: "to pay attention / warn", dict: "注意する", nai: "注意しない", ta: "注意した", nakatta: "注意しなかった" },
+        { group: 3, masu: "準備します", en: "to prepare", dict: "準備する", nai: "準備しない", ta: "準備した", nakatta: "準備しなかった" },
+        { group: 3, masu: "連絡します", en: "to contact", dict: "連絡する", nai: "連絡しない", ta: "連絡した", nakatta: "連絡しなかった" },
+        { group: 3, masu: "整理します", en: "to organize / tidy up", dict: "整理する", nai: "整理しない", ta: "整理した", nakatta: "整理しなかった" },
+        { group: 3, masu: "練習します", en: "to practice", dict: "練習する", nai: "練習しない", ta: "練習した", nakatta: "練習しなかった" },
+        { group: 3, masu: "復習します", en: "to review", dict: "復習する", nai: "復習しない", ta: "復習した", nakatta: "復習しなかった" },
+        { group: 3, masu: "予習します", en: "to prepare for lessons", dict: "予習する", nai: "予習しない", ta: "予習した", nakatta: "予習しなかった" },
+        { group: 3, masu: "翻訳します", en: "to translate", dict: "翻訳する", nai: "翻訳しない", ta: "翻訳した", nakatta: "翻訳しなかった" },
+        { group: 3, masu: "通訳します", en: "to interpret", dict: "通訳する", nai: "通訳しない", ta: "通訳した", nakatta: "通訳しなかった" },
+        { group: 3, masu: "入院します", en: "to be hospitalized", dict: "入院する", nai: "入院しない", ta: "入院した", nakatta: "入院しなかった" },
+        { group: 3, masu: "退院します", en: "to be discharged", dict: "退院する", nai: "退院しない", ta: "退院した", nakatta: "退院しなかった" },
+        { group: 3, masu: "留学します", en: "to study abroad", dict: "留学する", nai: "留学しない", ta: "留学した", nakatta: "留学しなかった" },
+        { group: 3, masu: "コピーします", en: "to copy", dict: "コピーする", nai: "コピーしない", ta: "コピーした", nakatta: "コピーしなかった" },
+        { group: 3, masu: "散髪します", en: "to get a haircut", dict: "散髪する", nai: "散髪しない", ta: "散髪した", nakatta: "散髪しなかった" },
+        { group: 3, masu: "出席します", en: "to attend", dict: "出席する", nai: "出席しない", ta: "出席した", nakatta: "出席しなかった" },
+        { group: 3, masu: "欠席します", en: "to be absent", dict: "欠席する", nai: "欠席しない", ta: "欠席した", nakatta: "欠席しなかった" },
+        { group: 3, masu: "報告します", en: "to report", dict: "報告する", nai: "報告しない", ta: "報告した", nakatta: "報告しなかった" },
+        { group: 3, masu: "注文します", en: "to order", dict: "注文する", nai: "注文しない", ta: "注文した", nakatta: "注文しなかった" },
+        { group: 3, masu: "確認します", en: "to confirm / check", dict: "確認する", nai: "確認しない", ta: "確認した", nakatta: "確認しなかった" },
+        { group: 3, masu: "成功します", en: "to succeed", dict: "成功する", nai: "成功しない", ta: "成功した", nakatta: "成功しなかった" },
+        { group: 3, masu: "失敗します", en: "to fail", dict: "失敗する", nai: "失敗しない", ta: "失敗した", nakatta: "失敗しなかった" },
+        { group: 3, masu: "期待します", en: "to expect", dict: "期待する", nai: "期待しない", ta: "期待した", nakatta: "期待しなかった" },
+        { group: 3, masu: "感謝します", en: "to thank", dict: "感謝する", nai: "感謝しない", ta: "感謝した", nakatta: "感謝しなかった" },
+        { group: 3, masu: "応援します", en: "to cheer / support", dict: "応援する", nai: "応援しない", ta: "応援した", nakatta: "応援しなかった" },
+        { group: 3, masu: "招待します", en: "to invite", dict: "招待する", nai: "招待しない", ta: "招待した", nakatta: "招待しなかった" },
+        { group: 3, masu: "挑戦します", en: "to challenge", dict: "挑戦する", nai: "挑戦しない", ta: "挑戦した", nakatta: "挑戦しなかった" },
+        { group: 3, masu: "発売します", en: "to release (product)", dict: "発売する", nai: "発売しない", ta: "発売した", nakatta: "発売しなかった" },
+        { group: 3, masu: "参加します", en: "to participate", dict: "参加する", nai: "参加しない", ta: "参加した", nakatta: "参加しなかった" },
+        { group: 3, masu: "出発します", en: "to depart", dict: "出発する", nai: "出発しない", ta: "出発した", nakatta: "出発しなかった" },
+        { group: 3, masu: "到着します", en: "to arrive", dict: "到着する", nai: "到着しない", ta: "到着した", nakatta: "到着しなかった" },
+        { group: 3, masu: "発見します", en: "to discover", dict: "発見する", nai: "発見しない", ta: "発見した", nakatta: "発見しなかった" },
+        { group: 3, masu: "発明します", en: "to invent", dict: "発明する", nai: "発明しない", ta: "発明した", nakatta: "発明しなかった" },
+        { group: 3, masu: "発表します", en: "to announce / present", dict: "発表する", nai: "発表しない", ta: "発表した", nakatta: "発表しなかった" },
+        { group: 3, masu: "発生します", en: "to occur", dict: "発生する", nai: "発生しない", ta: "発生した", nakatta: "発生しなかった" },
+        { group: 3, masu: "優勝します", en: "to win the championship", dict: "優勝する", nai: "優勝しない", ta: "優勝した", nakatta: "優勝しなかった" },
+        { group: 3, masu: "合格します", en: "to pass an exam", dict: "合格する", nai: "合格しない", ta: "合格した", nakatta: "合格しなかった" },
+        { group: 3, masu: "卒業します", en: "to graduate", dict: "卒業する", nai: "卒業しない", ta: "卒業した", nakatta: "卒業しなかった" },
+        { group: 3, masu: "入学します", en: "to enter a school", dict: "入学する", nai: "入学しない", ta: "入学した", nakatta: "入学しなかった" },
+        { group: 3, masu: "計画します", en: "to plan", dict: "計画する", nai: "計画しない", ta: "計画した", nakatta: "計画しなかった" },
+        { group: 3, masu: "経営します", en: "to manage a business", dict: "経営する", nai: "経営しない", ta: "経営した", nakatta: "経営しなかった" },
+        { group: 3, masu: "営業します", en: "to do business", dict: "営業する", nai: "営業しない", ta: "営業した", nakatta: "営業しなかった" },
+        { group: 3, masu: "開発します", en: "to develop", dict: "開発する", nai: "開発しない", ta: "開発した", nakatta: "開発しなかった" },
+        { group: 3, masu: "研究します", en: "to research", dict: "研究する", nai: "研究しない", ta: "研究した", nakatta: "研究しなかった" },
+        { group: 3, masu: "調査します", en: "to investigate", dict: "調査する", nai: "調査しない", ta: "調査した", nakatta: "調査しなかった" },
+        { group: 3, masu: "検査します", en: "to inspect", dict: "検査する", nai: "検査しない", ta: "検査した", nakatta: "検査しなかった" },
+        { group: 3, masu: "建設します", en: "to construct", dict: "建設する", nai: "建設しない", ta: "建設した", nakatta: "建設しなかった" },
+        { group: 3, masu: "設計します", en: "to design", dict: "設計する", nai: "設計しない", ta: "設計した", nakatta: "設計しなかった" },
+        { group: 3, masu: "生産します", en: "to produce", dict: "生産する", nai: "生産しない", ta: "生産した", nakatta: "生産しなかった" },
+        { group: 3, masu: "消費します", en: "to consume", dict: "消費する", nai: "消費しない", ta: "消費した", nakatta: "消費しなかった" },
+        { group: 3, masu: "節約します", en: "to economize", dict: "節約する", nai: "節約しない", ta: "節約した", nakatta: "節約しなかった" },
+        { group: 3, masu: "貯金します", en: "to save money", dict: "貯金する", nai: "貯金しない", ta: "貯金した", nakatta: "貯金しなかった" },
+        { group: 3, masu: "投資します", en: "to invest", dict: "投資する", nai: "投資しない", ta: "投資した", nakatta: "投資しなかった" },
+        { group: 3, masu: "輸出します", en: "to export", dict: "輸出する", nai: "輸出しない", ta: "輸出した", nakatta: "輸出しなかった" },
+        { group: 3, masu: "輸入します", en: "to import", dict: "輸入する", nai: "輸入しない", ta: "輸入した", nakatta: "輸入しなかった" },
+        { group: 3, masu: "録音します", en: "to record (audio)", dict: "録音する", nai: "録音しない", ta: "録音した", nakatta: "録音しなかった" },
+        { group: 3, masu: "録画します", en: "to record (video)", dict: "録画する", nai: "録画しない", ta: "録画した", nakatta: "録画しなかった" },
+        { group: 3, masu: "放送します", en: "to broadcast", dict: "放送する", nai: "放送しない", ta: "放送した", nakatta: "放送しなかった" },
+        { group: 3, masu: "印刷します", en: "to print", dict: "印刷する", nai: "印刷しない", ta: "印刷した", nakatta: "印刷しなかった" },
+        { group: 3, masu: "記録します", en: "to record (data)", dict: "記録する", nai: "記録しない", ta: "記録した", nakatta: "記録しなかった" },
+        { group: 3, masu: "記憶します", en: "to memorize", dict: "記憶する", nai: "記憶しない", ta: "記憶した", nakatta: "記憶しなかった" },
+        { group: 3, masu: "想像します", en: "to imagine", dict: "想像する", nai: "想像しない", ta: "想像した", nakatta: "想像しなかった" },
+        { group: 3, masu: "予想します", en: "to anticipate", dict: "予想する", nai: "予想しない", ta: "予想した", nakatta: "予想しなかった" },
+        { group: 3, masu: "解決します", en: "to solve", dict: "解決する", nai: "解決しない", ta: "解決した", nakatta: "解決しなかった" },
+        { group: 3, masu: "判断します", en: "to judge", dict: "判断する", nai: "判断しない", ta: "判断した", nakatta: "判断しなかった" },
+        { group: 3, masu: "評価します", en: "to evaluate", dict: "評価する", nai: "評価しない", ta: "評価した", nakatta: "評価しなかった" },
+        { group: 3, masu: "比較します", en: "to compare", dict: "比較する", nai: "比較しない", ta: "比較した", nakatta: "比較しなかった" },
+        { group: 3, masu: "影響します", en: "to influence", dict: "影響する", nai: "影響しない", ta: "影響した", nakatta: "影響しなかった" },
+        { group: 3, masu: "変化します", en: "to change", dict: "変化する", nai: "変化しない", ta: "変化した", nakatta: "変化しなかった" },
+        { group: 3, masu: "発達します", en: "to develop / grow", dict: "発達する", nai: "発達しない", ta: "発達した", nakatta: "発達しなかった" },
+        { group: 3, masu: "進歩します", en: "to progress", dict: "進歩する", nai: "進歩しない", ta: "進歩した", nakatta: "進歩しなかった" },
+        { group: 3, masu: "向上します", en: "to improve", dict: "向上する", nai: "向上しない", ta: "向上した", nakatta: "向上しなかった" },
+        { group: 3, masu: "低下します", en: "to decline", dict: "低下する", nai: "低下しない", ta: "低下した", nakatta: "低下しなかった" },
+        { group: 3, masu: "増加します", en: "to increase", dict: "増加する", nai: "増加しない", ta: "増加した", nakatta: "増加しなかった" },
+        { group: 3, masu: "減少します", en: "to decrease", dict: "減少する", nai: "減少しない", ta: "減少した", nakatta: "減少しなかった" },
+        { group: 3, masu: "協力します", en: "to cooperate", dict: "協力する", nai: "協力しない", ta: "協力した", nakatta: "協力しなかった" },
+        { group: 3, masu: "努力します", en: "to make an effort", dict: "努力する", nai: "努力しない", ta: "努力した", nakatta: "努力しなかった" },
+        { group: 3, masu: "集中します", en: "to concentrate", dict: "集中する", nai: "集中しない", ta: "集中した", nakatta: "集中しなかった" }
     ];
 
+    // --- 共通変数 ---
+    let currentMode = 'study'; // 'study' or 'quiz'
     let currentGroupVerbs = [];
+    
+    // --- フラッシュカード用変数 ---
     let currentIndex = 0;
-
     const uiMasu = document.getElementById('verb-masu');
     const uiEn = document.getElementById('verb-en');
     const uiDict = document.getElementById('verb-dict');
@@ -273,19 +523,72 @@
     const tableBody = document.getElementById('table-body');
     const listTitle = document.getElementById('list-title');
 
+    // --- クイズ用変数 ---
+    let quizQuestions = [];
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+    const TOTAL_QUIZ_QUESTIONS = 10;
+    
+    const uiQuizQuestion = document.getElementById('quiz-question');
+    const uiQuizChoices = document.getElementById('quiz-choices-area');
+    const uiQuizProgress = document.getElementById('quiz-progress-text');
+    const uiQuizPlayArea = document.getElementById('quiz-play-area');
+    const uiQuizResultArea = document.getElementById('quiz-result-area');
+    const uiQuizFinalScore = document.getElementById('quiz-final-score');
+
+    // --- ユーティリティ ---
+    function shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    // --- モード切替 ---
+    function setMode(mode) {
+        currentMode = mode;
+        const btnStudy = document.getElementById('btn-study');
+        const btnQuiz = document.getElementById('btn-quiz');
+        const fcApp = document.getElementById('fc-app');
+        const listSec = document.getElementById('list-section');
+        const quizApp = document.getElementById('quiz-app');
+
+        if (mode === 'study') {
+            btnStudy.classList.add('active');
+            btnQuiz.classList.remove('active');
+            fcApp.style.display = 'block';
+            listSec.style.display = 'block';
+            quizApp.style.display = 'none';
+        } else {
+            btnStudy.classList.remove('active');
+            btnQuiz.classList.add('active');
+            fcApp.style.display = 'none';
+            listSec.style.display = 'none';
+            quizApp.style.display = 'block';
+            startQuiz();
+        }
+    }
+
+    // --- グループ設定 ---
     function setGroup(groupNumber) {
         currentGroupVerbs = verbData.filter(v => v.group === groupNumber);
         currentIndex = 0;
-        
         listTitle.textContent = `動詞一覧 (Group ${groupNumber} Verb List)`;
         
         updateCard();
         renderTable();
+
+        if(currentMode === 'quiz') {
+            startQuiz();
+        }
     }
 
+    // --- フラッシュカード機能 ---
     function updateCard() {
         if (currentGroupVerbs.length === 0) return;
-
         const currentVerb = currentGroupVerbs[currentIndex];
         uiMasu.textContent = currentVerb.masu;
         uiEn.textContent = currentVerb.en;
@@ -295,14 +598,12 @@
         uiNakatta.textContent = currentVerb.nakatta;
 
         progressText.textContent = `${currentIndex + 1} / ${currentGroupVerbs.length}`;
-        
         answersArea.style.display = 'none';
         hintMsg.style.display = 'block';
     }
 
     function renderTable() {
         tableBody.innerHTML = ""; 
-        
         currentGroupVerbs.forEach(verb => {
             const row = `<tr>
                 <td><b>${verb.masu}</b></td>
@@ -335,6 +636,86 @@
         updateCard();
     }
 
+    // --- クイズ機能 ---
+    function startQuiz() {
+        uiQuizPlayArea.style.display = 'block';
+        uiQuizResultArea.style.display = 'none';
+        
+        // 現在のグループからランダムに10問選ぶ
+        let shuffledVerbs = shuffleArray([...currentGroupVerbs]);
+        quizQuestions = shuffledVerbs.slice(0, TOTAL_QUIZ_QUESTIONS);
+        
+        currentQuizIndex = 0;
+        quizScore = 0;
+        renderQuizQuestion();
+    }
+
+    function renderQuizQuestion() {
+        if (currentQuizIndex >= quizQuestions.length) {
+            showQuizResult();
+            return;
+        }
+
+        const currentQ = quizQuestions[currentQuizIndex];
+        uiQuizProgress.textContent = `Q ${currentQuizIndex + 1} / ${TOTAL_QUIZ_QUESTIONS}`;
+        uiQuizQuestion.textContent = currentQ.en; // 英語の問題
+
+        // 正解の選択肢
+        let choices = [currentQ.dict];
+
+        // 不正解の選択肢（同じグループからランダムに3つ）
+        let distractors = currentGroupVerbs.filter(v => v.dict !== currentQ.dict);
+        shuffleArray(distractors);
+        for(let i=0; i<3; i++) {
+            if(distractors[i]) choices.push(distractors[i].dict);
+        }
+
+        // 選択肢をシャッフル
+        shuffleArray(choices);
+
+        // ボタンを生成
+        uiQuizChoices.innerHTML = '';
+        choices.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.className = 'choice-btn';
+            btn.textContent = choice;
+            btn.onclick = () => checkAnswer(btn, choice === currentQ.dict, currentQ.dict);
+            uiQuizChoices.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(clickedBtn, isCorrect, correctAnswer) {
+        // 全ボタンのクリックを無効化
+        const allBtns = uiQuizChoices.querySelectorAll('.choice-btn');
+        allBtns.forEach(btn => btn.disabled = true);
+
+        if (isCorrect) {
+            clickedBtn.classList.add('correct');
+            quizScore++;
+        } else {
+            clickedBtn.classList.add('wrong');
+            // 正解のボタンを緑色にする
+            allBtns.forEach(btn => {
+                if(btn.textContent === correctAnswer) {
+                    btn.classList.add('correct');
+                }
+            });
+        }
+
+        // 1秒後に次の問題へ
+        setTimeout(() => {
+            currentQuizIndex++;
+            renderQuizQuestion();
+        }, 1000);
+    }
+
+    function showQuizResult() {
+        uiQuizPlayArea.style.display = 'none';
+        uiQuizResultArea.style.display = 'block';
+        uiQuizFinalScore.textContent = `${quizScore} / ${TOTAL_QUIZ_QUESTIONS}`;
+    }
+
+    // 初期化
     setGroup(1);
 
 </script>
