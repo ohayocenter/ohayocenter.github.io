@@ -26,12 +26,12 @@
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
 
-        /* スマホ表示でのナビゲーション調整（はみ出し防止） */
+        /* スマホ表示でのナビゲーション調整 */
         @media (max-width: 480px) {
-            nav { padding: 0 3%; } /* 左右の余白を少し詰める */
-            .nav-links { gap: 0.7rem; } /* リンク同士の間隔を詰めて収める */
-            .logo { font-size: 1.1rem; } /* ロゴサイズを微調整 */
-            .nav-links a { font-size: 0.75rem; letter-spacing: 0.5px; } /* 文字をわずかに詰め、MATERIALまで表示 */
+            nav { padding: 0 3%; }
+            .nav-links { gap: 0.7rem; }
+            .logo { font-size: 1.1rem; }
+            .nav-links a { font-size: 0.75rem; letter-spacing: 0.5px; }
         }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 120px 1.2rem 3rem; }
@@ -56,7 +56,8 @@
         /* タブ切り替えロジック */
         #v1-low:checked ~ .panel-v1-low, #v1-high:checked ~ .panel-v1-high,
         #v2-low:checked ~ .panel-v2-low, #v2-high:checked ~ .panel-v2-high,
-        #v3-low:checked ~ .panel-v3-low, #v3-high:checked ~ .panel-v3-high { display: block; }
+        #v3-low:checked ~ .panel-v3-low, #v3-high:checked ~ .panel-v3-high,
+        #v4-low:checked ~ .panel-v4-low, #v4-high:checked ~ .panel-v4-high { display: block; }
 
         .audio-unit { background: var(--primary-light); padding: 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 2rem; }
         .audio-unit audio { width: 100%; max-width: 500px; height: 40px; margin-top: 10px; }
@@ -95,7 +96,98 @@
 
     <section id="audio-blog" class="audio-section">
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
-        
+
+
+<details class="audio-card">
+    <summary class="card-header">
+        <span class="vol-badge">Vol.4</span>
+        <span class="card-title">🍂 季節：Seasons</span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </summary>
+
+    <div class="level-tabs">
+        <input type="radio" name="v4-tabs" id="v4-low" checked>
+        <label for="v4-low" class="tab-label">📗 中上級</label>
+
+        <input type="radio" name="v4-tabs" id="v4-high">
+        <label for="v4-high" class="tab-label">📕 上級</label>
+
+        <div class="tab-panel panel-v4-low">
+            <div class="audio-unit">
+                <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
+                <audio controls src="vol4-1.mp3"></audio>
+            </div>
+            <div class="script-box">
+                <p>皆さん、こんにちは。<ruby>今日<rt>きょう</rt></ruby>も<ruby>私<rt>わたし</rt></ruby>のオーディオブログを<ruby>聞<rt>き</rt></ruby>いてくれてありがとうございます。 <ruby>最近<rt>さいきん</rt></ruby>、<ruby>少<rt>すこ</rt></ruby>しずつ<ruby>天気<rt>てんき</rt></ruby>が<ruby>変<rt>か</rt></ruby>わってきましたね。 みなさんの<ruby>国<rt>くに</rt></ruby>の<ruby>天気<rt>てんき</rt></ruby>はどうですか。<ruby>寒<rt>さむ</rt></ruby>いですか。<ruby>暑<rt>あつ</rt></ruby>いですか。</p>
+                <p><ruby>私<rt>わたし</rt></ruby>の<ruby>町<rt>まち</rt></ruby>では、<ruby>桜<rt>さくら</rt></ruby>が<ruby>散<rt>ち</rt></ruby>って、<ruby>木<rt>き</rt></ruby>は<ruby>緑<rt>みどり</rt></ruby>になりました。<ruby>毎日<rt>まいにち</rt></ruby>、<ruby>暖<rt>あたた</rt></ruby>かいですが、<ruby>風<rt>かぜ</rt></ruby>が<ruby>少<rt>すこ</rt></ruby>し<ruby>強<rt>つよ</rt></ruby>いです。</p>
+                <p>今日は、「<ruby>季節<rt>きせつ</rt></ruby>」について話します。 みなさんが、一番好きな季節はいつですか。</p>
+                <p><ruby>私<rt>わたし</rt></ruby>が一番好きなのは、<ruby>秋<rt>あき</rt></ruby>です。 <ruby>秋<rt>あき</rt></ruby>は、暑すぎず、寒すぎず、ちょうどいい<ruby>季節<rt>きせつ</rt></ruby>です。 <ruby>夏<rt>なつ</rt></ruby>の間はとても暑くて、外に出るのが大変でしたが、秋になると空気がさらさらして気持ちよくなります。 私はよく、天気がいい日に近くの公園に行って、子どもと遊んだり、写真を撮ったりします。<br>
+                秋は緑から黄色、黄色から赤色に変わり、きれいですね。これを「<ruby>紅葉<rt>こうよう</rt></ruby>」と言います。</p>
+                <p>日本では秋のことを「食欲の秋」と呼びます。食べ物が一番おいしい季節という意味です。 秋になるとシャインマスカットや栗、柿がとてもおいしいです。でも、日本の果物はちょっと高いです。</p>
+                <p>もちろん、他の季節も素敵です。 春は桜がきれいだし、冬は雪が美しいですね。 でも、私は秋の静かな雰囲気が一番リラックスできると感じます。旅行するのにもいいシーズンだと思います。</p>
+                <p>皆さんの好きな季節は何ですか？その季節には、どんな特別な食べ物やイベントがありますか？</p>
+                <p>それでは、日本語の勉強、今月も一緒に頑張りましょう！ さようなら。</p>
+            </div>
+            
+            <details class="support-details">
+                <summary><i class="fa-solid fa-language"></i> English Translation</summary>
+                <div class="support-content">
+                    <p>Hello everyone. Thank you for listening to my audio blog today as well. Recently, the weather has been changing little by little. How is the weather in your country? Is it cold? Is it hot?</p>
+                    <p>In my town, the cherry blossoms have fallen, and the trees have turned green. It is warm every day, but the wind is a little strong.</p>
+                    <p>Today, I will talk about "seasons". What is your favorite season?</p>
+                    <p>My favorite is autumn. Autumn is not too hot and not too cold, it is just the right season. During the summer it was very hot and it was hard to go outside, but when autumn comes, the air becomes crisp and it feels good. On nice days, I often go to a nearby park to play with my child and take pictures.<br>
+                    In autumn, the green changes to yellow, and yellow to red, which is beautiful. We call this "Koyo" (autumn leaves).</p>
+                    <p>In Japan, autumn is called "Shokuyoku no Aki" (Autumn of Appetite). It means it is the season when food is the most delicious. When autumn comes, shine muscat grapes, chestnuts, and persimmons are very delicious. However, Japanese fruits are a bit expensive.</p>
+                    <p>Of course, other seasons are wonderful too. Spring has beautiful cherry blossoms, and winter has beautiful snow. But I feel the most relaxed in the quiet atmosphere of autumn. I think it is also a good season for traveling.</p>
+                    <p>What is your favorite season? What special foods or events do you have in that season?</p>
+                    <p>Well then, let's do our best studying Japanese together this month too! Goodbye.</p>
+                </div>
+            </details>
+
+            
+            <details class="support-details">
+                <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
+                <div class="support-content">
+                    <table class="vocab-table">
+                        <thead>
+                            <tr><th>Word</th><th>Reading / Meaning</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>最近</td><td>さいきん / recently</td></tr>
+                            <tr><td>季節</td><td>きせつ / season</td></tr>
+                            <tr><td>さらさら</td><td>さらさら / smooth</td></tr>
+                            <tr><td>散る</td><td>ちる / to fall, to scatter (e.g. blossoms)</td></tr>
+                            <tr><td>紅葉</td><td>こうよう / autumn leaves</td></tr>
+                            <tr><td>食欲</td><td>しょくよく / appetite</td></tr>
+                            <tr><td>栗</td><td>くり / chestnut</td></tr>
+                            <tr><td>柿</td><td>かき / persimmon</td></tr>
+                            <tr><td>雰囲気</td><td>ふんいき / atmosphere</td></tr>
+                            <tr><td>旅行</td><td>りょこう / travel, traveling</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </div>
+
+        <div class="tab-panel panel-v4-high">
+            <div class="audio-unit">
+                <p><small>🎵 自然なスピードと、よりカジュアルな表現で話します🚀</small></p>
+                <audio controls src="vol4-2.mp3"></audio>
+            </div>
+            <div class="script-box">
+                <p>おつかれさまです。今日も私のブログを聞いてくれてありがとう。最近、少しずつ天気が変わってきたよね。みんなの国の天気はどう？寒いかな？それとも、もう暑い？</p>
+                <p>私の町ではねー、桜が散って、木が緑になったよ。毎日暖かいけど、風がちょっと強いかなぁ。今日は「季節」について話そうと思うんだ。みんなが一番好きな季節はいつ？</p>
+                <p>私が一番好きなのは、秋！秋は、暑すぎないし、寒すぎないし、ちょうどいい季節だよねー。夏の間はすごく暑くて外に出るのが大変だったけど、秋になると空気がさらさらして気持ちよくなるんだ。天気がいい日は、よく近くの公園に行って、子どもと遊んだり、写真を撮ったりしてるよ。</p>
+                <p>秋って、緑から黄色、黄色から赤に変わるでしょ？あれ、本当にきれいだよね！これを日本語で「紅葉（こうよう）」って言うんだよ。</p>
+                <p>日本では、秋のことを「食欲の秋」って呼ぶんだ。食べ物が一番おいしい季節っていう意味！秋になると、シャインマスカットとか、栗とか、柿がすごくおいしいんだよね。……でも、日本の果物ってちょっと高いから、その時期はちょっと財布が痛いんだよねー(笑)</p>
+                <p>もちろん、他の季節も素敵だと思う。春は桜がきれいだし、冬は雪が美しいしね。でも、私は秋の静かな雰囲気が一番リラックスできるなぁ。旅行するのにもいいシーズンだと思うし。</p>
+                <p>みんなの好きな季節は何かな？その季節には、どんな特別な食べ物やイベントがある？ぜひ教えてね！</p>
+                <p>それじゃあ、日本語の勉強、今月も一緒に頑張ろう！じゃあ、またね！いつもありがとう！😍</p>
+            </div>
+        </div>
+    </div>
+</details>
+
         <details class="audio-card">
             <summary class="card-header">
                 <span class="vol-badge">Vol.3</span>
@@ -132,7 +224,7 @@
                         <p><ruby>今<rt>いま</rt></ruby>、<ruby>日本<rt>にほん</rt></ruby>では<ruby>世界<rt>せかい</rt></ruby>のインフレとは反対に、デフレが<ruby>続<rt>つづ</rt></ruby>いています。そのため、<ruby>不動産<rt>ふどうさん</rt></ruby>の<ruby>価格<rt>かかく</rt></ruby>が<ruby>安<rt>やす</rt></ruby>いと<ruby>個人的<rt>こじんてき</rt></ruby>には<ruby>思<rt>おも</rt></ruby>っています。<ruby>私<rt>わたし</rt></ruby>の<ruby>住<rt>す</rt></ruby>んでいる<ruby>町<rt>まち</rt></ruby>では、2000<ruby>万<rt>まん</rt></ruby><ruby>円<rt>えん</rt></ruby>あればすごくきれいな<ruby>家<rt>いえ</rt></ruby>が<ruby>買<rt>か</rt></ruby>えます。<ruby>今日<rt>きょう</rt></ruby>のレートだと、<ruby>約<rt>やく</rt></ruby>13<ruby>万<rt>まん</rt></ruby>アメリカドルですね。<ruby>古<rt>ふる</rt></ruby>い<ruby>家<rt>いえ</rt></ruby>であれば、ただ、つまり<ruby>無料<rt>むりょう</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>もあります。信じられないかもしれませんが、本当です。</p>
                         <p><ruby>最近<rt>さいきん</rt></ruby>は、DIYといって、<ruby>無料<rt>むりょう</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>を<ruby>自分<rt>じぶん</rt></ruby>でリフォームする<ruby>人<rt>ひと</rt></ruby>も<ruby>多<rt>おお</rt></ruby>いです。「DIY」は「Do It Yourself」という意味で、「自分でやる」という意味です。<ruby>私<rt>わたし</rt></ruby>もやってみたいのですが、<ruby>日曜大工<rt>にちようだいく</rt></ruby>が<ruby>苦手<rt>にがて</rt></ruby>なので、YouTubeで<ruby>見<rt>み</rt></ruby>て<ruby>楽<rt>たの</rt></ruby>しんでいます。</p>
                         <p><ruby>日本<rt>にほん</rt></ruby>では<ruby>少子高齢化<rt>しょうしこうれいか</rt></ruby>が<ruby>進<rt>すす</rt></ruby>んでいます。将来は空き家が増えると言われています。もしかすると今後もっと価格は下がるかもしれません。</p>
-                        <p><ruby>私<rt>わたし</rt></ruby>の<ruby>夢<rt>ゆめ</rt></ruby>は、いつか<ruby>大<rt>おお</rt></ruby>きい<ruby>家<rt>いえ</rt></ruby>を<ruby>買<rt>か</rt></ruby>うことです。<ruby>庭<rt>にわ</rt></ruby>がある<ruby>家<rt>いえ</rt></ruby>がいいなあと思っています。みなさんは、どんな<ruby>家<rt>いえ</rt></ruby>に<ruby>住<rt>す</rt></ruby>みたいですか。</p>
+                        <p><ruby>私<rt>わたし</rt></ruby>の<ruby>夢<rt>ゆめ</rt></ruby>は、いつか<ruby>大<rt>おお</rt></ruby>きい<ruby>家<rt>いえ</rt></ruby>を<ruby>買<rt>か</rt></ruby>うことです。<ruby>庭<rt>にわ</rt></ruby>がある<ruby>家<rt>いえ</rt></ruby>がいいなあと思っています。 みなさんは、どんな<ruby>家<rt>いえ</rt></ruby>に<ruby>住<rt>す</rt></ruby>みたいですか。</p>
 
                         <details class="support-details">
                             <summary><i class="fa-solid fa-language"></i> English Translation</summary>
@@ -286,8 +378,8 @@ Thank you for listening until the end. Goodbye for now!
                         <details class="support-details">
                             <summary><i class="fa-solid fa-earth-asia"></i> Chinese Translation / 中文翻译</summary>
                             <div class="support-content">
-                                <p>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸的降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股力量，时机成熟时花儿也无法绽放。”</p>
-                                <p>这是一位日本名人の名言。大家在学习日语时，会不会因为觉得“一点进步都没有”而感到悲伤呢？其实，我也有过同样的经历。我从20年前開始学英語，曾长期感觉不到进步，甚至怀疑过自己的天赋。</p>
+                                <p>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸の降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股力量，时机成熟时花儿也无法绽放。”</p>
+                                <p>这是一位日本名人の名言。大家在学习日语时，会不会因为觉得“一点进步都没有”而感到悲伤呢？其实，我也有過同样的经历。我从20年前開始学英語，曾长期感觉不到进步，甚至怀疑過自己的天赋。</p>
                                 <p>但最近有学生对我说：“因为老师英語好，我才选了您。”那一刻我才发现，20年来的点滴努力已化作“力量”積蓄在体内。樱花在寒冬也从未停止準備。大家的日语学习也一样，每天の积累都在蓄力。请珍惜这段“等待的时间”，春天来临时，你的努力定会灿烂绽放。</p>
                             </div>
                         </details>
@@ -342,7 +434,7 @@ Thank you for listening until the end. Goodbye for now!
                             「時を待つ心は、春を待つ桜の姿といえよう。だが何もせずに待つ事は、僥倖を待つに等しい。静かに春を待つ桜は、一瞬の休みもなく力を蓄えている。たくわえられた力がなければ、時が来ても花は咲かない。」
                             <span class="quote-en"><b>"To wait for the right moment is to be like a cherry blossom awaiting spring. But remember, waiting in idleness is nothing more than hoping for a fluke (windfall). The cherry tree never rests, silently gathering the strength it needs. For without that inner preparation, no flower can bloom."</b></span>
                         </div>
-                        <p>……「僥倖（ぎょうこう）」、つまり、ただのラッキーを待つんじゃなくて、見えないところで虎視眈々と準備をすること。これって、言語の学習にそっくりだなって思うんですよね。実は、私の話をすると……私、もう20年以上「英語が上手になりたいな」と思って勉強を続けてるんですよ。でも, なんて言うか……10年経っても, 15年経っても, ちっとも上手くなってる実感が持てなかったんです。「あぁ, 言語の才能ないのかな」なんて思うことも, 正直ありました。</p>
+                        <p>……「僥倖（ぎょうこう）」、つまり、ただのラッキーを待つんじゃなくて、見えないところで虎視眈々と準備をすること。これって、言語の学習にそっくりだなって思うんですよね。実は、私の話をすると……私, もう20年以上「英語が上手になりたいな」と思って勉強を続けてるんですよ。でも, なんて言うか……10年経っても, 15年経っても, ちっとも上手くなってる実感が持てなかったんです。「あぁ, 言語の才能ないのかな」なんて思うことも, 正直ありました。</p>
                         <p>ところが、最近オンラインでレッスンを始めて、驚いたことがあって。 ……生徒さんから、「先生は英語ができるから、私は先生のレッスンを選びました」って、不意に言われたんです。その時、ハッとしたんですよね。 自分では「ずっと足踏みしている」と思っていた20年間。でも、その間も細々と続けていた積み重ねが、知らないうちに私の中にエネルギーとして「蓄えられていた」んだなって。あぁ、自分の成長をしっかり認めてもらえたんだなって、すごく勇気をもらいました。</p>
                         <p>桜も, 冬の間はただ枯れているように見えますよね。でも, 実は一瞬も休まずに, 春に花を咲かせるための力を溜めている。 皆さんの日本語も, 今は「全然進んでないな」と感じるかもしれません。耳慣れてきたある日突然, 周りの誰かがあなたの「花」に気づく時が必ず来ます。だから, 今は焦らず, 静かに力を蓄えていきましょう。 時が来れば, 必ず咲きますから。……まあ, 私も次の20年に向けて, またコツコツ言語の勉強を続けていこうかな, なんて思っています。でも, 次の20年だと60歳なのでおじいちゃんですね。それでは, 今日も素敵な一日を。 OHAYO CENTERのShinyaでした。今日もきいてくれてありがとうございました！</p>
                         
@@ -366,7 +458,7 @@ Thank you for listening until the end. Goodbye for now!
                                 <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸の降临。静静等待春天的樱花，其实一刻不停地在積蓄力量。如果没有那股積蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
                                 <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不見的地方虎視眈眈地做準備。我覺得這和語言学習簡直一模一樣。說實話，我為了“想学好英語”已經堅持了20多年。但怎麼說呢，過了10年、15年，我完全没有進步の實感，甚至真的怀疑過自己是不是没有語言天賦。</p>
                                 <p>然而最近開始在线授課后，發生了一件讓我驚訝的事。一位学生突然對我說：“因為老師英語很好，所以我選了您的課。”那一刻，我猛然醒悟。我以為自己這20年一直“停滯不前”，但其實那些瑣碎的積累，早已在不知不覺中化作能量積蓄在体內。自分の成長能得到認可，真的给了我很大的勇气。</p>
-                                <p>冬天的櫻花樹看起來像枯萎了一樣，但其實它一刻不停地在為春天開花而蓄力。大家的日語学習也許現在正處於“感覺不到進步”の段階，但總有一天，一定會有人發現你的“花朵”。所以，請不要焦急，靜靜地積蓄力量吧。時機成熟時，一定能綻放。我也打算為了下一個20年繼續努力学語言……不過那時我就60歲，成老爺爺了ね（笑）。祝大家度過美好的一天，我是 OHAYO CENTER 的 Shinya。謝謝大家的收聽！</p>
+                                <p>冬天的櫻花樹看起來像枯萎了一樣，但其實它一刻不停地在為春天開花而蓄力。大家的日語学習也許現在正處於“感覺不到進步”の段階，但總有一天，一定會有人發現你的“花朵”。所以，請不要焦急，靜靜地積蓄力量吧。時機成熟時，一定能綻放。我也打算為了下一個20年繼續努力学語言……不過那时我就60歲，成老爺爺了ね（笑）。祝大家度過美好的一天，我是 OHAYO CENTER 的 Shinya。謝謝大家的收聽！</p>
                             </div>
                         </details>
 
