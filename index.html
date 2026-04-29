@@ -247,6 +247,7 @@
 
             .kanji-grid.show-n54 .unified-card:not(.k-n54) { display: none; }
             .kanji-grid.show-n3 .unified-card:not(.k-n3) { display: none; }
+            .kanji-grid.show-n1 .unified-card:not(.k-n1) { display: none; }
             .kanji-grid.show-marugoto .unified-card:not(.k-marugoto) { display: none; }
 
             .trip-grid.show-trip .unified-card:not(.t-trip) { display: none; }
@@ -590,7 +591,8 @@
         <div class="lesson-tabs kanji-tabs">
             <button class="tab-btn k-tab active" onclick="switchKanji(0, 'n54')"><span>⭐</span>N5/N4</button>
             <button class="tab-btn k-tab" onclick="switchKanji(1, 'n3')"><span>⭐⭐</span>N3</button>
-            <button class="tab-btn k-tab" onclick="switchKanji(2, 'marugoto')"><span>📖</span>Marugoto</button>
+            <button class="tab-btn k-tab" onclick="switchKanji(2, 'n1')"><span>🏆</span>N1</button>
+            <button class="tab-btn k-tab" onclick="switchKanji(3, 'marugoto')"><span>📖</span>Marugoto</button>
         </div>
 
         <div class="unified-grid kanji-grid show-n54" id="kanjiGrid" style="margin-bottom: 3rem;">
@@ -693,6 +695,25 @@
                 </div>
                 <p style="margin-bottom: 1.5rem;">Practice N3 with Romaji</p>
                 <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+            </a>
+
+            <a href="N1-1.html" class="unified-card k-n1">
+                <i class="fa-solid fa-award" style="color: #c0392b;"></i> 
+                <h3 style="margin-bottom: 0.4rem;">Kanji N1-1</h3>
+                <div style="margin-bottom: 0.8rem;">
+                    <span style="background: #fdf2f0; color: #c0392b; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">最上級 / N1 READING</span>
+                </div>
+                <p style="margin-bottom: 1.5rem;">200 Questions Challenge<br>🏆</p>
+                <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
+            </a>
+            <a href="N1-2.html" class="unified-card k-n1">
+                <i class="fa-solid fa-award" style="color: #c0392b;"></i> 
+                <h3 style="margin-bottom: 0.4rem;">Kanji N1-2</h3>
+                <div style="margin-bottom: 0.8rem;">
+                    <span style="background: #fdf2f0; color: #c0392b; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">最上級 / N1 READING</span>
+                </div>
+                <p style="margin-bottom: 1.5rem;">200 Questions Challenge<br>🏆</p>
+                <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
             </a>
 
             <a href="A1-1.html" class="unified-card k-marugoto">
@@ -969,7 +990,7 @@
     function switchKanji(index, levelClass) {
         const grid = document.getElementById('kanjiGrid');
         const btns = document.querySelectorAll('.kanji-tabs .tab-btn');
-        grid.classList.remove('show-n54', 'show-n3', 'show-marugoto');
+        grid.classList.remove('show-n54', 'show-n3', 'show-n1', 'show-marugoto');
         grid.classList.add('show-' + levelClass);
         btns.forEach(btn => btn.classList.remove('active'));
         if(btns[index]) btns[index].classList.add('active');
