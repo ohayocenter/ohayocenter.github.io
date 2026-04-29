@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N1 Kanji Quiz Part 2 (200 Questions) | OHAYO CENTER</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #e74c3c; --bg-color: #f8fafc; --card-bg: #ffffff; --correct-color: #2ecc71; --wrong-color: #e74c3c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 100px 20px 80px; }
+        
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        .progress-fixed { position: fixed; top: 70px; left: 0; width: 100%; height: 8px; background: #e2e8f0; z-index: 999; }
+        #mainBar { height: 100%; width: 0%; background: var(--correct-color); transition: width 0.4s ease; }
+
+        .container { width: 100%; max-width: 1100px; position: relative; }
+        .stats-overall { text-align: center; margin-bottom: 15px; font-weight: bold; color: var(--primary-color); font-size: 0.9rem; }
+
+        .slide { display: none; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); animation: fadeIn 0.4s; }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 25px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        
+        .question-box { border: 2px solid #edf2f7; padding: 20px; text-align: center; border-radius: 12px; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .question-box.answered-correct { border-color: var(--correct-color); background-color: #f0fff4; }
+        .question-box.answered-wrong { border-color: var(--wrong-color); background-color: #fff5f5; }
+
+        .sentence { font-size: 0.9rem; color: #334155; background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid var(--accent-color); padding: 12px; border-radius: 6px; margin-bottom: 20px; text-align: left; line-height: 1.5; min-height: 4.5em; display: flex; align-items: center; }
+        .highlight { font-weight: 700; color: var(--accent-color); font-size: 1.05rem; background: linear-gradient(transparent 60%, rgba(231, 76, 60, 0.15) 60%); }
+
+        .kanji { font-size: 2.2rem; font-weight: bold; display: block; color: #1e293b; margin-bottom: 10px; letter-spacing: 2px; }
+        
+        .english-container { font-size: 0.85rem; margin-bottom: 20px; cursor: pointer; min-height: 1.5em; background-color: #f8f9fa; border-radius: 6px; padding: 6px 10px; display: inline-block; border: 1px dashed #cbd5e1; transition: 0.2s; user-select: none; }
+        .english-container:hover { background-color: #e2e8f0; }
+        .eng-placeholder { color: #94a3b8; font-size: 0.75rem; }
+        .eng-text { display: none; color: #34495e; font-weight: bold; }
+        .english-container.show-eng { border-style: solid; background-color: #eaf2f8; border-color: #3498db; }
+        .english-container.show-eng .eng-placeholder { display: none; }
+        .english-container.show-eng .eng-text { display: inline; }
+
+        .options-container { display: flex; flex-direction: column; gap: 8px; }
+        .opt-btn { background-color: #f8f9fa; border: 1px solid #dce1e6; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; color: #2c3e50; transition: all 0.2s ease; width: 100%; font-family: 'Noto Sans JP', sans-serif; font-weight: 500; }
+        .opt-btn:hover:not(:disabled) { background-color: #e2e8f0; border-color: #cbd5e1; }
+        .opt-btn.correct-ans { background-color: var(--correct-color) !important; color: white !important; border-color: var(--correct-color) !important; }
+        .opt-btn.wrong-ans { background-color: var(--wrong-color) !important; color: white !important; border-color: var(--wrong-color) !important; }
+
+        .nav-controls { margin: 30px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .jump-btn { background-color: #fff; color: var(--primary-color); border: 2px solid var(--primary-color); padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; min-width: 110px; display: flex; flex-direction: column; align-items: center; }
+        .jump-btn small { font-size: 0.65rem; margin-top: 4px; opacity: 0.7; }
+        .jump-btn:hover { background-color: #edf2f7; }
+        .jump-btn.active-page { background-color: var(--primary-color); color: white; }
+
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 1000px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .reset-link { color: #999; font-size: 0.8rem; cursor: pointer; margin-top: 20px; display: block; text-decoration: underline; }
+
+        @media (max-width: 600px) { 
+            nav { padding: 10px; height: auto; flex-direction: column; gap: 8px; }
+            .logo { font-size: 1.1rem; }
+            .nav-links { gap: 1.2rem; }
+            .nav-links a { font-size: 0.75rem; }
+            .progress-fixed { top: 68px; }
+            body { padding-top: 110px; }
+            .grid { grid-template-columns: 1fr; } 
+            .sentence { font-size: 0.9rem; min-height: auto; } 
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="progress-fixed"><div id="mainBar"></div></div>
+
+<div class="container">
+    <div class="stats-overall" id="statsOverall">Progress: 0 / 200 (0%)</div>
+    <div id="slides-container"></div>
+</div>
+
+<div class="nav-controls" id="navControls"></div>
+
+<div class="support-section">
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+    <span class="reset-link" onclick="resetQuiz()">Reset Progress</span>
+</div>
+
+<script>
+const allData = {
+        1: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 1: 経済・投資)",
+            words: [
+                { s: "毎月、楽天VTに【投資】している。", k: "投資", e: "investment", o: ["とうし", "とうじ", "どうし"], a: 0 },
+                { s: "NISA口座で【資産】を運用する。", k: "資産", e: "assets", o: ["しさん", "じさん", "しざん"], a: 0 },
+                { s: "株価が大きく【高騰】した。", k: "高騰", e: "sudden rise", o: ["こうとう", "こうどう", "ごうとう"], a: 0 },
+                { s: "市場がパニックになり【暴落】する。", k: "暴落", e: "plunge / crash", o: ["ぼうらく", "ばくらく", "ぼうろう"], a: 0 },
+                { s: "住宅ローンの【融資】の相談に行く。", k: "融資", e: "financing / loan", o: ["ゆうし", "ようし", "ゆうじ"], a: 0 },
+                { s: "毎月の【負債】を計算して家計を管理する。", k: "負債", e: "debt", o: ["ふさい", "ふざい", "ぶさい"], a: 0 },
+                { s: "無駄な出費を【削減】する。", k: "削減", e: "reduction", o: ["さくげん", "さっげん", "さくけん"], a: 0 },
+                { s: "確定申告で税金の【控除】を受ける。", k: "控除", e: "deduction", o: ["こうじょ", "くうじょ", "こうしょう"], a: 0 },
+                { s: "国民の義務として【納税】する。", k: "納税", e: "payment of taxes", o: ["のうぜい", "のうせい", "なつぜい"], a: 0 },
+                { s: "自分の【報酬】に見合った仕事をする。", k: "報酬", e: "reward / payment", o: ["ほうしゅう", "ほうそう", "ぼうしゅう"], a: 0 },
+                { s: "新しい【企画】を立ち上げる。", k: "企画", e: "planning / project", o: ["きかく", "きがく", "けいかく"], a: 0 },
+                { s: "会社の【収益】が過去最高を記録した。", k: "収益", e: "earnings / revenue", o: ["しゅうえき", "しゅうやく", "すいえき"], a: 0 },
+                { s: "需要と供給の【均衡】を保つ。", k: "均衡", e: "equilibrium / balance", o: ["きんこう", "きんごう", "こんこう"], a: 0 },
+                { s: "【為替】相場を毎日チェックする。", k: "為替", e: "foreign exchange", o: ["かわせ", "いかえ", "ためがえ"], a: 0 },
+                { s: "【相場】より安い物件を見つけた。", k: "相場", e: "market price", o: ["そうば", "しょうば", "あいば"], a: 0 },
+                { s: "着実に【蓄積】されたノウハウ。", k: "蓄積", e: "accumulation", o: ["ちくせき", "ちくぜき", "ちっせき"], a: 0 },
+                { s: "【詳細】なデータを出して分析する。", k: "詳細", e: "details", o: ["しょうさい", "そうさい", "しょうざい"], a: 0 },
+                { s: "私は【堅実】にインデックスファンドを買う。", k: "堅実", e: "steady / solid", o: ["けんじつ", "かたじつ", "けんしつ"], a: 0 },
+                { s: "【該当】する項目にチェックを入れる。", k: "該当", e: "corresponding", o: ["がいとう", "かくとう", "かいとう"], a: 0 },
+                { s: "契約の【破棄】を通告された。", k: "破棄", e: "cancellation / tear up", o: ["はき", "はぎ", "ばき"], a: 0 }
+            ]
+        },
+        2: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 2: 政治・社会)",
+            words: [
+                { s: "政府の新しい【政策】が発表された。", k: "政策", e: "policy", o: ["せいさく", "せいざく", "しょうさく"], a: 0 },
+                { s: "国の【繁栄】を願う。", k: "繁栄", e: "prosperity", o: ["はんえい", "ばんえい", "はんよう"], a: 0 },
+                { s: "かつての帝国が【衰退】していく。", k: "衰退", e: "decline / decay", o: ["すいたい", "しゅうたい", "すいだい"], a: 0 },
+                { s: "【派閥】の争いに巻き込まれる。", k: "派閥", e: "faction", o: ["はばつ", "はぼつ", "ぱばつ"], a: 0 },
+                { s: "新しい法律を【制定】する。", k: "制定", e: "enactment", o: ["せいてい", "せいだい", "しょうてい"], a: 0 },
+                { s: "古い制度を【廃止】する方針だ。", k: "廃止", e: "abolition", o: ["はいし", "はいじ", "ばいし"], a: 0 },
+                { s: "社会の【規範】に従って生きる。", k: "規範", e: "norm / standard", o: ["きはん", "きばん", "ぎはん"], a: 0 },
+                { s: "外国からの【干渉】を拒否する。", k: "干渉", e: "interference", o: ["かんしょう", "かんそう", "がんしょう"], a: 0 },
+                { s: "【憲法】の改正について議論する。", k: "憲法", e: "constitution", o: ["けんぽう", "けんぼう", "けっぽう"], a: 0 },
+                { s: "彼は【保守】的な考えを持っている。", k: "保守", e: "conservative", o: ["ほしゅ", "ほす", "ぼしゅ"], a: 0 },
+                { s: "政府の対応を厳しく【非難】する。", k: "非難", e: "criticism", o: ["ひなん", "びなん", "ひだん"], a: 0 },
+                { s: "意見の【対立】が深まる。", k: "対立", e: "opposition / conflict", o: ["たいりつ", "たいりち", "だいりつ"], a: 0 },
+                { s: "両国間の【条約】を結ぶ。", k: "条約", e: "treaty", o: ["じょうやく", "じょうよう", "しょうやく"], a: 0 },
+                { s: "【権利】を主張するのは当然だ。", k: "権利", e: "right / privilege", o: ["けんり", "けんりつ", "げんり"], a: 0 },
+                { s: "労働者の【待遇】を改善する。", k: "待遇", e: "treatment (e.g. at work)", o: ["たいぐう", "たいごう", "だいぐう"], a: 0 },
+                { s: "【秩序】を守るためのルール。", k: "秩序", e: "order / discipline", o: ["ちつじょ", "ちちじょ", "てつじょ"], a: 0 },
+                { s: "【警察】が事件の捜査を進めている。", k: "警察", e: "police", o: ["けいさつ", "けいさち", "けっさつ"], a: 0 },
+                { s: "市長の【汚職】が発覚した。", k: "汚職", e: "corruption", o: ["おしょく", "おそく", "おじょく"], a: 0 },
+                { s: "【貧困】問題を解決するための支援。", k: "貧困", e: "poverty", o: ["ひんこん", "ひんごん", "びんこん"], a: 0 },
+                { s: "【福祉】の充実した街に住みたい。", k: "福祉", e: "welfare", o: ["ふくし", "ふくじ", "ぶくし"], a: 0 }
+            ]
+        },
+        3: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 3: 日常生活・マイホーム・IT)",
+            words: [
+                { s: "千葉の【稲毛】区で物件を探す。", k: "稲毛", e: "Inage (place name)", o: ["いなげ", "いなも", "とうげ"], a: 0 },
+                { s: "庭付きの【一戸建て】を買う予定だ。", k: "一戸建て", e: "detached house", o: ["いっこだて", "いっこたて", "いちこだて"], a: 0 },
+                { s: "都心ではなく【郊外】に住みたい。", k: "郊外", e: "suburbs", o: ["こうがい", "きょうがい", "こうげ"], a: 0 },
+                { s: "不動産屋と【条件】をすり合わせる。", k: "条件", e: "conditions", o: ["じょうけん", "じょうげん", "しょうけん"], a: 0 },
+                { s: "間取りについてお互いに【妥協】する。", k: "妥協", e: "compromise", o: ["だきょう", "たきょう", "だごう"], a: 0 },
+                { s: "娘を【幼稚園】に迎えに行く。", k: "幼稚園", e: "kindergarten", o: ["ようちえん", "ようじえん", "ようちいん"], a: 0 },
+                { s: "私の姉の【結婚式】に出席する。", k: "結婚式", e: "wedding ceremony", o: ["けっこんしき", "けっこんじき", "けつこんしき"], a: 0 },
+                { s: "家族で【穏やか】な休日を過ごす。", k: "穏やか", e: "calm / peaceful", o: ["おだやか", "すこやか", "なめらか"], a: 0 },
+                { s: "WindowsからMacBookに【移行】する。", k: "移行", e: "transition / migration", o: ["いこう", "いぎょう", "いごう"], a: 0 },
+                { s: "開発の【環境】構築に手こずる。", k: "環境", e: "environment", o: ["かんきょう", "かんごう", "がんきょう"], a: 0 },
+                { s: "Keynoteを使ってスライドを【編集】する。", k: "編集", e: "editing", o: ["へんしゅう", "へんそう", "へんじゅう"], a: 0 },
+                { s: "オーディオブログの【収録】を終えた。", k: "収録", e: "recording", o: ["しゅうろく", "しゅろく", "すいろく"], a: 0 },
+                { s: "サイトの【閲覧】数が増えて嬉しい。", k: "閲覧", e: "browsing", o: ["えつらん", "えつだん", "えんらん"], a: 0 },
+                { s: "プログラムの【不具合】を修正する。", k: "不具合", e: "bug / defect", o: ["ふぐあい", "ふつごう", "ふくあい"], a: 0 },
+                { s: "データの【添付】ファイルを送信する。", k: "添付", e: "attachment", o: ["てんぷ", "てんふ", "そえふ"], a: 0 },
+                { s: "新しい【検索】機能を実装した。", k: "検索", e: "search", o: ["けんさく", "けんざく", "けんさ"], a: 0 },
+                { s: "学習教材を無料で【提供】する。", k: "提供", e: "offer / provision", o: ["ていきょう", "ていごう", "たいきょう"], a: 0 },
+                { s: "【継続】してコンテンツを作り続ける。", k: "継続", e: "continuation", o: ["けいぞく", "けいそく", "きょうぞく"], a: 0 },
+                { s: "旅行で沖縄の【風景】を写真に収める。", k: "風景", e: "scenery", o: ["ふうけい", "ふうげい", "ぶうけい"], a: 0 },
+                { s: "大阪で美味しいものを【満喫】する。", k: "満喫", e: "enjoyment to the full", o: ["まんきつ", "まんきっ", "まんけつ"], a: 0 }
+            ]
+        },
+        4: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 4: アニメ・抽象概念・感情)",
+            words: [
+                { s: "真の力に【覚醒】した主人公。", k: "覚醒", e: "awakening", o: ["かくせい", "かくしょう", "がくせい"], a: 0 },
+                { s: "恐ろしい【幻覚】を見せる敵。", k: "幻覚", e: "hallucination", o: ["げんかく", "げんがく", "かんかく"], a: 0 },
+                { s: "敵の攻撃を【俊敏】に避ける。", k: "俊敏", e: "agile / quick", o: ["しゅんびん", "しゅんぱつ", "すんびん"], a: 0 },
+                { s: "過去の敵に【復讐】を誓う。", k: "復讐", e: "revenge", o: ["ふくしゅう", "ふっしゅう", "ふくしゅ"], a: 0 },
+                { s: "仲間を失い【孤独】な戦士となった。", k: "孤独", e: "isolation / loneliness", o: ["こどく", "こくどく", "こぼく"], a: 0 },
+                { s: "魔法の【結界】を張って防御する。", k: "結界", e: "barrier", o: ["けっかい", "けちかい", "けつかい"], a: 0 },
+                { s: "強大な悪魔を【召喚】する。", k: "召喚", e: "summoning", o: ["しょうかん", "そうかん", "しょうがん"], a: 0 },
+                { s: "この世界の【滅亡】をなんとしても防ぐ。", k: "滅亡", e: "ruin / destruction", o: ["めつぼう", "めつもう", "めっぽう"], a: 0 },
+                { s: "悲劇的な【運命】に立ち向かう。", k: "運命", e: "fate", o: ["うんめい", "うんみょう", "あんめい"], a: 0 },
+                { s: "権力への異常な【執着】を見せる。", k: "執着", e: "attachment / obsession", o: ["しゅうちゃく", "しっかく", "しゅうじゃく"], a: 0 },
+                { s: "彼の言葉には【偽り】がない。", k: "偽り", e: "lie / falsehood", o: ["いつわり", "かざり", "あやまり"], a: 0 },
+                { s: "敵の拠点を完全に【壊滅】させる。", k: "壊滅", e: "annihilation", o: ["かいめつ", "かいはつ", "かいまつ"], a: 0 },
+                { s: "恐ろしい怪物が【暴走】する。", k: "暴走", e: "running wild", o: ["ぼうそう", "ばくそう", "ぼうぞう"], a: 0 },
+                { s: "古い呪いを【封印】する儀式。", k: "封印", e: "seal", o: ["ふういん", "ふいん", "ほういん"], a: 0 },
+                { s: "一瞬の【隙】を突いてチェンソーで切る。", k: "隙", e: "gap / opening", o: ["すき", "ひま", "わく"], a: 0 },
+                { s: "彼の行動には大きな【矛盾】がある。", k: "矛盾", e: "contradiction", o: ["むじゅん", "むじゅ", "むどん"], a: 0 },
+                { s: "平和な世界を心から【渇望】する。", k: "渇望", e: "craving / longing", o: ["かつぼう", "かつもう", "がっぽう"], a: 0 },
+                { s: "村が炎と敵に【包囲】される。", k: "包囲", e: "siege / encirclement", o: ["ほうい", "ほう囲", "ぼうい"], a: 0 },
+                { s: "【奇跡】的な確率で生き残った。", k: "奇跡", e: "miracle", o: ["きせき", "きせ", "ぎせき"], a: 0 },
+                { s: "絶望的な状況で自らの無力を【嘆く】。", k: "嘆く", e: "to lament / grieve", o: ["なげく", "ぼやく", "さけぶ"], a: 0 }
+            ]
+        },
+        5: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 5: 動詞のニュアンス①)",
+            words: [
+                { s: "フィギュアのポーズを【弄る】。", k: "弄る", e: "to tinker with / play with", o: ["いじる", "もじる", "あじる"], a: 0 },
+                { s: "カメラのレンズを【拭く】。", k: "拭く", e: "to wipe", o: ["ふく", "ぬぐう", "はく"], a: 0 },
+                { s: "過去の失敗を引き【摺る】。", k: "摺る", e: "to drag / trail", o: ["ずる", "する", "くる"], a: 0 },
+                { s: "ジムで重いバーベルを【担ぐ】。", k: "担ぐ", e: "to shoulder", o: ["かつぐ", "しのぐ", "つなぐ"], a: 0 },
+                { s: "新しいトレーニング方法を【企てる】。", k: "企てる", e: "to plan / attempt", o: ["くわだてる", "したてる", "もだてる"], a: 0 },
+                { s: "筋肉の痛みに【耐える】。", k: "耐える", e: "to endure", o: ["たえる", "こえる", "あえる"], a: 0 },
+                { s: "目標に向かって【励む】。", k: "励む", e: "to strive", o: ["はげむ", "のぞむ", "すすむ"], a: 0 },
+                { s: "他人の成功を【妬む】。", k: "妬む", e: "to be jealous", o: ["ねたむ", "にくむ", "うらむ"], a: 0 },
+                { s: "不公平な扱いに【憤る】。", k: "憤る", e: "to be indignant", o: ["いきどおる", "おごる", "とどこおる"], a: 0 },
+                { s: "美しい景色に心が【和む】。", k: "和む", e: "to be softened / calm down", o: ["なごむ", "やわらぐ", "しずむ"], a: 0 },
+                { s: "休日は趣味の時間に【浸る】。", k: "浸る", e: "to be immersed in", o: ["ひたる", "わたる", "あたる"], a: 0 },
+                { s: "袋がパンパンに【膨れる】。", k: "膨れる", e: "to swell / expand", o: ["ふくれる", "ほつれる", "ふさける"], a: 0 },
+                { s: "服に嫌な匂いが【染み付く】。", k: "染み付く", e: "to be ingrained / stained", o: ["しみつく", "そめつく", "にじみつく"], a: 0 },
+                { s: "古い考えから【抜け出す】。", k: "抜け出す", e: "to break free", o: ["ぬけだす", "ぬきだす", "のけだす"], a: 0 },
+                { s: "議論が本題から【逸れる】。", k: "逸れる", e: "to deviate / stray", o: ["それる", "もれる", "ずれる"], a: 0 },
+                { s: "相手の目を【欺く】手品。", k: "欺く", e: "to deceive", o: ["あざむく", "はたらく", "ごまかす"], a: 0 },
+                { s: "トラブルが起きて【慌てる】。", k: "慌てる", e: "to panic / hurry", o: ["あわてる", "あせる", "おごる"], a: 0 },
+                { s: "予想外の質問に【戸惑う】。", k: "戸惑う", e: "to be bewildered", o: ["とまどう", "こまどう", "さまよう"], a: 0 },
+                { s: "失敗してひどく【落ち込む】。", k: "落ち込む", e: "to feel down", o: ["おちこむ", "ふちこむ", "たちこむ"], a: 0 },
+                { s: "疲れた体を【労る】。", k: "労る", e: "to care for / sympathize", o: ["いたわる", "ねばる", "かばう"], a: 0 }
+            ]
+        },
+        6: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 6: 動詞のニュアンス②)",
+            words: [
+                { s: "古い友人と【再会】を果たす。", k: "再会", e: "reunion", o: ["さいかい", "さいがい", "ざいかい"], a: 0 },
+                { s: "事実をありのままに【述べる】。", k: "述べる", e: "to state", o: ["のべる", "くらべる", "しらべる"], a: 0 },
+                { s: "意見の違いを【乗り越える】。", k: "乗り越える", e: "to overcome", o: ["のりこえる", "のりかえる", "のりそえる"], a: 0 },
+                { s: "困難な状況を【打開】する。", k: "打開", e: "breakthrough", o: ["だかい", "たかい", "だげ"], a: 0 },
+                { s: "計画を白紙に【戻す】。", k: "戻す", e: "to return (something)", o: ["もどす", "なおす", "くずす"], a: 0 },
+                { s: "交渉が【決裂】する。", k: "決裂", e: "breakdown / rupture", o: ["けつれつ", "けつれち", "けっれつ"], a: 0 },
+                { s: "新しいプロジェクトに【着手】する。", k: "着手", e: "embarking on", o: ["ちゃくしゅ", "ちゃくす", "じゃくしゅ"], a: 0 },
+                { s: "責任を他人に【転嫁】する。", k: "転嫁", e: "shifting (blame)", o: ["てんか", "てんや", "てんけ"], a: 0 },
+                { s: "被害の拡大を【阻止】する。", k: "阻止", e: "prevention / blocking", o: ["そし", "しょし", "そじ"], a: 0 },
+                { s: "過去の栄光に【縋る】。", k: "縋る", e: "to cling to", o: ["すがる", "もつれる", "あせる"], a: 0 },
+                { s: "相手の弱点を【突く】。", k: "突く", e: "to strike / poke", o: ["つく", "ひく", "むく"], a: 0 },
+                { s: "事実を【歪曲】して伝える。", k: "歪曲", e: "distortion", o: ["わいきょく", "ゆがみ", "わいこう"], a: 0 },
+                { s: "不満を外に【漏らす】。", k: "漏らす", e: "to leak / vent", o: ["もらす", "たらす", "からす"], a: 0 },
+                { s: "才能が豊かに【開花】する。", k: "開花", e: "blooming", o: ["かいか", "かいが", "がいか"], a: 0 },
+                { s: "厳しい評価に【甘んじる】。", k: "甘んじる", e: "to resign oneself to", o: ["あまんじる", "かまんじる", "がまんじる"], a: 0 },
+                { s: "危機的な状況に【陥る】。", k: "陥る", e: "to fall into", o: ["おちいる", "おちこむ", "はいる"], a: 0 },
+                { s: "自分の限界を【悟る】。", k: "悟る", e: "to realize", o: ["さとる", "きまる", "はかる"], a: 0 },
+                { s: "希望を胸に【抱く】。", k: "抱く", e: "to embrace / harbor", o: ["いだく", "だく", "わく"], a: 0 },
+                { s: "悪事を【働く】。", k: "働く", e: "to commit (a crime)", o: ["はたらく", "うごく", "もとづく"], a: 0 },
+                { s: "人の心を【操る】。", k: "操る", e: "to manipulate", o: ["あやつる", "まつる", "さぐる"], a: 0 }
+            ]
+        },
+        7: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 7: 形容詞・副詞①)",
+            words: [
+                { s: "【著しい】経済の成長。", k: "著しい", e: "remarkable", o: ["いちじるしい", "はなばなしい", "めずらしい"], a: 0 },
+                { s: "【煩わしい】手続きを済ませる。", k: "煩わしい", e: "troublesome", o: ["わずらわしい", "まぎらわしい", "うたがわしい"], a: 0 },
+                { s: "【紛らわしい】漢字の形。", k: "紛らわしい", e: "confusing", o: ["まぎらわしい", "わずらわしい", "けがらわしい"], a: 0 },
+                { s: "あの人の態度は【目障り】だ。", k: "目障り", e: "eyesore", o: ["めざわり", "めさわり", "めざとい"], a: 0 },
+                { s: "【円滑】に会議が進む。", k: "円滑", e: "smooth", o: ["えんかつ", "えんけつ", "えんかく"], a: 0 },
+                { s: "【漠然】とした将来の不安。", k: "漠然", e: "vague", o: ["ばくぜん", "ばくねん", "まくぜん"], a: 0 },
+                { s: "【安易】な考えで投資をしない。", k: "安易", e: "easy / simplistic", o: ["あんい", "あんえき", "あんたい"], a: 0 },
+                { s: "彼女はとても【無邪気】だ。", k: "無邪気", e: "innocent", o: ["むじゃき", "むさき", "むじゃけ"], a: 0 },
+                { s: "【巧妙】な手口の犯罪。", k: "巧妙", e: "clever / skillful", o: ["こうみょう", "きょうみょう", "こうぼう"], a: 0 },
+                { s: "【迅速】な対応に感謝する。", k: "迅速", e: "swift", o: ["じんそく", "しんそく", "じんぞく"], a: 0 },
+                { s: "【頻繁】にジムに通う。", k: "頻繁", e: "frequently", o: ["ひんぱん", "ひんばん", "ひんかん"], a: 0 },
+                { s: "【随時】ご相談を受け付けます。", k: "随時", e: "at any time", o: ["ずいじ", "ずいし", "すいじ"], a: 0 },
+                { s: "計画を【大幅】に変更する。", k: "大幅", e: "drastic", o: ["おおはば", "おおふく", "だいはば"], a: 0 },
+                { s: "【極めて】重要な決定。", k: "極めて", e: "extremely", o: ["きわめて", "あつめて", "まとめて"], a: 0 },
+                { s: "【到底】間に合いそうにない。", k: "到底", e: "possibly (with negative)", o: ["とうてい", "とうでい", "どてい"], a: 0 },
+                { s: "【一向に】改善する気配がない。", k: "一向に", e: "not at all (with negative)", o: ["いっこうに", "いちむこうに", "いっきょうに"], a: 0 },
+                { s: "【案の定】雨が降ってきた。", k: "案の定", e: "as expected", o: ["あんのじょう", "あんのてい", "あんのところ"], a: 0 },
+                { s: "【強いて】言えばこちらが良い。", k: "強いて", e: "if forced to (say)", o: ["しいて", "つよいて", "ごういて"], a: 0 },
+                { s: "【敢えて】厳しい意見を言う。", k: "敢えて", e: "daringly / purposely", o: ["あえて", "あわてて", "かえって"], a: 0 },
+                { s: "【自ずから】道は開ける。", k: "自ずから", e: "naturally", o: ["おのずから", "みずから", "しぜんから"], a: 0 }
+            ]
+        },
+        8: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 8: 形容詞・副詞②)",
+            words: [
+                { s: "【何なりと】お申し付けください。", k: "何なりと", e: "anything", o: ["なんなりと", "なにかと", "なんでもと"], a: 0 },
+                { s: "アニメの【華々しい】デビュー。", k: "華々しい", e: "brilliant / spectacular", o: ["はなばなしい", "はなはだしい", "すばらしい"], a: 0 },
+                { s: "敵の【凄まじい】攻撃を避ける。", k: "凄まじい", e: "terrible / fierce", o: ["すさまじい", "いさましい", "たくましい"], a: 0 },
+                { s: "【夥しい】数のフィギュア。", k: "夥しい", e: "immense / abundant", o: ["おびただしい", "あきらましい", "いさましい"], a: 0 },
+                { s: "【空しい】努力に終わる。", k: "空しい", e: "empty / vain", o: ["むなしい", "あやしい", "さみしい"], a: 0 },
+                { s: "【尊い】命を救う。", k: "尊い", e: "precious / noble", o: ["とうとい", "たっとい", "みっとい"], a: 0 },
+                { s: "【逞しい】青年に成長した。", k: "逞しい", e: "sturdy / strong", o: ["たくましい", "いさましい", "たのもしい"], a: 0 },
+                { s: "【緩やか】な坂道を登る。", k: "緩やか", e: "gentle / loose", o: ["ゆるやか", "なだらか", "のどやか"], a: 0 },
+                { s: "【滑らか】な手触りの革。", k: "滑らか", e: "smooth", o: ["なめらか", "すべらか", "やわらか"], a: 0 },
+                { s: "【速やか】に行動する。", k: "速やか", e: "promptly", o: ["すみやか", "はややか", "さやか"], a: 0 },
+                { s: "【密か】に計画を進める。", k: "密か", e: "secretly", o: ["ひそか", "みつか", "ほのか"], a: 0 },
+                { s: "【微か】な音色が聞こえる。", k: "微か", e: "faint", o: ["かすか", "わずか", "ほのか"], a: 0 },
+                { s: "【愚か】な争いをやめる。", k: "愚か", e: "foolish", o: ["おろか", "ぐらか", "あろか"], a: 0 },
+                { s: "【巧み】な話術で引き込まれる。", k: "巧み", e: "skillful", o: ["たくみ", "こうみ", "うまみ"], a: 0 },
+                { s: "【粋】な計らいに感謝する。", k: "粋", e: "stylish / chic", o: ["いき", "すい", "わく"], a: 0 },
+                { s: "【理不尽】な要求を断る。", k: "理不尽", e: "unreasonable", o: ["りふじん", "りぶじん", "りふしん"], a: 0 },
+                { s: "【画期的】な発明品。", k: "画期的", e: "epoch-making", o: ["かっきてき", "がっきでき", "かくきてき"], a: 0 },
+                { s: "【圧倒的】な力の差。", k: "圧倒的", e: "overwhelming", o: ["あっとうてき", "あんとうてき", "あどうてき"], a: 0 },
+                { s: "【決定的】な証拠が見つかる。", k: "決定的", e: "decisive", o: ["けっていてき", "けつていてき", "けっていでき"], a: 0 },
+                { s: "【本質的】な問題を議論する。", k: "本質的", e: "essential", o: ["ほんしつてき", "ほんしつでき", "ほんぞってき"], a: 0 }
+            ]
+        },
+        9: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 9: 総合問題①)",
+            words: [
+                { s: "OHAYO CENTERの【趣旨】に賛同する。", k: "趣旨", e: "purpose / intent", o: ["しゅし", "しゅうし", "しゅじ"], a: 0 },
+                { s: "スクリプトの【校正】をお願いします。", k: "校正", e: "proofreading", o: ["こうせい", "こうしょう", "ごうせい"], a: 0 },
+                { s: "【著作権】に配慮して画像を選ぶ。", k: "著作権", e: "copyright", o: ["ちょさくけん", "ちゃさくけん", "ちょじゃくけん"], a: 0 },
+                { s: "【匿名】でコメントを書き込む。", k: "匿名", e: "anonymous", o: ["とくめい", "かくめい", "とくみょう"], a: 0 },
+                { s: "【抜粋】した文章を教材に使う。", k: "抜粋", e: "excerpt", o: ["ばっすい", "ばっさい", "ぬきすい"], a: 0 },
+                { s: "新しい言葉の【定義】を確認する。", k: "定義", e: "definition", o: ["ていぎ", "ていげ", "だいき"], a: 0 },
+                { s: "物事の【背景】を深く理解する。", k: "背景", e: "background", o: ["はいけい", "はいげい", "ばいけい"], a: 0 },
+                { s: "【偏見】を持たずに人と接する。", k: "偏見", e: "prejudice", o: ["へんけん", "へんげん", "はんけん"], a: 0 },
+                { s: "【倫理】的に問題がある行動。", k: "倫理", e: "ethics", o: ["りんり", "ろんり", "りんど"], a: 0 },
+                { s: "独自の【哲学】を持って教える。", k: "哲学", e: "philosophy", o: ["てつがく", "てつかく", "てっきゃく"], a: 0 },
+                { s: "【概念】をわかりやすく説明する。", k: "概念", e: "concept", o: ["がいねん", "かくねん", "がいれん"], a: 0 },
+                { s: "【枠組み】にとらわれない発想。", k: "枠組み", e: "framework", o: ["わくぐみ", "かくぐみ", "わくくみ"], a: 0 },
+                { s: "【軌道】に乗るまで頑張る。", k: "軌道", e: "orbit / track", o: ["きどう", "きとう", "ぎどう"], a: 0 },
+                { s: "【岐路】に立たされて悩む。", k: "岐路", e: "crossroads", o: ["きろ", "ぎろ", "きれ"], a: 0 },
+                { s: "【拠点】を千葉に移す。", k: "拠点", e: "base / foothold", o: ["きょてん", "こてん", "きょでん"], a: 0 },
+                { s: "【郷愁】を感じる風景。", k: "郷愁", e: "nostalgia", o: ["きょうしゅう", "ごうしゅう", "きょうそう"], a: 0 },
+                { s: "【情緒】あふれる古い街並み。", k: "情緒", e: "emotion / atmosphere", o: ["じょうちょ", "じょうしゅ", "しょうちょ"], a: 0 },
+                { s: "【風情】のある旅館に泊まる。", k: "風情", e: "elegance / taste", o: ["ふぜい", "ふうじょう", "ふうせい"], a: 0 },
+                { s: "【余韻】に浸りながらお茶を飲む。", k: "余韻", e: "lingering memory / reverberation", o: ["よいん", "よおん", "よきょう"], a: 0 },
+                { s: "【面影】が娘に似ている。", k: "面影", e: "trace / looks", o: ["おもかげ", "めんえい", "めんかげ"], a: 0 }
+            ]
+        },
+        10: {
+            title: "JLPT N1 漢字テスト Part 2 (Slide 10: 総合問題②)",
+            words: [
+                { s: "ジムでのトレーニングの【成果】。", k: "成果", e: "result", o: ["せいか", "せいこう", "せいかか"], a: 0 },
+                { s: "筋肉の【回復】を待つ。", k: "回復", e: "recovery", o: ["かいふく", "かいぶく", "かいこう"], a: 0 },
+                { s: "【睡眠】不足は学習の敵だ。", k: "睡眠", e: "sleep", o: ["すいみん", "すいめん", "すいらん"], a: 0 },
+                { s: "【集中力】を高める音楽。", k: "集中力", e: "concentration", o: ["しゅうちゅうりょく", "しゅうじゅうりょく", "すいちゅうりょく"], a: 0 },
+                { s: "【記憶】に定着しやすい例文。", k: "記憶", e: "memory", o: ["きおく", "きおく", "ぎおく"], a: 0 },
+                { s: "【知識】を実生活で活用する。", k: "知識", e: "knowledge", o: ["ちしき", "ちじき", "ちし"], a: 0 },
+                { s: "【応用】問題を解く。", k: "応用", e: "application", o: ["おうよう", "おうよう", "およう"], a: 0 },
+                { s: "【実践】的な日本語を教える。", k: "実践", e: "practice", o: ["じっせん", "じつせん", "じっぜん"], a: 0 },
+                { s: "【目標】を達成して喜ぶ。", k: "目標", e: "goal", o: ["もくひょう", "もくひょう", "もくぼう"], a: 0 },
+                { s: "【自信】を持って日本語を話す。", k: "自信", e: "confidence", o: ["じしん", "じしん", "じじん"], a: 0 },
+                { s: "【勇気】を出して質問する。", k: "勇気", e: "courage", o: ["ゆうき", "ゆうき", "ゆうぎ"], a: 0 },
+                { s: "【感謝】の気持ちを忘れない。", k: "感謝", e: "gratitude", o: ["かんしゃ", "かんさ", "かんじゃ"], a: 0 },
+                { s: "【尊敬】する先生の教え。", k: "尊敬", e: "respect", o: ["そんけい", "そんげい", "そんきょう"], a: 0 },
+                { s: "【信頼】関係を築く。", k: "信頼", e: "trust", o: ["しんらい", "しんだい", "しんれい"], a: 0 },
+                { s: "【絆】を深めるイベント。", k: "絆", e: "bond", o: ["きずな", "きずな", "ばん"], a: 0 },
+                { s: "【協力】してプロジェクトを進める。", k: "協力", e: "cooperation", o: ["きょうりょく", "ごうりょく", "きょうりよく"], a: 0 },
+                { s: "【応援】よろしくお願いします。", k: "応援", e: "support / cheering", o: ["おうえん", "おうえん", "おうえ"], a: 0 },
+                { s: "【成長】を実感する瞬間。", k: "成長", e: "growth", o: ["せいちょう", "せいじょう", "せいちょう"], a: 0 },
+                { s: "【未来】に向かって歩み続ける。", k: "未来", e: "future", o: ["みらい", "みらい", "みれい"], a: 0 },
+                { s: "【希望】に満ちた新しい一日。", k: "希望", e: "hope", o: ["きぼう", "きもう", "きぼう"], a: 0 }
+            ]
+        }
+    };
+
+    let current = 1;
+    const totalSlides = Object.keys(allData).length;
+    // 今回は Part 2 として、新しいキーで進捗を保存します
+    let n1ProgressPart2 = JSON.parse(localStorage.getItem('kanji_n1_part2_quiz_v1')) || {};
+
+    function init() {
+        const container = document.getElementById('slides-container');
+        const navControls = document.getElementById('navControls');
+        let totalQuestions = 0;
+
+        for(let i=1; i<=totalSlides; i++){
+            totalQuestions += allData[i].words.length;
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${i===1?'active':''}`;
+            slideDiv.id = `s${i}`;
+            
+            let gridHTML = `<div class="grid">`;
+            allData[i].words.forEach((w, idx) => {
+                const saveKey = `${i}_${idx}`;
+                const savedResult = n1ProgressPart2[saveKey];
+                const isAnswered = savedResult !== undefined;
+
+                let optionsHTML = '';
+                w.o.forEach((optText, optIdx) => {
+                    const isCorrect = (optIdx === w.a);
+                    let resultClass = "";
+                    if(isAnswered) {
+                        if(isCorrect) resultClass = "correct-ans";
+                        else if(savedResult === "wrong" && optIdx === w.lastSelected) resultClass = "wrong-ans";
+                    }
+
+                    optionsHTML += `<button class="opt-btn ${resultClass}" data-correct="${isCorrect}" onclick="checkAnswer(this, '${saveKey}', ${optIdx})" ${isAnswered ? 'disabled' : ''}>${optText}</button>`;
+                });
+                
+                const formattedSentence = w.s.replace(/【(.+?)】/g, '<span class="highlight">【$1】</span>');
+
+                gridHTML += `
+                    <div class="question-box ${isAnswered ? 'answered-'+savedResult : ''}" id="box-${saveKey}">
+                        <div>
+                            <div class="sentence"><span>${formattedSentence}</span></div>
+                            <span class="kanji">${w.k}</span>
+                            <div class="english-container" onclick="this.classList.toggle('show-eng')">
+                                <span class="eng-placeholder">English</span>
+                                <span class="eng-text">${w.e}</span>
+                            </div>
+                        </div>
+                        <div class="options-container">
+                            ${optionsHTML}
+                        </div>
+                    </div>`;
+            });
+            gridHTML += `</div>`;
+            slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
+            container.appendChild(slideDiv);
+
+            const jumpBtn = document.createElement('button');
+            jumpBtn.className = `jump-btn ${i===1?'active-page':''}`;
+            jumpBtn.id = `btn${i}`;
+            jumpBtn.innerHTML = `<span>SLIDE ${i}</span><small id="badge-${i}">0 / ${allData[i].words.length}</small>`;
+            jumpBtn.onclick = () => goToSlide(i);
+            navControls.appendChild(jumpBtn);
+        }
+        
+        window.totalQuizQuestions = totalQuestions;
+        updateUI();
+    }
+
+    function checkAnswer(btn, key, optIdx) {
+        const isCorrect = btn.dataset.correct === 'true';
+        const box = btn.closest('.question-box');
+        const allButtons = box.querySelectorAll('.opt-btn');
+
+        n1ProgressPart2[key] = isCorrect ? 'correct' : 'wrong';
+        const sIdx = key.split('_')[0];
+        const wIdx = key.split('_')[1];
+        allData[sIdx].words[wIdx].lastSelected = optIdx;
+        
+        localStorage.setItem('kanji_n1_part2_quiz_v1', JSON.stringify(n1ProgressPart2));
+
+        allButtons.forEach(b => {
+            b.disabled = true;
+            if(b.dataset.correct === 'true') b.classList.add('correct-ans');
+        });
+
+        if (!isCorrect) {
+            btn.classList.add('wrong-ans');
+            box.classList.add('answered-wrong');
+        } else {
+            box.classList.add('answered-correct');
+        }
+        updateUI();
+    }
+
+    function updateUI() {
+        let countTotal = Object.keys(n1ProgressPart2).length;
+        let percent = Math.round((countTotal / window.totalQuizQuestions) * 100);
+        
+        document.getElementById('mainBar').style.width = percent + '%';
+        document.getElementById('statsOverall').innerText = `Progress: ${countTotal} / ${window.totalQuizQuestions} (${percent}%)`;
+
+        for(let i=1; i<=totalSlides; i++) {
+            let sCount = 0;
+            allData[i].words.forEach((_, idx) => {
+                if(n1ProgressPart2[`${i}_${idx}`] !== undefined) sCount++;
+            });
+            document.getElementById(`badge-${i}`).innerText = `${sCount} / ${allData[i].words.length}`;
+        }
+    }
+
+    function goToSlide(slideNum) {
+        document.getElementById(`s${current}`).classList.remove('active');
+        document.getElementById(`btn${current}`).classList.remove('active-page');
+        current = slideNum;
+        document.getElementById(`s${current}`).classList.add('active');
+        document.getElementById(`btn${current}`).classList.add('active-page');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetQuiz() {
+        if(confirm("全てのクイズ進捗をリセットしますか？")) {
+            localStorage.removeItem('kanji_n1_part2_quiz_v1');
+            location.reload();
+        }
+    }
+
+    init();
+</script>
+
+</body>
+</html>

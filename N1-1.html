@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N1 Kanji Quiz (200 Questions) | OHAYO CENTER</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #e74c3c; --bg-color: #f8fafc; --card-bg: #ffffff; --correct-color: #2ecc71; --wrong-color: #e74c3c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 100px 20px 80px; }
+        
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        .progress-fixed { position: fixed; top: 70px; left: 0; width: 100%; height: 8px; background: #e2e8f0; z-index: 999; }
+        #mainBar { height: 100%; width: 0%; background: var(--correct-color); transition: width 0.4s ease; }
+
+        .container { width: 100%; max-width: 1100px; position: relative; }
+        .stats-overall { text-align: center; margin-bottom: 15px; font-weight: bold; color: var(--primary-color); font-size: 0.9rem; }
+
+        .slide { display: none; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); animation: fadeIn 0.4s; }
+        .slide.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 25px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        
+        .question-box { border: 2px solid #edf2f7; padding: 20px; text-align: center; border-radius: 12px; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .question-box.answered-correct { border-color: var(--correct-color); background-color: #f0fff4; }
+        .question-box.answered-wrong { border-color: var(--wrong-color); background-color: #fff5f5; }
+
+        .sentence { font-size: 0.9rem; color: #334155; background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid var(--accent-color); padding: 12px; border-radius: 6px; margin-bottom: 20px; text-align: left; line-height: 1.5; min-height: 4.5em; display: flex; align-items: center; }
+        .highlight { font-weight: 700; color: var(--accent-color); font-size: 1.05rem; background: linear-gradient(transparent 60%, rgba(231, 76, 60, 0.15) 60%); }
+
+        .kanji { font-size: 2.2rem; font-weight: bold; display: block; color: #1e293b; margin-bottom: 10px; letter-spacing: 2px; }
+        
+        .english-container { font-size: 0.85rem; margin-bottom: 20px; cursor: pointer; min-height: 1.5em; background-color: #f8f9fa; border-radius: 6px; padding: 6px 10px; display: inline-block; border: 1px dashed #cbd5e1; transition: 0.2s; user-select: none; }
+        .english-container:hover { background-color: #e2e8f0; }
+        .eng-placeholder { color: #94a3b8; font-size: 0.75rem; }
+        .eng-text { display: none; color: #34495e; font-weight: bold; }
+        .english-container.show-eng { border-style: solid; background-color: #eaf2f8; border-color: #3498db; }
+        .english-container.show-eng .eng-placeholder { display: none; }
+        .english-container.show-eng .eng-text { display: inline; }
+
+        .options-container { display: flex; flex-direction: column; gap: 8px; }
+        .opt-btn { background-color: #f8f9fa; border: 1px solid #dce1e6; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; color: #2c3e50; transition: all 0.2s ease; width: 100%; font-family: 'Noto Sans JP', sans-serif; font-weight: 500; }
+        .opt-btn:hover:not(:disabled) { background-color: #e2e8f0; border-color: #cbd5e1; }
+        
+        .opt-btn.correct-ans { background-color: var(--correct-color) !important; color: white !important; border-color: var(--correct-color) !important; }
+        .opt-btn.wrong-ans { background-color: var(--wrong-color) !important; color: white !important; border-color: var(--wrong-color) !important; }
+
+        .nav-controls { margin: 30px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .jump-btn { background-color: #fff; color: var(--primary-color); border: 2px solid var(--primary-color); padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; min-width: 110px; display: flex; flex-direction: column; align-items: center; }
+        .jump-btn small { font-size: 0.65rem; margin-top: 4px; opacity: 0.7; }
+        .jump-btn:hover { background-color: #edf2f7; }
+        .jump-btn.active-page { background-color: var(--primary-color); color: white; }
+
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 1000px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .reset-link { color: #999; font-size: 0.8rem; cursor: pointer; margin-top: 20px; display: block; text-decoration: underline; }
+
+        /* スマホ用デザイン修正版 */
+        @media (max-width: 600px) { 
+            nav { padding: 10px; height: auto; flex-direction: column; gap: 8px; }
+            .logo { font-size: 1.1rem; }
+            .nav-links { gap: 1.2rem; }
+            .nav-links a { font-size: 0.75rem; }
+            .progress-fixed { top: 68px; }
+            body { padding-top: 110px; }
+            .grid { grid-template-columns: 1fr; } 
+            .sentence { font-size: 0.9rem; min-height: auto; } 
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<div class="progress-fixed"><div id="mainBar"></div></div>
+
+<div class="container">
+    <div class="stats-overall" id="statsOverall">Progress: 0 / 200 (0%)</div>
+    <div id="slides-container"></div>
+</div>
+
+<div class="nav-controls" id="navControls"></div>
+
+<div class="support-section">
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+    <span class="reset-link" onclick="resetQuiz()">Reset Progress</span>
+</div>
+
+<script>
+    const allData = {
+        1: {
+            title: "JLPT N1 漢字テスト (Slide 1: 似ている音と形)",
+            words: [
+                { s: "毎月の生活費を【倹約】する。", k: "倹約", e: "frugal / economy", o: ["けんやく", "けいやく", "かんやく"], a: 0 },
+                { s: "敵の【危険】な罠を回避する。", k: "危険", e: "danger", o: ["きげん", "いけん", "きけん"], a: 2 },
+                { s: "【真剣】な表情で剣を構える。", k: "真剣", e: "serious", o: ["しんげん", "しんけん", "しんけい"], a: 1 },
+                { s: "大学の【講義】をオンラインで受ける。", k: "講義", e: "lecture", o: ["こうぎ", "ごうぎ", "こうき"], a: 0 },
+                { s: "新しいアニメの【構成】を考える。", k: "構成", e: "composition / structure", o: ["こうじょう", "こうせい", "こうそう"], a: 1 },
+                { s: "彼の過去の【経歴】は謎に包まれている。", k: "経歴", e: "career / background", o: ["けいかく", "きょうれき", "けいれき"], a: 2 },
+                { s: "激しいトレーニングで体力を【消耗】した。", k: "消耗", e: "exhaustion", o: ["しょうもう", "そうもう", "しょうこう"], a: 0 },
+                { s: "ジムの新しい【機械】を試す。", k: "機械", e: "machine", o: ["きがい", "きかい", "きがく"], a: 1 },
+                { s: "魔法で仲間の傷を【治療】する。", k: "治療", e: "treatment", o: ["ちりゅう", "じりょう", "ちりょう"], a: 2 },
+                { s: "政府の【官僚】が動く。", k: "官僚", e: "bureaucrat", o: ["かんりょう", "かんろう", "かんりゅう"], a: 0 },
+                { s: "手術のために【麻酔】をかける。", k: "麻酔", e: "anesthesia", o: ["まよい", "ますい", "まじょう"], a: 1 },
+                { s: "チーム内で【摩擦】が生じる。", k: "摩擦", e: "friction", o: ["まさ", "まさい", "まさつ"], a: 2 },
+                { s: "俺の【邪魔】をするな！", k: "邪魔", e: "nuisance / interference", o: ["じゃま", "だま", "ざま"], a: 0 },
+                { s: "敵の支配に【抵抗】する。", k: "抵抗", e: "resistance", o: ["ていごう", "ていこう", "たいこう"], a: 1 },
+                { s: "周囲を【警戒】しながら進む。", k: "警戒", e: "caution", o: ["けいかい", "げいかい", "けいがい"], a: 0 },
+                { s: "サウナで【発汗】を促す。", k: "発汗", e: "sweating", o: ["はつかん", "はっがん", "はっかん"], a: 2 },
+                { s: "限定フィギュアの【行列】に並ぶ。", k: "行列", e: "line / procession", o: ["こうれつ", "ぎょうれつ", "ぎょうれち"], a: 1 },
+                { s: "【強烈】なパンチを放つ。", k: "強烈", e: "severe / intense", o: ["きょうれつ", "ごうれつ", "きょうれち"], a: 0 },
+                { s: "組織が二つに【分裂】する。", k: "分裂", e: "split / division", o: ["ぶんれち", "ふんれつ", "ぶんれつ"], a: 2 },
+                { s: "タンパク質補給に【豆腐】を食べる。", k: "豆腐", e: "tofu", o: ["どふ", "とうふ", "とうぶ"], a: 1 }
+            ]
+        },
+        2: {
+            title: "JLPT N1 漢字テスト (Slide 2: 同音異義と熟語)",
+            words: [
+                { s: "魔法の使いすぎで【頭痛】がする。", k: "頭痛", e: "headache", o: ["ずつう", "とうつう", "ずうつう"], a: 0 },
+                { s: "過酷な世界での【生存】をかけた戦い。", k: "生存", e: "survival", o: ["しょうぞん", "せいそん", "せいぞん"], a: 2 },
+                { s: "主人公の熱い【性格】が好きだ。", k: "性格", e: "personality", o: ["しょうかく", "せいかく", "せいかぐ"], a: 1 },
+                { s: "厳しい筋トレを【根性】で乗り切る。", k: "根性", e: "willpower / guts", o: ["こんじょう", "こんせい", "ねんじょう"], a: 0 },
+                { s: "スクリプトの誤りを【訂正】する。", k: "訂正", e: "correction", o: ["ていしょう", "ちょうせい", "ていせい"], a: 2 },
+                { s: "悪いフォームを【是正】する。", k: "是正", e: "correction (of faults)", o: ["ていせい", "ぜせい", "これまさ"], a: 1 },
+                { s: "強大な敵に【直面】する。", k: "直面", e: "facing / confronting", o: ["ちょくめん", "じきめん", "ちょくめい"], a: 0 },
+                { s: "卒業後の【進路】に悩む。", k: "進路", e: "course / future path", o: ["しんじ", "しんろう", "しんろ"], a: 2 },
+                { s: "行きつけの店が【繁盛】している。", k: "繁盛", e: "prosperity", o: ["はんせい", "はんじょう", "はんそう"], a: 1 },
+                { s: "【盛大】なパーティーが開かれる。", k: "盛大", e: "grand / magnificent", o: ["せいだい", "じょうだい", "もりだい"], a: 0 },
+                { s: "【悲惨】な事件の真相を探る。", k: "悲惨", e: "miserable / tragic", o: ["ひざん", "ひそう", "ひさん"], a: 2 },
+                { s: "自らを【犠牲】にして仲間を守る。", k: "犠牲", e: "sacrifice", o: ["きせい", "ぎせい", "ぎしょう"], a: 1 },
+                { s: "彼はとても【正直】な性格だ。", k: "正直", e: "honest", o: ["しょうじき", "せいちょく", "しょうちょく"], a: 0 },
+                { s: "税金を正しく【申告】する。", k: "申告", e: "declaration", o: ["しんごく", "もうしこく", "しんこく"], a: 2 },
+                { s: "ビザの【申請】手続きをする。", k: "申請", e: "application", o: ["しんしょう", "しんせい", "しんぜい"], a: 1 },
+                { s: "台湾を【経由】して帰国する。", k: "経由", e: "via / by way of", o: ["けいゆ", "けいゆう", "きょうゆ"], a: 0 },
+                { s: "この地名の【由来】を調べる。", k: "由来", e: "origin", o: ["ゆうらい", "よらい", "ゆらい"], a: 2 },
+                { s: "敵の能力を【分析】する。", k: "分析", e: "analysis", o: ["ふんせき", "ぶんせき", "ぶんせぎ"], a: 1 },
+                { s: "観客から【拍手】が巻き起こる。", k: "拍手", e: "applause", o: ["はくしゅ", "はくしゅう", "はっしゅ"], a: 0 },
+                { s: "【粉末】のプロテインを水に溶かす。", k: "粉末", e: "powder", o: ["こなまつ", "ふんぱつ", "ふんまつ"], a: 2 }
+            ]
+        },
+        3: {
+            title: "JLPT N1 漢字テスト (Slide 3: 訓読みの攻略①)",
+            words: [
+                { s: "自分の特技を【生かす】。", k: "生かす", e: "to make use of", o: ["うかす", "いかす", "はやす"], a: 1 },
+                { s: "立派なひげを【生やす】。", k: "生やす", e: "to grow", o: ["はやす", "いやす", "なやす"], a: 0 },
+                { s: "【平たい】皿に盛り付ける。", k: "平たい", e: "flat", o: ["へいたい", "たいらたい", "ひらたい"], a: 2 },
+                { s: "平和な日常が【訪れる】。", k: "訪れる", e: "to arrive / visit", o: ["たずねる", "おとずれる", "おとすれる"], a: 1 },
+                { s: "友人の家を【訪ねる】。", k: "訪ねる", e: "to visit someone", o: ["たずねる", "おとずれる", "とうねる"], a: 0 },
+                { s: "ライバルを完全に【負かす】。", k: "負かす", e: "to defeat", o: ["ふかす", "おかす", "まかす"], a: 2 },
+                { s: "重い責任を【負う】。", k: "負う", e: "to bear / take on", o: ["ふう", "おう", "まう"], a: 1 },
+                { s: "時間がなくて【焦る】。", k: "焦る", e: "to panic / hurry", o: ["あせる", "こげる", "あぜる"], a: 0 },
+                { s: "仲間と固い約束を【交わす】。", k: "交わす", e: "to exchange", o: ["まじわす", "こうわす", "かわす"], a: 2 },
+                { s: "この地域はスポーツが【盛んだ】。", k: "盛んだ", e: "prosperous / active", o: ["もるんだ", "さかんだ", "じょうんだ"], a: 1 },
+                { s: "空が赤く【染まる】。", k: "染まる", e: "to be dyed", o: ["そまる", "しみる", "じまる"], a: 0 },
+                { s: "冷たい水が歯に【染みる】。", k: "染みる", e: "to pierce / soak", o: ["そみる", "せんみる", "しみる"], a: 2 },
+                { s: "常識を【覆す】大発見。", k: "覆す", e: "to overturn", o: ["おおうす", "くつがえす", "ふくす"], a: 1 },
+                { s: "あと少しでクリアだったのに【惜しい】。", k: "惜しい", e: "regrettable / close", o: ["おしい", "くやしい", "ざんねん"], a: 0 },
+                { s: "朝はいつも【慌ただしい】。", k: "慌ただしい", e: "hectic / hurried", o: ["あらただしい", "あわたしい", "あわただしい"], a: 2 },
+                { s: "勘違いも【甚だしい】。", k: "甚だしい", e: "extreme", o: ["じたばたしい", "はなはだしい", "はなばなしい"], a: 1 },
+                { s: "昔のアニメを見ると【懐かしい】。", k: "懐かしい", e: "nostalgic", o: ["なつかしい", "かいかしい", "うれしい"], a: 0 },
+                { s: "犯人をロープで【縛る】。", k: "縛る", e: "to tie up", o: ["しぼる", "ばくる", "しばる"], a: 2 },
+                { s: "大会に向けて体を【絞る】。", k: "絞る", e: "to narrow down / wring", o: ["しばる", "しぼる", "こうる"], a: 1 },
+                { s: "敵の軍勢が城に【迫る】。", k: "迫る", e: "to approach", o: ["せまる", "はくる", "あせる"], a: 0 }
+            ]
+        },
+        4: {
+            title: "JLPT N1 漢字テスト (Slide 4: 訓読みの攻略②)",
+            words: [
+                { s: "怒りに任せて壁を【殴る】。", k: "殴る", e: "to punch", o: ["おうる", "さぐる", "なぐる"], a: 2 },
+                { s: "休日は海で魚を【釣る】。", k: "釣る", e: "to fish", o: ["ちょうる", "つる", "とる"], a: 1 },
+                { s: "宝物を探して地面を【掘る】。", k: "掘る", e: "to dig", o: ["ほる", "くつる", "こつる"], a: 0 },
+                { s: "父は小さなカフェを【営む】。", k: "営む", e: "to run / operate", o: ["えいなむ", "いとむ", "いとなむ"], a: 2 },
+                { s: "神社で手を合わせて【拝む】。", k: "拝む", e: "to worship", o: ["はいむ", "おがむ", "たのむ"], a: 1 },
+                { s: "複雑な思惑が【絡む】事件。", k: "絡む", e: "to entangle / involve", o: ["からむ", "らくむ", "はさむ"], a: 0 },
+                { s: "鶏肉と野菜をじっくり【煮る】。", k: "煮る", e: "to boil", o: ["しゃる", "しる", "にる"], a: 2 },
+                { s: "弓で的を【射る】。", k: "射る", e: "to shoot", o: ["しゃる", "いる", "さす"], a: 1 },
+                { s: "最新の技術を【用いる】。", k: "用いる", e: "to use", o: ["もちいる", "よういる", "つかいる"], a: 0 },
+                { s: "勇者が軍隊を【率いる】。", k: "率いる", e: "to lead", o: ["そついる", "りついる", "ひきいる"], a: 2 },
+                { s: "恩人の期待に【報いる】。", k: "報いる", e: "to reward / repay", o: ["ほういる", "むくいる", "おんいる"], a: 1 },
+                { s: "過去の過ちを【悔いる】。", k: "悔いる", e: "to regret", o: ["くいる", "かいいる", "くやいる"], a: 0 },
+                { s: "家賃を3ヶ月【滞納】する。", k: "滞納", e: "default / arrears", o: ["ちのう", "たいなつ", "たいのう"], a: 2 },
+                { s: "期日までに商品を【納入】する。", k: "納入", e: "delivery", o: ["ないにゅう", "のうにゅう", "なつにゅう"], a: 1 },
+                { s: "彼の説明でようやく【納得】した。", k: "納得", e: "understanding / consent", o: ["なっとく", "のうとく", "のうどく"], a: 0 },
+                { s: "期限までに税金を【納める】。", k: "納める", e: "to pay / supply", o: ["なめる", "のうめる", "おさめる"], a: 2 },
+                { s: "店員に対する【横柄】な態度。", k: "横柄", e: "arrogant", o: ["よこえ", "おうへい", "おうがら"], a: 1 },
+                { s: "彼とは幼なじみの【間柄】だ。", k: "間柄", e: "relationship", o: ["あいだがら", "かんがら", "まがら"], a: 0 },
+                { s: "王様が住む豪華な【宮殿】。", k: "宮殿", e: "palace", o: ["ぐうでん", "みやでん", "きゅうでん"], a: 2 },
+                { s: "政治家が【街頭】で演説する。", k: "街頭", e: "street", o: ["まちとう", "がいとう", "がいどう"], a: 1 }
+            ]
+        },
+        5: {
+            title: "JLPT N1 漢字テスト (Slide 5: 難しい読みと語彙)",
+            words: [
+                { s: "新しいMacを買うお金を【工面】する。", k: "工面", e: "raising funds", o: ["くめん", "こうめん", "こうづら"], a: 0 },
+                { s: "【天然】の成分で作られたサプリ。", k: "天然", e: "natural", o: ["てんぜん", "てんね", "てんねん"], a: 2 },
+                { s: "必要になる【都度】、買いに行く。", k: "都度", e: "each time", o: ["とど", "つど", "つと"], a: 1 },
+                { s: "今週末は【都合】が悪いです。", k: "都合", e: "convenience", o: ["つごう", "とごう", "つご"], a: 0 },
+                { s: "二つの事件には【類似】点が多い。", k: "類似", e: "resemblance", o: ["るいし", "るじ", "るいじ"], a: 2 },
+                { s: "犯人の【行方】を追う。", k: "行方", e: "whereabouts", o: ["ぎょうほう", "ゆくえ", "いきかた"], a: 1 },
+                { s: "夏休みは【田舎】の祖母の家に行く。", k: "田舎", e: "countryside", o: ["いなか", "でんしゃ", "たしゃ"], a: 0 },
+                { s: "山頂からの【景色】は最高だ。", k: "景色", e: "scenery", o: ["けいいろ", "きしき", "けしき"], a: 2 },
+                { s: "ヒロインが優しく【微笑む】。", k: "微笑む", e: "to smile", o: ["びしょうむ", "ほほえむ", "びえむ"], a: 1 },
+                { s: "彼女の【笑顔】に癒される。", k: "笑顔", e: "smile", o: ["えがお", "しょうがん", "わらがお"], a: 0 },
+                { s: "アニメの最終回を見て【興奮】する。", k: "興奮", e: "excitement", o: ["きょうふん", "こうぷん", "こうふん"], a: 2 },
+                { s: "【貴重】なご意見をありがとうございます。", k: "貴重", e: "precious", o: ["きじゅう", "きちょう", "たちょう"], a: 1 },
+                { s: "他社製品と【競合】する。", k: "競合", e: "competition", o: ["きょうごう", "けいごう", "きょうがっ"], a: 0 },
+                { s: "巨大なエネルギー【装置】を破壊する。", k: "装置", e: "device", o: ["しょうち", "そうぢ", "そうち"], a: 2 },
+                { s: "チームのユニフォームを【統一】する。", k: "統一", e: "unification", o: ["とういち", "とういつ", "どういつ"], a: 1 },
+                { s: "2人の間に【険悪】なムードが漂う。", k: "険悪", e: "hostile / fierce", o: ["けんあく", "けんわる", "きけん"], a: 0 },
+                { s: "相手の戦略がさらに【上手】だった。", k: "上手", e: "superior", o: ["じょうず", "かみて", "うわて"], a: 2 },
+                { s: "中級者を【対象】としたレッスン。", k: "対象", e: "target", o: ["たいじょう", "たいしょう", "だいしょう"], a: 1 },
+                { s: "病院でインフルエンザの【注射】を打つ。", k: "注射", e: "injection", o: ["ちゅうしゃ", "ちゅうさ", "ちゅしゃ"], a: 0 },
+                { s: "ここは【駐車】禁止のエリアです。", k: "駐車", e: "parking", o: ["ちゅうさ", "ちゅしゃ", "ちゅうしゃ"], a: 2 }
+            ]
+        },
+        6: {
+            title: "JLPT N1 漢字テスト (Slide 6: 同音・類似の漢字)",
+            words: [
+                { s: "アニメの主人公が【故郷】に帰る。", k: "故郷", e: "hometown", o: ["こきょう", "ききょう", "こごう"], a: 0 },
+                { s: "新しいサイトの【趣旨】を説明する。", k: "趣旨", e: "purpose / point", o: ["しゅし", "ようし", "しゅじ"], a: 0 },
+                { s: "筋トレで体【脂肪】を減らす。", k: "脂肪", e: "fat", o: ["しほう", "しぼう", "じぼう"], a: 1 },
+                { s: "オンラインレッスンの【普及】により世界が変わった。", k: "普及", e: "spread / diffusion", o: ["ふきゅう", "ぶきゅう", "ふぎゅう"], a: 0 },
+                { s: "子どもの遊びにあまり【干渉】しないようにする。", k: "干渉", e: "interference", o: ["かんそう", "かんしょう", "かんじょう"], a: 1 },
+                { s: "国民の【義務】を果たす。", k: "義務", e: "duty / obligation", o: ["ぎむ", "きむ", "ぎみ"], a: 0 },
+                { s: "日本語の【礼儀】正しい表現を教える。", k: "礼儀", e: "manners", o: ["れいぎ", "れいき", "らいぎ"], a: 0 },
+                { s: "仲間を助けるための【犠牲】。", k: "犠牲", e: "sacrifice", o: ["きせい", "ぎしょう", "ぎせい"], a: 2 },
+                { s: "温泉でゆっくり【療養】する。", k: "療養", e: "recuperation", o: ["りょうよう", "りょうそう", "ろうよう"], a: 0 },
+                { s: "【麻薬】の密売組織を追うアニメ。", k: "麻薬", e: "drug / narcotic", o: ["まやく", "ますい", "まよう"], a: 0 },
+                { s: "大会で優勝を【獲得】する。", k: "獲得", e: "acquisition", o: ["がくとく", "かくとく", "かくどく"], a: 1 },
+                { s: "【裁判】で真実が明らかになる。", k: "裁判", e: "trial / judgement", o: ["さいはん", "ざいばん", "さいばん"], a: 2 },
+                { s: "ウェブサイトに新しい記事を【掲載】する。", k: "掲載", e: "publication", o: ["けいさい", "けっさい", "けいざい"], a: 0 },
+                { s: "【壮大】なファンタジー映画を見る。", k: "壮大", e: "magnificent", o: ["そうたい", "そうだい", "ぞうだい"], a: 1 },
+                { s: "敵の【卑怯】な手口を許さない。", k: "卑怯", e: "cowardice / unfair", o: ["ひきょう", "ひきょ", "びきょう"], a: 0 },
+                { s: "予想外の出来事に【動揺】する。", k: "動揺", e: "disturbance", o: ["どうよう", "とうよう", "どうゆう"], a: 0 },
+                { s: "ジムの【休憩】時間にプロテインを飲む。", k: "休憩", e: "break / rest", o: ["きゅうけ", "きゅうけい", "ぎゅうけい"], a: 1 },
+                { s: "部屋を【清潔】に保つ。", k: "清潔", e: "clean", o: ["せいけつ", "せいげつ", "せいけっ"], a: 0 },
+                { s: "台風の【被害】を確認する。", k: "被害", e: "damage", o: ["ひがい", "ひかい", "びがい"], a: 0 },
+                { s: "毎日の家事や仕事で【疲労】がたまる。", k: "疲労", e: "fatigue", o: ["ひろ", "びろう", "ひろう"], a: 2 }
+            ]
+        },
+        7: {
+            title: "JLPT N1 漢字テスト (Slide 7: 似た形・同音異義)",
+            words: [
+                { s: "会社の【慣例】に従う。", k: "慣例", e: "custom", o: ["かんれい", "かんれつ", "がんれい"], a: 0 },
+                { s: "お姫様を【護衛】する騎士。", k: "護衛", e: "guard / escort", o: ["ごえい", "こえい", "ごえ"], a: 0 },
+                { s: "【偉大】な魔法使いの弟子になる。", k: "偉大", e: "great", o: ["いたい", "いだい", "いだ"], a: 1 },
+                { s: "【是非】ともご参加ください。", k: "是非", e: "by all means / right and wrong", o: ["ぜひ", "ぜい", "せひ"], a: 0 },
+                { s: "法律の【解釈】をめぐって争う。", k: "解釈", e: "interpretation", o: ["かいさく", "かいしゃく", "がいしゃく"], a: 1 },
+                { s: "外国語のマンガを【翻訳】する。", k: "翻訳", e: "translation", o: ["はんやく", "ほんやく", "ほんやぐ"], a: 1 },
+                { s: "最善の道を【選択】する。", k: "選択", e: "choice", o: ["せんたく", "ぜんたく", "せんちゃく"], a: 0 },
+                { s: "生徒たちの世界での【活躍】を祈る。", k: "活躍", e: "activity", o: ["かつやく", "かつやぐ", "がっやく"], a: 0 },
+                { s: "新しい言語を学ぶ【意欲】が高い。", k: "意欲", e: "will / desire", o: ["いよく", "いよう", "いごく"], a: 0 },
+                { s: "まだ心に【余裕】がある。", k: "余裕", e: "margin / room", o: ["よゆう", "よりょう", "よゆ"], a: 0 },
+                { s: "千葉に【暴風】警報が出た。", k: "暴風", e: "windstorm", o: ["ぼうぶう", "ぼうふう", "ぼうふ"], a: 1 },
+                { s: "隠していた真実を【告白】する。", k: "告白", e: "confession", o: ["こくはく", "ごくはく", "こくばく"], a: 0 },
+                { s: "素晴らしい発表に【拍手】を送る。", k: "拍手", e: "applause", o: ["はくしゅ", "はくしゅう", "はっしゅ"], a: 0 },
+                { s: "【踏切】で電車が通り過ぎるのを待つ。", k: "踏切", e: "railway crossing", o: ["ふみぎり", "ふみきり", "ふみき"], a: 1 },
+                { s: "決着がついた【瞬間】。", k: "瞬間", e: "moment", o: ["しゅんかん", "しゅんがん", "しゅうかん"], a: 0 },
+                { s: "日本の【人口】が減少している。", k: "人口", e: "population", o: ["にんこう", "じんこう", "じんごう"], a: 1 },
+                { s: "彼は【無口】だが優しい性格だ。", k: "無口", e: "reticent", o: ["むくち", "むぐち", "ぶくち"], a: 0 },
+                { s: "凄腕の剣士の【弟子】になる。", k: "弟子", e: "apprentice / disciple", o: ["でし", "ていし", "だいし"], a: 0 },
+                { s: "学校を休むために【仮病】を使う。", k: "仮病", e: "feigned illness", o: ["かびょう", "けびょう", "けいびょう"], a: 1 },
+                { s: "妻は料理の【手際】がいい。", k: "手際", e: "skill / efficiency", o: ["てぎわ", "てきわ", "てぎ"], a: 0 }
+            ]
+        },
+        8: {
+            title: "JLPT N1 漢字テスト (Slide 8: 訓読みの難読・動詞)",
+            words: [
+                { s: "敵から自由を【奪う】。", k: "奪う", e: "to snatch / steal", o: ["うばう", "うはう", "だつう"], a: 0 },
+                { s: "先輩を【慕う】後輩たち。", k: "慕う", e: "to yearn for / adore", o: ["したう", "したがう", "もとう"], a: 0 },
+                { s: "服の破れを【繕う】。", k: "繕う", e: "to mend", o: ["つくろう", "まかなう", "よそおう"], a: 0 },
+                { s: "過去の罪を【償う】。", k: "償う", e: "to make up for", o: ["つぐなう", "あきなう", "うしなう"], a: 0 },
+                { s: "ミシンで布を【縫う】。", k: "縫う", e: "to sew", o: ["ぬう", "なう", "すう"], a: 0 },
+                { s: "サプリメントで栄養を【補う】。", k: "補う", e: "to compensate / supplement", o: ["まかなう", "おぎなう", "そこなう"], a: 1 },
+                { s: "生活費を投資の利益で【賄う】。", k: "賄う", e: "to cover the cost", o: ["あきなう", "つぐなう", "まかなう"], a: 2 },
+                { s: "健康を【損なう】恐れがある。", k: "損なう", e: "to harm / ruin", o: ["そこなう", "おぎなう", "やしなう"], a: 0 },
+                { s: "家の【辺り】を散歩する。", k: "辺り", e: "vicinity", o: ["ほとり", "あたり", "へんり"], a: 1 },
+                { s: "必殺技で【怒り】を爆発させる。", k: "怒り", e: "anger", o: ["いかり", "おこり", "あせり"], a: 0 },
+                { s: "教師としての【誇り】を持つ。", k: "誇り", e: "pride", o: ["いのり", "ほこり", "こだわり"], a: 1 },
+                { s: "明日の仕事に【差し支える】。", k: "差し支える", e: "to interfere / hinder", o: ["さしつかえる", "さしかえる", "さしこえる"], a: 0 },
+                { s: "娘が可愛らしく【微笑む】。", k: "微笑む", e: "to smile", o: ["びしょうむ", "ほほえむ", "えむ"], a: 1 },
+                { s: "時計の針が【止まる】。", k: "止まる", e: "to stop (intransitive)", o: ["とまる", "どまる", "しまる"], a: 0 },
+                { s: "家族旅行でホテルに【泊まる】。", k: "泊まる", e: "to stay overnight", o: ["とまる", "ぱくまる", "はくまる"], a: 0 },
+                { s: "りんごの【皮】をむく。", k: "皮", e: "skin / peel", o: ["ひ", "け", "かわ"], a: 2 },
+                { s: "高級な【革】の財布を買う。", k: "革", e: "leather", o: ["かく", "かわ", "ひ"], a: 1 },
+                { s: "料理に【酢】を少し入れる。", k: "酢", e: "vinegar", o: ["さく", "さん", "す"], a: 2 },
+                { s: "鳥が木に【巣】を作る。", k: "巣", e: "nest", o: ["そう", "す", "む"], a: 1 },
+                { s: "書道で【墨】をする。", k: "墨", e: "black ink", o: ["すみ", "ぼく", "くろ"], a: 0 }
+            ]
+        },
+        9: {
+            title: "JLPT N1 漢字テスト (Slide 9: 語彙の使い分け①)",
+            words: [
+                { s: "N1合格を【対象】としたコース。", k: "対象", e: "target", o: ["たいそう", "たいじょう", "たいしょう"], a: 2 },
+                { s: "2人の性格は【対照】的だ。", k: "対照", e: "contrast", o: ["たいしょう", "たいそう", "だいしょう"], a: 0 },
+                { s: "友人を結婚式に【招待】する。", k: "招待", e: "invitation", o: ["そうたい", "しょうたい", "しょうだい"], a: 1 },
+                { s: "ヒーローの【正体】がバレる。", k: "正体", e: "true identity", o: ["しょうたい", "せいたい", "せいだい"], a: 0 },
+                { s: "レポートの提出【期限】を守る。", k: "期限", e: "deadline", o: ["きけん", "きげん", "ぎげん"], a: 1 },
+                { s: "お気に入りのおもちゃで娘の【機嫌】がいい。", k: "機嫌", e: "mood", o: ["きげん", "きけん", "ぎげん"], a: 0 },
+                { s: "ネットで厳しく【非難】される。", k: "非難", e: "criticism", o: ["びなん", "ひだん", "ひなん"], a: 2 },
+                { s: "地震が起きたら安全な場所へ【避難】する。", k: "避難", e: "evacuation", o: ["ひなん", "ひだん", "びなん"], a: 0 },
+                { s: "【普通】の生活が一番幸せだ。", k: "普通", e: "ordinary / normal", o: ["ぶつう", "ふつう", "ふづう"], a: 1 },
+                { s: "台風で電車が【不通】になった。", k: "不通", e: "suspension / interruption", o: ["ふつう", "ふどおり", "ふづう"], a: 0 },
+                { s: "アニメの色彩【感覚】が素晴らしい。", k: "感覚", e: "sense", o: ["かんがく", "かんかく", "がんかく"], a: 1 },
+                { s: "前の車と【間隔】をあける。", k: "間隔", e: "interval / space", o: ["かんかく", "まかく", "あいかく"], a: 0 },
+                { s: "新しいMacの【操作】に慣れる。", k: "操作", e: "operation", o: ["そうざ", "しょうさ", "そうさ"], a: 2 },
+                { s: "警察が事件を【捜査】する。", k: "捜査", e: "investigation", o: ["そうさ", "そうざ", "しょうさ"], a: 0 },
+                { s: "物件探しで不動産屋の【夫妻】に会う。", k: "夫妻", e: "husband and wife", o: ["ふせい", "ふさい", "ぶさい"], a: 1 },
+                { s: "マイホームの【負債】を計算する。", k: "負債", e: "debt", o: ["ふさい", "ふたい", "ぶさい"], a: 0 },
+                { s: "最近、楽天VTなどの投資に【興味】がある。", k: "興味", e: "interest", o: ["こみ", "ごうみ", "きょうみ"], a: 2 },
+                { s: "パーティーの【余興】で歌う。", k: "余興", e: "entertainment", o: ["よきょう", "よこう", "よごう"], a: 0 },
+                { s: "ブログのデザインを【統一】する。", k: "統一", e: "unification", o: ["とういつ", "とういち", "どういつ"], a: 0 },
+                { s: "全く【同一】のフィギュアを2個買った。", k: "同一", e: "identical", o: ["どういつ", "とういつ", "どういち"], a: 0 }
+            ]
+        },
+        10: {
+            title: "JLPT N1 漢字テスト (Slide 10: 語彙の使い分け② & 特殊な読み)",
+            words: [
+                { s: "【磁石】の力で引き合う。", k: "磁石", e: "magnet", o: ["じせき", "じしゃく", "じそう"], a: 1 },
+                { s: "恐竜の【化石】を発掘する。", k: "化石", e: "fossil", o: ["かせき", "ばけいし", "けせき"], a: 0 },
+                { s: "水中の【酸素】濃度を測る。", k: "酸素", e: "oxygen", o: ["さんす", "ざんそ", "さんそ"], a: 2 },
+                { s: "【素直】に自分の過ちを認める。", k: "素直", e: "honest / gentle", o: ["すなお", "そなお", "そちょく"], a: 0 },
+                { s: "【素敵】な家を見つけた。", k: "素敵", e: "nice / wonderful", o: ["そてき", "すてき", "しゅてき"], a: 1 },
+                { s: "新しいトレーニングメニューを【実施】する。", k: "実施", e: "implementation", o: ["じっし", "じつし", "じっせ"], a: 0 },
+                { s: "市のスポーツ【施設】を利用する。", k: "施設", e: "facility", o: ["してい", "しせつ", "じせつ"], a: 1 },
+                { s: "悪党が村人を【人質】にとる。", k: "人質", e: "hostage", o: ["ひとじち", "にんしつ", "にんじち"], a: 0 },
+                { s: "お金がなくて時計を【質屋】に入れる。", k: "質屋", e: "pawnshop", o: ["しつや", "しちや", "たてや"], a: 1 },
+                { s: "OHAYO CENTERの【頭文字】はOC。", k: "頭文字", e: "initials", o: ["ずもじ", "とうもじ", "かしらもじ"], a: 2 },
+                { s: "外は雨なので【雨具】を持っていく。", k: "雨具", e: "rain gear", o: ["あまぐ", "うぐ", "あめぐ"], a: 0 },
+                { s: "伝説の勇者が【行方不明】になる。", k: "行方不明", e: "missing", o: ["いきかたふめい", "ゆくえふめい", "ぎょうほうふめい"], a: 1 },
+                { s: "今日は絶好の洗濯【日和】だ。", k: "日和", e: "weather (ideal for something)", o: ["にちわ", "ひわ", "ひより"], a: 2 },
+                { s: "育児の合間の【束の間】の休息。", k: "束の間", e: "brief moment", o: ["つかのま", "たばのま", "そくのま"], a: 0 },
+                { s: "家族で【居間】のテレビを見る。", k: "居間", e: "living room", o: ["きょま", "こま", "いま"], a: 2 },
+                { s: "アニメのセリフを【早口】で言う。", k: "早口", e: "fast speaking", o: ["はやくち", "そうこう", "さっくち"], a: 0 },
+                { s: "国の【天然記念物】に指定される。", k: "天然記念物", e: "natural monument", o: ["てんぜんきねんぶつ", "てんねんきねんぶつ", "てんねんきねんもつ"], a: 1 },
+                { s: "武術の【師匠】に教えを乞う。", k: "師匠", e: "master", o: ["ししょう", "しそう", "じしょう"], a: 0 },
+                { s: "週末は家族で【野外】フェスに行く。", k: "野外", e: "outdoors", o: ["のがい", "やがい", "やげ"], a: 1 },
+                { s: "海で大きな【鯨】を見た。", k: "鯨", e: "whale", o: ["くじら", "けい", "いるか"], a: 0 }
+            ]
+        }
+    };
+
+    let current = 1;
+    const totalSlides = Object.keys(allData).length;
+    // 今回からキーを新しくして、200問用としてクリーンに保存されるようにしました
+    let n1Progress = JSON.parse(localStorage.getItem('kanji_n1_full_quiz_v1')) || {};
+
+    function init() {
+        const container = document.getElementById('slides-container');
+        const navControls = document.getElementById('navControls');
+        let totalQuestions = 0;
+
+        for(let i=1; i<=totalSlides; i++){
+            totalQuestions += allData[i].words.length;
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${i===1?'active':''}`;
+            slideDiv.id = `s${i}`;
+            
+            let gridHTML = `<div class="grid">`;
+            allData[i].words.forEach((w, idx) => {
+                const saveKey = `${i}_${idx}`;
+                const savedResult = n1Progress[saveKey];
+                const isAnswered = savedResult !== undefined;
+
+                let optionsHTML = '';
+                w.o.forEach((optText, optIdx) => {
+                    const isCorrect = (optIdx === w.a);
+                    let resultClass = "";
+                    if(isAnswered) {
+                        if(isCorrect) resultClass = "correct-ans";
+                        else if(savedResult === "wrong" && optIdx === w.lastSelected) resultClass = "wrong-ans";
+                    }
+
+                    optionsHTML += `<button class="opt-btn ${resultClass}" data-correct="${isCorrect}" onclick="checkAnswer(this, '${saveKey}', ${optIdx})" ${isAnswered ? 'disabled' : ''}>${optText}</button>`;
+                });
+                
+                const formattedSentence = w.s.replace(/【(.+?)】/g, '<span class="highlight">【$1】</span>');
+
+                gridHTML += `
+                    <div class="question-box ${isAnswered ? 'answered-'+savedResult : ''}" id="box-${saveKey}">
+                        <div>
+                            <div class="sentence"><span>${formattedSentence}</span></div>
+                            <span class="kanji">${w.k}</span>
+                            <div class="english-container" onclick="this.classList.toggle('show-eng')">
+                                <span class="eng-placeholder">English</span>
+                                <span class="eng-text">${w.e}</span>
+                            </div>
+                        </div>
+                        <div class="options-container">
+                            ${optionsHTML}
+                        </div>
+                    </div>`;
+            });
+            gridHTML += `</div>`;
+            slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
+            container.appendChild(slideDiv);
+
+            const jumpBtn = document.createElement('button');
+            jumpBtn.className = `jump-btn ${i===1?'active-page':''}`;
+            jumpBtn.id = `btn${i}`;
+            jumpBtn.innerHTML = `<span>SLIDE ${i}</span><small id="badge-${i}">0 / ${allData[i].words.length}</small>`;
+            jumpBtn.onclick = () => goToSlide(i);
+            navControls.appendChild(jumpBtn);
+        }
+        
+        window.totalQuizQuestions = totalQuestions;
+        updateUI();
+    }
+
+    function checkAnswer(btn, key, optIdx) {
+        const isCorrect = btn.dataset.correct === 'true';
+        const box = btn.closest('.question-box');
+        const allButtons = box.querySelectorAll('.opt-btn');
+
+        n1Progress[key] = isCorrect ? 'correct' : 'wrong';
+        const sIdx = key.split('_')[0];
+        const wIdx = key.split('_')[1];
+        allData[sIdx].words[wIdx].lastSelected = optIdx;
+        
+        localStorage.setItem('kanji_n1_full_quiz_v1', JSON.stringify(n1Progress));
+
+        allButtons.forEach(b => {
+            b.disabled = true;
+            if(b.dataset.correct === 'true') b.classList.add('correct-ans');
+        });
+
+        if (!isCorrect) {
+            btn.classList.add('wrong-ans');
+            box.classList.add('answered-wrong');
+        } else {
+            box.classList.add('answered-correct');
+        }
+        updateUI();
+    }
+
+    function updateUI() {
+        let countTotal = Object.keys(n1Progress).length;
+        let percent = Math.round((countTotal / window.totalQuizQuestions) * 100);
+        
+        document.getElementById('mainBar').style.width = percent + '%';
+        document.getElementById('statsOverall').innerText = `Progress: ${countTotal} / ${window.totalQuizQuestions} (${percent}%)`;
+
+        for(let i=1; i<=totalSlides; i++) {
+            let sCount = 0;
+            allData[i].words.forEach((_, idx) => {
+                if(n1Progress[`${i}_${idx}`] !== undefined) sCount++;
+            });
+            document.getElementById(`badge-${i}`).innerText = `${sCount} / ${allData[i].words.length}`;
+        }
+    }
+
+    function goToSlide(slideNum) {
+        document.getElementById(`s${current}`).classList.remove('active');
+        document.getElementById(`btn${current}`).classList.remove('active-page');
+        current = slideNum;
+        document.getElementById(`s${current}`).classList.add('active');
+        document.getElementById(`btn${current}`).classList.add('active-page');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetQuiz() {
+        if(confirm("全てのクイズ進捗をリセットしますか？")) {
+            localStorage.removeItem('kanji_n1_full_quiz_v1');
+            location.reload();
+        }
+    }
+
+    init();
+</script>
+
+</body>
+</html>
