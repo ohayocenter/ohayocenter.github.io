@@ -7,13 +7,12 @@
     
     <link rel="icon" href="icon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <!-- スマホ向け教科書体フォント「Klee One」を追加 -->
     <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --bg: #fffafb; --card: #ffffff; --text: #455a64; --accent: #4fc3f7; /* カタカナ版は爽やかなブルー系に調整 */
+            --bg: #fffafb; --card: #ffffff; --text: #455a64; --accent: #4fc3f7;
             --soft: #e1f5fe; --guide: #f5f5f5; --btn-txt: #ffffff;
             --dark: #2c3e50;
             --shadow: 0 10px 30px rgba(79, 195, 247, 0.15);
@@ -32,7 +31,6 @@
             overflow-x: hidden; transition: background 0.3s;
         }
 
-        /* --- NAVIGATION --- */
         nav { 
             background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(5px); 
@@ -61,7 +59,6 @@
             .logo { font-size: 1rem; }
         }
 
-        /* --- MAIN CONTENT --- */
         .container {
             flex: 1;
             width: 100%; max-width: 450px;
@@ -74,7 +71,6 @@
 
         h2 { text-align: center; font-size: 1.6rem; margin-bottom: 15px; color: var(--dark); }
 
-        /* Tabs */
         .tab-area { display: flex; gap: 10px; margin-bottom: 25px; width: 100%; }
         .tab-btn {
             flex: 1; padding: 12px; border-radius: 50px; border: 1px solid var(--soft);
@@ -84,7 +80,6 @@
         }
         .tab-btn.active { background: var(--accent); color: var(--card); border-color: var(--accent); }
 
-        /* Back Button */
         .back-btn {
             align-self: flex-start; margin-bottom: 15px; color: var(--text);
             font-size: 0.9rem; font-weight: bold; cursor: pointer; display: flex;
@@ -92,7 +87,6 @@
         }
         .back-btn:hover { opacity: 1; color: var(--accent); }
 
-        /* Menu Grid */
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
         .row-card {
             background: var(--card); padding: 22px; border-radius: 20px; text-align: center;
@@ -101,7 +95,6 @@
         .row-card:active { transform: scale(0.96); }
         .row-name { font-size: 1.2rem; font-weight: bold; color: var(--accent); margin-bottom: 4px; }
 
-        /* Practice Area */
         .info-card {
             width: 100%; background: var(--card); padding: 15px; border-radius: 15px;
             margin-bottom: 20px; border-left: 6px solid var(--accent); box-shadow: var(--shadow);
@@ -115,7 +108,6 @@
             position: absolute; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center;
             font-size: 260px; color: var(--guide); pointer-events: none;
-            /* ここに Klee One を追加してスマホでの表示を最適化 */
             font-family: "YuKyokasho", "Yu Kyokasho", "UD Digi Kyokasho", "Klee One", "HGKyokashotai", sans-serif;
         }
         canvas { position: absolute; top: 0; left: 0; z-index: 5; touch-action: none; }
@@ -144,7 +136,6 @@
         .btn-main { background: var(--accent); color: var(--btn-txt); }
         .btn-sub { background: #eee; color: #888; }
 
-        /* --- FOOTER --- */
         footer {
             width: 100%; padding: 50px 20px 30px; 
             background: var(--card); border-top: 1px solid var(--soft);
@@ -239,60 +230,60 @@
 </div>
 
 <script>
-    /* --- 全カタカナデータベース --- */
+    /* --- 全カタカナデータベース (書き順・座標フルチェック修正済み) --- */
     const dbBasic = {
         'ア行 (A)': [
-            { c: 'ア', m: 'Ice axe', d: 'マ', h: [{x:100,y:90,n:1},{x:160,y:140,n:2}] },
-            { c: 'イ', m: 'Eagle', d: 'ト', h: [{x:130,y:80,n:1},{x:170,y:100,n:2}] },
-            { c: 'ウ', m: 'Umbrella', d: 'ワ', h: [{x:160,y:60,n:1},{x:110,y:120,n:2},{x:140,y:120,n:3}] },
-            { c: 'エ', m: 'Elevator', d: '工', h: [{x:110,y:80,n:1},{x:160,y:80,n:2},{x:100,y:220,n:3}] },
+            { c: 'ア', m: 'Ice axe', d: 'マ', h: [{x:100,y:90,n:1},{x:150,y:140,n:2}] },
+            { c: 'イ', m: 'Eagle', d: 'ト', h: [{x:130,y:80,n:1},{x:170,y:130,n:2}] },
+            { c: 'ウ', m: 'Umbrella', d: 'ワ', h: [{x:160,y:60,n:1},{x:110,y:120,n:2},{x:140,y:110,n:3}] },
+            { c: 'エ', m: 'Elevator', d: '工', h: [{x:100,y:80,n:1},{x:160,y:80,n:2},{x:100,y:220,n:3}] },
             { c: 'オ', m: 'Opera', d: '才', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:200,y:110,n:3}] }
         ],
         'カ行 (Ka)': [
-            { c: 'カ', m: 'Camera', d: '力', h: [{x:100,y:110,n:1},{x:180,y:130,n:2}] },
+            { c: 'カ', m: 'Camera', d: '力', h: [{x:100,y:110,n:1},{x:150,y:130,n:2}] },
             { c: 'キ', m: 'Key', d: 'ミ', h: [{x:100,y:90,n:1},{x:90,y:140,n:2},{x:160,y:60,n:3}] },
-            { c: 'ク', m: 'Cook', d: 'ワ', h: [{x:110,y:100,n:1},{x:160,y:140,n:2}] },
-            { c: 'ケ', m: 'Kettle', d: 'ク', h: [{x:120,y:90,n:1},{x:160,y:120,n:2},{x:200,y:70,n:3}] },
+            { c: 'ク', m: 'Cook', d: 'ワ', h: [{x:120,y:100,n:1},{x:160,y:140,n:2}] },
+            { c: 'ケ', m: 'Kettle', d: 'ク', h: [{x:120,y:90,n:1},{x:160,y:130,n:2},{x:200,y:70,n:3}] },
             { c: 'コ', m: 'Corner', d: 'ユ', h: [{x:100,y:100,n:1},{x:110,y:210,n:2}] }
         ],
         'サ行 (Sa)': [
-            { c: 'サ', m: 'Sardines', d: 'ザ', h: [{x:90,y:110,n:1},{x:140,y:70,n:2},{x:200,y:80,n:3}] },
+            { c: 'サ', m: 'Sardines', d: 'ザ', h: [{x:90,y:110,n:1},{x:130,y:70,n:2},{x:190,y:80,n:3}] },
             { c: 'シ', m: 'Ship', d: 'ツ', h: [{x:100,y:90,n:1},{x:110,y:140,n:2},{x:120,y:230,n:3}] },
-            { c: 'ス', m: 'Soup', d: 'ヌ', h: [{x:100,y:110,n:1},{x:200,y:140,n:2}] },
-            { c: 'セ', m: 'Setting sun', d: 'ヤ', h: [{x:90,y:120,n:1},{x:200,y:80,n:2}] },
-            { c: 'ソ', m: 'Sewing', d: 'ン', h: [{x:120,y:90,n:1},{x:180,y:90,n:2}] }
+            { c: 'ス', m: 'Soup', d: 'ヌ', h: [{x:100,y:110,n:1},{x:170,y:140,n:2}] },
+            { c: 'セ', m: 'Setting sun', d: 'ヤ', h: [{x:90,y:120,n:1},{x:180,y:80,n:2}] },
+            { c: 'ソ', m: 'Sewing', d: 'ン', h: [{x:120,y:90,n:1},{x:180,y:80,n:2}] }
         ],
         'タ行 (Ta)': [
-            { c: 'タ', m: 'Tower', d: 'ク', h: [{x:120,y:100,n:1},{x:180,y:130,n:2},{x:160,y:150,n:3}] },
-            { c: 'チ', m: 'Cheer', d: 'テ', h: [{x:180,y:80,n:1},{x:90,y:140,n:2},{x:160,y:150,n:3}] },
-            { c: 'ツ', m: 'Two', d: 'シ', h: [{x:120,y:90,n:1},{x:180,y:100,n:2},{x:220,y:140,n:3}] },
-            { c: 'テ', m: 'Table', d: 'チ', h: [{x:100,y:90,n:1},{x:90,y:150,n:2},{x:160,y:150,n:3}] },
-            { c: 'ト', m: 'Totem', d: 'ド', h: [{x:160,y:60,n:1},{x:160,y:150,n:2}] }
+            { c: 'タ', m: 'Tower', d: 'ク', h: [{x:130,y:80,n:1},{x:170,y:110,n:2},{x:160,y:160,n:3}] },
+            { c: 'チ', m: 'Cheer', d: 'テ', h: [{x:170,y:80,n:1},{x:100,y:140,n:2},{x:160,y:130,n:3}] },
+            { c: 'ツ', m: 'Two', d: 'シ', h: [{x:100,y:90,n:1},{x:140,y:100,n:2},{x:220,y:100,n:3}] },
+            { c: 'テ', m: 'Table', d: 'チ', h: [{x:100,y:90,n:1},{x:90,y:150,n:2},{x:160,y:140,n:3}] },
+            { c: 'ト', m: 'Totem', d: 'ド', h: [{x:160,y:60,n:1},{x:160,y:140,n:2}] }
         ],
         'ナ行 (Na)': [
             { c: 'ナ', m: 'Nut', d: 'メ', h: [{x:100,y:110,n:1},{x:160,y:70,n:2}] },
             { c: 'ニ', m: 'Needles', d: '三', h: [{x:100,y:100,n:1},{x:90,y:180,n:2}] },
-            { c: 'ヌ', m: 'Noodles', d: 'ス', h: [{x:100,y:100,n:1},{x:180,y:130,n:2}] },
+            { c: 'ヌ', m: 'Noodles', d: 'ス', h: [{x:100,y:100,n:1},{x:170,y:130,n:2}] },
             { c: 'ネ', m: 'Nest', d: 'ホ', h: [{x:160,y:60,n:1},{x:90,y:120,n:2},{x:140,y:130,n:3},{x:220,y:150,n:4}] },
             { c: 'ノ', m: 'Nose', d: 'メ', h: [{x:190,y:80,n:1}] }
         ],
         'ハ行 (Ha)': [
-            { c: 'ハ', m: 'Hat', d: '八', h: [{x:120,y:80,n:1},{x:200,y:80,n:2}] },
-            { c: 'ヒ', m: 'Heel', d: 'ビ', h: [{x:90,y:110,n:1},{x:100,y:200,n:2}] },
+            { c: 'ハ', m: 'Hat', d: '八', h: [{x:130,y:80,n:1},{x:190,y:80,n:2}] },
+            { c: 'ヒ', m: 'Heel', d: 'ビ', h: [{x:90,y:110,n:1},{x:100,y:160,n:2}] },
             { c: 'フ', m: 'Hula', d: 'ラ', h: [{x:110,y:100,n:1}] },
             { c: 'ヘ', m: 'Helmet', d: 'ペ', h: [{x:100,y:160,n:1}] },
-            { c: 'ホ', m: 'Holy', d: '木', h: [{x:100,y:100,n:1},{x:100,y:160,n:2},{x:160,y:60,n:3},{x:120,y:220,n:4}] }
+            { c: 'ホ', m: 'Holy', d: '木', h: [{x:90,y:100,n:1},{x:160,y:60,n:2},{x:120,y:150,n:3},{x:200,y:150,n:4}] }
         ],
         'マ行 (Ma)': [
             { c: 'マ', m: 'Mast', d: 'ア', h: [{x:100,y:100,n:1},{x:160,y:150,n:2}] },
             { c: 'ミ', m: 'Missiles', d: '三', h: [{x:100,y:80,n:1},{x:110,y:140,n:2},{x:120,y:200,n:3}] },
-            { c: 'ム', m: 'Moose', d: 'マ', h: [{x:120,y:80,n:1},{x:200,y:120,n:2}] },
+            { c: 'ム', m: 'Moose', d: 'マ', h: [{x:130,y:80,n:1},{x:200,y:140,n:2}] },
             { c: 'メ', m: 'Messy', d: 'ナ', h: [{x:180,y:80,n:1},{x:120,y:130,n:2}] },
             { c: 'モ', m: 'Monitor', d: 'モ', h: [{x:100,y:90,n:1},{x:90,y:150,n:2},{x:160,y:60,n:3}] }
         ],
         'ヤ行 (Ya)': [
             { c: 'ヤ', m: 'Yak', d: 'セ', h: [{x:100,y:100,n:1},{x:160,y:70,n:2}] },
-            { c: 'ユ', m: 'U-turn', d: 'コ', h: [{x:100,y:90,n:1},{x:160,y:60,n:2}] },
+            { c: 'ユ', m: 'U-turn', d: 'コ', h: [{x:100,y:90,n:1},{x:100,y:180,n:2}] },
             { c: 'ヨ', m: 'Yoga', d: 'コ', h: [{x:100,y:80,n:1},{x:100,y:150,n:2},{x:100,y:220,n:3}] }
         ],
         'ラ行 (Ra)': [
@@ -300,51 +291,51 @@
             { c: 'リ', m: 'Ribbon', d: 'ソ', h: [{x:120,y:90,n:1},{x:200,y:80,n:2}] },
             { c: 'ル', m: 'Roots', d: 'レ', h: [{x:130,y:80,n:1},{x:200,y:80,n:2}] },
             { c: 'レ', m: 'Record', d: 'ル', h: [{x:160,y:70,n:1}] },
-            { c: 'ロ', m: 'Road', d: '口', h: [{x:100,y:80,n:1},{x:100,y:120,n:2},{x:100,y:220,n:3}] }
+            { c: 'ロ', m: 'Road', d: '口', h: [{x:100,y:80,n:1},{x:120,y:80,n:2},{x:100,y:220,n:3}] }
         ],
         'ワ行 (Wa)': [
-            { c: 'ワ', m: 'Wine', d: 'ウ', h: [{x:100,y:90,n:1},{x:160,y:110,n:2}] },
-            { c: 'ヲ', m: 'Olympic', d: 'テ', h: [{x:100,y:100,n:1},{x:90,y:160,n:2},{x:180,y:120,n:3}] },
-            { c: 'ン', m: 'Nose', d: 'ソ', h: [{x:120,y:80,n:1},{x:120,y:220,n:2}] }
+            { c: 'ワ', m: 'Wine', d: 'ウ', h: [{x:100,y:90,n:1},{x:120,y:90,n:2}] },
+            { c: 'ヲ', m: 'Olympic', d: 'テ', h: [{x:100,y:100,n:1},{x:90,y:160,n:2},{x:150,y:120,n:3}] },
+            { c: 'ン', m: 'Nose', d: 'ソ', h: [{x:130,y:80,n:1},{x:120,y:220,n:2}] }
         ]
     };
 
-    /* --- カタカナ濁音・半濁音 --- */
+    /* --- カタカナ濁音・半濁音 (書き順・座標フルチェック修正済み) --- */
     const dbVoiced = {
         'ガ行 (Ga)': [
-            { c: 'ガ', m: 'GA', d: 'カ', h: [{x:100,y:110,n:1},{x:180,y:130,n:2},{x:245,y:45,n:3},{x:275,y:45,n:4}] },
+            { c: 'ガ', m: 'GA', d: 'カ', h: [{x:100,y:110,n:1},{x:150,y:130,n:2},{x:245,y:45,n:3},{x:275,y:45,n:4}] },
             { c: 'ギ', m: 'GI', d: 'キ', h: [{x:100,y:90,n:1},{x:90,y:140,n:2},{x:160,y:60,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
-            { c: 'グ', m: 'GU', d: 'ク', h: [{x:110,y:100,n:1},{x:160,y:140,n:2},{x:230,y:45,n:3},{x:260,y:45,n:4}] },
-            { c: 'ゲ', m: 'GE', d: 'ケ', h: [{x:120,y:90,n:1},{x:160,y:120,n:2},{x:200,y:70,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
+            { c: 'グ', m: 'GU', d: 'ク', h: [{x:120,y:100,n:1},{x:160,y:140,n:2},{x:230,y:45,n:3},{x:260,y:45,n:4}] },
+            { c: 'ゲ', m: 'GE', d: 'ケ', h: [{x:120,y:90,n:1},{x:160,y:130,n:2},{x:200,y:70,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
             { c: 'ゴ', m: 'GO', d: 'コ', h: [{x:100,y:100,n:1},{x:110,y:210,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] }
         ],
         'ザ行 (Za)': [
-            { c: 'ザ', m: 'ZA', d: 'サ', h: [{x:90,y:110,n:1},{x:140,y:70,n:2},{x:200,y:80,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
+            { c: 'ザ', m: 'ZA', d: 'サ', h: [{x:90,y:110,n:1},{x:130,y:70,n:2},{x:190,y:80,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
             { c: 'ジ', m: 'JI', d: 'シ', h: [{x:100,y:90,n:1},{x:110,y:140,n:2},{x:120,y:230,n:3},{x:230,y:45,n:4},{x:260,y:45,n:5}] },
-            { c: 'ズ', m: 'ZU', d: 'ス', h: [{x:100,y:110,n:1},{x:200,y:140,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] },
-            { c: 'ゼ', m: 'ZE', d: 'セ', h: [{x:90,y:120,n:1},{x:200,y:80,n:2},{x:250,y:45,n:3},{x:280,y:45,n:4}] },
-            { c: 'ゾ', m: 'ZO', d: 'ソ', h: [{x:120,y:90,n:1},{x:180,y:90,n:2},{x:230,y:45,n:3},{x:260,y:45,n:4}] }
+            { c: 'ズ', m: 'ZU', d: 'ス', h: [{x:100,y:110,n:1},{x:170,y:140,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] },
+            { c: 'ゼ', m: 'ZE', d: 'セ', h: [{x:90,y:120,n:1},{x:180,y:80,n:2},{x:250,y:45,n:3},{x:280,y:45,n:4}] },
+            { c: 'ゾ', m: 'ZO', d: 'ソ', h: [{x:120,y:90,n:1},{x:180,y:80,n:2},{x:230,y:45,n:3},{x:260,y:45,n:4}] }
         ],
         'ダ行 (Da)': [
-            { c: 'ダ', m: 'DA', d: 'タ', h: [{x:120,y:100,n:1},{x:180,y:130,n:2},{x:160,y:150,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
-            { c: 'ヂ', m: 'JI', d: 'チ', h: [{x:180,y:80,n:1},{x:90,y:140,n:2},{x:160,y:150,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
-            { c: 'ヅ', m: 'ZU', d: 'ツ', h: [{x:120,y:90,n:1},{x:180,y:100,n:2},{x:220,y:140,n:3},{x:260,y:45,n:4},{x:290,y:45,n:5}] },
-            { c: 'デ', m: 'DE', d: 'テ', h: [{x:100,y:90,n:1},{x:90,y:150,n:2},{x:160,y:150,n:3},{x:240,y:45,n:4},{x:270,y:45,n:5}] },
-            { c: 'ド', m: 'DO', d: 'ト', h: [{x:160,y:60,n:1},{x:160,y:150,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] }
+            { c: 'ダ', m: 'DA', d: 'タ', h: [{x:130,y:80,n:1},{x:170,y:110,n:2},{x:160,y:160,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
+            { c: 'ヂ', m: 'JI', d: 'チ', h: [{x:170,y:80,n:1},{x:100,y:140,n:2},{x:160,y:130,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
+            { c: 'ヅ', m: 'ZU', d: 'ツ', h: [{x:100,y:90,n:1},{x:140,y:100,n:2},{x:220,y:100,n:3},{x:260,y:45,n:4},{x:290,y:45,n:5}] },
+            { c: 'デ', m: 'DE', d: 'テ', h: [{x:100,y:90,n:1},{x:90,y:150,n:2},{x:160,y:140,n:3},{x:240,y:45,n:4},{x:270,y:45,n:5}] },
+            { c: 'ド', m: 'DO', d: 'ト', h: [{x:160,y:60,n:1},{x:160,y:140,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] }
         ],
         'バ行 (Ba)': [
-            { c: 'バ', m: 'BA', d: 'ハ', h: [{x:120,y:80,n:1},{x:200,y:80,n:2},{x:250,y:45,n:3},{x:280,y:45,n:4}] },
-            { c: 'ビ', m: 'BI', d: 'ヒ', h: [{x:90,y:110,n:1},{x:100,y:200,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] },
+            { c: 'バ', m: 'BA', d: 'ハ', h: [{x:130,y:80,n:1},{x:190,y:80,n:2},{x:250,y:45,n:3},{x:280,y:45,n:4}] },
+            { c: 'ビ', m: 'BI', d: 'ヒ', h: [{x:90,y:110,n:1},{x:100,y:160,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] },
             { c: 'ブ', m: 'BU', d: 'フ', h: [{x:110,y:100,n:1},{x:230,y:45,n:2},{x:260,y:45,n:3}] },
             { c: 'ベ', m: 'BE', d: 'ヘ', h: [{x:100,y:160,n:1},{x:240,y:45,n:2},{x:270,y:45,n:3}] },
-            { c: 'ボ', m: 'BO', d: 'ホ', h: [{x:100,y:100,n:1},{x:100,y:160,n:2},{x:160,y:60,n:3},{x:120,y:220,n:4},{x:250,y:45,n:5},{x:280,y:45,n:6}] }
+            { c: 'ボ', m: 'BO', d: 'ホ', h: [{x:90,y:100,n:1},{x:160,y:60,n:2},{x:120,y:150,n:3},{x:200,y:150,n:4},{x:250,y:45,n:5},{x:280,y:45,n:6}] }
         ],
         'パ行 (Pa)': [
-            { c: 'パ', m: 'PA', d: 'ハ', h: [{x:120,y:80,n:1},{x:200,y:80,n:2},{x:260,y:50,n:3}] },
-            { c: 'ピ', m: 'PI', d: 'ヒ', h: [{x:90,y:110,n:1},{x:100,y:200,n:2},{x:250,y:50,n:3}] },
+            { c: 'パ', m: 'PA', d: 'ハ', h: [{x:130,y:80,n:1},{x:190,y:80,n:2},{x:260,y:50,n:3}] },
+            { c: 'ピ', m: 'PI', d: 'ヒ', h: [{x:90,y:110,n:1},{x:100,y:160,n:2},{x:250,y:50,n:3}] },
             { c: 'プ', m: 'PU', d: 'フ', h: [{x:110,y:100,n:1},{x:240,y:50,n:2}] },
             { c: 'ペ', m: 'PE', d: 'ヘ', h: [{x:100,y:160,n:1},{x:250,y:50,n:2}] },
-            { c: 'ポ', m: 'PO', d: 'ホ', h: [{x:100,y:100,n:1},{x:100,y:160,n:2},{x:160,y:60,n:3},{x:120,y:220,n:4},{x:260,y:50,n:5}] }
+            { c: 'ポ', m: 'PO', d: 'ホ', h: [{x:90,y:100,n:1},{x:160,y:60,n:2},{x:120,y:150,n:3},{x:200,y:150,n:4},{x:260,y:50,n:5}] }
         ]
     };
 
@@ -402,7 +393,6 @@
         });
 
         hCtx.clearRect(0,0,320,320); hCtx.fillStyle="black"; 
-        /* ここにも Klee One を追加して、裏の判定用キャンバスと表示文字を一致させる */
         hCtx.font="260px 'YuKyokasho', 'Yu Kyokasho', 'UD Digi Kyokasho', 'Klee One', sans-serif";
         hCtx.textAlign="center"; hCtx.textBaseline="middle"; hCtx.shadowBlur = 20; hCtx.shadowColor = "black";
         hCtx.fillText(item.c, 160, 160); hCtx.shadowBlur = 0;
