@@ -7,6 +7,8 @@
     
     <link rel="icon" href="icon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- スマホ向け教科書体フォント「Klee One」を追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -113,7 +115,8 @@
             position: absolute; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center;
             font-size: 260px; color: var(--guide); pointer-events: none;
-            font-family: "YuKyokasho", "Yu Kyokasho", "UD Digi Kyokasho", "HGKyokashotai", sans-serif;
+            /* ここに Klee One を追加してスマホでの表示を最適化 */
+            font-family: "YuKyokasho", "Yu Kyokasho", "UD Digi Kyokasho", "Klee One", "HGKyokashotai", sans-serif;
         }
         canvas { position: absolute; top: 0; left: 0; z-index: 5; touch-action: none; }
         
@@ -398,7 +401,9 @@
             d.innerText = p.n; layer.appendChild(d);
         });
 
-        hCtx.clearRect(0,0,320,320); hCtx.fillStyle="black"; hCtx.font="260px 'YuKyokasho', sans-serif";
+        hCtx.clearRect(0,0,320,320); hCtx.fillStyle="black"; 
+        /* ここにも Klee One を追加して、裏の判定用キャンバスと表示文字を一致させる */
+        hCtx.font="260px 'YuKyokasho', 'Yu Kyokasho', 'UD Digi Kyokasho', 'Klee One', sans-serif";
         hCtx.textAlign="center"; hCtx.textBaseline="middle"; hCtx.shadowBlur = 20; hCtx.shadowColor = "black";
         hCtx.fillText(item.c, 160, 160); hCtx.shadowBlur = 0;
         resetCanvas();
