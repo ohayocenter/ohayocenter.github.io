@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Hiragana Practice - OHAYO CENTER</title>
+    
+    <link rel="icon" href="icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #fffafb; --card: #ffffff; --text: #455a64; --accent: #f06292;
+            --soft: #fce4ec; --guide: #f5f5f5; --btn-txt: #ffffff;
+            --dark: #2c3e50;
+            --shadow: 0 10px 30px rgba(240, 98, 146, 0.08);
+        }
+        body.dark-mode {
+            --bg: #1a1a1b; --card: #2d2d2e; --text: #e0e0e0; --accent: #ffb3c1;
+            --soft: #3d3135; --guide: #334155; --dark: #f1f5f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg); color: var(--text);
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            overflow-x: hidden; transition: background 0.3s;
+        }
+
+        /* --- NAVIGATION --- */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            padding: 0 5%; 
+            height: 70px; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05); 
+        }
+        body.dark-mode nav { background: rgba(30, 41, 59, 0.95); }
+        .logo { font-weight: bold; color: var(--dark); font-size: 1.2rem; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        @media (max-width: 600px) {
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; letter-spacing: 0.5px; }
+            .logo { font-size: 1rem; }
+        }
+
+        /* --- MAIN CONTENT --- */
+        .container {
+            flex: 1;
+            width: 100%; max-width: 450px;
+            padding: 110px 20px 40px; 
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .screen { display: none; width: 100%; flex-direction: column; align-items: center; }
+        .screen.active { display: flex; animation: fadeIn 0.4s ease-out; }
+
+        h2 { text-align: center; font-size: 1.6rem; margin-bottom: 15px; color: var(--dark); }
+
+        /* Tabs */
+        .tab-area { display: flex; gap: 10px; margin-bottom: 25px; width: 100%; }
+        .tab-btn {
+            flex: 1; padding: 12px; border-radius: 50px; border: 1px solid var(--soft);
+            background: var(--card); color: var(--text); font-weight: bold; cursor: pointer;
+            font-size: 0.8rem; transition: 0.3s; box-shadow: var(--shadow);
+            white-space: nowrap;
+        }
+        .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+        /* Back Button */
+        .back-btn {
+            align-self: flex-start; margin-bottom: 15px; color: var(--text);
+            font-size: 0.9rem; font-weight: bold; cursor: pointer; display: flex;
+            align-items: center; gap: 5px; opacity: 0.7; transition: 0.2s;
+        }
+        .back-btn:hover { opacity: 1; color: var(--accent); }
+
+        /* Menu Grid */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+        .row-card {
+            background: var(--card); padding: 22px; border-radius: 20px; text-align: center;
+            border: 1px solid var(--soft); box-shadow: var(--shadow); cursor: pointer; transition: 0.2s;
+        }
+        .row-card:active { transform: scale(0.96); }
+        .row-name { font-size: 1.2rem; font-weight: bold; color: var(--accent); margin-bottom: 4px; }
+
+        /* Practice Area */
+        .info-card {
+            width: 100%; background: var(--card); padding: 15px; border-radius: 15px;
+            margin-bottom: 20px; border-left: 6px solid var(--accent); box-shadow: var(--shadow);
+        }
+        .canvas-box {
+            position: relative; width: 320px; height: 320px;
+            background: var(--card); border-radius: 25px; border: 4px solid var(--soft);
+            box-shadow: var(--shadow); overflow: hidden;
+        }
+        .guide-txt {
+            position: absolute; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 260px; color: var(--guide); pointer-events: none;
+            font-family: "YuKyokasho", "Yu Kyokasho", "UD Digi Kyokasho", "HGKyokashotai", sans-serif;
+        }
+        canvas { position: absolute; top: 0; left: 0; z-index: 5; touch-action: none; }
+        
+        /* 修正点：transform を追加し、指定座標の「ど真ん中」に円が来るようにしました */
+        .num-hint {
+            position: absolute; width: 24px; height: 24px; background: var(--accent);
+            color: white; border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 13px; font-weight: bold; z-index: 6;
+            border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transform: translate(-50%, -50%); 
+        }
+
+        #quiz-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--card); display: none; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 20;
+        }
+        .opt-btn {
+            width: 105px; height: 105px; font-size: 55px; margin: 10px;
+            background: var(--bg); border: 2px solid var(--soft); border-radius: 20px;
+            color: var(--text); font-family: serif; cursor: pointer; transition: 0.2s;
+        }
+
+        .btn-area { margin-top: 25px; display: flex; gap: 12px; width: 320px; }
+        .action-btn { flex: 1; padding: 16px; border: none; border-radius: 50px; font-size: 1rem; font-weight: bold; cursor: pointer; box-shadow: var(--shadow); }
+        .btn-main { background: var(--accent); color: var(--btn-txt); }
+        .btn-sub { background: #eee; color: #888; }
+
+        /* --- FOOTER --- */
+        footer {
+            width: 100%; padding: 50px 20px 30px; 
+            background: var(--card); border-top: 1px solid var(--soft);
+            text-align: center; color: var(--text); font-size: 0.85rem;
+        }
+        .support-section { margin-bottom: 25px; }
+        .bmc-btn {
+            display: inline-flex; align-items: center; background-color: #FFDD00;
+            color: #000000; border-radius: 12px; padding: 10px 20px;
+            text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .bmc-btn img { height: 22px; margin-right: 10px; }
+
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); display: none;
+            flex-direction: column; justify-content: center; align-items: center; z-index: 200;
+        }
+        .stamp-card { background: var(--card); padding: 40px; border-radius: 30px; text-align: center; border: 3px solid var(--accent); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+        <li><a href="#" onclick="document.body.classList.toggle('dark-mode'); resetCanvas();"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="screen active" id="menu">
+        <h2>Hiragana Course</h2>
+        <div class="tab-area">
+            <button class="tab-btn active" id="tab-basic" onclick="switchTab('basic')">あ〜わ行</button>
+            <button class="tab-btn" id="tab-voiced" onclick="switchTab('voiced')">Tenten & Maru</button>
+        </div>
+        <div class="menu-grid" id="menu-grid"></div>
+    </div>
+
+    <div class="screen" id="practice">
+        <div class="back-btn" onclick="backToMenu()">
+            <i class="fa-solid fa-chevron-left"></i> Back to Menu
+        </div>
+        <div class="info-card">
+            <b id="mn-title" style="color:var(--accent); font-size:1.1rem;"></b><br>
+            <small style="opacity:0.7;">Trace correctly / がんばって！</small>
+        </div>
+        <div class="canvas-box">
+            <div class="guide-txt" id="guide-char">あ</div>
+            <div id="hints-layer"></div>
+            <canvas id="canvas" width="320" height="320"></canvas>
+            <canvas id="h-canvas" width="320" height="320" style="display:none;"></canvas>
+            <div id="quiz-overlay">
+                <p style="font-weight:bold; margin-bottom:15px; color:var(--dark);">Which is correct?</p>
+                <div style="display:flex;">
+                    <button class="opt-btn" id="q1" onclick="checkQuiz(0)"></button>
+                    <button class="opt-btn" id="q2" onclick="checkQuiz(1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="btn-area">
+            <button class="action-btn btn-sub" onclick="resetCanvas()">Clear</button>
+            <button class="action-btn btn-main" onclick="judge()">Check!</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="support-section">
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+            <span>Support OHAYO CENTER</span>
+        </a>
+    </div>
+    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
+</footer>
+
+<div class="overlay" id="overlay">
+    <div class="stamp-card">
+        <div style="font-size: 70px; margin-bottom:15px;">🌸</div>
+        <h2 style="color:var(--accent); margin-bottom:25px; font-size:1.8rem;">Beautiful! / 合格！</h2>
+        <button class="action-btn btn-main" style="width:180px;" onclick="closeOverlay()">Next Letter</button>
+    </div>
+</div>
+
+<script>
+    /* --- 全ひらがなデータベース：教科書体の標準筆順に完全対応 --- */
+    const dbBasic = {
+        'あ行 (A)': [
+            { c: 'あ', m: 'Antenna', d: 'め', h: [{x:120,y:100,n:1},{x:160,y:50,n:2},{x:150,y:160,n:3}] },
+            { c: 'い', m: 'Eels', d: 'り', h: [{x:110,y:100,n:1},{x:210,y:100,n:2}] },
+            { c: 'う', m: 'Ugh!', d: 'ら', h: [{x:160,y:60,n:1},{x:130,y:130,n:2}] },
+            { c: 'え', m: 'Energetic', d: 'ん', h: [{x:160,y:60,n:1},{x:120,y:130,n:2}] },
+            { c: 'お', m: 'On the green', d: 'あ', h: [{x:110,y:120,n:1},{x:160,y:60,n:2},{x:230,y:100,n:3}] }
+        ],
+        'か行 (Ka)': [
+            { c: 'か', m: 'KArate', d: 'が', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:90,n:3}] },
+            { c: 'き', m: 'Key', d: 'さ', h: [{x:110,y:100,n:1},{x:110,y:140,n:2},{x:160,y:70,n:3},{x:150,y:230,n:4}] },
+            { c: 'く', m: 'Cuckoo', d: 'へ', h: [{x:120,y:120,n:1}] },
+            { c: 'け', m: 'Keg', d: 'は', h: [{x:100,y:100,n:1},{x:160,y:100,n:2},{x:190,y:80,n:3}] },
+            { c: 'こ', m: 'Core', d: 'に', h: [{x:120,y:100,n:1},{x:120,y:200,n:2}] }
+        ],
+        'さ行 (Sa)': [
+            { c: 'さ', m: 'Sign', d: 'き', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:150,y:220,n:3}] },
+            { c: 'し', m: 'She', d: 'つ', h: [{x:140,y:80,n:1}] },
+            { c: 'す', m: 'Swing', d: 'む', h: [{x:90,y:110,n:1},{x:160,y:60,n:2}] },
+            { c: 'せ', m: 'Say Hi', d: 'け', h: [{x:90,y:120,n:1},{x:210,y:80,n:2},{x:160,y:90,n:3}] },
+            { c: 'そ', m: 'Sewing', d: 'ろ', h: [{x:120,y:100,n:1}] }
+        ],
+        'た行 (Ta)': [
+            { c: 'た', m: 'TA', d: 'な', h: [{x:100,y:110,n:1},{x:150,y:60,n:2},{x:200,y:120,n:3},{x:200,y:180,n:4}] },
+            { c: 'ち', m: 'Cheer', d: 'ら', h: [{x:100,y:110,n:1},{x:160,y:60,n:2}] },
+            { c: 'つ', m: 'Tsunami', d: 'し', h: [{x:100,y:140,n:1}] },
+            { c: 'て', m: 'Telescope', d: 'と', h: [{x:100,y:110,n:1}] },
+            { c: 'と', m: 'Toe', d: 'て', h: [{x:140,y:80,n:1},{x:120,y:170,n:2}] }
+        ],
+        'な行 (Na)': [
+            { c: 'な', m: 'Nun', d: 'た', h: [{x:90,y:110,n:1},{x:140,y:60,n:2},{x:210,y:90,n:3},{x:180,y:150,n:4}] },
+            { c: 'に', m: 'Knee', d: 'こ', h: [{x:100,y:100,n:1},{x:190,y:110,n:2},{x:190,y:190,n:3}] },
+            { c: 'ぬ', m: 'Noodles', d: 'め', h: [{x:140,y:100,n:1},{x:110,y:70,n:2}] },
+            { c: 'ね', m: 'Neko', d: 'わ', h: [{x:110,y:70,n:1},{x:130,y:100,n:2}] },
+            { c: 'の', m: 'No entry', d: 'め', h: [{x:160,y:120,n:1}] }
+        ],
+        'は行 (Ha)': [
+            { c: 'は', m: 'Haha!', d: 'ほ', h: [{x:100,y:90,n:1},{x:180,y:100,n:2},{x:200,y:60,n:3}] },
+            { c: 'ひ', m: 'Smile', d: 'と', h: [{x:90,y:110,n:1}] },
+            { c: 'ふ', m: 'Fuji', d: 'ぷ', h: [{x:160,y:60,n:1},{x:160,y:140,n:2},{x:90,y:180,n:3},{x:230,y:180,n:4}] },
+            { c: 'へ', m: 'Heaven', d: 'く', h: [{x:100,y:160,n:1}] },
+            { c: 'ほ', m: 'Hot stove', d: 'は', h: [{x:100,y:90,n:1},{x:180,y:90,n:2},{x:180,y:140,n:3},{x:200,y:60,n:4}] }
+        ],
+        'ま行 (Ma)': [
+            { c: 'ま', m: 'Mast', d: 'ほ', h: [{x:110,y:100,n:1},{x:110,y:140,n:2},{x:160,y:60,n:3}] },
+            { c: 'み', m: 'Me is 21', d: 'め', h: [{x:100,y:110,n:1},{x:200,y:110,n:2}] },
+            { c: 'む', m: 'Moo', d: 'す', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:110,n:3}] },
+            { c: 'め', m: 'Messy', d: 'ぬ', h: [{x:140,y:100,n:1},{x:110,y:70,n:2}] },
+            { c: 'も', m: 'Hooks', d: 'し', h: [{x:160,y:60,n:1},{x:110,y:110,n:2},{x:110,y:150,n:3}] }
+        ],
+        'や行 (Ya)': [
+            { c: 'や', m: 'Yak', d: 'せ', h: [{x:100,y:130,n:1},{x:170,y:80,n:2},{x:140,y:70,n:3}] },
+            { c: 'ゆ', m: 'Fish', d: 'め', h: [{x:120,y:100,n:1},{x:200,y:70,n:2}] },
+            { c: 'よ', m: 'Yo-yo', d: 'ま', h: [{x:140,y:120,n:1},{x:180,y:70,n:2}] }
+        ],
+        'ら行 (Ra)': [
+            { c: 'ら', m: 'Rabbit', d: 'ち', h: [{x:160,y:70,n:1},{x:140,y:130,n:2}] },
+            { c: 'り', m: 'River', d: 'い', h: [{x:120,y:100,n:1},{x:200,y:100,n:2}] },
+            { c: 'る', m: 'Loop', d: 'ろ', h: [{x:120,y:100,n:1}] },
+            { c: 'れ', m: 'Resting', d: 'ね', h: [{x:110,y:80,n:1},{x:140,y:120,n:2}] },
+            { c: 'ろ', m: 'Radio', d: 'る', h: [{x:120,y:100,n:1}] }
+        ],
+        'わ行 (Wa)': [
+            { c: 'わ', m: 'Swan', d: 'ね', h: [{x:110,y:80,n:1},{x:140,y:120,n:2}] },
+            { c: 'を', m: 'Whoa!', d: 'お', h: [{x:90,y:110,n:1},{x:160,y:60,n:2},{x:170,y:130,n:3}] },
+            { c: 'ん', m: 'End', d: 'え', h: [{x:110,y:110,n:1}] }
+        ]
+    };
+
+    /* --- 濁音・半濁音（Tenten & Maru）：濁点はすべて「一番最後」の画数 --- */
+    const dbVoiced = {
+        'が行 (Ga)': [
+            { c: 'が', m: 'GA', d: 'か', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:220,y:100,n:3},{x:245,y:45,n:4},{x:275,y:45,n:5}] },
+            { c: 'ぎ', m: 'GI', d: 'き', h: [{x:110,y:100,n:1},{x:110,y:140,n:2},{x:160,y:70,n:3},{x:150,y:230,n:4},{x:250,y:45,n:5},{x:280,y:45,n:6}] },
+            { c: 'ぐ', m: 'GU', d: 'く', h: [{x:120,y:120,n:1},{x:230,y:45,n:2},{x:260,y:45,n:3}] },
+            { c: 'げ', m: 'GE', d: 'け', h: [{x:100,y:100,n:1},{x:160,y:100,n:2},{x:190,y:80,n:3},{x:240,y:45,n:4},{x:270,y:45,n:5}] },
+            { c: 'ご', m: 'GO', d: 'こ', h: [{x:120,y:100,n:1},{x:120,y:200,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] }
+        ],
+        'ざ行 (Za)': [
+            { c: 'ざ', m: 'ZA', d: 'さ', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:150,y:220,n:3},{x:240,y:45,n:4},{x:270,y:45,n:5}] },
+            { c: 'じ', m: 'JI', d: 'し', h: [{x:140,y:80,n:1},{x:230,y:45,n:2},{x:260,y:45,n:3}] },
+            { c: 'ず', m: 'ZU', d: 'す', h: [{x:90,y:110,n:1},{x:160,y:60,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] },
+            { c: 'ぜ', m: 'ZE', d: 'せ', h: [{x:90,y:120,n:1},{x:210,y:80,n:2},{x:160,y:90,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
+            { c: 'ぞ', m: 'ZO', d: 'そ', h: [{x:120,y:100,n:1},{x:230,y:45,n:2},{x:260,y:45,n:3}] }
+        ],
+        'だ行 (Da)': [
+            { c: 'だ', m: 'DA', d: 'た', h: [{x:100,y:110,n:1},{x:150,y:60,n:2},{x:200,y:120,n:3},{x:200,y:180,n:4},{x:250,y:45,n:5},{x:280,y:45,n:6}] },
+            { c: 'ぢ', m: 'JI', d: 'ち', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] },
+            { c: 'づ', m: 'ZU', d: 'つ', h: [{x:100,y:140,n:1},{x:230,y:45,n:2},{x:260,y:45,n:3}] },
+            { c: 'で', m: 'DE', d: 'て', h: [{x:100,y:110,n:1},{x:240,y:45,n:2},{x:270,y:45,n:3}] },
+            { c: 'ど', m: 'DO', d: 'と', h: [{x:140,y:80,n:1},{x:120,y:170,n:2},{x:240,y:45,n:3},{x:270,y:45,n:4}] }
+        ],
+        'ば行 (Ba)': [
+            { c: 'ば', m: 'BA', d: 'は', h: [{x:100,y:90,n:1},{x:180,y:100,n:2},{x:200,y:60,n:3},{x:250,y:45,n:4},{x:280,y:45,n:5}] },
+            { c: 'び', m: 'BI', d: 'ひ', h: [{x:90,y:110,n:1},{x:240,y:45,n:2},{x:270,y:45,n:3}] },
+            { c: 'ぶ', m: 'BU', d: 'ふ', h: [{x:160,y:60,n:1},{x:160,y:140,n:2},{x:90,y:180,n:3},{x:230,y:180,n:4},{x:250,y:45,n:5},{x:280,y:45,n:6}] },
+            { c: 'べ', m: 'BE', d: 'へ', h: [{x:100,y:160,n:1},{x:240,y:45,n:2},{x:270,y:45,n:3}] },
+            { c: 'ぼ', m: 'BO', d: 'ほ', h: [{x:100,y:90,n:1},{x:180,y:90,n:2},{x:180,y:140,n:3},{x:200,y:60,n:4},{x:250,y:45,n:5},{x:280,y:45,n:6}] }
+        ],
+        'ぱ行 (Pa)': [
+            { c: 'ぱ', m: 'PA', d: 'は', h: [{x:100,y:90,n:1},{x:180,y:100,n:2},{x:200,y:60,n:3},{x:260,y:50,n:4}] },
+            { c: 'ぴ', m: 'PI', d: 'ひ', h: [{x:90,y:110,n:1},{x:250,y:50,n:2}] },
+            { c: 'ぷ', m: 'PU', d: 'ふ', h: [{x:160,y:60,n:1},{x:160,y:140,n:2},{x:90,y:180,n:3},{x:230,y:180,n:4},{x:260,y:50,n:5}] },
+            { c: 'ぺ', m: 'PE', d: 'へ', h: [{x:100,y:160,n:1},{x:250,y:50,n:2}] },
+            { c: 'ぽ', m: 'PO', d: 'ほ', h: [{x:100,y:90,n:1},{x:180,y:90,n:2},{x:180,y:140,n:3},{x:200,y:60,n:4},{x:260,y:50,n:5}] }
+        ]
+    };
+
+    let currentDB = dbBasic;
+    let activeRow = []; let charIdx = 0; let drawing = false; let correctIdx = 0;
+    const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
+    const hCanvas = document.getElementById('h-canvas'); const hCtx = hCanvas.getContext('2d');
+
+    function switchTab(type) {
+        currentDB = (type === 'basic') ? dbBasic : dbVoiced;
+        document.getElementById('tab-basic').classList.toggle('active', type === 'basic');
+        document.getElementById('tab-voiced').classList.toggle('active', type === 'voiced');
+        renderMenu();
+    }
+
+    function renderMenu() {
+        const grid = document.getElementById('menu-grid');
+        grid.innerHTML = '';
+        Object.keys(currentDB).forEach(row => {
+            const card = document.createElement('div');
+            card.className = 'row-card';
+            card.innerHTML = `<div class="row-name">${row}</div><div style="font-size:0.8rem; opacity:0.6;">${currentDB[row].map(i => i.c).join('')}</div>`;
+            card.onclick = () => startPractice(row);
+            grid.appendChild(card);
+        });
+    }
+
+    function startPractice(rowName) {
+        activeRow = currentDB[rowName];
+        charIdx = 0;
+        document.getElementById('menu').classList.remove('active');
+        document.getElementById('practice').classList.add('active');
+        window.scrollTo(0,0);
+        loadChar();
+    }
+
+    function backToMenu() {
+        resetCanvas();
+        document.getElementById('practice').classList.remove('active');
+        document.getElementById('menu').classList.add('active');
+        document.getElementById('quiz-overlay').style.display = 'none';
+    }
+
+    function loadChar() {
+        const item = activeRow[charIdx];
+        document.getElementById('guide-char').innerText = item.c;
+        document.getElementById('mn-title').innerText = `"${item.c}" for ${item.m}`;
+        document.getElementById('quiz-overlay').style.display = 'none';
+        const layer = document.getElementById('hints-layer');
+        layer.innerHTML = '';
+        item.h.forEach(p => {
+            const d = document.createElement('div');
+            d.className = 'num-hint'; d.style.left = p.x+'px'; d.style.top = p.y+'px';
+            d.innerText = p.n; layer.appendChild(d);
+        });
+
+        hCtx.clearRect(0,0,320,320); hCtx.fillStyle="black"; hCtx.font="260px 'YuKyokasho', sans-serif";
+        hCtx.textAlign="center"; hCtx.textBaseline="middle"; hCtx.shadowBlur = 20; hCtx.shadowColor = "black";
+        hCtx.fillText(item.c, 160, 160); hCtx.shadowBlur = 0;
+        resetCanvas();
+    }
+
+    function judge() {
+        const user = ctx.getImageData(0,0,320,320).data;
+        const guide = hCtx.getImageData(0,0,320,320).data;
+        let hits = 0, total = 0;
+        for (let i = 3; i < guide.length; i += 4) {
+            if (guide[i] > 20) { total++; if (user[i] > 20) hits++; }
+        }
+        if (hits/total > 0.08) showQuiz(); else alert("Trace a bit more! / もう少しなぞってね！");
+    }
+
+    function showQuiz() {
+        const item = activeRow[charIdx];
+        document.getElementById('quiz-overlay').style.display = 'flex';
+        correctIdx = Math.floor(Math.random() * 2);
+        const opts = [document.getElementById('q1'), document.getElementById('q2')];
+        opts[correctIdx].innerText = item.c;
+        opts[1-correctIdx].innerText = item.d;
+    }
+
+    function checkQuiz(choice) {
+        if (choice === correctIdx) document.getElementById('overlay').style.display = 'flex';
+        else alert("Look closely! / よく見て選んでね！");
+    }
+
+    function closeOverlay() {
+        document.getElementById('overlay').style.display = 'none';
+        charIdx++;
+        if (charIdx < activeRow.length) loadChar();
+        else { alert("Congratulations! Row Completed."); location.reload(); }
+    }
+
+    function resetCanvas() {
+        ctx.clearRect(0,0,320,320);
+        ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--text');
+        ctx.lineWidth = 18; ctx.lineCap = 'round';
+    }
+
+    const getP = (e) => {
+        const r = canvas.getBoundingClientRect();
+        const ev = e.touches ? e.touches[0] : e;
+        return { x: ev.clientX - r.left, y: ev.clientY - r.top };
+    };
+
+    canvas.addEventListener('touchstart', (e) => { e.preventDefault(); drawing = true; ctx.beginPath(); const p = getP(e); ctx.moveTo(p.x, p.y); }, {passive:false});
+    canvas.addEventListener('touchmove', (e) => { e.preventDefault(); if(!drawing) return; const p = getP(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }, {passive:false});
+    canvas.addEventListener('touchend', () => drawing = false);
+    canvas.addEventListener('mousedown', (e) => { drawing = true; ctx.beginPath(); const p = getP(e); ctx.moveTo(p.x, p.y); });
+    canvas.addEventListener('mousemove', (e) => { if(!drawing) return; const p = getP(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
+    window.addEventListener('mouseup', () => drawing = false);
+
+    renderMenu();
+    resetCanvas();
+</script>
+</body>
+</html>
