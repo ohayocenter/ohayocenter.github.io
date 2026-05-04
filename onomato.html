@@ -332,6 +332,40 @@
             text-transform: lowercase;
         }
 
+        /* --- イラスト用スタイル --- */
+        .illustration-container {
+            width: 100%;
+            height: 180px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e7eb;
+            padding: 16px;
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .placeholder-text {
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .ono-card:hover .illustration-container {
+            transform: scale(1.02);
+            border-color: var(--primary-light);
+            background-color: #ffffff;
+        }
+
+        .illustration-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .meaning {
             font-family: 'Manrope', sans-serif;
             font-size: 16px;
@@ -436,9 +470,10 @@
             color: var(--text-dark);
         }
 
-        /* リスト表示の時は例文とタグを隠す */
+        /* リスト表示の時は例文、タグ、イラストを隠す */
         .list-view .examples,
-        .list-view .category-tag {
+        .list-view .category-tag,
+        .list-view .illustration-container {
             display: none;
         }
 
@@ -530,6 +565,7 @@
 
             <div class="onomatopoeia-grid" id="grid">
                 
+                <!-- ====== SOUNDS ====== -->
                 <div class="ono-card" data-category="sounds">
                     <div class="card-header">
                         <div class="sound-icon">🔔</div>
@@ -537,6 +573,9 @@
                             <div class="japanese">ピンポン</div>
                             <div class="romaji">pinpon</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/pinpon.webp" alt="ピンポンのイラスト">
                     </div>
                     <div class="meaning">Ding-dong (doorbell sound)</div>
                     <div class="examples">
@@ -560,6 +599,9 @@
                             <div class="romaji">pota pota</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/potapota.webp" alt="ぽたぽたのイラスト">
+                    </div>
                     <div class="meaning">Drip-drop (sound of water drops)</div>
                     <div class="examples">
                         <div class="example">
@@ -581,6 +623,9 @@
                             <div class="japanese">ばたばた</div>
                             <div class="romaji">bata bata</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/batabata.webp" alt="ばたばたのイラスト">
                     </div>
                     <div class="meaning">Flapping, clattering (rapid movement)</div>
                     <div class="examples">
@@ -604,6 +649,9 @@
                             <div class="romaji">goku goku</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/gokugoku.webp" alt="ごくごくのイラスト">
+                    </div>
                     <div class="meaning">Gulping down a drink</div>
                     <div class="examples">
                         <div class="example">
@@ -625,6 +673,9 @@
                             <div class="japanese">ぺらぺら</div>
                             <div class="romaji">pera pera</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/perapera.webp" alt="ぺらぺらのイラスト">
                     </div>
                     <div class="meaning">Fluent / speaking non-stop</div>
                     <div class="examples">
@@ -648,6 +699,9 @@
                             <div class="romaji">wan wan</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/wanwan.webp" alt="わんわんのイラスト">
+                    </div>
                     <div class="meaning">Bow-wow / crying loudly</div>
                     <div class="examples">
                         <div class="example">
@@ -669,6 +723,9 @@
                             <div class="japanese">にゃあにゃあ</div>
                             <div class="romaji">nyaa nyaa</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/nyaanyaa.webp" alt="にゃあにゃあのイラスト">
                     </div>
                     <div class="meaning">Meow (cat sound)</div>
                     <div class="examples">
@@ -692,6 +749,9 @@
                             <div class="romaji">don don</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/dondon.webp" alt="どんどんのイラスト">
+                    </div>
                     <div class="meaning">Knocking / steadily progressing</div>
                     <div class="examples">
                         <div class="example">
@@ -713,6 +773,9 @@
                             <div class="japanese">がちゃん</div>
                             <div class="romaji">gachan</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/gachan.webp" alt="がちゃんのイラスト">
                     </div>
                     <div class="meaning">Clank / crash (breaking or slamming)</div>
                     <div class="examples">
@@ -736,6 +799,9 @@
                             <div class="romaji">churu churu</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/churuchuru.webp" alt="ちゅるちゅるのイラスト">
+                    </div>
                     <div class="meaning">Slurping (noodles)</div>
                     <div class="examples">
                         <div class="example">
@@ -751,6 +817,7 @@
                 </div>
 
 
+                <!-- ====== FEELINGS ====== -->
                 <div class="ono-card" data-category="feelings">
                     <div class="card-header">
                         <div class="sound-icon">💓</div>
@@ -758,6 +825,9 @@
                             <div class="japanese">どきどき</div>
                             <div class="romaji">doki doki</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/dokidoki.webp" alt="どきどきのイラスト">
                     </div>
                     <div class="meaning">Heart pounding (excitement/nervous)</div>
                     <div class="examples">
@@ -781,6 +851,9 @@
                             <div class="romaji">waku waku</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/wakuwaku.webp" alt="わくわくのイラスト">
+                    </div>
                     <div class="meaning">Excited, thrilled (anticipation)</div>
                     <div class="examples">
                         <div class="example">
@@ -802,6 +875,9 @@
                             <div class="japanese">いらいら</div>
                             <div class="romaji">ira ira</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/iraira.webp" alt="いらいらのイラスト">
                     </div>
                     <div class="meaning">Irritated, frustrated</div>
                     <div class="examples">
@@ -825,6 +901,9 @@
                             <div class="romaji">hotto</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/hotto.webp" alt="ほっとのイラスト">
+                    </div>
                     <div class="meaning">Relieved, feeling at ease</div>
                     <div class="examples">
                         <div class="example">
@@ -846,6 +925,9 @@
                             <div class="japanese">びっくり</div>
                             <div class="romaji">bikkuri</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/bikkuri.webp" alt="びっくりのイラスト">
                     </div>
                     <div class="meaning">Surprised, startled</div>
                     <div class="examples">
@@ -869,6 +951,9 @@
                             <div class="romaji">uki uki</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/ukiuki.webp" alt="うきうきのイラスト">
+                    </div>
                     <div class="meaning">Cheerful, bouncing with joy</div>
                     <div class="examples">
                         <div class="example">
@@ -890,6 +975,9 @@
                             <div class="japanese">がっかり</div>
                             <div class="romaji">gakkari</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/gakkari.webp" alt="がっかりのイラスト">
                     </div>
                     <div class="meaning">Disappointed, let down</div>
                     <div class="examples">
@@ -913,6 +1001,9 @@
                             <div class="romaji">bonyari</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/bonyari.webp" alt="ぼんやりのイラスト">
+                    </div>
                     <div class="meaning">Absent-minded, spacing out</div>
                     <div class="examples">
                         <div class="example">
@@ -934,6 +1025,9 @@
                             <div class="japanese">すっきり</div>
                             <div class="romaji">sukkiri</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/sukkiri.webp" alt="すっきりのイラスト">
                     </div>
                     <div class="meaning">Refreshed, clear-headed</div>
                     <div class="examples">
@@ -957,6 +1051,9 @@
                             <div class="romaji">sowa sowa</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/sowasowa.webp" alt="そわそわのイラスト">
+                    </div>
                     <div class="meaning">Restless, fidgety</div>
                     <div class="examples">
                         <div class="example">
@@ -979,6 +1076,9 @@
                             <div class="romaji">iso iso</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/isoiso.webp" alt="いそいそのイラスト">
+                    </div>
                     <div class="meaning">Joyfully hurrying</div>
                     <div class="examples">
                         <div class="example">
@@ -994,6 +1094,7 @@
                 </div>
 
 
+                <!-- ====== MOVEMENT ====== -->
                 <div class="ono-card" data-category="movement">
                     <div class="card-header">
                         <div class="sound-icon">🏃</div>
@@ -1001,6 +1102,9 @@
                             <div class="japanese">さっと</div>
                             <div class="romaji">satto</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/satto.webp" alt="さっとのイラスト">
                     </div>
                     <div class="meaning">Quickly, swiftly</div>
                     <div class="examples">
@@ -1024,6 +1128,9 @@
                             <div class="romaji">guru guru</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/guruguru.webp" alt="ぐるぐるのイラスト">
+                    </div>
                     <div class="meaning">Round and round (spinning)</div>
                     <div class="examples">
                         <div class="example">
@@ -1045,6 +1152,9 @@
                             <div class="japanese">ぴかぴか</div>
                             <div class="romaji">pika pika</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/pikapika.webp" alt="ぴかぴかのイラスト">
                     </div>
                     <div class="meaning">Sparkling, shiny</div>
                     <div class="examples">
@@ -1068,6 +1178,9 @@
                             <div class="romaji">gussuri</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/gussuri.webp" alt="ぐっすりのイラスト">
+                    </div>
                     <div class="meaning">Sleeping soundly</div>
                     <div class="examples">
                         <div class="example">
@@ -1089,6 +1202,9 @@
                             <div class="japanese">うろうろ</div>
                             <div class="romaji">uro uro</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/urouro.webp" alt="うろうろのイラスト">
                     </div>
                     <div class="meaning">Wandering, pacing around</div>
                     <div class="examples">
@@ -1112,6 +1228,9 @@
                             <div class="romaji">kossori</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/kossori.webp" alt="こっそりのイラスト">
+                    </div>
                     <div class="meaning">Secretly, stealthily</div>
                     <div class="examples">
                         <div class="example">
@@ -1133,6 +1252,9 @@
                             <div class="japanese">ぶらぶら</div>
                             <div class="romaji">bura bura</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/burabura.webp" alt="ぶらぶらのイラスト">
                     </div>
                     <div class="meaning">Strolling, wandering aimlessly</div>
                     <div class="examples">
@@ -1156,6 +1278,9 @@
                             <div class="romaji">fuwa fuwa</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/fuwafuwa.webp" alt="ふわふわのイラスト">
+                    </div>
                     <div class="meaning">Fluffy, floating lightly</div>
                     <div class="examples">
                         <div class="example">
@@ -1177,6 +1302,9 @@
                             <div class="japanese">じっと</div>
                             <div class="romaji">jitto</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/jitto.webp" alt="じっとのイラスト">
                     </div>
                     <div class="meaning">Staring fixedly, remaining still</div>
                     <div class="examples">
@@ -1200,6 +1328,9 @@
                             <div class="romaji">yura yura</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/yurayura.webp" alt="ゆらゆらのイラスト">
+                    </div>
                     <div class="meaning">Swaying, swinging gently</div>
                     <div class="examples">
                         <div class="example">
@@ -1222,6 +1353,9 @@
                             <div class="romaji">noro noro</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/noronoro.webp" alt="のろのろのイラスト">
+                    </div>
                     <div class="meaning">Sluggishly, very slowly</div>
                     <div class="examples">
                         <div class="example">
@@ -1237,6 +1371,7 @@
                 </div>
 
 
+                <!-- ====== WEATHER ====== -->
                 <div class="ono-card" data-category="weather">
                     <div class="card-header">
                         <div class="sound-icon">☀️</div>
@@ -1244,6 +1379,9 @@
                             <div class="japanese">かんかん</div>
                             <div class="romaji">kankan</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/kankan.webp" alt="かんかんのイラスト">
                     </div>
                     <div class="meaning">Blazing hot (scorching sun)</div>
                     <div class="examples">
@@ -1267,6 +1405,9 @@
                             <div class="romaji">shito shito</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/shitoshito.webp" alt="しとしとのイラスト">
+                    </div>
                     <div class="meaning">Gently, softly (light rain)</div>
                     <div class="examples">
                         <div class="example">
@@ -1288,6 +1429,9 @@
                             <div class="japanese">ざあざあ</div>
                             <div class="romaji">zaa zaa</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/zaazaa.webp" alt="ざあざあのイラスト">
                     </div>
                     <div class="meaning">Pouring (heavy rain)</div>
                     <div class="examples">
@@ -1311,6 +1455,9 @@
                             <div class="romaji">jime jime</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/jimejime.webp" alt="じめじめのイラスト">
+                    </div>
                     <div class="meaning">Damp, humid</div>
                     <div class="examples">
                         <div class="example">
@@ -1332,6 +1479,9 @@
                             <div class="japanese">ぴゅーぴゅー</div>
                             <div class="romaji">pyuu pyuu</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/pyuupyuu.webp" alt="ぴゅーぴゅーのイラスト">
                     </div>
                     <div class="meaning">Howling (wind)</div>
                     <div class="examples">
@@ -1355,6 +1505,9 @@
                             <div class="romaji">soyo soyo</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/soyosoyo.webp" alt="そよそよのイラスト">
+                    </div>
                     <div class="meaning">Gentle breeze</div>
                     <div class="examples">
                         <div class="example">
@@ -1376,6 +1529,9 @@
                             <div class="japanese">どんより</div>
                             <div class="romaji">donyori</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/donyori.webp" alt="どんよりのイラスト">
                     </div>
                     <div class="meaning">Overcast, gloomy</div>
                     <div class="examples">
@@ -1399,6 +1555,9 @@
                             <div class="romaji">poka poka</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/pokapoka.webp" alt="ぽかぽかのイラスト">
+                    </div>
                     <div class="meaning">Pleasantly warm</div>
                     <div class="examples">
                         <div class="example">
@@ -1421,6 +1580,9 @@
                             <div class="romaji">goro goro</div>
                         </div>
                     </div>
+                    <div class="illustration-container">
+                        <img src="images/gorogoro.webp" alt="ごろごろのイラスト">
+                    </div>
                     <div class="meaning">Thunder rumbling</div>
                     <div class="examples">
                         <div class="example">
@@ -1442,6 +1604,9 @@
                             <div class="japanese">びしょびしょ</div>
                             <div class="romaji">bisho bisho</div>
                         </div>
+                    </div>
+                    <div class="illustration-container">
+                        <img src="images/bishobisho.webp" alt="びしょびしょのイラスト">
                     </div>
                     <div class="meaning">Soaking wet</div>
                     <div class="examples">
