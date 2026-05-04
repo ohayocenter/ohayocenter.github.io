@@ -115,6 +115,7 @@
 
         .meaning { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 20px; padding: 12px; background: rgba(230, 57, 70, 0.05); border-radius: 8px; border-left: 3px solid var(--primary); }
         .example { padding: 16px; background: var(--light-bg); border-radius: 10px; border-left: 3px solid var(--accent); margin-bottom: 12px; }
+        .example:last-child { margin-bottom: 0; }
         .example-ja { font-size: 16px; font-weight: 500; color: var(--text-dark); margin-bottom: 8px; }
         .example-en { font-family: 'Manrope', sans-serif; font-size: 14px; color: var(--text-muted); }
         .category-tag { display: inline-block; padding: 6px 14px; background: var(--secondary); color: white; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-top: auto; align-self: flex-start; }
@@ -151,29 +152,29 @@
         .bmc-btn { display: inline-flex; align-items: center; padding: 6px 12px; color: #000000; background-color: #FFDD00; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; margin: 10px 0; }
         .hidden { display: none !important; }
 
-@media (max-width: 768px) {
-    /* --- 既存のスタイル --- */
-    .hero h1 { font-size: 40px; }
-    .onomatopoeia-grid { grid-template-columns: 1fr; }
-    .list-view .ono-card { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .list-view .card-header { width: 100%; }
+        @media (max-width: 768px) {
+            /* --- 既存のスタイル --- */
+            .hero h1 { font-size: 40px; }
+            .onomatopoeia-grid { grid-template-columns: 1fr; }
+            .list-view .ono-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .list-view .card-header { width: 100%; }
 
-    /* --- ナビゲーションバーのレスポンシブ調整 --- */
-    nav {
-        padding: 0 12px; /* 左右の余白を5%から固定値へ縮小 */
-    }
-    nav .logo {
-        font-size: 0.95rem; /* ロゴを少し小さく */
-        flex-shrink: 0;    /* ロゴが圧縮されないように固定 */
-    }
-    nav .nav-links {
-        gap: 0.6rem;       /* リンク間の間隔を狭める */
-    }
-    nav .nav-links a {
-        font-size: 0.65rem; /* 文字サイズを微調整 */
-        letter-spacing: 0;   /* 文字の間隔を詰めて横幅を節約 */
-    }
-}
+            /* --- ナビゲーションバーのレスポンシブ調整 --- */
+            nav {
+                padding: 0 12px;
+            }
+            nav .logo {
+                font-size: 0.95rem;
+                flex-shrink: 0;
+            }
+            nav .nav-links {
+                gap: 0.6rem;
+            }
+            nav .nav-links a {
+                font-size: 0.65rem;
+                letter-spacing: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -695,6 +696,9 @@
                     </div>
                     <div class="illustration-container"><img src="images/pyuupyuu.webp?v=1.1" alt="ぴゅーぴゅー"></div>
                     <div class="meaning">Howling (wind)</div>
+                    <div class="examples">
+                        <div class="example"><div class="example-ja">冷たい風がぴゅーぴゅー吹いている。</div><div class="example-en">The cold wind is howling.</div></div>
+                    </div>
                     <span class="category-tag">weather</span>
                 </div>
 
@@ -705,6 +709,16 @@
                     </div>
                     <div class="illustration-container"><img src="images/soyosoyo.webp?v=1.1" alt="そよそよ"></div>
                     <div class="meaning">Gentle breeze</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">春の風がそよそよ吹く。</div>
+                            <div class="example-en">A gentle spring breeze is blowing.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">窓からそよそよと風が入ってくる。</div>
+                            <div class="example-en">A soft breeze is coming in through the window.</div>
+                        </div>
+                    </div>
                     <span class="category-tag">weather</span>
                 </div>
 
@@ -715,6 +729,16 @@
                     </div>
                     <div class="illustration-container"><img src="images/donyori.webp?v=1.1" alt="どんより"></div>
                     <div class="meaning">Overcast, gloomy</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">空がどんよりと曇っている。</div>
+                            <div class="example-en">The sky is heavily overcast.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">今日はどんよりした天気だ。</div>
+                            <div class="example-en">It's a gloomy weather today.</div>
+                        </div>
+                    </div>
                     <span class="category-tag">weather</span>
                 </div>
 
@@ -725,6 +749,16 @@
                     </div>
                     <div class="illustration-container"><img src="images/pokapoka.webp?v=1.1" alt="ぽかぽか"></div>
                     <div class="meaning">Pleasantly warm</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">春になってぽかぽか暖かい。</div>
+                            <div class="example-en">It's pleasantly warm now that it's spring.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">温泉に入って体がぽかぽかする。</div>
+                            <div class="example-en">My body feels nice and warm after the hot spring.</div>
+                        </div>
+                    </div>
                     <span class="category-tag">weather</span>
                 </div>
 
@@ -735,6 +769,16 @@
                     </div>
                     <div class="illustration-container"><img src="images/gorogoro.webp?v=1.1" alt="ごろごろ"></div>
                     <div class="meaning">Thunder rumbling</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">雷がごろごろ鳴っている。</div>
+                            <div class="example-en">Thunder is rumbling.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">休日は家でごろごろする。</div>
+                            <div class="example-en">I lounge around at home on my days off.</div>
+                        </div>
+                    </div>
                     <span class="category-tag">weather</span>
                 </div>
 
@@ -745,6 +789,16 @@
                     </div>
                     <div class="illustration-container"><img src="images/bishobisho.webp?v=1.1" alt="びしょびしょ"></div>
                     <div class="meaning">Soaking wet</div>
+                    <div class="examples">
+                        <div class="example">
+                            <div class="example-ja">雨で服がびしょびしょになった。</div>
+                            <div class="example-en">My clothes got soaking wet in the rain.</div>
+                        </div>
+                        <div class="example">
+                            <div class="example-ja">傘を忘れて髪がびしょびしょだ。</div>
+                            <div class="example-en">I forgot my umbrella and my hair is drenched.</div>
+                        </div>
+                    </div>
                     <span class="category-tag">weather</span>
                 </div>
 
