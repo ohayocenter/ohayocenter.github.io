@@ -13,6 +13,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- ====== カレンダー用ライブラリ ====== -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
     <style>
         :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 10px 30px rgba(0,0,0,0.06); }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,7 +69,6 @@
         section { margin-bottom: 5rem; scroll-margin-top: 90px; }
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
 
-        /* --- Tabs & Grids (Desktop: Tabs hidden) --- */
         .lesson-tabs, .grammar-tabs, .kanji-tabs, .trip-tabs { display: none; justify-content: center; gap: 8px; margin-bottom: 2rem; }
         
         .tab-btn { 
@@ -100,7 +103,6 @@
 
         .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
         
-        /* Icon Hover Effect */
         .btn-bottom i { transition: all 0.3s ease; }
         .btn-bottom:hover i { color: #ffe66d !important; transform: scale(1.2) rotate(5deg); }
 
@@ -149,7 +151,6 @@
             color: #ffffff !important; 
         }
 
-        /* --- Footer & Modals --- */
         footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
         .legal-link { color: #888; text-decoration: underline; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
         .legal-link:hover { color: var(--primary); }
@@ -211,12 +212,39 @@
             transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: flex; align-items: center; gap: 8px;
         }
         .category-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        /* Category specific borders */
         .category-btn.c-audio { border-left: 4px solid #2ecc71; }
         .category-btn.c-culture { border-left: 4px solid #9b59b6; }
         .category-btn.c-grammar { border-left: 4px solid #f39c12; }
         .category-btn.c-kanji { border-left: 4px solid #2980b9; }
         .category-btn.c-trip { border-left: 4px solid #e74c3c; }
+
+        /* ====== カレンダー用スタイル修正 ====== */
+        #schedule-section {
+            background: #fff; padding: 3rem 1.2rem; border-radius: 25px; box-shadow: var(--shadow);
+            margin-bottom: 5rem; max-width: 1000px; margin-left: auto; margin-right: auto;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        :root {
+            --fc-button-bg-color: var(--primary);
+            --fc-button-border-color: var(--primary);
+            --fc-button-hover-bg-color: #e68a35;
+            --fc-button-active-bg-color: #cc7a2f;
+            --fc-today-bg-color: #fffaf5; 
+            --fc-border-color: #eee;
+        }
+        .fc-toolbar-title { font-family: 'Sawarabi Mincho', serif; color: var(--dark); font-size: 1.5rem !important; }
+        .fc-day-sat { background-color: #f0f7ff !important; } 
+        .fc-day-sun { background-color: #fff5f5 !important; } 
+        .fc-col-header-cell.fc-day-sat a { color: #2980b9 !important; }
+        .fc-col-header-cell.fc-day-sun a { color: #e74c3c !important; }
+
+        .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * {
+            top: 70px !important;
+        }
+
+        /* カレンダー配色設定 */
+        .fc-non-business { background-color: rgba(0,0,0,0.5); } /* 時間外枠をかなり暗く設定 */
+        .fc-business-hour { background-color: #eaffea !important; }
 
         @media (max-width: 900px) {
             .lesson-grid { grid-template-columns: repeat(2, 1fr); }
@@ -231,16 +259,13 @@
             .hero-btn-container { flex-direction: column; width: 100%; max-width: 250px; margin: 2rem auto 0; }
             .hero-btn { justify-content: center; width: 100%; }
             
-            /* Lesson Tabs */
             .lesson-tabs { display: flex; }
             .lesson-grid { display: block; }
             .lesson-grid .card { display: none; }
             .lesson-grid .card.active { display: flex; animation: fadeIn 0.4s ease; }
 
-            /* Material Section Tab Visibility */
             .grammar-tabs, .kanji-tabs, .trip-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem; }
 
-            /* Logic to hide items based on class on mobile */
             .grammar-grid.show-n5 .unified-card:not(.g-n5) { display: none; }
             .grammar-grid.show-n4 .unified-card:not(.g-n4) { display: none; }
             .grammar-grid.show-n3 .unified-card:not(.g-n3) { display: none; }
@@ -264,6 +289,11 @@
             .update-list li { flex-wrap: wrap; gap: 8px; }
             .category-nav { flex-direction: row; gap: 8px; }
             .category-btn { padding: 8px 15px; font-size: 0.75rem; flex-grow: 1; justify-content: center; }
+
+            /* カレンダーのスマホ崩れ防止 */
+            .fc-toolbar { flex-direction: column; gap: 10px; }
+            .fc-toolbar-title { font-size: 1.1rem !important; }
+            .fc-header-toolbar { margin-bottom: 1rem !important; }
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -372,7 +402,20 @@
             </div>
         </div>
     </section>
-<section id="profile">
+
+    <!-- ====== Lesson Availability カレンダーセクション ====== -->
+    <section id="schedule-section">
+        <h2 style="margin-bottom: 1.5rem;"><i class="fa-regular fa-calendar-check" style="color: var(--primary);"></i> Lesson Availability</h2>
+        <div id='calendar'></div>
+        
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="#booking-links" class="hero-btn primary-btn" style="display: inline-flex; width: auto; min-width: 280px; justify-content: center; font-size: 1.1rem; padding: 15px 40px;">
+                <i class="fa-solid fa-calendar-days"></i> BOOK NOW
+            </a>
+        </div>
+    </section>
+
+    <section id="profile">
         <div class="profile-box">
             <div class="profile-header">
                 <div class="profile-left">
@@ -382,30 +425,14 @@
                     <p style="margin-top: 1.2rem; font-weight: bold; text-align: center;">Shinya | OHAYO CENTER</p>
                 </div>
                 <div class="profile-right">
-<div class="exp-item" style="border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 12px;">
-    <span class="exp-year" style="font-weight: bold; color: #d9534f;">Experience</span>
-    <span style="font-weight: bold;">10+ Years & 4,000+ Online Lessons</span>
-</div>
-
-<div class="exp-item">
-    <span class="exp-year">2019-Now</span>
-    <span>Founder of OHAYO CENTER</span>
-</div>
-
-<div class="exp-item">
-    <span class="exp-year">2018-19</span>
-    <span>High schools in Vietnam</span>
-</div>
-
-<div class="exp-item">
-    <span class="exp-year">2017-18</span>
-    <span>Language school in Japan</span>
-</div>
-
-<div class="exp-item">
-    <span class="exp-year">2017</span>
-    <span>Japanese Teaching Certificate</span>
-</div>
+                    <div class="exp-item" style="border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 12px;">
+                        <span class="exp-year" style="font-weight: bold; color: #d9534f;">Experience</span>
+                        <span style="font-weight: bold;">10+ Years & 4,000+ Online Lessons</span>
+                    </div>
+                    <div class="exp-item"><span class="exp-year">2019-Now</span><span>Founder of OHAYO CENTER</span></div>
+                    <div class="exp-item"><span class="exp-year">2018-19</span><span>High schools in Vietnam</span></div>
+                    <div class="exp-item"><span class="exp-year">2017-18</span><span>Language school in Japan</span></div>
+                    <div class="exp-item"><span class="exp-year">2017</span><span>Japanese Teaching Certificate</span></div>
                 </div>
             </div>
 
@@ -545,7 +572,6 @@
                 <p style="margin-bottom: 1.5rem;">Sentence Builder Practice<br>JLPT N5⭐️</p>
                 <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
             </a>
-            
             <a href="Grammar2-1.html" class="unified-card g-n4">
                 <i class="fa-solid fa-pen-ruler" style="color: #f39c12;"></i>
                 <h3 style="margin-bottom: 0.4rem;">N4 Grammar 2-1</h3>
@@ -632,7 +658,6 @@
                 <p style="margin-bottom: 1.5rem;">300 Essential Kanji Master<br>JLPT N4 ⭐</p>
                 <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div>
             </a>
-            
             <a href="N3verb1-1.html" class="unified-card k-n3">
                 <i class="fa-solid fa-person-running" style="color: #9b59b6;"></i> 
                 <h3 style="margin-bottom: 0.4rem;">Kanji 100 Quiz</h3>
@@ -756,7 +781,6 @@
         </div>
 
         <div class="unified-grid trip-grid show-trip" id="tripGrid" style="margin-bottom: 4rem;">
-
             <a href="hiragana-nazori.html" class="unified-card t-hira">
                 <i class="fa-solid fa-pencil" style="color: #2980b9;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Hiragana Tracing</h3>
@@ -766,7 +790,6 @@
                 <p style="margin-bottom: 1.5rem;">Trace and Practice</p>
                 <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
             </a>
-
            <a href="hiraganatype.html" class="unified-card t-hira">
                 <i class="fa-solid fa-keyboard" style="color: #2980b9;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Hiragana Master</h3>
@@ -776,8 +799,6 @@
                 <p style="margin-bottom: 1.5rem;">Typing & Reading Practice</p>
                 <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">PLAY NOW</div>
             </a>
-
-
             <a href="katakana-nazori.html" class="unified-card t-kata">
                 <i class="fa-solid fa-pencil" style="color: #d35400;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Katakana Tracing</h3>
@@ -787,8 +808,6 @@
                 <p style="margin-bottom: 1.5rem;">Trace and Practice</p>
                 <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
             </a>
-
-
             <a href="katakanatype.html" class="unified-card t-kata">
                 <i class="fa-solid fa-keyboard" style="color: #d35400;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Katakana Master</h3>
@@ -798,8 +817,6 @@
                 <p style="margin-bottom: 1.5rem;">Typing & Reading Practice</p>
                 <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">PLAY NOW</div>
             </a>
-
-
             <a href="matching.html" class="unified-card t-hira t-kata">
                 <i class="fa-solid fa-gamepad" style="color: #ff9a9e;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Matching Game</h3>
@@ -809,7 +826,6 @@
                 <p style="margin-bottom: 1.5rem;">Hiragana & Katakana Matching</p>
                 <div class="btn-bottom" style="color:#ff9a9e; border:1px solid #ff9a9e;">PLAY NOW</div>
             </a>
-
             <a href="trip1.html" class="unified-card t-trip">
                 <i class="fa-solid fa-plane-departure" style="color: #e74c3c;"></i>
                 <h3 style="margin-bottom: 0.4rem;">TRIP JAPAN 1 </h3>
@@ -819,7 +835,6 @@
                 <p style="margin-bottom: 1.5rem;">9 Situations for Travelers</p>
                 <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
             </a>
-            
             <a href="trip.html" class="unified-card t-trip">
                 <i class="fa-solid fa-plane-departure" style="color: #e74c3c;"></i>
                 <h3 style="margin-bottom: 0.4rem;">TRIP JAPAN 2</h3>
@@ -829,7 +844,6 @@
                 <p style="margin-bottom: 1.5rem;">Travel Survival Japanese</p>
                 <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
             </a>
-
             <a href="Hiragana.html" class="unified-card t-hira">
                 <i class="fa-solid fa-language" style="color: #2980b9;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Hiragana</h3>
@@ -839,8 +853,6 @@
                 <p style="margin-bottom: 1.5rem;">Hiragana Practice 1 with PC font</p>
                 <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
             </a>
-
-
             <a href="Katakana1.html" class="unified-card t-kata">
                 <i class="fa-solid fa-language" style="color: #d35400;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Katakana</h3>
@@ -850,7 +862,6 @@
                 <p style="margin-bottom: 1.5rem;">Katakana Practice 1 with PC font</p>
                 <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
             </a>
-            
             <a href="Katakana1-2.html" class="unified-card t-kata">
                 <i class="fa-solid fa-language" style="color: #e67e22;"></i>
                 <h3 style="margin-bottom: 0.4rem;">Katakana</h3>
@@ -860,8 +871,6 @@
                 <p style="margin-bottom: 1.5rem;">Food, Drinks, Daily Goods with PC font</p>
                 <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
             </a>
-
-
         </div>
 
         <h2 style="border-top: 1px solid #ccc; padding-top: 3rem;">Links & Payments</h2>
@@ -875,8 +884,8 @@
                    style="color:#4285f4; border:1px solid; text-decoration:none;" 
                    target="_blank">OPEN FORM</a>
             </div>
-
-            <div class="unified-card">
+            
+            <div class="unified-card" id="booking-links">
                 <i class="fa-regular fa-calendar-check" style="color: #9b59b6;"></i>
                 <h3>Booking Schedule</h3>
                 <p>For current students and<br>lesson pack members.</p>
@@ -886,51 +895,28 @@
                     <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🍜</span> 60 MIN</a>
                 </div>
             </div>
-
             <div class="unified-card">
-    <i class="fa-solid fa-book-open" style="color: var(--primary);"></i>
-    <h3>Learning Material</h3>
-    <p>Recommended resources<br>for your Japanese study.</p>
-
-    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: auto;">
-        
-        <a href="https://marugotoweb.jp/ja/" target="_blank" class="btn-bottom booking-btn" 
-           style="color:var(--primary); border:1px solid var(--primary); text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;">
-            <span>📚</span> MARUGOTO PLUS
-        </a>
-
-        <a href="https://jisho.org/" target="_blank" class="btn-bottom booking-btn" 
-           style="color:var(--primary); border:1px solid var(--primary); text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;">
-            <span>🔍</span> JISHO.ORG
-        </a>
-
-        <a href="https://www.irodori.jpf.go.jp/index.html" target="_blank" class="btn-bottom booking-btn" 
-           style="color:var(--primary); border:1px solid var(--primary); text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;">
-            <span>🎨</span> IRODORI
-        </a>
-
-    </div>
-</div>
+                <i class="fa-solid fa-book-open" style="color: var(--primary);"></i>
+                <h3>Learning Material</h3>
+<p>Recommended resources<br>for your Japanese study.</p>
+                <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: auto;">
+                    <a href="https://marugotoweb.jp/ja/" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>📚</span> MARUGOTO PLUS</a>
+                    <a href="https://jisho.org/" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>🔍</span> JISHO.ORG</a>
+                    <a href="https://www.irodori.jpf.go.jp/index.html" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>🎨</span> IRODORI</a>
+                </div>
+            </div>
             <a href="https://buymeacoffee.com/ohayocenter" class="unified-card" target="_blank">
                 <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i>
                 <h3>SUPPORT OHAYO CENTER</h3>
                 <p>THANK YOU❤️</p>
-                <div class="btn-bottom" style="border: none; padding: 0;">
-                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;">
-                </div>
+                <div class="btn-bottom" style="border: none; padding: 0;"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;"></div>
             </a>
-            
             <a href="#lessons" class="unified-card">
                 <i class="fa-solid fa-wallet" style="color: #00b894;"></i>
                 <h3>Payments</h3>
-                <p style="font-size: 0.8rem; line-height: 1.5;">
-                    We accept <strong>Credit Card</strong>,<br>
-                    <strong>Apple Pay</strong>, <strong>Google Pay</strong><br>
-                    and <strong>Wise</strong>.
-                </p>
+                <p style="font-size: 0.8rem; line-height: 1.5;">We accept <strong>Credit Card</strong>,<br><strong>Apple Pay</strong>, <strong>Google Pay</strong><br>and <strong>Wise</strong>.</p>
                 <div class="btn-bottom" style="color:#00b894; border:1px solid #00b894;">SECURE PAYMENT</div>
             </a>
-
             <a href="https://www.instagram.com/ohayo_center" class="unified-card" target="_blank">
                 <i class="fa-brands fa-instagram" style="color: #E4405F;"></i>
                 <h3>Instagram</h3>
@@ -939,14 +925,10 @@
             </a>
         </div>
     </section>
-
 </div>
 
 <footer>
-    <p>
-        <a class="legal-link" id="openLegalModal">特定商取引法に基づく表記</a> ｜ 
-        <a class="legal-link" id="openPrivacyModal">Privacy Policy</a>
-    </p>
+    <p><a class="legal-link" id="openLegalModal">特定商取引法に基づく表記</a> ｜ <a class="legal-link" id="openPrivacyModal">Privacy Policy</a></p>
     <p style="margin-top: 10px;">© 2026 Ohayo Center. All rights reserved.</p>
 </footer>
 
@@ -994,7 +976,6 @@
 </div>
 
 <script>
-    // Lesson Tabs Logic
     function switchLesson(index) {
         const cards = document.querySelectorAll('.lesson-grid .card');
         const btns = document.querySelectorAll('.lesson-tabs .tab-btn');
@@ -1004,7 +985,6 @@
         if(btns[index]) btns[index].classList.add('active');
     }
 
-    // Grammar Tabs Logic
     function switchGrammar(index, levelClass) {
         const grid = document.getElementById('grammarGrid');
         const btns = document.querySelectorAll('.grammar-tabs .tab-btn');
@@ -1014,7 +994,6 @@
         if(btns[index]) btns[index].classList.add('active');
     }
 
-    // Kanji Tabs Logic
     function switchKanji(index, levelClass) {
         const grid = document.getElementById('kanjiGrid');
         const btns = document.querySelectorAll('.kanji-tabs .tab-btn');
@@ -1024,7 +1003,6 @@
         if(btns[index]) btns[index].classList.add('active');
     }
 
-    // Trip Tabs Logic
     function switchTrip(index, levelClass) {
         const grid = document.getElementById('tripGrid');
         const btns = document.querySelectorAll('.trip-tabs .tab-btn');
@@ -1034,32 +1012,17 @@
         if(btns[index]) btns[index].classList.add('active');
     }
 
-    // Modal logic
     function setupModal(modalId, openBtnId, closeBtnId) {
         const modal = document.getElementById(modalId);
         const openBtn = document.getElementById(openBtnId);
         const closeBtn = document.getElementById(closeBtnId);
-        
-        openBtn.onclick = (e) => { 
-            e.preventDefault(); 
-            modal.style.display = "flex"; 
-            setTimeout(() => modal.classList.add("show"), 10);
-            document.body.style.overflow = "hidden"; 
-        };
-        
-        closeBtn.onclick = () => { 
-            modal.classList.remove("show"); 
-            setTimeout(() => modal.style.display = "none", 300);
-            document.body.style.overflow = "auto"; 
-        };
-        
-        window.addEventListener('click', (event) => { 
-            if (event.target == modal) { 
-                modal.classList.remove("show"); 
-                setTimeout(() => modal.style.display = "none", 300); 
-                document.body.style.overflow = "auto"; 
-            } 
-        });
+        if(openBtn) {
+            openBtn.onclick = (e) => { e.preventDefault(); modal.style.display = "flex"; setTimeout(() => modal.classList.add("show"), 10); document.body.style.overflow = "hidden"; };
+        }
+        if(closeBtn) {
+            closeBtn.onclick = () => { modal.classList.remove("show"); setTimeout(() => modal.style.display = "none", 300); document.body.style.overflow = "auto"; };
+        }
+        window.addEventListener('click', (event) => { if (event.target == modal) { modal.classList.remove("show"); setTimeout(() => modal.style.display = "none", 300); document.body.style.overflow = "auto"; } });
     }
     setupModal("legalModal", "openLegalModal", "closeLegalModal");
     setupModal("privacyModal", "openPrivacyModal", "closePrivacyModal");
@@ -1067,13 +1030,81 @@
     function revealMail(id) {
         const p1 = "ohayo", p2 = "center", p3 = "gmail", p4 = "com";
         const el = document.getElementById(id);
-        el.addEventListener('click', function() {
-            const addr = p1 + "." + p2 + "@" + p3 + "." + p4;
-            el.innerHTML = '<a href="mailto:' + addr + '" style="color:var(--primary); text-decoration:none;">' + addr + '</a>';
-        });
+        if(el) {
+            el.addEventListener('click', function() {
+                const addr = p1 + "." + p2 + "@" + p3 + "." + p4;
+                el.innerHTML = '<a href="mailto:' + addr + '" style="color:var(--primary); text-decoration:none;">' + addr + '</a>';
+            });
+        }
     }
     revealMail('mail-reveal');
     revealMail('mail-reveal-privacy');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            // モバイル判定して初期表示を切り替え
+            initialView: window.innerWidth < 600 ? 'timeGridDay' : 'timeGridWeek', 
+            firstDay: 1, 
+            locale: 'en',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: window.innerWidth < 600 ? '' : 'timeGridWeek,timeGridDay'
+            },
+            slotMinTime: '09:00:00',
+            slotMaxTime: '24:00:00',
+            allDaySlot: false,
+            height: 'auto',
+            nowIndicator: true,
+            expandRows: true,
+            stickyHeaderDates: true,
+            eventColor: '#888888', // 予約済み枠の色も「かなり暗め」に合わせて変更
+            eventTextColor: '#ffffff',
+            businessHours: [
+                {
+                    daysOfWeek: [ 1, 2, 3, 4, 5 ], 
+                    startTime: '20:00',
+                    endTime: '24:00'
+                },
+                {
+                    daysOfWeek: [ 0, 6 ], 
+                    startTime: '09:00',
+                    endTime: '14:00'
+                },
+                {
+                    daysOfWeek: [ 0, 6 ], 
+                    startTime: '18:00',
+                    endTime: '24:00'
+                }
+            ],
+            eventSources: [
+                {
+                    url: 'https://script.google.com/macros/s/AKfycbw4u0CGA0L8v4BPIwKBNuyf6qgt2SscK_zidZAiEX2GTgb5_3vOoD26YhgIX4y91Ehmmw/exec',
+                    method: 'GET'
+                }
+            ],
+            // 画面サイズ変更時に動的に表示を切り替え
+            windowResize: function(arg) {
+                if (window.innerWidth < 600) {
+                    calendar.changeView('timeGridDay');
+                    calendar.setOption('headerToolbar', {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: ''
+                    });
+                } else {
+                    calendar.changeView('timeGridWeek');
+                    calendar.setOption('headerToolbar', {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'timeGridWeek,timeGridDay'
+                    });
+                }
+            }
+        });
+        calendar.render();
+    });
 </script>
 </body>
 </html>
