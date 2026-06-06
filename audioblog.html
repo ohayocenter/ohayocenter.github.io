@@ -14,19 +14,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 10px 30px rgba(0,0,0,0.06); }
+        :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 8px 25px rgba(0,0,0,0.06); }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f9f9f9; line-height: 1.8; }
+        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f4f6f8; line-height: 1.8; }
         
-        /* ナビゲーションの基本設定 */
+        /* ナビゲーション */
         nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
         .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
 
-        /* スマホ表示でのナビゲーション調整 */
         @media (max-width: 480px) {
             nav { padding: 0 3%; }
             .nav-links { gap: 0.7rem; }
@@ -34,51 +33,152 @@
             .nav-links a { font-size: 0.75rem; letter-spacing: 0.5px; }
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 120px 1.2rem 3rem; }
-        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
+        .container { max-width: 800px; margin: 0 auto; padding: 110px 1.2rem 3rem; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; color: var(--dark); }
         h2 i { color: var(--primary); margin-right: 10px; }
 
-        .audio-section { margin-bottom: 5rem; }
-        .audio-card { background: #fff; border-radius: 25px; margin-bottom: 1.5rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); overflow: hidden; }
-        .card-header { padding: 1.5rem 2rem; cursor: pointer; display: flex; align-items: center; list-style: none; }
-        .card-header::-webkit-details-marker { display: none; }
-        .vol-badge { background: var(--primary); color: white; padding: 3px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-right: 1rem; }
-        .card-title { flex-grow: 1; font-weight: bold; color: var(--dark); }
-        .card-header i { color: #ccc; transition: 0.3s; }
-        details[open] .card-header i { transform: rotate(180deg); color: var(--primary); }
-
-        .level-tabs { display: flex; flex-wrap: wrap; padding: 0 2rem 2rem; }
-        .level-tabs input { display: none; }
-        .tab-label { padding: 10px 20px; background: #f0f0f0; cursor: pointer; border-radius: 10px 10px 0 0; margin-right: 5px; font-size: 0.85rem; font-weight: bold; }
-        .tab-panel { display: none; width: 100%; border-top: 3px solid var(--primary); padding-top: 2rem; }
-        .level-tabs input:checked + .tab-label { background: var(--primary); color: white; }
+        /* 折りたたみ式の美しいカードデザイン */
+        .diary-card {
+            background: #fff;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
         
-        /* タブ切り替えロジック */
-        #v1-low:checked ~ .panel-v1-low, #v1-high:checked ~ .panel-v1-high,
-        #v2-low:checked ~ .panel-v2-low, #v2-high:checked ~ .panel-v2-high,
-        #v3-low:checked ~ .panel-v3-low, #v3-high:checked ~ .panel-v3-high,
-        #v4-low:checked ~ .panel-v4-low, #v4-high:checked ~ .panel-v4-high { display: block; }
+        .diary-summary {
+            list-style: none;
+            cursor: pointer;
+            position: relative;
+            background: #fff;
+        }
+        .diary-summary::-webkit-details-marker { display: none; }
+        
+        .diary-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .summary-text {
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .diary-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .vol-badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .diary-date {
+            color: #999;
+            font-size: 0.85rem;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 0;
+            padding-right: 30px;
+            line-height: 1.4;
+        }
+        
+        .expand-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #ddd;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+        }
+        .diary-card[open] .expand-icon {
+            transform: translateY(-50%) rotate(180deg);
+            color: var(--primary);
+        }
 
-        .audio-unit { background: var(--primary-light); padding: 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 2rem; }
-        .audio-unit audio { width: 100%; max-width: 500px; height: 40px; margin-top: 10px; }
-        .script-box { font-size: 1.05rem; line-height: 2.3; color: var(--text); padding: 0 10px; }
-        .quote-box { border-left: 4px solid var(--primary); padding: 20px; background: #fafafa; margin: 25px 0; font-family: 'Sawarabi Mincho', serif; }
+        /* 展開時のコンテンツ部分 */
+        .diary-content {
+            padding: 0 1.5rem 2rem 1.5rem;
+            border-top: 1px dashed #eee;
+            animation: fadeInDown 0.4s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* スマホで押しやすいタブデザイン */
+        .level-tabs { 
+            display: flex; 
+            margin: 1.5rem 0; 
+            background: #f0f0f0; 
+            border-radius: 12px; 
+            padding: 4px;
+        }
+        .tab-btn { 
+            flex: 1;
+            padding: 12px 0; 
+            background: transparent; 
+            border: none; 
+            border-radius: 10px; 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            color: #888; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        .tab-btn.active { 
+            background: #fff; 
+            color: var(--primary); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        }
+        
+        .tab-panel { display: none; width: 100%; animation: fadeIn 0.3s ease; }
+        .tab-panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .audio-unit { background: var(--primary-light); padding: 1.2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; }
+        .audio-unit p { margin-bottom: 10px; color: #666; font-weight: bold; }
+        .audio-unit audio { width: 100%; height: 40px; }
+        
+        .script-box { font-size: 1.05rem; line-height: 2.2; color: var(--text); }
+        .script-box p { margin-bottom: 1.5rem; }
+        
+        .quote-box { border-left: 4px solid var(--primary); padding: 15px 20px; background: #fafafa; margin: 25px 0; font-family: 'Sawarabi Mincho', serif; border-radius: 0 10px 10px 0; }
         .quote-en { display: block; margin-top: 15px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; color: #777; font-style: italic; line-height: 1.6; }
-        ruby rt { color: #888; font-size: 0.6em; }
+        ruby rt { color: #999; font-size: 0.6em; }
 
-        .support-details { margin-top: 1.5rem; border: 1px solid #eee; border-radius: 12px; background: #fff; }
-        .support-details summary { padding: 12px 15px; background: #fafafa; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); list-style: none; display: flex; align-items: center; gap: 8px; }
+        .support-details { margin-top: 1rem; border: 1px solid #eee; border-radius: 12px; background: #fff; }
+        .support-details summary { padding: 12px 15px; background: #fafafa; cursor: pointer; font-size: 0.9rem; font-weight: bold; color: var(--primary); list-style: none; display: flex; align-items: center; gap: 8px; border-radius: 12px; transition: 0.2s; }
+        .support-details summary:hover { background: var(--primary-light); }
         .support-details summary::-webkit-details-marker { display: none; }
-        .support-content { padding: 15px; font-size: 0.9rem; color: #666; border-top: 1px solid #eee; line-height: 1.7; }
-        .vocab-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-        .vocab-table th, .vocab-table td { padding: 10px; text-align: left; border-bottom: 1px solid #f0f0f0; }
-        .vocab-table th { color: #aaa; font-size: 0.75rem; text-transform: uppercase; }
+        .support-content { padding: 15px; font-size: 0.9rem; color: #555; border-top: 1px solid #eee; line-height: 1.8; }
+        
+        .vocab-table { width: 100%; border-collapse: collapse; }
+        .vocab-table th, .vocab-table td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        .vocab-table th { color: #aaa; font-size: 0.75rem; text-transform: uppercase; background: #fafafa; }
 
-        .bmc-btn { display: inline-flex; align-items: center; padding: 6px 12px; color: #000000; background-color: #FFDD00; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0px 1px 2px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; }
-        .bmc-btn:hover { opacity: 0.9; }
-        .bmc-btn img { height: 18px; width: auto; margin-right: 8px; }
+        .bmc-btn { display: inline-flex; align-items: center; padding: 8px 16px; color: #000000; background-color: #FFDD00; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; }
+        .bmc-btn:hover { transform: translateY(-2px); box-shadow: 0px 4px 10px rgba(0,0,0,0.15); }
+        .bmc-btn img { height: 20px; width: auto; margin-right: 8px; }
 
-        footer { padding: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+        footer { padding: 3rem 1.5rem; text-align: center; font-size: 0.8rem; color: #aaa; }
     </style>
 </head>
 <body>
@@ -93,123 +193,182 @@
 </nav>
 
 <div class="container">
-
     <section id="audio-blog" class="audio-section">
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
+        
+        <div id="blog-container"></div>
+        
+    </section>
+</div>
 
-
-<details class="audio-card">
-    <summary class="card-header">
-        <span class="vol-badge">Vol.4</span>
-        <span class="card-title">🍂 季節：Seasons</span>
-        <i class="fa-solid fa-chevron-down"></i>
-    </summary>
-
-    <div class="level-tabs">
-        <input type="radio" name="v4-tabs" id="v4-low" checked>
-        <label for="v4-low" class="tab-label">📗 中上級</label>
-
-        <input type="radio" name="v4-tabs" id="v4-high">
-        <label for="v4-high" class="tab-label">📕 上級</label>
-
-        <div class="tab-panel panel-v4-low">
-            <div class="audio-unit">
-                <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
-                <audio controls src="vol4-1.mp3"></audio>
-            </div>
-            <div class="script-box">
-                <p>皆さん、こんにちは。<ruby>今日<rt>きょう</rt></ruby>も<ruby>私<rt>わたし</rt></ruby>のオーディオブログを<ruby>聞<rt>き</rt></ruby>いてくれてありがとうございます。 <ruby>最近<rt>さいきん</rt></ruby>、<ruby>少<rt>すこ</rt></ruby>しずつ<ruby>天気<rt>てんき</rt></ruby>が<ruby>変<rt>か</rt></ruby>わってきましたね。 みなさんの<ruby>国<rt>くに</rt></ruby>の<ruby>天気<rt>てんき</rt></ruby>はどうですか。<ruby>寒<rt>さむ</rt></ruby>いですか。<ruby>暑<rt>あつ</rt></ruby>いですか。</p>
-                <p><ruby>私<rt>わたし</rt></ruby>の<ruby>町<rt>まち</rt></ruby>では、<ruby>桜<rt>さくら</rt></ruby>が<ruby>散<rt>ち</rt></ruby>って、<ruby>木<rt>き</rt></ruby>は<ruby>緑<rt>みどり</rt></ruby>になりました。<ruby>毎日<rt>まいにち</rt></ruby>、<ruby>暖<rt>あたた</rt></ruby>かいですが、<ruby>風<rt>かぜ</rt></ruby>が<ruby>少<rt>すこ</rt></ruby>し<ruby>強<rt>つよ</rt></ruby>いです。</p>
-                <p>今日は、「<ruby>季節<rt>きせつ</rt></ruby>」について話します。 みなさんが、一番好きな季節はいつですか。</p>
-                <p><ruby>私<rt>わたし</rt></ruby>が一番好きなのは、<ruby>秋<rt>あき</rt></ruby>です。 <ruby>秋<rt>あき</rt></ruby>は、暑すぎず、寒すぎず、ちょうどいい<ruby>季節<rt>きせつ</rt></ruby>です。 <ruby>夏<rt>なつ</rt></ruby>の間はとても暑くて、外に出るのが大変でしたが、秋になると空気がさらさらして気持ちよくなります。 私はよく、天気がいい日に近くの公園に行って、子どもと遊んだり、写真を撮ったりします。<br>
-                秋は緑から黄色、黄色から赤色に変わり、きれいですね。これを「<ruby>紅葉<rt>こうよう</rt></ruby>」と言います。</p>
-                <p>日本では秋のことを「食欲の秋」と呼びます。食べ物が一番おいしい季節という意味です。 秋になるとシャインマスカットや栗、柿がとてもおいしいです。でも、日本の果物はちょっと高いです。</p>
-                <p>もちろん、他の季節も素敵です。 春は桜がきれいだし、冬は雪が美しいですね。 でも、私は秋の静かな雰囲気が一番リラックスできると感じます。旅行するのにもいいシーズンだと思います。</p>
-                <p>皆さんの好きな季節は何ですか？その季節には、どんな特別な食べ物やイベントがありますか？</p>
-                <p>それでは、日本語の勉強、今月も一緒に頑張りましょう！ さようなら。</p>
-            </div>
-            
-            <details class="support-details">
-                <summary><i class="fa-solid fa-language"></i> English Translation</summary>
-                <div class="support-content">
-                    <p>Hello everyone. Thank you for listening to my audio blog today as well. Recently, the weather has been changing little by little. How is the weather in your country? Is it cold? Is it hot?</p>
-                    <p>In my town, the cherry blossoms have fallen, and the trees have turned green. It is warm every day, but the wind is a little strong.</p>
-                    <p>Today, I will talk about "seasons". What is your favorite season?</p>
-                    <p>My favorite is autumn. Autumn is not too hot and not too cold, it is just the right season. During the summer it was very hot and it was hard to go outside, but when autumn comes, the air becomes crisp and it feels good. On nice days, I often go to a nearby park to play with my child and take pictures.<br>
-                    In autumn, the green changes to yellow, and yellow to red, which is beautiful. We call this "Koyo" (autumn leaves).</p>
-                    <p>In Japan, autumn is called "Shokuyoku no Aki" (Autumn of Appetite). It means it is the season when food is the most delicious. When autumn comes, shine muscat grapes, chestnuts, and persimmons are very delicious. However, Japanese fruits are a bit expensive.</p>
-                    <p>Of course, other seasons are wonderful too. Spring has beautiful cherry blossoms, and winter has beautiful snow. But I feel the most relaxed in the quiet atmosphere of autumn. I think it is also a good season for traveling.</p>
-                    <p>What is your favorite season? What special foods or events do you have in that season?</p>
-                    <p>Well then, let's do our best studying Japanese together this month too! Goodbye.</p>
-                </div>
-            </details>
-
-            
-            <details class="support-details">
-                <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
-                <div class="support-content">
-                    <table class="vocab-table">
-                        <thead>
-                            <tr><th>Word</th><th>Reading / Meaning</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>最近</td><td>さいきん / recently</td></tr>
-                            <tr><td>季節</td><td>きせつ / season</td></tr>
-                            <tr><td>さらさら</td><td>さらさら / smooth</td></tr>
-                            <tr><td>散る</td><td>ちる / to fall, to scatter (e.g. blossoms)</td></tr>
-                            <tr><td>紅葉</td><td>こうよう / autumn leaves</td></tr>
-                            <tr><td>食欲</td><td>しょくよく / appetite</td></tr>
-                            <tr><td>栗</td><td>くり / chestnut</td></tr>
-                            <tr><td>柿</td><td>かき / persimmon</td></tr>
-                            <tr><td>雰囲気</td><td>ふんいき / atmosphere</td></tr>
-                            <tr><td>旅行</td><td>りょこう / travel, traveling</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </details>
-        </div>
-
-        <div class="tab-panel panel-v4-high">
-            <div class="audio-unit">
-                <p><small>🎵 自然なスピードと、よりカジュアルな表現で話します🚀</small></p>
-                <audio controls src="vol4-2.mp3"></audio>
-            </div>
-            <div class="script-box">
-                <p>おつかれさまです。今日も私のブログを聞いてくれてありがとう。最近、少しずつ天気が変わってきたよね。みんなの国の天気はどう？寒いかな？それとも、もう暑い？</p>
-                <p>私の町ではねー、桜が散って、木が緑になったよ。毎日暖かいけど、風がちょっと強いかなぁ。今日は「季節」について話そうと思うんだ。みんなが一番好きな季節はいつ？</p>
-                <p>私が一番好きなのは、秋！秋は、暑すぎないし、寒すぎないし、ちょうどいい季節だよねー。夏の間はすごく暑くて外に出るのが大変だったけど、秋になると空気がさらさらして気持ちよくなるんだ。天気がいい日は、よく近くの公園に行って、子どもと遊んだり、写真を撮ったりしてるよ。</p>
-                <p>秋って、緑から黄色、黄色から赤に変わるでしょ？あれ、本当にきれいだよね！これを日本語で「紅葉（こうよう）」って言うんだよ。</p>
-                <p>日本では、秋のことを「食欲の秋」って呼ぶんだ。食べ物が一番おいしい季節っていう意味！秋になると、シャインマスカットとか、栗とか、柿がすごくおいしいんだよね。……でも、日本の果物ってちょっと高いから、その時期はちょっと財布が痛いんだよねー(笑)</p>
-                <p>もちろん、他の季節も素敵だと思う。春は桜がきれいだし、冬は雪が美しいしね。でも、私は秋の静かな雰囲気が一番リラックスできるなぁ。旅行するのにもいいシーズンだと思うし。</p>
-                <p>みんなの好きな季節は何かな？その季節には、どんな特別な食べ物やイベントがある？ぜひ教えてね！</p>
-                <p>それじゃあ、日本語の勉強、今月も一緒に頑張ろう！じゃあ、またね！いつもありがとう！😍</p>
-            </div>
-        </div>
+<footer>
+    <div class="support-section">
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+            <span>Support OHAYO CENTER</span>
+        </a>
     </div>
-</details>
+    <p style="margin-top: 2rem;">&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
+</footer>
 
-        <details class="audio-card">
-            <summary class="card-header">
-                <span class="vol-badge">Vol.3</span>
-                <span class="card-title">🏠持ち家と賃貸：Owned House or Rental?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </summary>
-
-            <div class="level-tabs">
-                <input type="radio" name="v3-tabs" id="v3-low" checked>
-                <label for="v3-low" class="tab-label">📗 初中級</label>
-
-                <input type="radio" name="v3-tabs" id="v3-high">
-                <label for="v3-high" class="tab-label">📕 上級</label>
-
-                <div class="tab-panel panel-v3-low">
-                    <div class="audio-unit">
-                        <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
-                        <audio controls src="vol3-1.mp3"></audio>
-                    </div>
-                    <div class="script-box">
-                        <p>みなさん、こんにちは。<br>
-                        <ruby>今日<rt>きょう</rt></ruby>のテーマは「<ruby>持<rt>も</rt></ruby>ち<ruby>家<rt>いえ</rt></ruby>と<ruby>賃貸<rt>ちんたい</rt></ruby>」です。</p>
+<script>
+    const blogPosts = [
+        {
+            vol: 5,
+            date: "2026.06.05",
+            title: "🍔 和製英語：Wasei Eigo",
+            image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80", 
+            levels: [
+                {
+                    label: "📗 初中級",
+                    audioSrc: "vol5-1.mp3",
+                    note: "🎵 少しゆっくり・でも自然に話します😊",
+                    script: `
+                        <p>みなさん、こんにちは。<ruby>今日<rt>きょう</rt></ruby>は「<ruby>和製英語<rt>わせいえいご</rt></ruby>」について<ruby>話<rt>はな</rt></ruby>します。<ruby>和製英語<rt>わせいえいご</rt></ruby>とは、<ruby>英語<rt>えいご</rt></ruby>のように<ruby>聞<rt>き</rt></ruby>こえるけれど、<ruby>実<rt>じつ</rt></ruby>は<ruby>日本人<rt>にほんじん</rt></ruby>が<ruby>作<rt>つく</rt></ruby>った<ruby>言葉<rt>ことば</rt></ruby>のことです。</p>
+                        <p>たとえば、「パソコン」は Personal Computer のことです。「クーラー」は Air conditioner です。「コンセント」は Outlet や Socket のことです。</p>
+                        <p><ruby>一番<rt>いちばん</rt></ruby><ruby>面白<rt>おもしろ</rt></ruby>いのは「フライドポテト」です。<ruby>英語<rt>えいご</rt></ruby>では French fries ですが、<ruby>日本<rt>にほん</rt></ruby>ではフライドポテトと<ruby>言<rt>い</rt></ruby>います。ハンバーガー<ruby>屋<rt>や</rt></ruby>さんで「フレンチフライをください」と<ruby>言<rt>い</rt></ruby>っても、<ruby>店員<rt>てんいん</rt></ruby>さんは<ruby>少<rt>すこ</rt></ruby>し<ruby>困<rt>こま</rt></ruby>るかもしれません。</p>
+                        <p>みなさんの<ruby>国<rt>くに</rt></ruby>にも、<ruby>面白<rt>おもしろ</rt></ruby>い<ruby>外来語<rt>がいらいご</rt></ruby>はありますか。ぜひレッスンで<ruby>教<rt>おし</rt></ruby>えてくださいね！</p>
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
+                                <p>Hello, everyone. Today, I'm going to talk about "Wasei Eigo" (Japanese-English). Wasei Eigo refers to words that sound like English, but were actually created by Japanese people.</p>
+                                <p>For example, "Pasokon" means Personal Computer. "Kura" (Cooler) means Air conditioner. "Konsento" means Outlet or Socket.</p>
+                                <p>The most interesting one is "Furaido Poteto" (Fried potato). In English, it's French fries, but in Japan we say Fried potato. If you say "French fries please" at a hamburger shop, the shop staff might be a little confused.</p>
+                                <p>Are there any interesting loanwords in your country? Please tell me in our lessons!</p>
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>和製英語</td><td>わせいえいご / Japanese-English</td></tr>
+                        <tr><td>パソコン</td><td>personal computer</td></tr>
+                        <tr><td>クーラー</td><td>air conditioner</td></tr>
+                        <tr><td>コンセント</td><td>outlet, socket</td></tr>
+                        <tr><td>フライドポテト</td><td>french fries</td></tr>
+                        <tr><td>店員</td><td>てんいん / shop staff, clerk</td></tr>
+                        <tr><td>困る</td><td>こまる / to be troubled, confused</td></tr>
+                        <tr><td>外来語</td><td>がいらいご / loanword</td></tr>
+                    `
+                },
+                {
+                    label: "📕 上級",
+                    audioSrc: "vol5-2.mp3",
+                    note: "🎵 ナチュラルスピードで挑戦してみましょう！🔥",
+                    script: `
+                        <p>皆さん、こんにちは。今回は、日本語を勉強している外国人の皆さんがよく戸惑う「和製英語」についてお話しします。和製英語とは、英語の単語を組み合わせて日本で独自に作られた言葉のことで、ネイティブスピーカーには通じないことが多いんです。</p>
+                        <p>代表的なものに「パソコン（Personal Computer）」や「クーラー（Air Conditioner）」がありますが、日常会話で特によく使うのが「コンセント（Outlet/Socket）」や「電子レンジ（Microwave）」ですね。</p>
+                        <p>他にも、ファストフード店でよく頼む「フライドポテト」は、英語のFrench friesですが、日本でフレンチフライと言ってもすぐには通じないかもしれません。また、「サラリーマン（Salaryman）」なども完全に日本独自の表現です。</p>
+                        <p>こういった和製英語は、間違えやすい反面、日本の文化や歴史を反映していてとても面白いですよね。皆さんの母語にも、こういった「偽の英語」や面白い外来語はありますか？次のレッスンの時にぜひ教えてくださいね！</p>
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
+                                <p>Hello, everyone. This time, I will talk about "Wasei Eigo" (Japanese-English), which often confuses foreigners studying Japanese. Wasei Eigo refers to words uniquely created in Japan by combining English words, and they are often not understood by native English speakers.</p>
+                                <p>Typical examples include "Pasokon" (Personal Computer) and "Kura" (Air Conditioner), but ones we use especially often in daily conversation are "Konsento" (Outlet/Socket) and "Denshi Renji" (Microwave).</p>
+                                <p>Also, "Furaido Poteto," which we often order at fast-food restaurants, means French fries in English, but if you say "French fries" in Japan, you might not be understood immediately. Additionally, words like "Sarariman" (Salaryman) are completely unique to Japan.</p>
+                                <p>While these Japanese-English words can be easy to mistake, they reflect Japanese culture and history, which makes them very interesting. Does your native language have any of this "fake English" or interesting loanwords? Please let me know in our next lesson!</p>
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>戸惑う</td><td>とまどう / to be bewildered, confused</td></tr>
+                        <tr><td>独自に</td><td>どくじに / uniquely, originally</td></tr>
+                        <tr><td>通じる</td><td>つうじる / to be understood, to communicate</td></tr>
+                        <tr><td>代表的な</td><td>だいひょうてきな / representative, typical</td></tr>
+                        <tr><td>電子レンジ</td><td>でんしれんじ / microwave oven</td></tr>
+                        <tr><td>母語</td><td>ぼご / mother tongue, native language</td></tr>
+                        <tr><td>偽の</td><td>にせの / fake, pseudo</td></tr>
+                    `
+                }
+            ]
+        },
+        {
+            vol: 4,
+            date: "2026.04.26",
+            title: "🍂 季節：Seasons",
+            image: "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?auto=format&fit=crop&w=800&q=80",
+            levels: [
+                {
+                    label: "📗 中上級",
+                    audioSrc: "vol4-1.mp3",
+                    note: "🎵 少しゆっくり・でも自然に話します😊",
+                    script: `
+                        <p>皆さん、こんにちは。<ruby>今日<rt>きょう</rt></ruby>も<ruby>私<rt>わたし</rt></ruby>のオーディオブログを<ruby>聞<rt>き</rt></ruby>いてくれてありがとうございます。 <ruby>最近<rt>さいきん</rt></ruby>、<ruby>少<rt>すこ</rt></ruby>しずつ<ruby>天気<rt>てんき</rt></ruby>が<ruby>変<rt>か</rt></ruby>わってきましたね。 みなさんの<ruby>国<rt>くに</rt></ruby>の<ruby>天気<rt>てんき</rt></ruby>はどうですか。<ruby>寒<rt>さむ</rt></ruby>いですか。<ruby>暑<rt>あつ</rt></ruby>いですか。</p>
+                        <p><ruby>私<rt>わたし</rt></ruby>の<ruby>町<rt>まち</rt></ruby>では、<ruby>桜<rt>さくら</rt></ruby>が<ruby>散<rt>ち</rt></ruby>って、<ruby>木<rt>き</rt></ruby>は<ruby>緑<rt>みどり</rt></ruby>になりました。<ruby>毎日<rt>まいにち</rt></ruby>、<ruby>暖<rt>あたた</rt></ruby>かいですが、<ruby>風<rt>かぜ</rt></ruby>が<ruby>少<rt>すこ</rt></ruby>し<ruby>強<rt>つよ</rt></ruby>いです。</p>
+                        <p>今日は、「<ruby>季節<rt>きせつ</rt></ruby>」について話します。 みなさんが、一番好きな季節はいつですか。</p>
+                        <p><ruby>私<rt>わたし</rt></ruby>が一番好きなのは、<ruby>秋<rt>あき</rt></ruby>です。 <ruby>秋<rt>あき</rt></ruby>は、暑すぎず、寒すぎず、ちょうどいい<ruby>季節<rt>きせつ</rt></ruby>です。 <ruby>夏<rt>なつ</rt></ruby>の間はとても暑くて、外に出るのが大変でしたが、秋になると空気がさらさらして気持ちよくなります。 私はよく、天気がいい日に近くの公園に行って、子どもと遊んだり、写真を撮ったりします。<br>
+                        秋は緑から黄色、黄色から赤色に変わり、きれいですね。これを「<ruby>紅葉<rt>こうよう</rt></ruby>」と言います。</p>
+                        <p>日本では秋のことを「食欲の秋」と呼びます。食べ物が一番おいしい季節という意味です。 秋になるとシャインマスカットや栗、柿がとてもおいしいです。でも、日本の果物はちょっと高いです。</p>
+                        <p>もちろん、他の季節も素敵です。 春は桜がきれいだし、冬は雪が美しいですね。 でも、私は秋の静かな雰囲気が一番リラックスできると感じます。旅行するのにもいいシーズンだと思います。</p>
+                        <p>皆さんの好きな季節は何ですか？その季節には、どんな特別な食べ物やイベントがありますか？</p>
+                        <p>それでは、日本語の勉強、今月も一緒に頑張りましょう！ さようなら。</p>
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
+                                <p>Hello everyone. Thank you for listening to my audio blog today as well. Recently, the weather has been changing little by little. How is the weather in your country? Is it cold? Is it hot?</p>
+                                <p>In my town, the cherry blossoms have fallen, and the trees have turned green. It is warm every day, but the wind is a little strong.</p>
+                                <p>Today, I will talk about "seasons". What is your favorite season?</p>
+                                <p>My favorite is autumn. Autumn is not too hot and not too cold, it is just the right season. During the summer it was very hot and it was hard to go outside, but when autumn comes, the air becomes crisp and it feels good. On nice days, I often go to a nearby park to play with my child and take pictures.<br>
+                                In autumn, the green changes to yellow, and yellow to red, which is beautiful. We call this "Koyo" (autumn leaves).</p>
+                                <p>In Japan, autumn is called "Shokuyoku no Aki" (Autumn of Appetite). It means it is the season when food is the most delicious. When autumn comes, shine muscat grapes, chestnuts, and persimmons are very delicious. However, Japanese fruits are a bit expensive.</p>
+                                <p>Of course, other seasons are wonderful too. Spring has beautiful cherry blossoms, and winter has beautiful snow. But I feel the most relaxed in the quiet atmosphere of autumn. I think it is also a good season for traveling.</p>
+                                <p>What is your favorite season? What special foods or events do you have in that season?</p>
+                                <p>Well then, let's do our best studying Japanese together this month too! Goodbye.</p>
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>最近</td><td>さいきん / recently</td></tr>
+                        <tr><td>季節</td><td>きせつ / season</td></tr>
+                        <tr><td>さらさら</td><td>さらさら / smooth</td></tr>
+                        <tr><td>散る</td><td>ちる / to fall, to scatter (e.g. blossoms)</td></tr>
+                        <tr><td>紅葉</td><td>こうよう / autumn leaves</td></tr>
+                        <tr><td>食欲</td><td>しょくよく / appetite</td></tr>
+                        <tr><td>栗</td><td>くり / chestnut</td></tr>
+                        <tr><td>柿</td><td>かき / persimmon</td></tr>
+                        <tr><td>雰囲気</td><td>ふんいき / atmosphere</td></tr>
+                        <tr><td>旅行</td><td>りょこう / travel, traveling</td></tr>
+                    `
+                },
+                {
+                    label: "📕 上級",
+                    audioSrc: "vol4-2.mp3",
+                    note: "🎵 自然なスピードと、よりカジュアルな表現で話します🚀",
+                    script: `
+                        <p>おつかれさまです。今日も私のブログを聞いてくれてありがとう。最近、少しずつ天気が変わってきたよね。みんなの国の天気はどう？寒いかな？それとも、もう暑い？</p>
+                        <p>私の町ではねー、桜が散って、木が緑になったよ。毎日暖かいけど、風がちょっと強いかなぁ。今日は「季節」について話そうと思うんだ。みんなが一番好きな季節はいつ？</p>
+                        <p>私が一番好きなのは、秋！秋は、暑すぎないし、寒すぎないし、ちょうどいい季節だよねー。夏の間はすごく暑くて外に出るのが大変だったけど、秋になると空気がさらさらして気持ちよくなるんだ。天気がいい日は、よく近くの公園に行って、子どもと遊んだり、写真を撮ったりしてるよ。</p>
+                        <p>秋って、緑から黄色、黄色から赤に変わるでしょ？あれ、本当にきれいだよね！これを日本語で「紅葉（こうよう）」って言うんだよ。</p>
+                        <p>日本では、秋のことを「食欲の秋」って呼ぶんだ。食べ物が一番おいしい季節っていう意味！秋になると、シャインマスカットとか、栗とか、柿がすごくおいしいんだよね。……でも、日本の果物ってちょっと高いから、その時期はちょっと財布が痛いんだよねー(笑)</p>
+                        <p>もちろん、他の季節も素敵だと思う。春は桜がきれいだし、冬は雪が美しいしね。でも、私は秋の静かな雰囲気が一番リラックスできるなぁ。旅行するのにもいいシーズンだと思うし。</p>
+                        <p>みんなの好きな季節は何かな？その季節には、どんな特別な食べ物やイベントがある？ぜひ教えてね！</p>
+                        <p>それじゃあ、日本語の勉強、今月も一緒に頑張ろう！じゃあ、またね！いつもありがとう！😍</p>
+                    `,
+                    translations: [],
+                    vocab: ``
+                }
+            ]
+        },
+        {
+            vol: 3,
+            date: "2026.03.15", 
+            title: "🏠持ち家と賃貸：Owned House or Rental?",
+            image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", 
+            levels: [
+                {
+                    label: "📗 初中級",
+                    audioSrc: "vol3-1.mp3",
+                    note: "🎵 少しゆっくり・でも自然に話します😊",
+                    script: `
+                        <p>みなさん、こんにちは。<br><ruby>今日<rt>きょう</rt></ruby>のテーマは「<ruby>持<rt>も</rt></ruby>ち<ruby>家<rt>いえ</rt></ruby>と<ruby>賃貸<rt>ちんたい</rt></ruby>」です。</p>
                         <p>みなさんは、<ruby>持<rt>も</rt></ruby>ち<ruby>家<rt>いえ</rt></ruby>と<ruby>賃貸<rt>ちんたい</rt></ruby>、どっちがお<ruby>得<rt>とく</rt></ruby>だと<ruby>思<rt>おも</rt></ruby>いますか。これは<ruby>日本<rt>にほん</rt></ruby>でもよく<ruby>話題<rt>わだい</rt></ruby>になるテーマです。</p>
                         <p><strong><ruby>持<rt>も</rt></ruby>ち<ruby>家<rt>いえ</rt></ruby>のメリット：</strong><br>
                         ・<ruby>自分<rt>じぶん</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>なので、<ruby>自由<rt>じゆう</rt></ruby>にリフォームできます<br>
@@ -225,134 +384,98 @@
                         <p><ruby>最近<rt>さいきん</rt></ruby>は、DIYといって、<ruby>無料<rt>むりょう</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>を<ruby>自分<rt>じぶん</rt></ruby>でリフォームする<ruby>人<rt>ひと</rt></ruby>も<ruby>多<rt>おお</rt></ruby>いです。「DIY」は「Do It Yourself」という意味で、「自分でやる」という意味です。<ruby>私<rt>わたし</rt></ruby>もやってみたいのですが、<ruby>日曜大工<rt>にちようだいく</rt></ruby>が<ruby>苦手<rt>にがて</rt></ruby>なので、YouTubeで<ruby>見<rt>み</rt></ruby>て<ruby>楽<rt>たの</rt></ruby>しんでいます。</p>
                         <p><ruby>日本<rt>にほん</rt></ruby>では<ruby>少子高齢化<rt>しょうしこうれいか</rt></ruby>が<ruby>進<rt>すす</rt></ruby>んでいます。将来は空き家が増えると言われています。もしかすると今後もっと価格は下がるかもしれません。</p>
                         <p><ruby>私<rt>わたし</rt></ruby>の<ruby>夢<rt>ゆめ</rt></ruby>は、いつか<ruby>大<rt>おお</rt></ruby>きい<ruby>家<rt>いえ</rt></ruby>を<ruby>買<rt>か</rt></ruby>うことです。<ruby>庭<rt>にわ</rt></ruby>がある<ruby>家<rt>いえ</rt></ruby>がいいなあと思っています。 みなさんは、どんな<ruby>家<rt>いえ</rt></ruby>に<ruby>住<rt>す</rt></ruby>みたいですか。</p>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
-                            <div class="support-content">
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
                                 Hello, everyone!
-Today’s theme is "Owning a Home vs. Renting."
-Which do you think is a better deal? This is a topic that is often discussed here in Japan.
-
-The Benefits of Owning a Home:
-Freedom to Renovate: Since it’s your own house, you can remodel it however you like.
-
-Asset Value: Once you finish paying off the mortgage, the house becomes your personal property.
-
-Stability: It provides a sense of security for your family.
-
-Pet-Friendly: You are free to keep pets without restrictions.
-
-The Benefits of Renting:
-Easy to Move: It’s very simple to relocate whenever you want.
-
-No Maintenance Stress: The landlord or owner handles all the repairs.
-
-No Large Debt: You don’t need to take out a massive long-term loan.
-
-Flexibility: You can change where you live to match your job or lifestyle changes.
-
-Currently, while the rest of the world faces inflation, Japan has continued to experience deflation. Because of this, I personally feel that real estate prices here are quite low. In the town where I live, you can buy a very beautiful house for 20 million yen. At today’s exchange rate, that’s about 130,000 U.S. dollars. There are even "free" houses—houses that cost zero yen—if they are old. It might be hard to believe, but it’s true!
-
-Recently, many people have been doing "DIY"—which stands for "Do It Yourself"—to renovate these free houses. I’d love to try it myself, but since I’m not very good at carpentry, I just enjoy watching others do it on YouTube.
-
-Japan’s population is aging, and the birthrate is declining. It’s predicted that the number of vacant houses will increase in the future. Because of this, prices might drop even further.
-
-My dream is to one day buy a big house. I’d love a place with a garden. How about you? What kind of house would you like to live in?
-                            </div>
-                        </details>
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
-                            <div class="support-content">
-                                <table class="vocab-table">
-                                    <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>持ち家</td><td>owned house</td></tr>
-                                        <tr><td>賃貸</td><td>rental</td></tr>
-                                        <tr><td>お得</td><td>good deal, profitable</td></tr>
-                                        <tr><td>財産</td><td>property, asset</td></tr>
-                                        <tr><td>不動産</td><td>real estate</td></tr>
-                                        <tr><td>日曜大工</td><td>DIY, carpentry as a hobby</td></tr>
-                                        <tr><td>少子高齢化</td><td>declining birthrate and aging population</td></tr>
-                                        <tr><td>空き家</td><td>vacant house</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <div class="tab-panel panel-v3-high">
-                    <div class="audio-unit">
-                        <p><small>🎵 ナチュラルスピードで挑戦してみましょう！🔥</small></p>
-                        <audio controls src="vol3-2.mp3"></audio>
-                    </div>
-                    <div class="script-box">
+                                Today’s theme is "Owning a Home vs. Renting."
+                                Which do you think is a better deal? This is a topic that is often discussed here in Japan.<br><br>
+                                
+                                The Benefits of Owning a Home:<br>
+                                Freedom to Renovate: Since it’s your own house, you can remodel it however you like.<br>
+                                Asset Value: Once you finish paying off the mortgage, the house becomes your personal property.<br>
+                                Stability: It provides a sense of security for your family.<br>
+                                Pet-Friendly: You are free to keep pets without restrictions.<br><br>
+                                
+                                The Benefits of Renting:<br>
+                                Easy to Move: It’s very simple to relocate whenever you want.<br>
+                                No Maintenance Stress: The landlord or owner handles all the repairs.<br>
+                                No Large Debt: You don’t need to take out a massive long-term loan.<br>
+                                Flexibility: You can change where you live to match your job or lifestyle changes.<br><br>
+                                
+                                Currently, while the rest of the world faces inflation, Japan has continued to experience deflation. Because of this, I personally feel that real estate prices here are quite low. In the town where I live, you can buy a very beautiful house for 20 million yen. At today’s exchange rate, that’s about 130,000 U.S. dollars. There are even "free" houses—houses that cost zero yen—if they are old. It might be hard to believe, but it’s true!<br><br>
+                                
+                                Recently, many people have been doing "DIY"—which stands for "Do It Yourself"—to renovate these free houses. I’d love to try it myself, but since I’m not very good at carpentry, I just enjoy watching others do it on YouTube.<br><br>
+                                
+                                Japan’s population is aging, and the birthrate is declining. It’s predicted that the number of vacant houses will increase in the future. Because of this, prices might drop even further.<br><br>
+                                
+                                My dream is to one day buy a big house. I’d love a place with a garden. How about you? What kind of house would you like to live in?
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>持ち家</td><td>owned house</td></tr>
+                        <tr><td>賃貸</td><td>rental</td></tr>
+                        <tr><td>お得</td><td>good deal, profitable</td></tr>
+                        <tr><td>財産</td><td>property, asset</td></tr>
+                        <tr><td>不動産</td><td>real estate</td></tr>
+                        <tr><td>日曜大工</td><td>DIY, carpentry as a hobby</td></tr>
+                        <tr><td>少子高齢化</td><td>declining birthrate and aging population</td></tr>
+                        <tr><td>空き家</td><td>vacant house</td></tr>
+                    `
+                },
+                {
+                    label: "📕 上級",
+                    audioSrc: "vol3-2.mp3",
+                    note: "🎵 ナチュラルスピードで挑戦してみましょう！🔥",
+                    script: `
                         <p>みなさん、こんにちは。今回は、日本人なら誰もが一度は悩む永遠のテーマ、「持ち家と賃貸」について語りたいと思います。</p>
                         <p>この問題は、単なる経済的な損得だけでなく、ライフスタイルや価値観とも深く関わっています。資産形成の観点から言えば、住宅ローンを完済すれば不動産という実物資産が手に入り、老後の家賃負担がないというのは大きな安心材料です。一方で、賃貸の魅力は柔軟性だと思います。転勤や家族構成の変化に応じて住む場所を変えられる自由さは、現代の働き方に合っていますね。最近では、「デジタルノマド」という言葉も流行っています。</p>
                         <p>現在、日本では長年のデフレが続いており、世界的なインフレに比べて不動産価格が安いと感じられます。特に地方や過疎地域での「ゼロ円空き家」など、DIYリノベーションをして新しい住まいの形を模索する人も増えています。</p>
                         <p>日本が直面している少子高齢化により、2033年には空き家率が30%を超えるという予測もあります。不動産を単なる「住む場所」ではなく、投資対象として冷静に分析する視点も必要かもしれません。人生の大半を過ごす「家」という空間をどう選び、どう活用するかは、まさに人生そのものの選択だと思います。</p>
                         <p>みなさんも、もし興味があれば、日本の不動産サイトを覗いてみてください。もしかすると掘り出し物に出会えるかもしれませんよ。それでは、今日も最後まで聞いてくださり、ありがとうございました。さようなら！</p>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
-                            <div class="support-content">
-                                Hello, everyone. Today, I’d like to talk about a topic that almost every Japanese person has wrestled with at least once: the "eternal debate" of owning a home versus renting.
-
-This issue isn't just about financial gains or losses; it’s deeply connected to our lifestyles and personal values. From an asset-building perspective, owning a home offers a huge sense of security. Once the mortgage is paid off, you own a tangible physical asset, and the absence of rent payments in your later years provides a significant safety net.
-
-On the other hand, the greatest appeal of renting is flexibility. The freedom to move in response to job transfers or changes in family structure is perfectly suited to modern ways of working. In fact, the term "digital nomad" has become quite popular recently!
-
-Currently, Japan has experienced long-term deflation, which makes real estate prices feel relatively cheap compared to the global inflation seen elsewhere. We’re also seeing a rise in people exploring new ways of living—such as taking over "zero-yen vacant houses" in rural or depopulated areas and performing their own DIY renovations.
-
-However, with Japan’s declining birthrate and aging population, some forecasts suggest that the vacant house rate will exceed 30% by 2033. It might be necessary to look at real estate not just as a "place to live," but through a cool, analytical lens as an investment, carefully weighing the balance of supply and demand. How we choose and utilize the space we call "home"—where we spend the majority of our lives—is, in many ways, a choice about how we want to live our lives.
-
-If you’re interested, I encourage you to take a look at some Japanese real estate websites. You might just stumble upon a real hidden gem.
-
-Thank you for listening until the end. Goodbye for now!
-                            </div>
-                        </details>
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-book"></i> Key Vocabulary</summary>
-                            <div class="support-content">
-                                <table class="vocab-table">
-                                    <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>資産形成</td><td>asset building</td></tr>
-                                        <tr><td>実物資産</td><td>tangible asset</td></tr>
-                                        <tr><td>モビリティ</td><td>mobility</td></tr>
-                                        <tr><td>築浅</td><td>recently built</td></tr>
-                                        <tr><td>過疎地域</td><td>depopulated area</td></tr>
-                                        <tr><td>少子高齢化</td><td>declining birthrate and aging population</td></tr>
-                                        <tr><td>掘り出し物</td><td>bargain find, hidden gem</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <details class="audio-card">
-            <summary class="card-header">
-                <span class="vol-badge">Vol.2</span>
-                <span class="card-title">🌸Wait for the Bloom: My 20-Year Language Journey</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </summary>
-
-            <div class="level-tabs">
-                <input type="radio" name="v2-tabs" id="v2-low" checked>
-                <label for="v2-low" class="tab-label">📗 中上級</label>
-
-                <input type="radio" name="v2-tabs" id="v2-high">
-                <label for="v2-high" class="tab-label">📕 上級</label>
-
-                <div class="tab-panel panel-v2-low">
-                    <div class="audio-unit">
-                        <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
-                        <audio controls src="vol2-1.mp3"></audio>
-                    </div>
-                    <div class="script-box">
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
+                                Hello, everyone. Today, I’d like to talk about a topic that almost every Japanese person has wrestled with at least once: the "eternal debate" of owning a home versus renting.<br><br>
+                                This issue isn't just about financial gains or losses; it’s deeply connected to our lifestyles and personal values. From an asset-building perspective, owning a home offers a huge sense of security. Once the mortgage is paid off, you own a tangible physical asset, and the absence of rent payments in your later years provides a significant safety net.<br><br>
+                                On the other hand, the greatest appeal of renting is flexibility. The freedom to move in response to job transfers or changes in family structure is perfectly suited to modern ways of working. In fact, the term "digital nomad" has become quite popular recently!<br><br>
+                                Currently, Japan has experienced long-term deflation, which makes real estate prices feel relatively cheap compared to the global inflation seen elsewhere. We’re also seeing a rise in people exploring new ways of living—such as taking over "zero-yen vacant houses" in rural or depopulated areas and performing their own DIY renovations.<br><br>
+                                However, with Japan’s declining birthrate and aging population, some forecasts suggest that the vacant house rate will exceed 30% by 2033. It might be necessary to look at real estate not just as a "place to live," but through a cool, analytical lens as an investment, carefully weighing the balance of supply and demand. How we choose and utilize the space we call "home"—where we spend the majority of our lives—is, in many ways, a choice about how we want to live our lives.<br><br>
+                                If you’re interested, I encourage you to take a look at some Japanese real estate websites. You might just stumble upon a real hidden gem.<br><br>
+                                Thank you for listening until the end. Goodbye for now!
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>資産形成</td><td>asset building</td></tr>
+                        <tr><td>実物資産</td><td>tangible asset</td></tr>
+                        <tr><td>モビリティ</td><td>mobility</td></tr>
+                        <tr><td>築浅</td><td>recently built</td></tr>
+                        <tr><td>過疎地域</td><td>depopulated area</td></tr>
+                        <tr><td>少子高齢化</td><td>declining birthrate and aging population</td></tr>
+                        <tr><td>掘り出し物</td><td>bargain find, hidden gem</td></tr>
+                    `
+                }
+            ]
+        },
+        {
+            vol: 2,
+            date: "2026.02.10",
+            title: "🌸Wait for the Bloom: My 20-Year Language Journey",
+            image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80", 
+            levels: [
+                {
+                    label: "📗 中上級",
+                    audioSrc: "vol2-1.mp3",
+                    note: "🎵 少しゆっくり・でも自然に話します😊",
+                    script: `
                         <p>皆さん、こんにちは。OHAYO CENTERの Shinyaです。</p>
                         <p><ruby>千葉<rt>ちば</rt></ruby>の <ruby>桜<rt>さくら</rt></ruby>も, もうすぐ <ruby>咲<rt>さ</rt></ruby>きそうです。今日は、私の好きな「桜」にまつわる <ruby>言葉<rt>ことば</rt></ruby>を <ruby>紹介<rt>しょうかい</rt></ruby>します. むずかしい言葉ですが、きいてください。英語の翻訳(Translation)を読んでみてください。</p>
                         <div class="quote-box">
@@ -365,69 +488,55 @@ Thank you for listening until the end. Goodbye for now!
                         <p>その時、私は気づきました。 自分では「ずっと止まっている」と思っていました。でも、20年間、少しずつ続けてきたことが、私の中に「力」として貯まっていたんです。</p>
                         <p>冬の桜の木を見て、「枯れている」と思う人はいませんよね。桜は、寒い冬の間も、春にきれいな花を咲かせるために、一瞬も休まずに準備をしています。皆さんの日本語も同じです。 毎日単語を覚えたり、私のサイトで記事を読んだりしている時間は、力をためている時間です。自分では気づかなくても、ある日突然、周りの人から「日本語, すごいね！」と言われる時が必ず来ます。</p>
                         <p>今はまだ、蕾（つぼみ）の状態かもしれません。 でも、その「待つ時間」を大切にしてください。 春が来た時、皆さんの努力はきっと大きな花を咲かせます。私も皆さんと一緒に、これからも言語の勉強を頑張ります。 今日も一歩ずつ、一緒に進みましょう。 OHAYO CENTERのShinyaでした。今日もきいてくれてありがとうございました。</p>
-                        
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
-                            <div class="support-content">
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
                                 <p>"Having a heart that waits for the right time is like a cherry blossom awaiting spring. However, waiting without doing anything is the same as merely waiting for a stroke of luck. The cherry blossom, waiting quietly for spring, is accumulating its strength without a moment's rest. Without that stored power, the flower will not bloom even when the time comes."</p>
                                 <p>This is a quote from a famous Japanese person. When studying Japanese, do you ever feel sad, thinking, "I'm not getting any better"? Actually, I have had the same experience. I have been studying English for 20 years, but for the longest time, I didn't feel like I was improving at all. I even thought I had no talent.</p>
                                 <p>However, after starting my online lessons, a student told me, "I chose you because you are good at English." At that moment, I realized that my 20 years of small, consistent efforts had been accumulating inside me as "strength." Even if you feel like you've stopped, you are gathering strength every day. The time will surely come when your efforts bloom into a beautiful flower. Let's keep moving forward together, one step at a time.</p>
-                            </div>
-                        </details>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-earth-asia"></i> Chinese Translation / 中文翻译</summary>
-                            <div class="support-content">
+                            `
+                        },
+                        {
+                            title: "Chinese Translation / 中文翻译",
+                            icon: "fa-earth-asia",
+                            content: `
                                 <p>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸の降临。静静等待春天的樱花，其实一刻不停地在积蓄力量。如果没有那股力量，时机成熟时花儿也无法绽放。”</p>
                                 <p>这是一位日本名人の名言。大家在学习日语时，会不会因为觉得“一点进步都没有”而感到悲伤呢？其实，我也有過同样的经历。我从20年前開始学英語，曾长期感觉不到进步，甚至怀疑過自己的天赋。</p>
                                 <p>但最近有学生对我说：“因为老师英語好，我才选了您。”那一刻我才发现，20年来的点滴努力已化作“力量”積蓄在体内。樱花在寒冬也从未停止準備。大家的日语学习也一样，每天の积累都在蓄力。请珍惜这段“等待的时间”，春天来临时，你的努力定会灿烂绽放。</p>
-                            </div>
-                        </details>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
-                            <div class="support-content">
-                                <table class="vocab-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Word / 单词</th>
-                                            <th>Reading / Meaning / 意思</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td>～にまつわる</td><td>Associated with / 与……有关</td></tr>
-                                        <tr><td>紹介する</td><td>しょうかいする / To introduce / 介绍</td></tr>
-                                        <tr><td>姿</td><td>すがた / Figure; Appearance / 姿态</td></tr>
-                                        <tr><td>同じ</td><td>おなじ / Same / 相同</td></tr>
-                                        <tr><td>一瞬も休まず</td><td>いっしゅんもやすまず / Without a moment's rest / 一刻也不休息</td></tr>
-                                        <tr><td>（力を）蓄える</td><td>（ちからを）たくわえる / To accumulate (strength) / 积蓄（力量）</td></tr>
-                                        <tr><td>咲く</td><td>さく / To bloom / 开放</td></tr>
-                                        <tr><td>全然～ない</td><td>ぜんぜん～ない / Not at all / 完全不……</td></tr>
-                                        <tr><td>上手になる</td><td>じょうずになる / To improve / 进步</td></tr>
-                                        <tr><td>実は</td><td>じつは / Actually / 其实</td></tr>
-                                        <tr><td>経験</td><td>けいけん / Experience / 经验</td></tr>
-                                        <tr><td>続ける</td><td>つづける / To continue / 继续</td></tr>
-                                        <tr><td>～が経つ</td><td>～がたつ / (Time) passes / （时间）流逝</td></tr>
-                                        <tr><td>実感</td><td>じっかん / Real feel / 真实感受</td></tr>
-                                        <tr><td>才能</td><td>さいのう / Talent / 天賦</td></tr>
-                                        <tr><td>驚く</td><td>おどろく / To be surprised / 惊讶</td></tr>
-                                        <tr><td>準備</td><td>じゅんび / Preparation / 准备</td></tr>
-                                        <tr><td>蕾（つぼみ）</td><td>つぼみ / Bud / 花蕾</td></tr>
-                                        <tr><td>努力</td><td>どりょく / Effort / 努力</td></tr>
-                                        <tr><td>一歩ずつ</td><td>いっぽずつ / Step by step / 一步步地</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <div class="tab-panel panel-v2-high">
-                    <div class="audio-unit">
-                        <p><small>🎵 普通に話します😊</small></p>
-                        <audio controls src="vol2-2.mp3"></audio>
-                    </div>
-                    <div class="script-box">
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>～にまつわる</td><td>Associated with / 与……有关</td></tr>
+                        <tr><td>紹介する</td><td>しょうかいする / To introduce / 介绍</td></tr>
+                        <tr><td>姿</td><td>すがた / Figure; Appearance / 姿态</td></tr>
+                        <tr><td>同じ</td><td>おなじ / Same / 相同</td></tr>
+                        <tr><td>一瞬も休まず</td><td>いっしゅんもやすまず / Without a moment's rest / 一刻也不休息</td></tr>
+                        <tr><td>（力を）蓄える</td><td>（ちからを）たくわえる / To accumulate (strength) / 积蓄（力量）</td></tr>
+                        <tr><td>咲く</td><td>さく / To bloom / 开放</td></tr>
+                        <tr><td>全然～ない</td><td>ぜんぜん～ない / Not at all / 完全不……</td></tr>
+                        <tr><td>上手になる</td><td>じょうずになる / To improve / 进步</td></tr>
+                        <tr><td>実は</td><td>じつは / Actually / 其实</td></tr>
+                        <tr><td>経験</td><td>けいけん / Experience / 经验</td></tr>
+                        <tr><td>続ける</td><td>つづける / To continue / 继续</td></tr>
+                        <tr><td>～が経つ</td><td>～がたつ / (Time) passes / （时间）流逝</td></tr>
+                        <tr><td>実感</td><td>じっかん / Real feel / 真实感受</td></tr>
+                        <tr><td>才能</td><td>さいのう / Talent / 天賦</td></tr>
+                        <tr><td>驚く</td><td>おどろく / To be surprised / 惊讶</td></tr>
+                        <tr><td>準備</td><td>じゅんび / Preparation / 准备</td></tr>
+                        <tr><td>蕾（つぼみ）</td><td>つぼみ / Bud / 花蕾</td></tr>
+                        <tr><td>努力</td><td>どりょく / Effort / 努力</td></tr>
+                        <tr><td>一歩ずつ</td><td>いっぽずつ / Step by step / 一步步地</td></tr>
+                    `
+                },
+                {
+                    label: "📕 上級",
+                    audioSrc: "vol2-2.mp3",
+                    note: "🎵 普通に話します😊",
+                    script: `
                         <p>皆さん、こんにちは。OHAYO CENTERのShinyaです。 千葉もようやく春の気配がしてきましたね。……あ、そういえば、スタバでも桜シリーズが出ていますね。来週子どもと一緒にチェックしに行こうかな、なんて思っています。……まあ、そんな話はさておいて（笑）。</p>
                         <p>今日は、私がずっと大切にしている「時を待つ」っていう言葉について、少しお話ししようと思います。松下幸之助さんの有名な言葉に、こんな格言があるんです。松下さんといえば、Panasonicですね！</p>
                         <div class="quote-box">
@@ -437,90 +546,70 @@ Thank you for listening until the end. Goodbye for now!
                         <p>……「僥倖（ぎょうこう）」、つまり、ただのラッキーを待つんじゃなくて、見えないところで虎視眈々と準備をすること。これって、言語の学習にそっくりだなって思うんですよね。実は、私の話をすると……私, もう20年以上「英語が上手になりたいな」と思って勉強を続けてるんですよ。でも, なんて言うか……10年経っても, 15年経っても, ちっとも上手くなってる実感が持てなかったんです。「あぁ, 言語の才能ないのかな」なんて思うことも, 正直ありました。</p>
                         <p>ところが、最近オンラインでレッスンを始めて、驚いたことがあって。 ……生徒さんから、「先生は英語ができるから、私は先生のレッスンを選びました」って、不意に言われたんです。その時、ハッとしたんですよね。 自分では「ずっと足踏みしている」と思っていた20年間。でも、その間も細々と続けていた積み重ねが、知らないうちに私の中にエネルギーとして「蓄えられていた」んだなって。あぁ、自分の成長をしっかり認めてもらえたんだなって、すごく勇気をもらいました。</p>
                         <p>桜も, 冬の間はただ枯れているように見えますよね。でも, 実は一瞬も休まずに, 春に花を咲かせるための力を溜めている。 皆さんの日本語も, 今は「全然進んでないな」と感じるかもしれません。耳慣れてきたある日突然, 周りの誰かがあなたの「花」に気づく時が必ず来ます。だから, 今は焦らず, 静かに力を蓄えていきましょう。 時が来れば, 必ず咲きますから。……まあ, 私も次の20年に向けて, またコツコツ言語の勉強を続けていこうかな, なんて思っています。でも, 次の20年だと60歳なのでおじいちゃんですね。それでは, 今日も素敵な一日を。 OHAYO CENTERのShinyaでした。今日もきいてくれてありがとうございました！</p>
-                        
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
-                            <div class="support-content">
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
                                 <p>Hello everyone, I'm Shinya from OHAYO CENTER. It feels like spring is finally in the air here in Chiba. By the way, Starbucks has released their cherry blossom series! I’m thinking of checking it out with my child next week. Well, let’s set that aside for now (haha).</p>
                                 <p>Today, I want to talk about a phrase I’ve always held dear: "Waiting for the right time." There’s a famous maxim by Konosuke Matsushita—the founder of Panasonic!</p>
                                 <p><i>"Having a heart that waits for the right time is like a cherry blossom awaiting spring. However, waiting in idleness is nothing more than hoping for a windfall. The cherry blossom, waiting quietly for spring, is accumulating its strength without a moment's rest. Without that stored power, the flower will not bloom even when the time comes."</i></p>
                                 <p>Waiting for "gyoko" (a fluke or stroke of luck) isn't the goal; instead, it's about vigilantly preparing behind the scenes. I feel this is exactly like language learning. To be honest, I’ve been studying English for over 20 years because I wanted to be proficient. But for the longest time—10 years, 15 years—I didn't feel like I was improving at all. I truly wondered if I just had no talent for languages.</p>
                                 <p>However, since I started my online lessons recently, something surprised me. A student suddenly said, "I chose your lesson because you are good at English." That moment was an epiphany for me. I thought I had been "treading water" for 20 years. But in reality, those small, consistent efforts had been accumulating inside me as energy without me even realizing it. Having my growth recognized like that gave me so much courage.</p>
                                 <p>During winter, a cherry tree looks as if it has simply withered. But in truth, it never rests, gathering the strength it needs to bloom in spring. Your Japanese studies might feel stagnant right now. But the day will surely come when someone notices your "flower." So, don't rush; quietly accumulate your strength. When the time comes, you will surely bloom. As for me, I’ll keep working steadily toward the next 20 years... though I’ll be a grandpa by then! Have a wonderful day. This was Shinya from OHAYO CENTER. Thank you for listening!</p>
-                            </div>
-                        </details>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-earth-asia"></i> Chinese Translation / 中文翻译</summary>
-                            <div class="support-content">
+                            `
+                        },
+                        {
+                            title: "Chinese Translation / 中文翻译",
+                            icon: "fa-earth-asia",
+                            content: `
                                 <p>大家好，我是 OHAYO CENTER 的 Shinya。千叶终于有了春天的气息。对了，星巴克也出了樱花系列呢，我在想下周要不要带孩子去看看。好啦，闲话休提（笑）。</p>
                                 <p>今天我想聊聊我一直很珍惜的一句话——“等待时机”。松下幸之助先生（就是松下电器的创始人！）有一句著名的格言：</p>
                                 <p><i>“等待时机的心，就像等待春天的樱花。但什么都不做只是等待，就如同空等侥幸の降临。静静等待春天的樱花，其实一刻不停地在積蓄力量。如果没有那股積蓄的力量，时机成熟时花儿也无法绽放。”</i></p>
                                 <p>所谓的“侥幸”，也就是不要只等好运降临，而是在看不見的地方虎視眈眈地做準備。我覺得這和語言学習簡直一模一樣。說實話，我為了“想学好英語”已經堅持了20多年。但怎麼說呢，過了10年、15年，我完全没有進步の實感，甚至真的怀疑過自己是不是没有語言天賦。</p>
                                 <p>然而最近開始在线授課后，發生了一件讓我驚訝的事。一位学生突然對我說：“因為老師英語很好，所以我選了您的課。”那一刻，我猛然醒悟。我以為自己這20年一直“停滯不前”，但其實那些瑣碎的積累，早已在不知不覺中化作能量積蓄在体內。自分の成長能得到認可，真的给了我很大的勇气。</p>
                                 <p>冬天的櫻花樹看起來像枯萎了一樣，但其實它一刻不停地在為春天開花而蓄力。大家的日語学習也許現在正處於“感覺不到進步”の段階，但總有一天，一定會有人發現你的“花朵”。所以，請不要焦急，靜靜地積蓄力量吧。時機成熟時，一定能綻放。我也打算為了下一個20年繼續努力学語言……不過那时我就60歲，成老爺爺了ね（笑）。祝大家度過美好的一天，我是 OHAYO CENTER 的 Shinya。謝謝大家的收聽！</p>
-                            </div>
-                        </details>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
-                            <div class="support-content">
-                                <table class="vocab-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Word / 单词</th>
-                                            <th>Meaning / 意思</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td>～の気配がする</td><td>Signs of... / 有……的迹象</td></tr>
-                                        <tr><td>～はさておき</td><td>Setting aside... / 暂且不提……</td></tr>
-                                        <tr><td>格言</td><td>Maxim; Adage / 格言</td></tr>
-                                        <tr><td>僥倖（ぎょうこう）</td><td>Windfall; A stroke of luck / 侥幸</td></tr>
-                                        <tr><td>～に等しい</td><td>Equivalent to / 等同于……</td></tr>
-                                        <tr><td>虎視眈々と</td><td>Vigilantly waiting / 虎视眈眈地</td></tr>
-                                        <tr><td>そっくりだ</td><td>Exactly like / 一模一样</td></tr>
-                                        <tr><td>ちっとも～ない</td><td>Not at all / 一点也不……</td></tr>
-                                        <tr><td>実感が持てない</td><td>Cannot feel the reality of / 没真实感</td></tr>
-                                        <tr><td>正直</td><td>To be honest / 老实说</td></tr>
-                                        <tr><td>不意に</td><td>Unexpectedly; Suddenly / 意外地; 突然</td></tr>
-                                        <tr><td>ハッとする</td><td>To suddenly realize / 猛然意识到</td></tr>
-                                        <tr><td>足踏みしている</td><td>Stagnating; At a standstill / 停滞不前</td></tr>
-                                        <tr><td>細々と（ほそぼそと）</td><td>In a small way; Modestly / 勉强地; 零碎地</td></tr>
-                                        <tr><td>積み重ね</td><td>Accumulation / 积累</td></tr>
-                                        <tr><td>認めてもらう</td><td>To be recognized / 得到认可</td></tr>
-                                        <tr><td>勇気をもらう</td><td>To be encouraged / 獲得勇气</td></tr>
-                                        <tr><td>枯れる</td><td>To wither; Die (plants) / 枯萎</td></tr>
-                                        <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏実実地</td></tr>
-                                        <tr><td>一歩ずつ</td><td>Step by step / 一步步地</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <details class="audio-card">
-            <summary class="card-header">
-                <span class="vol-badge">Vol.1</span>
-                <span class="card-title">🎉My first Audio Blog：Who is OHAYO CENTER?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </summary>
-
-            <div class="level-tabs">
-                <input type="radio" name="v1-tabs" id="v1-low" checked>
-                <label for="v1-low" class="tab-label">📗 初中級</label>
-                <input type="radio" name="v1-tabs" id="v1-high">
-                <label for="v1-high" class="tab-label">📕 上級</label>
-
-                <div class="tab-panel panel-v1-low">
-                    <div class="audio-unit">
-                        <p><small>🎵 少しゆっくり・でも自然に話します😊</small></p>
-                        <audio controls src="vol1-1.mp3"></audio>
-                    </div>
-                    <div class="script-box">
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>～の気配がする</td><td>Signs of... / 有……的迹象</td></tr>
+                        <tr><td>～はさておき</td><td>Setting aside... / 暂且不提……</td></tr>
+                        <tr><td>格言</td><td>Maxim; Adage / 格言</td></tr>
+                        <tr><td>僥倖（ぎょうこう）</td><td>Windfall; A stroke of luck / 侥幸</td></tr>
+                        <tr><td>～に等しい</td><td>Equivalent to / 等同于……</td></tr>
+                        <tr><td>虎視眈々と</td><td>Vigilantly waiting / 虎视眈眈地</td></tr>
+                        <tr><td>そっくりだ</td><td>Exactly like / 一模一样</td></tr>
+                        <tr><td>ちっとも～ない</td><td>Not at all / 一点也不……</td></tr>
+                        <tr><td>実感が持てない</td><td>Cannot feel the reality of / 没真实感</td></tr>
+                        <tr><td>正直</td><td>To be honest / 老实说</td></tr>
+                        <tr><td>不意に</td><td>Unexpectedly; Suddenly / 意外地; 突然</td></tr>
+                        <tr><td>ハッとする</td><td>To suddenly realize / 猛然意识到</td></tr>
+                        <tr><td>足踏みしている</td><td>Stagnating; At a standstill / 停滞不前</td></tr>
+                        <tr><td>細々と（ほそぼそと）</td><td>In a small way; Modestly / 勉强地; 零碎地</td></tr>
+                        <tr><td>積み重ね</td><td>Accumulation / 积累</td></tr>
+                        <tr><td>認めてもらう</td><td>To be recognized / 得到认可</td></tr>
+                        <tr><td>勇気をもらう</td><td>To be encouraged / 獲得勇气</td></tr>
+                        <tr><td>枯れる</td><td>To wither; Die (plants) / 枯萎</td></tr>
+                        <tr><td>コツコツ</td><td>Steadily; Bit by bit / 踏踏実実地</td></tr>
+                        <tr><td>一歩ずつ</td><td>Step by step / 一步步地</td></tr>
+                    `
+                }
+            ]
+        },
+        {
+            vol: 1,
+            date: "2026.01.20",
+            title: "🎉My first Audio Blog：Who is OHAYO CENTER?",
+            /* ここから修正版の画像URL（Unsplashの日本の風景画像）になります */
+            image: "https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=800&q=80", 
+            levels: [
+                {
+                    label: "📗 初中級",
+                    audioSrc: "vol1-1.mp3",
+                    note: "🎵 少しゆっくり・でも自然に話します😊",
+                    script: `
                         <p>こんにちは！OHAYO CENTERの オーディオブログへ ようこそ。</p>
                         <p>私は <ruby>しんや<rt>Shinya</rt></ruby>です。よろしくおねがいします！少し <ruby>自己紹介<rt>じこしょうかい</rt></ruby>を しますね。</p>
                         <p>私は <ruby>千葉<rt>ちば</rt>出身<rt>しゅっしん</rt></ruby>です。みなさんは <ruby>東京<rt>とうきょう</rt></ruby>ディズニーランドを <ruby>知<rt>し</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>とうきょう</rt></ruby>に ありません。<strong><ruby>千葉<rt>ちば</rt></ruby>に あります！（笑）</strong></p>
@@ -528,84 +617,151 @@ Thank you for listening until the end. Goodbye for now!
                         <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語の 先生の アシスタントを しました。</p>
                         <p>やく 3年間、ベトナムで 生活しました。日本に 一度 帰って、また ベトナムに もどりました。そこで「OHAYO CENTER」として 日本語を 教えはじめました。でも、コロナで 大変に なりましたね……そこで、オンラインレッスンを はじめました。2021年 8月に 日本に 帰ってきて、今は OHAYO CENTERは 全部 オンラインです！</p>
                         <p>このオーディオブログでは、毎回 日本の 文化や 生活に ついて 話します。楽しく 日本語を 勉強しましょう！聞いてくれて ありがとうございます。また 次回も 聞いてくださいね。じゃあね〜！</p>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-language"></i> English Translation</summary>
-                            <div class="support-content">
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
                                 Hello! Welcome to OHAYO Center's Audio Blog. I'm Shinya. Nice to meet you! Let me introduce myself. I'm from Chiba. You all know Tokyo Disneyland, right? Actually, Tokyo Disneyland is not in Tokyo. It's in Chiba! (laughs). So, my house is very close to Tokyo Disneyland. Chiba is a city next to Tokyo. It's not as famous as Tokyo, but it's a very nice place. I became a Japanese teacher in 2017. Then I taught at a Japanese language school in Chiba for one year. After that, I went to Vietnam through a national program called "Japanese Partners." I worked as an assistant to a Vietnamese Japanese teacher at a high school in the countryside. I lived in Vietnam for about 3 years. I returned to Japan once and then went back to Vietnam again. There, I started teaching Japanese as "OHAYO Center." But then things became difficult because of COVID... so I started online lessons. I came back to Japan in August 2021, and now OHAYO Center is entirely online! In this audio blog, I will talk about Japanese culture and life every time. Let's enjoy studying Japanese! Thank you for listening. Please listen next time too. Bye!
-                            </div>
-                        </details>
-
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
-                            <div class="support-content">
-                                <table class="vocab-table">
-                                    <tr><th>Word</th><th>Reading / Meaning</th></tr>
-                                    <tr><td>自己紹介</td><td>じこしょうかい / Self-introduction</td></tr>
-                                    <tr><td>出身</td><td>しゅっしん / Hometown / From</td></tr>
-                                    <tr><td>じつは</td><td>Actually / In fact</td></tr>
-                                    <tr><td>となり</td><td>Next to / Neighboring</td></tr>
-                                    <tr><td>田舎（いなか）</td><td>Countryside / Rural area</td></tr>
-                                    <tr><td>教えはじめる</td><td>To start teaching</td></tr>
-                                    <tr><td>文化</td><td>ぶんか / Culture</td></tr>
-                                </table>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <div class="tab-panel panel-v1-high">
-                    <div class="audio-unit">
-                        <p><small>🎵 普通に話します😊</small></p>
-                        <audio controls src="vol1-2.mp3"></audio>
-                    </div>
-                    <div class="script-box">
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>自己紹介</td><td>じこしょうかい / Self-introduction</td></tr>
+                        <tr><td>出身</td><td>しゅっしん / Hometown / From</td></tr>
+                        <tr><td>じつは</td><td>Actually / In fact</td></tr>
+                        <tr><td>となり</td><td>Next to / Neighboring</td></tr>
+                        <tr><td>田舎（いなか）</td><td>Countryside / Rural area</td></tr>
+                        <tr><td>教えはじめる</td><td>To start teaching</td></tr>
+                        <tr><td>文化</td><td>ぶんか / Culture</td></tr>
+                    `
+                },
+                {
+                    label: "📕 上級",
+                    audioSrc: "vol1-2.mp3",
+                    note: "🎵 普通に話します😊",
+                    script: `
                         <p>こんにちは〜！OHAYO CENTER'sオーディオブログへようこそ。第1回目ということで、まず自己紹介から始めたいと思います。</p>
                         <p>名前はしんやといいます。出身は千葉—東京の隣です。千葉って何が有名なのって言われるんですけど、ディズニーランドです。</p>
                         <p>経歴をざっくり話すと、2017年に日本語教師の資格を取って、千葉の日本語学校で1年間教えたのが最初のスタートでした。で、その後が少し面白くて——「日本語パートナーズ」っていう国のプログラムに参加して、ベトナムに派遣されました。
                         ベトナムの田舎の高校で、現地の日本語の先生のアシスタントとして約1年間働きました。ベトナムの田舎、ほんとに何もないところで（笑）私が住んでいた街には二人しか日本人がいませんでした。でも、それがすごくいい経験で。ベトナム語も少し上手になりました。</p>
                         <p>一時帰国してからまたベトナムに戻って、今度は「OHAYO CENTER」として自分で日本語を教えはじめました。オンラインじゃなくて対面でね、現地の生徒さんたちと一緒に。</p>
                         <p>……でも、そこにコロナが来たんですよね。もうがらっと環境が変わって、オンライン授業に切り替えました。2021年の8月に完全帰国して、それ以来ずっとオンラインで活動しています。日本語の勉強はもちろん、日本のことをもっと好きになるきっかけになったらいいなって思ってます。聴いてくれてありがとうございます！次回もぜひ聴いてくださいね。またね〜！</p>
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation (Advanced Summary)",
+                            icon: "fa-language",
+                            content: `
+                                Hi there! Welcome to the OHAYO Center Audio Blog. For this first episode, I'd like to start with an introduction. My name is Shinya, and I'm from Chiba, right next to Tokyo. When people ask, 'What's famous in Chiba?', I always tell them it's Disneyland. To give you a brief overview of my career: I became a certified Japanese teacher in 2017 and started at a language school in Chiba. Then, I joined a government program called "Japanese Partners" and was sent to Vietnam. I spent a year as an assistant at a high school in the Vietnamese countryside—a place with truly nothing around, There were only two Japanese people in the whole town. but it was a fantastic experience. After a brief return to Japan, I went back to Vietnam and started "OHAYO Center" to teach my own students in person. Then COVID hit, changing everything. I shifted to online lessons, returned to Japan for good in August 2021, and have been operating online ever since. I hope this blog helps you not only with your studies but also in finding more reasons to love Japan. Thanks for listening!
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>経歴</td><td>けいれき / Career / Background</td></tr>
+                        <tr><td>ざっくり</td><td>Roughly / Briefly</td></tr>
+                        <tr><td>派遣される</td><td>はけんされる / To be dispatched</td></tr>
+                        <tr><td>対面</td><td>たいめん / In-person / Face-to-face</td></tr>
+                        <tr><td>切り替える</td><td>きりかえる / To switch / To change over</td></tr>
+                        <tr><td>きっかけ</td><td>Trigger / Opportunity / Chance</td></tr>
+                    `
+                }
+            ]
+        }
+    ];
 
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-language"></i> English Translation (Advanced Summary)</summary>
-                            <div class="support-content">
-                                Hi there! Welcome to the OHAYO Center Audio Blog. For this first episode, I'd like to start with an introduction. My name is Shinya, and I'm from Chiba, right next to Tokyo. When people ask, 'What's famous in Chiba?', I always tell them it's Disneyland. To give you a brief overview of my career: I became a certified Japanese teacher in 2017 and started at a language school in Chiba. Then, I joined a government program called "Japanese Partners" and was sent to Vietnam. I spent a year as an assistant at a high school in the Vietnamese countryside—a place with truly nothing around,There were only two Japanese people in the whole town. but it was a fantastic experience. After a brief return to Japan, I went back to Vietnam and started "OHAYO Center" to teach my own students in person. Then COVID hit, changing everything. I shifted to online lessons, returned to Japan for good in August 2021, and have been operating online ever since. I hope this blog helps you not only with your studies but also in finding more reasons to love Japan. Thanks for listening!
-                            </div>
-                        </details>
+    const container = document.getElementById('blog-container');
 
-                        <details class="support-details">
-                            <summary><i class="fa-solid fa-book"></i> Key Vocabulary</summary>
-                            <div class="support-content">
-                                <table class="vocab-table">
-                                    <tr><th>Word</th><th>Reading / Meaning</th></tr>
-                                    <tr><td>経歴</td><td>けいれき / Career / Background</td></tr>
-                                    <tr><td>ざっくり</td><td>Roughly / Briefly</td></tr>
-                                    <tr><td>派遣される</td><td>はけんされる / To be dispatched</td></tr>
-                                    <tr><td>対面</td><td>たいめん / In-person / Face-to-face</td></tr>
-                                    <tr><td>切り替える</td><td>きりかえる / To switch / To change over</td></tr>
-                                    <tr><td>きっかけ</td><td>Trigger / Opportunity / Chance</td></tr>
-                                </table>
-                            </div>
-                        </details>
+    blogPosts.forEach((post, postIndex) => {
+        const card = document.createElement('details');
+        card.className = 'diary-card';
+        
+        const renderTranslations = (translations) => {
+            if (!translations || translations.length === 0) return '';
+            return translations.map(t => `
+                <details class="support-details">
+                    <summary><i class="fa-solid ${t.icon}"></i> ${t.title}</summary>
+                    <div class="support-content">${t.content}</div>
+                </details>
+            `).join('');
+        };
+
+        const renderVocab = (vocabHTML) => {
+            if (!vocabHTML || vocabHTML.trim() === "") return '';
+            return `
+                <details class="support-details">
+                    <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
+                    <div class="support-content">
+                        <table class="vocab-table">
+                            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+                            <tbody>${vocabHTML}</tbody>
+                        </table>
+                    </div>
+                </details>
+            `;
+        };
+
+        let tabsHTML = `<div class="level-tabs">`;
+        let panelsHTML = ``;
+
+        post.levels.forEach((level, levelIndex) => {
+            const isActive = levelIndex === 0 ? 'active' : '';
+            tabsHTML += `<button type="button" class="tab-btn ${isActive}" onclick="switchTab(event, this, ${postIndex}, ${levelIndex})">${level.label}</button>`;
+            
+            panelsHTML += `
+                <div class="tab-panel ${isActive}" id="panel-${postIndex}-${levelIndex}">
+                    <div class="audio-unit">
+                        <p><small>${level.note}</small></p>
+                        <audio controls src="${level.audioSrc}"></audio>
+                    </div>
+                    <div class="script-box">
+                        ${level.script}
+                        ${renderTranslations(level.translations)}
+                        ${renderVocab(level.vocab)}
                     </div>
                 </div>
+            `;
+        });
+        tabsHTML += `</div>`;
+
+        card.innerHTML = `
+            <summary class="diary-summary">
+                <img src="${post.image}" alt="Blog Cover" class="diary-image" loading="lazy">
+                <div class="summary-text">
+                    <div class="diary-header">
+                        <span class="vol-badge">Vol.${post.vol}</span>
+                        <span class="diary-date">${post.date}</span>
+                    </div>
+                    <h3 class="card-title">${post.title}</h3>
+                    <i class="fa-solid fa-chevron-down expand-icon"></i>
+                </div>
+            </summary>
+            <div class="diary-content">
+                ${tabsHTML}
+                ${panelsHTML}
             </div>
-        </details>
-    </section>
+        `;
+        
+        container.appendChild(card);
+    });
 
-</div>
+    function switchTab(event, clickedBtn, postIndex, targetLevelIndex) {
+        event.preventDefault();
+        
+        const tabsContainer = clickedBtn.parentElement;
+        const allBtns = tabsContainer.querySelectorAll('.tab-btn');
+        
+        const cardContent = tabsContainer.parentElement;
+        const allPanels = cardContent.querySelectorAll('.tab-panel');
 
-<footer>
-    <div class="support-section">
-        <p>If you find these materials helpful, please consider supporting us!</p>
-        <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
-            <span>Support OHAYO CENTER</span>
-        </a>
-    </div>
-    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
-</footer>
+        allBtns.forEach(btn => btn.classList.remove('active'));
+        allPanels.forEach(panel => panel.classList.remove('active'));
+
+        clickedBtn.classList.add('active');
+        cardContent.querySelector(`#panel-${postIndex}-${targetLevelIndex}`).classList.add('active');
+    }
+</script>
 
 </body>
 </html>
