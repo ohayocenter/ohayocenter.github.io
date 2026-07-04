@@ -214,6 +214,83 @@
 
 <script>
     const blogPosts = [
+          {
+            vol: 6,
+            date: "2026.06.25",
+            title: "👀 一人称：First-person pronouns",
+            image: "vol6.webp", 
+            levels: [
+                {
+                    label: "📗 初中級",
+                    audioSrc: "vol6-1.mp3",
+                    note: "🎵 少しゆっくり・でも自然に話します😊",
+                    script: `
+                        <p>みなさん、こんにちは！OHAYO CENTERのShinyaです。<br>今日は、「僕・俺・私」など、自分のことを言うときの言葉について話します。</p>
+                        <p>アニメ「転生したらスライムだった件」、略して「転スラ」を知っていますか？<br>主人公のリムルは最初「俺」と言います。男の人がよく使う、少しカジュアルな言葉です。<br>「僕」も男の人が使いますが、「俺」より少し丁寧です。子どもや若い人がよく使います。<br>「私」は、男の人も女の人も使えます。フォーマルな場面で使います。</p>
+                        <p>面白いことがあります。私は高校生のとき、体育会系のクラブに入っていました。<br>体育会系というのは、スポーツのクラブなど、厳しいルールがあるグループのことです。<br>そのクラブでは「僕」と言ってはいけませんでした。全員「自分」と言わなければなりません。<br>「自分」は本来「myself」という意味ですが、体育会系では「私」の代わりに使います。</p>
+                        <p>みなさんは、どの言葉を使いますか？ぜひコメントで教えてください！</p>
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
+                                <p>Hello everyone! I'm Shinya from OHAYO CENTER.<br>Today, I will talk about words used to refer to yourself, like "boku", "ore", and "watashi".</p>
+                                <p>Do you know the anime "That Time I Got Reincarnated as a Slime", or "TenSura" for short?<br>The main character, Rimuru, says "ore" at first. It is a slightly casual word often used by men.<br>"Boku" is also used by men, but it is a bit more polite than "ore". Children and young people often use it.<br>"Watashi" can be used by both men and women. It is used in formal situations.</p>
+                                <p>Here is something interesting. When I was a high school student, I joined a "Taiiku-kai-kei" (athletic/sports-oriented) club.<br>Taiiku-kai-kei refers to groups with strict rules, like sports clubs.<br>In that club, we were not allowed to say "boku". Everyone had to say "jibun".<br>"Jibun" originally means "myself", but in Taiiku-kai-kei culture, it is used instead of "I".</p>
+                                <p>Which word do you use? Please let me know in the comments!</p>
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>自分のこと</td><td>じぶんのこと / oneself, about myself</td></tr>
+                        <tr><td>略して</td><td>りゃくして / for short, abbreviated as</td></tr>
+                        <tr><td>主人公</td><td>しゅじんこう / main character</td></tr>
+                        <tr><td>丁寧</td><td>ていねい / polite</td></tr>
+                        <tr><td>体育会系</td><td>たいいくかいけい / sports-minded club, strict athletic culture</td></tr>
+                        <tr><td>厳しい</td><td>きびしい / strict, severe</td></tr>
+                        <tr><td>本来</td><td>ほんらい / originally, by nature</td></tr>
+                        <tr><td>～の代わりに</td><td>～のかわりに / instead of ~</td></tr>
+                    `
+                },
+                {
+                    label: "📕 中上級",
+                    audioSrc: "vol6-2.mp3",
+                    note: "🎵 ナチュラルスピードで挑戦してみましょう！🔥",
+                    script: `
+                        <p>みなさん、こんにちは。OHAYO CENTERのShinyaです。今日は一人称——「俺」「僕」「私」について話したいと思います。<br>最近ハマっているアニメ「転スラ」でも、主人公リムルが「俺」を使っていて、なんか気になったんですよね。</p>
+                        <p>日本語の一人称って、実は使う人の個性や立場をめちゃくちゃ反映するんですよ。「俺」は男らしさや自信を出すのに対して、「僕」はちょっと謙虚で柔らかい印象。「私」はどんな場でも使えるオールマイティな選択肢ですね。</p>
+                        <p>個人的な話をすると、高校のとき体育会系の部活に入っていまして。体育会系って聞いてピンとくる方も多いと思いますが、上下関係が厳しくて、礼儀やルールを重んじる、いわゆる縦社会の文化ですよね。<br>その部活では「僕」という言葉が禁止されていて、先輩・後輩問わず全員「自分」と言わなければならなかったんです。<br>「自分は何年生です」「自分、やります」みたいな感じで。チームの一員として個を消す、そういう感覚があったのかもしれません。</p>
+                        <p>一人称ひとつで、こんなに文化が透けて見えるのが日本語の面白いところだと思います。みなさんはどんな一人称を使っていますか？</p>
+                    `,
+                    translations: [
+                        {
+                            title: "English Translation",
+                            icon: "fa-language",
+                            content: `
+                                <p>Hi, I'm Shinya. Today I'd like to talk about first-person pronouns—"ore", "boku", and "watashi".<br>Even in the anime I've been hooked on lately, "TenSura", the main character Rimuru uses "ore", which somehow caught my attention.</p>
+                                <p>First-person pronouns in Japanese actually heavily reflect the user's personality and position. While "ore" projects masculinity and confidence, "boku" gives a slightly humble and softer impression. "Watashi" is an all-mighty choice that can be used in any situation.</p>
+                                <p>On a personal note, in high school, I joined a "Taiiku-kai-kei" (athletic) club. Many of you might ring a bell when you hear "Taiiku-kai-kei", but it's exactly that vertical society culture that strictly emphasizes hierarchy, manners, and rules.<br>In that club, the word "boku" was banned, and regardless of being a senior or junior, everyone had to refer to themselves as "jibun".<br>Like, "Jibun is in this grade," or "Jibun will do it." It might have been a sense of erasing one's individuality as a member of the team.</p>
+                                <p>I think it's a fascinating part of Japanese that you can see through so much culture just from a single first-person pronoun. What kind of first-person pronoun do you use?</p>
+                            `
+                        }
+                    ],
+                    vocab: `
+                        <tr><td>一人称</td><td>いちにんしょう / first-person pronoun</td></tr>
+                        <tr><td>ハマる</td><td>はまる / to be hooked on, to be into</td></tr>
+                        <tr><td>反映する</td><td>はんえいする / to reflect</td></tr>
+                        <tr><td>謙虚</td><td>けんきょ / humble, modest</td></tr>
+                        <tr><td>ピンとくる</td><td>ぴんとくる / to ring a bell, to get the idea</td></tr>
+                        <tr><td>上下関係</td><td>じょうげかんけい / hierarchical relationship</td></tr>
+                        <tr><td>重んじる</td><td>おもんじる / to value, to emphasize, to respect</td></tr>
+                        <tr><td>縦社会</td><td>たてしゃかい / vertical society, hierarchical society</td></tr>
+                        <tr><td>個を消す</td><td>こをけす / to erase one's individuality</td></tr>
+                        <tr><td>透けて見える</td><td>すけてみえる / to be transparent, to show through</td></tr>
+                    `
+                }
+            ]
+        },
+
         {
             vol: 5,
             date: "2026.06.05",
