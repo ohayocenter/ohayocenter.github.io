@@ -41,21 +41,25 @@
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
         .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        
+        .nav-links a { 
+            text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; 
+            letter-spacing: 1px; position: relative; padding-bottom: 5px;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: var(--primary); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
 
         .hero { 
-            margin-top: 70px;
-            height: 50vh; 
-            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1500&q=80'); 
-            background-size: cover; 
-            background-position: center; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
+            margin-top: 70px; height: 50vh; 
+            background: linear-gradient(rgba(30,30,40,0.6), rgba(30,30,40,0.7)), url('https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1500&q=80'); 
+            background-size: cover; background-position: center; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
         }
-        .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.3; }
+        .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); color: #ffffff; line-height: 1.3; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p.hero-subtitle { font-size: 0.9rem; letter-spacing: 2px; color: #f9f9f9; text-shadow: 0 1px 5px rgba(0,0,0,0.3); }
 
         .hero-btn-container { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
         .hero-btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
@@ -65,220 +69,200 @@
         .secondary-btn { background: white; color: var(--dark); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,1); color: var(--primary); }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem 1rem; } /* 下のパディングを1remに縮小 */
-        section { margin-bottom: 4rem; scroll-margin-top: 90px; } /* 下の余白を5remから4remへ微調整 */
-        section:last-of-type { margin-bottom: 0; } /* 最後のセクションの下余白をゼロに */
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem 1rem; }
+        section { margin-bottom: 4rem; scroll-margin-top: 90px; }
+        section:last-of-type { margin-bottom: 0; }
         h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
 
-        .lesson-tabs, .grammar-tabs, .kanji-tabs, .trip-tabs { display: none; justify-content: center; gap: 8px; margin-bottom: 2rem; }
-        
-        .tab-btn { 
-            background: #fff; border: 1px solid #ddd; padding: 10px 15px; border-radius: 12px; 
-            font-size: 0.85rem; font-weight: bold; color: var(--dark); cursor: pointer; transition: 0.3s;
-            display: flex; flex-direction: column; align-items: center; min-width: 80px;
-        }
+        /* ====== Lesson 関連 ====== */
+        .lesson-tabs { display: none; justify-content: center; gap: 8px; margin-bottom: 2rem; }
+        .tab-btn { background: #fff; border: 1px solid #ddd; padding: 10px 15px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; color: var(--dark); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; min-width: 80px; }
         .tab-btn span { font-size: 1.2rem; }
         .tab-btn.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
 
-        .lesson-grid { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 1rem; 
-            margin-bottom: 2rem; 
-            align-items: stretch;
-        }
-        .card { 
-            background: #fff; 
-            padding: 2rem 1rem; 
-            border-radius: 20px; 
-            text-align: center; 
-            box-shadow: var(--shadow); 
-            border: 1px solid rgba(0,0,0,0.02); 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .lesson-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; align-items: stretch; }
+        .card { background: #fff; padding: 2rem 1rem; border-radius: 20px; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
         .food-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
         .price { font-size: 1.6rem; font-weight: bold; color: var(--dark); }
         .package-price { font-size: 0.85rem; color: var(--primary); font-weight: bold; background: var(--primary-light); padding: 2px 10px; border-radius: 20px; display: inline-block; margin-top: 5px; }
 
-        .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 6px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        
+        .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 8px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .btn-bottom i { transition: all 0.3s ease; }
         .btn-bottom:hover i { color: #ffe66d !important; transform: scale(1.2) rotate(5deg); }
 
+        /* ====== Profile 関連 ====== */
         .profile-box { background: #fff; padding: 3.5rem 2rem; border-radius: 30px; box-shadow: var(--shadow); max-width: 900px; margin: 0 auto; }
         .profile-header { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; justify-content: center; margin-bottom: 3rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
         .profile-image-container { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: var(--primary-light); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; }
         .exp-item { margin-bottom: 0.8rem; display: flex; gap: 1rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 0.5rem; font-size: 0.9rem; }
         .exp-year { color: var(--primary); font-weight: bold; min-width: 70px; }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; 
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            margin: 0 auto 3rem auto;
-            max-width: 800px;
-            background: #000;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: var(--shadow); margin: 0 auto 3rem auto; max-width: 800px; background: #000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         .profile-text-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; text-align: left; }
         .profile-text-grid h3 { font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem; color: var(--dark); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
         .profile-text-grid h3 i { color: var(--primary); font-size: 1rem; }
         .profile-text-grid p { font-size: 0.9rem; margin-bottom: 1rem; color: #555; }
         .highlight-box { background: var(--primary-light); padding: 1.5rem; border-radius: 15px; border-left: 5px solid var(--primary); font-size: 0.9rem; margin-top: 1rem; }
 
-        .unified-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
-        .unified-card { background: #fff; padding: 2rem 1.2rem; border-radius: 25px; text-align: center; box-shadow: var(--shadow); text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; border: 1px solid rgba(0,0,0,0.02); transition: 0.3s; min-height: 240px; }
+        /* ====== レベル別ポータルデザイン ====== */
+        .level-portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; padding: 0 10px; }
+        .level-card { background: #fff; border-radius: 25px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; text-decoration: none; color: var(--text); }
+        .level-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .level-card .icon-wrap { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.5rem; }
+        .level-card h3 { font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--dark); font-family: 'Sawarabi Mincho', serif; }
+        .level-card .jlpt-badge { display: inline-block; padding: 4px 15px; border-radius: 50px; font-size: 0.85rem; font-weight: bold; margin-bottom: 1.5rem; letter-spacing: 1px; }
+        .level-card ul { list-style: none; text-align: left; margin-bottom: 2.5rem; flex-grow: 1; }
+        .level-card ul li { margin-bottom: 1rem; font-size: 0.95rem; display: flex; align-items: center; gap: 12px; color: #555; font-weight: 500; }
+        
+        /* ⭐️ 推し枠（Culture & Fun）デザイン */
+        .card-featured { grid-column: 1 / -1; background: linear-gradient(135deg, #fffcf9, #ffffff); border: 2px solid var(--primary); }
+        .card-featured .featured-inner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 3rem; margin-bottom: auto; }
+        .card-featured .featured-left { text-align: center; }
+        .card-featured .icon-wrap { background: var(--primary); color: #fff; box-shadow: 0 10px 20px rgba(255,159,67,0.3); }
+        .card-featured h3 { color: var(--primary); font-size: 1.8rem; }
+        .card-featured .jlpt-badge { background: var(--primary); color: #fff; }
+        .card-featured ul { margin-bottom: 0; }
+        .card-featured ul li i { color: var(--primary); font-size: 1.2rem; }
+        .card-featured .btn-bottom { background: var(--primary); color: #fff; border: none; font-size: 1rem; padding: 12px; margin-top: 2rem; box-shadow: 0 5px 15px rgba(255,159,67,0.3); }
+        .card-featured:hover .btn-bottom { background: #e68a35; transform: translateY(-2px); }
+
+        .card-beginner .icon-wrap { background: #eafaf1; color: #2ecc71; }
+        .card-beginner .jlpt-badge { background: #eafaf1; color: #2ecc71; }
+        .card-beginner ul li i { color: #2ecc71; }
+        .card-beginner .btn-bottom { border: 2px solid #2ecc71; color: #2ecc71; background: transparent; }
+        .card-beginner:hover .btn-bottom { background: #2ecc71; color: #fff; }
+
+        .card-intermediate .icon-wrap { background: #ebf5fb; color: #3498db; }
+        .card-intermediate .jlpt-badge { background: #ebf5fb; color: #3498db; }
+        .card-intermediate ul li i { color: #3498db; }
+        .card-intermediate .btn-bottom { border: 2px solid #3498db; color: #3498db; background: transparent; }
+        .card-intermediate:hover .btn-bottom { background: #3498db; color: #fff; }
+
+        .card-advanced .icon-wrap { background: #fdf2f0; color: #e74c3c; }
+        .card-advanced .jlpt-badge { background: #fdf2f0; color: #e74c3c; }
+        .card-advanced ul li i { color: #e74c3c; }
+        .card-advanced .btn-bottom { border: 2px solid #e74c3c; color: #e74c3c; background: transparent; }
+        .card-advanced:hover .btn-bottom { background: #e74c3c; color: #fff; }
+
+        /* ====== 素材（Material）カード関連 ====== */
+        .unified-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
+        .unified-card { position: relative; background: #fff; padding: 2rem 1.2rem; border-radius: 25px; text-align: center; box-shadow: var(--shadow); text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; border: 1px solid rgba(0,0,0,0.02); transition: 0.3s; min-height: 240px; }
         .unified-card:hover { transform: translateY(-5px); }
-        .unified-card i { font-size: 2rem; margin-bottom: 0.8rem; color: var(--primary); }
+        .unified-card i.main-icon { font-size: 2rem; margin-bottom: 0.8rem; }
         .unified-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
         .unified-card p { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
         
-        .booking-btn:hover, .booking-btn:active { 
-            background-color: #9b59b6 !important; 
-            color: #ffffff !important; 
-        }
+        .badge-interactive { position: absolute; top: -10px; right: -10px; background: #e74c3c; color: white; font-size: 0.7rem; font-weight: bold; padding: 5px 12px; border-radius: 20px; box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); z-index: 1; letter-spacing: 0.5px; }
+        .badge-game { background: #9b59b6; box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3); }
+        
+        .level-section { margin-top: 5rem; padding-top: 3rem; border-top: 2px dashed #eaeaea; scroll-margin-top: 90px; }
+        .level-section h2.section-title { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+        .sub-category-title { font-size: 1.1rem; color: #555; margin-bottom: 1.2rem; border-left: 4px solid; padding-left: 10px; font-weight: bold; }
 
-        footer { padding: 1rem 1rem 1.5rem; text-align: center; font-size: 0.75rem; color: #aaa; } /* 上下の余白を大幅に縮小 */
+        .update-board { background: #fff; border-radius: 20px; padding: 1.8rem 2rem; margin: 2rem auto 4rem; max-width: 800px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
+        .update-board h3 { font-family: 'Sawarabi Mincho', serif; font-size: 1.3rem; color: var(--dark); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.8rem; text-align: left; }
+        .update-list { list-style: none; }
+        .update-list li { display: flex; align-items: flex-start; gap: 15px; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.9rem; }
+        .update-list li:nth-child(n+4) { display: none; }
+        .update-list li:last-child, .update-list li:nth-child(3) { border-bottom: none; padding-bottom: 0; }
+        .update-date { font-weight: bold; color: var(--primary); min-width: 90px; font-family: monospace; font-size: 0.95rem; }
+        .update-badge { background: var(--primary-light); color: var(--primary); padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; white-space: nowrap; }
+        .update-text { color: #555; line-height: 1.5; }
+
+        .booking-btn:hover, .booking-btn:active { background-color: #9b59b6 !important; color: #ffffff !important; }
+
+        /* ====== モーダル・フッター ====== */
+        footer { padding: 1rem 1rem 1.5rem; text-align: center; font-size: 0.75rem; color: #aaa; }
         .legal-link { color: #888; text-decoration: underline; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
         .legal-link:hover { color: var(--primary); }
-        
-        .legal-modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
-        }
+        .legal-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
         .legal-modal.show { display: flex; opacity: 1; }
-        .legal-content {
-            background-color: #fff; border-radius: 25px; padding: 2.5rem 2rem;
-            width: 90%; max-width: 750px; max-height: 85vh; overflow-y: auto;
-            position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            animation: slideUp 0.3s ease-out; text-align: left;
-        }
+        .legal-content { background-color: #fff; border-radius: 25px; padding: 2.5rem 2rem; width: 90%; max-width: 750px; max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.2); animation: slideUp 0.3s ease-out; text-align: left; }
         @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .close-btn { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: #ccc; cursor: pointer; transition: 0.2s; line-height: 1; }
         .close-btn:hover { color: var(--dark); }
-        
         .legal-content h2 { margin-bottom: 2rem; font-size: 1.4rem; color: var(--dark); }
         .legal-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; border-top: 2px solid var(--dark); font-size: 0.85rem; }
         .legal-table th, .legal-table td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: top; }
         .legal-table th { width: 35%; background-color: var(--primary-light); color: var(--dark); font-weight: bold; }
-        
         .privacy-section { margin-bottom: 1.5rem; }
         .privacy-section h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 0.5rem; border-left: 3px solid var(--primary); padding-left: 10px; }
         .privacy-section p { font-size: 0.85rem; color: #555; margin-bottom: 0.8rem; line-height: 1.6; }
         #mail-reveal, #mail-reveal-privacy { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
 
-        .update-board {
-            background: #fff; border-radius: 20px; padding: 1.8rem 2rem; margin: 2rem auto 3rem;
-            max-width: 800px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02);
-        }
-        .update-board h3 {
-            font-family: 'Sawarabi Mincho', serif; font-size: 1.3rem; color: var(--dark);
-            margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px;
-            border-bottom: 2px solid #f0f0f0; padding-bottom: 0.8rem; text-align: left;
-        }
-        .update-list { list-style: none; }
-        .update-list li {
-            display: flex; align-items: flex-start; gap: 15px; padding: 10px 0;
-            border-bottom: 1px dashed #eee; font-size: 0.9rem;
-        }
-        .update-list li:nth-child(n+4) { display: none; }
-        .update-list li:last-child, .update-list li:nth-child(3) { border-bottom: none; padding-bottom: 0; }
-
-        .update-date { font-weight: bold; color: var(--primary); min-width: 90px; font-family: monospace; font-size: 0.95rem; }
-        .update-badge {
-            background: var(--primary-light); color: var(--primary); padding: 3px 10px;
-            border-radius: 50px; font-size: 0.75rem; font-weight: bold; white-space: nowrap;
-        }
-        .update-text { color: #555; line-height: 1.5; }
-
-        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 2.5rem; padding: 0 10px; }
-        .category-btn {
-            background: #fff; color: var(--dark); border: 1px solid #e0e6ed; padding: 10px 20px;
-            border-radius: 50px; font-size: 0.85rem; font-weight: bold; text-decoration: none;
-            transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: flex; align-items: center; gap: 8px;
-        }
-        .category-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .category-btn.c-audio { border-left: 4px solid #2ecc71; }
-        .category-btn.c-culture { border-left: 4px solid #9b59b6; }
-        .category-btn.c-grammar { border-left: 4px solid #f39c12; }
-        .category-btn.c-kanji { border-left: 4px solid #2980b9; }
-        .category-btn.c-trip { border-left: 4px solid #e74c3c; }
-
-        /* ====== カレンダー用スタイル修正 ====== */
-        #schedule-section {
-            background: #fff; padding: 3rem 1.2rem; border-radius: 25px; box-shadow: var(--shadow);
-            margin-bottom: 5rem; max-width: 1000px; margin-left: auto; margin-right: auto;
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-        :root {
-            --fc-button-bg-color: var(--primary);
-            --fc-button-border-color: var(--primary);
-            --fc-button-hover-bg-color: #e68a35;
-            --fc-button-active-bg-color: #cc7a2f;
-            --fc-today-bg-color: #fffaf5; 
-            --fc-border-color: #eee;
-        }
+        /* ====== カレンダー用スタイル ====== */
+        #schedule-section { background: #fff; padding: 3rem 1.2rem; border-radius: 25px; box-shadow: var(--shadow); margin-bottom: 5rem; max-width: 1000px; margin-left: auto; margin-right: auto; border: 1px solid rgba(0,0,0,0.02); }
+        :root { --fc-button-bg-color: var(--primary); --fc-button-border-color: var(--primary); --fc-button-hover-bg-color: #e68a35; --fc-button-active-bg-color: #cc7a2f; --fc-today-bg-color: #fffaf5;  --fc-border-color: #eee; }
         .fc-toolbar-title { font-family: 'Sawarabi Mincho', serif; color: var(--dark); font-size: 1.5rem !important; }
         .fc-day-sat { background-color: #f0f7ff !important; } 
         .fc-day-sun { background-color: #fff5f5 !important; } 
         .fc-col-header-cell.fc-day-sat a { color: #2980b9 !important; }
         .fc-col-header-cell.fc-day-sun a { color: #e74c3c !important; }
-
-        .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * {
-            top: 70px !important;
-        }
-
-        /* カレンダー配色設定 */
+        .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * { top: 70px !important; }
         .fc-non-business { background-color: rgba(0,0,0,0.5); } 
         .fc-business-hour { background-color: #eaffea !important; }
 
+        /* ====== モバイル（スマホ）専用最適化 CSS ====== */
         @media (max-width: 900px) {
             .lesson-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
-            .nav-links a { font-size: 0.7rem; }
-            .hero { height: 40vh; }
-            .hero-btn-container { flex-direction: column; width: 100%; max-width: 250px; margin: 2rem auto 0; }
-            .hero-btn { justify-content: center; width: 100%; }
+            .nav-links a { font-size: 0.75rem; }
             
+            .hero { height: 42vh; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero-btn-container { flex-direction: column; width: 100%; max-width: 280px; margin: 1.5rem auto 0; }
+            .hero-btn { justify-content: center; width: 100%; padding: 14px 20px; }
+
+            .container { padding: 2rem 0.8rem 1rem; }
+
+            .profile-box { padding: 2rem 1rem; border-radius: 20px; }
+            .profile-image-container { width: 140px; height: 140px; }
+
+            .level-portal-grid { grid-template-columns: 1fr; gap: 1.2rem; padding: 0; }
+            .level-card { padding: 1.8rem 1.2rem; border-radius: 20px; }
+            .level-card .icon-wrap { width: 60px; height: 60px; font-size: 1.8rem; margin-bottom: 1rem; }
+            .level-card h3 { font-size: 1.4rem; }
+            .level-card ul { margin-bottom: 1.5rem; }
+            .level-card ul li { font-size: 0.85rem; margin-bottom: 0.6rem; }
+            
+            /* スマホ時の推し枠の調整 */
+            .card-featured .featured-inner { gap: 1.5rem; justify-content: flex-start; text-align: left; }
+            .card-featured .featured-left { text-align: left; display: flex; flex-direction: column; align-items: flex-start; }
+            .card-featured .icon-wrap { margin: 0 0 1rem 0; }
+
+            .sub-category-title { font-size: 1rem; margin-bottom: 0.8rem; }
+
+            /* 教材カード（2列レイアウトと横スクロール） */
+            .horizontal-scroll-mobile {
+                display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+                padding-bottom: 1.5rem; -webkit-overflow-scrolling: touch;
+            }
+            .horizontal-scroll-mobile .unified-card {
+                min-width: 250px; flex: 0 0 auto; scroll-snap-align: center;
+            }
+            .horizontal-scroll-mobile::-webkit-scrollbar { display: none; }
+            
+            .unified-grid:not(.horizontal-scroll-mobile) { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-bottom: 2rem; }
+            .unified-card { padding: 1.2rem 0.8rem; border-radius: 18px; min-height: 190px; }
+            .unified-card i.main-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+            .unified-card h3 { font-size: 0.92rem; line-height: 1.3; }
+            .unified-card p { font-size: 0.75rem; margin-bottom: 1rem; line-height: 1.3; }
+            
+            .btn-bottom { font-size: 0.68rem; padding: 8px 10px; min-height: 36px; }
+            .badge-interactive { font-size: 0.6rem; padding: 3px 8px; top: -8px; right: -5px; }
+
+            .level-section { margin-top: 3rem; padding-top: 2rem; }
+            .level-section h2.section-title { font-size: 1.5rem; margin-bottom: 1.8rem; }
+
             .lesson-tabs { display: flex; }
             .lesson-grid { display: block; }
             .lesson-grid .card { display: none; }
             .lesson-grid .card.active { display: flex; animation: fadeIn 0.4s ease; }
-
-            .grammar-tabs, .kanji-tabs, .trip-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem; }
-
-            .grammar-grid.show-n5 .unified-card:not(.g-n5) { display: none; }
-            .grammar-grid.show-n4 .unified-card:not(.g-n4) { display: none; }
-            .grammar-grid.show-n3 .unified-card:not(.g-n3) { display: none; }
-
-            .kanji-grid.show-n54 .unified-card:not(.k-n54) { display: none; }
-            .kanji-grid.show-n3 .unified-card:not(.k-n3) { display: none; }
-            .kanji-grid.show-n1 .unified-card:not(.k-n1) { display: none; }
-            .kanji-grid.show-marugoto .unified-card:not(.k-marugoto) { display: none; }
-
-            .trip-grid.show-trip .unified-card:not(.t-trip) { display: none; }
-            .trip-grid.show-hira .unified-card:not(.t-hira) { display: none; }
-            .trip-grid.show-kata .unified-card:not(.t-kata) { display: none; }
             
             .profile-text-grid { grid-template-columns: 1fr; }
             .legal-content { padding: 2rem 1.2rem; }
@@ -288,10 +272,8 @@
 
             .update-board { padding: 1.5rem 1.2rem; }
             .update-list li { flex-wrap: wrap; gap: 8px; }
-            .category-nav { flex-direction: row; gap: 8px; }
-            .category-btn { padding: 8px 15px; font-size: 0.75rem; flex-grow: 1; justify-content: center; }
 
-            /* カレンダーのスマホ崩れ防止 */
+            #schedule-section { padding: 1.5rem 0.8rem; border-radius: 20px; }
             .fc-toolbar { flex-direction: column; gap: 10px; }
             .fc-toolbar-title { font-size: 1.1rem !important; }
             .fc-header-toolbar { margin-bottom: 1rem !important; }
@@ -311,7 +293,7 @@
 </nav>
 
 <header class="hero">
-    <p style="font-size: 0.9rem; letter-spacing: 2px;">ENJOY LEARNING JAPANESE</p>
+    <p class="hero-subtitle">ENJOY LEARNING JAPANESE</p>
     <h1>OHAYO CENTER<br><span style="font-size: clamp(1.2rem, 3vw, 1.5rem); display: block; margin-top: 5px; font-weight: normal;">Online Japanese Lessons</span></h1>
     
     <div class="hero-btn-container">
@@ -321,9 +303,9 @@
 </header>
 
 <div class="container">
+    <!-- ================= LESSON SECTION ================= -->
     <section id="lessons">
         <h2>Lesson Course</h2>
-
         <div class="lesson-tabs">
             <button class="tab-btn active" onclick="switchLesson(0)"><span>🍫</span>Trial</button>
             <button class="tab-btn" onclick="switchLesson(1)"><span>🍙</span>30m</button>
@@ -354,12 +336,8 @@
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.2rem;">
                     <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 2,000 yen</a>
-                    <a href="https://buy.stripe.com/8x2bJ01P0en85Yj5fPbjW04" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;">
-                        <i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 8,000 yen
-                    </a>
-                    <a href="https://buy.stripe.com/4gMcN4alw6UGfyTbEdbjW05" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;">
-                        <i class="fa-solid fa-dumbbell"></i> 10 Lessons / 16,000 yen
-                    </a>
+                    <a href="https://buy.stripe.com/8x2bJ01P0en85Yj5fPbjW04" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 8,000 yen</a>
+                    <a href="https://buy.stripe.com/4gMcN4alw6UGfyTbEdbjW05" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-dumbbell"></i> 10 Lessons / 16,000 yen</a>
                     <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
@@ -373,12 +351,8 @@
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.2rem;">
                     <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 3,000 yen</a>
-                    <a href="https://buy.stripe.com/28E00igJU2EqcmHeQpbjW06" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;">
-                        <i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 12,000 yen
-                    </a>
-                    <a href="https://buy.stripe.com/fZu7sK8doen872ndMlbjW07" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;">
-                        <i class="fa-solid fa-dumbbell"></i> 10 Lessons / 24,000 yen
-                    </a>
+                    <a href="https://buy.stripe.com/28E00igJU2EqcmHeQpbjW06" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 12,000 yen</a>
+                    <a href="https://buy.stripe.com/fZu7sK8doen872ndMlbjW07" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-dumbbell"></i> 10 Lessons / 24,000 yen</a>
                     <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
@@ -392,23 +366,18 @@
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.2rem;">
                     <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 4,000 yen</a>
-                    <a href="https://buy.stripe.com/28E14mdxIfrc1I38s1bjW08" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;">
-                        <i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 16,000 yen
-                    </a>
-                    <a href="https://buy.stripe.com/7sY28qctE3IucmH23DbjW09" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;">
-                        <i class="fa-solid fa-dumbbell"></i> 10 Lessons / 32,000 yen
-                    </a>
+                    <a href="https://buy.stripe.com/28E14mdxIfrc1I38s1bjW08" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / 16,000 yen</a>
+                    <a href="https://buy.stripe.com/7sY28qctE3IucmH23DbjW09" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-dumbbell"></i> 10 Lessons / 32,000 yen</a>
                     <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ====== Lesson Availability カレンダーセクション ====== -->
+    <!-- ================= CALENDAR SECTION ================= -->
     <section id="schedule-section">
         <h2 style="margin-bottom: 1.5rem;"><i class="fa-regular fa-calendar-check" style="color: var(--primary);"></i> Lesson Availability</h2>
         <div id='calendar'></div>
-        
         <div style="text-align: center; margin-top: 2.5rem;">
             <a href="#booking-links" class="hero-btn primary-btn" style="display: inline-flex; width: auto; min-width: 280px; justify-content: center; font-size: 1.1rem; padding: 15px 40px;">
                 <i class="fa-solid fa-calendar-days"></i> BOOK NOW
@@ -416,6 +385,7 @@
         </div>
     </section>
 
+    <!-- ================= PROFILE SECTION ================= -->
     <section id="profile">
         <div class="profile-box">
             <div class="profile-header">
@@ -467,15 +437,69 @@
         </div>
     </section>
 
+    <!-- ================= RESOURCES PORTAL ================= -->
     <section id="resources">
-        <h2 id="materials" style="margin-bottom: 2rem; scroll-margin-top: 90px;">Study Material</h2>
+        <h2 id="materials">Study Material</h2>
 
-        <div class="category-nav">
-            <a href="#cat-audio" class="category-btn c-audio"><i class="fa-solid fa-microphone-lines" style="color:#2ecc71;"></i> Audio Blog</a>
-            <a href="#cat-culture" class="category-btn c-culture"><i class="fa-solid fa-star" style="color:#9b59b6;"></i> Culture & Fun</a>
-            <a href="#cat-grammar" class="category-btn c-grammar"><i class="fa-solid fa-puzzle-piece" style="color:#f39c12;"></i> Grammar</a>
-            <a href="#cat-kanji" class="category-btn c-kanji"><i class="fa-solid fa-book" style="color:#2980b9;"></i> Kanji & Vocab</a>
-            <a href="#cat-trip" class="category-btn c-trip"><i class="fa-solid fa-plane-departure" style="color:#e74c3c;"></i> Trip & Basics</a>
+        <!-- レベル別 ポータルカード -->
+        <div class="level-portal-grid">
+            <!-- ⭐️ 一番の推し枠：Culture & Fun + Audio Blog -->
+            <a href="#section-culture" class="level-card card-featured">
+                <div class="featured-inner">
+                    <div class="featured-left">
+                        <div class="icon-wrap"><i class="fa-solid fa-star"></i></div>
+                        <h3>Culture & Fun</h3>
+                        <span class="jlpt-badge">Audio Blog & Anime</span>
+                    </div>
+                    <div class="featured-right">
+                        <ul>
+                            <li><i class="fa-solid fa-circle-play"></i> Audio Blog (Natural Japanese)</li>
+                            <li><i class="fa-solid fa-tv"></i> Anime Expressions & Idioms</li>
+                            <li><i class="fa-solid fa-comment-dots"></i> Onomatopoeia (Sound words)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-bottom">DISCOVER & ENJOY</div>
+            </a>
+
+            <!-- 初級（Beginner） -->
+            <a href="#section-beginner" class="level-card card-beginner">
+                <div class="icon-wrap"><i class="fa-solid fa-seedling"></i></div>
+                <h3>Beginner</h3>
+                <span class="jlpt-badge">JLPT N5 - N4</span>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Hiragana & Katakana</li>
+                    <li><i class="fa-solid fa-check"></i> Travel Survival</li>
+                    <li><i class="fa-solid fa-check"></i> Basic Grammar & Kanji</li>
+                </ul>
+                <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">START HERE</div>
+            </a>
+
+            <!-- 中級（Intermediate） -->
+            <a href="#section-intermediate" class="level-card card-intermediate">
+                <div class="icon-wrap"><i class="fa-solid fa-rocket"></i></div>
+                <h3>Intermediate</h3>
+                <span class="jlpt-badge">JLPT N3 - N2</span>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> N3 Grammar & Vocab</li>
+                    <li><i class="fa-solid fa-check"></i> N3 Kanji Challenge</li>
+                    <li><i class="fa-solid fa-check"></i> Sentence Builder</li>
+                </ul>
+                <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">START HERE</div>
+            </a>
+
+            <!-- 上級（Advanced） -->
+            <a href="#section-advanced" class="level-card card-advanced">
+                <div class="icon-wrap"><i class="fa-solid fa-crown"></i></div>
+                <h3>Advanced</h3>
+                <span class="jlpt-badge">JLPT N1+</span>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> N1 Kanji Master</li>
+                    <li><i class="fa-solid fa-check"></i> Native-level Reading</li>
+                    <li><i class="fa-solid fa-check"></i> 200 Questions Challenge</li>
+                </ul>
+                <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">START HERE</div>
+            </a>
         </div>
 
         <div class="update-board">
@@ -487,407 +511,306 @@
             </ul>
         </div>
 
-        <h3 id="cat-audio" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #2ecc71; margin-bottom: 1.5rem; margin-top: 2rem; scroll-margin-top: 90px;">
-            <i class="fa-solid fa-microphone-lines"></i> Audio Blog (Listening)
-        </h3>
-        <div class="unified-grid" style="margin-bottom: 3rem;">
-            <a href="audioblog.html" class="unified-card">
-                <i class="fa-solid fa-circle-play" style="color: #2ecc71;"></i>
-                <h3 style="margin-bottom: 0.4rem;">AUDIO BLOG</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #eafaf1; color: #2ecc71; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">リスニング / LISTENING</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Listen & Learn natural Japanese</p>
-                <div class="btn-bottom" style="color:#2ecc71; border:1px solid #2ecc71;">LISTEN NOW</div>
-            </a>
+
+        <!-- ================= ⭐️ CULTURE & FUN (推し枠) ================= -->
+        <div id="section-culture" class="level-section">
+            <h2 class="section-title" style="color:var(--primary);"><i class="fa-solid fa-star"></i> Culture & Fun (Audio Blog & Anime)</h2>
+            
+            <h4 class="sub-category-title" style="border-color: #2ecc71;">Audio Blog (Listening)</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="audioblog.html" class="unified-card">
+                    <i class="fa-solid fa-circle-play main-icon" style="color: #2ecc71;"></i>
+                    <h3>AUDIO BLOG</h3>
+                    <p>Listen & Learn natural Japanese</p>
+                    <div class="btn-bottom" style="color:#2ecc71; border:1px solid #2ecc71;">LISTEN NOW</div>
+                </a>
+            </div>
+
+            <h4 class="sub-category-title" style="border-color: #8e44ad;">Culture & Expressions</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="idioms.html" class="unified-card">
+                    <i class="fa-solid fa-comments main-icon" style="color: #9b59b6;"></i>
+                    <h3>Idioms and Slang</h3>
+                    <p>Essential Daily Idioms</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="anime1.html" class="unified-card">
+                    <i class="fa-solid fa-tv main-icon" style="color: #8e44ad;"></i>
+                    <h3>Anime Titles</h3>
+                    <p>Learn through Anime 😎</p>
+                    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
+                </a>
+                <a href="onomato.html" class="unified-card">
+                    <i class="fa-solid fa-comment-dots main-icon" style="color: #e84393;"></i>
+                    <h3>Onomatopoeia</h3>
+                    <p>Sounds & Feelings words</p>
+                    <div class="btn-bottom" style="color:#e84393; border:1px solid #e84393;">STUDY NOW</div>
+                </a>
+            </div>
         </div>
 
-        <h3 id="cat-culture" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #9b59b6; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
-            <i class="fa-solid fa-star"></i> Culture & Fun (Idioms & Anime)
-        </h3>
-        <div class="unified-grid" style="margin-bottom: 3rem;">
-            <a href="idioms.html" class="unified-card">
-                <i class="fa-solid fa-comments" style="color: #9b59b6;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Idioms and Slang</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">慣用句 / IDIOMS</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Essential Daily Idioms</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-            </a>
-            <a href="anime1.html" class="unified-card">
-                <i class="fa-solid fa-tv" style="color: #8e44ad;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Anime Titles</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f4ecf7; color: #8e44ad; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">アニメ / ANIME</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Learn through Anime 😎</p>
-                <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
-            </a>
-            <a href="onomato.html" class="unified-card">
-                <i class="fa-solid fa-comment-dots" style="color: #e84393;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Onomatopoeia</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fdf0f5; color: #e84393; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">オノマトペ / SOUNDS</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Sounds & Feelings words</p>
-                <div class="btn-bottom" style="color:#e84393; border:1px solid #e84393;">STUDY NOW</div>
-            </a>
+        <!-- ================= BEGINNER SECTION ================= -->
+        <div id="section-beginner" class="level-section">
+            <h2 class="section-title" style="color:#2ecc71;"><i class="fa-solid fa-seedling"></i> Beginner (N5-N4)</h2>
+            
+            <h4 class="sub-category-title" style="border-color: #2980b9;">Hiragana, Katakana & Trip</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="hiragana-nazori.html" class="unified-card">
+                    <span class="badge-interactive">Interactive✨</span>
+                    <i class="fa-solid fa-pencil main-icon" style="color: #2980b9;"></i>
+                    <h3>Hiragana Tracing</h3>
+                    <p>Trace and Practice</p>
+                    <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
+                </a>
+                <a href="katakana-nazori.html" class="unified-card">
+                    <span class="badge-interactive">Interactive✨</span>
+                    <i class="fa-solid fa-pencil main-icon" style="color: #d35400;"></i>
+                    <h3>Katakana Tracing</h3>
+                    <p>Trace and Practice</p>
+                    <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
+                </a>
+                <a href="hiraganatype.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Game🎮</span>
+                    <i class="fa-solid fa-keyboard main-icon" style="color: #2980b9;"></i>
+                    <h3>Hiragana Master</h3>
+                    <p>Typing & Reading Practice</p>
+                    <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">PLAY NOW</div>
+                </a>
+                <a href="katakanatype.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Game🎮</span>
+                    <i class="fa-solid fa-keyboard main-icon" style="color: #d35400;"></i>
+                    <h3>Katakana Master</h3>
+                    <p>Typing & Reading Practice</p>
+                    <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">PLAY NOW</div>
+                </a>
+                <a href="matching.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Game🎮</span>
+                    <i class="fa-solid fa-gamepad main-icon" style="color: #ff9a9e;"></i>
+                    <h3>Matching Game</h3>
+                    <p>Hiragana & Katakana Matching</p>
+                    <div class="btn-bottom" style="color:#ff9a9e; border:1px solid #ff9a9e;">PLAY NOW</div>
+                </a>
+                <a href="trip1.html" class="unified-card">
+                    <i class="fa-solid fa-plane-departure main-icon" style="color: #e74c3c;"></i>
+                    <h3>TRIP JAPAN 1</h3>
+                    <p>9 Situations for Travelers</p>
+                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
+                </a>
+                <a href="trip.html" class="unified-card">
+                    <i class="fa-solid fa-plane-departure main-icon" style="color: #e74c3c;"></i>
+                    <h3>TRIP JAPAN 2</h3>
+                    <p>Travel Survival Japanese</p>
+                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
+                </a>
+                <a href="Hiragana.html" class="unified-card">
+                    <i class="fa-solid fa-language main-icon" style="color: #2980b9;"></i>
+                    <h3>Hiragana</h3>
+                    <p>Hiragana Practice with PC font</p>
+                    <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
+                </a>
+                <a href="Katakana1.html" class="unified-card">
+                    <i class="fa-solid fa-language main-icon" style="color: #d35400;"></i>
+                    <h3>Katakana 1</h3>
+                    <p>Katakana Practice with PC font</p>
+                    <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
+                </a>
+                <a href="Katakana1-2.html" class="unified-card">
+                    <i class="fa-solid fa-language main-icon" style="color: #e67e22;"></i>
+                    <h3>Katakana 2</h3>
+                    <p>Food, Drinks, Daily Goods</p>
+                    <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
+                </a>
+            </div>
+
+            <h4 class="sub-category-title" style="border-color: #f39c12;">Grammar N5-N4</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="plainform.html" class="unified-card">
+                    <span class="badge-interactive">Interactive✨</span>
+                    <i class="fa-solid fa-shapes main-icon" style="color: #f39c12;"></i>
+                    <h3>Plain Form Practice</h3>
+                    <p>Flashcards Verb Practice</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="Grammar1-1.html" class="unified-card">
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
+                    <h3>N5 Grammar 1-1</h3>
+                    <p>Sentence Builder Practice<br>JLPT N5⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="Grammar1-2.html" class="unified-card">
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
+                    <h3>N5 Grammar 1-2</h3>
+                    <p>Sentence Builder Practice<br>JLPT N5⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="Grammar2-1.html" class="unified-card">
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
+                    <h3>N4 Grammar 2-1</h3>
+                    <p>Sentence Builder Practice<br>JLPT N4⭐️⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="Grammar2-2.html" class="unified-card">
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
+                    <h3>N4 Grammar 2-2</h3>
+                    <p>Sentence Builder Practice<br>JLPT N4⭐️⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="conditional1.html" class="unified-card">
+                    <i class="fa-solid fa-code-branch main-icon" style="color: #f39c12;"></i>
+                    <h3>N4 Conditionals</h3>
+                    <p>Conditional Sentence Practice<br>JLPT N4⭐️⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+            </div>
+
+            <h4 class="sub-category-title" style="border-color: #27ae60;">Kanji N5-N4</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="N4-5verb1-1.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <i class="fa-solid fa-person-running main-icon" style="color: #27ae60;"></i> 
+                    <h3>Kanji 100 Quiz (Verbs)</h3>
+                    <p>N4/N5 Challenge</p>
+                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
+                </a>
+                <a href="N4-5adj1-1.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <i class="fa-solid fa-palette main-icon" style="color: #27ae60;"></i> 
+                    <h3>Kanji 100 Quiz (Adj)</h3>
+                    <p>N4/N5 Challenge</p>
+                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
+                </a>
+                <a href="N4-5noun1-1.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <i class="fa-solid fa-cube main-icon" style="color: #27ae60;"></i> 
+                    <h3>Kanji 100 Quiz (Nouns)</h3>
+                    <p>N4/N5 Challenge</p>
+                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
+                </a>
+                <a href="Kanji-N4-5.html" class="unified-card">
+                    <i class="fa-solid fa-cube main-icon" style="color: #27ae60;"></i>
+                    <h3>Kanji Level (General)</h3>
+                    <p>300 Essential Kanji Master</p>
+                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div>
+                </a>
+                <a href="A1-1.html" class="unified-card">
+                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i> 
+                    <h3>Marugoto A1-1</h3>
+                    <p>Entry Level Marugoto A1</p>
+                    <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+                </a>
+                <a href="A1-2.html" class="unified-card">
+                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i> 
+                    <h3>Marugoto A1-2</h3>
+                    <p>Elementary Marugoto A1-2</p>
+                    <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+                </a>
+                <a href="A2.html" class="unified-card">
+                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i> 
+                    <h3>Marugoto A2</h3>
+                    <p>Elementary Marugoto A2</p>
+                    <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+                </a>
+            </div>
         </div>
 
-        <h3 id="cat-grammar" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #f39c12; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
-            <i class="fa-solid fa-puzzle-piece"></i> Grammar & Sentence Making
-        </h3>
+        <!-- ================= INTERMEDIATE SECTION ================= -->
+        <div id="section-intermediate" class="level-section">
+            <h2 class="section-title" style="color:#3498db;"><i class="fa-solid fa-rocket"></i> Intermediate (N3-N2)</h2>
+            
+            <h4 class="sub-category-title" style="border-color: #9b59b6;">Grammar N3</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="Grammar3-1.html" class="unified-card">
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color:#9b59b6;"></i>
+                    <h3>N3 Grammar 1-1</h3>
+                    <p>Grammar Practice<br>JLPT N3⭐️⭐️⭐️</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+            </div>
 
-        <div class="lesson-tabs grammar-tabs">
-            <button class="tab-btn g-tab active" onclick="switchGrammar(0, 'n5')"><span>⭐</span>N5</button>
-            <button class="tab-btn g-tab" onclick="switchGrammar(1, 'n4')"><span>⭐⭐</span>N4</button>
-            <button class="tab-btn g-tab" onclick="switchGrammar(2, 'n3')"><span>⭐⭐⭐</span>N3</button>
+            <h4 class="sub-category-title" style="border-color: #9b59b6;">Kanji & Vocabulary N3</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="N3verb1-1.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <i class="fa-solid fa-person-running main-icon" style="color: #9b59b6;"></i> 
+                    <h3>Kanji 100 Quiz (Verbs)</h3>
+                    <p>N3 Challenge</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
+                </a>
+                <a href="N3noun1-1.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <i class="fa-solid fa-cube main-icon" style="color: #9b59b6;"></i> 
+                    <h3>Kanji 100 Quiz (Nouns)</h3>
+                    <p>N3 Challenge</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
+                </a>
+                <a href="Kanji3-1.html" class="unified-card">
+                    <i class="fa-solid fa-pen-nib main-icon" style="color: #9b59b6;"></i> 
+                    <h3>Kanji 3-1</h3>
+                    <p>Intermediate Practice<br>JLPT STYLE N3</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="Kanji3-2.html" class="unified-card">
+                    <i class="fa-solid fa-pen-nib main-icon" style="color: #9b59b6;"></i> 
+                    <h3>Kanji 3-2</h3>
+                    <p>Intermediate Practice<br>JLPT STYLE N3</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="N3-1.html" class="unified-card">
+                    <i class="fa-solid fa-spell-check main-icon" style="color: #9b59b6;"></i> 
+                    <h3>N3 Vocabulary-1</h3>
+                    <p>Practice N3 with Romaji</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="N3-2.html" class="unified-card">
+                    <i class="fa-solid fa-spell-check main-icon" style="color: #9b59b6;"></i> 
+                    <h3>N3 Vocabulary-2</h3>
+                    <p>Practice N3 with Romaji</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="N3-3.html" class="unified-card">
+                    <i class="fa-solid fa-spell-check main-icon" style="color: #9b59b6;"></i> 
+                    <h3>N3 Vocabulary-3</h3>
+                    <p>Practice N3 with Romaji</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+            </div>
         </div>
 
-        <div class="unified-grid grammar-grid show-n5" id="grammarGrid" style="margin-bottom: 3rem;">
-            <a href="plainform.html" class="unified-card g-n5 g-n4">
-                <i class="fa-solid fa-shapes" style="color: #f39c12;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Plain Form Practice</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fef5e7; color: #f39c12; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">普通形 / PLAIN FORM</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Flashcards Verb Practice</p>
-                <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-            </a>
-            <a href="Grammar1-1.html" class="unified-card g-n5">
-                <i class="fa-solid fa-pen-ruler" style="color: #f39c12;"></i>
-                <h3 style="margin-bottom: 0.4rem;">N5 Grammar 1-1</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fef5e7; color: #f39c12; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">文法 / GRAMMAR</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Sentence Builder Practice<br>JLPT N5⭐️</p>
-                <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-            </a>
-            <a href="Grammar1-2.html" class="unified-card g-n5">
-                <i class="fa-solid fa-pen-ruler" style="color: #f39c12;"></i>
-                <h3 style="margin-bottom: 0.4rem;">N5 Grammar 1-2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fef5e7; color: #f39c12; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">文法 / GRAMMAR</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Sentence Builder Practice<br>JLPT N5⭐️</p>
-                <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-            </a>
-            <a href="Grammar2-1.html" class="unified-card g-n4">
-                <i class="fa-solid fa-pen-ruler" style="color: #f39c12;"></i>
-                <h3 style="margin-bottom: 0.4rem;">N4 Grammar 2-1</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fef5e7; color: #f39c12; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">文法 / GRAMMAR</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Sentence Builder Practice<br>JLPT N4⭐️⭐️</p>
-                <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-            </a>
-            <a href="Grammar2-2.html" class="unified-card g-n4">
-                <i class="fa-solid fa-pen-ruler" style="color: #f39c12;"></i>
-                <h3 style="margin-bottom: 0.4rem;">N4 Grammar 2-2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fef5e7; color: #f39c12; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">文法 / GRAMMAR</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Sentence Builder Practice<br>JLPT N4⭐️⭐️</p>
-                <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-            </a>
-            <a href="conditional1.html" class="unified-card g-n4">
-                <i class="fa-solid fa-code-branch" style="color: #f39c12;"></i>
-                <h3 style="margin-bottom: 0.4rem;">N4 Conditionals</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fef5e7; color: #f39c12; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">条件形 / CONDITIONAL</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Conditional Sentence Practice<br>JLPT N4⭐️⭐️</p>
-                <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-            </a>
-            <a href="Grammar3-1.html" class="unified-card g-n3">
-                <i class="fa-solid fa-pen-ruler" style="color:#9b59b6;"></i>
-                <h3 style="margin-bottom: 0.4rem;">N3 Grammar 1-1</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">文法 / GRAMMAR</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Grammar Practice<br>JLPT N3⭐️⭐️⭐️</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-            </a>
+        <!-- ================= ADVANCED SECTION ================= -->
+        <div id="section-advanced" class="level-section">
+            <h2 class="section-title" style="color:#e74c3c;"><i class="fa-solid fa-crown"></i> Advanced (N1+)</h2>
+            
+            <h4 class="sub-category-title" style="border-color: #c0392b;">Advanced Kanji N1</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="N1-1.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <i class="fa-solid fa-award main-icon" style="color: #c0392b;"></i> 
+                    <h3>Kanji N1-1</h3>
+                    <p>200 Questions Challenge<br>🏆</p>
+                    <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
+                </a>
+                <a href="N1-2.html" class="unified-card">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <i class="fa-solid fa-award main-icon" style="color: #c0392b;"></i> 
+                    <h3>Kanji N1-2</h3>
+                    <p>200 Questions Challenge<br>🏆</p>
+                    <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
+                </a>
+            </div>
         </div>
 
-        <h3 id="cat-kanji" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #2980b9; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
-            <i class="fa-solid fa-book"></i> Kanji & Vocabulary
-        </h3>
-
-        <div class="lesson-tabs kanji-tabs">
-            <button class="tab-btn k-tab active" onclick="switchKanji(0, 'n54')"><span>⭐</span>N5/N4</button>
-            <button class="tab-btn k-tab" onclick="switchKanji(1, 'n3')"><span>⭐⭐</span>N3</button>
-            <button class="tab-btn k-tab" onclick="switchKanji(2, 'n1')"><span>🏆</span>N1</button>
-            <button class="tab-btn k-tab" onclick="switchKanji(3, 'marugoto')"><span>📖</span>Marugoto</button>
-        </div>
-
-        <div class="unified-grid kanji-grid show-n54" id="kanjiGrid" style="margin-bottom: 3rem;">
-            <a href="N4-5verb1-1.html" class="unified-card k-n54">
-                <i class="fa-solid fa-person-running" style="color: #27ae60;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji 100 Quiz</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #eafaf1; color: #27ae60; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">動詞 / VERBS</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">N4/N5 Challenge<br>⭐</p>
-                <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-            </a>
-            <a href="N4-5adj1-1.html" class="unified-card k-n54">
-                <i class="fa-solid fa-palette" style="color: #27ae60;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji 100 Quiz</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #eafaf1; color: #27ae60; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">形容詞 / ADJECTIVES</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">N4/N5 Challenge<br>⭐</p>
-                <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-            </a>
-            <a href="N4-5noun1-1.html" class="unified-card k-n54">
-                <i class="fa-solid fa-cube" style="color: #27ae60;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji 100 Quiz</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #eafaf1; color: #27ae60; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">名詞 / NOUNS</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">N4/N5 Challenge<br>⭐</p>
-                <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-            </a>
-            <a href="Kanji-N4-5.html" class="unified-card k-n54">
-                <i class="fa-solid fa-cube" style="color: #27ae60;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Kanji Level</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #eafaf1; color: #27ae60; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">総合 / GENERAL</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">300 Essential Kanji Master<br>JLPT N4 ⭐</p>
-                <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div>
-            </a>
-            <a href="N3verb1-1.html" class="unified-card k-n3">
-                <i class="fa-solid fa-person-running" style="color: #9b59b6;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji 100 Quiz</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">動詞 / VERBS</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">N3 Challenge<br>⭐⭐</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
-            </a>
-            <a href="N3noun1-1.html" class="unified-card k-n3">
-                <i class="fa-solid fa-cube" style="color: #9b59b6;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji 100 Quiz</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">名詞 / NOUNS</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">N3 Challenge<br>⭐⭐</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
-            </a>
-            <a href="Kanji3-1.html" class="unified-card k-n3">
-                <i class="fa-solid fa-pen-nib" style="color: #9b59b6;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji 3-1</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">漢字 / KANJI</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Intermediate Practice<br>JLPT STYLE N3</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-            </a>
-            <a href="Kanji3-2.html" class="unified-card k-n3">
-                <i class="fa-solid fa-pen-nib" style="color: #9b59b6;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji 3-2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">漢字 / KANJI</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Intermediate Practice<br>JLPT STYLE N3</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-            </a>
-            <a href="N3-1.html" class="unified-card k-n3">
-                <i class="fa-solid fa-spell-check" style="color: #9b59b6;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">N3 Vocabulary-1</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">語彙 / VOCAB</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Practice N3 with Romaji</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-            </a>
-            <a href="N3-2.html" class="unified-card k-n3">
-                <i class="fa-solid fa-spell-check" style="color: #9b59b6;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">N3 Vocabulary-2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">語彙 / VOCAB</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Practice N3 with Romaji</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-            </a>
-            <a href="N3-3.html" class="unified-card k-n3">
-                <i class="fa-solid fa-spell-check" style="color: #9b59b6;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">N3 Vocabulary-3</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #f5eef8; color: #9b59b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">語彙 / VOCAB</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Practice N3 with Romaji</p>
-                <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-            </a>
-
-            <a href="N1-1.html" class="unified-card k-n1">
-                <i class="fa-solid fa-award" style="color: #c0392b;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji N1-1</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fdf2f0; color: #c0392b; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">最上級 / N1 READING</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">200 Questions Challenge<br>🏆</p>
-                <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
-            </a>
-            <a href="N1-2.html" class="unified-card k-n1">
-                <i class="fa-solid fa-award" style="color: #c0392b;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji N1-2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fdf2f0; color: #c0392b; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">最上級 / N1 READING</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">200 Questions Challenge<br>🏆</p>
-                <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
-            </a>
-
-            <a href="A1-1.html" class="unified-card k-marugoto">
-                <i class="fa-solid fa-book-open" style="color: #3498db;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji A1-1</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #ebf5fb; color: #3498db; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">まるごと / MARUGOTO</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Entry Level Marugoto A1</p>
-                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
-            </a>
-            <a href="A1-2.html" class="unified-card k-marugoto">
-                <i class="fa-solid fa-book-open" style="color: #3498db;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji A1-2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #ebf5fb; color: #3498db; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">まるごと / MARUGOTO</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Elementary Marugoto A1-2</p>
-                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
-            </a>
-            <a href="A2.html" class="unified-card k-marugoto">
-                <i class="fa-solid fa-book-open" style="color: #3498db;"></i> 
-                <h3 style="margin-bottom: 0.4rem;">Kanji A2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #ebf5fb; color: #3498db; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">まるごと / MARUGOTO</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Elementary Marugoto A2</p>
-                <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
-            </a>
-        </div>
-
-        <h3 id="cat-trip" style="font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.4rem; color: #e74c3c; margin-bottom: 1.5rem; border-top: 1px solid #eee; padding-top: 2rem; scroll-margin-top: 90px;">
-            <i class="fa-solid fa-plane-departure"></i> Trip Japan & Basics
-        </h3>
-
-        <div class="lesson-tabs trip-tabs">
-            <button class="tab-btn t-tab active" onclick="switchTrip(0, 'trip')"><span>✈️</span>Trip</button>
-            <button class="tab-btn t-tab" onclick="switchTrip(1, 'hira')"><span>あ</span>Hira</button>
-            <button class="tab-btn t-tab" onclick="switchTrip(2, 'kata')"><span>ア</span>Kata</button>
-        </div>
-
-        <div class="unified-grid trip-grid show-trip" id="tripGrid" style="margin-bottom: 2rem;"> <!-- 下の余白を4remから2remへ縮小 -->
-            <a href="hiragana-nazori.html" class="unified-card t-hira">
-                <i class="fa-solid fa-pencil" style="color: #2980b9;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Hiragana Tracing</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #ebf5fb; color: #2980b9; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">ひらがな / HIRAGANA</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Trace and Practice</p>
-                <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
-            </a>
-           <a href="hiraganatype.html" class="unified-card t-hira">
-                <i class="fa-solid fa-keyboard" style="color: #2980b9;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Hiragana Master</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #ebf5fb; color: #2980b9; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">タイピング / TYPING</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Typing & Reading Practice</p>
-                <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">PLAY NOW</div>
-            </a>
-            <a href="katakana-nazori.html" class="unified-card t-kata">
-                <i class="fa-solid fa-pencil" style="color: #d35400;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Katakana Tracing</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fbeee6; color: #d35400; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">カタカナ / KATAKANA</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Trace and Practice</p>
-                <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
-            </a>
-            <a href="katakanatype.html" class="unified-card t-kata">
-                <i class="fa-solid fa-keyboard" style="color: #d35400;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Katakana Master</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fbeee6; color: #d35400; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">タイピング / TYPING</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Typing & Reading Practice</p>
-                <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">PLAY NOW</div>
-            </a>
-            <a href="matching.html" class="unified-card t-hira t-kata">
-                <i class="fa-solid fa-gamepad" style="color: #ff9a9e;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Matching Game</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fff5f5; color: #ff9a9e; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">ゲーム / GAME</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Hiragana & Katakana Matching</p>
-                <div class="btn-bottom" style="color:#ff9a9e; border:1px solid #ff9a9e;">PLAY NOW</div>
-            </a>
-            <a href="trip1.html" class="unified-card t-trip">
-                <i class="fa-solid fa-plane-departure" style="color: #e74c3c;"></i>
-                <h3 style="margin-bottom: 0.4rem;">TRIP JAPAN 1 </h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fdf0ed; color: #e74c3c; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">旅行 / TRAVEL</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">9 Situations for Travelers</p>
-                <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
-            </a>
-            <a href="trip.html" class="unified-card t-trip">
-                <i class="fa-solid fa-plane-departure" style="color: #e74c3c;"></i>
-                <h3 style="margin-bottom: 0.4rem;">TRIP JAPAN 2</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fdf0ed; color: #e74c3c; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">旅行 / TRAVEL</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Travel Survival Japanese</p>
-                <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
-            </a>
-            <a href="Hiragana.html" class="unified-card t-hira">
-                <i class="fa-solid fa-language" style="color: #2980b9;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Hiragana</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #ebf5fb; color: #2980b9; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">ひらがな / HIRAGANA</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Hiragana Practice 1 with PC font</p>
-                <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
-            </a>
-            <a href="Katakana1.html" class="unified-card t-kata">
-                <i class="fa-solid fa-language" style="color: #d35400;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Katakana</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fbeee6; color: #d35400; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">カタカナ / KATAKANA</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Katakana Practice 1 with PC font</p>
-                <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
-            </a>
-            <a href="Katakana1-2.html" class="unified-card t-kata">
-                <i class="fa-solid fa-language" style="color: #e67e22;"></i>
-                <h3 style="margin-bottom: 0.4rem;">Katakana</h3>
-                <div style="margin-bottom: 0.8rem;">
-                    <span style="background: #fdf2e9; color: #e67e22; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px;">カタカナ / KATAKANA</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;">Food, Drinks, Daily Goods with PC font</p>
-                <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
-            </a>
-        </div>
-
-        <h2 style="border-top: 1px solid #ccc; padding-top: 3rem;">Links & Payments</h2>
+        <!-- ================= LINKS & PAYMENTS ================= -->
+        <h2 style="border-top: 1px solid #ccc; padding-top: 3rem; margin-top: 4rem;">Links & Payments</h2>
         <div class="unified-grid">
             <div class="unified-card">
-                <i class="fa-solid fa-file-lines" style="color: #4285f4;"></i>
+                <i class="fa-solid fa-file-lines main-icon" style="color: #4285f4;"></i>
                 <h3>Contact Form</h3>
                 <p>Please fill out the form for<br>lesson inquiries and requests.</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScJZlAyBuoz-gAbi9wFlZRgyfsGmOmnbIDByyRM_rVuERwGuw/viewform?usp=dialog" 
-                   class="btn-bottom" 
-                   style="color:#4285f4; border:1px solid; text-decoration:none;" 
-                   target="_blank">OPEN FORM</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScJZlAyBuoz-gAbi9wFlZRgyfsGmOmnbIDByyRM_rVuERwGuw/viewform?usp=dialog" class="btn-bottom" style="color:#4285f4; border:1px solid; text-decoration:none;" target="_blank">OPEN FORM</a>
             </div>
             
             <div class="unified-card" id="booking-links">
-                <i class="fa-regular fa-calendar-check" style="color: #9b59b6;"></i>
+                <i class="fa-regular fa-calendar-check main-icon" style="color: #9b59b6;"></i>
                 <h3>Booking Schedule</h3>
                 <p>For current students and<br>lesson pack members.</p>
                 <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: auto;">
@@ -897,9 +820,9 @@
                 </div>
             </div>
             <div class="unified-card">
-                <i class="fa-solid fa-book-open" style="color: var(--primary);"></i>
+                <i class="fa-solid fa-book-open main-icon" style="color: var(--primary);"></i>
                 <h3>Learning Material</h3>
-<p>Recommended resources<br>for your Japanese study.</p>
+                <p>Recommended resources<br>for your Japanese study.</p>
                 <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: auto;">
                     <a href="https://marugotoweb.jp/ja/" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>📚</span> MARUGOTO PLUS</a>
                     <a href="https://jisho.org/" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>🔍</span> JISHO.ORG</a>
@@ -907,19 +830,19 @@
                 </div>
             </div>
             <a href="https://buymeacoffee.com/ohayocenter" class="unified-card" target="_blank">
-                <i class="fa-solid fa-mug-hot" style="color: #FFDD00;"></i>
+                <i class="fa-solid fa-mug-hot main-icon" style="color: #FFDD00;"></i>
                 <h3>SUPPORT OHAYO CENTER</h3>
                 <p>THANK YOU❤️</p>
                 <div class="btn-bottom" style="border: none; padding: 0;"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;"></div>
             </a>
             <a href="#lessons" class="unified-card">
-                <i class="fa-solid fa-wallet" style="color: #00b894;"></i>
+                <i class="fa-solid fa-wallet main-icon" style="color: #00b894;"></i>
                 <h3>Payments</h3>
                 <p style="font-size: 0.8rem; line-height: 1.5;">We accept <strong>Credit Card</strong>,<br><strong>Apple Pay</strong>, <strong>Google Pay</strong><br>and <strong>Wise</strong>.</p>
                 <div class="btn-bottom" style="color:#00b894; border:1px solid #00b894;">SECURE PAYMENT</div>
             </a>
             <a href="https://www.instagram.com/ohayo_center" class="unified-card" target="_blank">
-                <i class="fa-brands fa-instagram" style="color: #E4405F;"></i>
+                <i class="fa-brands fa-instagram main-icon" style="color: #E4405F;"></i>
                 <h3>Instagram</h3>
                 <p>@ohayo_center</p>
                 <div class="btn-bottom" style="color:#E4405F; border:1px solid #E4405F;">FOLLOW ME</div>
@@ -986,33 +909,6 @@
         if(btns[index]) btns[index].classList.add('active');
     }
 
-    function switchGrammar(index, levelClass) {
-        const grid = document.getElementById('grammarGrid');
-        const btns = document.querySelectorAll('.grammar-tabs .tab-btn');
-        grid.classList.remove('show-n5', 'show-n4', 'show-n3');
-        grid.classList.add('show-' + levelClass);
-        btns.forEach(btn => btn.classList.remove('active'));
-        if(btns[index]) btns[index].classList.add('active');
-    }
-
-    function switchKanji(index, levelClass) {
-        const grid = document.getElementById('kanjiGrid');
-        const btns = document.querySelectorAll('.kanji-tabs .tab-btn');
-        grid.classList.remove('show-n54', 'show-n3', 'show-n1', 'show-marugoto');
-        grid.classList.add('show-' + levelClass);
-        btns.forEach(btn => btn.classList.remove('active'));
-        if(btns[index]) btns[index].classList.add('active');
-    }
-
-    function switchTrip(index, levelClass) {
-        const grid = document.getElementById('tripGrid');
-        const btns = document.querySelectorAll('.trip-tabs .tab-btn');
-        grid.classList.remove('show-trip', 'show-hira', 'show-kata');
-        grid.classList.add('show-' + levelClass);
-        btns.forEach(btn => btn.classList.remove('active'));
-        if(btns[index]) btns[index].classList.add('active');
-    }
-
     function setupModal(modalId, openBtnId, closeBtnId) {
         const modal = document.getElementById(modalId);
         const openBtn = document.getElementById(openBtnId);
@@ -1044,63 +940,27 @@
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            // モバイル判定して初期表示を切り替え
             initialView: window.innerWidth < 600 ? 'timeGridDay' : 'timeGridWeek', 
             firstDay: 1, 
             locale: 'en',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: window.innerWidth < 600 ? '' : 'timeGridWeek,timeGridDay'
-            },
-            slotMinTime: '00:00:00',
-            slotMaxTime: '24:00:00',
-            allDaySlot: false,
-            height: 'auto',
-            nowIndicator: true,
-            expandRows: true,
-            stickyHeaderDates: true,
-            eventColor: '#888888', 
-            eventTextColor: '#ffffff',
+            headerToolbar: { left: 'prev,next today', center: 'title', right: window.innerWidth < 600 ? '' : 'timeGridWeek,timeGridDay' },
+            slotMinTime: '00:00:00', slotMaxTime: '24:00:00', allDaySlot: false, height: 'auto', nowIndicator: true, expandRows: true, stickyHeaderDates: true,
+            eventColor: '#888888', eventTextColor: '#ffffff',
             businessHours: [
-                {
-                    daysOfWeek: [ 1, 2, 3, 4, 5 ], 
-                    startTime: '20:00',
-                    endTime: '24:00'
-                },
-                {
-                    daysOfWeek: [ 0, 6 ], 
-                    startTime: '09:00',
-                    endTime: '14:00'
-                },
-                {
-                    daysOfWeek: [ 0, 6 ], 
-                    startTime: '18:00',
-                    endTime: '24:00'
-                }
+                { daysOfWeek: [ 1, 2, 3, 4, 5 ], startTime: '20:00', endTime: '24:00' },
+                { daysOfWeek: [ 0, 6 ], startTime: '09:00', endTime: '14:00' },
+                { daysOfWeek: [ 0, 6 ], startTime: '18:00', endTime: '24:00' }
             ],
             eventSources: [
-                {
-                    url: 'https://script.google.com/macros/s/AKfycbw4u0CGA0L8v4BPIwKBNuyf6qgt2SscK_zidZAiEX2GTgb5_3vOoD26YhgIX4y91Ehmmw/exec',
-                    method: 'GET'
-                }
+                { url: 'https://script.google.com/macros/s/AKfycbw4u0CGA0L8v4BPIwKBNuyf6qgt2SscK_zidZAiEX2GTgb5_3vOoD26YhgIX4y91Ehmmw/exec', method: 'GET' }
             ],
-            // 画面サイズ変更時に動的に表示を切り替え
             windowResize: function(arg) {
                 if (window.innerWidth < 600) {
                     calendar.changeView('timeGridDay');
-                    calendar.setOption('headerToolbar', {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: ''
-                    });
+                    calendar.setOption('headerToolbar', { left: 'prev,next today', center: 'title', right: '' });
                 } else {
                     calendar.changeView('timeGridWeek');
-                    calendar.setOption('headerToolbar', {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'timeGridWeek,timeGridDay'
-                    });
+                    calendar.setOption('headerToolbar', { left: 'prev,next today', center: 'title', right: 'timeGridWeek,timeGridDay' });
                 }
             }
         });
