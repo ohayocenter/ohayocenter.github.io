@@ -7,7 +7,6 @@
     
     <link rel="icon" href="icon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <!-- スマホ向け教科書体フォント「Klee One」を追加 -->
     <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -52,7 +51,7 @@
         .logo { font-weight: bold; color: var(--dark); font-size: 1.2rem; }
         .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.2s; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.2s; cursor: pointer;}
         .nav-links a:hover { color: var(--accent); }
 
         @media (max-width: 600px) {
@@ -115,7 +114,6 @@
             position: absolute; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center;
             font-size: 260px; color: var(--guide); pointer-events: none;
-            /* ここに Klee One を追加してスマホでの表示を最適化 */
             font-family: "YuKyokasho", "Yu Kyokasho", "UD Digi Kyokasho", "Klee One", "HGKyokashotai", sans-serif;
         }
         canvas { position: absolute; top: 0; left: 0; z-index: 5; touch-action: none; }
@@ -177,7 +175,7 @@
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-        <li><a href="#" onclick="document.body.classList.toggle('dark-mode'); resetCanvas();"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
+        <li><a onclick="toggleDarkMode()"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
     </ul>
 </nav>
 
@@ -202,8 +200,8 @@
         <div class="canvas-box">
             <div class="guide-txt" id="guide-char">あ</div>
             <div id="hints-layer"></div>
-            <canvas id="canvas" width="320" height="320"></canvas>
-            <canvas id="h-canvas" width="320" height="320" style="display:none;"></canvas>
+            <canvas id="canvas"></canvas>
+            <canvas id="h-canvas" style="display:none;"></canvas>
             <div id="quiz-overlay">
                 <p style="font-weight:bold; margin-bottom:15px; color:var(--dark);">Which is correct?</p>
                 <div style="display:flex;">
@@ -239,78 +237,77 @@
 </div>
 
 <script>
-    /* --- 全ひらがなデータベース：書き順・座標フルチェック修正済み --- */
+    /* --- 全ひらがなデータベース：座標を元の正確な位置に復元 ＆ 覚え方テキスト更新 --- */
     const dbBasic = {
         'あ行 (A)': [
-            { c: 'あ', m: 'Antenna', d: 'め', h: [{x:110,y:110,n:1},{x:160,y:60,n:2},{x:150,y:150,n:3}] },
-            { c: 'い', m: 'Eels', d: 'り', h: [{x:110,y:100,n:1},{x:210,y:100,n:2}] },
-            { c: 'う', m: 'Ugh!', d: 'ら', h: [{x:160,y:60,n:1},{x:120,y:130,n:2}] },
-            { c: 'え', m: 'Energetic', d: 'ん', h: [{x:160,y:60,n:1},{x:120,y:130,n:2}] },
-            { c: 'お', m: 'On the green', d: 'あ', h: [{x:110,y:110,n:1},{x:160,y:60,n:2},{x:230,y:100,n:3}] }
+            { c: 'あ', m: 'Capital A', d: 'め', h: [{x:110,y:110,n:1},{x:160,y:60,n:2},{x:150,y:150,n:3}] },
+            { c: 'い', m: 'A couple of Eels', d: 'り', h: [{x:110,y:100,n:1},{x:210,y:100,n:2}] },
+            { c: 'う', m: 'The letter U', d: 'ら', h: [{x:160,y:60,n:1},{x:120,y:130,n:2}] },
+            { c: 'え', m: 'An Exotic bird', d: 'ん', h: [{x:160,y:60,n:1},{x:120,y:130,n:2}] },
+            { c: 'お', m: 'Two O symbols', d: 'あ', h: [{x:110,y:110,n:1},{x:160,y:60,n:2},{x:230,y:100,n:3}] }
         ],
         'か行 (Ka)': [
-            { c: 'か', m: 'KArate', d: 'が', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:90,n:3}] },
-            { c: 'き', m: 'Key', d: 'さ', h: [{x:110,y:100,n:1},{x:110,y:140,n:2},{x:160,y:70,n:3},{x:150,y:230,n:4}] },
-            { c: 'く', m: 'Cuckoo', d: 'へ', h: [{x:120,y:120,n:1}] },
-            { c: 'け', m: 'Keg', d: 'は', h: [{x:110,y:100,n:1},{x:160,y:100,n:2},{x:190,y:80,n:3}] },
-            { c: 'こ', m: 'Core', d: 'に', h: [{x:110,y:100,n:1},{x:110,y:200,n:2}] }
+            { c: 'か', m: 'Ka (Mosquito)', d: 'が', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:90,n:3}] },
+            { c: 'き', m: 'A Key', d: 'さ', h: [{x:110,y:100,n:1},{x:110,y:140,n:2},{x:160,y:70,n:3},{x:150,y:230,n:4}] },
+            { c: 'く', m: "Cuckoo's mouth", d: 'へ', h: [{x:120,y:120,n:1}] },
+            { c: 'け', m: 'Wiggly Kelp', d: 'は', h: [{x:110,y:100,n:1},{x:160,y:100,n:2},{x:190,y:80,n:3}] },
+            { c: 'こ', m: 'Co-habitation worms', d: 'に', h: [{x:110,y:100,n:1},{x:110,y:200,n:2}] }
         ],
         'さ行 (Sa)': [
-            { c: 'さ', m: 'Sign', d: 'き', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:150,y:220,n:3}] },
-            { c: 'し', m: 'She', d: 'つ', h: [{x:140,y:80,n:1}] },
-            { c: 'す', m: 'Swing', d: 'む', h: [{x:90,y:110,n:1},{x:160,y:60,n:2}] },
-            { c: 'せ', m: 'Say Hi', d: 'け', h: [{x:90,y:120,n:1},{x:210,y:80,n:2},{x:160,y:90,n:3}] },
-            { c: 'そ', m: 'Sewing', d: 'ろ', h: [{x:120,y:100,n:1}] }
+            { c: 'さ', m: 'Chunky Salsa', d: 'き', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:150,y:220,n:3}] },
+            { c: 'し', m: "Shepherd's crook", d: 'つ', h: [{x:140,y:80,n:1}] },
+            { c: 'す', m: 'A Swing loop-de-loop', d: 'む', h: [{x:90,y:110,n:1},{x:160,y:60,n:2}] },
+            { c: 'せ', m: 'Sexy vampire teeth', d: 'け', h: [{x:90,y:120,n:1},{x:210,y:80,n:2},{x:160,y:90,n:3}] },
+            { c: 'そ', m: 'Slurping Soda', d: 'ろ', h: [{x:120,y:100,n:1}] }
         ],
         'た行 (Ta)': [
-            { c: 'た', m: 'TA', d: 'な', h: [{x:110,y:110,n:1},{x:150,y:60,n:2},{x:200,y:120,n:3},{x:200,y:180,n:4}] },
-            { c: 'ち', m: 'Cheer', d: 'ら', h: [{x:100,y:110,n:1},{x:160,y:60,n:2}] },
-            { c: 'つ', m: 'Tsunami', d: 'し', h: [{x:100,y:140,n:1}] },
-            { c: 'て', m: 'Telescope', d: 'と', h: [{x:100,y:110,n:1}] },
-            { c: 'と', m: 'Toe', d: 'て', h: [{x:130,y:90,n:1},{x:170,y:120,n:2}] }
+            { c: 'た', m: 'A Taco', d: 'な', h: [{x:110,y:110,n:1},{x:150,y:60,n:2},{x:200,y:120,n:3},{x:200,y:180,n:4}] },
+            { c: 'ち', m: 'Cheese! (Forced smile)', d: 'ら', h: [{x:100,y:110,n:1},{x:160,y:60,n:2}] },
+            { c: 'つ', m: 'Tsunami wave', d: 'し', h: [{x:100,y:140,n:1}] },
+            { c: 'て', m: 'A Telescope', d: 'と', h: [{x:100,y:110,n:1}] },
+            { c: 'と', m: 'A Toe with a splinter', d: 'て', h: [{x:130,y:90,n:1},{x:170,y:120,n:2}] }
         ],
         'な行 (Na)': [
-            { c: 'な', m: 'Nun', d: 'た', h: [{x:100,y:110,n:1},{x:140,y:70,n:2},{x:210,y:90,n:3},{x:180,y:150,n:4}] },
-            { c: 'に', m: 'Knee', d: 'こ', h: [{x:100,y:100,n:1},{x:190,y:110,n:2},{x:190,y:190,n:3}] },
-            { c: 'ぬ', m: 'Noodles', d: 'め', h: [{x:110,y:90,n:1},{x:160,y:70,n:2}] },
-            { c: 'ね', m: 'Neko', d: 'わ', h: [{x:110,y:70,n:1},{x:130,y:100,n:2}] },
-            { c: 'の', m: 'No entry', d: 'め', h: [{x:160,y:120,n:1}] }
+            { c: 'な', m: 'Nun asking for Nachos', d: 'た', h: [{x:100,y:110,n:1},{x:140,y:70,n:2},{x:210,y:90,n:3},{x:180,y:150,n:4}] },
+            { c: 'に', m: 'A Needle pulling thread', d: 'こ', h: [{x:100,y:100,n:1},{x:190,y:110,n:2},{x:190,y:190,n:3}] },
+            { c: 'ぬ', m: 'Some Noodles', d: 'め', h: [{x:110,y:90,n:1},{x:160,y:70,n:2}] },
+            { c: 'ね', m: 'Neko (Cat)', d: 'わ', h: [{x:110,y:70,n:1},{x:130,y:100,n:2}] },
+            { c: 'の', m: 'A Pig Nose', d: 'め', h: [{x:160,y:120,n:1}] }
         ],
         'は行 (Ha)': [
-            { c: 'は', m: 'Haha!', d: 'ほ', h: [{x:100,y:90,n:1},{x:180,y:100,n:2},{x:200,y:60,n:3}] },
-            { c: 'ひ', m: 'Smile', d: 'と', h: [{x:90,y:110,n:1}] },
-            { c: 'ふ', m: 'Fuji', d: 'ぷ', h: [{x:160,y:60,n:1},{x:160,y:120,n:2},{x:90,y:180,n:3},{x:230,y:180,n:4}] },
-            { c: 'へ', m: 'Heaven', d: 'く', h: [{x:100,y:160,n:1}] },
-            { c: 'ほ', m: 'Hot stove', d: 'は', h: [{x:100,y:90,n:1},{x:180,y:90,n:2},{x:180,y:140,n:3},{x:200,y:60,n:4}] }
+            { c: 'は', m: 'H + a', d: 'ほ', h: [{x:100,y:90,n:1},{x:180,y:100,n:2},{x:200,y:60,n:3}] },
+            { c: 'ひ', m: 'He has a big nose', d: 'と', h: [{x:90,y:110,n:1}] },
+            { c: 'ふ', m: 'A Fool hula hooping', d: 'ぷ', h: [{x:160,y:60,n:1},{x:160,y:120,n:2},{x:90,y:180,n:3},{x:230,y:180,n:4}] },
+            { c: 'へ', m: 'Mt. Saint Helens', d: 'く', h: [{x:100,y:160,n:1}] },
+            { c: 'ほ', m: 'Mutated Santa (Ho Ho Ho)', d: 'は', h: [{x:100,y:90,n:1},{x:180,y:90,n:2},{x:180,y:140,n:3},{x:200,y:60,n:4}] }
         ],
         'ま行 (Ma)': [
-            { c: 'ま', m: 'Mast', d: 'ほ', h: [{x:110,y:100,n:1},{x:110,y:140,n:2},{x:160,y:60,n:3}] },
-            { c: 'み', m: 'Me is 21', d: 'め', h: [{x:100,y:110,n:1},{x:200,y:110,n:2}] },
-            { c: 'む', m: 'Moo', d: 'す', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:110,n:3}] },
-            { c: 'め', m: 'Messy', d: 'ぬ', h: [{x:120,y:90,n:1},{x:170,y:70,n:2}] },
-            { c: 'も', m: 'Hooks', d: 'し', h: [{x:160,y:60,n:1},{x:110,y:110,n:2},{x:110,y:150,n:3}] }
+            { c: 'ま', m: 'Scary Ma', d: 'ほ', h: [{x:110,y:100,n:1},{x:110,y:140,n:2},{x:160,y:60,n:3}] },
+            { c: 'み', m: 'Me turning 21', d: 'め', h: [{x:100,y:110,n:1},{x:200,y:110,n:2}] },
+            { c: 'む', m: 'Mooooo', d: 'す', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:110,n:3}] },
+            { c: 'め', m: 'Me (Eye)', d: 'ぬ', h: [{x:120,y:90,n:1},{x:170,y:70,n:2}] },
+            { c: 'も', m: 'More worms on a hook', d: 'し', h: [{x:160,y:60,n:1},{x:110,y:110,n:2},{x:110,y:150,n:3}] }
         ],
         'や行 (Ya)': [
-            // 「や」の③(n:3)の x を 150 から 110 に変更 (左へ移動)
-            { c: 'や', m: 'Yak', d: 'せ', h: [{x:70,y:130,n:1},{x:180,y:80,n:2},{x:110,y:70,n:3}] },
-            { c: 'ゆ', m: 'Fish', d: 'め', h: [{x:120,y:100,n:1},{x:200,y:70,n:2}] },
-            { c: 'よ', m: 'Yo-yo', d: 'ま', h: [{x:190,y:100,n:1},{x:160,y:70,n:2}] }
-        ],
+            { c: 'や', m: 'A Yacht', d: 'せ', h: [{x:70,y:130,n:1},{x:180,y:80,n:2},{x:110,y:70,n:3}] },
+            { c: 'ゆ', m: 'A Unique fish', d: 'め', h: [{x:120,y:100,n:1},{x:200,y:70,n:2}] },
+            { c: 'よ', m: 'Yo! (Y & O)', d: 'ま', h: [{x:190,y:100,n:1},{x:160,y:70,n:2}] }
+        ],
         'ら行 (Ra)': [
-            { c: 'ら', m: 'Rabbit', d: 'ち', h: [{x:160,y:70,n:1},{x:140,y:130,n:2}] },
-            { c: 'り', m: 'River', d: 'い', h: [{x:120,y:100,n:1},{x:200,y:100,n:2}] },
-            { c: 'る', m: 'Loop', d: 'ろ', h: [{x:120,y:100,n:1}] },
-            { c: 'れ', m: 'Resting', d: 'ね', h: [{x:110,y:80,n:1},{x:140,y:120,n:2}] },
-            { c: 'ろ', m: 'Radio', d: 'る', h: [{x:120,y:100,n:1}] }
+            { c: 'ら', m: 'A Rabbit', d: 'ち', h: [{x:160,y:70,n:1},{x:140,y:130,n:2}] },
+            { c: 'り', m: 'Reeds in the wind', d: 'い', h: [{x:120,y:100,n:1},{x:200,y:100,n:2}] },
+            { c: 'る', m: 'A Crazier Route', d: 'ろ', h: [{x:120,y:100,n:1}] },
+            { c: 'れ', m: 'Retching guy', d: 'ね', h: [{x:110,y:80,n:1},{x:140,y:120,n:2}] },
+            { c: 'ろ', m: 'Plain old Road', d: 'る', h: [{x:120,y:100,n:1}] }
         ],
         'わ行 (Wa)': [
-            { c: 'わ', m: 'Swan', d: 'ね', h: [{x:110,y:80,n:1},{x:140,y:120,n:2}] },
-            { c: 'を', m: 'Whoa!', d: 'お', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:170,y:130,n:3}] },
-            { c: 'ん', m: 'End', d: 'え', h: [{x:110,y:110,n:1}] }
+            { c: 'わ', m: 'Wasp flying up', d: 'ね', h: [{x:110,y:80,n:1},{x:140,y:120,n:2}] },
+            { c: 'を', m: 'Boomerang in mouth', d: 'お', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:170,y:130,n:3}] },
+            { c: 'ん', m: 'Lowercase n', d: 'え', h: [{x:110,y:110,n:1}] }
         ]
     };
 
-    /* --- 濁音・半濁音（Tenten & Maru） --- */
+    /* --- 濁音・半濁音（Tenten & Maru）: 基礎座標に正確な濁点・半濁点を追加 --- */
     const dbVoiced = {
         'が行 (Ga)': [
             { c: 'が', m: 'GA', d: 'か', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:90,n:3},{x:245,y:45,n:4},{x:275,y:45,n:5}] },
@@ -351,8 +348,38 @@
 
     let currentDB = dbBasic;
     let activeRow = []; let charIdx = 0; let drawing = false; let correctIdx = 0;
-    const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
-    const hCanvas = document.getElementById('h-canvas'); const hCtx = hCanvas.getContext('2d');
+    const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const hCanvas = document.getElementById('h-canvas'); const hCtx = hCanvas.getContext('2d', { willReadFrequently: true });
+
+    /* --- ダークモードの保存・復元 --- */
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('ohayo_theme', isDark ? 'dark' : 'light');
+        resetCanvas();
+    }
+
+    window.onload = () => {
+        setupHighDPICanvas();
+        if (localStorage.getItem('ohayo_theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+        renderMenu();
+        resetCanvas();
+    };
+
+    /* --- Retinaディスプレイ(高解像度)対応 --- */
+    function setupHighDPICanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        
+        canvas.width = 320 * dpr; canvas.height = 320 * dpr;
+        canvas.style.width = "320px"; canvas.style.height = "320px";
+        ctx.scale(dpr, dpr);
+        
+        hCanvas.width = 320 * dpr; hCanvas.height = 320 * dpr;
+        hCanvas.style.width = "320px"; hCanvas.style.height = "320px";
+        hCtx.scale(dpr, dpr);
+    }
 
     function switchTab(type) {
         currentDB = (type === 'basic') ? dbBasic : dbVoiced;
@@ -394,6 +421,7 @@
         document.getElementById('guide-char').innerText = item.c;
         document.getElementById('mn-title').innerText = `"${item.c}" for ${item.m}`;
         document.getElementById('quiz-overlay').style.display = 'none';
+        
         const layer = document.getElementById('hints-layer');
         layer.innerHTML = '';
         item.h.forEach(p => {
@@ -403,7 +431,6 @@
         });
 
         hCtx.clearRect(0,0,320,320); hCtx.fillStyle="black"; 
-        /* ここにも Klee One を追加して、裏の判定用キャンバスと表示文字を一致させる */
         hCtx.font="260px 'YuKyokasho', 'Yu Kyokasho', 'UD Digi Kyokasho', 'Klee One', sans-serif";
         hCtx.textAlign="center"; hCtx.textBaseline="middle"; hCtx.shadowBlur = 20; hCtx.shadowColor = "black";
         hCtx.fillText(item.c, 160, 160); hCtx.shadowBlur = 0;
@@ -411,9 +438,11 @@
     }
 
     function judge() {
-        const user = ctx.getImageData(0,0,320,320).data;
-        const guide = hCtx.getImageData(0,0,320,320).data;
+        // 解像度対応のため、canvasの物理ピクセル全体をチェック
+        const user = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        const guide = hCtx.getImageData(0, 0, hCanvas.width, hCanvas.height).data;
         let hits = 0, total = 0;
+        
         for (let i = 3; i < guide.length; i += 4) {
             if (guide[i] > 20) { total++; if (user[i] > 20) hits++; }
         }
@@ -460,8 +489,6 @@
     canvas.addEventListener('mousemove', (e) => { if(!drawing) return; const p = getP(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
     window.addEventListener('mouseup', () => drawing = false);
 
-    renderMenu();
-    resetCanvas();
 </script>
 </body>
 </html>
