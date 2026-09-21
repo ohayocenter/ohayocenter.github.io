@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>形容詞練習＆クイズ (Adjectives) - Ohayo Center</title>
+
+    <!-- ▼ indexと同じファビコン ▼ -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" sizes="192x192" href="icon.png">
+
+    <!-- ▼ indexと同じフォント ▼ -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #ff6b6b;   /* い形容詞 */
+            --secondary-color: #4ecdc4; /* な形容詞 */
+            --quiz-color: #9b59b6;      /* クイズ */
+            --correct-color: #2ecc71;   /* 正解 */
+            --wrong-color: #e74c3c;     /* 不正解 */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            /* ナビゲーション用の色を変数に追加 */
+            --primary: #ff9f43; 
+            --dark: #2c3e50;
+        }
+        
+        * { box-sizing: border-box; }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* フォントをindexと揃えつつ、フォールバックを残す */
+            font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* ====== indexと同じナビゲーションバーのスタイル ====== */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            padding: 0 5%; 
+            height: 70px; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0;
+            z-index: 2000; /* アプリUIの上に表示されるように高く設定 */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        
+        .nav-links a { 
+            text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; 
+            letter-spacing: 1px; position: relative; padding-bottom: 5px;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: var(--primary); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 15px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.75rem; }
+        }
+        /* =================================================== */
+
+        /* アプリ風のレイアウトにするためのラッパー */
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            /* ナビゲーションバー(70px)の分だけ高さを引き、上に余白を作る */
+            height: calc(100vh - 70px);
+            margin-top: 70px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        
+        /* Header (コンパクト化) */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
+        }
+        header.na-mode { background-color: var(--secondary-color); }
+        header.quiz-mode { background-color: var(--quiz-color); }
+        
+        .header-titles { text-align: center; }
+        .header-titles h1 { margin: 0; font-size: 1.2rem; letter-spacing: 1px; font-family: 'Sawarabi Mincho', serif; }
+        .header-titles h2 { margin: 2px 0 0 0; font-size: 0.8rem; font-weight: normal; opacity: 0.9; }
+        
+        /* Tabs (押しやすいサイズに) */
+        .tabs {
+            display: flex;
+            background: #fff;
+            border-bottom: 2px solid #eee;
+            flex-shrink: 0;
+        }
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+        .tab-btn.active.i-adj-btn { color: var(--primary-color); }
+        .tab-btn.active.na-adj-btn { color: var(--secondary-color); }
+        .tab-btn.active.quiz-btn { color: var(--quiz-color); }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; width: 100%; height: 3px;
+        }
+        .tab-btn.active.i-adj-btn::after { background-color: var(--primary-color); }
+        .tab-btn.active.na-adj-btn::after { background-color: var(--secondary-color); }
+        .tab-btn.active.quiz-btn::after { background-color: var(--quiz-color); }
+        
+        /* Main Content Area */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        /* --- フラッシュカード (1枚表示UI) --- */
+        #study-view {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .study-tools {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .study-progress {
+            font-weight: bold;
+            color: #777;
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .tool-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555;
+            transition: 0.2s;
+        }
+        .tool-btn:active { background: #e0e0e0; }
+
+        /* カードくるりんアニメーション */
+        .card-container {
+            flex-grow: 1;
+            perspective: 1000px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            min-height: 250px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .card-container.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-top: 6px solid var(--primary-color);
+        }
+        .na-mode .card-front, .na-mode .card-back {
+            border-top-color: var(--secondary-color);
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            background: #fafafa;
+        }
+        
+        .word-jp { font-size: 2.5rem; font-weight: bold; margin-bottom: 10px; }
+        .word-romaji { font-size: 1.2rem; color: #7f8c8d; }
+        .word-en { font-size: 2rem; font-weight: bold; color: var(--primary-color); }
+        .na-mode .word-en { color: var(--secondary-color); }
+        .tap-hint { position: absolute; bottom: 15px; font-size: 0.8rem; color: #bbb; }
+
+        /* ナビゲーションボタン */
+        .card-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .nav-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            transition: 0.2s;
+        }
+        .na-mode .nav-btn { background-color: var(--secondary-color); }
+        .nav-btn:active { opacity: 0.7; transform: scale(0.98); }
+
+        /* --- クイズ --- */
+        #quiz-view {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #888;
+            margin-bottom: 15px;
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+        .quiz-question-box {
+            text-align: center;
+            margin-bottom: 20px;
+            flex-grow: 0.3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .quiz-question-box p { margin: 0 0 5px 0; color: #777; font-size: 0.9rem; }
+        .quiz-question-box h3 { margin: 0; font-size: 2rem; color: var(--quiz-color); }
+        
+        .quiz-choices-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            flex-grow: 1;
+        }
+        .quiz-choice-btn {
+            background-color: white;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .quiz-choice-romaji { font-size: 0.85rem; color: #888; margin-top: 5px; font-weight: normal; }
+        .quiz-choice-btn:active:not(:disabled) { background-color: #f8f9fa; transform: scale(0.98); }
+        
+        .quiz-choice-btn.correct { background-color: var(--correct-color); border-color: var(--correct-color); color: white; }
+        .quiz-choice-btn.correct .quiz-choice-romaji { color: #e0f7fa; }
+        .quiz-choice-btn.wrong { background-color: var(--wrong-color); border-color: var(--wrong-color); color: white; }
+        .quiz-choice-btn.wrong .quiz-choice-romaji { color: #ffebee; }
+        .quiz-choice-btn:disabled { cursor: not-allowed; opacity: 0.9; }
+
+        #quiz-result-view {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #quiz-result-view h2 { font-size: 2.2rem; color: var(--quiz-color); margin-bottom: 5px; }
+        #quiz-result-view p { font-size: 1.2rem; color: #555; margin-bottom: 30px; }
+        .play-again-btn {
+            background-color: var(--quiz-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
+            width: 100%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ▼ 共通ナビゲーションヘッダー ▼ -->
+<nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+    </ul>
+</nav>
+
+<!-- アプリコンテンツ (上に70pxの余白を設けています) -->
+<div class="app-container">
+    <header id="main-header">
+        <div class="header-titles">
+            <h1>形容詞 (Adjectives) 200</h1>
+            <h2>Ohayo Center Study Material</h2>
+        </div>
+    </header>
+
+    <div class="tabs">
+        <button id="btn-i-adj" class="tab-btn i-adj-btn active" onclick="switchTab('i-adj')">い形容詞 100</button>
+        <button id="btn-na-adj" class="tab-btn na-adj-btn" onclick="switchTab('na-adj')">な形容詞 100</button>
+        <button id="btn-quiz" class="tab-btn quiz-btn" onclick="startQuiz()">クイズ (Quiz)</button>
+    </div>
+
+    <div class="main-content" id="main-content">
+        
+        <!-- 学習ビュー (フラッシュカード) -->
+        <div id="study-view">
+            <div class="study-tools">
+                <div class="study-progress" id="study-progress">1 / 100</div>
+                <div style="display: flex; gap: 8px;">
+                    <button class="tool-btn" onclick="shuffleCurrentList()">🔀 シャッフル</button>
+                    <button class="tool-btn" onclick="playAudio()">🔊 音声</button>
+                </div>
+            </div>
+
+            <div class="card-container" id="flashcard" onclick="toggleFlip()">
+                <div class="card-inner">
+                    <!-- 表面 (日本語) -->
+                    <div class="card-front">
+                        <div class="word-jp" id="card-jp">大きい</div>
+                        <div class="word-romaji" id="card-romaji">ookii</div>
+                        <div class="tap-hint">タップして裏返す (Tap to flip)</div>
+                    </div>
+                    <!-- 裏面 (英語) -->
+                    <div class="card-back">
+                        <div class="word-en" id="card-en">Big / Large</div>
+                        <div class="tap-hint">タップして戻す (Tap to flip)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-nav">
+                <button class="nav-btn" onclick="prevCard()">◀ 前へ (Prev)</button>
+                <button class="nav-btn" onclick="nextCard()">次へ (Next) ▶</button>
+            </div>
+        </div>
+
+        <!-- クイズビュー -->
+        <div id="quiz-view">
+            <div id="quiz-play-area" style="display:flex; flex-direction:column; height:100%;">
+                <div class="quiz-header">
+                    <span id="quiz-progress-text">Q 1 / 10</span>
+                    <span id="quiz-score">Score: 0</span>
+                </div>
+                <div class="quiz-question-box">
+                    <p>Which Japanese adjective means:</p>
+                    <h3 id="quiz-en-prompt">Loading...</h3>
+                </div>
+                <div id="quiz-choices" class="quiz-choices-grid">
+                    <!-- ボタン生成 -->
+                </div>
+            </div>
+            
+            <div id="quiz-result-view" style="display: none;">
+                <h2>Quiz Complete!</h2>
+                <p>You scored <strong id="final-score">0</strong> / 10.</p>
+                <button class="play-again-btn" onclick="startQuiz()">もう一度プレイ (Play Again)</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // --- データ群 ---
+    const vocabulary = {
+        'i-adj': [
+            { jp: '大きい', romaji: 'ookii', en: 'Big / Large' }, { jp: '小さい', romaji: 'chiisai', en: 'Small' }, { jp: '高い', romaji: 'takai', en: 'High / Expensive' }, { jp: '安い', romaji: 'yasui', en: 'Cheap' }, { jp: '新しい', romaji: 'atarashii', en: 'New' }, { jp: '古い', romaji: 'furui', en: 'Old' }, { jp: '良い・いい', romaji: 'yoi / ii', en: 'Good' }, { jp: '悪い', romaji: 'warui', en: 'Bad' }, { jp: '暑い', romaji: 'atsui', en: 'Hot (weather)' }, { jp: '寒い', romaji: 'samui', en: 'Cold (weather)' }, { jp: '温かい', romaji: 'atatakai', en: 'Warm' }, { jp: '涼しい', romaji: 'suzushii', en: 'Cool' }, { jp: '面白い', romaji: 'omoshiroi', en: 'Interesting / Funny' }, { jp: 'つまらない', romaji: 'tsumaranai', en: 'Boring' }, { jp: '難しい', romaji: 'muzukashii', en: 'Difficult' }, { jp: '易しい', romaji: 'yasashii', en: 'Easy' }, { jp: '忙しい', romaji: 'isogashii', en: 'Busy' }, { jp: '楽しい', romaji: 'tanoshii', en: 'Fun / Enjoyable' }, { jp: '美味しい', romaji: 'oishii', en: 'Delicious' }, { jp: '早い', romaji: 'hayai', en: 'Fast / Early' }, { jp: '遅い', romaji: 'osoi', en: 'Slow / Late' }, { jp: '近い', romaji: 'chikai', en: 'Close / Near' }, { jp: '遠い', romaji: 'tooi', en: 'Far' }, { jp: '強い', romaji: 'tsuyoi', en: 'Strong' }, { jp: '弱い', romaji: 'yowai', en: 'Weak' }, { jp: '甘い', romaji: 'amai', en: 'Sweet' }, { jp: '辛い', romaji: 'karai', en: 'Spicy / Salty' }, { jp: '苦い', romaji: 'nigai', en: 'Bitter' }, { jp: '酸っぱい', romaji: 'suppai', en: 'Sour' }, { jp: '重い', romaji: 'omoi', en: 'Heavy' }, { jp: '軽い', romaji: 'karui', en: 'Light' }, { jp: '広い', romaji: 'hiroi', en: 'Wide / Spacious' }, { jp: '狭い', romaji: 'semai', en: 'Narrow / Cramped' }, { jp: '太い', romaji: 'futoi', en: 'Thick / Fat' }, { jp: '細い', romaji: 'hosoi', en: 'Thin / Slender' }, { jp: '若い', romaji: 'wakai', en: 'Young' }, { jp: '明るい', romaji: 'akarui', en: 'Bright' }, { jp: '暗い', romaji: 'kurai', en: 'Dark' }, { jp: '痛い', romaji: 'itai', en: 'Painful' }, { jp: '眠い', romaji: 'nemui', en: 'Sleepy' }, { jp: '怖い', romaji: 'kowai', en: 'Scary' }, { jp: '恥ずかしい', romaji: 'hazukashii', en: 'Embarrassing / Shy' }, { jp: '素晴らしい', romaji: 'subarashii', en: 'Wonderful' }, { jp: '珍しい', romaji: 'mezurashii', en: 'Rare / Unusual' }, { jp: '悲しい', romaji: 'kanashii', en: 'Sad' }, { jp: '嬉しい', romaji: 'ureshii', en: 'Glad / Happy' }, { jp: '寂しい', romaji: 'sabishii', en: 'Lonely' }, { jp: '厳しい', romaji: 'kibishii', en: 'Strict / Severe' }, { jp: '優しい', romaji: 'yasashii', en: 'Kind / Gentle' }, { jp: '汚い', romaji: 'kitanai', en: 'Dirty' }, { jp: '美しい', romaji: 'utsukushii', en: 'Beautiful' }, { jp: '可愛い', romaji: 'kawaii', en: 'Cute' }, { jp: 'かっこいい', romaji: 'kakkoii', en: 'Cool / Handsome' }, { jp: '賢い', romaji: 'kashikoi', en: 'Smart' }, { jp: '偉い', romaji: 'erai', en: 'Great / Admirable' }, { jp: 'ぬるい', romaji: 'nurui', en: 'Lukewarm' }, { jp: 'まずい', romaji: 'mazui', en: 'Bad tasting' }, { jp: 'しょっぱい', romaji: 'shoppai', en: 'Salty' }, { jp: '臭い', romaji: 'kusai', en: 'Smelly' }, { jp: 'かゆい', romaji: 'kayui', en: 'Itchy' }, { jp: 'だるい', romaji: 'darui', en: 'Sluggish / Heavy' }, { jp: '苦しい', romaji: 'kurushii', en: 'Painful / Agonizing' }, { jp: '恐ろしい', romaji: 'osoroshii', en: 'Terrifying' }, { jp: '怪しい', romaji: 'ayashii', en: 'Suspicious' }, { jp: '悔しい', romaji: 'kuyashii', en: 'Frustrating / Regrettable' }, { jp: '懐かしい', romaji: 'natsukashii', en: 'Nostalgic' }, { jp: '羨ましい', romaji: 'urayamashii', en: 'Envious' }, { jp: '惜しい', romaji: 'oshii', en: 'Close / A pity' }, { jp: '詳しい', romaji: 'kuwashii', en: 'Detailed' }, { jp: '激しい', romaji: 'hageshii', en: 'Violent / Intense' }, { jp: '親しい', romaji: 'shitashii', en: 'Intimate / Familiar' }, { jp: '険しい', romaji: 'kewashii', en: 'Steep / Grim' }, { jp: '乏しい', romaji: 'toboshii', en: 'Scarce' }, { jp: '貧しい', romaji: 'mazushii', en: 'Poor' }, { jp: '卑しい', romaji: 'iyashii', en: 'Greedy / Vulgar' }, { jp: '恋しい', romaji: 'koishii', en: 'Longed for' }, { jp: '頼もしい', romaji: 'tanomoshii', en: 'Reliable' }, { jp: '煩わしい', romaji: 'wazurawashii', en: 'Troublesome' }, { jp: '騒がしい', romaji: 'sawagashii', en: 'Noisy / Boisterous' }, { jp: '慌ただしい', romaji: 'awatadashii', en: 'Hurried / Busy' }, { jp: '勇ましい', romaji: 'isamashii', en: 'Brave' }, { jp: '醜い', romaji: 'minikui', en: 'Ugly' }, { jp: '憎らしい', romaji: 'nikurashii', en: 'Hateful' }, { jp: '鈍い', romaji: 'nibui', en: 'Dull / Slow' }, { jp: '鋭い', romaji: 'surudoi', en: 'Sharp' }, { jp: 'ダサい', romaji: 'dasai', en: 'Uncool / Tacky' }, { jp: '柔らかい', romaji: 'yawarakai', en: 'Soft' }, { jp: '固い', romaji: 'katai', en: 'Hard' }, { jp: '深い', romaji: 'fukai', en: 'Deep' }, { jp: '浅い', romaji: 'asai', en: 'Shallow' }, { jp: '丸い', romaji: 'marui', en: 'Round' }, { jp: '四角い', romaji: 'shikakui', en: 'Square' }, { jp: '厚い', romaji: 'atsui', en: 'Thick (objects)' }, { jp: '薄い', romaji: 'usui', en: 'Thin' }, { jp: 'うるさい', romaji: 'urusai', en: 'Noisy / Annoying' }, { jp: 'おとなしい', romaji: 'otonashii', en: 'Quiet / Docile' }, { jp: '甘酸っぱい', romaji: 'amazuppai', en: 'Sweet and sour' }, { jp: '危ない', romaji: 'abunai', en: 'Dangerous' }, { jp: '緩い', romaji: 'yurui', en: 'Loose' }, { jp: 'しつこい', romaji: 'shitsukoi', en: 'Persistent' }
+        ],
+        'na-adj': [
+            { jp: '有名 [な]', romaji: 'yuumei [na]', en: 'Famous' }, { jp: '静か [な]', romaji: 'shizuka [na]', en: 'Quiet' }, { jp: '賑やか [な]', romaji: 'nigiyaka [na]', en: 'Lively / Bustling' }, { jp: '親切 [な]', romaji: 'shinsetsu [na]', en: 'Kind' }, { jp: '元気 [な]', romaji: 'genki [na]', en: 'Healthy / Energetic' }, { jp: '綺麗 [な]', romaji: 'kirei [na]', en: 'Beautiful / Clean' }, { jp: '便利 [な]', romaji: 'benri [na]', en: 'Convenient' }, { jp: '不便 [な]', romaji: 'fuben [na]', en: 'Inconvenient' }, { jp: '好き [な]', romaji: 'suki [na]', en: 'Liked / Favorite' }, { jp: '嫌い [な]', romaji: 'kirai [na]', en: 'Disliked' }, { jp: '上手 [な]', romaji: 'jouzu [na]', en: 'Good at' }, { jp: '下手 [な]', romaji: 'heta [na]', en: 'Bad at' }, { jp: '暇 [な]', romaji: 'hima [na]', en: 'Free (time)' }, { jp: '大切 [な]', romaji: 'taisetsu [na]', en: 'Important' }, { jp: '簡単 [な]', romaji: 'kantan [na]', en: 'Simple / Easy' }, { jp: '複雑 [な]', romaji: 'fukuzatsu [na]', en: 'Complicated' }, { jp: '安全 [な]', romaji: 'anzen [na]', en: 'Safe' }, { jp: '危険 [な]', romaji: 'kiken [na]', en: 'Dangerous' }, { jp: '真面目 [な]', romaji: 'majime [na]', en: 'Serious / Earnest' }, { jp: '素敵 [な]', romaji: 'suteki [na]', en: 'Lovely / Wonderful' }, { jp: '丈夫 [な]', romaji: 'joubu [na]', en: 'Sturdy / Strong' }, { jp: '大変 [な]', romaji: 'taihen [na]', en: 'Tough / Awful' }, { jp: '楽 [な]', romaji: 'raku [na]', en: 'Comfortable / Easy' }, { jp: 'いや [な]', romaji: 'iya [na]', en: 'Unpleasant' }, { jp: '大丈夫 [な]', romaji: 'daijoubu [na]', en: 'Okay / Fine' }, { jp: '残念 [な]', romaji: 'zannen [na]', en: 'Regrettable' }, { jp: '丁寧 [な]', romaji: 'teinei [na]', en: 'Polite' }, { jp: '立派 [な]', romaji: 'rippa [na]', en: 'Splendid' }, { jp: '変 [な]', romaji: 'hen [na]', en: 'Strange / Weird' }, { jp: '特別 [な]', romaji: 'tokubetsu [na]', en: 'Special' }, { jp: '急 [な]', romaji: 'kyuu [na]', en: 'Sudden / Urgent' }, { jp: '無理 [な]', romaji: 'muri [na]', en: 'Impossible' }, { jp: '自由 [な]', romaji: 'jiyuu [na]', en: 'Free' }, { jp: '熱心 [な]', romaji: 'nesshin [na]', en: 'Enthusiastic' }, { jp: '盛ん [な]', romaji: 'sakan [na]', en: 'Thriving / Popular' }, { jp: '十分 [な]', romaji: 'juubun [na]', en: 'Sufficient / Enough' }, { jp: '幸せ [な]', romaji: 'shiawase [na]', en: 'Happy' }, { jp: '必要 [な]', romaji: 'hitsuyou [na]', en: 'Necessary' }, { jp: '邪魔 [な]', romaji: 'jama [na]', en: 'Hindering' }, { jp: '確か [な]', romaji: 'tashika [na]', en: 'Certain / Sure' }, { jp: '正確 [な]', romaji: 'seikaku [na]', en: 'Accurate' }, { jp: '新鮮 [な]', romaji: 'shinsen [na]', en: 'Fresh' }, { jp: '退屈 [な]', romaji: 'taikutsu [na]', en: 'Boring / Tedious' }, { jp: '貧乏 [な]', romaji: 'binbou [na]', en: 'Poor' }, { jp: '平和 [な]', romaji: 'heiwa [na]', en: 'Peaceful' }, { jp: '満足 [な]', romaji: 'manzoku [na]', en: 'Satisfied' }, { jp: '完璧 [な]', romaji: 'kanpeki [na]', en: 'Perfect' }, { jp: '得意 [な]', romaji: 'tokui [na]', en: 'Good at / Proud' }, { jp: '苦手 [な]', romaji: 'nigate [na]', en: 'Bad at' }, { jp: '派手 [な]', romaji: 'hade [na]', en: 'Flashy / Showy' }, { jp: '地味 [な]', romaji: 'jimi [na]', en: 'Plain / Subdued' }, { jp: 'おしゃれ [な]', romaji: 'oshare [na]', en: 'Stylish / Fashionable' }, { jp: '豊か [な]', romaji: 'yutaka [na]', en: 'Rich / Abundant' }, { jp: '穏やか [な]', romaji: 'odayaka [na]', en: 'Calm / Gentle' }, { jp: '爽やか [な]', romaji: 'sawayaka [na]', en: 'Refreshing' }, { jp: '華やか [な]', romaji: 'hanayaka [na]', en: 'Gorgeous' }, { jp: '鮮やか [な]', romaji: 'azayaka [na]', en: 'Vivid / Bright' }, { jp: 'なだらか [な]', romaji: 'nadaraka [na]', en: 'Gentle slope' }, { jp: '緩やか [な]', romaji: 'yuruyaka [na]', en: 'Loose / Gentle' }, { jp: '健やか [な]', romaji: 'sukoyaka [na]', en: 'Healthy / Sound' }, { jp: '速やか [な]', romaji: 'sumiyaka [na]', en: 'Prompt / Speedy' }, { jp: '密か [な]', romaji: 'hisoka [na]', en: 'Secret / Private' }, { jp: '遥か [な]', romaji: 'haruka [na]', en: 'Far away' }, { jp: '愚か [な]', romaji: 'oroka [na]', en: 'Foolish / Stupid' }, { jp: '厳か [な]', romaji: 'ogosoka [na]', en: 'Solemn / Majestic' }, { jp: '朗らか [な]', romaji: 'hogaraka [na]', en: 'Cheerful' }, { jp: '滑らか [な]', romaji: 'nameraka [na]', en: 'Smooth' }, { jp: '柔らか [な]', romaji: 'yawaraka [na]', en: 'Soft / Tender' }, { jp: '明らか [な]', romaji: 'akiraka [na]', en: 'Clear / Obvious' }, { jp: '微か [な]', romaji: 'kasuka [na]', en: 'Faint / Slight' }, { jp: '僅か [な]', romaji: 'wazuka [na]', en: 'Scant / Few' }, { jp: '不安 [な]', romaji: 'fuan [na]', en: 'Anxious / Uneasy' }, { jp: '不満 [な]', romaji: 'fuman [na]', en: 'Dissatisfied' }, { jp: '不思議 [な]', romaji: 'fushigi [na]', en: 'Mysterious' }, { jp: '不規則 [な]', romaji: 'fukisoku [na]', en: 'Irregular' }, { jp: '不自然 [な]', romaji: 'fushizen [na]', en: 'Unnatural' }, { jp: '不幸 [な]', romaji: 'fukou [na]', en: 'Unhappy' }, { jp: '有能 [な]', romaji: 'yuunou [na]', en: 'Capable' }, { jp: '無能 [な]', romaji: 'munou [na]', en: 'Incompetent' }, { jp: '有効 [な]', romaji: 'yuukou [na]', en: 'Valid' }, { jp: '無効 [な]', romaji: 'mukou [na]', en: 'Invalid' }, { jp: '夢中 [な]', romaji: 'muchuu [na]', en: 'Absorbed' }, { jp: '曖昧 [な]', romaji: 'aimai [na]', en: 'Vague / Ambiguous' }, { jp: '厄介 [な]', romaji: 'yakkai [na]', en: 'Troublesome' }, { jp: '豪華 [な]', romaji: 'gouka [na]', en: 'Luxurious' }, { jp: '贅沢 [な]', romaji: 'zeitaku [na]', en: 'Extravagant' }, { jp: '豊富 [な]', romaji: 'houfu [na]', en: 'Abundant' }, { jp: '多様 [な]', romaji: 'tayou [na]', en: 'Diverse' }, { jp: '同様 [な]', romaji: 'douyou [na]', en: 'Similar / Same' }, { jp: '独特 [な]', romaji: 'dokutoku [na]', en: 'Unique' }, { jp: '特殊 [な]', romaji: 'tokushu [na]', en: 'Special / Peculiar' }, { jp: '奇妙 [な]', romaji: 'kimyou [na]', en: 'Strange / Bizarre' }, { jp: '妙 [な]', romaji: 'myou [na]', en: 'Strange / Odd' }, { jp: '適当 [な]', romaji: 'tekitou [na]', en: 'Appropriate / Careless' }, { jp: '適切 [な]', romaji: 'tekisetsu [na]', en: 'Appropriate / Fitting' }, { jp: '快適 [な]', romaji: 'kaiteki [na]', en: 'Comfortable' }, { jp: '憂鬱 [な]', romaji: 'yuuutsu [na]', en: 'Depressed / Gloomy' }, { jp: '悲惨 [な]', romaji: 'hisan [na]', en: 'Miserable' }, { jp: '残酷 [な]', romaji: 'zankoku [na]', en: 'Cruel' }, { jp: '頑固 [な]', romaji: 'ganko [na]', en: 'Stubborn' }
+        ]
+    };
+
+    // --- フラッシュカード用ステート ---
+    let currentCategory = 'i-adj';
+    let currentWordList = [...vocabulary['i-adj']];
+    let currentIndex = 0;
+
+    const studyView = document.getElementById('study-view');
+    const quizView = document.getElementById('quiz-view');
+    const header = document.getElementById('main-header');
+    const flashcard = document.getElementById('flashcard');
+
+    // タブ切り替え
+    function switchTab(category) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        studyView.style.display = 'flex';
+        quizView.style.display = 'none';
+        
+        currentCategory = category;
+        currentWordList = [...vocabulary[category]];
+        currentIndex = 0;
+        
+        if (category === 'i-adj') {
+            document.getElementById('btn-i-adj').classList.add('active');
+            header.className = '';
+            document.getElementById('main-content').className = 'main-content';
+        } else {
+            document.getElementById('btn-na-adj').classList.add('active');
+            header.className = 'na-mode';
+            document.getElementById('main-content').className = 'main-content na-mode';
+        }
+        
+        updateCardUI();
+    }
+
+    // カードUI更新
+    function updateCardUI() {
+        // カードを一度表に戻す
+        flashcard.classList.remove('flipped');
+        
+        const word = currentWordList[currentIndex];
+        document.getElementById('card-jp').innerText = word.jp;
+        document.getElementById('card-romaji').innerText = word.romaji;
+        document.getElementById('card-en').innerText = word.en;
+        
+        document.getElementById('study-progress').innerText = `${currentIndex + 1} / ${currentWordList.length}`;
+    }
+
+    // 次のカード
+    function nextCard() {
+        if (currentIndex < currentWordList.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // ループ
+        }
+        updateCardUI();
+    }
+
+    // 前のカード
+    function prevCard() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = currentWordList.length - 1; // ループ
+        }
+        updateCardUI();
+    }
+
+    // カード裏返し
+    function toggleFlip() {
+        flashcard.classList.toggle('flipped');
+    }
+
+    // シャッフル機能
+    function shuffleCurrentList() {
+        for (let i = currentWordList.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [currentWordList[i], currentWordList[j]] = [currentWordList[j], currentWordList[i]];
+        }
+        currentIndex = 0;
+        updateCardUI();
+    }
+
+    // 音声読み上げ機能 (Web Speech API)
+    function playAudio() {
+        const word = currentWordList[currentIndex].jp.replace(/\[な\]/g, ""); // [な]を除外して発音
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.9; // 少しゆっくりめに
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // --- クイズロジック ---
+    let quizQuestions = [];
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+
+    function startQuiz() {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-quiz').classList.add('active');
+        
+        header.className = 'quiz-mode';
+        document.getElementById('main-content').className = 'main-content';
+        studyView.style.display = 'none';
+        quizView.style.display = 'flex';
+        document.getElementById('quiz-play-area').style.display = 'flex';
+        document.getElementById('quiz-result-view').style.display = 'none';
+
+        const allWords = [...vocabulary['i-adj'], ...vocabulary['na-adj']];
+        const shuffledWords = [...allWords].sort(() => 0.5 - Math.random());
+        const selectedTargets = shuffledWords.slice(0, 10);
+        
+        quizQuestions = selectedTargets.map(target => {
+            const others = allWords.filter(w => w.jp !== target.jp);
+            const distractors = others.sort(() => 0.5 - Math.random()).slice(0, 3);
+            const choices = [target, ...distractors].sort(() => 0.5 - Math.random());
+            return { target, choices };
+        });
+
+        currentQuizIndex = 0;
+        quizScore = 0;
+        renderQuizQuestion();
+    }
+
+    function renderQuizQuestion() {
+        if (currentQuizIndex >= 10) {
+            showQuizResults();
+            return;
+        }
+
+        const q = quizQuestions[currentQuizIndex];
+        document.getElementById('quiz-progress-text').innerText = `Q ${currentQuizIndex + 1} / 10`;
+        document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
+        document.getElementById('quiz-en-prompt').innerText = q.target.en;
+
+        const choicesContainer = document.getElementById('quiz-choices');
+        choicesContainer.innerHTML = '';
+
+        q.choices.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-choice-btn';
+            btn.innerHTML = `
+                ${choice.jp}
+                <div class="quiz-choice-romaji">${choice.romaji}</div>
+            `;
+            btn.onclick = () => handleAnswer(btn, choice.jp === q.target.jp);
+            choicesContainer.appendChild(btn);
+        });
+    }
+
+    function handleAnswer(selectedBtn, isCorrect) {
+        const allBtns = document.querySelectorAll('.quiz-choice-btn');
+        allBtns.forEach(btn => btn.disabled = true);
+
+        if (isCorrect) {
+            selectedBtn.classList.add('correct');
+            quizScore++;
+            document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
+        } else {
+            selectedBtn.classList.add('wrong');
+            const currentQ = quizQuestions[currentQuizIndex];
+            allBtns.forEach(btn => {
+                if (btn.innerText.includes(currentQ.target.jp)) {
+                    btn.classList.add('correct');
+                }
+            });
+        }
+
+        setTimeout(() => {
+            currentQuizIndex++;
+            renderQuizQuestion();
+        }, 1200);
+    }
+
+    function showQuizResults() {
+        document.getElementById('quiz-play-area').style.display = 'none';
+        document.getElementById('quiz-result-view').style.display = 'flex';
+        document.getElementById('final-score').innerText = quizScore;
+    }
+
+    // 初期起動
+    window.onload = () => {
+        switchTab('i-adj');
+    };
+
+</script>
+
+</body>
+</html>
