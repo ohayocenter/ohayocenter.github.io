@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Katakana Master - OHAYO CENTER</title>
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&family=Klee+One:wght@600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-color: #5D8A82;   
+            --primary-hover: #4a6e68;
             --secondary-color: #F2F5F4; 
             --text-color: #3C4745;      
             --accent-color: #D98880;    
+            --success-color: #74B566;
             --bmc-color: #FFDD00;
             --textbook-font: 'Klee One', cursive;
         }
@@ -56,8 +55,8 @@
             max-width: 900px; 
             margin: 0 auto 40px; 
             background-color: #fff; 
-            border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
             padding: 40px 20px;
             text-align: center;
             border: 1px solid #E6EBEA;
@@ -67,12 +66,12 @@
             color: var(--primary-color); 
             border-bottom: 2px solid #DCE3E2; 
             padding-bottom: 10px; 
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 1.8rem;
         }
 
-        .mode-selector { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
+        .mode-selector { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
         .mode-btn { 
             padding: 10px 18px; 
             border: 1px solid #D1D9D7; 
@@ -82,14 +81,43 @@
             cursor: pointer; 
             font-weight: bold; 
             font-size: 0.75rem; 
-            transition: 0.3s; 
+            transition: all 0.3s ease; 
             font-family: 'Noto Sans JP', sans-serif;
         }
         .mode-btn.active { 
             background: var(--primary-color); 
             color: white; 
             border-color: var(--primary-color);
-            box-shadow: 0 4px 10px rgba(93, 138, 130, 0.2); 
+            box-shadow: 0 4px 10px rgba(93, 138, 130, 0.3); 
+        }
+
+        .row-selector {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            padding: 10px;
+            background: #F8FAF9;
+            border-radius: 12px;
+            border: 1px solid #EDF1F0;
+        }
+        .row-btn {
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #D1D9D7;
+            border-radius: 8px;
+            color: #5D8A82;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .row-btn:hover { background: #E6EBEA; }
+        .row-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
         }
 
         .game-card { 
@@ -97,21 +125,43 @@
             background: #FAFBFA; 
             border: 1px solid #EDF1F0;
             border-radius: 20px; 
-            padding: 60px 20px; 
+            padding: 40px 20px 60px; 
             min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
-        .status-bar { position: absolute; top: 20px; width: 100%; display: flex; justify-content: space-around; font-weight: bold; color: #889694; font-size: 1rem; font-family: 'Montserrat', sans-serif; }
+        
+        .progress-container {
+            width: 90%;
+            max-width: 400px;
+            height: 8px;
+            background: #E0E6E4;
+            border-radius: 4px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            position: absolute;
+            top: 60px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 100%;
+            transition: width 1s linear, background-color 0.3s;
+        }
+
+        .status-bar { position: absolute; top: 25px; width: 100%; display: flex; justify-content: space-around; font-weight: bold; color: #889694; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; }
         
         .target-char { 
             font-family: var(--textbook-font); 
             font-size: 8rem; 
             color: var(--text-color); 
             line-height: 1; 
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            margin-top: 40px;
+            transition: transform 0.1s;
         }
         .target-char.long { font-size: 3.5rem; }
 
@@ -124,13 +174,23 @@
             border-radius: 12px; 
             text-align: center; 
             outline: none;
-            transition: 0.3s;
+            transition: all 0.3s;
             background-color: #fff;
             color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
         }
-        input[type="text"]:focus { border-color: var(--primary-color); box-shadow: 0 0 15px rgba(93, 138, 130, 0.1); }
+        input[type="text"]:focus { border-color: var(--primary-color); box-shadow: 0 0 15px rgba(93, 138, 130, 0.15); }
+        input[type="text"].correct { border-color: var(--success-color); background-color: #F0F8EE; }
 
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 20px; }
+        @keyframes pop {
+            0% { transform: scale(1); color: var(--text-color); }
+            50% { transform: scale(1.2); color: var(--success-color); }
+            100% { transform: scale(1); color: var(--text-color); }
+        }
+        .animate-pop { animation: pop 0.4s ease-out; }
+
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 20px; }
         .btn-start { 
             background-color: var(--primary-color); 
             color: white; 
@@ -141,27 +201,28 @@
             border-radius: 10px; 
             cursor: pointer; 
             transition: 0.2s;
-            box-shadow: 0 4px 0 #4A6E68;
+            box-shadow: 0 4px 0 var(--primary-hover);
+            font-family: 'Montserrat', sans-serif;
         }
-        .btn-start:active { transform: translateY(3px); box-shadow: none; }
+        .btn-start:active { transform: translateY(4px); box-shadow: 0 0 0 var(--primary-hover); }
 
         .chart-section { margin-top: 50px; }
-        .lib-title { font-weight: bold; color: #A4B0AE; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px; }
+        .lib-title { font-weight: bold; color: #A4B0AE; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
         .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 600px; margin: 0 auto; }
-        .char-item { background: #EBEEED; padding: 18px 5px; border-radius: 12px; opacity: 0.4; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: grayscale(1); border: none; }
-        .char-item.collected { background: #fff; opacity: 1; filter: grayscale(0); border: 2px solid var(--primary-color); transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .char-item .jp { font-family: var(--textbook-font); font-size: 2rem; display: block; }
-        .char-item .en { font-size: 0.7rem; color: #A4B0AE; font-weight: bold; text-transform: uppercase; }
+        .char-item { background: #EBEEED; padding: 18px 5px; border-radius: 12px; opacity: 0.5; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: grayscale(1); border: 2px solid transparent; }
+        .char-item.collected { background: #fff; opacity: 1; filter: grayscale(0); border: 2px solid var(--primary-color); transform: scale(1.02); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .char-item .jp { font-family: var(--textbook-font); font-size: 2rem; display: block; color: var(--text-color); }
+        .char-item .en { font-size: 0.75rem; color: #A4B0AE; font-weight: bold; text-transform: uppercase; font-family: 'Montserrat', sans-serif; }
         .char-item.collected .en { color: var(--primary-color); }
         .char-item.empty { visibility: hidden; }
 
         .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
         .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
         .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; font-family: 'Montserrat', sans-serif; }
         .bmc-custom-btn:hover { transform: translateY(-2px); }
 
-        footer { text-align: center; color: #A4B0AE; padding-bottom: 40px; font-size: 12px; }
+        footer { text-align: center; color: #A4B0AE; padding-bottom: 40px; font-size: 12px; margin-top: 40px;}
 
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
@@ -169,8 +230,11 @@
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
             .target-char { font-size: 25vw; }
-            .grid { gap: 8px; }
+            .grid { gap: 6px; }
+            .char-item { padding: 10px 2px; }
             .char-item .jp { font-size: 1.5rem; }
+            .row-selector { gap: 4px; padding: 5px; }
+            .row-btn { font-size: 0.75rem; padding: 5px 10px; }
         }
     </style>
 </head>
@@ -195,24 +259,46 @@
         <button class="mode-btn" onclick="setMode('words')" style="border-color:var(--accent-color); color:var(--accent-color)">LOANWORDS</button>
     </div>
 
+    <!-- 行選択セレクタ (BASICモード時のみ表示) -->
+    <div class="row-selector" id="row-selector">
+        <button class="row-btn active" onclick="setRow('all')">すべて</button>
+        <button class="row-btn" onclick="setRow('a')">ア行</button>
+        <button class="row-btn" onclick="setRow('k')">カ行</button>
+        <button class="row-btn" onclick="setRow('s')">サ行</button>
+        <button class="row-btn" onclick="setRow('t')">タ行</button>
+        <button class="row-btn" onclick="setRow('n')">ナ行</button>
+        <button class="row-btn" onclick="setRow('h')">ハ行</button>
+        <button class="row-btn" onclick="setRow('m')">マ行</button>
+        <button class="row-btn" onclick="setRow('y')">ヤ行</button>
+        <button class="row-btn" onclick="setRow('r')">ラ行</button>
+        <button class="row-btn" onclick="setRow('w')">ワ行</button>
+    </div>
+
     <div class="game-card">
         <div class="status-bar">
-            <span id="timer" style="color:var(--accent-color)">TIME: 60s</span>
+            <span id="timer" style="color:var(--accent-color)">TIME: 30s</span>
             <span id="score">SCORE: 0</span>
         </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
         <div class="target-char" id="display-box"><span id="target-text">Ready?</span></div>
         <input type="text" id="game-input" placeholder="Type reading..." autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="url" disabled>
 
         <div id="start-overlay" class="overlay">
-            <h2 id="mode-title" style="margin-bottom:10px; font-family:'Noto Sans JP';">BASIC MODE</h2>
-            <p style="color:#888; margin-bottom:30px;">Type the Katakana reading in 60s!</p>
+            <h2 id="mode-title" style="margin-bottom:10px; font-family:'Montserrat', sans-serif;">BASIC MODE</h2>
+            <!-- Changed description text to 30 seconds -->
+            <p id="mode-desc" style="color:#888; margin-bottom:30px;">Type the Romaji in 30 seconds!</p>
             <button class="btn-start" onclick="startGame()">START RUN</button>
         </div>
 
         <div id="result-overlay" class="overlay" style="display:none;">
-            <h2 style="color:var(--primary-color)">FINISH!</h2>
-            <div id="final-score" style="font-size:4rem; font-weight:900; color:var(--accent-color); margin: 10px 0;">0</div>
-            <button class="btn-start" onclick="startGame()">TRY AGAIN</button>
+            <h2 style="color:var(--primary-color); font-family:'Montserrat', sans-serif;">FINISH!</h2>
+            <div id="final-score" style="font-size:5rem; font-weight:900; color:var(--accent-color); margin: 10px 0; line-height: 1;">0</div>
+            <p style="color:#888; margin-bottom:20px; font-weight:bold;">Correct Answers</p>
+            <button class="btn-start" onclick="resetToStart()">TRY AGAIN</button>
         </div>
     </div>
 
@@ -220,7 +306,7 @@
         <p class="lib-title">COLLECTION MAP</p>
         <div class="grid" id="lib-grid"></div>
     </div>
-
+    
     <div class="support-section">
         <h2>Support OHAYO CENTER</h2>
         <p>If you find Katakana Master helpful, please consider supporting us!</p>
@@ -237,17 +323,17 @@
 <script>
     const dataSet = {
         basic: [
-            {j:'ア',e:['a']},{j:'イ',e:['i']},{j:'ウ',e:['u']},{j:'エ',e:['e']},{j:'オ',e:['o']},
-            {j:'カ',e:['ka']},{j:'キ',e:['ki']},{j:'ク',e:['ku']},{j:'ケ',e:['ke']},{j:'コ',e:['ko']},
-            {j:'サ',e:['sa']},{j:'シ',e:['shi','si']},{j:'ス',e:['su']},{j:'セ',e:['se']},{j:'ソ',e:['so']},
-            {j:'タ',e:['ta']},{j:'チ',e:['chi','ti']},{j:'ツ',e:['tsu','tu']},{j:'テ',e:['te']},{j:'ト',e:['to']},
-            {j:'ナ',e:['na']},{j:'ニ',e:['ni']},{j:'ヌ',e:['nu']},{j:'ネ',e:['ne']},{j:'ノ',e:['no']},
-            {j:'ハ',e:['ha']},{j:'ヒ',e:['hi']},{j:'フ',e:['fu','hu']},{j:'ヘ',e:['he']},{j:'ホ',e:['ho']},
-            {j:'マ',e:['ma']},{j:'ミ',e:['mi']},{j:'ム',e:['mu']},{j:'メ',e:['me']},{j:'モ',e:['mo']},
-            {j:'ヤ',e:['ya']},null,{j:'ユ',e:['yu']},null,{j:'ヨ',e:['yo']},
-            {j:'ラ',e:['ra']},{j:'リ',e:['ri']},{j:'ル',e:['ru']},{j:'レ',e:['re']},{j:'ロ',e:['ro']},
-            {j:'ワ',e:['wa']},null,null,null,{j:'ヲ',e:['wo','o']},
-            {j:'ン',e:['n','nn']},null,null,null,null
+            {j:'ア',e:['a'],r:'a'},{j:'イ',e:['i'],r:'a'},{j:'ウ',e:['u'],r:'a'},{j:'エ',e:['e'],r:'a'},{j:'オ',e:['o'],r:'a'},
+            {j:'カ',e:['ka'],r:'k'},{j:'キ',e:['ki'],r:'k'},{j:'ク',e:['ku'],r:'k'},{j:'ケ',e:['ke'],r:'k'},{j:'コ',e:['ko'],r:'k'},
+            {j:'サ',e:['sa'],r:'s'},{j:'シ',e:['shi','si'],r:'s'},{j:'ス',e:['su'],r:'s'},{j:'セ',e:['se'],r:'s'},{j:'ソ',e:['so'],r:'s'},
+            {j:'タ',e:['ta'],r:'t'},{j:'チ',e:['chi','ti'],r:'t'},{j:'ツ',e:['tsu','tu'],r:'t'},{j:'テ',e:['te'],r:'t'},{j:'ト',e:['to'],r:'t'},
+            {j:'ナ',e:['na'],r:'n'},{j:'ニ',e:['ni'],r:'n'},{j:'ヌ',e:['nu'],r:'n'},{j:'ネ',e:['ne'],r:'n'},{j:'ノ',e:['no'],r:'n'},
+            {j:'ハ',e:['ha'],r:'h'},{j:'ヒ',e:['hi'],r:'h'},{j:'フ',e:['fu','hu'],r:'h'},{j:'ヘ',e:['he'],r:'h'},{j:'ホ',e:['ho'],r:'h'},
+            {j:'マ',e:['ma'],r:'m'},{j:'ミ',e:['mi'],r:'m'},{j:'ム',e:['mu'],r:'m'},{j:'メ',e:['me'],r:'m'},{j:'モ',e:['mo'],r:'m'},
+            {j:'ヤ',e:['ya'],r:'y'},null,{j:'ユ',e:['yu'],r:'y'},null,{j:'ヨ',e:['yo'],r:'y'},
+            {j:'ラ',e:['ra'],r:'r'},{j:'リ',e:['ri'],r:'r'},{j:'ル',e:['ru'],r:'r'},{j:'レ',e:['re'],r:'r'},{j:'ロ',e:['ro'],r:'r'},
+            {j:'ワ',e:['wa'],r:'w'},null,null,null,{j:'ヲ',e:['wo','o'],r:'w'},
+            {j:'ン',e:['n','nn'],r:'w'},null,null,null,null
         ],
         dakuon: [
             {j:'ガ',e:['ga']},{j:'ギ',e:['gi']},{j:'グ',e:['gu']},{j:'ゲ',e:['ge']},{j:'ゴ',e:['go']},
@@ -268,7 +354,6 @@
             {j:'ピャ',e:['pya']},{j:'ピュ',e:['pyu']},{j:'ピョ',e:['pyo']},null,null
         ],
         words: [
-            // Foods & Drinks
             {j:'アメリカ',e:['amerika']},{j:'カメラ',e:['kamera']},{j:'アイス',e:['aisu']},
             {j:'コーヒー',e:['ko-hi-','kohii']},{j:'パン',e:['pan']},{j:'テレビ',e:['terebi']},
             {j:'パソコン',e:['pasokon']},{j:'トイレ',e:['toire']},{j:'ラーメン',e:['ra-men','raamen']},
@@ -276,14 +361,12 @@
             {j:'バナナ',e:['banana']},{j:'ミルク',e:['miruku']},{j:'ビール',e:['bi-ru','biiru']},
             {j:'ジュース',e:['ju-su','juusu']},{j:'ピザ',e:['piza']},{j:'ケーキ',e:['ke-ki','keeki']},
             {j:'カレー',e:['kare-','karee']},{j:'パスタ',e:['pasuta']},{j:'ソース',e:['so-su','soosu']},
-            // Lifestyle & Objects
             {j:'スマホ',e:['sumaho']},{j:'アプリ',e:['apuri']},{j:'マウス',e:['mausu']},
             {j:'ソフト',e:['sofuto']},{j:'メール',e:['me-ru','meeru']},{j:'ビル',e:['biru']},
             {j:'ノート',e:['no-to','nooto']},{j:'コップ',e:['koppu']},{j:'ベッド',e:['beddo']},
             {j:'ドア',e:['doa']},{j:'バス',e:['basu']},{j:'タクシー',e:['takushi-','takushii']},
             {j:'スポーツ',e:['supo-tsu','supootsu']},{j:'クラス',e:['kurasu']},{j:'ニュース',e:['nyu-su','nyuusu']},
             {j:'ギター',e:['gita-','gitaa']},{j:'ピアノ',e:['piano']},{j:'ラジオ',e:['rajio']},
-            // Places & Countries
             {j:'ホテル',e:['hoteru']},{j:'ロンドン',e:['rondon']},{j:'フランス',e:['furansu']},
             {j:'イタリア',e:['itaria']},{j:'ドイツ',e:['doitsu']},{j:'スペイン',e:['supein']},
             {j:'デパート',e:['depa-to','depaato']},{j:'コンビニ',e:['konbini']},{j:'レストラン',e:['resutoran']},
@@ -291,35 +374,77 @@
         ]
     };
 
-    let currentMode = 'basic', score = 0, time = 60, current = null, timerInterval, lastChar = '';
+    // Changed to 30 seconds
+    const GAME_TIME = 30;
+    let currentMode = 'basic';
+    let currentRow = 'all'; 
+    let score = 0, time = GAME_TIME, current = null, timerInterval, lastChar = '';
     let savedCollection = JSON.parse(localStorage.getItem('ohayo_katakana_save')) || [];
 
     const input = document.getElementById('game-input');
     const display = document.getElementById('target-text');
     const displayBox = document.getElementById('display-box');
+    const progressBar = document.getElementById('progress-bar');
+    const rowSelectorDiv = document.getElementById('row-selector');
+    const modeDesc = document.getElementById('mode-desc');
 
     function setMode(m) {
         currentMode = m;
+        // リセットUI
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-        const btns = Array.from(document.querySelectorAll('.mode-btn'));
-        const targetBtn = btns.find(btn => btn.innerText.toLowerCase().includes(m));
-        if(targetBtn) targetBtn.classList.add('active');
-
+        const activeBtn = Array.from(document.querySelectorAll('.mode-btn')).find(b => b.innerText.toLowerCase().includes(m));
+        if(activeBtn) activeBtn.classList.add('active');
+        
+        // 行選択UIの表示制御
+        rowSelectorDiv.style.display = (m === 'basic') ? 'flex' : 'none';
+        
         document.getElementById('mode-title').innerText = m.toUpperCase() + " MODE";
-        document.getElementById('start-overlay').style.display = 'flex';
-        document.getElementById('result-overlay').style.display = 'none';
+        updateModeDescription();
+        
+        resetToStart();
         document.getElementById('chart-area').style.display = (m === 'words' ? 'none' : 'block');
         renderChart();
+    }
+
+    function setRow(r) {
+        currentRow = r;
+        document.querySelectorAll('.row-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        updateModeDescription();
+    }
+
+    function updateModeDescription() {
+        if(currentMode === 'basic') {
+            const rowNames = {'all':'All Basic', 'a':'A-row (ア行)', 'k':'Ka-row (カ行)', 's':'Sa-row (サ行)', 't':'Ta-row (タ行)', 'n':'Na-row (ナ行)', 'h':'Ha-row (ハ行)', 'm':'Ma-row (マ行)', 'y':'Ya-row (ヤ行)', 'r':'Ra-row (ラ行)', 'w':'Wa-row (ワ行)'};
+            modeDesc.innerText = `Practice: ${rowNames[currentRow]}`;
+        } else {
+            // Changed dynamically updated description to 30 seconds
+            modeDesc.innerText = "Type the Romaji in 30 seconds!";
+        }
+    }
+
+    function resetToStart() {
+        document.getElementById('start-overlay').style.display = 'flex';
+        document.getElementById('result-overlay').style.display = 'none';
+        display.innerText = 'Ready?';
+        input.value = '';
+        input.disabled = true;
+        progressBar.style.width = '100%';
+        progressBar.style.backgroundColor = 'var(--accent-color)';
     }
 
     function renderChart() {
         const grid = document.getElementById('lib-grid');
         grid.innerHTML = '';
         if(currentMode === 'words') return;
+        
         dataSet[currentMode].forEach(item => {
             if(item) {
                 const isFound = savedCollection.includes(item.j);
-                grid.innerHTML += `<div class="char-item ${isFound?'collected':''}" id="char-${item.j}"><span class="jp">${item.j}</span><span class="en">${item.e[0]}</span></div>`;
+                grid.innerHTML += `<div class="char-item ${isFound?'collected':''}" id="char-${item.j}">
+                    <span class="jp">${item.j}</span>
+                    <span class="en">${item.e[0]}</span>
+                </div>`;
             } else {
                 grid.innerHTML += `<div class="char-item empty"></div>`;
             }
@@ -327,19 +452,37 @@
     }
 
     function startGame() {
-        score = 0; time = 60;
+        score = 0; 
+        time = GAME_TIME;
         document.getElementById('start-overlay').style.display = 'none';
         document.getElementById('result-overlay').style.display = 'none';
         document.getElementById('score').innerText = `SCORE: ${score}`;
-        document.getElementById('timer').innerText = `TIME: 60s`;
-        input.disabled = false; input.value = ''; input.focus();
-        spawn(); startTimer();
+        document.getElementById('timer').innerText = `TIME: ${time}s`;
+        progressBar.style.width = '100%';
+        progressBar.style.backgroundColor = 'var(--accent-color)';
+        
+        input.disabled = false; 
+        input.value = ''; 
+        input.focus();
+        
+        spawn(); 
+        startTimer();
+    }
+
+    function getActivePool() {
+        let pool = dataSet[currentMode].filter(i => i !== null);
+        if(currentMode === 'basic' && currentRow !== 'all') {
+            pool = pool.filter(i => i.r === currentRow);
+        }
+        return pool;
     }
 
     function spawn() {
-        const pool = dataSet[currentMode].filter(i => i !== null);
+        const pool = getActivePool();
+        if(pool.length === 0) return; // 安全策
+        
         let next;
-        // 前回と同じ単語が出ないようにループ（プールが1つ以上の時のみ）
+        // 前回と同じ文字が連続するのを防ぐ
         do {
             next = pool[Math.floor(Math.random() * pool.length)];
         } while (next.j === lastChar && pool.length > 1);
@@ -347,21 +490,36 @@
         current = next;
         lastChar = current.j;
         display.innerText = current.j;
-        displayBox.className = current.j.length > 2 ? "target-char long" : "target-char";
+        displayBox.className = current.j.length >= 2 ? "target-char long" : "target-char";
+    }
+
+    function triggerSuccessAnimation() {
+        displayBox.classList.remove('animate-pop');
+        void displayBox.offsetWidth; // リフロー強制
+        displayBox.classList.add('animate-pop');
+
+        input.classList.add('correct');
+        setTimeout(() => input.classList.remove('correct'), 150);
     }
 
     input.addEventListener('input', (e) => {
         const val = e.target.value.toLowerCase().trim();
-        if(current.e.includes(val)) {
+        if(current && current.e.includes(val)) {
             score++;
             document.getElementById('score').innerText = `SCORE: ${score}`;
+            triggerSuccessAnimation();
+            
+            // コレクション機能の更新
             if(currentMode !== 'words' && !savedCollection.includes(current.j)) {
                 savedCollection.push(current.j);
                 localStorage.setItem('ohayo_katakana_save', JSON.stringify(savedCollection));
                 const cell = document.getElementById('char-' + current.j);
-                if(cell) cell.classList.add('collected');
+                if(cell) {
+                    cell.classList.add('collected');
+                }
             }
-            input.value = ''; spawn();
+            input.value = ''; 
+            spawn();
         }
     });
 
@@ -370,6 +528,18 @@
         timerInterval = setInterval(() => {
             time--;
             document.getElementById('timer').innerText = `TIME: ${time}s`;
+            
+            // プログレスバーの更新
+            const percentage = (time / GAME_TIME) * 100;
+            progressBar.style.width = percentage + '%';
+            
+            if(time <= 10) {
+                progressBar.style.backgroundColor = '#E74C3C'; // 残り僅かで赤色に
+                document.getElementById('timer').style.color = '#E74C3C';
+            } else {
+                document.getElementById('timer').style.color = 'var(--accent-color)';
+            }
+
             if(time <= 0) {
                 clearInterval(timerInterval);
                 input.disabled = true;
@@ -379,6 +549,7 @@
         }, 1000);
     }
 
+    // 初期化実行
     renderChart();
 </script>
 
