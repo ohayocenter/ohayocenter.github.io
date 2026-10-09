@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>形容詞練習＆クイズ (Adjectives) - Ohayo Center</title>
+    <title>Adjectives Practice & Quiz - Ohayo Center</title>
 
     <!-- ▼ indexと同じファビコン ▼ -->
     <link rel="icon" href="icon.png" type="image/png">
@@ -15,11 +15,12 @@
     
     <style>
         :root {
-            --primary-color: #ff6b6b;   /* い形容詞 */
-            --secondary-color: #4ecdc4; /* な形容詞 */
-            --quiz-color: #9b59b6;      /* クイズ */
-            --correct-color: #2ecc71;   /* 正解 */
-            --wrong-color: #e74c3c;     /* 不正解 */
+            --primary-color: #ff6b6b;   /* い形容詞 (I-adjectives) */
+            --secondary-color: #4ecdc4; /* な形容詞 (Na-adjectives) */
+            --quiz-color: #9b59b6;      /* クイズ (Quiz) */
+            --correct-color: #2ecc71;   /* 正解 (Correct) */
+            --wrong-color: #e74c3c;     /* 不正解 (Wrong) */
+            --memorized-color: #f1c40f; /* 覚えた (Memorized) */
             --bg-color: #f4f7f6;
             --text-color: #333;
             /* ナビゲーション用の色を変数に追加 */
@@ -121,8 +122,8 @@
             flex: 1;
             background: transparent;
             border: none;
-            padding: 12px 5px;
-            font-size: 0.9rem;
+            padding: 12px 2px;
+            font-size: 0.85rem;
             font-weight: bold;
             color: #aaa;
             cursor: pointer;
@@ -162,14 +163,26 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        .study-progress {
+        .study-stats {
+            display: flex;
+            gap: 10px;
+        }
+        .study-progress, .memorized-count {
             font-weight: bold;
-            color: #777;
-            background: #f0f0f0;
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.9rem;
+        }
+        .study-progress {
+            color: #777;
+            background: #f0f0f0;
+        }
+        .memorized-count {
+            color: #856404;
+            background: #fff3cd;
         }
         .tool-btn {
             background: #f8f9fa;
@@ -186,7 +199,7 @@
         }
         .tool-btn:active { background: #e0e0e0; }
 
-        /* カードくるりんアニメーション */
+        /* カードくるりんアニメーション & 崩れ防止レイアウト */
         .card-container {
             flex-grow: 1;
             perspective: 1000px;
@@ -199,7 +212,7 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
             transform-style: preserve-3d;
         }
         .card-container.flipped .card-inner {
@@ -207,18 +220,20 @@
         }
         .card-front, .card-back {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; /* Safari Fix */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             background: white;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             padding: 20px;
             border-top: 6px solid var(--primary-color);
+            box-sizing: border-box; /* Prevent padding from altering size */
         }
         .na-mode .card-front, .na-mode .card-back {
             border-top-color: var(--secondary-color);
@@ -228,11 +243,63 @@
             background: #fafafa;
         }
         
-        .word-jp { font-size: 2.5rem; font-weight: bold; margin-bottom: 10px; }
-        .word-romaji { font-size: 1.2rem; color: #7f8c8d; }
-        .word-en { font-size: 2rem; font-weight: bold; color: var(--primary-color); }
+        .memorized-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--memorized-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .memorized-badge.show {
+            opacity: 1;
+        }
+
+        .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .word-jp { 
+            font-size: 2.2rem; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+            word-break: keep-all; 
+            line-height: 1.3;
+        }
+        .word-romaji { 
+            font-size: 1.2rem; 
+            color: #7f8c8d; 
+            word-break: break-word;
+        }
+        .word-en { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: var(--primary-color); 
+            word-break: break-word; 
+            line-height: 1.3; 
+            text-align: center;
+        }
         .na-mode .word-en { color: var(--secondary-color); }
-        .tap-hint { position: absolute; bottom: 15px; font-size: 0.8rem; color: #bbb; }
+        
+        .tap-hint { 
+            font-size: 0.8rem; 
+            color: #bbb; 
+            margin-top: auto; /* Push to the bottom */
+            padding-top: 10px;
+            text-align: center;
+            width: 100%;
+        }
 
         /* ナビゲーションボタン */
         .card-nav {
@@ -243,18 +310,31 @@
         }
         .nav-btn {
             flex: 1;
-            padding: 15px;
+            padding: 15px 10px;
             border: none;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             color: white;
             cursor: pointer;
             background-color: var(--primary-color);
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         .na-mode .nav-btn { background-color: var(--secondary-color); }
         .nav-btn:active { opacity: 0.7; transform: scale(0.98); }
+        
+        .memorize-btn {
+            background-color: #f1c40f;
+            color: #fff;
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+        }
+        .memorize-btn.is-memorized {
+            background-color: #bdc3c7;
+        }
 
         /* --- クイズ --- */
         #quiz-view {
@@ -312,6 +392,34 @@
         .quiz-choice-btn.wrong { background-color: var(--wrong-color); border-color: var(--wrong-color); color: white; }
         .quiz-choice-btn.wrong .quiz-choice-romaji { color: #ffebee; }
         .quiz-choice-btn:disabled { cursor: not-allowed; opacity: 0.9; }
+        
+        #quiz-explanation {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 10px;
+            color: #856404;
+        }
+        #quiz-explanation h4 { margin: 0 0 10px 0; color: #d32f2f; }
+        #quiz-explanation p { margin: 5px 0; font-size: 1.1rem; text-align: center;}
+        
+        .quiz-next-btn {
+            margin-top: 15px;
+            background-color: var(--quiz-color);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            font-size: 1.1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .quiz-next-btn:active { transform: scale(0.98); }
 
         #quiz-result-view {
             display: none;
@@ -336,6 +444,11 @@
             box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
             width: 100%;
             max-width: 300px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .play-again-btn:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
@@ -355,15 +468,15 @@
 <div class="app-container">
     <header id="main-header">
         <div class="header-titles">
-            <h1>形容詞 (Adjectives) 200</h1>
+            <h1>Adjectives 200</h1>
             <h2>Ohayo Center Study Material</h2>
         </div>
     </header>
 
     <div class="tabs">
-        <button id="btn-i-adj" class="tab-btn i-adj-btn active" onclick="switchTab('i-adj')">い形容詞 100</button>
-        <button id="btn-na-adj" class="tab-btn na-adj-btn" onclick="switchTab('na-adj')">な形容詞 100</button>
-        <button id="btn-quiz" class="tab-btn quiz-btn" onclick="startQuiz()">クイズ (Quiz)</button>
+        <button id="btn-i-adj" class="tab-btn i-adj-btn active" onclick="switchTab('i-adj')">I-Adjectives 100</button>
+        <button id="btn-na-adj" class="tab-btn na-adj-btn" onclick="switchTab('na-adj')">Na-Adjectives 100</button>
+        <button id="btn-quiz" class="tab-btn quiz-btn" onclick="startQuiz()">Quiz</button>
     </div>
 
     <div class="main-content" id="main-content">
@@ -371,10 +484,13 @@
         <!-- 学習ビュー (フラッシュカード) -->
         <div id="study-view">
             <div class="study-tools">
-                <div class="study-progress" id="study-progress">1 / 100</div>
+                <div class="study-stats">
+                    <div class="study-progress" id="study-progress">1 / 100</div>
+                    <div class="memorized-count" id="memorized-count">⭐ 0 Memorized</div>
+                </div>
                 <div style="display: flex; gap: 8px;">
-                    <button class="tool-btn" onclick="shuffleCurrentList()">🔀 シャッフル</button>
-                    <button class="tool-btn" onclick="playAudio()">🔊 音声</button>
+                    <button class="tool-btn" onclick="shuffleCurrentList()">🔀 Shuffle</button>
+                    <button class="tool-btn" onclick="playAudio()">🔊 Audio</button>
                 </div>
             </div>
 
@@ -382,21 +498,28 @@
                 <div class="card-inner">
                     <!-- 表面 (日本語) -->
                     <div class="card-front">
-                        <div class="word-jp" id="card-jp">大きい</div>
-                        <div class="word-romaji" id="card-romaji">ookii</div>
-                        <div class="tap-hint">タップして裏返す (Tap to flip)</div>
+                        <div class="memorized-badge" id="badge-front">⭐ Memorized</div>
+                        <div class="card-content">
+                            <div class="word-jp" id="card-jp">大きい</div>
+                            <div class="word-romaji" id="card-romaji">ookii</div>
+                        </div>
+                        <div class="tap-hint">Tap to flip</div>
                     </div>
                     <!-- 裏面 (英語) -->
                     <div class="card-back">
-                        <div class="word-en" id="card-en">Big / Large</div>
-                        <div class="tap-hint">タップして戻す (Tap to flip)</div>
+                        <div class="memorized-badge" id="badge-back">⭐ Memorized</div>
+                        <div class="card-content">
+                            <div class="word-en" id="card-en">Big / Large</div>
+                        </div>
+                        <div class="tap-hint">Tap to flip</div>
                     </div>
                 </div>
             </div>
 
             <div class="card-nav">
-                <button class="nav-btn" onclick="prevCard()">◀ 前へ (Prev)</button>
-                <button class="nav-btn" onclick="nextCard()">次へ (Next) ▶</button>
+                <button class="nav-btn" onclick="prevCard()">◀ Prev</button>
+                <button class="nav-btn memorize-btn" id="btn-memorize" onclick="toggleMemorized()">⭐ Memorize</button>
+                <button class="nav-btn" onclick="nextCard()">Next ▶</button>
             </div>
         </div>
 
@@ -414,12 +537,21 @@
                 <div id="quiz-choices" class="quiz-choices-grid">
                     <!-- ボタン生成 -->
                 </div>
+                
+                <div id="quiz-explanation">
+                    <h4>Incorrect!</h4>
+                    <p>You chose: <strong id="exp-wrong-jp"></strong> (<span id="exp-wrong-romaji"></span>)<br>
+                    Meaning: <span id="exp-wrong-en" style="color: var(--wrong-color); font-weight: bold;"></span></p>
+                    <p style="margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 10px; width: 100%;">The correct answer was:</p>
+                    <p><strong id="exp-jp"></strong> (<span id="exp-romaji"></span>)</p>
+                    <button class="quiz-next-btn" onclick="nextQuizQuestion()">Next Question</button>
+                </div>
             </div>
             
             <div id="quiz-result-view" style="display: none;">
                 <h2>Quiz Complete!</h2>
                 <p>You scored <strong id="final-score">0</strong> / 10.</p>
-                <button class="play-again-btn" onclick="startQuiz()">もう一度プレイ (Play Again)</button>
+                <button class="play-again-btn" onclick="startQuiz()">Play Again</button>
             </div>
         </div>
 
@@ -430,10 +562,10 @@
     // --- データ群 ---
     const vocabulary = {
         'i-adj': [
-            { jp: '大きい', romaji: 'ookii', en: 'Big / Large' }, { jp: '小さい', romaji: 'chiisai', en: 'Small' }, { jp: '高い', romaji: 'takai', en: 'High / Expensive' }, { jp: '安い', romaji: 'yasui', en: 'Cheap' }, { jp: '新しい', romaji: 'atarashii', en: 'New' }, { jp: '古い', romaji: 'furui', en: 'Old' }, { jp: '良い・いい', romaji: 'yoi / ii', en: 'Good' }, { jp: '悪い', romaji: 'warui', en: 'Bad' }, { jp: '暑い', romaji: 'atsui', en: 'Hot (weather)' }, { jp: '寒い', romaji: 'samui', en: 'Cold (weather)' }, { jp: '温かい', romaji: 'atatakai', en: 'Warm' }, { jp: '涼しい', romaji: 'suzushii', en: 'Cool' }, { jp: '面白い', romaji: 'omoshiroi', en: 'Interesting / Funny' }, { jp: 'つまらない', romaji: 'tsumaranai', en: 'Boring' }, { jp: '難しい', romaji: 'muzukashii', en: 'Difficult' }, { jp: '易しい', romaji: 'yasashii', en: 'Easy' }, { jp: '忙しい', romaji: 'isogashii', en: 'Busy' }, { jp: '楽しい', romaji: 'tanoshii', en: 'Fun / Enjoyable' }, { jp: '美味しい', romaji: 'oishii', en: 'Delicious' }, { jp: '早い', romaji: 'hayai', en: 'Fast / Early' }, { jp: '遅い', romaji: 'osoi', en: 'Slow / Late' }, { jp: '近い', romaji: 'chikai', en: 'Close / Near' }, { jp: '遠い', romaji: 'tooi', en: 'Far' }, { jp: '強い', romaji: 'tsuyoi', en: 'Strong' }, { jp: '弱い', romaji: 'yowai', en: 'Weak' }, { jp: '甘い', romaji: 'amai', en: 'Sweet' }, { jp: '辛い', romaji: 'karai', en: 'Spicy / Salty' }, { jp: '苦い', romaji: 'nigai', en: 'Bitter' }, { jp: '酸っぱい', romaji: 'suppai', en: 'Sour' }, { jp: '重い', romaji: 'omoi', en: 'Heavy' }, { jp: '軽い', romaji: 'karui', en: 'Light' }, { jp: '広い', romaji: 'hiroi', en: 'Wide / Spacious' }, { jp: '狭い', romaji: 'semai', en: 'Narrow / Cramped' }, { jp: '太い', romaji: 'futoi', en: 'Thick / Fat' }, { jp: '細い', romaji: 'hosoi', en: 'Thin / Slender' }, { jp: '若い', romaji: 'wakai', en: 'Young' }, { jp: '明るい', romaji: 'akarui', en: 'Bright' }, { jp: '暗い', romaji: 'kurai', en: 'Dark' }, { jp: '痛い', romaji: 'itai', en: 'Painful' }, { jp: '眠い', romaji: 'nemui', en: 'Sleepy' }, { jp: '怖い', romaji: 'kowai', en: 'Scary' }, { jp: '恥ずかしい', romaji: 'hazukashii', en: 'Embarrassing / Shy' }, { jp: '素晴らしい', romaji: 'subarashii', en: 'Wonderful' }, { jp: '珍しい', romaji: 'mezurashii', en: 'Rare / Unusual' }, { jp: '悲しい', romaji: 'kanashii', en: 'Sad' }, { jp: '嬉しい', romaji: 'ureshii', en: 'Glad / Happy' }, { jp: '寂しい', romaji: 'sabishii', en: 'Lonely' }, { jp: '厳しい', romaji: 'kibishii', en: 'Strict / Severe' }, { jp: '優しい', romaji: 'yasashii', en: 'Kind / Gentle' }, { jp: '汚い', romaji: 'kitanai', en: 'Dirty' }, { jp: '美しい', romaji: 'utsukushii', en: 'Beautiful' }, { jp: '可愛い', romaji: 'kawaii', en: 'Cute' }, { jp: 'かっこいい', romaji: 'kakkoii', en: 'Cool / Handsome' }, { jp: '賢い', romaji: 'kashikoi', en: 'Smart' }, { jp: '偉い', romaji: 'erai', en: 'Great / Admirable' }, { jp: 'ぬるい', romaji: 'nurui', en: 'Lukewarm' }, { jp: 'まずい', romaji: 'mazui', en: 'Bad tasting' }, { jp: 'しょっぱい', romaji: 'shoppai', en: 'Salty' }, { jp: '臭い', romaji: 'kusai', en: 'Smelly' }, { jp: 'かゆい', romaji: 'kayui', en: 'Itchy' }, { jp: 'だるい', romaji: 'darui', en: 'Sluggish / Heavy' }, { jp: '苦しい', romaji: 'kurushii', en: 'Painful / Agonizing' }, { jp: '恐ろしい', romaji: 'osoroshii', en: 'Terrifying' }, { jp: '怪しい', romaji: 'ayashii', en: 'Suspicious' }, { jp: '悔しい', romaji: 'kuyashii', en: 'Frustrating / Regrettable' }, { jp: '懐かしい', romaji: 'natsukashii', en: 'Nostalgic' }, { jp: '羨ましい', romaji: 'urayamashii', en: 'Envious' }, { jp: '惜しい', romaji: 'oshii', en: 'Close / A pity' }, { jp: '詳しい', romaji: 'kuwashii', en: 'Detailed' }, { jp: '激しい', romaji: 'hageshii', en: 'Violent / Intense' }, { jp: '親しい', romaji: 'shitashii', en: 'Intimate / Familiar' }, { jp: '険しい', romaji: 'kewashii', en: 'Steep / Grim' }, { jp: '乏しい', romaji: 'toboshii', en: 'Scarce' }, { jp: '貧しい', romaji: 'mazushii', en: 'Poor' }, { jp: '卑しい', romaji: 'iyashii', en: 'Greedy / Vulgar' }, { jp: '恋しい', romaji: 'koishii', en: 'Longed for' }, { jp: '頼もしい', romaji: 'tanomoshii', en: 'Reliable' }, { jp: '煩わしい', romaji: 'wazurawashii', en: 'Troublesome' }, { jp: '騒がしい', romaji: 'sawagashii', en: 'Noisy / Boisterous' }, { jp: '慌ただしい', romaji: 'awatadashii', en: 'Hurried / Busy' }, { jp: '勇ましい', romaji: 'isamashii', en: 'Brave' }, { jp: '醜い', romaji: 'minikui', en: 'Ugly' }, { jp: '憎らしい', romaji: 'nikurashii', en: 'Hateful' }, { jp: '鈍い', romaji: 'nibui', en: 'Dull / Slow' }, { jp: '鋭い', romaji: 'surudoi', en: 'Sharp' }, { jp: 'ダサい', romaji: 'dasai', en: 'Uncool / Tacky' }, { jp: '柔らかい', romaji: 'yawarakai', en: 'Soft' }, { jp: '固い', romaji: 'katai', en: 'Hard' }, { jp: '深い', romaji: 'fukai', en: 'Deep' }, { jp: '浅い', romaji: 'asai', en: 'Shallow' }, { jp: '丸い', romaji: 'marui', en: 'Round' }, { jp: '四角い', romaji: 'shikakui', en: 'Square' }, { jp: '厚い', romaji: 'atsui', en: 'Thick (objects)' }, { jp: '薄い', romaji: 'usui', en: 'Thin' }, { jp: 'うるさい', romaji: 'urusai', en: 'Noisy / Annoying' }, { jp: 'おとなしい', romaji: 'otonashii', en: 'Quiet / Docile' }, { jp: '甘酸っぱい', romaji: 'amazuppai', en: 'Sweet and sour' }, { jp: '危ない', romaji: 'abunai', en: 'Dangerous' }, { jp: '緩い', romaji: 'yurui', en: 'Loose' }, { jp: 'しつこい', romaji: 'shitsukoi', en: 'Persistent' }
+            { id: 'i1', jp: '大きい', romaji: 'ookii', en: 'Big / Large' }, { id: 'i2', jp: '小さい', romaji: 'chiisai', en: 'Small' }, { id: 'i3', jp: '高い', romaji: 'takai', en: 'High / Expensive' }, { id: 'i4', jp: '安い', romaji: 'yasui', en: 'Cheap' }, { id: 'i5', jp: '新しい', romaji: 'atarashii', en: 'New' }, { id: 'i6', jp: '古い', romaji: 'furui', en: 'Old' }, { id: 'i7', jp: '良い・いい', romaji: 'yoi / ii', en: 'Good' }, { id: 'i8', jp: '悪い', romaji: 'warui', en: 'Bad' }, { id: 'i9', jp: '暑い', romaji: 'atsui', en: 'Hot (weather)' }, { id: 'i10', jp: '寒い', romaji: 'samui', en: 'Cold (weather)' }, { id: 'i11', jp: '温かい', romaji: 'atatakai', en: 'Warm' }, { id: 'i12', jp: '涼しい', romaji: 'suzushii', en: 'Cool' }, { id: 'i13', jp: '面白い', romaji: 'omoshiroi', en: 'Interesting / Funny' }, { id: 'i14', jp: 'つまらない', romaji: 'tsumaranai', en: 'Boring' }, { id: 'i15', jp: '難しい', romaji: 'muzukashii', en: 'Difficult' }, { id: 'i16', jp: '易しい', romaji: 'yasashii', en: 'Easy' }, { id: 'i17', jp: '忙しい', romaji: 'isogashii', en: 'Busy' }, { id: 'i18', jp: '楽しい', romaji: 'tanoshii', en: 'Fun / Enjoyable' }, { id: 'i19', jp: '美味しい', romaji: 'oishii', en: 'Delicious' }, { id: 'i20', jp: '早い', romaji: 'hayai', en: 'Fast / Early' }, { id: 'i21', jp: '遅い', romaji: 'osoi', en: 'Slow / Late' }, { id: 'i22', jp: '近い', romaji: 'chikai', en: 'Close / Near' }, { id: 'i23', jp: '遠い', romaji: 'tooi', en: 'Far' }, { id: 'i24', jp: '強い', romaji: 'tsuyoi', en: 'Strong' }, { id: 'i25', jp: '弱い', romaji: 'yowai', en: 'Weak' }, { id: 'i26', jp: '甘い', romaji: 'amai', en: 'Sweet' }, { id: 'i27', jp: '辛い', romaji: 'karai', en: 'Spicy / Salty' }, { id: 'i28', jp: '苦い', romaji: 'nigai', en: 'Bitter' }, { id: 'i29', jp: '酸っぱい', romaji: 'suppai', en: 'Sour' }, { id: 'i30', jp: '重い', romaji: 'omoi', en: 'Heavy' }, { id: 'i31', jp: '軽い', romaji: 'karui', en: 'Light' }, { id: 'i32', jp: '広い', romaji: 'hiroi', en: 'Wide / Spacious' }, { id: 'i33', jp: '狭い', romaji: 'semai', en: 'Narrow / Cramped' }, { id: 'i34', jp: '太い', romaji: 'futoi', en: 'Thick / Fat' }, { id: 'i35', jp: '細い', romaji: 'hosoi', en: 'Thin / Slender' }, { id: 'i36', jp: '若い', romaji: 'wakai', en: 'Young' }, { id: 'i37', jp: '明るい', romaji: 'akarui', en: 'Bright' }, { id: 'i38', jp: '暗い', romaji: 'kurai', en: 'Dark' }, { id: 'i39', jp: '痛い', romaji: 'itai', en: 'Painful' }, { id: 'i40', jp: '眠い', romaji: 'nemui', en: 'Sleepy' }, { id: 'i41', jp: '怖い', romaji: 'kowai', en: 'Scary' }, { id: 'i42', jp: '恥ずかしい', romaji: 'hazukashii', en: 'Embarrassing / Shy' }, { id: 'i43', jp: '素晴らしい', romaji: 'subarashii', en: 'Wonderful' }, { id: 'i44', jp: '珍しい', romaji: 'mezurashii', en: 'Rare / Unusual' }, { id: 'i45', jp: '悲しい', romaji: 'kanashii', en: 'Sad' }, { id: 'i46', jp: '嬉しい', romaji: 'ureshii', en: 'Glad / Happy' }, { id: 'i47', jp: '寂しい', romaji: 'sabishii', en: 'Lonely' }, { id: 'i48', jp: '厳しい', romaji: 'kibishii', en: 'Strict / Severe' }, { id: 'i49', jp: '優しい', romaji: 'yasashii', en: 'Kind / Gentle' }, { id: 'i50', jp: '汚い', romaji: 'kitanai', en: 'Dirty' }, { id: 'i51', jp: '美しい', romaji: 'utsukushii', en: 'Beautiful' }, { id: 'i52', jp: '可愛い', romaji: 'kawaii', en: 'Cute' }, { id: 'i53', jp: 'かっこいい', romaji: 'kakkoii', en: 'Cool / Handsome' }, { id: 'i54', jp: '賢い', romaji: 'kashikoi', en: 'Smart' }, { id: 'i55', jp: '偉い', romaji: 'erai', en: 'Great / Admirable' }, { id: 'i56', jp: 'ぬるい', romaji: 'nurui', en: 'Lukewarm' }, { id: 'i57', jp: 'まずい', romaji: 'mazui', en: 'Bad tasting' }, { id: 'i58', jp: 'しょっぱい', romaji: 'shoppai', en: 'Salty' }, { id: 'i59', jp: '臭い', romaji: 'kusai', en: 'Smelly' }, { id: 'i60', jp: 'かゆい', romaji: 'kayui', en: 'Itchy' }, { id: 'i61', jp: 'だるい', romaji: 'darui', en: 'Sluggish / Heavy' }, { id: 'i62', jp: '苦しい', romaji: 'kurushii', en: 'Painful / Agonizing' }, { id: 'i63', jp: '恐ろしい', romaji: 'osoroshii', en: 'Terrifying' }, { id: 'i64', jp: '怪しい', romaji: 'ayashii', en: 'Suspicious' }, { id: 'i65', jp: '悔しい', romaji: 'kuyashii', en: 'Frustrating / Regrettable' }, { id: 'i66', jp: '懐かしい', romaji: 'natsukashii', en: 'Nostalgic' }, { id: 'i67', jp: '羨ましい', romaji: 'urayamashii', en: 'Envious' }, { id: 'i68', jp: '惜しい', romaji: 'oshii', en: 'Close / A pity' }, { id: 'i69', jp: '詳しい', romaji: 'kuwashii', en: 'Detailed' }, { id: 'i70', jp: '激しい', romaji: 'hageshii', en: 'Violent / Intense' }, { id: 'i71', jp: '親しい', romaji: 'shitashii', en: 'Intimate / Familiar' }, { id: 'i72', jp: '険しい', romaji: 'kewashii', en: 'Steep / Grim' }, { id: 'i73', jp: '乏しい', romaji: 'toboshii', en: 'Scarce' }, { id: 'i74', jp: '貧しい', romaji: 'mazushii', en: 'Poor' }, { id: 'i75', jp: '卑しい', romaji: 'iyashii', en: 'Greedy / Vulgar' }, { id: 'i76', jp: '恋しい', romaji: 'koishii', en: 'Longed for' }, { id: 'i77', jp: '頼もしい', romaji: 'tanomoshii', en: 'Reliable' }, { id: 'i78', jp: '煩わしい', romaji: 'wazurawashii', en: 'Troublesome' }, { id: 'i79', jp: '騒がしい', romaji: 'sawagashii', en: 'Noisy / Boisterous' }, { id: 'i80', jp: '慌ただしい', romaji: 'awatadashii', en: 'Hurried / Busy' }, { id: 'i81', jp: '勇ましい', romaji: 'isamashii', en: 'Brave' }, { id: 'i82', jp: '醜い', romaji: 'minikui', en: 'Ugly' }, { id: 'i83', jp: '憎らしい', romaji: 'nikurashii', en: 'Hateful' }, { id: 'i84', jp: '鈍い', romaji: 'nibui', en: 'Dull / Slow' }, { id: 'i85', jp: '鋭い', romaji: 'surudoi', en: 'Sharp' }, { id: 'i86', jp: 'ダサい', romaji: 'dasai', en: 'Uncool / Tacky' }, { id: 'i87', jp: '柔らかい', romaji: 'yawarakai', en: 'Soft' }, { id: 'i88', jp: '固い', romaji: 'katai', en: 'Hard' }, { id: 'i89', jp: '深い', romaji: 'fukai', en: 'Deep' }, { id: 'i90', jp: '浅い', romaji: 'asai', en: 'Shallow' }, { id: 'i91', jp: '丸い', romaji: 'marui', en: 'Round' }, { id: 'i92', jp: '四角い', romaji: 'shikakui', en: 'Square' }, { id: 'i93', jp: '厚い', romaji: 'atsui', en: 'Thick (objects)' }, { id: 'i94', jp: '薄い', romaji: 'usui', en: 'Thin' }, { id: 'i95', jp: 'うるさい', romaji: 'urusai', en: 'Noisy / Annoying' }, { id: 'i96', jp: 'おとなしい', romaji: 'otonashii', en: 'Quiet / Docile' }, { id: 'i97', jp: '甘酸っぱい', romaji: 'amazuppai', en: 'Sweet and sour' }, { id: 'i98', jp: '危ない', romaji: 'abunai', en: 'Dangerous' }, { id: 'i99', jp: '緩い', romaji: 'yurui', en: 'Loose' }, { id: 'i100', jp: 'しつこい', romaji: 'shitsukoi', en: 'Persistent' }
         ],
         'na-adj': [
-            { jp: '有名 [な]', romaji: 'yuumei [na]', en: 'Famous' }, { jp: '静か [な]', romaji: 'shizuka [na]', en: 'Quiet' }, { jp: '賑やか [な]', romaji: 'nigiyaka [na]', en: 'Lively / Bustling' }, { jp: '親切 [な]', romaji: 'shinsetsu [na]', en: 'Kind' }, { jp: '元気 [な]', romaji: 'genki [na]', en: 'Healthy / Energetic' }, { jp: '綺麗 [な]', romaji: 'kirei [na]', en: 'Beautiful / Clean' }, { jp: '便利 [な]', romaji: 'benri [na]', en: 'Convenient' }, { jp: '不便 [な]', romaji: 'fuben [na]', en: 'Inconvenient' }, { jp: '好き [な]', romaji: 'suki [na]', en: 'Liked / Favorite' }, { jp: '嫌い [な]', romaji: 'kirai [na]', en: 'Disliked' }, { jp: '上手 [な]', romaji: 'jouzu [na]', en: 'Good at' }, { jp: '下手 [な]', romaji: 'heta [na]', en: 'Bad at' }, { jp: '暇 [な]', romaji: 'hima [na]', en: 'Free (time)' }, { jp: '大切 [な]', romaji: 'taisetsu [na]', en: 'Important' }, { jp: '簡単 [な]', romaji: 'kantan [na]', en: 'Simple / Easy' }, { jp: '複雑 [な]', romaji: 'fukuzatsu [na]', en: 'Complicated' }, { jp: '安全 [な]', romaji: 'anzen [na]', en: 'Safe' }, { jp: '危険 [な]', romaji: 'kiken [na]', en: 'Dangerous' }, { jp: '真面目 [な]', romaji: 'majime [na]', en: 'Serious / Earnest' }, { jp: '素敵 [な]', romaji: 'suteki [na]', en: 'Lovely / Wonderful' }, { jp: '丈夫 [な]', romaji: 'joubu [na]', en: 'Sturdy / Strong' }, { jp: '大変 [な]', romaji: 'taihen [na]', en: 'Tough / Awful' }, { jp: '楽 [な]', romaji: 'raku [na]', en: 'Comfortable / Easy' }, { jp: 'いや [な]', romaji: 'iya [na]', en: 'Unpleasant' }, { jp: '大丈夫 [な]', romaji: 'daijoubu [na]', en: 'Okay / Fine' }, { jp: '残念 [な]', romaji: 'zannen [na]', en: 'Regrettable' }, { jp: '丁寧 [な]', romaji: 'teinei [na]', en: 'Polite' }, { jp: '立派 [な]', romaji: 'rippa [na]', en: 'Splendid' }, { jp: '変 [な]', romaji: 'hen [na]', en: 'Strange / Weird' }, { jp: '特別 [な]', romaji: 'tokubetsu [na]', en: 'Special' }, { jp: '急 [な]', romaji: 'kyuu [na]', en: 'Sudden / Urgent' }, { jp: '無理 [な]', romaji: 'muri [na]', en: 'Impossible' }, { jp: '自由 [な]', romaji: 'jiyuu [na]', en: 'Free' }, { jp: '熱心 [な]', romaji: 'nesshin [na]', en: 'Enthusiastic' }, { jp: '盛ん [な]', romaji: 'sakan [na]', en: 'Thriving / Popular' }, { jp: '十分 [な]', romaji: 'juubun [na]', en: 'Sufficient / Enough' }, { jp: '幸せ [な]', romaji: 'shiawase [na]', en: 'Happy' }, { jp: '必要 [な]', romaji: 'hitsuyou [na]', en: 'Necessary' }, { jp: '邪魔 [な]', romaji: 'jama [na]', en: 'Hindering' }, { jp: '確か [な]', romaji: 'tashika [na]', en: 'Certain / Sure' }, { jp: '正確 [な]', romaji: 'seikaku [na]', en: 'Accurate' }, { jp: '新鮮 [な]', romaji: 'shinsen [na]', en: 'Fresh' }, { jp: '退屈 [な]', romaji: 'taikutsu [na]', en: 'Boring / Tedious' }, { jp: '貧乏 [な]', romaji: 'binbou [na]', en: 'Poor' }, { jp: '平和 [な]', romaji: 'heiwa [na]', en: 'Peaceful' }, { jp: '満足 [な]', romaji: 'manzoku [na]', en: 'Satisfied' }, { jp: '完璧 [な]', romaji: 'kanpeki [na]', en: 'Perfect' }, { jp: '得意 [な]', romaji: 'tokui [na]', en: 'Good at / Proud' }, { jp: '苦手 [な]', romaji: 'nigate [na]', en: 'Bad at' }, { jp: '派手 [な]', romaji: 'hade [na]', en: 'Flashy / Showy' }, { jp: '地味 [な]', romaji: 'jimi [na]', en: 'Plain / Subdued' }, { jp: 'おしゃれ [な]', romaji: 'oshare [na]', en: 'Stylish / Fashionable' }, { jp: '豊か [な]', romaji: 'yutaka [na]', en: 'Rich / Abundant' }, { jp: '穏やか [な]', romaji: 'odayaka [na]', en: 'Calm / Gentle' }, { jp: '爽やか [な]', romaji: 'sawayaka [na]', en: 'Refreshing' }, { jp: '華やか [な]', romaji: 'hanayaka [na]', en: 'Gorgeous' }, { jp: '鮮やか [な]', romaji: 'azayaka [na]', en: 'Vivid / Bright' }, { jp: 'なだらか [な]', romaji: 'nadaraka [na]', en: 'Gentle slope' }, { jp: '緩やか [な]', romaji: 'yuruyaka [na]', en: 'Loose / Gentle' }, { jp: '健やか [な]', romaji: 'sukoyaka [na]', en: 'Healthy / Sound' }, { jp: '速やか [な]', romaji: 'sumiyaka [na]', en: 'Prompt / Speedy' }, { jp: '密か [な]', romaji: 'hisoka [na]', en: 'Secret / Private' }, { jp: '遥か [な]', romaji: 'haruka [na]', en: 'Far away' }, { jp: '愚か [な]', romaji: 'oroka [na]', en: 'Foolish / Stupid' }, { jp: '厳か [な]', romaji: 'ogosoka [na]', en: 'Solemn / Majestic' }, { jp: '朗らか [な]', romaji: 'hogaraka [na]', en: 'Cheerful' }, { jp: '滑らか [な]', romaji: 'nameraka [na]', en: 'Smooth' }, { jp: '柔らか [な]', romaji: 'yawaraka [na]', en: 'Soft / Tender' }, { jp: '明らか [な]', romaji: 'akiraka [na]', en: 'Clear / Obvious' }, { jp: '微か [な]', romaji: 'kasuka [na]', en: 'Faint / Slight' }, { jp: '僅か [な]', romaji: 'wazuka [na]', en: 'Scant / Few' }, { jp: '不安 [な]', romaji: 'fuan [na]', en: 'Anxious / Uneasy' }, { jp: '不満 [な]', romaji: 'fuman [na]', en: 'Dissatisfied' }, { jp: '不思議 [な]', romaji: 'fushigi [na]', en: 'Mysterious' }, { jp: '不規則 [な]', romaji: 'fukisoku [na]', en: 'Irregular' }, { jp: '不自然 [な]', romaji: 'fushizen [na]', en: 'Unnatural' }, { jp: '不幸 [な]', romaji: 'fukou [na]', en: 'Unhappy' }, { jp: '有能 [な]', romaji: 'yuunou [na]', en: 'Capable' }, { jp: '無能 [な]', romaji: 'munou [na]', en: 'Incompetent' }, { jp: '有効 [な]', romaji: 'yuukou [na]', en: 'Valid' }, { jp: '無効 [な]', romaji: 'mukou [na]', en: 'Invalid' }, { jp: '夢中 [な]', romaji: 'muchuu [na]', en: 'Absorbed' }, { jp: '曖昧 [な]', romaji: 'aimai [na]', en: 'Vague / Ambiguous' }, { jp: '厄介 [な]', romaji: 'yakkai [na]', en: 'Troublesome' }, { jp: '豪華 [な]', romaji: 'gouka [na]', en: 'Luxurious' }, { jp: '贅沢 [な]', romaji: 'zeitaku [na]', en: 'Extravagant' }, { jp: '豊富 [な]', romaji: 'houfu [na]', en: 'Abundant' }, { jp: '多様 [な]', romaji: 'tayou [na]', en: 'Diverse' }, { jp: '同様 [な]', romaji: 'douyou [na]', en: 'Similar / Same' }, { jp: '独特 [な]', romaji: 'dokutoku [na]', en: 'Unique' }, { jp: '特殊 [な]', romaji: 'tokushu [na]', en: 'Special / Peculiar' }, { jp: '奇妙 [な]', romaji: 'kimyou [na]', en: 'Strange / Bizarre' }, { jp: '妙 [な]', romaji: 'myou [na]', en: 'Strange / Odd' }, { jp: '適当 [な]', romaji: 'tekitou [na]', en: 'Appropriate / Careless' }, { jp: '適切 [な]', romaji: 'tekisetsu [na]', en: 'Appropriate / Fitting' }, { jp: '快適 [な]', romaji: 'kaiteki [na]', en: 'Comfortable' }, { jp: '憂鬱 [な]', romaji: 'yuuutsu [na]', en: 'Depressed / Gloomy' }, { jp: '悲惨 [な]', romaji: 'hisan [na]', en: 'Miserable' }, { jp: '残酷 [な]', romaji: 'zankoku [na]', en: 'Cruel' }, { jp: '頑固 [な]', romaji: 'ganko [na]', en: 'Stubborn' }
+            { id: 'na1', jp: '有名 [な]', romaji: 'yuumei [na]', en: 'Famous' }, { id: 'na2', jp: '静か [な]', romaji: 'shizuka [na]', en: 'Quiet' }, { id: 'na3', jp: '賑やか [な]', romaji: 'nigiyaka [na]', en: 'Lively / Bustling' }, { id: 'na4', jp: '親切 [な]', romaji: 'shinsetsu [na]', en: 'Kind' }, { id: 'na5', jp: '元気 [な]', romaji: 'genki [na]', en: 'Healthy / Energetic' }, { id: 'na6', jp: '綺麗 [な]', romaji: 'kirei [na]', en: 'Beautiful / Clean' }, { id: 'na7', jp: '便利 [な]', romaji: 'benri [na]', en: 'Convenient' }, { id: 'na8', jp: '不便 [な]', romaji: 'fuben [na]', en: 'Inconvenient' }, { id: 'na9', jp: '好き [な]', romaji: 'suki [na]', en: 'Liked / Favorite' }, { id: 'na10', jp: '嫌い [な]', romaji: 'kirai [na]', en: 'Disliked' }, { id: 'na11', jp: '上手 [な]', romaji: 'jouzu [na]', en: 'Good at' }, { id: 'na12', jp: '下手 [な]', romaji: 'heta [na]', en: 'Bad at' }, { id: 'na13', jp: '暇 [な]', romaji: 'hima [na]', en: 'Free (time)' }, { id: 'na14', jp: '大切 [な]', romaji: 'taisetsu [na]', en: 'Important' }, { id: 'na15', jp: '簡単 [な]', romaji: 'kantan [na]', en: 'Simple / Easy' }, { id: 'na16', jp: '複雑 [な]', romaji: 'fukuzatsu [na]', en: 'Complicated' }, { id: 'na17', jp: '安全 [な]', romaji: 'anzen [na]', en: 'Safe' }, { id: 'na18', jp: '危険 [な]', romaji: 'kiken [na]', en: 'Dangerous' }, { id: 'na19', jp: '真面目 [な]', romaji: 'majime [na]', en: 'Serious / Earnest' }, { id: 'na20', jp: '素敵 [な]', romaji: 'suteki [na]', en: 'Lovely / Wonderful' }, { id: 'na21', jp: '丈夫 [な]', romaji: 'joubu [na]', en: 'Sturdy / Strong' }, { id: 'na22', jp: '大変 [な]', romaji: 'taihen [na]', en: 'Tough / Awful' }, { id: 'na23', jp: '楽 [な]', romaji: 'raku [na]', en: 'Comfortable / Easy' }, { id: 'na24', jp: 'いや [な]', romaji: 'iya [na]', en: 'Unpleasant' }, { id: 'na25', jp: '大丈夫 [な]', romaji: 'daijoubu [na]', en: 'Okay / Fine' }, { id: 'na26', jp: '残念 [な]', romaji: 'zannen [na]', en: 'Regrettable' }, { id: 'na27', jp: '丁寧 [な]', romaji: 'teinei [na]', en: 'Polite' }, { id: 'na28', jp: '立派 [な]', romaji: 'rippa [na]', en: 'Splendid' }, { id: 'na29', jp: '変 [な]', romaji: 'hen [na]', en: 'Strange / Weird' }, { id: 'na30', jp: '特別 [な]', romaji: 'tokubetsu [na]', en: 'Special' }, { id: 'na31', jp: '急 [な]', romaji: 'kyuu [na]', en: 'Sudden / Urgent' }, { id: 'na32', jp: '無理 [な]', romaji: 'muri [na]', en: 'Impossible' }, { id: 'na33', jp: '自由 [な]', romaji: 'jiyuu [na]', en: 'Free' }, { id: 'na34', jp: '熱心 [な]', romaji: 'nesshin [na]', en: 'Enthusiastic' }, { id: 'na35', jp: '盛ん [な]', romaji: 'sakan [na]', en: 'Thriving / Popular' }, { id: 'na36', jp: '十分 [な]', romaji: 'juubun [na]', en: 'Sufficient / Enough' }, { id: 'na37', jp: '幸せ [な]', romaji: 'shiawase [na]', en: 'Happy' }, { id: 'na38', jp: '必要 [な]', romaji: 'hitsuyou [na]', en: 'Necessary' }, { id: 'na39', jp: '邪魔 [な]', romaji: 'jama [na]', en: 'Hindering' }, { id: 'na40', jp: '確か [な]', romaji: 'tashika [na]', en: 'Certain / Sure' }, { id: 'na41', jp: '正確 [な]', romaji: 'seikaku [na]', en: 'Accurate' }, { id: 'na42', jp: '新鮮 [な]', romaji: 'shinsen [na]', en: 'Fresh' }, { id: 'na43', jp: '退屈 [な]', romaji: 'taikutsu [na]', en: 'Boring / Tedious' }, { id: 'na44', jp: '貧乏 [な]', romaji: 'binbou [na]', en: 'Poor' }, { id: 'na45', jp: '平和 [な]', romaji: 'heiwa [na]', en: 'Peaceful' }, { id: 'na46', jp: '満足 [な]', romaji: 'manzoku [na]', en: 'Satisfied' }, { id: 'na47', jp: '完璧 [な]', romaji: 'kanpeki [na]', en: 'Perfect' }, { id: 'na48', jp: '得意 [な]', romaji: 'tokui [na]', en: 'Good at / Proud' }, { id: 'na49', jp: '苦手 [な]', romaji: 'nigate [na]', en: 'Bad at' }, { id: 'na50', jp: '派手 [な]', romaji: 'hade [na]', en: 'Flashy / Showy' }, { id: 'na51', jp: '地味 [な]', romaji: 'jimi [na]', en: 'Plain / Subdued' }, { id: 'na52', jp: 'おしゃれ [な]', romaji: 'oshare [na]', en: 'Stylish / Fashionable' }, { id: 'na53', jp: '豊か [な]', romaji: 'yutaka [na]', en: 'Rich / Abundant' }, { id: 'na54', jp: '穏やか [な]', romaji: 'odayaka [na]', en: 'Calm / Gentle' }, { id: 'na55', jp: '爽やか [な]', romaji: 'sawayaka [na]', en: 'Refreshing' }, { id: 'na56', jp: '華やか [な]', romaji: 'hanayaka [na]', en: 'Gorgeous' }, { id: 'na57', jp: '鮮やか [な]', romaji: 'azayaka [na]', en: 'Vivid / Bright' }, { id: 'na58', jp: 'なだらか [な]', romaji: 'nadaraka [na]', en: 'Gentle slope' }, { id: 'na59', jp: '緩やか [な]', romaji: 'yuruyaka [na]', en: 'Loose / Gentle' }, { id: 'na60', jp: '健やか [な]', romaji: 'sukoyaka [na]', en: 'Healthy / Sound' }, { id: 'na61', jp: '速やか [な]', romaji: 'sumiyaka [na]', en: 'Prompt / Speedy' }, { id: 'na62', jp: '密か [な]', romaji: 'hisoka [na]', en: 'Secret / Private' }, { id: 'na63', jp: '遥か [な]', romaji: 'haruka [na]', en: 'Far away' }, { id: 'na64', jp: '愚か [な]', romaji: 'oroka [na]', en: 'Foolish / Stupid' }, { id: 'na65', jp: '厳か [な]', romaji: 'ogosoka [na]', en: 'Solemn / Majestic' }, { id: 'na66', jp: '朗らか [な]', romaji: 'hogaraka [na]', en: 'Cheerful' }, { id: 'na67', jp: '滑らか [な]', romaji: 'nameraka [na]', en: 'Smooth' }, { id: 'na68', jp: '柔らか [な]', romaji: 'yawaraka [na]', en: 'Soft / Tender' }, { id: 'na69', jp: '明らか [な]', romaji: 'akiraka [na]', en: 'Clear / Obvious' }, { id: 'na70', jp: '微か [な]', romaji: 'kasuka [na]', en: 'Faint / Slight' }, { id: 'na71', jp: '僅か [な]', romaji: 'wazuka [na]', en: 'Scant / Few' }, { id: 'na72', jp: '不安 [な]', romaji: 'fuan [na]', en: 'Anxious / Uneasy' }, { id: 'na73', jp: '不満 [な]', romaji: 'fuman [na]', en: 'Dissatisfied' }, { id: 'na74', jp: '不思議 [な]', romaji: 'fushigi [na]', en: 'Mysterious' }, { id: 'na75', jp: '不規則 [な]', romaji: 'fukisoku [na]', en: 'Irregular' }, { id: 'na76', jp: '不自然 [な]', romaji: 'fushizen [na]', en: 'Unnatural' }, { id: 'na77', jp: '不幸 [な]', romaji: 'fukou [na]', en: 'Unhappy' }, { id: 'na78', jp: '有能 [な]', romaji: 'yuunou [na]', en: 'Capable' }, { id: 'na79', jp: '無能 [な]', romaji: 'munou [na]', en: 'Incompetent' }, { id: 'na80', jp: '有効 [な]', romaji: 'yuukou [na]', en: 'Valid' }, { id: 'na81', jp: '無効 [な]', romaji: 'mukou [na]', en: 'Invalid' }, { id: 'na82', jp: '夢中 [な]', romaji: 'muchuu [na]', en: 'Absorbed' }, { id: 'na83', jp: '曖昧 [な]', romaji: 'aimai [na]', en: 'Vague / Ambiguous' }, { id: 'na84', jp: '厄介 [な]', romaji: 'yakkai [na]', en: 'Troublesome' }, { id: 'na85', jp: '豪華 [な]', romaji: 'gouka [na]', en: 'Luxurious' }, { id: 'na86', jp: '贅沢 [な]', romaji: 'zeitaku [na]', en: 'Extravagant' }, { id: 'na87', jp: '豊富 [な]', romaji: 'houfu [na]', en: 'Abundant' }, { id: 'na88', jp: '多様 [な]', romaji: 'tayou [na]', en: 'Diverse' }, { id: 'na89', jp: '同様 [な]', romaji: 'douyou [na]', en: 'Similar / Same' }, { id: 'na90', jp: '独特 [な]', romaji: 'dokutoku [na]', en: 'Unique' }, { id: 'na91', jp: '特殊 [な]', romaji: 'tokushu [na]', en: 'Special / Peculiar' }, { id: 'na92', jp: '奇妙 [な]', romaji: 'kimyou [na]', en: 'Strange / Bizarre' }, { id: 'na93', jp: '妙 [な]', romaji: 'myou [na]', en: 'Strange / Odd' }, { id: 'na94', jp: '適当 [な]', romaji: 'tekitou [na]', en: 'Appropriate / Careless' }, { id: 'na95', jp: '適切 [な]', romaji: 'tekisetsu [na]', en: 'Appropriate / Fitting' }, { id: 'na96', jp: '快適 [な]', romaji: 'kaiteki [na]', en: 'Comfortable' }, { id: 'na97', jp: '憂鬱 [な]', romaji: 'yuuutsu [na]', en: 'Depressed / Gloomy' }, { id: 'na98', jp: '悲惨 [な]', romaji: 'hisan [na]', en: 'Miserable' }, { id: 'na99', jp: '残酷 [な]', romaji: 'zankoku [na]', en: 'Cruel' }, { id: 'na100', jp: '頑固 [な]', romaji: 'ganko [na]', en: 'Stubborn' }
         ]
     };
 
@@ -441,6 +573,9 @@
     let currentCategory = 'i-adj';
     let currentWordList = [...vocabulary['i-adj']];
     let currentIndex = 0;
+    
+    // 覚えた単語のIDを保存するセット (Set)
+    let memorizedWords = new Set(JSON.parse(localStorage.getItem('memorizedAdjectives')) || []);
 
     const studyView = document.getElementById('study-view');
     const quizView = document.getElementById('quiz-view');
@@ -469,6 +604,7 @@
         }
         
         updateCardUI();
+        updateMemorizedCount();
     }
 
     // カードUI更新
@@ -482,6 +618,50 @@
         document.getElementById('card-en').innerText = word.en;
         
         document.getElementById('study-progress').innerText = `${currentIndex + 1} / ${currentWordList.length}`;
+        
+        // 覚えたボタンの状態を更新
+        const memorizeBtn = document.getElementById('btn-memorize');
+        const badgeFront = document.getElementById('badge-front');
+        const badgeBack = document.getElementById('badge-back');
+        
+        if (memorizedWords.has(word.id)) {
+            memorizeBtn.innerHTML = '✅ Memorized';
+            memorizeBtn.classList.add('is-memorized');
+            badgeFront.classList.add('show');
+            badgeBack.classList.add('show');
+        } else {
+            memorizeBtn.innerHTML = '⭐ Memorize';
+            memorizeBtn.classList.remove('is-memorized');
+            badgeFront.classList.remove('show');
+            badgeBack.classList.remove('show');
+        }
+    }
+    
+    // 覚えた数の更新
+    function updateMemorizedCount() {
+        let count = 0;
+        currentWordList.forEach(word => {
+            if (memorizedWords.has(word.id)) {
+                count++;
+            }
+        });
+        document.getElementById('memorized-count').innerText = `⭐ ${count} Memorized`;
+    }
+
+    // 「覚えた」トグル機能
+    function toggleMemorized() {
+        const wordId = currentWordList[currentIndex].id;
+        if (memorizedWords.has(wordId)) {
+            memorizedWords.delete(wordId);
+        } else {
+            memorizedWords.add(wordId);
+        }
+        
+        // ローカルストレージに保存
+        localStorage.setItem('memorizedAdjectives', JSON.stringify(Array.from(memorizedWords)));
+        
+        updateCardUI();
+        updateMemorizedCount();
     }
 
     // 次のカード
@@ -521,6 +701,9 @@
 
     // 音声読み上げ機能 (Web Speech API)
     function playAudio() {
+        // イベントの伝播を止めてカードが裏返るのを防ぐ (ボタンクリック時)
+        if(event) event.stopPropagation();
+        
         const word = currentWordList[currentIndex].jp.replace(/\[な\]/g, ""); // [な]を除外して発音
         const utterance = new SpeechSynthesisUtterance(word);
         utterance.lang = 'ja-JP';
@@ -543,6 +726,7 @@
         quizView.style.display = 'flex';
         document.getElementById('quiz-play-area').style.display = 'flex';
         document.getElementById('quiz-result-view').style.display = 'none';
+        document.getElementById('quiz-explanation').style.display = 'none';
 
         const allWords = [...vocabulary['i-adj'], ...vocabulary['na-adj']];
         const shuffledWords = [...allWords].sort(() => 0.5 - Math.random());
@@ -566,6 +750,7 @@
             return;
         }
 
+        document.getElementById('quiz-explanation').style.display = 'none';
         const q = quizQuestions[currentQuizIndex];
         document.getElementById('quiz-progress-text').innerText = `Q ${currentQuizIndex + 1} / 10`;
         document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
@@ -581,12 +766,14 @@
                 ${choice.jp}
                 <div class="quiz-choice-romaji">${choice.romaji}</div>
             `;
-            btn.onclick = () => handleAnswer(btn, choice.jp === q.target.jp);
+            // パラメータにchoiceオブジェクト全体を渡すように変更
+            btn.onclick = () => handleAnswer(btn, choice, q.target);
             choicesContainer.appendChild(btn);
         });
     }
 
-    function handleAnswer(selectedBtn, isCorrect) {
+    function handleAnswer(selectedBtn, selectedChoice, targetWord) {
+        const isCorrect = selectedChoice.jp === targetWord.jp;
         const allBtns = document.querySelectorAll('.quiz-choice-btn');
         allBtns.forEach(btn => btn.disabled = true);
 
@@ -594,20 +781,38 @@
             selectedBtn.classList.add('correct');
             quizScore++;
             document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
+            
+            // 正解の場合は自動で次へ
+            setTimeout(() => {
+                currentQuizIndex++;
+                renderQuizQuestion();
+            }, 1000);
         } else {
             selectedBtn.classList.add('wrong');
-            const currentQ = quizQuestions[currentQuizIndex];
+            
             allBtns.forEach(btn => {
-                if (btn.innerText.includes(currentQ.target.jp)) {
+                if (btn.innerText.includes(targetWord.jp)) {
                     btn.classList.add('correct');
                 }
             });
-        }
+            
+            // 不正解の場合は説明を表示し、次へボタンを待つ
+            // ユーザーが選んだ間違った選択肢の情報
+            document.getElementById('exp-wrong-jp').innerText = selectedChoice.jp;
+            document.getElementById('exp-wrong-romaji').innerText = selectedChoice.romaji;
+            document.getElementById('exp-wrong-en').innerText = selectedChoice.en;
 
-        setTimeout(() => {
-            currentQuizIndex++;
-            renderQuizQuestion();
-        }, 1200);
+            // 正解の情報
+            document.getElementById('exp-jp').innerText = targetWord.jp;
+            document.getElementById('exp-romaji').innerText = targetWord.romaji;
+            document.getElementById('quiz-explanation').style.display = 'flex';
+        }
+    }
+    
+    // 次の問題へ進むボタン (不正解時)
+    function nextQuizQuestion() {
+        currentQuizIndex++;
+        renderQuizQuestion();
     }
 
     function showQuizResults() {
