@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="OHAYO CENTER: Professional online Japanese lessons.">
     <title>OHAYO CENTER - Audio Blog</title>
     
@@ -18,7 +18,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f4f6f8; line-height: 1.8; }
-        
+
         /* ナビゲーション */
         nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
@@ -31,135 +31,60 @@
             .nav-links { gap: 0.7rem; }
             .logo { font-size: 1.1rem; }
             .nav-links a { font-size: 0.75rem; letter-spacing: 0.5px; }
+            .script-box { font-size: 1rem; line-height: 2.1; }
         }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 110px 1.2rem 3rem; }
-        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; color: var(--dark); }
+        .container { max-width: 800px; margin: 0 auto; padding: 110px 1.2rem 4rem; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: var(--dark); }
         h2 i { color: var(--primary); margin-right: 10px; }
 
-        /* 折りたたみ式の美しいカードデザイン */
-        .diary-card {
-            background: #fff;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.03);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .diary-summary {
-            list-style: none;
-            cursor: pointer;
-            position: relative;
-            background: #fff;
-        }
+        /* 一覧：画像なしのコンパクトなカード */
+        .diary-card { background: #fff; border-radius: 16px; margin-bottom: 1.2rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.03); overflow: hidden; }
+        .diary-summary { display: flex; align-items: center; gap: 12px; padding: 1rem 1.2rem; list-style: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
         .diary-summary::-webkit-details-marker { display: none; }
-        
-        .diary-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .summary-text {
-            padding: 1.5rem;
-            position: relative;
-        }
-        
-        .diary-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-        .vol-badge {
-            background: var(--primary);
-            color: white;
-            padding: 4px 14px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        .diary-date {
-            color: #999;
-            font-size: 0.85rem;
-            font-family: monospace;
-            font-weight: bold;
-        }
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: var(--dark);
-            margin: 0;
-            padding-right: 30px;
-            line-height: 1.4;
-        }
-        
-        .expand-icon {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            color: #ddd;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
-        }
-        .diary-card[open] .expand-icon {
-            transform: translateY(-50%) rotate(180deg);
-            color: var(--primary);
-        }
+        .summary-text { flex: 1; min-width: 0; }
+        .diary-header { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
+        .vol-badge { background: var(--primary); color: white; padding: 2px 12px; border-radius: 50px; font-size: 0.78rem; font-weight: bold; }
+        .diary-date { color: #999; font-size: 0.82rem; font-family: monospace; font-weight: bold; }
+        .card-title { font-size: 1.05rem; font-weight: bold; color: var(--dark); margin: 0; line-height: 1.5; }
+        .expand-icon { flex-shrink: 0; font-size: 1rem; color: #ccc; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s; }
+        .noscript-box { background: #fff; border-radius: 16px; box-shadow: var(--shadow); padding: 1.5rem; text-align: center; color: var(--dark); }
+        .diary-card[open] .expand-icon { transform: rotate(180deg); color: var(--primary); }
 
-        /* 展開時のコンテンツ部分 */
-        .diary-content {
-            padding: 0 1.5rem 2rem 1.5rem;
-            border-top: 1px dashed #eee;
-            animation: fadeInDown 0.4s ease forwards;
-        }
+        .diary-content { padding: 0 1.2rem 1.5rem 1.2rem; border-top: 1px dashed #eee; animation: fadeInDown 0.4s ease forwards; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* レベル切り替え（タップ or 左右スワイプ） */
+        .level-tabs { display: flex; margin: 1.2rem 0 1rem; background: #f0f0f0; border-radius: 12px; padding: 4px; scroll-margin-top: 84px; }
+        .tab-btn { flex: 1; padding: 12px 4px; background: transparent; border: none; border-radius: 10px; font-size: 0.85rem; font-weight: bold; color: #888; cursor: pointer; transition: 0.3s; font-family: inherit; }
+        .tab-btn.active { background: #fff; color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .swipe-hint { display: none; text-align: center; font-size: 0.75rem; color: #bbb; margin: 0 0 1rem; }
+        @media (hover: none) { .swipe-hint { display: block; } }
 
-        /* スマホで押しやすいタブデザイン */
-        .level-tabs { 
-            display: flex; 
-            margin: 1.5rem 0; 
-            background: #f0f0f0; 
-            border-radius: 12px; 
-            padding: 4px;
-        }
-        .tab-btn { 
-            flex: 1;
-            padding: 12px 0; 
-            background: transparent; 
-            border: none; 
-            border-radius: 10px; 
-            font-size: 0.9rem; 
-            font-weight: bold; 
-            color: #888; 
-            cursor: pointer; 
-            transition: 0.3s; 
-        }
-        .tab-btn.active { 
-            background: #fff; 
-            color: var(--primary); 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-        }
-        
-        .tab-panel { display: none; width: 100%; animation: fadeIn 0.3s ease; }
+        .tab-panel { display: none; width: 100%; }
         .tab-panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .tab-panel.from-right { animation: slideFromRight 0.3s ease; }
+        .tab-panel.from-left { animation: slideFromLeft 0.3s ease; }
+        @keyframes slideFromRight { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideFromLeft { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: translateX(0); } }
 
+        /* 音声プレーヤーとコントロールボタン */
         .audio-unit { background: var(--primary-light); padding: 1.2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; }
         .audio-unit p { margin-bottom: 10px; color: #666; font-weight: bold; }
         .audio-unit audio { width: 100%; height: 40px; }
-        
+
+        .audio-controls { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255, 159, 67, 0.3); flex-wrap: wrap; }
+        .seek-group { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+        .speed-group { display: flex; align-items: center; gap: 5px; }
+        .speed-label { font-size: 0.75rem; color: #888; font-weight: bold; margin-right: 2px; }
+        .ctrl-btn { background: #fff; border: 1px solid rgba(255, 159, 67, 0.4); color: var(--dark); padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.2s; font-family: inherit; display: inline-flex; align-items: center; gap: 5px; }
+        .ctrl-btn:hover { background: #fff9f2; border-color: var(--primary); }
+        .ctrl-btn:active { transform: scale(0.96); }
+        .ctrl-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
         .script-box { font-size: 1.05rem; line-height: 2.2; color: var(--text); }
         .script-box p { margin-bottom: 1.5rem; }
-        
+
         .quote-box { border-left: 4px solid var(--primary); padding: 15px 20px; background: #fafafa; margin: 25px 0; font-family: 'Sawarabi Mincho', serif; border-radius: 0 10px 10px 0; }
         .quote-en { display: block; margin-top: 15px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; color: #777; font-style: italic; line-height: 1.6; }
         ruby rt { color: #999; font-size: 0.6em; }
@@ -168,17 +93,17 @@
         .support-details summary { padding: 12px 15px; background: #fafafa; cursor: pointer; font-size: 0.9rem; font-weight: bold; color: var(--primary); list-style: none; display: flex; align-items: center; gap: 8px; border-radius: 12px; transition: 0.2s; }
         .support-details summary:hover { background: var(--primary-light); }
         .support-details summary::-webkit-details-marker { display: none; }
-        .support-content { padding: 15px; font-size: 0.9rem; color: #555; border-top: 1px solid #eee; line-height: 1.8; }
-        
+        .support-content { padding: 15px; font-size: 0.9rem; color: #555; border-top: 1px solid #eee; line-height: 1.8; overflow-x: auto; }
+
         .vocab-table { width: 100%; border-collapse: collapse; }
-        .vocab-table th, .vocab-table td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        .vocab-table th, .vocab-table td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #f0f0f0; word-break: break-word; }
         .vocab-table th { color: #aaa; font-size: 0.75rem; text-transform: uppercase; background: #fafafa; }
 
         .bmc-btn { display: inline-flex; align-items: center; padding: 8px 16px; color: #000000; background-color: #FFDD00; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; }
         .bmc-btn:hover { transform: translateY(-2px); box-shadow: 0px 4px 10px rgba(0,0,0,0.15); }
         .bmc-btn img { height: 20px; width: auto; margin-right: 8px; }
 
-        footer { padding: 3rem 1.5rem; text-align: center; font-size: 0.8rem; color: #aaa; }
+        footer { padding: 2rem 1.5rem 4rem; text-align: center; font-size: 0.8rem; color: #aaa; }
     </style>
 </head>
 <body>
@@ -197,6 +122,7 @@
         <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
         
         <div id="blog-container"></div>
+        <noscript><div class="noscript-box">Audio Blog を表示するには JavaScript を有効にしてください。<br>Please enable JavaScript to view the Audio Blog episodes.</div></noscript>
         
     </section>
 </div>
@@ -214,14 +140,14 @@
 
 <script>
     const blogPosts = [
-          {
+        {
             vol: 6,
             date: "2026.07.05",
             title: "👀 一人称：First-person pronouns",
             image: "vol6.webp", 
             levels: [
                 {
-                    label: "📗 初中級",
+                    label: "📗 Pre-Intermediate",
                     audioSrc: "vol6-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
@@ -254,7 +180,7 @@
                     `
                 },
                 {
-                    label: "📕 中上級",
+                    label: "📕 Upper-Intermediate",
                     audioSrc: "vol6-2.mp3",
                     note: "🎵 ナチュラルスピードで挑戦してみましょう！🔥",
                     script: `
@@ -290,7 +216,6 @@
                 }
             ]
         },
-
         {
             vol: 5,
             date: "2026.06.05",
@@ -298,7 +223,7 @@
             image: "vol5.webp", 
             levels: [
                 {
-                    label: "📗 初中級",
+                    label: "📗 Pre-Intermediate",
                     audioSrc: "vol5-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
@@ -331,7 +256,7 @@
                     `
                 },
                 {
-                    label: "📕 上級",
+                    label: "📕 Advanced",
                     audioSrc: "vol5-2.mp3",
                     note: "🎵 ナチュラルスピードで挑戦してみましょう！🔥",
                     script: `
@@ -371,7 +296,7 @@
             image: "vol4.webp",
             levels: [
                 {
-                    label: "📗 中上級",
+                    label: "📗 Upper-Intermediate",
                     audioSrc: "vol4-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
@@ -416,7 +341,7 @@
                     `
                 },
                 {
-                    label: "📕 上級",
+                    label: "📕 Advanced",
                     audioSrc: "vol4-2.mp3",
                     note: "🎵 自然なスピードと、よりカジュアルな表現で話します🚀",
                     script: `
@@ -441,7 +366,7 @@
             image: "vol3.webp", 
             levels: [
                 {
-                    label: "📗 初中級",
+                    label: "📗 Pre-Intermediate",
                     audioSrc: "vol3-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
@@ -505,7 +430,7 @@
                     `
                 },
                 {
-                    label: "📕 上級",
+                    label: "📕 Advanced",
                     audioSrc: "vol3-2.mp3",
                     note: "🎵 ナチュラルスピードで挑戦してみましょう！🔥",
                     script: `
@@ -549,7 +474,7 @@
             image: "vol2.webp", 
             levels: [
                 {
-                    label: "📗 中上級",
+                    label: "📗 Upper-Intermediate",
                     audioSrc: "vol2-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
@@ -610,7 +535,7 @@
                     `
                 },
                 {
-                    label: "📕 上級",
+                    label: "📕 Advanced",
                     audioSrc: "vol2-2.mp3",
                     note: "🎵 普通に話します😊",
                     script: `
@@ -682,13 +607,13 @@
             image: "vol1.webp", 
             levels: [
                 {
-                    label: "📗 初中級",
+                    label: "📗 Pre-Intermediate",
                     audioSrc: "vol1-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
                         <p>こんにちは！OHAYO CENTERの オーディオブログへ ようこそ。</p>
                         <p>私は <ruby>しんや<rt>Shinya</rt></ruby>です。よろしくおねがいします！少し <ruby>自己紹介<rt>じこしょうかい</rt></ruby>を しますね。</p>
-                        <p>私は <ruby>千葉<rt>ちば</rt>出身<rt>しゅっしん</rt></ruby>です。みなさんは <ruby>東京<rt>とうきょう</rt></ruby>ディズニーランドを <ruby>知<rt>し</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>とうきょう</rt></ruby>に ありません。<strong><ruby>千葉<rt>ちば</rt></ruby>に あります！（笑）</strong></p>
+                        <p>私は <ruby>千葉<rt>ちば</rt></ruby><ruby>出身<rt>しゅっしん</rt></ruby>です。みなさんは <ruby>東京<rt>とうきょう</rt></ruby>ディズニーランドを <ruby>知<rt>し</rt></ruby>っていますね。じつは、東京ディズニーランドは <ruby>東京<rt>とうきょう</rt></ruby>に ありません。<strong><ruby>千葉<rt>ちば</rt></ruby>に あります！（笑）</strong></p>
                         <p>私の 家から 東京ディズニーランドは とても 近いです。千葉は 東京の となりに ある 町です。東京ほど 有名では ありませんが、とても いい ところです。</p>
                         <p>2017年に 日本語の 先生に なりました。それから、千葉の 日本語学校で 1年間 教えました。そのあと、「日本語パートナーズ」という 国の プログラムで ベトナムに 行きました。ベトナムの いなかの 高校で、ベトナム人の 日本語の 先生の アシスタントを しました。</p>
                         <p>やく 3年間、ベトナムで 生活しました。日本に 一度 帰って、また ベトナムに もどりました。そこで「OHAYO CENTER」として 日本語を 教えはじめました。でも、コロナで 大変に なりましたね……そこで、オンラインレッスンを はじめました。2021年 8月に 日本に 帰ってきて、今は OHAYO CENTERは 全部 オンラインです！</p>
@@ -714,7 +639,7 @@
                     `
                 },
                 {
-                    label: "📕 上級",
+                    label: "📕 Advanced",
                     audioSrc: "vol1-2.mp3",
                     note: "🎵 普通に話します😊",
                     script: `
@@ -749,47 +674,97 @@
 
     const container = document.getElementById('blog-container');
 
-    blogPosts.forEach((post, postIndex) => {
+    // 音声は常に1つだけ再生する（他のカード／レベルが流れ続けないように）
+    function pauseAllAudio(except) {
+        document.querySelectorAll('audio').forEach(a => { if (a !== except && !a.paused) a.pause(); });
+    }
+    function pauseCardAudio(card) {
+        card.querySelectorAll('audio').forEach(a => { if (!a.paused) a.pause(); });
+    }
+    document.addEventListener('visibilitychange', () => { if (document.hidden) pauseAllAudio(null); });
+
+    function renderTranslations(translations) {
+        if (!translations || translations.length === 0) return '';
+        return translations.map(t => `
+            <details class="support-details">
+                <summary><i class="fa-solid ${t.icon}"></i> ${t.title}</summary>
+                <div class="support-content">${t.content}</div>
+            </details>
+        `).join('');
+    }
+
+    function renderVocab(vocabHTML) {
+        if (!vocabHTML || vocabHTML.trim() === "") return '';
+        return `
+            <details class="support-details">
+                <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
+                <div class="support-content">
+                    <table class="vocab-table">
+                        <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+                        <tbody>${vocabHTML}</tbody>
+                    </table>
+                </div>
+            </details>
+        `;
+    }
+
+    // レベルを切り替える（dir: 1=右から, -1=左から, 0=アニメなし）
+    function activateLevel(card, index, dir) {
+        const btns = card.querySelectorAll('.tab-btn');
+        const panels = card.querySelectorAll('.tab-panel');
+        // 切り替え前の再生速度を引き継ぎ、隠れるパネルの音声は止める
+        const currentPanel = card.querySelector('.tab-panel.active');
+        const currentRate = currentPanel ? (currentPanel.querySelector('audio')?.playbackRate || 1) : 1;
+        pauseCardAudio(card);
+        btns.forEach((b, i) => { b.classList.toggle('active', i === index); b.setAttribute('aria-selected', i === index ? 'true' : 'false'); });
+        panels.forEach((p, i) => {
+            p.classList.remove('active', 'from-left', 'from-right');
+            if (i === index) {
+                p.classList.add('active');
+                if (dir) p.classList.add(dir > 0 ? 'from-right' : 'from-left');
+                const newAudio = p.querySelector('audio');
+                if (newAudio) {
+                    newAudio.playbackRate = currentRate;
+                    p.querySelectorAll('.speed-btn').forEach(b => b.classList.toggle('active', parseFloat(b.dataset.speed) === currentRate));
+                }
+            }
+        });
+        // 長い台本を読んでいる途中で切り替えたら、タブが見える位置まで戻す
+        const tabs = card.querySelector('.level-tabs');
+        if (tabs && typeof tabs.scrollIntoView === 'function' && tabs.getBoundingClientRect().top < 80) {
+            tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    function buildCard(post, isOpen) {
         const card = document.createElement('details');
         card.className = 'diary-card';
-        
-        const renderTranslations = (translations) => {
-            if (!translations || translations.length === 0) return '';
-            return translations.map(t => `
-                <details class="support-details">
-                    <summary><i class="fa-solid ${t.icon}"></i> ${t.title}</summary>
-                    <div class="support-content">${t.content}</div>
-                </details>
-            `).join('');
-        };
-
-        const renderVocab = (vocabHTML) => {
-            if (!vocabHTML || vocabHTML.trim() === "") return '';
-            return `
-                <details class="support-details">
-                    <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
-                    <div class="support-content">
-                        <table class="vocab-table">
-                            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
-                            <tbody>${vocabHTML}</tbody>
-                        </table>
-                    </div>
-                </details>
-            `;
-        };
+        card.open = isOpen;
 
         let tabsHTML = `<div class="level-tabs">`;
         let panelsHTML = ``;
 
         post.levels.forEach((level, levelIndex) => {
             const isActive = levelIndex === 0 ? 'active' : '';
-            tabsHTML += `<button type="button" class="tab-btn ${isActive}" onclick="switchTab(event, this, ${postIndex}, ${levelIndex})">${level.label}</button>`;
-            
+            tabsHTML += `<button type="button" class="tab-btn ${isActive}" data-level="${levelIndex}" aria-selected="${levelIndex === 0 ? 'true' : 'false'}">${level.label}</button>`;
             panelsHTML += `
-                <div class="tab-panel ${isActive}" id="panel-${postIndex}-${levelIndex}">
+                <div class="tab-panel ${isActive}">
                     <div class="audio-unit">
                         <p><small>${level.note}</small></p>
-                        <audio controls src="${level.audioSrc}"></audio>
+                        <audio controls preload="none" src="${level.audioSrc}"></audio>
+                        <div class="audio-controls">
+                            <div class="seek-group">
+                                <button type="button" class="ctrl-btn rewind-btn"><i class="fa-solid fa-rotate-left"></i> -10s</button>
+                                <button type="button" class="ctrl-btn stop-btn"><i class="fa-solid fa-stop"></i> Stop</button>
+                                <button type="button" class="ctrl-btn forward-btn">+10s <i class="fa-solid fa-rotate-right"></i></button>
+                            </div>
+                            <div class="speed-group">
+                                <span class="speed-label">Speed:</span>
+                                <button type="button" class="ctrl-btn speed-btn" data-speed="0.8">0.8x</button>
+                                <button type="button" class="ctrl-btn speed-btn active" data-speed="1">1.0x</button>
+                                <button type="button" class="ctrl-btn speed-btn" data-speed="1.2">1.2x</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="script-box">
                         ${level.script}
@@ -801,42 +776,108 @@
         });
         tabsHTML += `</div>`;
 
+        const hint = post.levels.length > 1 ? `<p class="swipe-hint">◀ Swipe left/right to switch level ▶</p>` : '';
+
         card.innerHTML = `
             <summary class="diary-summary">
-                <img src="${post.image}" alt="Blog Cover" class="diary-image" loading="lazy">
                 <div class="summary-text">
                     <div class="diary-header">
                         <span class="vol-badge">Vol.${post.vol}</span>
                         <span class="diary-date">${post.date}</span>
                     </div>
                     <h3 class="card-title">${post.title}</h3>
-                    <i class="fa-solid fa-chevron-down expand-icon"></i>
                 </div>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
             </summary>
             <div class="diary-content">
                 ${tabsHTML}
-                ${panelsHTML}
+                ${hint}
+                <div class="level-panels">${panelsHTML}</div>
             </div>
         `;
-        
-        container.appendChild(card);
-    });
 
-    function switchTab(event, clickedBtn, postIndex, targetLevelIndex) {
-        event.preventDefault();
-        
-        const tabsContainer = clickedBtn.parentElement;
-        const allBtns = tabsContainer.querySelectorAll('.tab-btn');
-        
-        const cardContent = tabsContainer.parentElement;
-        const allPanels = cardContent.querySelectorAll('.tab-panel');
+        // タップでレベル切り替え
+        card.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = Number(btn.dataset.level);
+                const current = [...card.querySelectorAll('.tab-btn')].findIndex(b => b.classList.contains('active'));
+                if (target === current) return;
+                activateLevel(card, target, target > current ? 1 : -1);
+            });
+        });
 
-        allBtns.forEach(btn => btn.classList.remove('active'));
-        allPanels.forEach(panel => panel.classList.remove('active'));
+        // カードを閉じたら、そのカードの音声を止める
+        card.addEventListener('toggle', () => { if (!card.open) pauseCardAudio(card); });
 
-        clickedBtn.classList.add('active');
-        cardContent.querySelector(`#panel-${postIndex}-${targetLevelIndex}`).classList.add('active');
+        // 各パネルの音声コントロール（10秒戻し／送り＆再生速度）
+        card.querySelectorAll('.audio-unit').forEach(unit => {
+            const audio = unit.querySelector('audio');
+            const rewindBtn = unit.querySelector('.rewind-btn');
+            const forwardBtn = unit.querySelector('.forward-btn');
+            const stopBtn = unit.querySelector('.stop-btn');
+            const speedBtns = unit.querySelectorAll('.speed-btn');
+
+            // この音声が再生されたら、他の音声はすべて止める
+            audio.addEventListener('play', () => pauseAllAudio(audio));
+
+            rewindBtn.addEventListener('click', () => {
+                audio.currentTime = Math.max(0, audio.currentTime - 10);
+            });
+            stopBtn.addEventListener('click', () => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            forwardBtn.addEventListener('click', () => {
+                const end = isFinite(audio.duration) ? audio.duration : audio.currentTime + 10;
+                audio.currentTime = Math.min(end, audio.currentTime + 10);
+            });
+
+            speedBtns.forEach(sBtn => {
+                sBtn.addEventListener('click', () => {
+                    const rate = parseFloat(sBtn.dataset.speed);
+                    audio.playbackRate = rate;
+                    speedBtns.forEach(b => b.classList.remove('active'));
+                    sBtn.classList.add('active');
+                });
+            });
+        });
+
+        // 左右スワイプで切り替え（音声プレーヤー・コントロール上は除く）
+        const panelsEl = card.querySelector('.level-panels');
+        const levelCount = post.levels.length;
+        let startX = 0, startY = 0, tracking = false;
+        panelsEl.addEventListener('touchstart', (e) => {
+            if (e.target.closest('audio, .audio-unit, .ctrl-btn')) { tracking = false; return; }
+            const t = e.touches[0];
+            startX = t.clientX; startY = t.clientY; tracking = true;
+        }, { passive: true });
+        panelsEl.addEventListener('touchend', (e) => {
+            if (!tracking) return;
+            tracking = false;
+            const t = e.changedTouches[0];
+            const dx = t.clientX - startX;
+            const dy = t.clientY - startY;
+            if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+            const current = [...card.querySelectorAll('.tab-btn')].findIndex(b => b.classList.contains('active'));
+            const next = dx < 0 ? current + 1 : current - 1;
+            if (next < 0 || next >= levelCount) return;
+            activateLevel(card, next, dx < 0 ? 1 : -1);
+        }, { passive: true });
+
+        return card;
     }
+
+    // 全記事を初期状態で閉じたまま表示（失敗時は真っ白にせず案内を出す）
+    try {
+        blogPosts.forEach(post => {
+            container.appendChild(buildCard(post, false));
+        });
+    } catch (err) {
+        container.innerHTML = '<div class="noscript-box">記事を読み込めませんでした。ページを再読み込みしてください。<br>Failed to load the episodes. Please reload the page.</div>';
+        console.error(err);
+    }
+
 </script>
 
 </body>
