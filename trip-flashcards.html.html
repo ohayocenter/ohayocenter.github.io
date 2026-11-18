@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ohayo Center - Traveler's Japanese Flashcards & Quiz</title>
 
-  <meta name="description" content="OHAYO CENTER: Japanese travel flashcards and quiz. Learn useful travel phrases and verbs with English and Portuguese translations.">
+  <meta name="description" content="OHAYO CENTER: Japanese travel flashcards and quiz. Learn useful travel phrases and verbs with English, Portuguese and Italian translations.">
   <link rel="icon" href="icon.png" type="image/png">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -438,6 +438,8 @@
       border-color: #244c78;
       color: white;
     }
+    #ohayo-flashcards #lang-row { gap: 8px; align-items: center; }
+    #ohayo-flashcards .lang-label { font-size: 13px; color: #64748b; font-weight: 600; }
     @media (max-width: 450px) {
       #ohayo-flashcards .controls button { padding: 10px 12px; font-size: 14px; }
       #ohayo-flashcards .tab { font-size: 12px; padding: 10px 2px; }
@@ -472,8 +474,8 @@
             <strong id="english"></strong>
           </div>
           <div class="translation">
-            <small>PORTUGUÊS</small>
-            <strong id="portuguese"></strong>
+            <small id="second-lang-label">PORTUGUÊS</small>
+            <strong id="second-lang"></strong>
           </div>
           <div class="dictionary" id="dictionary"></div>
         </div>
@@ -525,6 +527,13 @@
     <button id="shuffle" type="button">🔀 Shuffle cards</button>
   </div>
 
+  <div class="sub-controls" id="lang-row">
+    <span class="lang-label">🌐 Translation:</span>
+    <button id="lang-pt" type="button" class="on">Português</button>
+    <button id="lang-it" type="button">Italiano</button>
+    <button id="lang-es" type="button">Español</button>
+  </div>
+
   <div class="controls" id="quiz-controls" style="display: none; justify-content: center;">
     <button class="primary-btn" id="next-question" style="max-width: 200px;" disabled>Next Question →</button>
   </div>
@@ -536,108 +545,108 @@
       // Data source
       const data = {
         phrases: [
-          { jp: 'Sumimasen', kana: 'すみません', en: 'Excuse me / I’m sorry', pt: 'Com licença / Desculpe' },
-          { jp: 'Eki wa doko desu ka?', kana: '駅はどこですか？', en: 'Where is the train station?', pt: 'Onde fica a estação de trem?' },
-          { jp: 'Arigatou gozaimasu', kana: 'ありがとうございます', en: 'Thank you very much', pt: 'Muito obrigado(a)' },
-          { jp: 'Ikura desu ka?', kana: 'いくらですか？', en: 'How much is this?', pt: 'Quanto custa isso?' },
-          { jp: 'Kore o onegaishimasu', kana: 'これをお願いします', en: 'This one, please', pt: 'Este, por favor' },
-          { jp: 'Kore wa nan desu ka?', kana: 'これは何ですか？', en: 'What is this?', pt: 'O que é isso?' },
-          { jp: 'O-kaikei onegaishimasu', kana: 'お会計お願いします', en: 'Check, please', pt: 'A conta, por favor' },
-          { jp: 'Shashin o totte mo ii desu ka?', kana: '写真を撮ってもいいですか？', en: 'Can I take a photo?', pt: 'Posso tirar uma foto?' },
-          { jp: 'Eigo o hanasemasu ka?', kana: '英語、話せますか？', en: 'Can you speak English?', pt: 'Você fala inglês?' },
-          { jp: 'Yukkuri hanashite kudasai', kana: 'ゆっくり話してください', en: 'Please speak slowly', pt: 'Fale devagar, por favor' },
-          { jp: 'Chizu wa arimasu ka?', kana: '地図はありますか？', en: 'Do you have a map?', pt: 'Você tem um mapa?' },
-          { jp: 'Wi-Fi wa arimasu ka?', kana: 'Wi-Fiはありますか？', en: 'Do you have Wi-Fi?', pt: 'Você tem Wi-Fi?' },
-          { jp: 'O-mizu o kudasai', kana: 'お水をください', en: 'Water, please', pt: 'Água, por favor' },
-          { jp: 'Koko wa doko desu ka?', kana: 'ここはどこですか？', en: 'Where am I?', pt: 'Onde estou?' },
-          { jp: 'Osusume wa nan desu ka?', kana: 'おすすめは何ですか？', en: 'What do you recommend?', pt: 'O que você recomenda?' },
-          { jp: 'Shashin o totte moraemasu ka?', kana: '写真をとってもらえますか？', en: 'Could you take a photo for me?', pt: 'Você pode tirar uma foto para mim?' },
-          { jp: 'Atatamete kudasai', kana: 'あたためてください。', en: 'Please heat it up.', pt: 'Por favor, esquente isso.' },
-          { jp: 'Genkin de', kana: '現金で。', en: 'In cash.', pt: 'Em dinheiro.' },
-          { jp: 'Fukuro, ichimai onegaishimasu', kana: 'ふくろ、１まいお願いします。', en: 'One bag, please.', pt: 'Uma sacola, por favor.' },
-          { jp: 'Koori nashi de', kana: '氷なしで。', en: 'Without ice.', pt: 'Sem gelo.' },
-          { jp: 'Miruku dake de', kana: 'ミルクだけで。', en: 'With milk only.', pt: 'Apenas com leite.' },
-          { jp: 'Karai desu ka?', kana: 'からいですか。', en: 'Is it spicy?', pt: 'É apimentado?' },
-          { jp: 'Nattsu haitte imasu ka?', kana: 'ナッツはいっていますか。', en: 'Does it contain nuts?', pt: 'Contém nozes / castanhas?' },
-          { jp: 'Shiifuudo arerugii nan desu', kana: 'シーフードアレルギーなんです。', en: 'I have a seafood allergy.', pt: 'Eu tenho alergia a frutos do mar.' },
-          { jp: 'Menyuu o kudasai', kana: 'メニューをください。', en: 'Menu, please.', pt: 'O cardápio, por favor.' },
-          { jp: 'O-shibori o kudasai', kana: 'おしぼりをください。', en: 'Wet towel, please.', pt: 'Uma toalha úmida, por favor.' },
-          { jp: 'Eigo no menyuu wa arimasu ka?', kana: '英語のメニューはありますか。', en: 'Do you have an English menu?', pt: 'Você tem um cardápio em inglês?' },
-          { jp: 'Koko de taberaremasu ka?', kana: 'ここで食べられますか。', en: 'Can I eat here?', pt: 'Posso comer aqui?' },
-          { jp: 'Mochikaeri de', kana: '持ち帰りで。', en: 'For takeout.', pt: 'Para viagem.' },
-          { jp: 'Toire wa doko desu ka?', kana: 'トイレはどこですか。', en: 'Where is the restroom?', pt: 'Onde fica o banheiro?' },
-          { jp: 'Kuukou made onegaishimasu', kana: '空港までお願いします。', en: 'To the airport, please.', pt: 'Para o aeroporto, por favor.' },
-          { jp: 'Kippu uriba wa doko desu ka?', kana: '切符売り場はどこですか。', en: 'Where is the ticket counter?', pt: 'Onde é a bilheteria?' },
-          { jp: '[Basho] made ikimasu ka?', kana: '〇〇まで行きますか。', en: 'Does it go to [place]?', pt: 'Vai até [lugar]?' },
-          { jp: 'Nan-ban sen desu ka?', kana: '何番線ですか。', en: 'Which platform?', pt: 'Qual plataforma?' },
-          { jp: 'Mayotte shimaimashita', kana: '迷ってしまいました。', en: 'I am lost.', pt: 'Eu estou perdido(a).' },
-          { jp: 'Tetsudatte kurete, arigatou gozaimasu', kana: '手伝ってくれて、ありがとうございます。', en: 'Thank you for helping me.', pt: 'Obrigado(a) por me ajudar.' },
-          { jp: 'Mou ichido onegai shimasu', kana: 'もう一度おねがいします。', en: 'Could you say that again?', pt: 'Poderia dizer isso de novo?' },
-          { jp: 'Wakarimasen', kana: '分かりません。', en: 'I do not understand.', pt: 'Eu não entendo.' },
-          { jp: 'Koko ni kaite kudasai', kana: 'ここに書いてください。', en: 'Please write it down here.', pt: 'Por favor, escreva aqui.' },
-          { jp: 'Kaado de haraemasu ka?', kana: 'カードで払えますか。', en: 'Can I pay by card?', pt: 'Posso pagar com cartão?' },
-          { jp: 'Reshiito onegaishimasu', kana: 'レシートお願いします。', en: 'A receipt, please.', pt: 'Um recibo, por favor.' },
-          { jp: 'Mite iru dake desu', kana: '見ているだけです。', en: 'I am just looking.', pt: 'Estou só olhando.' },
-          { jp: 'Shichaku shite mo ii desu ka?', kana: '試着してもいいですか。', en: 'Can I try this on?', pt: 'Posso provar isso?' },
-          { jp: 'Ookii saizu wa arimasu ka?', kana: '大きいサイズはありますか。', en: 'Do you have a larger size?', pt: 'Você tem um tamanho maior?' },
-          { jp: 'Jikan wa dorekurai kakarimasu ka?', kana: '時間はどれくらいかかりますか。', en: 'How long does it take?', pt: 'Quanto tempo leva?' },
-          { jp: 'Chikai desu ka?', kana: '近いですか。', en: 'Is it near?', pt: 'É perto?' },
-          { jp: 'Tooi desu ka?', kana: '遠いですか。', en: 'Is it far?', pt: 'É longe?' },
-          { jp: 'Shashin o misete kudasai', kana: '写真を見せてください。', en: 'Please show me a photo.', pt: 'Por favor, mostre-me uma foto.' },
-          { jp: 'Mou sukoshi yasui no wa arimasu ka?', kana: 'もう少し安いのはありますか。', en: 'Do you have anything a little cheaper?', pt: 'Você tem algo um pouco mais barato?' },
-          { jp: 'Koko ni ikitai desu', kana: 'ここに行きたいです。', en: 'I want to go here.', pt: 'Eu quero ir para cá.' }
+          { jp: 'Sumimasen', kana: 'すみません', en: 'Excuse me / I’m sorry', pt: 'Com licença / Desculpe', it: 'Mi scusi / Mi dispiace', es: 'Disculpe / Perdón' },
+          { jp: 'Eki wa doko desu ka?', kana: '駅はどこですか？', en: 'Where is the train station?', pt: 'Onde fica a estação de trem?', it: 'Dov\'è la stazione?', es: '¿Dónde está la estación de tren?' },
+          { jp: 'Arigatou gozaimasu', kana: 'ありがとうございます', en: 'Thank you very much', pt: 'Muito obrigado(a)', it: 'Grazie mille', es: 'Muchas gracias' },
+          { jp: 'Ikura desu ka?', kana: 'いくらですか？', en: 'How much is this?', pt: 'Quanto custa isso?', it: 'Quanto costa questo?', es: '¿Cuánto cuesta esto?' },
+          { jp: 'Kore o onegaishimasu', kana: 'これをお願いします', en: 'This one, please', pt: 'Este, por favor', it: 'Questo, per favore', es: 'Este, por favor' },
+          { jp: 'Kore wa nan desu ka?', kana: 'これは何ですか？', en: 'What is this?', pt: 'O que é isso?', it: 'Che cos\'è questo?', es: '¿Qué es esto?' },
+          { jp: 'O-kaikei onegaishimasu', kana: 'お会計お願いします', en: 'Check, please', pt: 'A conta, por favor', it: 'Il conto, per favore', es: 'La cuenta, por favor' },
+          { jp: 'Shashin o totte mo ii desu ka?', kana: '写真を撮ってもいいですか？', en: 'Can I take a photo?', pt: 'Posso tirar uma foto?', it: 'Posso fare una foto?', es: '¿Puedo tomar una foto?' },
+          { jp: 'Eigo o hanasemasu ka?', kana: '英語、話せますか？', en: 'Can you speak English?', pt: 'Você fala inglês?', it: 'Parla inglese?', es: '¿Habla inglés?' },
+          { jp: 'Yukkuri hanashite kudasai', kana: 'ゆっくり話してください', en: 'Please speak slowly', pt: 'Fale devagar, por favor', it: 'Parli lentamente, per favore', es: 'Hable despacio, por favor' },
+          { jp: 'Chizu wa arimasu ka?', kana: '地図はありますか？', en: 'Do you have a map?', pt: 'Você tem um mapa?', it: 'Ha una mappa?', es: '¿Tiene un mapa?' },
+          { jp: 'Wi-Fi wa arimasu ka?', kana: 'Wi-Fiはありますか？', en: 'Do you have Wi-Fi?', pt: 'Você tem Wi-Fi?', it: 'C\'è il Wi-Fi?', es: '¿Tiene Wi-Fi?' },
+          { jp: 'O-mizu o kudasai', kana: 'お水をください', en: 'Water, please', pt: 'Água, por favor', it: 'Dell\'acqua, per favore', es: 'Agua, por favor' },
+          { jp: 'Koko wa doko desu ka?', kana: 'ここはどこですか？', en: 'Where am I?', pt: 'Onde estou?', it: 'Dove mi trovo?', es: '¿Dónde estoy?' },
+          { jp: 'Osusume wa nan desu ka?', kana: 'おすすめは何ですか？', en: 'What do you recommend?', pt: 'O que você recomenda?', it: 'Cosa mi consiglia?', es: '¿Qué me recomienda?' },
+          { jp: 'Shashin o totte moraemasu ka?', kana: '写真をとってもらえますか？', en: 'Could you take a photo for me?', pt: 'Você pode tirar uma foto para mim?', it: 'Potrebbe farmi una foto?', es: '¿Podría tomarme una foto?' },
+          { jp: 'Atatamete kudasai', kana: 'あたためてください。', en: 'Please heat it up.', pt: 'Por favor, esquente isso.', it: 'Lo riscaldi, per favore.', es: 'Calientelo, por favor.' },
+          { jp: 'Genkin de', kana: '現金で。', en: 'In cash.', pt: 'Em dinheiro.', it: 'In contanti.', es: 'En efectivo.' },
+          { jp: 'Fukuro, ichimai onegaishimasu', kana: 'ふくろ、１まいお願いします。', en: 'One bag, please.', pt: 'Uma sacola, por favor.', it: 'Un sacchetto, per favore.', es: 'Una bolsa, por favor.' },
+          { jp: 'Koori nashi de', kana: '氷なしで。', en: 'Without ice.', pt: 'Sem gelo.', it: 'Senza ghiaccio.', es: 'Sin hielo.' },
+          { jp: 'Miruku dake de', kana: 'ミルクだけで。', en: 'With milk only.', pt: 'Apenas com leite.', it: 'Solo con latte.', es: 'Solo con leche.' },
+          { jp: 'Karai desu ka?', kana: 'からいですか。', en: 'Is it spicy?', pt: 'É apimentado?', it: 'È piccante?', es: '¿Es picante?' },
+          { jp: 'Nattsu haitte imasu ka?', kana: 'ナッツはいっていますか。', en: 'Does it contain nuts?', pt: 'Contém nozes / castanhas?', it: 'Contiene frutta secca?', es: '¿Contiene frutos secos?' },
+          { jp: 'Shiifuudo arerugii nan desu', kana: 'シーフードアレルギーなんです。', en: 'I have a seafood allergy.', pt: 'Eu tenho alergia a frutos do mar.', it: 'Sono allergico ai frutti di mare.', es: 'Tengo alergia a los mariscos.' },
+          { jp: 'Menyuu o kudasai', kana: 'メニューをください。', en: 'Menu, please.', pt: 'O cardápio, por favor.', it: 'Il menù, per favore.', es: 'El menú, por favor.' },
+          { jp: 'O-shibori o kudasai', kana: 'おしぼりをください。', en: 'Wet towel, please.', pt: 'Uma toalha úmida, por favor.', it: 'Un asciugamano bagnato, per favore.', es: 'Una toalla húmeda, por favor.' },
+          { jp: 'Eigo no menyuu wa arimasu ka?', kana: '英語のメニューはありますか。', en: 'Do you have an English menu?', pt: 'Você tem um cardápio em inglês?', it: 'Ha un menù in inglese?', es: '¿Tiene un menú en inglés?' },
+          { jp: 'Koko de taberaremasu ka?', kana: 'ここで食べられますか。', en: 'Can I eat here?', pt: 'Posso comer aqui?', it: 'Posso mangiare qui?', es: '¿Puedo comer aquí?' },
+          { jp: 'Mochikaeri de', kana: '持ち帰りで。', en: 'For takeout.', pt: 'Para viagem.', it: 'Da asporto.', es: 'Para llevar.' },
+          { jp: 'Toire wa doko desu ka?', kana: 'トイレはどこですか。', en: 'Where is the restroom?', pt: 'Onde fica o banheiro?', it: 'Dov\'è il bagno?', es: '¿Dónde está el baño?' },
+          { jp: 'Kuukou made onegaishimasu', kana: '空港までお願いします。', en: 'To the airport, please.', pt: 'Para o aeroporto, por favor.', it: 'All\'aeroporto, per favore.', es: 'Al aeropuerto, por favor.' },
+          { jp: 'Kippu uriba wa doko desu ka?', kana: '切符売り場はどこですか。', en: 'Where is the ticket counter?', pt: 'Onde é a bilheteria?', it: 'Dov\'è la biglietteria?', es: '¿Dónde está la taquilla?' },
+          { jp: '[Basho] made ikimasu ka?', kana: '〇〇まで行きますか。', en: 'Does it go to [place]?', pt: 'Vai até [lugar]?', it: 'Va a [luogo]?', es: '¿Va hasta [lugar]?' },
+          { jp: 'Nan-ban sen desu ka?', kana: '何番線ですか。', en: 'Which platform?', pt: 'Qual plataforma?', it: 'Quale binario?', es: '¿Qué andén es?' },
+          { jp: 'Mayotte shimaimashita', kana: '迷ってしまいました。', en: 'I am lost.', pt: 'Eu estou perdido(a).', it: 'Mi sono perso(a).', es: 'Estoy perdido(a).' },
+          { jp: 'Tetsudatte kurete, arigatou gozaimasu', kana: '手伝ってくれて、ありがとうございます。', en: 'Thank you for helping me.', pt: 'Obrigado(a) por me ajudar.', it: 'Grazie per avermi aiutato.', es: 'Gracias por ayudarme.' },
+          { jp: 'Mou ichido onegai shimasu', kana: 'もう一度おねがいします。', en: 'Could you say that again?', pt: 'Poderia dizer isso de novo?', it: 'Può ripetere, per favore?', es: '¿Podría repetirlo, por favor?' },
+          { jp: 'Wakarimasen', kana: '分かりません。', en: 'I do not understand.', pt: 'Eu não entendo.', it: 'Non capisco.', es: 'No entiendo.' },
+          { jp: 'Koko ni kaite kudasai', kana: 'ここに書いてください。', en: 'Please write it down here.', pt: 'Por favor, escreva aqui.', it: 'Lo scriva qui, per favore.', es: 'Escríbalo aquí, por favor.' },
+          { jp: 'Kaado de haraemasu ka?', kana: 'カードで払えますか。', en: 'Can I pay by card?', pt: 'Posso pagar com cartão?', it: 'Posso pagare con la carta?', es: '¿Puedo pagar con tarjeta?' },
+          { jp: 'Reshiito onegaishimasu', kana: 'レシートお願いします。', en: 'A receipt, please.', pt: 'Um recibo, por favor.', it: 'Lo scontrino, per favore.', es: 'Un recibo, por favor.' },
+          { jp: 'Mite iru dake desu', kana: '見ているだけです。', en: 'I am just looking.', pt: 'Estou só olhando.', it: 'Sto solo guardando.', es: 'Solo estoy mirando.' },
+          { jp: 'Shichaku shite mo ii desu ka?', kana: '試着してもいいですか。', en: 'Can I try this on?', pt: 'Posso provar isso?', it: 'Posso provarlo?', es: '¿Puedo probármelo?' },
+          { jp: 'Ookii saizu wa arimasu ka?', kana: '大きいサイズはありますか。', en: 'Do you have a larger size?', pt: 'Você tem um tamanho maior?', it: 'Ha una taglia più grande?', es: '¿Tiene una talla más grande?' },
+          { jp: 'Jikan wa dorekurai kakarimasu ka?', kana: '時間はどれくらいかかりますか。', en: 'How long does it take?', pt: 'Quanto tempo leva?', it: 'Quanto tempo ci vuole?', es: '¿Cuánto tiempo tarda?' },
+          { jp: 'Chikai desu ka?', kana: '近いですか。', en: 'Is it near?', pt: 'É perto?', it: 'È vicino?', es: '¿Está cerca?' },
+          { jp: 'Tooi desu ka?', kana: '遠いですか。', en: 'Is it far?', pt: 'É longe?', it: 'È lontano?', es: '¿Está lejos?' },
+          { jp: 'Shashin o misete kudasai', kana: '写真を見せてください。', en: 'Please show me a photo.', pt: 'Por favor, mostre-me uma foto.', it: 'Mi mostri una foto, per favore.', es: 'Muéstreme una foto, por favor.' },
+          { jp: 'Mou sukoshi yasui no wa arimasu ka?', kana: 'もう少し安いのはありますか。', en: 'Do you have anything a little cheaper?', pt: 'Você tem algo um pouco mais barato?', it: 'Ha qualcosa di un po\' più economico?', es: '¿Tiene algo un poco más barato?' },
+          { jp: 'Koko ni ikitai desu', kana: 'ここに行きたいです。', en: 'I want to go here.', pt: 'Eu quero ir para cá.', it: 'Voglio andare qui.', es: 'Quiero ir aquí.' }
         ],
         verbs: [
-          { jp: 'Tabemasu', kana: '食べます', en: 'To eat', pt: 'Comer', dictionary: 'Dictionary form: Taberu (食べる)' },
-          { jp: 'Ikimasu', kana: '行きます', en: 'To go', pt: 'Ir', dictionary: 'Dictionary form: Iku (行く)' },
-          { jp: 'Nomimasu', kana: '飲みます', en: 'To drink', pt: 'Beber', dictionary: 'Dictionary form: Nomu (飲む)' },
-          { jp: 'Kaimasu', kana: '買います', en: 'To buy', pt: 'Comprar', dictionary: 'Dictionary form: Kau (買う)' },
-          { jp: 'Mimasu', kana: '見ます', en: 'To see / look', pt: 'Ver / Olhar', dictionary: 'Dictionary form: Miru (見る)' },
-          { jp: 'Norimasu', kana: '乗ります', en: 'To ride / get on', pt: 'Andar / Subir', dictionary: 'Dictionary form: Noru (乗る)' },
-          { jp: 'Orimasu', kana: '降ります', en: 'To get off', pt: 'Descer', dictionary: 'Dictionary form: Oriru (降りる)' },
-          { jp: 'Shimasu', kana: 'します', en: 'To do', pt: 'Fazer', dictionary: 'Dictionary form: Suru (する)' },
-          { jp: 'Hanashimasu', kana: '話します', en: 'To speak', pt: 'Falar', dictionary: 'Dictionary form: Hanasu (話す)' },
-          { jp: 'Kaerimasu', kana: '帰ります', en: 'To go home / return', pt: 'Voltar / Ir para casa', dictionary: 'Dictionary form: Kaeru (帰る)' },
-          { jp: 'Wakarimasu', kana: '分かります', en: 'To understand', pt: 'Entender', dictionary: 'Dictionary form: Wakaru (分かる)' },
-          { jp: 'Kimasu', kana: '来ます', en: 'To come', pt: 'Vir', dictionary: 'Dictionary form: Kuru (来る)' },
-          { jp: 'Machimasu', kana: '待ちます', en: 'To wait', pt: 'Esperar', dictionary: 'Dictionary form: Matsu (待つ)' },
-          { jp: 'Kikimasu', kana: '聞きます', en: 'To listen / ask', pt: 'Ouvir / Perguntar', dictionary: 'Dictionary form: Kiku (聞く)' },
-          { jp: 'Yobimasu', kana: '呼びます', en: 'To call', pt: 'Chamar', dictionary: 'Dictionary form: Yobu (呼ぶ)' },
-          { jp: 'Yomimasu', kana: '読みます', en: 'To read', pt: 'Ler', dictionary: 'Dictionary form: Yomu (読む)' },
-          { jp: 'Kakimasu', kana: '書きます', en: 'To write', pt: 'Escrever', dictionary: 'Dictionary form: Kaku (書く)' },
-          { jp: 'Oyogimasu', kana: '泳ぎます', en: 'To swim', pt: 'Nadar', dictionary: 'Dictionary form: Oyogu (泳ぐ)' },
-          { jp: 'Asobimasu', kana: '遊びます', en: 'To play / hang out', pt: 'Brincar / Sair', dictionary: 'Dictionary form: Asobu (遊ぶ)' },
-          { jp: 'Yasumimasu', kana: '休みます', en: 'To rest', pt: 'Descansar', dictionary: 'Dictionary form: Yasumu (休む)' },
-          { jp: 'Okimasu', kana: '起きます', en: 'To wake up', pt: 'Acordar', dictionary: 'Dictionary form: Okiru (起きる)' },
-          { jp: 'Nemasu', kana: '寝ます', en: 'To sleep', pt: 'Dormir', dictionary: 'Dictionary form: Neru (寝る)' },
-          { jp: 'Hatarakimasu', kana: '働きます', en: 'To work', pt: 'Trabalhar', dictionary: 'Dictionary form: Hataraku (働く)' },
-          { jp: 'Benkyou shimasu', kana: '勉強します', en: 'To study', pt: 'Estudar', dictionary: 'Dictionary form: Benkyou suru (勉強する)' },
-          { jp: 'Oshiemasu', kana: '教えます', en: 'To teach', pt: 'Ensinar', dictionary: 'Dictionary form: Oshieru (教える)' },
-          { jp: 'Naraimasu', kana: '習います', en: 'To learn', pt: 'Aprender', dictionary: 'Dictionary form: Narau (習う)' },
-          { jp: 'Kakarimasu', kana: 'かかります', en: 'To take (time) / cost', pt: 'Levar (tempo) / Custar', dictionary: 'Dictionary form: Kakaru (かかる)' },
-          { jp: 'Magarimasu', kana: '曲がります', en: 'To turn', pt: 'Virar', dictionary: 'Dictionary form: Magaru (曲がる)' },
-          { jp: 'Tomarimasu', kana: '止まります', en: 'To stop', pt: 'Parar', dictionary: 'Dictionary form: Tomaru (止まる)' },
-          { jp: 'Arukimasu', kana: '歩きます', en: 'To walk', pt: 'Andar / Caminhar', dictionary: 'Dictionary form: Aruku (歩く)' },
-          { jp: 'Hashirimasu', kana: '走ります', en: 'To run', pt: 'Correr', dictionary: 'Dictionary form: Hashiru (走る)' },
-          { jp: 'Tsukaimasu', kana: '使います', en: 'To use', pt: 'Usar', dictionary: 'Dictionary form: Tsukau (使う)' },
-          { jp: 'Tsukurimasu', kana: '作ります', en: 'To make', pt: 'Fazer / Preparar', dictionary: 'Dictionary form: Tsukuru (作る)' },
-          { jp: 'Hairimasu', kana: '入ります', en: 'To enter', pt: 'Entrar', dictionary: 'Dictionary form: Hairu (入る)' },
-          { jp: 'Demasu', kana: '出ます', en: 'To exit / leave', pt: 'Sair', dictionary: 'Dictionary form: Deru (出る)' },
-          { jp: 'Suwarimasu', kana: '座ります', en: 'To sit', pt: 'Sentar', dictionary: 'Dictionary form: Suwaru (座る)' },
-          { jp: 'Tachimasu', kana: '立ちます', en: 'To stand', pt: 'Levantar / Ficar em pé', dictionary: 'Dictionary form: Tatsu (立つ)' },
-          { jp: 'Kaeshimasu', kana: '返します', en: 'To return (something)', pt: 'Devolver', dictionary: 'Dictionary form: Kaesu (返す)' },
-          { jp: 'Kashimasu', kana: '貸します', en: 'To lend', pt: 'Emprestar (para alguém)', dictionary: 'Dictionary form: Kasu (貸す)' },
-          { jp: 'Karimasu', kana: '借ります', en: 'To borrow', pt: 'Pegar emprestado', dictionary: 'Dictionary form: Kariru (借りる)' },
-          { jp: 'Shimemasu', kana: '閉めます', en: 'To close', pt: 'Fechar', dictionary: 'Dictionary form: Shimeru (閉める)' },
-          { jp: 'Akemasu', kana: '開けます', en: 'To open', pt: 'Abrir', dictionary: 'Dictionary form: Akeru (開ける)' },
-          { jp: 'Keshimasu', kana: '消します', en: 'To turn off / erase', pt: 'Desligar / Apagar', dictionary: 'Dictionary form: Kesu (消す)' },
-          { jp: 'Tsukemasu', kana: 'つけます', en: 'To turn on', pt: 'Ligar', dictionary: 'Dictionary form: Tsukeru (つける)' },
-          { jp: 'Isogimasu', kana: '急ぎます', en: 'To hurry', pt: 'Apressar-se', dictionary: 'Dictionary form: Isogu (急ぐ)' },
-          { jp: 'Okuremasu', kana: '遅れます', en: 'To be late', pt: 'Atrasar-se', dictionary: 'Dictionary form: Okureru (遅れる)' },
-          { jp: 'Wasuremasu', kana: '忘れます', en: 'To forget', pt: 'Esquecer', dictionary: 'Dictionary form: Wasureru (忘れる)' },
-          { jp: 'Oboemasu', kana: '覚えます', en: 'To remember / memorize', pt: 'Lembrar / Memorizar', dictionary: 'Dictionary form: Oboeru (覚える)' },
-          { jp: 'Shirimasu', kana: '知ります', en: 'To know', pt: 'Saber / Conhecer', dictionary: 'Dictionary form: Shiru (知る)' },
-          { jp: 'Omoimasu', kana: '思います', en: 'To think', pt: 'Achar / Pensar', dictionary: 'Dictionary form: Omou (思う)' }
+          { jp: 'Tabemasu', kana: '食べます', en: 'To eat', pt: 'Comer', it: 'Mangiare', es: 'Comer', dictionary: 'Dictionary form: Taberu (食べる)' },
+          { jp: 'Ikimasu', kana: '行きます', en: 'To go', pt: 'Ir', it: 'Andare', es: 'Ir', dictionary: 'Dictionary form: Iku (行く)' },
+          { jp: 'Nomimasu', kana: '飲みます', en: 'To drink', pt: 'Beber', it: 'Bere', es: 'Beber', dictionary: 'Dictionary form: Nomu (飲む)' },
+          { jp: 'Kaimasu', kana: '買います', en: 'To buy', pt: 'Comprar', it: 'Comprare', es: 'Comprar', dictionary: 'Dictionary form: Kau (買う)' },
+          { jp: 'Mimasu', kana: '見ます', en: 'To see / look', pt: 'Ver / Olhar', it: 'Vedere / Guardare', es: 'Ver / mirar', dictionary: 'Dictionary form: Miru (見る)' },
+          { jp: 'Norimasu', kana: '乗ります', en: 'To ride / get on', pt: 'Andar / Subir', it: 'Salire (su un mezzo)', es: 'Subir (a un transporte)', dictionary: 'Dictionary form: Noru (乗る)' },
+          { jp: 'Orimasu', kana: '降ります', en: 'To get off', pt: 'Descer', it: 'Scendere', es: 'Bajar (de un transporte)', dictionary: 'Dictionary form: Oriru (降りる)' },
+          { jp: 'Shimasu', kana: 'します', en: 'To do', pt: 'Fazer', it: 'Fare', es: 'Hacer', dictionary: 'Dictionary form: Suru (する)' },
+          { jp: 'Hanashimasu', kana: '話します', en: 'To speak', pt: 'Falar', it: 'Parlare', es: 'Hablar', dictionary: 'Dictionary form: Hanasu (話す)' },
+          { jp: 'Kaerimasu', kana: '帰ります', en: 'To go home / return', pt: 'Voltar / Ir para casa', it: 'Tornare (a casa)', es: 'Volver a casa', dictionary: 'Dictionary form: Kaeru (帰る)' },
+          { jp: 'Wakarimasu', kana: '分かります', en: 'To understand', pt: 'Entender', it: 'Capire', es: 'Entender', dictionary: 'Dictionary form: Wakaru (分かる)' },
+          { jp: 'Kimasu', kana: '来ます', en: 'To come', pt: 'Vir', it: 'Venire', es: 'Venir', dictionary: 'Dictionary form: Kuru (来る)' },
+          { jp: 'Machimasu', kana: '待ちます', en: 'To wait', pt: 'Esperar', it: 'Aspettare', es: 'Esperar', dictionary: 'Dictionary form: Matsu (待つ)' },
+          { jp: 'Kikimasu', kana: '聞きます', en: 'To listen / ask', pt: 'Ouvir / Perguntar', it: 'Ascoltare / Chiedere', es: 'Escuchar / preguntar', dictionary: 'Dictionary form: Kiku (聞く)' },
+          { jp: 'Yobimasu', kana: '呼びます', en: 'To call', pt: 'Chamar', it: 'Chiamare', es: 'Llamar', dictionary: 'Dictionary form: Yobu (呼ぶ)' },
+          { jp: 'Yomimasu', kana: '読みます', en: 'To read', pt: 'Ler', it: 'Leggere', es: 'Leer', dictionary: 'Dictionary form: Yomu (読む)' },
+          { jp: 'Kakimasu', kana: '書きます', en: 'To write', pt: 'Escrever', it: 'Scrivere', es: 'Escribir', dictionary: 'Dictionary form: Kaku (書く)' },
+          { jp: 'Oyogimasu', kana: '泳ぎます', en: 'To swim', pt: 'Nadar', it: 'Nuotare', es: 'Nadar', dictionary: 'Dictionary form: Oyogu (泳ぐ)' },
+          { jp: 'Asobimasu', kana: '遊びます', en: 'To play / hang out', pt: 'Brincar / Sair', it: 'Giocare / Divertirsi', es: 'Jugar / divertirse', dictionary: 'Dictionary form: Asobu (遊ぶ)' },
+          { jp: 'Yasumimasu', kana: '休みます', en: 'To rest', pt: 'Descansar', it: 'Riposare', es: 'Descansar', dictionary: 'Dictionary form: Yasumu (休む)' },
+          { jp: 'Okimasu', kana: '起きます', en: 'To wake up', pt: 'Acordar', it: 'Svegliarsi', es: 'Despertarse', dictionary: 'Dictionary form: Okiru (起きる)' },
+          { jp: 'Nemasu', kana: '寝ます', en: 'To sleep', pt: 'Dormir', it: 'Dormire', es: 'Dormir', dictionary: 'Dictionary form: Neru (寝る)' },
+          { jp: 'Hatarakimasu', kana: '働きます', en: 'To work', pt: 'Trabalhar', it: 'Lavorare', es: 'Trabajar', dictionary: 'Dictionary form: Hataraku (働く)' },
+          { jp: 'Benkyou shimasu', kana: '勉強します', en: 'To study', pt: 'Estudar', it: 'Studiare', es: 'Estudiar', dictionary: 'Dictionary form: Benkyou suru (勉強する)' },
+          { jp: 'Oshiemasu', kana: '教えます', en: 'To teach', pt: 'Ensinar', it: 'Insegnare', es: 'Enseñar', dictionary: 'Dictionary form: Oshieru (教える)' },
+          { jp: 'Naraimasu', kana: '習います', en: 'To learn', pt: 'Aprender', it: 'Imparare', es: 'Aprender', dictionary: 'Dictionary form: Narau (習う)' },
+          { jp: 'Kakarimasu', kana: 'かかります', en: 'To take (time) / cost', pt: 'Levar (tempo) / Custar', it: 'Impiegare (tempo) / Costare', es: 'Tardar / costar', dictionary: 'Dictionary form: Kakaru (かかる)' },
+          { jp: 'Magarimasu', kana: '曲がります', en: 'To turn', pt: 'Virar', it: 'Girare / Svoltare', es: 'Girar', dictionary: 'Dictionary form: Magaru (曲がる)' },
+          { jp: 'Tomarimasu', kana: '止まります', en: 'To stop', pt: 'Parar', it: 'Fermarsi', es: 'Parar / detenerse', dictionary: 'Dictionary form: Tomaru (止まる)' },
+          { jp: 'Arukimasu', kana: '歩きます', en: 'To walk', pt: 'Andar / Caminhar', it: 'Camminare', es: 'Caminar', dictionary: 'Dictionary form: Aruku (歩く)' },
+          { jp: 'Hashirimasu', kana: '走ります', en: 'To run', pt: 'Correr', it: 'Correre', es: 'Correr', dictionary: 'Dictionary form: Hashiru (走る)' },
+          { jp: 'Tsukaimasu', kana: '使います', en: 'To use', pt: 'Usar', it: 'Usare', es: 'Usar', dictionary: 'Dictionary form: Tsukau (使う)' },
+          { jp: 'Tsukurimasu', kana: '作ります', en: 'To make', pt: 'Fazer / Preparar', it: 'Fare / Creare', es: 'Hacer / preparar', dictionary: 'Dictionary form: Tsukuru (作る)' },
+          { jp: 'Hairimasu', kana: '入ります', en: 'To enter', pt: 'Entrar', it: 'Entrare', es: 'Entrar', dictionary: 'Dictionary form: Hairu (入る)' },
+          { jp: 'Demasu', kana: '出ます', en: 'To exit / leave', pt: 'Sair', it: 'Uscire', es: 'Salir', dictionary: 'Dictionary form: Deru (出る)' },
+          { jp: 'Suwarimasu', kana: '座ります', en: 'To sit', pt: 'Sentar', it: 'Sedersi', es: 'Sentarse', dictionary: 'Dictionary form: Suwaru (座る)' },
+          { jp: 'Tachimasu', kana: '立ちます', en: 'To stand', pt: 'Levantar / Ficar em pé', it: 'Alzarsi in piedi', es: 'Ponerse de pie', dictionary: 'Dictionary form: Tatsu (立つ)' },
+          { jp: 'Kaeshimasu', kana: '返します', en: 'To return (something)', pt: 'Devolver', it: 'Restituire', es: 'Devolver (algo)', dictionary: 'Dictionary form: Kaesu (返す)' },
+          { jp: 'Kashimasu', kana: '貸します', en: 'To lend', pt: 'Emprestar (para alguém)', it: 'Prestare', es: 'Prestar', dictionary: 'Dictionary form: Kasu (貸す)' },
+          { jp: 'Karimasu', kana: '借ります', en: 'To borrow', pt: 'Pegar emprestado', it: 'Prendere in prestito', es: 'Pedir prestado', dictionary: 'Dictionary form: Kariru (借りる)' },
+          { jp: 'Shimemasu', kana: '閉めます', en: 'To close', pt: 'Fechar', it: 'Chiudere', es: 'Cerrar', dictionary: 'Dictionary form: Shimeru (閉める)' },
+          { jp: 'Akemasu', kana: '開けます', en: 'To open', pt: 'Abrir', it: 'Aprire', es: 'Abrir', dictionary: 'Dictionary form: Akeru (開ける)' },
+          { jp: 'Keshimasu', kana: '消します', en: 'To turn off / erase', pt: 'Desligar / Apagar', it: 'Spegnere / Cancellare', es: 'Apagar / borrar', dictionary: 'Dictionary form: Kesu (消す)' },
+          { jp: 'Tsukemasu', kana: 'つけます', en: 'To turn on', pt: 'Ligar', it: 'Accendere', es: 'Encender', dictionary: 'Dictionary form: Tsukeru (つける)' },
+          { jp: 'Isogimasu', kana: '急ぎます', en: 'To hurry', pt: 'Apressar-se', it: 'Sbrigarsi', es: 'Darse prisa', dictionary: 'Dictionary form: Isogu (急ぐ)' },
+          { jp: 'Okuremasu', kana: '遅れます', en: 'To be late', pt: 'Atrasar-se', it: 'Essere in ritardo', es: 'Llegar tarde', dictionary: 'Dictionary form: Okureru (遅れる)' },
+          { jp: 'Wasuremasu', kana: '忘れます', en: 'To forget', pt: 'Esquecer', it: 'Dimenticare', es: 'Olvidar', dictionary: 'Dictionary form: Wasureru (忘れる)' },
+          { jp: 'Oboemasu', kana: '覚えます', en: 'To remember / memorize', pt: 'Lembrar / Memorizar', it: 'Ricordare / Memorizzare', es: 'Recordar / memorizar', dictionary: 'Dictionary form: Oboeru (覚える)' },
+          { jp: 'Shirimasu', kana: '知ります', en: 'To know', pt: 'Saber / Conhecer', it: 'Sapere / Conoscere', es: 'Saber', dictionary: 'Dictionary form: Shiru (知る)' },
+          { jp: 'Omoimasu', kana: '思います', en: 'To think', pt: 'Achar / Pensar', it: 'Pensare', es: 'Pensar', dictionary: 'Dictionary form: Omou (思う)' }
         ],
         quiz: [
           { q: 'What does "Eki wa doko desu ka?" mean?', options: ['Where is the train station?', 'How much is this?', 'Can I take a photo?'], ans: 0 },
@@ -720,6 +729,20 @@
       const cardControls = root.querySelector('#card-controls');
       const quizControls = root.querySelector('#quiz-controls');
 
+      // --- TRANSLATION LANGUAGE (second slot on the card back) ---
+      const LANG_LABELS = { pt: 'PORTUGUÊS', it: 'ITALIANO', es: 'ESPAÑOL' };
+      let secondLang = 'pt';
+      function setSecondLang(lang) {
+        secondLang = lang;
+        root.querySelector('#lang-pt').classList.toggle('on', lang === 'pt');
+        root.querySelector('#lang-it').classList.toggle('on', lang === 'it');
+        root.querySelector('#lang-es').classList.toggle('on', lang === 'es');
+        renderCard();
+      }
+      root.querySelector('#lang-pt').addEventListener('click', () => setSecondLang('pt'));
+      root.querySelector('#lang-it').addEventListener('click', () => setSecondLang('it'));
+      root.querySelector('#lang-es').addEventListener('click', () => setSecondLang('es'));
+
       // --- CARD LOGIC ---
       function renderCard() {
         const item = currentItem();
@@ -731,7 +754,8 @@
         root.querySelector('#front-jp').textContent = item.jp;
         root.querySelector('#front-kana').textContent = item.kana;
         root.querySelector('#english').textContent = item.en;
-        root.querySelector('#portuguese').textContent = item.pt;
+        root.querySelector('#second-lang-label').textContent = LANG_LABELS[secondLang];
+        root.querySelector('#second-lang').textContent = item[secondLang];
         const dictEl = root.querySelector('#dictionary');
         dictEl.textContent = item.dictionary || '';
         dictEl.style.display = item.dictionary ? '' : 'none';
@@ -752,17 +776,42 @@
       if (!('speechSynthesis' in window)) {
         speakBtn.style.display = 'none';
       }
+      // Warm up the voice list: iOS loads voices asynchronously, and an
+      // empty list on the first tap can make speech fail silently.
+      let cachedVoices = [];
+      function refreshVoices() {
+        if ('speechSynthesis' in window) cachedVoices = window.speechSynthesis.getVoices() || [];
+      }
+      if ('speechSynthesis' in window) {
+        refreshVoices();
+        window.speechSynthesis.addEventListener('voiceschanged', refreshVoices);
+      }
+      const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent || '');
       speakBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (!('speechSynthesis' in window)) return;
+        const synth = window.speechSynthesis;
         const item = currentItem();
-        window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(item.kana);
         utter.lang = 'ja-JP';
         utter.rate = 0.85;
-        const jaVoice = window.speechSynthesis.getVoices().find(v => v.lang && v.lang.toLowerCase().startsWith('ja'));
-        if (jaVoice) utter.voice = jaVoice;
-        window.speechSynthesis.speak(utter);
+        // On iOS, forcing a listed-but-not-downloaded voice can produce no
+        // sound at all, so let iOS pick its own Japanese voice there.
+        if (!isIOS) {
+          const jaVoice = cachedVoices.find(v => v.lang && v.lang.toLowerCase().replace(/_/g, '-').startsWith('ja'));
+          if (jaVoice) utter.voice = jaVoice;
+        }
+        const speakNow = () => {
+          synth.speak(utter);
+          if (synth.paused) synth.resume();
+        };
+        if (synth.speaking || synth.pending) {
+          // iOS drops utterances queued in the same tick as cancel().
+          synth.cancel();
+          setTimeout(speakNow, 80);
+        } else {
+          speakNow();
+        }
       });
 
       // --- QUIZ LOGIC ---
@@ -869,6 +918,7 @@
           cardArea.style.display = 'none';
           cardControls.style.display = 'none';
           root.querySelector('#shuffle-row').style.display = 'none';
+          root.querySelector('#lang-row').style.display = 'none';
           quizArea.style.display = 'block';
           quizControls.style.display = 'flex';
           resetQuiz();
@@ -876,6 +926,7 @@
           cardArea.style.display = 'block';
           cardControls.style.display = 'flex';
           root.querySelector('#shuffle-row').style.display = 'flex';
+          root.querySelector('#lang-row').style.display = 'flex';
           quizArea.style.display = 'none';
           quizControls.style.display = 'none';
           index = 0;
