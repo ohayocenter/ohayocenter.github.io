@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Japanese Idioms Study Material - OHAYO CENTER">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OHAYO CENTER">
+    <meta property="og:title" content="Japanese Idioms | OHAYO CENTER">
+    <meta property="og:description" content="Learn 40 Japanese idioms and slang with illustrations, literal translations, meanings and examples.">
+    <meta property="og:url" content="https://ohayocenter.com/idioms.html">
+    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Japanese Idioms | OHAYO CENTER">
+    <meta name="twitter:description" content="Learn 40 Japanese idioms and slang with illustrations, literal translations, meanings and examples.">
+    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <title>Japanese Idioms | OHAYO CENTER</title>
     
     <link rel="icon" href="icon.png" type="image/png">
@@ -184,6 +194,13 @@
             color: #718096; cursor: pointer;
         }
         .idiom-card.learned { border: 2px solid #48bb78; }
+        .note-box {
+            background: #fffaf0; border: 1px dashed var(--primary); border-radius: 10px;
+            padding: 10px; font-size: 0.8rem; margin-bottom: 15px;
+        }
+        .note-box strong { color: var(--primary); }
+        body.dark-mode .note-box { background: var(--primary-light); }
+        .list-view .note-box { display: none; }
 
         /* ── CARDS (LIST VIEW MODE 追加部分) ── */
         .idioms-grid.list-view { display: flex; flex-direction: column; gap: 12px; }
@@ -202,6 +219,42 @@
             .list-view .card-content { width: 100%; flex-direction: column; align-items: flex-start; gap: 10px; }
             .list-view .idiom-jp { min-width: auto;}
             .list-view .mark-btn { width: 100%; }
+        }
+
+        /* スマホ：カードを折りたたみ式にして一覧を短くする（タップで全文表示） */
+        @media (max-width: 768px) {
+            .idioms-grid:not(.list-view) .idiom-card { position: relative; }
+            .idioms-grid:not(.list-view) .idiom-card::after {
+                content: "▼"; position: absolute; top: 10px; right: 10px;
+                width: 22px; height: 22px; line-height: 22px; text-align: center;
+                font-size: 0.6rem; color: #718096; background: rgba(255,255,255,0.8);
+                border-radius: 50%;
+            }
+            .idioms-grid:not(.list-view) .idiom-card.open::after { content: "▲"; }
+            body.dark-mode .idioms-grid:not(.list-view) .idiom-card::after { background: rgba(0,0,0,0.4); color: #e2e8f0; }
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) {
+                flex-direction: row; align-items: center; gap: 12px; padding: 12px; cursor: pointer;
+            }
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .card-image-wrap {
+                width: 76px; height: 76px; aspect-ratio: auto; flex-shrink: 0; border-radius: 12px; overflow: hidden;
+            }
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .card-content { padding: 0; }
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .idiom-jp { font-size: 1.15rem; }
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .literal-translation,
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .idiom-en,
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .meaning-box,
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .note-box,
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .example-toggle,
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .example-body,
+            .idioms-grid:not(.list-view) .idiom-card:not(.open) .mark-btn { display: none; }
+        }
+
+        /* リスト表示：タップで読み方を表示（思い出してから確認する自習用） */
+        .list-view .card-content { flex-wrap: wrap; }
+        .list-view .idiom-jp { cursor: pointer; }
+        .list-view .idiom-card.reveal .idiom-reading { display: block; order: 1; width: 100%; }
+        @media (max-width: 768px) {
+            .list-view .idiom-card.reveal .idiom-reading { order: 0; width: auto; }
         }
 
         /* ── FOOTER & BMC BUTTON ── */
@@ -237,17 +290,13 @@
     <div class="header-section">
         <h2 class="section-title">Japanese Idioms and Slang Collection</h2>
         <p>Master Japanese with literal fun!</p>
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="searchInput" class="search-input" placeholder="Search..." onkeyup="searchIdioms()">
-        </div>
     </div>
 
     <div class="progress-container">
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
         <div class="progress-stats">
             <span>Progress</span>
-            <span><span id="learnedCount">0</span> / 24</span>
+            <span><span id="learnedCount">0</span> / 40</span>
         </div>
     </div>
 
@@ -256,6 +305,7 @@
             <button class="view-btn active" data-view="grid"><i class="fa-solid fa-border-all"></i> カード</button>
             <button class="view-btn" data-view="list"><i class="fa-solid fa-list"></i> リスト</button>
         </div>
+        <p id="listHint" style="display: none; font-size: 0.75rem; color: #a0aec0; margin-top: 8px;">Tap an idiom to reveal its reading.</p>
     </div>
 
     <div class="filter-nav">
@@ -269,7 +319,7 @@
 
     <div class="idioms-grid" id="idiomsGrid">
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="nekonote.webp" class="idiom-image" alt="nekonote"></div>
+            <div class="card-image-wrap"><img src="nekonote.webp" class="idiom-image" loading="lazy" alt="nekonote"></div>
             <div class="card-content">
                 <p class="idiom-jp">猫の手も借りたい</p>
                 <p class="idiom-reading">ねこのてもかりたい</p>
@@ -285,7 +335,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="saba.webp" class="idiom-image" alt="saba"></div>
+            <div class="card-image-wrap"><img src="saba.webp" class="idiom-image" loading="lazy" alt="saba"></div>
             <div class="card-content">
                 <p class="idiom-jp">サバを読む</p>
                 <p class="idiom-reading">さばをよむ</p>
@@ -301,7 +351,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="atama.webp" class="idiom-image" alt="atama"></div>
+            <div class="card-image-wrap"><img src="atama.webp" class="idiom-image" loading="lazy" alt="atama"></div>
             <div class="card-content">
                 <p class="idiom-jp">頭が固い</p>
                 <p class="idiom-reading">あたまがかたい</p>
@@ -317,7 +367,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="yakimochi.webp" class="idiom-image" alt="yakimochi"></div>
+            <div class="card-image-wrap"><img src="yakimochi.webp" class="idiom-image" loading="lazy" alt="yakimochi"></div>
             <div class="card-content">
                 <p class="idiom-jp">やきもちを焼く</p>
                 <p class="idiom-reading">やきもちをやく</p>
@@ -333,7 +383,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="mimi.webp" class="idiom-image" alt="mimi"></div>
+            <div class="card-image-wrap"><img src="mimi.webp" class="idiom-image" loading="lazy" alt="mimi"></div>
             <div class="card-content">
                 <p class="idiom-jp">耳が痛い</p>
                 <p class="idiom-reading">みみがいたい</p>
@@ -349,7 +399,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="mizu.webp" class="idiom-image" alt="mizu"></div>
+            <div class="card-image-wrap"><img src="mizu.webp" class="idiom-image" loading="lazy" alt="mizu"></div>
             <div class="card-content">
                 <p class="idiom-jp">水に流す</p>
                 <p class="idiom-reading">みずにながす</p>
@@ -365,7 +415,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="asameshi.webp" class="idiom-image" alt="asameshi"></div>
+            <div class="card-image-wrap"><img src="asameshi.webp" class="idiom-image" loading="lazy" alt="asameshi"></div>
             <div class="card-content">
                 <p class="idiom-jp">朝飯前</p>
                 <p class="idiom-reading">あさめしまえ</p>
@@ -381,7 +431,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="hone.webp" class="idiom-image" alt="hone"></div>
+            <div class="card-image-wrap"><img src="hone.webp" class="idiom-image" loading="lazy" alt="hone"></div>
             <div class="card-content">
                 <p class="idiom-jp">骨を折る</p>
                 <p class="idiom-reading">ほねをおる</p>
@@ -397,7 +447,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="abura.webp" class="idiom-image" alt="abura"></div>
+            <div class="card-image-wrap"><img src="abura.webp" class="idiom-image" loading="lazy" alt="abura"></div>
             <div class="card-content">
                 <p class="idiom-jp">油を売る</p>
                 <p class="idiom-reading">あぶらをうる</p>
@@ -413,7 +463,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="nemawashi.webp" class="idiom-image" alt="nemawashi"></div>
+            <div class="card-image-wrap"><img src="nemawashi.webp" class="idiom-image" loading="lazy" alt="nemawashi"></div>
             <div class="card-content">
                 <p class="idiom-jp">根回し</p>
                 <p class="idiom-reading">ねまわし</p>
@@ -429,7 +479,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="kao.webp" class="idiom-image" alt="kao"></div>
+            <div class="card-image-wrap"><img src="kao.webp" class="idiom-image" loading="lazy" alt="kao"></div>
             <div class="card-content">
                 <p class="idiom-jp">顔が広い</p>
                 <p class="idiom-reading">かおがひろい</p>
@@ -445,7 +495,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="neko.webp" class="idiom-image" alt="neko"></div>
+            <div class="card-image-wrap"><img src="neko.webp" class="idiom-image" loading="lazy" alt="neko"></div>
             <div class="card-content">
                 <p class="idiom-jp">猫をかぶる</p>
                 <p class="idiom-reading">ねこをかぶる</p>
@@ -461,7 +511,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="saru.webp" class="idiom-image" alt="saru"></div>
+            <div class="card-image-wrap"><img src="saru.webp" class="idiom-image" loading="lazy" alt="saru"></div>
             <div class="card-content">
                 <p class="idiom-jp">猿も木から落ちる</p>
                 <p class="idiom-reading">さるもきからおちる</p>
@@ -477,7 +527,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="unagi.webp" class="idiom-image" alt="unagi"></div>
+            <div class="card-image-wrap"><img src="unagi.webp" class="idiom-image" loading="lazy" alt="unagi"></div>
             <div class="card-content">
                 <p class="idiom-jp">鰻登り</p>
                 <p class="idiom-reading">うなぎのぼり</p>
@@ -493,7 +543,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="enjo.webp" class="idiom-image" alt="enjo"></div>
+            <div class="card-image-wrap"><img src="enjo.webp" class="idiom-image" loading="lazy" alt="enjo"></div>
             <div class="card-content">
                 <p class="idiom-jp">炎上する</p>
                 <p class="idiom-reading">えんじょうする</p>
@@ -509,7 +559,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="megaderu.webp" class="idiom-image" alt="megaderu"></div>
+            <div class="card-image-wrap"><img src="megaderu.webp" class="idiom-image" loading="lazy" alt="megaderu"></div>
             <div class="card-content">
                 <p class="idiom-jp">芽が出る</p>
                 <p class="idiom-reading">めがでる</p>
@@ -525,7 +575,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="kigamizikai.webp" class="idiom-image" alt="kigamizikai"></div>
+            <div class="card-image-wrap"><img src="kigamizikai.webp" class="idiom-image" loading="lazy" alt="kigamizikai"></div>
             <div class="card-content">
                 <p class="idiom-jp">気が短い</p>
                 <p class="idiom-reading">きがみじかい</p>
@@ -541,7 +591,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="hanayori.webp" class="idiom-image" alt="hanayori"></div>
+            <div class="card-image-wrap"><img src="hanayori.webp" class="idiom-image" loading="lazy" alt="hanayori"></div>
             <div class="card-content">
                 <p class="idiom-jp">花より団子</p>
                 <p class="idiom-reading">はなよりだんご</p>
@@ -557,7 +607,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="fukusen.webp" class="idiom-image" alt="fukusen"></div>
+            <div class="card-image-wrap"><img src="fukusen.webp" class="idiom-image" loading="lazy" alt="fukusen"></div>
             <div class="card-content">
                 <p class="idiom-jp">伏線回収</p>
                 <p class="idiom-reading">ふくせんかいしゅう</p>
@@ -573,7 +623,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="unomi.webp" class="idiom-image" alt="unomi"></div>
+            <div class="card-image-wrap"><img src="unomi.webp" class="idiom-image" loading="lazy" alt="unomi"></div>
             <div class="card-content">
                 <p class="idiom-jp">鵜呑みにする</p>
                 <p class="idiom-reading">うのみにする</p>
@@ -589,7 +639,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="netabare.webp" class="idiom-image" alt="netabare"></div>
+            <div class="card-image-wrap"><img src="netabare.webp" class="idiom-image" loading="lazy" alt="netabare"></div>
             <div class="card-content">
                 <p class="idiom-jp">ネタバレ</p>
                 <p class="idiom-reading">ねたばれ</p>
@@ -605,7 +655,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="moto.webp" class="idiom-image" alt="moto"></div>
+            <div class="card-image-wrap"><img src="moto.webp" class="idiom-image" loading="lazy" alt="moto"></div>
             <div class="card-content">
                 <p class="idiom-jp">元を取る</p>
                 <p class="idiom-reading">もとをとる</p>
@@ -621,7 +671,7 @@
             </div>
         </div>
         <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="bottakuri.webp" class="idiom-image" alt="bottakuri"></div>
+            <div class="card-image-wrap"><img src="bottakuri.webp" class="idiom-image" loading="lazy" alt="bottakuri"></div>
             <div class="card-content">
                 <p class="idiom-jp">ぼったくり</p>
                 <p class="idiom-reading">ぼったくり</p>
@@ -638,7 +688,7 @@
         </div>
         <div class="idiom-card" data-category="nature">
             <div class="card-image-wrap">
-                <img src="buzz.webp" class="idiom-image" alt="buzz">
+                <img src="buzz.webp" class="idiom-image" loading="lazy" alt="buzz">
             </div>
             <div class="card-content">
                 <p class="idiom-jp">バズる</p>
@@ -653,6 +703,264 @@
                 </div>
                 <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
             </div>
+        </div>        <div class="idiom-card" data-category="nature">
+            <div class="card-image-wrap"><img src="kuuki.webp" class="idiom-image" loading="lazy" alt="kuuki"></div>
+            <div class="card-content">
+                <p class="idiom-jp">空気を読む</p>
+                <p class="idiom-reading">くうきをよむ</p>
+                <p class="literal-translation">Reading the air</p>
+                <p class="idiom-en">"Reading the room"</p>
+                <div class="meaning-box">Sensing the mood of a situation and acting accordingly, without being told.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼は空気を読んで、話題を変えた。
+                    <span class="ex-en">(He read the room and changed the subject.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="work">
+            <div class="card-image-wrap"><img src="marunage.webp" class="idiom-image" loading="lazy" alt="marunage"></div>
+            <div class="card-content">
+                <p class="idiom-jp">丸投げ</p>
+                <p class="idiom-reading">まるなげ</p>
+                <p class="literal-translation">Throwing the whole thing</p>
+                <p class="idiom-en">"Dumping all the work"</p>
+                <div class="meaning-box">Handing over an entire task to someone else without doing any of it yourself.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼は仕事を部下に丸投げした。
+                    <span class="ex-en">(He dumped the whole job on his subordinate.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="work">
+            <div class="card-image-wrap"><img src="dotakyan.webp" class="idiom-image" loading="lazy" alt="dotakyan"></div>
+            <div class="card-content">
+                <p class="idiom-jp">ドタキャン</p>
+                <p class="idiom-reading">どたきゃん</p>
+                <p class="literal-translation">Last-minute cancel</p>
+                <p class="idiom-en">"To bail at the last minute"</p>
+                <div class="meaning-box">Cancelling suddenly, right before an appointment or plan.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    デートをドタキャンされて、がっかりした。
+                    <span class="ex-en">(I was disappointed when my date bailed on me at the last minute.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="nature">
+            <div class="card-image-wrap"><img src="oshi.webp" class="idiom-image" loading="lazy" alt="oshi"></div>
+            <div class="card-content">
+                <p class="idiom-jp">推し</p>
+                <p class="idiom-reading">おし</p>
+                <p class="literal-translation">The one you push</p>
+                <p class="idiom-en">"My fave"</p>
+                <div class="meaning-box">The idol, character, or person you passionately support as a fan.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    私の推しは、このグループのボーカルだ。
+                    <span class="ex-en">(My fave is the vocalist of this group.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="uroko.webp" class="idiom-image" loading="lazy" alt="uroko"></div>
+            <div class="card-content">
+                <p class="idiom-jp">目から鱗</p>
+                <p class="idiom-reading">めからうろこ</p>
+                <p class="literal-translation">Scales fall from my eyes</p>
+                <p class="idiom-en">"Eye-opening realization"</p>
+                <div class="meaning-box">Suddenly understanding something clearly for the first time.</div>
+                <div class="note-box"><strong>💡 Note:</strong> English has the same image: "the scales fell from my eyes" (from the Bible). Some expressions match perfectly!</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    先生の説明を聞いて、目から鱗だった。
+                    <span class="ex-en">(Hearing the teacher's explanation was a real eye-opener.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="nodo.webp" class="idiom-image" loading="lazy" alt="nodo"></div>
+            <div class="card-content">
+                <p class="idiom-jp">喉から手が出る</p>
+                <p class="idiom-reading">のどからてがでる</p>
+                <p class="literal-translation">A hand comes out of my throat</p>
+                <p class="idiom-en">"Want it desperately"</p>
+                <div class="meaning-box">Wanting something so badly that you can almost reach out and grab it.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    限定モデルが、喉から手が出るほど欲しい。
+                    <span class="ex-en">(I want the limited edition model so badly.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="ashi.webp" class="idiom-image" loading="lazy" alt="ashi"></div>
+            <div class="card-content">
+                <p class="idiom-jp">足を引っ張る</p>
+                <p class="idiom-reading">あしをひっぱる</p>
+                <p class="literal-translation">Pulling someone's leg</p>
+                <p class="idiom-en">"Holding someone back"</p>
+                <div class="meaning-box">Hindering someone's progress or success, or being a burden on a team.</div>
+                <div class="note-box"><strong>💡 Note:</strong> Careful! In English, "pulling your leg" means joking or teasing. Same words, totally different meaning!</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼のミスが、チームの足を引っ張った。
+                    <span class="ex-en">(His mistakes dragged the team down.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="haraguroi.webp" class="idiom-image" loading="lazy" alt="haraguroi"></div>
+            <div class="card-content">
+                <p class="idiom-jp">腹黒い</p>
+                <p class="idiom-reading">はらぐろい</p>
+                <p class="literal-translation">Black belly</p>
+                <p class="idiom-en">"Scheming / Two-faced"</p>
+                <div class="meaning-box">Sweet on the outside, but secretly plotting something.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼は笑顔だが、実は腹黒い。
+                    <span class="ex-en">(He smiles, but he's actually quite scheming.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="kuchi.webp" class="idiom-image" loading="lazy" alt="kuchi"></div>
+            <div class="card-content">
+                <p class="idiom-jp">口が軽い</p>
+                <p class="idiom-reading">くちがかるい</p>
+                <p class="literal-translation">Light mouth</p>
+                <p class="idiom-en">"Blabbermouth"</p>
+                <div class="meaning-box">Someone who cannot keep secrets and talks too easily.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼女は口が軽いから、秘密は話さない方がいい。
+                    <span class="ex-en">(She's a blabbermouth, so don't tell her any secrets.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="hanatakai.webp" class="idiom-image" loading="lazy" alt="hanatakai"></div>
+            <div class="card-content">
+                <p class="idiom-jp">鼻が高い</p>
+                <p class="idiom-reading">はながたかい</p>
+                <p class="literal-translation">High nose</p>
+                <p class="idiom-en">"Beaming with pride"</p>
+                <div class="meaning-box">Feeling very proud, especially of someone close to you.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    息子が優勝して、鼻が高い。
+                    <span class="ex-en">(My son won the championship, and I'm beaming with pride.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="animal">
+            <div class="card-image-wrap"><img src="nekokoban.webp" class="idiom-image" loading="lazy" alt="nekokoban"></div>
+            <div class="card-content">
+                <p class="idiom-jp">猫に小判</p>
+                <p class="idiom-reading">ねこにこばん</p>
+                <p class="literal-translation">Gold coins to a cat</p>
+                <p class="idiom-en">"Wasted on the unappreciative"</p>
+                <div class="meaning-box">Giving something valuable to someone who cannot appreciate its worth.</div>
+                <div class="note-box"><strong>💡 Note:</strong> English says "pearls before swine" — a different animal, but the same idea!</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    高いワインをあげたが、彼には猫に小判だった。
+                    <span class="ex-en">(I gave him expensive wine, but it was wasted on him.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="body">
+            <div class="card-image-wrap"><img src="nanakorobi.webp" class="idiom-image" loading="lazy" alt="nanakorobi"></div>
+            <div class="card-content">
+                <p class="idiom-jp">七転び八起き</p>
+                <p class="idiom-reading">ななころびやおき</p>
+                <p class="literal-translation">Fall seven times, rise eight</p>
+                <p class="idiom-en">"Never give up"</p>
+                <div class="meaning-box">No matter how many times you fail, you get back up and try again.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    七転び八起きの精神で、挑戦し続ける。
+                    <span class="ex-en">(With a never-give-up spirit, I keep on trying.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="nature">
+            <div class="card-image-wrap"><img src="ishi.webp" class="idiom-image" loading="lazy" alt="ishi"></div>
+            <div class="card-content">
+                <p class="idiom-jp">石の上にも三年</p>
+                <p class="idiom-reading">いしのうえにもさんねん</p>
+                <p class="literal-translation">Three years on a stone</p>
+                <p class="idiom-en">"Perseverance pays off"</p>
+                <div class="meaning-box">Even a cold stone warms up if you sit on it for three years — patience brings results.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    石の上にも三年で、続けることが大切だ。
+                    <span class="ex-en">(Perseverance is key — good things come to those who persist.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="nature">
+            <div class="card-image-wrap"><img src="chiri.webp" class="idiom-image" loading="lazy" alt="chiri"></div>
+            <div class="card-content">
+                <p class="idiom-jp">ちりも積もれば山となる</p>
+                <p class="idiom-reading">ちりもつもればやまとなる</p>
+                <p class="literal-translation">Dust piles up into a mountain</p>
+                <p class="idiom-en">"Small efforts add up"</p>
+                <div class="meaning-box">Tiny efforts, repeated many times, eventually become something big.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    毎日少しずつ貯金すれば、ちりも積もれば山となる。
+                    <span class="ex-en">(Save a little every day, and it will add up to a lot.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="animal">
+            <div class="card-image-wrap"><img src="kaeru.webp" class="idiom-image" loading="lazy" alt="kaeru"></div>
+            <div class="card-content">
+                <p class="idiom-jp">井の中の蛙</p>
+                <p class="idiom-reading">いのなかのかわず</p>
+                <p class="literal-translation">A frog in a well</p>
+                <p class="idiom-en">"Narrow-minded"</p>
+                <div class="meaning-box">Knowing only your own small world, and thinking it is everything.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    彼は井の中の蛙で、他のやり方を知らない。
+                    <span class="ex-en">(He's a frog in a well — he knows no other way of doing things.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
+        </div>
+        <div class="idiom-card" data-category="food">
+            <div class="card-image-wrap"><img src="imo.webp" class="idiom-image" loading="lazy" alt="imo"></div>
+            <div class="card-content">
+                <p class="idiom-jp">芋を洗うよう</p>
+                <p class="idiom-reading">いもをあらうよう</p>
+                <p class="literal-translation">Like washing potatoes</p>
+                <p class="idiom-en">"Packed like sardines"</p>
+                <div class="meaning-box">So crowded that people are pressed together, like potatoes being washed in a tub.</div>
+                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
+                <div class="example-body">
+                    朝の電車は、芋を洗うような混雑だ。
+                    <span class="ex-en">(The morning train is packed like sardines.)</span>
+                </div>
+                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
+            </div>
         </div>
 
     </div>
@@ -660,6 +968,7 @@
 </div>
 
 <footer>
+    <p>More fun materials: <a href="onomato.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Japanese Onomatopoeia</a></p>
     <p>If you find these materials helpful, please consider supporting us!</p>
     <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
         <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
@@ -669,7 +978,7 @@
 </footer>
 
 <script>
-    const TOTAL = 23;
+    const TOTAL = 40;
 
     // ダークモード制御
     function setTheme(isDark) {
@@ -693,13 +1002,31 @@
         btn.nextElementSibling.classList.toggle('open');
     }
 
-    // 学習済みマークの制御
+    // 学習済みマークの制御（localStorageに保存して、次に開いても残るようにする）
+    const LEARNED_KEY = 'idiomsLearned';
+    function saveLearned() {
+        const learned = [...document.querySelectorAll('.idiom-card.learned')]
+            .map(c => c.querySelector('.idiom-jp').textContent.trim());
+        localStorage.setItem(LEARNED_KEY, JSON.stringify(learned));
+    }
     function toggleLearned(btn) {
         const card = btn.closest('.idiom-card');
         card.classList.toggle('learned');
         btn.innerText = card.classList.contains('learned') ? "Mastered ✓" : "Mark as Learned";
         updateProgress();
+        saveLearned();
     }
+    // 保存済みの学習状態を復元
+    try {
+        const savedLearned = JSON.parse(localStorage.getItem(LEARNED_KEY) || '[]');
+        document.querySelectorAll('.idiom-card').forEach(card => {
+            if (savedLearned.includes(card.querySelector('.idiom-jp').textContent.trim())) {
+                card.classList.add('learned');
+                card.querySelector('.mark-btn').innerText = "Mastered ✓";
+            }
+        });
+        updateProgress();
+    } catch (e) { /* 保存データが読めなくても表示は続行する */ }
 
     // 進捗バーの更新
     function updateProgress() {
@@ -721,15 +1048,6 @@
         });
     }
 
-    // 検索機能
-    function searchIdioms() {
-        const query = document.getElementById('searchInput').value.toLowerCase();
-        document.querySelectorAll('.idiom-card').forEach(card => {
-            const text = card.innerText.toLowerCase();
-            card.style.display = text.includes(query) ? '' : 'none';
-        });
-    }
-
     // --- View Toggle functionality (Card vs List) 追加部分 ---
     const viewBtns = document.querySelectorAll('.view-btn');
     const gridContainer = document.getElementById('idiomsGrid');
@@ -748,6 +1066,27 @@
             }
         });
     });
+    // スマホ：カードを折りたたみ式にする（一覧を短くし、タップで全文表示）
+    if (window.innerWidth <= 768) {
+        const firstCard = document.querySelector('.idiom-card');
+        if (firstCard) firstCard.classList.add('open');
+    }
+    document.querySelectorAll('.idiom-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('button') || e.target.closest('a')) return;
+            if (gridContainer.classList.contains('list-view')) {
+                // リスト表示：タップで読み方を表示/非表示
+                card.classList.toggle('reveal');
+            } else if (window.innerWidth <= 768) {
+                card.classList.toggle('open');
+            }
+        });
+    });
+    // リスト表示のときだけヒントを出す
+    const listHint = document.getElementById('listHint');
+    viewBtns.forEach(b => b.addEventListener('click', () => {
+        if (listHint) listHint.style.display = b.dataset.view === 'list' ? 'block' : 'none';
+    }));
 </script>
 </body>
 </html>
