@@ -702,6 +702,15 @@
         ]
       };
 
+      // Pre-recorded pronunciation files: real audio, so the speak button
+      // works even on devices/browsers with no Japanese TTS voice.
+      data.phrases.forEach((item, i) => {
+        item.audio = `fc-audio/phrase-${String(i + 1).padStart(2, '0')}.mp3`;
+      });
+      data.verbs.forEach((item, i) => {
+        item.audio = `fc-audio/verb-${String(i + 1).padStart(2, '0')}.mp3`;
+      });
+
       let type = 'phrases';
       let index = 0;
       const deckOrders = { phrases: null, verbs: null };
@@ -771,11 +780,11 @@
         card.classList.toggle('flipped');
       }
 
-      // --- SPEECH (browser text-to-speech, no audio files needed) ---
+      // --- SPEECH (pre-recorded MP3s first; browser text-to-speech as fallback) ---
       const speakBtn = root.querySelector('#speak');
-      if (!('speechSynthesis' in window)) {
-        speakBtn.style.display = 'none';
-      }
+      // One reusable player for the pre-recorded pronunciation files.
+      const fcPlayer = new Audio();
+      fcPlayer.preload = 'auto';
       // Warm up the voice list: iOS loads voices asynchronously, and an
       // empty list on the first tap can make speech fail silently.
       let cachedVoices = [];
@@ -787,11 +796,9 @@
         window.speechSynthesis.addEventListener('voiceschanged', refreshVoices);
       }
       const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent || '');
-      speakBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+      function speakWithBrowserTTS(item) {
         if (!('speechSynthesis' in window)) return;
         const synth = window.speechSynthesis;
-        const item = currentItem();
         const utter = new SpeechSynthesisUtterance(item.kana);
         utter.lang = 'ja-JP';
         utter.rate = 0.85;
@@ -811,6 +818,27 @@
           setTimeout(speakNow, 80);
         } else {
           speakNow();
+        }
+      }
+      speakBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const item = currentItem();
+        if (!item) return;
+        if (item.audio) {
+          let fellBack = false;
+          const fallback = () => {
+            if (fellBack) return;
+            fellBack = true;
+            speakWithBrowserTTS(item);
+          };
+          fcPlayer.onerror = fallback;
+          fcPlayer.src = item.audio;
+          const playPromise = fcPlayer.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(fallback);
+          }
+        } else {
+          speakWithBrowserTTS(item);
         }
       });
 
