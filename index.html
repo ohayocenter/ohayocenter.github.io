@@ -258,9 +258,10 @@
             .profile-box { padding: 2rem 1rem; border-radius: 20px; }
             .profile-image-container { width: 140px; height: 140px; }
 
-            /* スマホ時は1列に */
-            .level-portal-grid { grid-template-columns: 1fr; gap: 1.2rem; padding: 0; }
-            .level-card { padding: 1.8rem 1.2rem; border-radius: 20px; }
+            /* スマホ時は横スライド式に（次のカードが見切れてスワイプに気づける） */
+            .level-portal-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 0.9rem; padding: 0.3rem 0.2rem 1rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .level-portal-grid::-webkit-scrollbar { display: none; }
+            .level-card { flex: 0 0 72%; scroll-snap-align: start; padding: 1.8rem 1.2rem; border-radius: 20px; }
             .level-card .icon-wrap { width: 60px; height: 60px; font-size: 1.8rem; margin-bottom: 1rem; }
             .level-card h3 { font-size: 1.4rem; }
             .level-card ul { margin-bottom: 1.5rem; }
