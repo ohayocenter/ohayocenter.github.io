@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hiragana Master - OHAYO CENTER</title>
+    <meta name="description" content="Hiragana Master - OHAYO CENTER">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OHAYO CENTER">
+    <meta property="og:title" content="Hiragana Typing Game | OHAYO CENTER">
+    <meta property="og:description" content="How many hiragana can you read in 20 seconds? A fast romaji typing game with basic, dakuten, combo kana and words.">
+    <meta property="og:url" content="https://ohayocenter.com/hiraganatype.html">
+    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hiragana Typing Game | OHAYO CENTER">
+    <meta name="twitter:description" content="How many hiragana can you read in 20 seconds? A fast romaji typing game with basic, dakuten, combo kana and words.">
+    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
      
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
@@ -186,6 +197,13 @@
         input[type="text"]:focus { border-color: var(--primary-color); box-shadow: 0 0 15px rgba(93, 138, 130, 0.15); }
         input[type="text"].correct { border-color: var(--success-color); background-color: #F0F8EE; }
 
+        .word-meaning { min-height: 1.6em; margin-top: 12px; font-size: 1.05rem; color: #889694; font-weight: bold; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
+        .hint-text { min-height: 1.6em; margin-top: 10px; font-size: 1.2rem; color: var(--accent-color); font-weight: bold; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; transition: opacity 0.3s; }
+        .btn-hint { margin-top: 8px; padding: 9px 22px; border: 1px solid #D1D9D7; background: #fff; color: #7E8C89; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.8rem; font-family: 'Noto Sans JP', sans-serif; transition: all 0.3s ease; }
+        .btn-hint:hover:not(:disabled) { background: #E6EBEA; }
+        .btn-hint:disabled { opacity: 0.45; cursor: default; }
+        .badge .meaning { font-size: 0.8rem; color: #889694; font-family: 'Montserrat', sans-serif; }
+
         @keyframes pop {
             0% { transform: scale(1); color: var(--text-color); }
             50% { transform: scale(1.2); color: var(--success-color); }
@@ -292,20 +310,21 @@
         <button class="mode-btn" onclick="setMode('dakuon')">DAKUON (が-ぽ)</button>
         <button class="mode-btn" onclick="setMode('combo')">COMBOS (きゃ-りょ)</button>
         <button class="mode-btn" onclick="setMode('words')" style="border-color:var(--accent-color); color:var(--accent-color)">WORDS</button>
+        <button class="mode-btn" id="sound-btn" onclick="toggleSound()">🔊 SOUND: ON</button>
     </div>
 
     <div class="row-selector" id="row-selector">
         <button class="row-btn active" data-row="all" onclick="toggleRow('all')">すべて</button>
-        <button class="row-btn" data-row="a" onclick="toggleRow('a')">あ行</button>
-        <button class="row-btn" data-row="k" onclick="toggleRow('k')">か行</button>
-        <button class="row-btn" data-row="s" onclick="toggleRow('s')">さ行</button>
-        <button class="row-btn" data-row="t" onclick="toggleRow('t')">た行</button>
-        <button class="row-btn" data-row="n" onclick="toggleRow('n')">な行</button>
-        <button class="row-btn" data-row="h" onclick="toggleRow('h')">は行</button>
-        <button class="row-btn" data-row="m" onclick="toggleRow('m')">ま行</button>
-        <button class="row-btn" data-row="y" onclick="toggleRow('y')">や行</button>
-        <button class="row-btn" data-row="r" onclick="toggleRow('r')">ら行</button>
-        <button class="row-btn" data-row="w" onclick="toggleRow('w')">わ行</button>
+        <button class="row-btn" data-row="a" onclick="toggleRow('a')">あ</button>
+        <button class="row-btn" data-row="k" onclick="toggleRow('k')">か</button>
+        <button class="row-btn" data-row="s" onclick="toggleRow('s')">さ</button>
+        <button class="row-btn" data-row="t" onclick="toggleRow('t')">た</button>
+        <button class="row-btn" data-row="n" onclick="toggleRow('n')">な</button>
+        <button class="row-btn" data-row="h" onclick="toggleRow('h')">は</button>
+        <button class="row-btn" data-row="m" onclick="toggleRow('m')">ま</button>
+        <button class="row-btn" data-row="y" onclick="toggleRow('y')">や</button>
+        <button class="row-btn" data-row="r" onclick="toggleRow('r')">ら</button>
+        <button class="row-btn" data-row="w" onclick="toggleRow('w')">わ</button>
     </div>
 
     <div class="game-card">
@@ -320,7 +339,10 @@
         </div>
 
         <div class="target-char" id="display-box"><span id="target-text">Ready?</span></div>
+        <div class="word-meaning" id="word-meaning" style="display:none;"></div>
         <input type="text" id="game-input" placeholder="Type reading..." autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="url" disabled>
+        <div class="hint-text" id="hint-text"></div>
+        <button class="btn-hint" id="hint-btn" onclick="showHint()" disabled>💡 HINT</button>
 
         <div id="start-overlay" class="overlay">
             <h2 id="mode-title" style="margin-bottom:10px; font-family:'Montserrat', sans-serif;">BASIC MODE</h2>
@@ -372,18 +394,28 @@
         ],
         combo: [
             {j:'きゃ',e:['kya']},{j:'きゅ',e:['kyu']},{j:'きょ',e:['kyo']},null,null,
+            {j:'ぎゃ',e:['gya']},{j:'ぎゅ',e:['gyu']},{j:'ぎょ',e:['gyo']},null,null,
             {j:'しゃ',e:['sha','sya']},{j:'しゅ',e:['shu','syu']},{j:'しょ',e:['sho','syo']},null,null,
-            {j:'ちゃ',e:['cha','tya']},{j:'ちゅ',e:['chu','tyu']},{j:'ちょ',e:['cho','tyo']},null,null,
-            {j:'にゃ',e:['nya']},{j:'にゅ',e:['nyu']},{j:'にょ',e:['nyo']},null,null,
             {j:'じゃ',e:['ja','zya']},{j:'じゅ',e:['ju','zyu']},{j:'じょ',e:['jo','zyo']},null,null,
-            {j:'りゃ',e:['rya']},{j:'りゅ',e:['ryu']},{j:'りょ',e:['ryo']},null,null,
-            {j:'ひゃ',e:['hya']},{j:'ひゅ',e:['hyu']},{j:'ひょ',e:['hyo']},null,null
+            {j:'ちゃ',e:['cha','tya','cya']},{j:'ちゅ',e:['chu','tyu','cyu']},{j:'ちょ',e:['cho','tyo','cyo']},null,null,
+            {j:'にゃ',e:['nya']},{j:'にゅ',e:['nyu']},{j:'にょ',e:['nyo']},null,null,
+            {j:'ひゃ',e:['hya']},{j:'ひゅ',e:['hyu']},{j:'ひょ',e:['hyo']},null,null,
+            {j:'びゃ',e:['bya']},{j:'びゅ',e:['byu']},{j:'びょ',e:['byo']},null,null,
+            {j:'ぴゃ',e:['pya']},{j:'ぴゅ',e:['pyu']},{j:'ぴょ',e:['pyo']},null,null,
+            {j:'みゃ',e:['mya']},{j:'みゅ',e:['myu']},{j:'みょ',e:['myo']},null,null,
+            {j:'りゃ',e:['rya']},{j:'りゅ',e:['ryu']},{j:'りょ',e:['ryo']},null,null
         ],
         words: [
-            {j:'ありがとう',e:['arigatou']},{j:'こんにちは',e:['konnichiwa']},{j:'おはよう',e:['ohayou']},
-            {j:'いち',e:['ichi']},{j:'に',e:['ni']},{j:'さん',e:['san']},{j:'よん',e:['yon']},
-            {j:'すし',e:['sushi']},{j:'てんぷら',e:['tenpura']},{j:'ねこ',e:['neko']},{j:'いぬ',e:['inu']},
-            {j:'かわいい',e:['kawaii']},{j:'すごい',e:['sugoi']},{j:'おいしい',e:['oishii']}
+            {j:'ありがとう',e:['arigatou','arigato'],en:'thank you'},{j:'こんにちは',e:['konnichiwa','konnitiwa'],en:'hello'},{j:'おはよう',e:['ohayou','ohayo'],en:'good morning'},
+            {j:'いち',e:['ichi','iti'],en:'one'},{j:'に',e:['ni'],en:'two'},{j:'さん',e:['san'],en:'three'},{j:'よん',e:['yon'],en:'four'},
+            {j:'すし',e:['sushi','susi'],en:'sushi'},{j:'てんぷら',e:['tenpura','tempura'],en:'tempura'},{j:'ねこ',e:['neko'],en:'cat'},{j:'いぬ',e:['inu'],en:'dog'},
+            {j:'かわいい',e:['kawaii'],en:'cute'},{j:'すごい',e:['sugoi'],en:'amazing'},{j:'おいしい',e:['oishii','oisii'],en:'delicious'},
+            {j:'さようなら',e:['sayounara','sayonara'],en:'goodbye'},{j:'すみません',e:['sumimasen'],en:'excuse me'},{j:'はい',e:['hai'],en:'yes'},{j:'いいえ',e:['iie'],en:'no'},
+            {j:'みず',e:['mizu'],en:'water'},{j:'ごはん',e:['gohan'],en:'rice / meal'},{j:'さくら',e:['sakura'],en:'cherry blossom'},{j:'やま',e:['yama'],en:'mountain'},
+            {j:'うみ',e:['umi'],en:'sea'},{j:'そら',e:['sora'],en:'sky'},{j:'ほし',e:['hoshi','hosi'],en:'star'},{j:'つき',e:['tsuki','tuki'],en:'moon'},
+            {j:'ゆき',e:['yuki'],en:'snow'},{j:'あめ',e:['ame'],en:'rain'},{j:'はな',e:['hana'],en:'flower'},{j:'とり',e:['tori'],en:'bird'},
+            {j:'さかな',e:['sakana'],en:'fish'},{j:'くるま',e:['kuruma'],en:'car'},{j:'でんしゃ',e:['densha','densya'],en:'train'},{j:'せんせい',e:['sensei'],en:'teacher'},
+            {j:'ともだち',e:['tomodachi','tomodati'],en:'friend'},{j:'かぞく',e:['kazoku'],en:'family'}
         ]
     };
 
@@ -461,7 +493,7 @@
             } else {
                 const rowNames = {'a':'あ', 'k':'か', 's':'さ', 't':'た', 'n':'な', 'h':'は', 'm':'ま', 'y':'や', 'r':'ら', 'w':'わ'};
                 const selectedNames = selectedRows.map(r => rowNames[r]).join(', ');
-                modeDesc.innerText = `Practice: ${selectedNames}行`;
+                modeDesc.innerText = `Practice: ${selectedNames}`;
             }
         } else {
             // 変更点: テキストを20 secondsに変更
@@ -475,6 +507,9 @@
         display.innerText = 'Ready?';
         input.value = '';
         input.disabled = true;
+        document.getElementById('hint-btn').disabled = true;
+        document.getElementById('word-meaning').style.display = 'none';
+        document.getElementById('hint-text').innerText = '';
         progressBar.style.width = '100%';
         progressBar.style.backgroundColor = 'var(--accent-color)';
     }
@@ -514,7 +549,8 @@
         // Clear old badges
         document.getElementById('typed-badges').innerHTML = '';
         
-        input.disabled = false; 
+        input.disabled = false;
+        document.getElementById('hint-btn').disabled = false; 
         input.value = ''; 
         input.focus();
         
@@ -543,6 +579,18 @@
         lastChar = current.j;
         display.innerText = current.j;
         displayBox.className = current.j.length >= 2 ? "target-char long" : "target-char";
+
+        const meaningEl = document.getElementById('word-meaning');
+        if (currentMode === 'words' && current.en) {
+            meaningEl.innerText = current.en;
+            meaningEl.style.display = 'block';
+        } else {
+            meaningEl.style.display = 'none';
+        }
+        const hintEl = document.getElementById('hint-text');
+        hintEl.innerText = '';
+        hintEl.style.opacity = '1';
+        playTargetSound();
     }
 
     function triggerSuccessAnimation() {
@@ -598,6 +646,7 @@
             if(time <= 0) {
                 clearInterval(timerInterval);
                 input.disabled = true;
+                document.getElementById('hint-btn').disabled = true;
                 
                 // Show final score
                 document.getElementById('final-score').innerText = score;
@@ -612,6 +661,7 @@
                             <div class="badge">
                                 <span class="jp">${item.j}</span>
                                 <span class="en">${item.e[0]}</span>
+                                ${item.en ? `<span class="meaning">${item.en}</span>` : ''}
                             </div>
                         `;
                     });
@@ -625,6 +675,59 @@
         }, 1000);
     }
 
+    /* --- 発音オーディオ (録音済みMP3を優先再生し、読み込めない場合はブラウザ内蔵TTSにフォールバック) --- */
+    const KANA_AUDIO = {"あ":"a","い":"i","う":"u","え":"e","お":"o","か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko","さ":"sa","し":"shi","す":"su","せ":"se","そ":"so","た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to","な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no","は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho","ま":"ma","み":"mi","む":"mu","め":"me","も":"mo","や":"ya","ゆ":"yu","よ":"yo","ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro","わ":"wa","を":"wo","ん":"n","が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go","ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo","だ":"da","ぢ":"di","づ":"du","で":"de","ど":"do","ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo","ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po","きゃ":"kya","きゅ":"kyu","きょ":"kyo","ぎゃ":"gya","ぎゅ":"gyu","ぎょ":"gyo","しゃ":"sha","しゅ":"shu","しょ":"sho","じゃ":"ja","じゅ":"ju","じょ":"jo","ちゃ":"cha","ちゅ":"chu","ちょ":"cho","にゃ":"nya","にゅ":"nyu","にょ":"nyo","ひゃ":"hya","ひゅ":"hyu","ひょ":"hyo","びゃ":"bya","びゅ":"byu","びょ":"byo","ぴゃ":"pya","ぴゅ":"pyu","ぴょ":"pyo","みゃ":"mya","みゅ":"myu","みょ":"myo","りゃ":"rya","りゅ":"ryu","りょ":"ryo"};
+    const typePlayer = new Audio();
+    typePlayer.preload = 'auto';
+    let soundOn = localStorage.getItem('ohayo_type_sound') !== 'off';
+
+    function updateSoundBtn() {
+        document.getElementById('sound-btn').innerText = soundOn ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+    }
+
+    function toggleSound() {
+        soundOn = !soundOn;
+        localStorage.setItem('ohayo_type_sound', soundOn ? 'on' : 'off');
+        if (!soundOn) {
+            try { typePlayer.pause(); } catch(e) {}
+            try { speechSynthesis.cancel(); } catch(e) {}
+        }
+        updateSoundBtn();
+    }
+
+    function speakTargetWithTTS() {
+        try {
+            speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(current.j);
+            u.lang = 'ja-JP'; u.rate = 0.9;
+            speechSynthesis.speak(u);
+        } catch(e) {}
+    }
+
+    function playTargetSound() {
+        if (!soundOn || !current || input.disabled) return;
+        const file = (currentMode === 'words') ? 'word-' + current.e[0] + '.mp3'
+                   : (KANA_AUDIO[current.j] ? KANA_AUDIO[current.j] + '.mp3' : null);
+        if (!file) { speakTargetWithTTS(); return; }
+        typePlayer.onerror = () => { typePlayer.onerror = null; speakTargetWithTTS(); };
+        typePlayer.src = 'kana-audio/' + file;
+        const p = typePlayer.play();
+        if (p && typeof p.catch === 'function') p.catch(() => speakTargetWithTTS());
+    }
+
+    /* --- ヒント表示 (1.2秒だけ読みを表示) --- */
+    let hintTimer = null;
+    function showHint() {
+        if (!current || input.disabled) return;
+        const el = document.getElementById('hint-text');
+        el.innerText = current.e.join(' / ');
+        el.style.opacity = '1';
+        input.focus();
+        clearTimeout(hintTimer);
+        hintTimer = setTimeout(() => { el.style.opacity = '0'; el.innerText = ''; }, 1200);
+    }
+
+    updateSoundBtn();
     renderChart();
 </script>
 
