@@ -131,7 +131,7 @@
 
         /* ====== レベル別ポータルデザイン ====== */
         /* PCで確実に4列にするため repeat(4, 1fr) に変更 */
-        .level-portal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 4rem; padding: 0; }
+        .level-portal-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; margin-bottom: 4rem; padding: 0; }
         
         /* 4列に収まるよう内側の余白をコンパクトに調整 */
         .level-card { background: #fff; border-radius: 20px; padding: 2rem 1rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; text-decoration: none; color: var(--text); }
@@ -170,6 +170,13 @@
         .card-advanced ul li i { color: #e74c3c; }
         .card-advanced .btn-bottom { border: 2px solid #e74c3c; color: #e74c3c; background: transparent; }
         .card-advanced:hover .btn-bottom { background: #e74c3c; color: #fff; }
+
+        /* ✈️ Travel */
+        .card-travel .icon-wrap { background: #fdf3e7; color: #e67e22; }
+        .card-travel .jlpt-badge { background: #fdf3e7; color: #e67e22; }
+        .card-travel ul li i { color: #e67e22; }
+        .card-travel .btn-bottom { border: 2px solid #e67e22; color: #e67e22; background: transparent; }
+        .card-travel:hover .btn-bottom { background: #e67e22; color: #fff; }
 
         /* ====== 素材（Material）カード関連 ====== */
         .unified-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
@@ -511,6 +518,19 @@
                 <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">EXPLORE NOW</div>
             </a>
 
+            <!-- ✈️ Travel -->
+            <a href="#section-travel" class="level-card card-travel">
+                <div class="icon-wrap"><i class="fa-solid fa-plane"></i></div>
+                <h3>Travel</h3>
+                <span class="jlpt-badge">Survival Japanese</span>
+                <ul>
+                    <li><i class="fa-solid fa-headphones"></i> Listening Quests</li>
+                    <li><i class="fa-solid fa-comments"></i> Survival Conversations</li>
+                    <li><i class="fa-solid fa-layer-group"></i> Travel Flashcards</li>
+                </ul>
+                <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">EXPLORE NOW</div>
+            </a>
+
             <!-- 初級（Beginner） -->
             <a href="#section-beginner" class="level-card card-beginner">
                 <div class="icon-wrap"><i class="fa-solid fa-seedling"></i></div>
@@ -554,6 +574,7 @@
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
             <ul class="update-list">
+                <li><span class="update-date">2026.NOV.22</span><span class="update-badge" style="color: #e67e22; background: #fdf3e7;">TRAVEL</span><span class="update-text">TRIP JAPAN 4: Listening Quests is now available!</span></li>
                 <li><span class="update-date">2026.NOV.20</span><span class="update-badge" style="color: #2980b9; background: #eaf2f8;">IDIOMS</span><span class="update-text">Japanese Idioms updated — now 40 expressions!</span></li>
                 <li><span class="update-date">2026.NOV.18</span><span class="update-badge" style="color: #27ae60; background: #eafaf1;">AUDIO BLOG</span><span class="update-text">Audio Blog Vol.7 "Black Friday in Japan" is now available!</span></li>
                 <li><span class="update-date">2026.NOV.17</span><span class="update-badge" style="color: #e74c3c; background: #fdf2f0;">FLASH CARD</span><span class="update-text">TRIP JAPAN 3: Travel Flashcards & Quiz is now available!</span></li>
@@ -596,6 +617,41 @@
                     <h3>Onomatopoeia</h3>
                     <p>Sounds & Feelings words</p>
                     <div class="btn-bottom" style="color:#e84393; border:1px solid #e84393;">STUDY NOW</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ================= ✈️ TRAVEL SECTION ================= -->
+        <div id="section-travel" class="level-section">
+            <h2 class="section-title" style="color:#e67e22;"><i class="fa-solid fa-plane"></i> Travel (Trip Japan)</h2>
+
+            <h4 class="sub-category-title" style="border-color: #e74c3c;">Trip</h4>
+            <div class="unified-grid horizontal-scroll-mobile">
+                <a href="trip1.html" class="unified-card">
+                    <i class="fa-solid fa-plane-departure main-icon" style="color: #e74c3c;"></i>
+                    <h3>TRIP JAPAN 1</h3>
+                    <p>9 Situations for Travelers</p>
+                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
+                </a>
+                <a href="trip.html" class="unified-card">
+                    <i class="fa-solid fa-plane-departure main-icon" style="color: #e74c3c;"></i>
+                    <h3>TRIP JAPAN 2</h3>
+                    <p>Travel Survival Japanese</p>
+                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
+                </a>
+                <a href="trip-flashcards.html" class="unified-card">
+                    <span class="badge-interactive">Interactive✨</span>
+                    <i class="fa-solid fa-layer-group main-icon" style="color: #e74c3c;"></i>
+                    <h3>TRIP JAPAN 3</h3>
+                    <p>Travel Flashcards & Quiz</p>
+                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
+                </a>
+                <a href="trip-listen.html" class="unified-card">
+                    <span class="badge-interactive">Interactive✨</span>
+                    <i class="fa-solid fa-headphones main-icon" style="color: #e74c3c;"></i>
+                    <h3>TRIP JAPAN 4</h3>
+                    <p>Listen & Choose your Reply<br>No Kana Reading Needed (EN/PT/IT/ES)</p>
+                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">LISTEN NOW</div>
                 </a>
             </div>
         </div>
@@ -662,29 +718,6 @@
                     <h3>Katakana 2</h3>
                     <p>Food, Drinks, Daily Goods</p>
                     <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
-                </a>
-            </div>
-
-            <h4 class="sub-category-title" style="border-color: #e74c3c;">Trip</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="trip1.html" class="unified-card">
-                    <i class="fa-solid fa-plane-departure main-icon" style="color: #e74c3c;"></i>
-                    <h3>TRIP JAPAN 1</h3>
-                    <p>9 Situations for Travelers</p>
-                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
-                </a>
-                <a href="trip.html" class="unified-card">
-                    <i class="fa-solid fa-plane-departure main-icon" style="color: #e74c3c;"></i>
-                    <h3>TRIP JAPAN 2</h3>
-                    <p>Travel Survival Japanese</p>
-                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
-                </a>
-                <a href="trip-flashcards.html" class="unified-card">
-                    <span class="badge-interactive">Interactive✨</span>
-                    <i class="fa-solid fa-layer-group main-icon" style="color: #e74c3c;"></i>
-                    <h3>TRIP JAPAN 3</h3>
-                    <p>Travel Flashcards & Quiz</p>
-                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
                 </a>
             </div>
 
@@ -872,8 +905,9 @@
             </div>
         </div>
 
-        <!-- ================= LINKS & PAYMENTS ================= -->
-        <h2 style="border-top: 1px solid #ccc; padding-top: 3rem; margin-top: 4rem;">Links & Payments</h2>
+        <!-- ================= LINKS & SUPPORT ================= -->
+        <h2 style="border-top: 1px solid #ccc; padding-top: 3rem; margin-top: 4rem;">Links & Support</h2>
+        <p style="text-align: center; color: #777; margin-bottom: 2rem;">Lesson purchases &amp; booking are in the <a href="#lessons" style="color: var(--primary); font-weight: bold;">Lesson Course</a> section above.</p>
         <div class="unified-grid">
             <div class="unified-card">
                 <i class="fa-solid fa-file-lines main-icon" style="color: #4285f4;"></i>
@@ -910,9 +944,9 @@
             </a>
             <a href="#lessons" class="unified-card">
                 <i class="fa-solid fa-wallet main-icon" style="color: #00b894;"></i>
-                <h3>Payments</h3>
-                <p style="font-size: 0.8rem; line-height: 1.5;">We accept <strong>Credit Card</strong>,<br><strong>Apple Pay</strong>, <strong>Google Pay</strong><br>and <strong>Wise</strong>.</p>
-                <div class="btn-bottom" style="color:#00b894; border:1px solid #00b894;">SECURE PAYMENT</div>
+                <h3>How to Pay</h3>
+                <p style="font-size: 0.8rem; line-height: 1.5;">Single lessons &amp; packs are<br>purchased in the <strong>Lesson Course</strong><br>section. We accept <strong>Credit Card</strong>,<br><strong>Apple Pay</strong>, <strong>Google Pay</strong><br>and <strong>Wise</strong>.</p>
+                <div class="btn-bottom" style="color:#00b894; border:1px solid #00b894;">SEE LESSONS &amp; PRICES</div>
             </a>
             <a href="https://www.instagram.com/ohayo_center" class="unified-card" target="_blank">
                 <i class="fa-brands fa-instagram main-icon" style="color: #E4405F;"></i>
