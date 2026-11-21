@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Adjectives Practice & Quiz - Ohayo Center</title>
+    <meta name="description" content="Japanese Adjectives Study Material - OHAYO CENTER">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OHAYO CENTER">
+    <meta property="og:title" content="Japanese Adjectives | OHAYO CENTER">
+    <meta property="og:description" content="Learn 200 Japanese adjectives (100 i-adjectives + 100 na-adjectives) with audio flashcards and a quiz.">
+    <meta property="og:url" content="https://ohayocenter.com/adj.html">
+    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Japanese Adjectives | OHAYO CENTER">
+    <meta name="twitter:description" content="Learn 200 Japanese adjectives (100 i-adjectives + 100 na-adjectives) with audio flashcards and a quiz.">
+    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
 
     <!-- ▼ indexと同じファビコン ▼ -->
     <link rel="icon" href="icon.png" type="image/png">
@@ -543,7 +554,7 @@
                     <p>You chose: <strong id="exp-wrong-jp"></strong> (<span id="exp-wrong-romaji"></span>)<br>
                     Meaning: <span id="exp-wrong-en" style="color: var(--wrong-color); font-weight: bold;"></span></p>
                     <p style="margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 10px; width: 100%;">The correct answer was:</p>
-                    <p><strong id="exp-jp"></strong> (<span id="exp-romaji"></span>)</p>
+                    <p><strong id="exp-jp"></strong> (<span id="exp-romaji"></span>) <button class="tool-btn" onclick="playQuizAnswerAudio()">🔊 Listen</button></p>
                     <button class="quiz-next-btn" onclick="nextQuizQuestion()">Next Question</button>
                 </div>
             </div>
@@ -699,11 +710,30 @@
         updateCardUI();
     }
 
-    // 音声読み上げ機能 (Web Speech API)
+    // 音声再生機能 (録音済みMP3を優先再生し、読み込めない場合はブラウザ内蔵TTSにフォールバック)
+    const adjPlayer = new Audio();
+    adjPlayer.preload = 'auto';
+
     function playAudio() {
         // イベントの伝播を止めてカードが裏返るのを防ぐ (ボタンクリック時)
         if(event) event.stopPropagation();
-        
+
+        let fellBack = false;
+        const fallback = () => {
+            if (fellBack) return;
+            fellBack = true;
+            speakWithBrowserTTS();
+        };
+        adjPlayer.onerror = fallback;
+        adjPlayer.src = `adj-audio/${currentWordList[currentIndex].id}.mp3`;
+        const playPromise = adjPlayer.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(fallback);
+        }
+    }
+
+    // フォールバック用: 従来のブラウザ内蔵TTS読み上げ (元の実装そのまま)
+    function speakWithBrowserTTS() {
         const word = currentWordList[currentIndex].jp.replace(/\[な\]/g, ""); // [な]を除外して発音
         const utterance = new SpeechSynthesisUtterance(word);
         utterance.lang = 'ja-JP';
@@ -711,10 +741,39 @@
         window.speechSynthesis.speak(utterance);
     }
 
+    // クイズ解説用: 正解の単語を再生 (MP3優先、失敗時はブラウザTTS)
+    function playQuizAnswerAudio() {
+        if (!currentQuizAnswer) return;
+        if (event) event.stopPropagation();
+
+        let fellBack = false;
+        const fallback = () => {
+            if (fellBack) return;
+            fellBack = true;
+            speakQuizAnswerWithTTS();
+        };
+        adjPlayer.onerror = fallback;
+        adjPlayer.src = `adj-audio/${currentQuizAnswer.id}.mp3`;
+        const playPromise = adjPlayer.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(fallback);
+        }
+    }
+
+    // クイズ解説用フォールバック: ブラウザ内蔵TTSで正解を読み上げ
+    function speakQuizAnswerWithTTS() {
+        if (!currentQuizAnswer) return;
+        const word = currentQuizAnswer.jp.replace(/\[な\]/g, ""); // [な]を除外して発音
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.9; // 少しゆっくりめに
+        window.speechSynthesis.speak(utterance);
+    }
     // --- クイズロジック ---
     let quizQuestions = [];
     let currentQuizIndex = 0;
     let quizScore = 0;
+    let currentQuizAnswer = null;
 
     function startQuiz() {
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -805,6 +864,7 @@
             // 正解の情報
             document.getElementById('exp-jp').innerText = targetWord.jp;
             document.getElementById('exp-romaji').innerText = targetWord.romaji;
+            currentQuizAnswer = targetWord;
             document.getElementById('quiz-explanation').style.display = 'flex';
         }
     }
