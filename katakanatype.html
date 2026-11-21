@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Katakana Master - OHAYO CENTER</title>
+    <meta name="description" content="Katakana Master - OHAYO CENTER">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OHAYO CENTER">
+    <meta property="og:title" content="Katakana Typing Game | OHAYO CENTER">
+    <meta property="og:description" content="How many katakana can you read in 20 seconds? A fast romaji typing game with basic, dakuten, combo kana and loanwords.">
+    <meta property="og:url" content="https://ohayocenter.com/katakanatype.html">
+    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Katakana Typing Game | OHAYO CENTER">
+    <meta name="twitter:description" content="How many katakana can you read in 20 seconds? A fast romaji typing game with basic, dakuten, combo kana and loanwords.">
+    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
 
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
@@ -186,6 +197,13 @@
         input[type="text"]:focus { border-color: var(--primary-color); box-shadow: 0 0 15px rgba(93, 138, 130, 0.15); }
         input[type="text"].correct { border-color: var(--success-color); background-color: #F0F8EE; }
 
+        .word-meaning { min-height: 1.6em; margin-top: 12px; font-size: 1.05rem; color: #889694; font-weight: bold; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
+        .hint-text { min-height: 1.6em; margin-top: 10px; font-size: 1.2rem; color: var(--accent-color); font-weight: bold; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; transition: opacity 0.3s; }
+        .btn-hint { margin-top: 8px; padding: 9px 22px; border: 1px solid #D1D9D7; background: #fff; color: #7E8C89; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.8rem; font-family: 'Noto Sans JP', sans-serif; transition: all 0.3s ease; }
+        .btn-hint:hover:not(:disabled) { background: #E6EBEA; }
+        .btn-hint:disabled { opacity: 0.45; cursor: default; }
+        .result-badge .meaning { font-size: 0.8rem; color: #889694; font-family: 'Montserrat', sans-serif; }
+
         @keyframes pop {
             0% { transform: scale(1); color: var(--text-color); }
             50% { transform: scale(1.2); color: var(--success-color); }
@@ -344,21 +362,22 @@
         <button class="mode-btn" onclick="setMode('dakuon')">DAKUON (ガ-ポ)</button>
         <button class="mode-btn" onclick="setMode('combo')">COMBOS (キャ-リョ)</button>
         <button class="mode-btn" onclick="setMode('words')" style="border-color:var(--accent-color); color:var(--accent-color)">LOANWORDS</button>
+        <button class="mode-btn" id="sound-btn" onclick="toggleSound()">🔊 SOUND: ON</button>
     </div>
 
     <!-- 行選択セレクタ (BASICモード時のみ表示) -->
     <div class="row-selector" id="row-selector">
         <button class="row-btn active" onclick="setRow('all')">すべて</button>
-        <button class="row-btn" onclick="setRow('a')">ア行</button>
-        <button class="row-btn" onclick="setRow('k')">カ行</button>
-        <button class="row-btn" onclick="setRow('s')">サ行</button>
-        <button class="row-btn" onclick="setRow('t')">タ行</button>
-        <button class="row-btn" onclick="setRow('n')">ナ行</button>
-        <button class="row-btn" onclick="setRow('h')">ハ行</button>
-        <button class="row-btn" onclick="setRow('m')">マ行</button>
-        <button class="row-btn" onclick="setRow('y')">ヤ行</button>
-        <button class="row-btn" onclick="setRow('r')">ラ行</button>
-        <button class="row-btn" onclick="setRow('w')">ワ行</button>
+        <button class="row-btn" onclick="setRow('a')">ア</button>
+        <button class="row-btn" onclick="setRow('k')">カ</button>
+        <button class="row-btn" onclick="setRow('s')">サ</button>
+        <button class="row-btn" onclick="setRow('t')">タ</button>
+        <button class="row-btn" onclick="setRow('n')">ナ</button>
+        <button class="row-btn" onclick="setRow('h')">ハ</button>
+        <button class="row-btn" onclick="setRow('m')">マ</button>
+        <button class="row-btn" onclick="setRow('y')">ヤ</button>
+        <button class="row-btn" onclick="setRow('r')">ラ</button>
+        <button class="row-btn" onclick="setRow('w')">ワ</button>
     </div>
 
     <div class="game-card">
@@ -373,7 +392,10 @@
         </div>
 
         <div class="target-char" id="display-box"><span id="target-text">Ready?</span></div>
+        <div class="word-meaning" id="word-meaning" style="display:none;"></div>
         <input type="text" id="game-input" placeholder="Type reading..." autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="url" disabled>
+        <div class="hint-text" id="hint-text"></div>
+        <button class="btn-hint" id="hint-btn" onclick="showHint()" disabled>💡 HINT</button>
 
         <div id="start-overlay" class="overlay">
             <h2 id="mode-title" style="margin-bottom:10px; font-family:'Montserrat', sans-serif;">BASIC MODE</h2>
@@ -445,33 +467,35 @@
         ],
         combo: [
             {j:'キャ',e:['kya']},{j:'キュ',e:['kyu']},{j:'キョ',e:['kyo']},null,null,
+            {j:'ギャ',e:['gya']},{j:'ギュ',e:['gyu']},{j:'ギョ',e:['gyo']},null,null,
             {j:'シャ',e:['sha','sya']},{j:'シュ',e:['shu','syu']},{j:'ショ',e:['sho','syo']},null,null,
-            {j:'チャ',e:['cha','tya']},{j:'チュ',e:['chu','tyu']},{j:'チョ',e:['cho','tyo']},null,null,
-            {j:'ニャ',e:['nya']},{j:'ニュ',e:['nyu']},{j:'ニョ',e:['nyo']},null,null,
             {j:'ジャ',e:['ja','zya']},{j:'ジュ',e:['ju','zyu']},{j:'ジョ',e:['jo','zyo']},null,null,
-            {j:'ミャ',e:['mya']},{j:'ミュ',e:['myu']},{j:'ミョ',e:['myo']},null,null,
-            {j:'リャ',e:['rya']},{j:'リュ',e:['ryu']},{j:'リョ',e:['ryo']},null,null,
+            {j:'チャ',e:['cha','tya','cya']},{j:'チュ',e:['chu','tyu','cyu']},{j:'チョ',e:['cho','tyo','cyo']},null,null,
+            {j:'ニャ',e:['nya']},{j:'ニュ',e:['nyu']},{j:'ニョ',e:['nyo']},null,null,
+            {j:'ヒャ',e:['hya']},{j:'ヒュ',e:['hyu']},{j:'ヒョ',e:['hyo']},null,null,
             {j:'ビャ',e:['bya']},{j:'ビュ',e:['byu']},{j:'ビョ',e:['byo']},null,null,
-            {j:'ピャ',e:['pya']},{j:'ピュ',e:['pyu']},{j:'ピョ',e:['pyo']},null,null
+            {j:'ピャ',e:['pya']},{j:'ピュ',e:['pyu']},{j:'ピョ',e:['pyo']},null,null,
+            {j:'ミャ',e:['mya']},{j:'ミュ',e:['myu']},{j:'ミョ',e:['myo']},null,null,
+            {j:'リャ',e:['rya']},{j:'リュ',e:['ryu']},{j:'リョ',e:['ryo']},null,null
         ],
         words: [
-            {j:'アメリカ',e:['amerika']},{j:'カメラ',e:['kamera']},{j:'アイス',e:['aisu']},
-            {j:'コーヒー',e:['ko-hi-','kohii']},{j:'パン',e:['pan']},{j:'テレビ',e:['terebi']},
-            {j:'パソコン',e:['pasokon']},{j:'トイレ',e:['toire']},{j:'ラーメン',e:['ra-men','raamen']},
-            {j:'チョコ',e:['choko']},{j:'コーラ',e:['ko-ra','koora']},{j:'サラダ',e:['sarada']},
-            {j:'バナナ',e:['banana']},{j:'ミルク',e:['miruku']},{j:'ビール',e:['bi-ru','biiru']},
-            {j:'ジュース',e:['ju-su','juusu']},{j:'ピザ',e:['piza']},{j:'ケーキ',e:['ke-ki','keeki']},
-            {j:'カレー',e:['kare-','karee']},{j:'パスタ',e:['pasuta']},{j:'ソース',e:['so-su','soosu']},
-            {j:'スマホ',e:['sumaho']},{j:'アプリ',e:['apuri']},{j:'マウス',e:['mausu']},
-            {j:'ソフト',e:['sofuto']},{j:'メール',e:['me-ru','meeru']},{j:'ビル',e:['biru']},
-            {j:'ノート',e:['no-to','nooto']},{j:'コップ',e:['koppu']},{j:'ベッド',e:['beddo']},
-            {j:'ドア',e:['doa']},{j:'バス',e:['basu']},{j:'タクシー',e:['takushi-','takushii']},
-            {j:'スポーツ',e:['supo-tsu','supootsu']},{j:'クラス',e:['kurasu']},{j:'ニュース',e:['nyu-su','nyuusu']},
-            {j:'ギター',e:['gita-','gitaa']},{j:'ピアノ',e:['piano']},{j:'ラジオ',e:['rajio']},
-            {j:'ホテル',e:['hoteru']},{j:'ロンドン',e:['rondon']},{j:'フランス',e:['furansu']},
-            {j:'イタリア',e:['itaria']},{j:'ドイツ',e:['doitsu']},{j:'スペイン',e:['supein']},
-            {j:'デパート',e:['depa-to','depaato']},{j:'コンビニ',e:['konbini']},{j:'レストラン',e:['resutoran']},
-            {j:'プール',e:['pu-ru','puuru']},{j:'サウナ',e:['sauna']},{j:'シアター',e:['shiata-','shiataa']}
+            {j:'アメリカ',e:['amerika'],en:'America'},{j:'カメラ',e:['kamera'],en:'camera'},{j:'アイス',e:['aisu'],en:'ice cream'},
+            {j:'コーヒー',e:['ko-hi-','kohii'],en:'coffee'},{j:'パン',e:['pan'],en:'bread'},{j:'テレビ',e:['terebi'],en:'TV'},
+            {j:'パソコン',e:['pasokon'],en:'personal computer'},{j:'トイレ',e:['toire'],en:'toilet'},{j:'ラーメン',e:['ra-men','raamen'],en:'ramen'},
+            {j:'チョコ',e:['choko'],en:'chocolate'},{j:'コーラ',e:['ko-ra','koora'],en:'cola'},{j:'サラダ',e:['sarada'],en:'salad'},
+            {j:'バナナ',e:['banana'],en:'banana'},{j:'ミルク',e:['miruku'],en:'milk'},{j:'ビール',e:['bi-ru','biiru'],en:'beer'},
+            {j:'ジュース',e:['ju-su','juusu'],en:'juice'},{j:'ピザ',e:['piza'],en:'pizza'},{j:'ケーキ',e:['ke-ki','keeki'],en:'cake'},
+            {j:'カレー',e:['kare-','karee'],en:'curry'},{j:'パスタ',e:['pasuta'],en:'pasta'},{j:'ソース',e:['so-su','soosu'],en:'sauce'},
+            {j:'スマホ',e:['sumaho'],en:'smartphone'},{j:'アプリ',e:['apuri'],en:'app'},{j:'マウス',e:['mausu'],en:'mouse'},
+            {j:'ソフト',e:['sofuto'],en:'software'},{j:'メール',e:['me-ru','meeru'],en:'email'},{j:'ビル',e:['biru'],en:'building'},
+            {j:'ノート',e:['no-to','nooto'],en:'notebook'},{j:'コップ',e:['koppu'],en:'cup'},{j:'ベッド',e:['beddo'],en:'bed'},
+            {j:'ドア',e:['doa'],en:'door'},{j:'バス',e:['basu'],en:'bus'},{j:'タクシー',e:['takushi-','takushii'],en:'taxi'},
+            {j:'スポーツ',e:['supo-tsu','supootsu'],en:'sports'},{j:'クラス',e:['kurasu'],en:'class'},{j:'ニュース',e:['nyu-su','nyuusu'],en:'news'},
+            {j:'ギター',e:['gita-','gitaa'],en:'guitar'},{j:'ピアノ',e:['piano'],en:'piano'},{j:'ラジオ',e:['rajio'],en:'radio'},
+            {j:'ホテル',e:['hoteru'],en:'hotel'},{j:'ロンドン',e:['rondon'],en:'London'},{j:'フランス',e:['furansu'],en:'France'},
+            {j:'イタリア',e:['itaria'],en:'Italy'},{j:'ドイツ',e:['doitsu'],en:'Germany'},{j:'スペイン',e:['supein'],en:'Spain'},
+            {j:'デパート',e:['depa-to','depaato'],en:'department store'},{j:'コンビニ',e:['konbini'],en:'convenience store'},{j:'レストラン',e:['resutoran'],en:'restaurant'},
+            {j:'プール',e:['pu-ru','puuru'],en:'pool'},{j:'サウナ',e:['sauna'],en:'sauna'},{j:'シアター',e:['shiata-','shiataa'],en:'theater'}
         ]
     };
 
@@ -551,6 +575,9 @@
         display.innerText = 'Ready?';
         input.value = '';
         input.disabled = true;
+        document.getElementById('hint-btn').disabled = true;
+        document.getElementById('word-meaning').style.display = 'none';
+        document.getElementById('hint-text').innerText = '';
         progressBar.style.width = '100%';
         progressBar.style.backgroundColor = 'var(--accent-color)';
     }
@@ -588,7 +615,8 @@
         progressBar.style.width = '100%';
         progressBar.style.backgroundColor = 'var(--accent-color)';
         
-        input.disabled = false; 
+        input.disabled = false;
+        document.getElementById('hint-btn').disabled = false; 
         input.value = ''; 
         input.focus();
         
@@ -618,6 +646,18 @@
         lastChar = current.j;
         display.innerText = current.j;
         displayBox.className = current.j.length >= 2 ? "target-char long" : "target-char";
+
+        const meaningEl = document.getElementById('word-meaning');
+        if (currentMode === 'words' && current.en) {
+            meaningEl.innerText = current.en;
+            meaningEl.style.display = 'block';
+        } else {
+            meaningEl.style.display = 'none';
+        }
+        const hintEl = document.getElementById('hint-text');
+        hintEl.innerText = '';
+        hintEl.style.opacity = '1';
+        playTargetSound();
     }
 
     function triggerSuccessAnimation() {
@@ -675,6 +715,7 @@
             if(time <= 0) {
                 clearInterval(timerInterval);
                 input.disabled = true;
+                document.getElementById('hint-btn').disabled = true;
                 
                 // Show result badges
                 const badgesContainer = document.getElementById('result-badges');
@@ -684,6 +725,7 @@
                         <div class="result-badge">
                             <span class="jp">${item.j}</span>
                             <span class="en">${item.e[0]}</span>
+                            ${item.en ? `<span class="meaning">${item.en}</span>` : ''}
                         </div>
                     `;
                 });
@@ -694,7 +736,66 @@
         }, 1000);
     }
 
+    /* --- 発音オーディオ (録音済みMP3を優先再生し、読み込めない場合はブラウザ内蔵TTSにフォールバック) --- */
+    const KANA_AUDIO = {"ア":"a","イ":"i","ウ":"u","エ":"e","オ":"o","カ":"ka","キ":"ki","ク":"ku","ケ":"ke","コ":"ko","サ":"sa","シ":"shi","ス":"su","セ":"se","ソ":"so","タ":"ta","チ":"chi","ツ":"tsu","テ":"te","ト":"to","ナ":"na","ニ":"ni","ヌ":"nu","ネ":"ne","ノ":"no","ハ":"ha","ヒ":"hi","フ":"fu","ヘ":"he","ホ":"ho","マ":"ma","ミ":"mi","ム":"mu","メ":"me","モ":"mo","ヤ":"ya","ユ":"yu","ヨ":"yo","ラ":"ra","リ":"ri","ル":"ru","レ":"re","ロ":"ro","ワ":"wa","ヲ":"wo","ン":"n","ガ":"ga","ギ":"gi","グ":"gu","ゲ":"ge","ゴ":"go","ザ":"za","ジ":"ji","ズ":"zu","ゼ":"ze","ゾ":"zo","ダ":"da","ヂ":"di","ヅ":"du","デ":"de","ド":"do","バ":"ba","ビ":"bi","ブ":"bu","ベ":"be","ボ":"bo","パ":"pa","ピ":"pi","プ":"pu","ペ":"pe","ポ":"po","キャ":"kya","キュ":"kyu","キョ":"kyo","ギャ":"gya","ギュ":"gyu","ギョ":"gyo","シャ":"sha","シュ":"shu","ショ":"sho","ジャ":"ja","ジュ":"ju","ジョ":"jo","チャ":"cha","チュ":"chu","チョ":"cho","ニャ":"nya","ニュ":"nyu","ニョ":"nyo","ヒャ":"hya","ヒュ":"hyu","ヒョ":"hyo","ビャ":"bya","ビュ":"byu","ビョ":"byo","ピャ":"pya","ピュ":"pyu","ピョ":"pyo","ミャ":"mya","ミュ":"myu","ミョ":"myo","リャ":"rya","リュ":"ryu","リョ":"ryo"};
+    const typePlayer = new Audio();
+    typePlayer.preload = 'auto';
+    let soundOn = localStorage.getItem('ohayo_type_sound') !== 'off';
+
+    function updateSoundBtn() {
+        document.getElementById('sound-btn').innerText = soundOn ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+    }
+
+    function toggleSound() {
+        soundOn = !soundOn;
+        localStorage.setItem('ohayo_type_sound', soundOn ? 'on' : 'off');
+        if (!soundOn) {
+            try { typePlayer.pause(); } catch(e) {}
+            try { speechSynthesis.cancel(); } catch(e) {}
+        }
+        updateSoundBtn();
+    }
+
+    function speakTargetWithTTS() {
+        try {
+            speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(current.j);
+            u.lang = 'ja-JP'; u.rate = 0.9;
+            speechSynthesis.speak(u);
+        } catch(e) {}
+    }
+
+    // 単語モードの音声ファイル名: 長音の二重母音表記 (kohii 等) があればそれを、なければ e[0] を使う
+    function wordAudioFile(item) {
+        const doubled = item.e.find(v => /(aa|ii|uu|ee|oo)/.test(v));
+        return 'word-' + (doubled || item.e[0]) + '.mp3';
+    }
+
+    function playTargetSound() {
+        if (!soundOn || !current || input.disabled) return;
+        const file = (currentMode === 'words') ? wordAudioFile(current)
+                   : (KANA_AUDIO[current.j] ? KANA_AUDIO[current.j] + '.mp3' : null);
+        if (!file) { speakTargetWithTTS(); return; }
+        typePlayer.onerror = () => { typePlayer.onerror = null; speakTargetWithTTS(); };
+        typePlayer.src = 'kana-audio/' + file;
+        const p = typePlayer.play();
+        if (p && typeof p.catch === 'function') p.catch(() => speakTargetWithTTS());
+    }
+
+    /* --- ヒント表示 (1.2秒だけ読みを表示) --- */
+    let hintTimer = null;
+    function showHint() {
+        if (!current || input.disabled) return;
+        const el = document.getElementById('hint-text');
+        el.innerText = current.e.join(' / ');
+        el.style.opacity = '1';
+        input.focus();
+        clearTimeout(hintTimer);
+        hintTimer = setTimeout(() => { el.style.opacity = '0'; el.innerText = ''; }, 1200);
+    }
+
     // 初期化実行
+    updateSoundBtn();
     renderChart();
 </script>
 
