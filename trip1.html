@@ -204,6 +204,7 @@
                 <div class="bubble">
                     <div class="jp-text" id="dialog-text">Loading...</div>
                     <div class="en-text" id="romaji-text"></div>
+                    <button type="button" title="Listen" aria-label="Listen" style="background:#fff5eb;border:1px solid #ff9f43;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;line-height:1;" onclick="playStaffAudio()">🔊</button>
                 </div>
             </div>
 
@@ -434,11 +435,39 @@
         quest.summary.forEach((item, index) => {
             const div = document.createElement('div');
             div.className = 'survival-item';
-            div.innerHTML = `<b>${index + 1}. ${item.jp}</b> ${item.en}`;
+            const sNum = String(Object.keys(questsData).indexOf(activeQuestId) * 3 + index + 1).padStart(2, '0');
+            const jpText = item.jp.indexOf(' (') >= 0 ? item.jp.slice(0, item.jp.indexOf(' (')) : item.jp;
+            div.innerHTML = `<b>${index + 1}. ${item.jp}</b> ${item.en} <button type="button" title="Listen" aria-label="Listen" onclick="playTrip1Audio('trip1-audio/s${sNum}.mp3', '${jpText}')" style="background:#fff;border:1px solid #ff9f43;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;">🔊</button>`;
             uiSummaryList.appendChild(div);
         });
     }
 </script>
 
+<script>
+    // --- Pre-recorded audio (trip1-audio/) ---
+    const trip1AudioPlayer = new Audio();
+    function speakTrip1Fallback(text) {
+        if (!text || !('speechSynthesis' in window)) return;
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'ja-JP';
+        u.rate = 0.9;
+        speechSynthesis.cancel();
+        speechSynthesis.speak(u);
+    }
+    function playTrip1Audio(src, text) {
+        trip1AudioPlayer.pause();
+        trip1AudioPlayer.src = src;
+        trip1AudioPlayer.currentTime = 0;
+        const p = trip1AudioPlayer.play();
+        if (p && p.catch) p.catch(function (err) { if (err && err.name !== 'AbortError') speakTrip1Fallback(text); });
+    }
+    function playStaffAudio() {
+        if (!activeQuestId) return;
+        const step = questsData[activeQuestId].steps[currentStepIndex];
+        if (!step) return;
+        const qNum = Object.keys(questsData).indexOf(activeQuestId) + 1;
+        playTrip1Audio('trip1-audio/q' + qNum + '-' + (currentStepIndex + 1) + '.mp3', step.clerk);
+    }
+</script>
 </body>
 </html>
