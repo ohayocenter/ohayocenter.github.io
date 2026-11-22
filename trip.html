@@ -306,7 +306,7 @@
       <div class="question-text">Q2. You want to ask how much the train fare to Kyoto is. What do you say?</div>
       <ul class="options">
         <li><label><input type="radio" name="q2"> A. 京都までいくらですか。(Kyōto made ikura desu ka.)</label></li>
-        <li><label><input type="radio" name="q2"> B. 京都は何時ですか。(Kyōto wa nan-ji desu ka.)</label></li>
+        <li><label><input type="radio" name="q2"> B. 京都まで何時間かかりますか。(Kyōto made nan-jikan kakarimasu ka.)</label></li>
         <li><label><input type="radio" name="q2"> C. 京都に行きたいです。(Kyōto ni ikitai desu.)</label></li>
         <li><label><input type="radio" name="q2"> D. 京都はどうですか。(Kyōto wa dō desu ka.)</label></li>
       </ul>
@@ -376,7 +376,7 @@
         <li><label><input type="radio" name="q6"> A. お会計をお願いします。(O-kaikei o onegaishimasu.)</label></li>
         <li><label><input type="radio" name="q6"> B. チェックインをお願いします。(Chekkuin o onegaishimasu.)</label></li>
         <li><label><input type="radio" name="q6"> C. 部屋を見せてください。(Heya o misete kudasai.)</label></li>
-        <li><label><input type="radio" name="q6"> D. 予約していません。(Yoyaku shite imasen.)</label></li>
+        <li><label><input type="radio" name="q6"> D. チェックアウトをお願いします。(Chekku-auto o onegaishimasu.)</label></li>
       </ul>
       <div class="btn-group">
         <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
@@ -508,7 +508,7 @@
         <li><label><input type="radio" name="q14"> A. 一番安いのは何ですか。(Ichiban yasui no wa nan desu ka.)</label></li>
         <li><label><input type="radio" name="q14"> B. おすすめは何ですか。(Osusume wa nan desu ka.)</label></li>
         <li><label><input type="radio" name="q14"> C. 人気がありますか。(Ninki ga arimasu ka.)</label></li>
-        <li><label><input type="radio" name="q14"> D. どれがおいしいですか。(Dore ga oishii desu ka.)</label></li>
+        <li><label><input type="radio" name="q14"> D. 飲み物はありますか。(Nomimono wa arimasu ka.)</label></li>
       </ul>
       <div class="btn-group">
         <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
@@ -591,15 +591,15 @@
       <ul class="options">
         <li><label><input type="radio" name="q19"> A. これにします。(Kore ni shimasu.)</label></li>
         <li><label><input type="radio" name="q19"> B. これを取ります。(Kore o torimasu.)</label></li>
-        <li><label><input type="radio" name="q19"> C. これをお願いします。(Kore o onegaishimasu.)</label></li>
-        <li><label><input type="radio" name="q19"> D. A or C are both fine.</label></li>
+        <li><label><input type="radio" name="q19"> C. これを見ます。(Kore o mimasu.)</label></li>
+        <li><label><input type="radio" name="q19"> D. これを返します。(Kore o kaeshimasu.)</label></li>
       </ul>
       <div class="btn-group">
         <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
         <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
       </div>
-      <div id="hint19" class="info-box hint-text">Hint: Both "Kore ni shimasu" (I've decided on this) and "Kore o onegaishimasu" (This one, please) are very common.</div>
-      <div id="ans19" class="info-box answer-text">Answer: D. A or C are both fine. <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a19.mp3', 'これにします。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
+      <div id="hint19" class="info-box hint-text">Hint: "Kore ni shimasu" (I've decided on this) is the standard way to say "I'll take this".</div>
+      <div id="ans19" class="info-box answer-text">Answer: A. これにします。(Kore ni shimasu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a19.mp3', 'これにします。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
     </div>
 
     <div class="question-block">
@@ -607,15 +607,15 @@
       <ul class="options">
         <li><label><input type="radio" name="q20"> A. 袋は結構です。(Fukuro wa kekkō desu.)</label></li>
         <li><label><input type="radio" name="q20"> B. 袋はダメです。(Fukuro wa dame desu.)</label></li>
-        <li><label><input type="radio" name="q20"> C. 袋はいりません。(Fukuro wa irimasen.)</label></li>
-        <li><label><input type="radio" name="q20"> D. Both A and C are fine, but A is more polite.</label></li>
+        <li><label><input type="radio" name="q20"> C. 袋をください。(Fukuro o kudasai.)</label></li>
+        <li><label><input type="radio" name="q20"> D. 袋は大きいですか。(Fukuro wa ōkii desu ka.)</label></li>
       </ul>
       <div class="btn-group">
         <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
         <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
       </div>
       <div id="hint20" class="info-box hint-text">Hint: "Kekkō desu" is a very standard and polite way to say "No thank you."</div>
-      <div id="ans20" class="info-box answer-text">Answer: D. Both A and C are fine, but A is more polite. <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a20.mp3', '袋は結構です。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
+      <div id="ans20" class="info-box answer-text">Answer: A. 袋は結構です。(Fukuro wa kekkō desu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a20.mp3', '袋は結構です。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
     </div>
   </div>
 
@@ -627,8 +627,8 @@
       <ul class="options">
         <li><label><input type="radio" name="q21"> A. 駅はどこですか。(Eki wa doko desu ka.)</label></li>
         <li><label><input type="radio" name="q21"> B. 駅はどうですか。(Eki wa dō desu ka.)</label></li>
-        <li><label><input type="radio" name="q21"> C. 駅はいつですか。(Eki wa itsu desu ka.)</label></li>
-        <li><label><input type="radio" name="q21"> D. 駅はだれですか。(Eki wa dare desu ka.)</label></li>
+        <li><label><input type="radio" name="q21"> C. 駅は遠いですか。(Eki wa tōi desu ka.)</label></li>
+        <li><label><input type="radio" name="q21"> D. 駅は大きいですか。(Eki wa ōkii desu ka.)</label></li>
       </ul>
       <div class="btn-group">
         <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
@@ -676,13 +676,13 @@
         <li><label><input type="radio" name="q24"> A. 何時に終わりますか。(Nan-ji ni owarimasu ka.)</label></li>
         <li><label><input type="radio" name="q24"> B. 何時に開きますか。(Nan-ji ni aite imasu ka.)</label></li>
         <li><label><input type="radio" name="q24"> C. 何時に閉まりますか。(Nan-ji ni shimarimasu ka.)</label></li>
-        <li><label><input type="radio" name="q24"> D. 何時までですか。(Nan-ji made desu ka.)</label></li>
+        <li><label><input type="radio" name="q24"> D. 神社は広いですか。(Jinja wa hiroi desu ka.)</label></li>
       </ul>
       <div class="btn-group">
         <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
         <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
       </div>
-      <div id="hint24" class="info-box hint-text">Hint: "To close" is "shimaru" (閉まる). Also, D (Nan-ji made desu ka - Until what time is it?) is also perfectly acceptable and common!</div>
+      <div id="hint24" class="info-box hint-text">Hint: "To close" is "shimaru" (閉まる).</div>
       <div id="ans24" class="info-box answer-text">Answer: C. 何時に閉まりますか。(Nan-ji ni shimarimasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a24.mp3', '何時に閉まりますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
     </div>
 
@@ -691,15 +691,15 @@
       <ul class="options">
         <li><label><input type="radio" name="q25"> A. ここへはどう行きますか。(Koko e wa dō ikimasu ka.)</label></li>
         <li><label><input type="radio" name="q25"> B. ここはどこですか。(Koko wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q25"> C. ここに行きたいです。(Koko ni ikitai desu.)</label></li>
-        <li><label><input type="radio" name="q25"> D. Both A and C will be understood.</label></li>
+        <li><label><input type="radio" name="q25"> C. ここに住みたいです。(Koko ni sumitai desu.)</label></li>
+        <li><label><input type="radio" name="q25"> D. ここは静かですか。(Koko wa shizuka desu ka.)</label></li>
       </ul>
       <div class="btn-group">
         <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
         <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
       </div>
       <div id="hint25" class="info-box hint-text">Hint: "How" is "dō" (どう). "I want to go" is "ikitai desu" (行きたいです).</div>
-      <div id="ans25" class="info-box answer-text">Answer: D. Both A and C will be understood. <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a25.mp3', 'ここへはどう行きますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
+      <div id="ans25" class="info-box answer-text">Answer: A. ここへはどう行きますか。(Koko e wa dō ikimasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a25.mp3', 'ここへはどう行きますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
     </div>
   </div>
 
