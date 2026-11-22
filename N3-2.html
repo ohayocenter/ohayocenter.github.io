@@ -262,6 +262,123 @@
     .nav-controls { gap: 5px; }
     .slide-jump-btn { padding: 8px 12px; font-size: 0.8em; }
   }
+  /* --- Score Section (追加) --- */
+  .score-panel {
+    text-align: center;
+    margin-top: 40px;
+    padding: 25px 20px;
+    border-top: 2px solid #e2e8f0;
+    background-color: #f7fafc;
+    border-radius: 8px;
+  }
+  .score-title {
+    color: #2c3e50;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .score-desc {
+    color: #666;
+    font-size: 0.95em;
+    margin: 0 0 18px 0;
+  }
+  .score-btns {
+    justify-content: center;
+  }
+  .check-btn { background-color: #48bb78; }
+  .check-btn:hover { background-color: #38a169; }
+  .reset-btn { background-color: #a0aec0; }
+  .reset-btn:hover { background-color: #718096; }
+  .score-result {
+    margin-top: 18px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #2c3e50;
+    line-height: 1.4;
+  }
+  .score-msg {
+    font-size: 0.75em;
+    color: #4a5568;
+  }
+  .question-block.q-correct {
+    background-color: #f0fff4;
+    border-left: 4px solid #48bb78;
+    border-radius: 6px;
+    padding-left: 12px;
+  }
+  .question-block.q-wrong {
+    background-color: #fff5f5;
+    border-left: 4px solid #e53e3e;
+    border-radius: 6px;
+    padding-left: 12px;
+  }
+  .question-block.q-unanswered {
+    background-color: #f7fafc;
+    border-left: 4px solid #a0aec0;
+    border-radius: 6px;
+    padding-left: 12px;
+  }
+  .q-badge {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #fff;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .q-badge.correct { background-color: #48bb78; }
+  .q-badge.wrong { background-color: #e53e3e; }
+  .q-badge.unanswered { background-color: #a0aec0; }
+  .options li.correct-option {
+    background-color: #c6f6d5;
+    border-color: #48bb78;
+    font-weight: bold;
+  }
+  .options li.wrong-option {
+    background-color: #fed7d7;
+    border-color: #e53e3e;
+  }
+  .part-panel {
+    text-align: center;
+    margin-top: 30px;
+    padding: 18px 15px;
+    border-top: 2px solid #e2e8f0;
+    background-color: #f7fafc;
+    border-radius: 8px;
+  }
+  .part-title {
+    color: #2c3e50;
+    font-size: 1.05em;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  .part-result {
+    margin-top: 14px;
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #2c3e50;
+    line-height: 1.4;
+  }
+  .part-best {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #718096;
+  }
+  .part-best:empty { display: none; }
+  .new-record {
+    color: #d69e2e;
+    font-weight: bold;
+  }
+  .score-parts {
+    margin-top: 14px;
+    font-size: 1em;
+    color: #2c3e50;
+    line-height: 1.7;
+  }
+  .score-parts:empty { display: none; }
 </style>
 </head>
 <body>
@@ -435,6 +552,14 @@
         <div id="hint10" class="info-box hint-text">Hint: It literally translates to "noon sleep."</div>
         <div id="ans10" class="info-box answer-text">Answer: C. 昼寝 (Hirune)</div>
       </div>
+    <div class="part-panel" id="partPanel1">
+      <div class="part-title">📝 Part 1 (Q1–Q10)</div>
+      <div class="btn-group score-btns">
+        <button type="button" class="action-btn check-btn" onclick="checkN3_2Part(1)">✓ Check Part 1</button>
+      </div>
+      <div id="partResult1" class="part-result" style="display: none;"></div>
+      <div id="partBest1" class="part-best"></div>
+    </div>
     </div>
 
     <div id="slide3" class="slide">
@@ -593,6 +718,14 @@
         <div id="hint20" class="info-box hint-text">Hint: It uses the kanji for "meet" and "discuss/consult."</div>
         <div id="ans20" class="info-box answer-text">Answer: B. 会議 (Kaigi)</div>
       </div>
+    <div class="part-panel" id="partPanel2">
+      <div class="part-title">📝 Part 2 (Q11–Q20)</div>
+      <div class="btn-group score-btns">
+        <button type="button" class="action-btn check-btn" onclick="checkN3_2Part(2)">✓ Check Part 2</button>
+      </div>
+      <div id="partResult2" class="part-result" style="display: none;"></div>
+      <div id="partBest2" class="part-best"></div>
+    </div>
     </div>
 
     <div id="slide5" class="slide">
@@ -672,6 +805,14 @@
         <div id="hint25" class="info-box hint-text">Hint: The verb means "to stop" or "to resign."</div>
         <div id="ans25" class="info-box answer-text">Answer: B. 仕事を辞める (Shigoto o yameru)</div>
       </div>
+    <div class="part-panel" id="partPanel3">
+      <div class="part-title">📝 Part 3 (Q21–Q25)</div>
+      <div class="btn-group score-btns">
+        <button type="button" class="action-btn check-btn" onclick="checkN3_2Part(3)">✓ Check Part 3</button>
+      </div>
+      <div id="partResult3" class="part-result" style="display: none;"></div>
+      <div id="partBest3" class="part-best"></div>
+    </div>
     </div>
 
     <div class="nav-controls">
@@ -682,6 +823,16 @@
       <button class="slide-jump-btn" onclick="jumpToSlide(5)">SLIDE 5</button>
     </div>
 
+  <div class="score-panel" id="scorePanel">
+    <div class="score-title">📝 Your Score</div>
+    <p class="score-desc">Check each part as you finish it, or check everything at once here. Unanswered questions count as wrong. Your best scores are saved on this device, so you can see your growth on every visit.</p>
+    <div class="btn-group score-btns">
+      <button type="button" class="action-btn check-btn" onclick="checkN3_2Score()">✓ Check All</button>
+      <button type="button" class="action-btn reset-btn" onclick="resetN3_2Score()">↺ Reset all (clears saved progress)</button>
+    </div>
+    <div id="scoreParts" class="score-parts"></div>
+    <div id="scoreResult" class="score-result" style="display: none;"></div>
+  </div>
     <div class="support-section">
       <h2>Support OHAYO CENTER</h2>
       <p>If you find these materials helpful, please consider supporting us!</p>
@@ -720,5 +871,211 @@
   }
 </script>
 
+<script>
+  // --- Quiz scoring: parts + saved progress ---
+  var N3_2_ANSWERS = { q1: 'A', q2: 'B', q3: 'A', q4: 'A', q5: 'B', q6: 'A', q7: 'C', q8: 'A', q9: 'A', q10: 'C', q11: 'A', q12: 'B', q13: 'C', q14: 'B', q15: 'A', q16: 'B', q17: 'C', q18: 'A', q19: 'C', q20: 'B', q21: 'C', q22: 'A', q23: 'C', q24: 'B', q25: 'B' };
+  var N3_2_LETTERS = ['A', 'B', 'C', 'D'];
+  var N3_2_TOTAL = 25;
+  var N3_2_PARTS = [
+    { part: 1, from: 1, to: 10, size: 10 },
+    { part: 2, from: 11, to: 20, size: 10 },
+    { part: 3, from: 21, to: 25, size: 5 }
+  ];
+  var N3_2_PROGRESS_KEY = 'ohayo_n3_2_progress';
+  var n3_2PartScores = { 1: null, 2: null, 3: null };
+
+  function n3_2DefaultProgress() {
+    return { v: 1, totalBest: null, parts: { '1': { best: 0, done: false }, '2': { best: 0, done: false }, '3': { best: 0, done: false } } };
+  }
+
+  function loadN3_2Progress() {
+    var def = n3_2DefaultProgress();
+    try {
+      var raw = window.localStorage.getItem(N3_2_PROGRESS_KEY);
+      if (!raw) return def;
+      var data = JSON.parse(raw);
+      if (!data || data.v !== 1 || !data.parts) return def;
+      for (var i = 0; i < N3_2_PARTS.length; i++) {
+        var key = String(N3_2_PARTS[i].part);
+        if (data.parts[key] && typeof data.parts[key].best === 'number') {
+          def.parts[key] = { best: data.parts[key].best, done: !!data.parts[key].done };
+        }
+      }
+      if (typeof data.totalBest === 'number') def.totalBest = data.totalBest;
+      return def;
+    } catch (e) {
+      return def;
+    }
+  }
+
+  function saveN3_2Progress() {
+    try {
+      window.localStorage.setItem(N3_2_PROGRESS_KEY, JSON.stringify(n3_2Progress));
+    } catch (e) { /* storage unavailable: progress just will not persist */ }
+  }
+
+  var n3_2Progress = loadN3_2Progress();
+
+  function n3_2BlockFor(n) {
+    var radios = document.querySelectorAll('input[name="q' + n + '"]');
+    if (!radios.length) return null;
+    return radios[0].closest('.question-block');
+  }
+
+  function clearN3_2MarksRange(from, to) {
+    for (var n = from; n <= to; n++) {
+      var block = n3_2BlockFor(n);
+      if (!block) continue;
+      block.classList.remove('q-correct', 'q-wrong', 'q-unanswered');
+      var badges = block.querySelectorAll('.q-badge');
+      for (var j = badges.length - 1; j >= 0; j--) badges[j].remove();
+      var opts = block.querySelectorAll('.options li');
+      for (var k = 0; k < opts.length; k++) opts[k].classList.remove('correct-option', 'wrong-option');
+    }
+  }
+
+  function clearN3_2Marks() {
+    clearN3_2MarksRange(1, N3_2_TOTAL);
+  }
+
+  function markN3_2Question(n) {
+    var name = 'q' + n;
+    var radios = document.querySelectorAll('input[name="' + name + '"]');
+    if (!radios.length) return 0;
+    var block = radios[0].closest('.question-block');
+    var correctIdx = N3_2_LETTERS.indexOf(N3_2_ANSWERS[name]);
+    var selectedIdx = -1;
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) selectedIdx = i;
+    }
+    var badge = document.createElement('span');
+    var point = 0;
+    if (selectedIdx === -1) {
+      block.classList.add('q-unanswered');
+      badge.className = 'q-badge unanswered';
+      badge.textContent = '— Not answered';
+      radios[correctIdx].closest('li').classList.add('correct-option');
+    } else if (selectedIdx === correctIdx) {
+      point = 1;
+      block.classList.add('q-correct');
+      badge.className = 'q-badge correct';
+      badge.textContent = '✓ Correct';
+      radios[correctIdx].closest('li').classList.add('correct-option');
+    } else {
+      block.classList.add('q-wrong');
+      badge.className = 'q-badge wrong';
+      badge.textContent = '✗ Wrong';
+      radios[selectedIdx].closest('li').classList.add('wrong-option');
+      radios[correctIdx].closest('li').classList.add('correct-option');
+    }
+    block.querySelector('.question-text').appendChild(badge);
+    return point;
+  }
+
+  function refreshN3_2PartBest(part) {
+    var el = document.getElementById('partBest' + part);
+    if (!el) return;
+    var info = n3_2Progress.parts[String(part)];
+    if (info && info.done) {
+      el.textContent = 'Best: ' + info.best + ' / ' + N3_2_PARTS[part - 1].size + ' ✓';
+    } else {
+      el.textContent = '';
+    }
+  }
+
+  function refreshN3_2Summary() {
+    var el = document.getElementById('scoreParts');
+    if (!el) return;
+    var lines = [];
+    for (var i = 0; i < N3_2_PARTS.length; i++) {
+      var p = N3_2_PARTS[i];
+      var info = n3_2Progress.parts[String(p.part)];
+      var line = 'Part ' + p.part + ': ';
+      line += (n3_2PartScores[p.part] !== null) ? (n3_2PartScores[p.part] + ' / ' + p.size) : ('— / ' + p.size);
+      if (info && info.done) line += ' (Best: ' + info.best + ' ✓)';
+      lines.push(line);
+    }
+    if (n3_2Progress.totalBest !== null && n3_2Progress.totalBest !== undefined) {
+      lines.push('Best total: ' + n3_2Progress.totalBest + ' / ' + N3_2_TOTAL + ' ✓');
+    }
+    el.innerHTML = lines.join('<br>');
+  }
+
+  // Marks one part, saves its best, updates its panel. Returns the part score.
+  function runN3_2PartCheck(part) {
+    var def = N3_2_PARTS[part - 1];
+    clearN3_2MarksRange(def.from, def.to);
+    var score = 0;
+    for (var n = def.from; n <= def.to; n++) score += markN3_2Question(n);
+    n3_2PartScores[part] = score;
+    var info = n3_2Progress.parts[String(part)];
+    var newRecord = info.done && score > info.best;
+    if (score > info.best) info.best = score;
+    info.done = true;
+    saveN3_2Progress();
+    var res = document.getElementById('partResult' + part);
+    if (res) {
+      res.innerHTML = 'Part ' + part + ': ' + score + ' / ' + def.size + (newRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
+      res.style.display = 'block';
+    }
+    refreshN3_2PartBest(part);
+    refreshN3_2Summary();
+    return score;
+  }
+
+  function checkN3_2Part(part) {
+    runN3_2PartCheck(part);
+    var panel = document.getElementById('partPanel' + part);
+    if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function n3_2ScoreMessage(pct) {
+    if (pct === 100) return 'Perfect! N3 vocabulary mastered! 🎉';
+    if (pct >= 80) return 'Excellent! Almost perfect!';
+    if (pct >= 60) return 'Good job! Keep practicing!';
+    if (pct >= 40) return 'Nice try! Review the answers and try again!';
+    return 'Keep going! Use the hints and answers, then try again!';
+  }
+
+  function checkN3_2Score() {
+    var total = 0;
+    for (var i = 0; i < N3_2_PARTS.length; i++) total += runN3_2PartCheck(N3_2_PARTS[i].part);
+    var newTotalRecord = (typeof n3_2Progress.totalBest === 'number') && total > n3_2Progress.totalBest;
+    if (n3_2Progress.totalBest === null || n3_2Progress.totalBest === undefined || total > n3_2Progress.totalBest) {
+      n3_2Progress.totalBest = total;
+    }
+    saveN3_2Progress();
+    refreshN3_2Summary();
+    var pct = Math.round(total / N3_2_TOTAL * 100);
+    var res = document.getElementById('scoreResult');
+    res.innerHTML = 'Score: ' + total + ' / ' + N3_2_TOTAL + ' (' + pct + '%)<br><span class="score-msg">' + n3_2ScoreMessage(pct) + '</span>' + (newTotalRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
+    res.style.display = 'block';
+    document.getElementById('scorePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetN3_2Score() {
+    clearN3_2Marks();
+    var radios = document.querySelectorAll('.question-block input[type="radio"]');
+    for (var i = 0; i < radios.length; i++) radios[i].checked = false;
+    n3_2PartScores = { 1: null, 2: null, 3: null };
+    n3_2Progress = n3_2DefaultProgress();
+    try { window.localStorage.removeItem(N3_2_PROGRESS_KEY); } catch (e) { /* ignore */ }
+    for (var p = 1; p <= 3; p++) {
+      var res = document.getElementById('partResult' + p);
+      if (res) { res.style.display = 'none'; res.innerHTML = ''; }
+      refreshN3_2PartBest(p);
+    }
+    var total = document.getElementById('scoreResult');
+    total.style.display = 'none';
+    total.innerHTML = '';
+    refreshN3_2Summary();
+  }
+
+  // Show saved bests on load, so returning learners see their growth.
+  (function initN3_2Progress() {
+    for (var p = 1; p <= 3; p++) refreshN3_2PartBest(p);
+    refreshN3_2Summary();
+  })();
+</script>
 </body>
 </html>
