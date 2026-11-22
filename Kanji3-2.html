@@ -60,6 +60,123 @@
   .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
 
   @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } .nav-btn { font-size: 0.8em; padding: 8px 10px; min-width: 60px; } }
+  /* --- Score Section (追加) --- */
+  .score-panel {
+    text-align: center;
+    margin-top: 40px;
+    padding: 25px 20px;
+    border-top: 2px solid #e2e8f0;
+    background-color: #f7fafc;
+    border-radius: 8px;
+  }
+  .score-title {
+    color: #2c3e50;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .score-desc {
+    color: #666;
+    font-size: 0.95em;
+    margin: 0 0 18px 0;
+  }
+  .score-btns {
+    justify-content: center;
+  }
+  .check-btn { background-color: #48bb78; }
+  .check-btn:hover { background-color: #38a169; }
+  .reset-btn { background-color: #a0aec0; }
+  .reset-btn:hover { background-color: #718096; }
+  .score-result {
+    margin-top: 18px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #2c3e50;
+    line-height: 1.4;
+  }
+  .score-msg {
+    font-size: 0.75em;
+    color: #4a5568;
+  }
+  .question-block.q-correct {
+    background-color: #f0fff4;
+    border-left: 4px solid #48bb78;
+    border-radius: 6px;
+    padding-left: 12px;
+  }
+  .question-block.q-wrong {
+    background-color: #fff5f5;
+    border-left: 4px solid #e53e3e;
+    border-radius: 6px;
+    padding-left: 12px;
+  }
+  .question-block.q-unanswered {
+    background-color: #f7fafc;
+    border-left: 4px solid #a0aec0;
+    border-radius: 6px;
+    padding-left: 12px;
+  }
+  .q-badge {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #fff;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .q-badge.correct { background-color: #48bb78; }
+  .q-badge.wrong { background-color: #e53e3e; }
+  .q-badge.unanswered { background-color: #a0aec0; }
+  .options li.correct-option {
+    background-color: #c6f6d5;
+    border-color: #48bb78;
+    font-weight: bold;
+  }
+  .options li.wrong-option {
+    background-color: #fed7d7;
+    border-color: #e53e3e;
+  }
+  .part-panel {
+    text-align: center;
+    margin-top: 30px;
+    padding: 18px 15px;
+    border-top: 2px solid #e2e8f0;
+    background-color: #f7fafc;
+    border-radius: 8px;
+  }
+  .part-title {
+    color: #2c3e50;
+    font-size: 1.05em;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  .part-result {
+    margin-top: 14px;
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #2c3e50;
+    line-height: 1.4;
+  }
+  .part-best {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #718096;
+  }
+  .part-best:empty { display: none; }
+  .new-record {
+    color: #d69e2e;
+    font-weight: bold;
+  }
+  .score-parts {
+    margin-top: 14px;
+    font-size: 1em;
+    color: #2c3e50;
+    line-height: 1.7;
+  }
+  .score-parts:empty { display: none; }
 </style>
 </head>
 <body>
@@ -243,6 +360,14 @@
         <div id="hint10" class="info-box hint-text">Hint: The kanji 乗 is used for "riding" a vehicle.</div>
         <div id="ans10" class="info-box answer-text">Answer: C. 乗車 (乗車: jōsha)</div>
       </div>
+    <div class="part-panel" id="partPanel1">
+      <div class="part-title">📝 Part 1 (Q1–Q10)</div>
+      <div class="btn-group score-btns">
+        <button type="button" class="action-btn check-btn" onclick="checkKanji32Part(1)">✓ Check Part 1</button>
+      </div>
+      <div id="partResult1" class="part-result" style="display: none;"></div>
+      <div id="partBest1" class="part-best"></div>
+    </div>
     </div>
 
     <div id="slide3" class="slide">
@@ -411,6 +536,14 @@
         <div id="hint20" class="info-box hint-text">Hint: Meaning "to be crowded/congested". Has the "water" radical on the left.</div>
         <div id="ans20" class="info-box answer-text">Answer: D. 混んで (混む: komu)</div>
       </div>
+    <div class="part-panel" id="partPanel2">
+      <div class="part-title">📝 Part 2 (Q11–Q20)</div>
+      <div class="btn-group score-btns">
+        <button type="button" class="action-btn check-btn" onclick="checkKanji32Part(2)">✓ Check Part 2</button>
+      </div>
+      <div id="partResult2" class="part-result" style="display: none;"></div>
+      <div id="partBest2" class="part-best"></div>
+    </div>
     </div>
 
     <div id="slide5" class="slide">
@@ -495,6 +628,14 @@
         <div id="hint25" class="info-box hint-text">Hint: Usually written with 真 (true/real) + 直 (straight) and small "tsu".</div>
         <div id="ans25" class="info-box answer-text">Answer: D. 真っ直ぐ (真っ直ぐ: massugu)</div>
       </div>
+    <div class="part-panel" id="partPanel3">
+      <div class="part-title">📝 Part 3 (Q21–Q25)</div>
+      <div class="btn-group score-btns">
+        <button type="button" class="action-btn check-btn" onclick="checkKanji32Part(3)">✓ Check Part 3</button>
+      </div>
+      <div id="partResult3" class="part-result" style="display: none;"></div>
+      <div id="partBest3" class="part-best"></div>
+    </div>
     </div>
 
     <div class="nav-controls">
@@ -505,6 +646,16 @@
       <button id="jumpBtn5" class="nav-btn" onclick="jumpToSlide(5)">SLIDE 5</button>
     </div>
 
+  <div class="score-panel" id="scorePanel">
+    <div class="score-title">📝 Your Score</div>
+    <p class="score-desc">Check each part as you finish it, or check everything at once here. Unanswered questions count as wrong. Your best scores are saved on this device, so you can see your growth on every visit.</p>
+    <div class="btn-group score-btns">
+      <button type="button" class="action-btn check-btn" onclick="checkKanji32Score()">✓ Check All</button>
+      <button type="button" class="action-btn reset-btn" onclick="resetKanji32Score()">↺ Reset all (clears saved progress)</button>
+    </div>
+    <div id="scoreParts" class="score-parts"></div>
+    <div id="scoreResult" class="score-result" style="display: none;"></div>
+  </div>
     <div class="support-section">
       <h2>Support OHAYO CENTER</h2>
       <p>If you find these materials helpful, please consider supporting us!</p>
@@ -545,5 +696,211 @@
   }
 </script>
 
+<script>
+  // --- Quiz scoring: parts + saved progress ---
+  var KANJI32_ANSWERS = { q1: 'B', q2: 'D', q3: 'B', q4: 'C', q5: 'D', q6: 'B', q7: 'D', q8: 'D', q9: 'B', q10: 'C', q11: 'A', q12: 'C', q13: 'D', q14: 'C', q15: 'D', q16: 'C', q17: 'A', q18: 'D', q19: 'A', q20: 'D', q21: 'D', q22: 'B', q23: 'C', q24: 'A', q25: 'D' };
+  var KANJI32_LETTERS = ['A', 'B', 'C', 'D'];
+  var KANJI32_TOTAL = 25;
+  var KANJI32_PARTS = [
+    { part: 1, from: 1, to: 10, size: 10 },
+    { part: 2, from: 11, to: 20, size: 10 },
+    { part: 3, from: 21, to: 25, size: 5 }
+  ];
+  var KANJI32_PROGRESS_KEY = 'ohayo_kanji3_2_progress';
+  var kanji32PartScores = { 1: null, 2: null, 3: null };
+
+  function kanji32DefaultProgress() {
+    return { v: 1, totalBest: null, parts: { '1': { best: 0, done: false }, '2': { best: 0, done: false }, '3': { best: 0, done: false } } };
+  }
+
+  function loadKanji32Progress() {
+    var def = kanji32DefaultProgress();
+    try {
+      var raw = window.localStorage.getItem(KANJI32_PROGRESS_KEY);
+      if (!raw) return def;
+      var data = JSON.parse(raw);
+      if (!data || data.v !== 1 || !data.parts) return def;
+      for (var i = 0; i < KANJI32_PARTS.length; i++) {
+        var key = String(KANJI32_PARTS[i].part);
+        if (data.parts[key] && typeof data.parts[key].best === 'number') {
+          def.parts[key] = { best: data.parts[key].best, done: !!data.parts[key].done };
+        }
+      }
+      if (typeof data.totalBest === 'number') def.totalBest = data.totalBest;
+      return def;
+    } catch (e) {
+      return def;
+    }
+  }
+
+  function saveKanji32Progress() {
+    try {
+      window.localStorage.setItem(KANJI32_PROGRESS_KEY, JSON.stringify(kanji32Progress));
+    } catch (e) { /* storage unavailable: progress just will not persist */ }
+  }
+
+  var kanji32Progress = loadKanji32Progress();
+
+  function kanji32BlockFor(n) {
+    var radios = document.querySelectorAll('input[name="q' + n + '"]');
+    if (!radios.length) return null;
+    return radios[0].closest('.question-block');
+  }
+
+  function clearKanji32MarksRange(from, to) {
+    for (var n = from; n <= to; n++) {
+      var block = kanji32BlockFor(n);
+      if (!block) continue;
+      block.classList.remove('q-correct', 'q-wrong', 'q-unanswered');
+      var badges = block.querySelectorAll('.q-badge');
+      for (var j = badges.length - 1; j >= 0; j--) badges[j].remove();
+      var opts = block.querySelectorAll('.options li');
+      for (var k = 0; k < opts.length; k++) opts[k].classList.remove('correct-option', 'wrong-option');
+    }
+  }
+
+  function clearKanji32Marks() {
+    clearKanji32MarksRange(1, KANJI32_TOTAL);
+  }
+
+  function markKanji32Question(n) {
+    var name = 'q' + n;
+    var radios = document.querySelectorAll('input[name="' + name + '"]');
+    if (!radios.length) return 0;
+    var block = radios[0].closest('.question-block');
+    var correctIdx = KANJI32_LETTERS.indexOf(KANJI32_ANSWERS[name]);
+    var selectedIdx = -1;
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) selectedIdx = i;
+    }
+    var badge = document.createElement('span');
+    var point = 0;
+    if (selectedIdx === -1) {
+      block.classList.add('q-unanswered');
+      badge.className = 'q-badge unanswered';
+      badge.textContent = '— Not answered';
+      radios[correctIdx].closest('li').classList.add('correct-option');
+    } else if (selectedIdx === correctIdx) {
+      point = 1;
+      block.classList.add('q-correct');
+      badge.className = 'q-badge correct';
+      badge.textContent = '✓ Correct';
+      radios[correctIdx].closest('li').classList.add('correct-option');
+    } else {
+      block.classList.add('q-wrong');
+      badge.className = 'q-badge wrong';
+      badge.textContent = '✗ Wrong';
+      radios[selectedIdx].closest('li').classList.add('wrong-option');
+      radios[correctIdx].closest('li').classList.add('correct-option');
+    }
+    block.querySelector('.question-text').appendChild(badge);
+    return point;
+  }
+
+  function refreshKanji32PartBest(part) {
+    var el = document.getElementById('partBest' + part);
+    if (!el) return;
+    var info = kanji32Progress.parts[String(part)];
+    if (info && info.done) {
+      el.textContent = 'Best: ' + info.best + ' / ' + KANJI32_PARTS[part - 1].size + ' ✓';
+    } else {
+      el.textContent = '';
+    }
+  }
+
+  function refreshKanji32Summary() {
+    var el = document.getElementById('scoreParts');
+    if (!el) return;
+    var lines = [];
+    for (var i = 0; i < KANJI32_PARTS.length; i++) {
+      var p = KANJI32_PARTS[i];
+      var info = kanji32Progress.parts[String(p.part)];
+      var line = 'Part ' + p.part + ': ';
+      line += (kanji32PartScores[p.part] !== null) ? (kanji32PartScores[p.part] + ' / ' + p.size) : ('— / ' + p.size);
+      if (info && info.done) line += ' (Best: ' + info.best + ' ✓)';
+      lines.push(line);
+    }
+    if (kanji32Progress.totalBest !== null && kanji32Progress.totalBest !== undefined) {
+      lines.push('Best total: ' + kanji32Progress.totalBest + ' / ' + KANJI32_TOTAL + ' ✓');
+    }
+    el.innerHTML = lines.join('<br>');
+  }
+
+  // Marks one part, saves its best, updates its panel. Returns the part score.
+  function runKanji32PartCheck(part) {
+    var def = KANJI32_PARTS[part - 1];
+    clearKanji32MarksRange(def.from, def.to);
+    var score = 0;
+    for (var n = def.from; n <= def.to; n++) score += markKanji32Question(n);
+    kanji32PartScores[part] = score;
+    var info = kanji32Progress.parts[String(part)];
+    var newRecord = info.done && score > info.best;
+    if (score > info.best) info.best = score;
+    info.done = true;
+    saveKanji32Progress();
+    var res = document.getElementById('partResult' + part);
+    if (res) {
+      res.innerHTML = 'Part ' + part + ': ' + score + ' / ' + def.size + (newRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
+      res.style.display = 'block';
+    }
+    refreshKanji32PartBest(part);
+    refreshKanji32Summary();
+    return score;
+  }
+
+  function checkKanji32Part(part) {
+    runKanji32PartCheck(part);
+    var panel = document.getElementById('partPanel' + part);
+    if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function kanji32ScoreMessage(pct) {
+    if (pct === 100) return 'Perfect! N3 kanji mastered! 🎉';
+    if (pct >= 80) return 'Excellent! Almost perfect!';
+    if (pct >= 60) return 'Good job! Keep practicing!';
+    if (pct >= 40) return 'Nice try! Review the answers and try again!';
+    return 'Keep going! Use the hints and answers, then try again!';
+  }
+
+  function checkKanji32Score() {
+    var total = 0;
+    for (var i = 0; i < KANJI32_PARTS.length; i++) total += runKanji32PartCheck(KANJI32_PARTS[i].part);
+    var newTotalRecord = (typeof kanji32Progress.totalBest === 'number') && total > kanji32Progress.totalBest;
+    if (kanji32Progress.totalBest === null || kanji32Progress.totalBest === undefined || total > kanji32Progress.totalBest) {
+      kanji32Progress.totalBest = total;
+    }
+    saveKanji32Progress();
+    refreshKanji32Summary();
+    var pct = Math.round(total / KANJI32_TOTAL * 100);
+    var res = document.getElementById('scoreResult');
+    res.innerHTML = 'Score: ' + total + ' / ' + KANJI32_TOTAL + ' (' + pct + '%)<br><span class="score-msg">' + kanji32ScoreMessage(pct) + '</span>' + (newTotalRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
+    res.style.display = 'block';
+    document.getElementById('scorePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetKanji32Score() {
+    clearKanji32Marks();
+    var radios = document.querySelectorAll('.question-block input[type="radio"]');
+    for (var i = 0; i < radios.length; i++) radios[i].checked = false;
+    kanji32PartScores = { 1: null, 2: null, 3: null };
+    kanji32Progress = kanji32DefaultProgress();
+    try { window.localStorage.removeItem(KANJI32_PROGRESS_KEY); } catch (e) { /* ignore */ }
+    for (var p = 1; p <= 3; p++) {
+      var res = document.getElementById('partResult' + p);
+      if (res) { res.style.display = 'none'; res.innerHTML = ''; }
+      refreshKanji32PartBest(p);
+    }
+    var total = document.getElementById('scoreResult');
+    total.style.display = 'none';
+    total.innerHTML = '';
+    refreshKanji32Summary();
+  }
+
+  // Show saved bests on load, so returning learners see their growth.
+  (function initKanji32Progress() {
+    for (var p = 1; p <= 3; p++) refreshKanji32PartBest(p);
+    refreshKanji32Summary();
+  })();
+</script>
 </body>
 </html>
