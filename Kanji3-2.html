@@ -3,63 +3,265 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第2回：N3 漢字・語彙マスタークイズ</title>
+<title>第2回 N3語彙 25問 - OHAYO CENTER</title>
   <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 <style>
-  /* --- ナビゲーションバー --- */
-  nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box; }
-  .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
-  .logo a { text-decoration: none; color: #2c3e50; }
-  .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-  .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
-  @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } }
+  /* --- ナビゲーションバーのスタイル追加 --- */
+  nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 0 5%;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    font-family: 'Noto Sans JP', sans-serif;
+    box-sizing: border-box; 
+  }
+  .logo {
+    font-family: 'Sawarabi Mincho', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+  .logo a {
+    text-decoration: none;
+    color: #2c3e50;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
 
-  /* --- メインレイアウト --- */
-  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: #f0f4f8; color: #333; display: flex; justify-content: center; padding: 90px 20px 80px; }
-  .main-wrapper { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
-  .slide-container { background-color: #ffffff; width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); padding: 40px; box-sizing: border-box; position: relative; }
-  h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 30px; }
-  .topic-label { background-color: #e2e8f0; color: #4a5568; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; display: inline-block; margin-bottom: 20px; font-weight: bold; }
+  @media (max-width: 600px) {
+    nav { padding: 0 15px; }
+    .logo { font-size: 1rem; }
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.7rem; }
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 90px 20px 80px;
+  }
+  .main-wrapper {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .slide-container {
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+  }
+  .topic-label {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
   
-  /* --- スライド・クイズ部分 --- */
-  .slide { display: none; animation: fadeIn 0.4s; }
-  .slide.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .question-block { margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px dashed #e2e8f0; }
-  .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .question-text { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; line-height: 1.5; }
-  .english-translation { color: #666; font-size: 0.9em; margin-bottom: 15px; font-style: italic; }
-  .options { list-style: none; padding: 0; margin: 0 0 15px 0; }
-  .options li { background-color: #f7fafc; border: 1px solid #cbd5e0; margin-bottom: 8px; padding: 10px 15px; border-radius: 6px; transition: background-color 0.2s; }
-  .options li:hover { background-color: #ebf4ff; cursor: pointer; }
-  .options label { cursor: pointer; display: block; width: 100%; font-size: 1.05em;}
-  .btn-group { display: flex; gap: 10px; }
-  .action-btn { color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: background-color 0.2s; font-weight: bold; }
+  .slide {
+    display: none;
+    animation: fadeIn 0.4s;
+  }
+  .slide.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .question-block {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  .question-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .question-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  .options {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+  }
+  .options li {
+    background-color: #f7fafc;
+    border: 1px solid #cbd5e0;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+  }
+  .options li:hover {
+    background-color: #ebf4ff;
+    cursor: pointer;
+  }
+  .options label {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+  }
+  .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+  .action-btn {
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    font-weight: bold;
+  }
   .hint-btn { background-color: #4299e1; }
   .hint-btn:hover { background-color: #3182ce; }
   .answer-btn { background-color: #48bb78; }
   .answer-btn:hover { background-color: #38a169; }
-  .info-box { display: none; padding: 12px; margin-top: 10px; border-radius: 4px; font-size: 0.95em; }
-  .hint-text { background-color: #fffaf0; border-left: 4px solid #ed8936; color: #555; font-style: italic; }
-  .answer-text { background-color: #f0fff4; border-left: 4px solid #48bb78; color: #276749; font-weight: bold; }
-
-  /* --- 下部のナビゲーションボタン --- */
-  .nav-controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; }
-  .nav-btn { background-color: #2c3e50; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; font-weight: bold; cursor: pointer; transition: background-color 0.2s; min-width: 80px; }
-  .nav-btn:hover { background-color: #1a252f; }
-  .nav-btn.active-btn { background-color: #4299e1; }
   
-  .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; }
-  .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
-  .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-  .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-  .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-  .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
+  .info-box {
+    display: none;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-size: 0.95em;
+  }
+  .hint-text {
+    background-color: #fffaf0;
+    border-left: 4px solid #ed8936;
+    color: #555;
+    font-style: italic;
+  }
+  .answer-text {
+    background-color: #f0fff4;
+    border-left: 4px solid #48bb78;
+    color: #276749;
+    font-weight: bold;
+  }
 
-  @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } .nav-btn { font-size: 0.8em; padding: 8px 10px; min-width: 60px; } }
+  /* --- 新しいスライドボタンのデザイン --- */
+  .nav-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #e2e8f0;
+  }
+  .slide-jump-btn {
+    background-color: #edf2f7;
+    color: #2c3e50;
+    border: 2px solid #cbd5e0;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .slide-jump-btn:hover {
+    background-color: #e2e8f0;
+    border-color: #a0aec0;
+  }
+  .slide-jump-btn.active {
+    background-color: #2c3e50;
+    color: white;
+    border-color: #2c3e50;
+  }
+
+  .support-section {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #e2e8f0;
+    width: 100%;
+  }
+  .support-section h2 {
+    color: #2c3e50;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .support-section p {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+  }
+  .bmc-custom-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFDD00;
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .bmc-custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 600px) {
+    .slide-container { padding: 30px 20px 50px; }
+    .nav-controls { gap: 5px; }
+    .slide-jump-btn { padding: 8px 12px; font-size: 0.8em; }
+  }
   /* --- Score Section (追加) --- */
   .score-panel {
     text-align: center;
@@ -192,178 +394,168 @@
 
 <div class="main-wrapper">
   <div class="slide-container">
-    <h1>第2回：N3 漢字・語彙マスタークイズ</h1>
+    <h1>第2回 N3語彙 25問</h1>
     
     <div id="slide1" class="slide active">
-      <div class="topic-label">Topic: 駐車場とサイン (Parking & Signs) (Slide 1/5)</div>
+      <div class="topic-label">Topic: Holiday - Going Out (Slide 1/5)</div>
       <div class="question-block">
-        <div class="question-text">Q1. この駐車場は<u>くうしゃ</u>です。</div>
-        <div class="english-translation">[This parking lot is empty/available.]</div>
+        <div class="question-text">Q1. What is the Japanese phrase for "making a plan" for a holiday or trip?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q1"> A. 空間</label></li>
-          <li><label><input type="radio" name="q1"> B. 空車</label></li>
-          <li><label><input type="radio" name="q1"> C. 満車</label></li>
-          <li><label><input type="radio" name="q1"> D. 穴車</label></li>
+          <li><label><input type="radio" name="q1"> A. 予定を立てる (Yotei o tateru)</label></li>
+          <li><label><input type="radio" name="q1"> B. 予定を消す (Yotei o kesu)</label></li>
+          <li><label><input type="radio" name="q1"> C. 計画を止める (Keikaku o yameru)</label></li>
+          <li><label><input type="radio" name="q1"> D. 時間を過ごす (Jikan o sugosu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint1')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans1')">Show Answer</button>
         </div>
-        <div id="hint1" class="info-box hint-text">Hint: Represents "empty/available vehicle space". The opposite of full (満車).</div>
-        <div id="ans1" class="info-box answer-text">Answer: B. 空車 (空車: kūsha)</div>
+        <div id="hint1" class="info-box hint-text">Hint: The verb means "to stand" or "to build/set up."</div>
+        <div id="ans1" class="info-box answer-text">Answer: A. 予定を立てる (Yotei o tateru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q2. 車を<u>まえむき</u>に駐車してください。</div>
-        <div class="english-translation">[Please park the car facing forward.]</div>
+        <div class="question-text">Q2. How do you say "to pack one's bags" or "prepare for a trip" in Japanese?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q2"> A. 後向き</label></li>
-          <li><label><input type="radio" name="q2"> B. 前向</label></li>
-          <li><label><input type="radio" name="q2"> C. 縦向き</label></li>
-          <li><label><input type="radio" name="q2"> D. 前向き</label></li>
+          <li><label><input type="radio" name="q2"> A. お土産を買う (Omiyage o kau)</label></li>
+          <li><label><input type="radio" name="q2"> B. 荷物をまとめる (Nimotsu o matomeru)</label></li>
+          <li><label><input type="radio" name="q2"> C. 荷物を捨てる (Nimotsu o suteru)</label></li>
+          <li><label><input type="radio" name="q2"> D. かばんを開ける (Kaban o akeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint2')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans2')">Show Answer</button>
         </div>
-        <div id="hint2" class="info-box hint-text">Hint: The kanji 前 means "front", and 向き means "facing".</div>
-        <div id="ans2" class="info-box answer-text">Answer: D. 前向き (前向き: maemuki)</div>
+        <div id="hint2" class="info-box hint-text">Hint: The verb implies bringing scattered things together into one place.</div>
+        <div id="ans2" class="info-box answer-text">Answer: B. 荷物をまとめる (Nimotsu o matomeru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q3. この駐車場の<u>りょうきん</u>はいくらですか。</div>
-        <div class="english-translation">[How much is the fee for this parking lot?]</div>
+        <div class="question-text">Q3. What is the Japanese term for a "day trip" (a trip where you return on the same day)?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q3"> A. 良金</label></li>
-          <li><label><input type="radio" name="q3"> B. 料金</label></li>
-          <li><label><input type="radio" name="q3"> C. 料銀</label></li>
-          <li><label><input type="radio" name="q3"> D. 領金</label></li>
+          <li><label><input type="radio" name="q3"> A. 日帰り (Higaeri)</label></li>
+          <li><label><input type="radio" name="q3"> B. 一泊 (Ippaku)</label></li>
+          <li><label><input type="radio" name="q3"> C. 外食 (Gaishoku)</label></li>
+          <li><label><input type="radio" name="q3"> D. 連休 (Renkyū)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint3')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans3')">Show Answer</button>
         </div>
-        <div id="hint3" class="info-box hint-text">Hint: Both kanji mean "fee/money". The first kanji is also used in 料理 (ryōri).</div>
-        <div id="ans3" class="info-box answer-text">Answer: B. 料金 (料金: ryōkin)</div>
+        <div id="hint3" class="info-box hint-text">Hint: It literally translates to "day return."</div>
+        <div id="ans3" class="info-box answer-text">Answer: A. 日帰り (Higaeri)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q4. 駐車場が<u>まんしゃ</u>で入れない。</div>
-        <div class="english-translation">[I can't enter because the parking lot is full.]</div>
+        <div class="question-text">Q4. When you go on a trip, you need to "book" or "reserve" a hotel. What is the verb for "to reserve"?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q4"> A. 万車</label></li>
-          <li><label><input type="radio" name="q4"> B. 満者</label></li>
-          <li><label><input type="radio" name="q4"> C. 満車</label></li>
-          <li><label><input type="radio" name="q4"> D. 漫車</label></li>
+          <li><label><input type="radio" name="q4"> A. 予約する (Yoyaku suru)</label></li>
+          <li><label><input type="radio" name="q4"> B. 約束する (Yakusoku suru)</label></li>
+          <li><label><input type="radio" name="q4"> C. 招待する (Shōtai suru)</label></li>
+          <li><label><input type="radio" name="q4"> D. 案内する (Annai suru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint4')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans4')">Show Answer</button>
         </div>
-        <div id="hint4" class="info-box hint-text">Hint: The first kanji means "full" or "satisfied".</div>
-        <div id="ans4" class="info-box answer-text">Answer: C. 満車 (満車: mansha)</div>
+        <div id="hint4" class="info-box hint-text">Hint: This word is commonly used for hotels, restaurants, and tickets.</div>
+        <div id="ans4" class="info-box answer-text">Answer: A. 予約する (Yoyaku suru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q5. <u>あんない</u>板を見て行きましょう。</div>
-        <div class="english-translation">[Let's go looking at the information board.]</div>
+        <div class="question-text">Q5. How do you describe an "overseas trip"?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q5"> A. 案外</label></li>
-          <li><label><input type="radio" name="q5"> B. 室内</label></li>
-          <li><label><input type="radio" name="q5"> C. 案向</label></li>
-          <li><label><input type="radio" name="q5"> D. 案内</label></li>
+          <li><label><input type="radio" name="q5"> A. 国内旅行 (Kokunai ryokō)</label></li>
+          <li><label><input type="radio" name="q5"> B. 海外旅行 (Kaigai ryokō)</label></li>
+          <li><label><input type="radio" name="q5"> C. 温泉旅行 (Onsen ryokō)</label></li>
+          <li><label><input type="radio" name="q5"> D. 家族旅行 (Kazoku ryokō)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint5')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans5')">Show Answer</button>
         </div>
-        <div id="hint5" class="info-box hint-text">Hint: The word implies "guiding" or "showing around".</div>
-        <div id="ans5" class="info-box answer-text">Answer: D. 案内 (案内: annai)</div>
+        <div id="hint5" class="info-box hint-text">Hint: The first kanji (海) means "ocean" or "sea."</div>
+        <div id="ans5" class="info-box answer-text">Answer: B. 海外旅行 (Kaigai ryokō)</div>
       </div>
     </div>
 
     <div id="slide2" class="slide">
-      <div class="topic-label">Topic: 駅と電車 (Station & Train) (Slide 2/5)</div>
+      <div class="topic-label">Topic: Holiday - Relaxing at Home (Slide 2/5)</div>
       <div class="question-block">
-        <div class="question-text">Q6. <u>とっきゅう</u>電車に乗ります。</div>
-        <div class="english-translation">[I will take the limited express train.]</div>
+        <div class="question-text">Q6. What is the phrase for "taking it easy" or "relaxing" at home on a day off?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q6"> A. 得急</label></li>
-          <li><label><input type="radio" name="q6"> B. 特急</label></li>
-          <li><label><input type="radio" name="q6"> C. 特及</label></li>
-          <li><label><input type="radio" name="q6"> D. 突急</label></li>
+          <li><label><input type="radio" name="q6"> A. のんびりする (Nonbiri suru)</label></li>
+          <li><label><input type="radio" name="q6"> B. びっくりする (Bikkuri suru)</label></li>
+          <li><label><input type="radio" name="q6"> C. がっかりする (Gakkari suru)</label></li>
+          <li><label><input type="radio" name="q6"> D. はっきりする (Hakkiri suru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans6')">Show Answer</button>
         </div>
-        <div id="hint6" class="info-box hint-text">Hint: "Special" (特) + "Express" (急).</div>
-        <div id="ans6" class="info-box answer-text">Answer: B. 特急 (特急: tokkyū)</div>
+        <div id="hint6" class="info-box hint-text">Hint: It describes a slow, leisurely state without rushing or stressing.</div>
+        <div id="ans6" class="info-box answer-text">Answer: A. のんびりする (Nonbiri suru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q7. 白い<u>せん</u>の内側でお待ちください。</div>
-        <div class="english-translation">[Please wait inside the white line.]</div>
+        <div class="question-text">Q7. How do you say "to sleep in" or "oversleep" on a Sunday morning?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q7"> A. 糸</label></li>
-          <li><label><input type="radio" name="q7"> B. 綿</label></li>
-          <li><label><input type="radio" name="q7"> C. 緑</label></li>
-          <li><label><input type="radio" name="q7"> D. 線</label></li>
+          <li><label><input type="radio" name="q7"> A. 昼寝をする (Hirune o suru)</label></li>
+          <li><label><input type="radio" name="q7"> B. 徹夜する (Tetsuya suru)</label></li>
+          <li><label><input type="radio" name="q7"> C. 寝坊する (Nebō suru)</label></li>
+          <li><label><input type="radio" name="q7"> D. 早起きする (Hayaoki suru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint7')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans7')">Show Answer</button>
         </div>
-        <div id="hint7" class="info-box hint-text">Hint: Do not confuse with "thread" (糸) or "cotton" (綿). The kanji for "line" is 線.</div>
-        <div id="ans7" class="info-box answer-text">Answer: D. 線 (線: sen)</div>
+        <div id="hint7" class="info-box hint-text">Hint: This word combines "sleep" (寝) and "late" (坊).</div>
+        <div id="ans7" class="info-box answer-text">Answer: C. 寝坊する (Nebō suru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q8. 間もなく電車が<u>はっしゃ</u>します。</div>
-        <div class="english-translation">[The train will depart shortly.]</div>
+        <div class="question-text">Q8. What is the term for "staying up late" to watch movies or play games?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q8"> A. 停車</label></li>
-          <li><label><input type="radio" name="q8"> B. 初車</label></li>
-          <li><label><input type="radio" name="q8"> C. 廃車</label></li>
-          <li><label><input type="radio" name="q8"> D. 発車</label></li>
+          <li><label><input type="radio" name="q8"> A. 夜更かしする (Yofukashi suru)</label></li>
+          <li><label><input type="radio" name="q8"> B. 夜遊びする (Yoasobi suru)</label></li>
+          <li><label><input type="radio" name="q8"> C. 昼寝する (Hirune suru)</label></li>
+          <li><label><input type="radio" name="q8"> D. 夕食を食べる (Yūshoku o taberu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint8')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans8')">Show Answer</button>
         </div>
-        <div id="hint8" class="info-box hint-text">Hint: The first kanji means "to depart/emit".</div>
-        <div id="ans8" class="info-box answer-text">Answer: D. 発車 (発車: hassha)</div>
+        <div id="hint8" class="info-box hint-text">Hint: The kanji "更" relates to growing late into the night.</div>
+        <div id="ans8" class="info-box answer-text">Answer: A. 夜更かしする (Yofukashi suru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q9. この電車は<u>かくえき</u>停車です。</div>
-        <div class="english-translation">[This train stops at every station.]</div>
+        <div class="question-text">Q9. If you are watching TV and want to "change the channel," what is the Japanese phrase?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q9"> A. 客駅</label></li>
-          <li><label><input type="radio" name="q9"> B. 各駅</label></li>
-          <li><label><input type="radio" name="q9"> C. 閣駅</label></li>
-          <li><label><input type="radio" name="q9"> D. 絡駅</label></li>
+          <li><label><input type="radio" name="q9"> A. チャンネルを変える (Channeru o kaeru)</label></li>
+          <li><label><input type="radio" name="q9"> B. チャンネルを壊す (Channeru o kowasu)</label></li>
+          <li><label><input type="radio" name="q9"> C. チャンネルを消す (Channeru o kesu)</label></li>
+          <li><label><input type="radio" name="q9"> D. チャンネルをつける (Channeru o tsukeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint9')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans9')">Show Answer</button>
         </div>
-        <div id="hint9" class="info-box hint-text">Hint: The first kanji means "each" or "every".</div>
-        <div id="ans9" class="info-box answer-text">Answer: B. 各駅 (各駅: kakueki)</div>
+        <div id="hint9" class="info-box hint-text">Hint: The verb means "to change" or "alter."</div>
+        <div id="ans9" class="info-box answer-text">Answer: A. チャンネルを変える (Channeru o kaeru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q10. <u>じょうしゃ</u>券を拝見します。</div>
-        <div class="english-translation">[Please show me your boarding ticket.]</div>
+        <div class="question-text">Q10. What is the Japanese word for "a nap" during the day?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q10"> A. 乗り車</label></li>
-          <li><label><input type="radio" name="q10"> B. 状車</label></li>
-          <li><label><input type="radio" name="q10"> C. 乗車</label></li>
-          <li><label><input type="radio" name="q10"> D. 乗者</label></li>
+          <li><label><input type="radio" name="q10"> A. 休憩 (Kyūkei)</label></li>
+          <li><label><input type="radio" name="q10"> B. 睡眠 (Suimin)</label></li>
+          <li><label><input type="radio" name="q10"> C. 昼寝 (Hirune)</label></li>
+          <li><label><input type="radio" name="q10"> D. 居眠り (Inemuri)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint10')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans10')">Show Answer</button>
         </div>
-        <div id="hint10" class="info-box hint-text">Hint: The kanji 乗 is used for "riding" a vehicle.</div>
-        <div id="ans10" class="info-box answer-text">Answer: C. 乗車 (乗車: jōsha)</div>
+        <div id="hint10" class="info-box hint-text">Hint: It literally translates to "noon sleep."</div>
+        <div id="ans10" class="info-box answer-text">Answer: C. 昼寝 (Hirune)</div>
       </div>
     <div class="part-panel" id="partPanel1">
       <div class="part-title">📝 Part 1 (Q1–Q10)</div>
       <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkKanji32Part(1)">✓ Check Part 1</button>
+        <button type="button" class="action-btn check-btn" onclick="checkN3_2Part(1)">✓ Check Part 1</button>
       </div>
       <div id="partResult1" class="part-result" style="display: none;"></div>
       <div id="partBest1" class="part-best"></div>
@@ -371,175 +563,165 @@
     </div>
 
     <div id="slide3" class="slide">
-      <div class="topic-label">Topic: バスと乗り物 (Bus & Transit) (Slide 3/5)</div>
+      <div class="topic-label">Topic: Study - School & Tests (Slide 3/5)</div>
       <div class="question-block">
-        <div class="question-text">Q11. 次の<u>ていりゅうじょ</u>でバスを降ります。</div>
-        <div class="english-translation">[I will get off the bus at the next stop.]</div>
+        <div class="question-text">Q11. What is the Japanese phrase for "attending a lecture" or "taking a class"?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q11"> A. 停留所</label></li>
-          <li><label><input type="radio" name="q11"> B. 停流所</label></li>
-          <li><label><input type="radio" name="q11"> C. 定留所</label></li>
-          <li><label><input type="radio" name="q11"> D. 定流所</label></li>
+          <li><label><input type="radio" name="q11"> A. 授業に出る (Jugyō ni deru)</label></li>
+          <li><label><input type="radio" name="q11"> B. 授業を休む (Jugyō o yasumu)</label></li>
+          <li><label><input type="radio" name="q11"> C. 授業を教える (Jugyō o oshieru)</label></li>
+          <li><label><input type="radio" name="q11"> D. 授業を作る (Jugyō o tsukuru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint11')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans11')">Show Answer</button>
         </div>
-        <div id="hint11" class="info-box hint-text">Hint: Means a place to stop and stay (for a bus).</div>
-        <div id="ans11" class="info-box answer-text">Answer: A. 停留所 (停留所: teiryūjo)</div>
+        <div id="hint11" class="info-box hint-text">Hint: The verb normally means "to exit," but in this context, it means "to attend."</div>
+        <div id="ans11" class="info-box answer-text">Answer: A. 授業に出る (Jugyō ni deru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q12. バスに乗るときに<u>せいりけん</u>を取ります。</div>
-        <div class="english-translation">[Take a numbered ticket when you get on the bus.]</div>
+        <div class="question-text">Q12. How do you say "to pass an exam" in Japanese?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q12"> A. 整利券</label></li>
-          <li><label><input type="radio" name="q12"> B. 整理巻</label></li>
-          <li><label><input type="radio" name="q12"> C. 整理券</label></li>
-          <li><label><input type="radio" name="q12"> D. 制理券</label></li>
+          <li><label><input type="radio" name="q12"> A. 試験に落ちる (Shiken ni ochiru)</label></li>
+          <li><label><input type="radio" name="q12"> B. 試験に合格する (Shiken ni gōkaku suru)</label></li>
+          <li><label><input type="radio" name="q12"> C. 試験を受ける (Shiken o ukeru)</label></li>
+          <li><label><input type="radio" name="q12"> D. 試験をあきらめる (Shiken o akirameru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint12')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans12')">Show Answer</button>
         </div>
-        <div id="hint12" class="info-box hint-text">Hint: 券 means "ticket".</div>
-        <div id="ans12" class="info-box answer-text">Answer: C. 整理券 (整理券: seiriken)</div>
+        <div id="hint12" class="info-box hint-text">Hint: The kanji means "matching the standard."</div>
+        <div id="ans12" class="info-box answer-text">Answer: B. 試験に合格する (Shiken ni gōkaku suru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q13. バスの<u>うんちん</u>を払います。</div>
-        <div class="english-translation">[I will pay the bus fare.]</div>
+        <div class="question-text">Q13. What is the action of "memorizing" vocabulary or kanji?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q13"> A. 運金</label></li>
-          <li><label><input type="radio" name="q13"> B. 運費</label></li>
-          <li><label><input type="radio" name="q13"> C. 運代</label></li>
-          <li><label><input type="radio" name="q13"> D. 運賃</label></li>
+          <li><label><input type="radio" name="q13"> A. 思い出す (Omoidasu)</label></li>
+          <li><label><input type="radio" name="q13"> B. 考える (Kangaeru)</label></li>
+          <li><label><input type="radio" name="q13"> C. 暗記する (Anki suru)</label></li>
+          <li><label><input type="radio" name="q13"> D. 復習する (Fukushū suru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint13')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans13')">Show Answer</button>
         </div>
-        <div id="hint13" class="info-box hint-text">Hint: 賃 implies a charge or fare.</div>
-        <div id="ans13" class="info-box answer-text">Answer: D. 運賃 (運賃: unchin)</div>
+        <div id="hint13" class="info-box hint-text">Hint: This implies learning something by heart.</div>
+        <div id="ans13" class="info-box answer-text">Answer: C. 暗記する (Anki suru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q14. 次の駅で電車を<u>おります</u>。</div>
-        <div class="english-translation">[I will get off the train at the next station.]</div>
+        <div class="question-text">Q14. Before a big test, you need to "review" what you learned. What is the word for "review"?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q14"> A. 下ります</label></li>
-          <li><label><input type="radio" name="q14"> B. 退ります</label></li>
-          <li><label><input type="radio" name="q14"> C. 降ります</label></li>
-          <li><label><input type="radio" name="q14"> D. 落ちます</label></li>
+          <li><label><input type="radio" name="q14"> A. 予習 (Yoshū)</label></li>
+          <li><label><input type="radio" name="q14"> B. 復習 (Fukushū)</label></li>
+          <li><label><input type="radio" name="q14"> C. 練習 (Renshū)</label></li>
+          <li><label><input type="radio" name="q14"> D. 実習 (Jisshū)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans14')">Show Answer</button>
         </div>
-        <div id="hint14" class="info-box hint-text">Hint: To "get off" a vehicle is written with the kanji that means descend/fall.</div>
-        <div id="ans14" class="info-box answer-text">Answer: C. 降ります (降りる: oriru)</div>
+        <div id="hint14" class="info-box hint-text">Hint: The first kanji "復" means "to return" or "repeat."</div>
+        <div id="ans14" class="info-box answer-text">Answer: B. 復習 (Fukushū)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q15. お年寄りに席を<u>ゆずり</u>ました。</div>
-        <div class="english-translation">[I offered my seat to an elderly person.]</div>
+        <div class="question-text">Q15. If a student is absent from school without permission, they "skip class." What is the phrase?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q15"> A. 渡り</label></li>
-          <li><label><input type="radio" name="q15"> B. 護り</label></li>
-          <li><label><input type="radio" name="q15"> C. 許り</label></li>
-          <li><label><input type="radio" name="q15"> D. 譲り</label></li>
+          <li><label><input type="radio" name="q15"> A. 授業をサボる (Jugyō o saboru)</label></li>
+          <li><label><input type="radio" name="q15"> B. 授業に遅れる (Jugyō ni okureru)</label></li>
+          <li><label><input type="radio" name="q15"> C. 授業を始める (Jugyō o hajimeru)</label></li>
+          <li><label><input type="radio" name="q15"> D. 授業を終える (Jugyō o oeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint15')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans15')">Show Answer</button>
         </div>
-        <div id="hint15" class="info-box hint-text">Hint: This kanji has the "words" radical (言) on the left.</div>
-        <div id="ans15" class="info-box answer-text">Answer: D. 譲り (譲る: yuzuru)</div>
+        <div id="hint15" class="info-box hint-text">Hint: The verb comes from the word "sabotage."</div>
+        <div id="ans15" class="info-box answer-text">Answer: A. 授業をサボる (Jugyō o saboru)</div>
       </div>
     </div>
 
     <div id="slide4" class="slide">
-      <div class="topic-label">Topic: 道と交通 (Roads & Traffic) (Slide 4/5)</div>
+      <div class="topic-label">Topic: Work - Office & Commuting (Slide 4/5)</div>
       <div class="question-block">
-        <div class="question-text">Q16. 次の<u>こうさてん</u>を右に曲がります。</div>
-        <div class="english-translation">[Turn right at the next intersection.]</div>
+        <div class="question-text">Q16. What is the Japanese term for "going to work" (arriving at the office)?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q16"> A. 校差点</label></li>
-          <li><label><input type="radio" name="q16"> B. 交差店</label></li>
-          <li><label><input type="radio" name="q16"> C. 交差点</label></li>
-          <li><label><input type="radio" name="q16"> D. 高差点</label></li>
+          <li><label><input type="radio" name="q16"> A. 退社する (Taisha suru)</label></li>
+          <li><label><input type="radio" name="q16"> B. 出勤する (Shukkin suru)</label></li>
+          <li><label><input type="radio" name="q16"> C. 残業する (Zangyō suru)</label></li>
+          <li><label><input type="radio" name="q16"> D. 帰宅する (Kitaku suru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint16')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans16')">Show Answer</button>
         </div>
-        <div id="hint16" class="info-box hint-text">Hint: An intersection is a "point" (点) where lines "cross" (交差).</div>
-        <div id="ans16" class="info-box answer-text">Answer: C. 交差点 (交差点: kōsaten)</div>
+        <div id="hint16" class="info-box hint-text">Hint: The first kanji means "to exit/go out" and the second relates to "work/duty."</div>
+        <div id="ans16" class="info-box answer-text">Answer: B. 出勤する (Shukkin suru)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q17. <u>しんごう</u>が赤に変わりました。</div>
-        <div class="english-translation">[The traffic light turned red.]</div>
+        <div class="question-text">Q17. How do you say "overtime work" when you have to stay late at the office?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q17"> A. 信号</label></li>
-          <li><label><input type="radio" name="q17"> B. 心号</label></li>
-          <li><label><input type="radio" name="q17"> C. 申号</label></li>
-          <li><label><input type="radio" name="q17"> D. 震号</label></li>
+          <li><label><input type="radio" name="q17"> A. 出張 (Shutchō)</label></li>
+          <li><label><input type="radio" name="q17"> B. 休憩 (Kyūkei)</label></li>
+          <li><label><input type="radio" name="q17"> C. 残業 (Zangyō)</label></li>
+          <li><label><input type="radio" name="q17"> D. 有給 (Yūkyū)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint17')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans17')">Show Answer</button>
         </div>
-        <div id="hint17" class="info-box hint-text">Hint: The first kanji implies trust or signal (信).</div>
-        <div id="ans17" class="info-box answer-text">Answer: A. 信号 (信号: shingō)</div>
+        <div id="hint17" class="info-box hint-text">Hint: It literally translates to "remaining business/work."</div>
+        <div id="ans17" class="info-box answer-text">Answer: C. 残業 (Zangyō)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q18. <u>おうだん</u>歩道を渡りましょう。</div>
-        <div class="english-translation">[Let's cross the pedestrian crossing.]</div>
+        <div class="question-text">Q18. What is the phrase for "taking a day off" from work?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q18"> A. 縦断</label></li>
-          <li><label><input type="radio" name="q18"> B. 黄段</label></li>
-          <li><label><input type="radio" name="q18"> C. 黄金</label></li>
-          <li><label><input type="radio" name="q18"> D. 横断</label></li>
+          <li><label><input type="radio" name="q18"> A. 会社を休む (Kaisha o yasumu)</label></li>
+          <li><label><input type="radio" name="q18"> B. 会社を辞める (Kaisha o yameru)</label></li>
+          <li><label><input type="radio" name="q18"> C. 会社を作る (Kaisha o tsukuru)</label></li>
+          <li><label><input type="radio" name="q18"> D. 会社を出る (Kaisha o deru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint18')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans18')">Show Answer</button>
         </div>
-        <div id="hint18" class="info-box hint-text">Hint: The word implies cutting "across" (横).</div>
-        <div id="ans18" class="info-box answer-text">Answer: D. 横断 (横断: ōdan)</div>
+        <div id="hint18" class="info-box hint-text">Hint: The verb means "to rest."</div>
+        <div id="ans18" class="info-box answer-text">Answer: A. 会社を休む (Kaisha o yasumu)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q19. <u>ふみきり</u>の前で一時停止します。</div>
-        <div class="english-translation">[Stop temporarily before the railway crossing.]</div>
+        <div class="question-text">Q19. When you travel to another city or country for business, what is it called?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q19"> A. 踏切</label></li>
-          <li><label><input type="radio" name="q19"> B. 踏段</label></li>
-          <li><label><input type="radio" name="q19"> C. 越切</label></li>
-          <li><label><input type="radio" name="q19"> D. 歩切</label></li>
+          <li><label><input type="radio" name="q19"> A. 旅行 (Ryokō)</label></li>
+          <li><label><input type="radio" name="q19"> B. 転勤 (Tenkin)</label></li>
+          <li><label><input type="radio" name="q19"> C. 出張 (Shutchō)</label></li>
+          <li><label><input type="radio" name="q19"> D. 面接 (Mensetsu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
         </div>
-        <div id="hint19" class="info-box hint-text">Hint: It is a crossing where the train "cuts" (切) through the path you "step on" (踏).</div>
-        <div id="ans19" class="info-box answer-text">Answer: A. 踏切 (踏切: fumikiri)</div>
+        <div id="hint19" class="info-box hint-text">Hint: It means a "business trip."</div>
+        <div id="ans19" class="info-box answer-text">Answer: C. 出張 (Shutchō)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q20. 道が<u>こんで</u>いて、全然進みません。</div>
-        <div class="english-translation">[The road is congested and not moving at all.]</div>
+        <div class="question-text">Q20. What is the term for a "meeting" with coworkers or clients in a formal setting?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q20"> A. 困んで</label></li>
-          <li><label><input type="radio" name="q20"> B. 結んで</label></li>
-          <li><label><input type="radio" name="q20"> C. 組んで</label></li>
-          <li><label><input type="radio" name="q20"> D. 混んで</label></li>
+          <li><label><input type="radio" name="q20"> A. パーティー (Pātī)</label></li>
+          <li><label><input type="radio" name="q20"> B. 会議 (Kaigi)</label></li>
+          <li><label><input type="radio" name="q20"> C. 授業 (Jugyō)</label></li>
+          <li><label><input type="radio" name="q20"> D. 挨拶 (Aisatsu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
         </div>
-        <div id="hint20" class="info-box hint-text">Hint: Meaning "to be crowded/congested". Has the "water" radical on the left.</div>
-        <div id="ans20" class="info-box answer-text">Answer: D. 混んで (混む: komu)</div>
+        <div id="hint20" class="info-box hint-text">Hint: It uses the kanji for "meet" and "discuss/consult."</div>
+        <div id="ans20" class="info-box answer-text">Answer: B. 会議 (Kaigi)</div>
       </div>
     <div class="part-panel" id="partPanel2">
       <div class="part-title">📝 Part 2 (Q11–Q20)</div>
       <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkKanji32Part(2)">✓ Check Part 2</button>
+        <button type="button" class="action-btn check-btn" onclick="checkN3_2Part(2)">✓ Check Part 2</button>
       </div>
       <div id="partResult2" class="part-result" style="display: none;"></div>
       <div id="partBest2" class="part-best"></div>
@@ -547,91 +729,86 @@
     </div>
 
     <div id="slide5" class="slide">
-      <div class="topic-label">Topic: 移動と安全 (Movement & Safety) (Slide 5/5)</div>
+      <div class="topic-label">Topic: Work - Business & Colleagues (Slide 5/5)</div>
       <div class="question-block">
-        <div class="question-text">Q21. ここで遊ぶのは<u>きけん</u>です。</div>
-        <div class="english-translation">[It is dangerous to play here.]</div>
+        <div class="question-text">Q21. What is the Japanese word for your "colleague" or "coworker"?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q21"> A. 気険</label></li>
-          <li><label><input type="radio" name="q21"> B. 棄険</label></li>
-          <li><label><input type="radio" name="q21"> C. 危検</label></li>
-          <li><label><input type="radio" name="q21"> D. 危険</label></li>
+          <li><label><input type="radio" name="q21"> A. 上司 (Jōshi)</label></li>
+          <li><label><input type="radio" name="q21"> B. 部下 (Buka)</label></li>
+          <li><label><input type="radio" name="q21"> C. 同僚 (Dōryō)</label></li>
+          <li><label><input type="radio" name="q21"> D. 社長 (Shachō)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans21')">Show Answer</button>
         </div>
-        <div id="hint21" class="info-box hint-text">Hint: The opposite of safety. Both kanji represent "danger" or "peril".</div>
-        <div id="ans21" class="info-box answer-text">Answer: D. 危険 (危険: kiken)</div>
+        <div id="hint21" class="info-box hint-text">Hint: It refers to someone at the same level as you in the workplace.</div>
+        <div id="ans21" class="info-box answer-text">Answer: C. 同僚 (Dōryō)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q22. <u>あんぜん</u>第一で運転してください。</div>
-        <div class="english-translation">[Please drive with safety first.]</div>
+        <div class="question-text">Q22. How do you refer to your "boss" or "superior" at work?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q22"> A. 案全</label></li>
-          <li><label><input type="radio" name="q22"> B. 安全</label></li>
-          <li><label><input type="radio" name="q22"> C. 安前</label></li>
-          <li><label><input type="radio" name="q22"> D. 暗全</label></li>
+          <li><label><input type="radio" name="q22"> A. 上司 (Jōshi)</label></li>
+          <li><label><input type="radio" name="q22"> B. 後輩 (Kōhai)</label></li>
+          <li><label><input type="radio" name="q22"> C. 同僚 (Dōryō)</label></li>
+          <li><label><input type="radio" name="q22"> D. お客様 (Okyakusama)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint22')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans22')">Show Answer</button>
         </div>
-        <div id="hint22" class="info-box hint-text">Hint: Meaning "peaceful" (安) and "complete/entire" (全).</div>
-        <div id="ans22" class="info-box answer-text">Answer: B. 安全 (安全: anzen)</div>
+        <div id="hint22" class="info-box hint-text">Hint: The first kanji means "up" or "above."</div>
+        <div id="ans22" class="info-box answer-text">Answer: A. 上司 (Jōshi)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q23. 電車が駅を<u>つうか</u>しました。</div>
-        <div class="english-translation">[The train passed through the station.]</div>
+        <div class="question-text">Q23. When you swap business cards with someone, you are doing a "business card exchange." What is the word for a business card?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q23"> A. 通行</label></li>
-          <li><label><input type="radio" name="q23"> B. 通科</label></li>
-          <li><label><input type="radio" name="q23"> C. 通過</label></li>
-          <li><label><input type="radio" name="q23"> D. 通火</label></li>
+          <li><label><input type="radio" name="q23"> A. 手紙 (Tegami)</label></li>
+          <li><label><input type="radio" name="q23"> B. 切手 (Kitte)</label></li>
+          <li><label><input type="radio" name="q23"> C. 名刺 (Meishi)</label></li>
+          <li><label><input type="radio" name="q23"> D. 封筒 (Fūtō)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint23')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans23')">Show Answer</button>
         </div>
-        <div id="hint23" class="info-box hint-text">Hint: The second kanji is the same one used in 過去 (past) and 過ぎる (to pass).</div>
-        <div id="ans23" class="info-box answer-text">Answer: C. 通過 (通過: tsūka)</div>
+        <div id="hint23" class="info-box hint-text">Hint: It contains the kanji for "name" (名).</div>
+        <div id="ans23" class="info-box answer-text">Answer: C. 名刺 (Meishi)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q24. 新幹線が間もなく<u>とうちゃく</u>します。</div>
-        <div class="english-translation">[The bullet train will arrive shortly.]</div>
+        <div class="question-text">Q24. What is the phrase used to say "Good work today" to a colleague leaving the office?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q24"> A. 到着</label></li>
-          <li><label><input type="radio" name="q24"> B. 倒着</label></li>
-          <li><label><input type="radio" name="q24"> C. 当着</label></li>
-          <li><label><input type="radio" name="q24"> D. 党着</label></li>
+          <li><label><input type="radio" name="q24"> A. お待たせしました (Omatase shimashita)</label></li>
+          <li><label><input type="radio" name="q24"> B. お疲れ様でした (Otsukaresama deshita)</label></li>
+          <li><label><input type="radio" name="q24"> C. お世話になります (Osewa ni narimasu)</label></li>
+          <li><label><input type="radio" name="q24"> D. お先に失礼します (Osaki ni shitsurei shimasu)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
         </div>
-        <div id="hint24" class="info-box hint-text">Hint: The first kanji has the "knife/sword" radical on the right (刂).</div>
-        <div id="ans24" class="info-box answer-text">Answer: A. 到着 (到着: tōchaku)</div>
+        <div id="hint24" class="info-box hint-text">Hint: It comes from the verb meaning "to get tired."</div>
+        <div id="ans24" class="info-box answer-text">Answer: B. お疲れ様でした (Otsukaresama deshita)</div>
       </div>
       <div class="question-block">
-        <div class="question-text">Q25. ここを<u>まっすぐ</u>進んでください。</div>
-        <div class="english-translation">[Please go straight ahead here.]</div>
+        <div class="question-text">Q25. If you decide to "quit your job," what is the verb used?</div>
         <ul class="options">
-          <li><label><input type="radio" name="q25"> A. 正っ直ぐ</label></li>
-          <li><label><input type="radio" name="q25"> B. 真直ぐ</label></li>
-          <li><label><input type="radio" name="q25"> C. 真っ直</label></li>
-          <li><label><input type="radio" name="q25"> D. 真っ直ぐ</label></li>
+          <li><label><input type="radio" name="q25"> A. 仕事を探す (Shigoto o sagasu)</label></li>
+          <li><label><input type="radio" name="q25"> B. 仕事を辞める (Shigoto o yameru)</label></li>
+          <li><label><input type="radio" name="q25"> C. 仕事を続ける (Shigoto o tsuzukeru)</label></li>
+          <li><label><input type="radio" name="q25"> D. 仕事を覚える (Shigoto o oboeru)</label></li>
         </ul>
         <div class="btn-group">
           <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
           <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
         </div>
-        <div id="hint25" class="info-box hint-text">Hint: Usually written with 真 (true/real) + 直 (straight) and small "tsu".</div>
-        <div id="ans25" class="info-box answer-text">Answer: D. 真っ直ぐ (真っ直ぐ: massugu)</div>
+        <div id="hint25" class="info-box hint-text">Hint: The verb means "to stop" or "to resign."</div>
+        <div id="ans25" class="info-box answer-text">Answer: B. 仕事を辞める (Shigoto o yameru)</div>
       </div>
     <div class="part-panel" id="partPanel3">
       <div class="part-title">📝 Part 3 (Q21–Q25)</div>
       <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkKanji32Part(3)">✓ Check Part 3</button>
+        <button type="button" class="action-btn check-btn" onclick="checkN3_2Part(3)">✓ Check Part 3</button>
       </div>
       <div id="partResult3" class="part-result" style="display: none;"></div>
       <div id="partBest3" class="part-best"></div>
@@ -639,19 +816,19 @@
     </div>
 
     <div class="nav-controls">
-      <button id="jumpBtn1" class="nav-btn active-btn" onclick="jumpToSlide(1)">SLIDE 1</button>
-      <button id="jumpBtn2" class="nav-btn" onclick="jumpToSlide(2)">SLIDE 2</button>
-      <button id="jumpBtn3" class="nav-btn" onclick="jumpToSlide(3)">SLIDE 3</button>
-      <button id="jumpBtn4" class="nav-btn" onclick="jumpToSlide(4)">SLIDE 4</button>
-      <button id="jumpBtn5" class="nav-btn" onclick="jumpToSlide(5)">SLIDE 5</button>
+      <button class="slide-jump-btn active" onclick="jumpToSlide(1)">SLIDE 1</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(2)">SLIDE 2</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(3)">SLIDE 3</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(4)">SLIDE 4</button>
+      <button class="slide-jump-btn" onclick="jumpToSlide(5)">SLIDE 5</button>
     </div>
 
   <div class="score-panel" id="scorePanel">
     <div class="score-title">📝 Your Score</div>
     <p class="score-desc">Check each part as you finish it, or check everything at once here. Unanswered questions count as wrong. Your best scores are saved on this device, so you can see your growth on every visit.</p>
     <div class="btn-group score-btns">
-      <button type="button" class="action-btn check-btn" onclick="checkKanji32Score()">✓ Check All</button>
-      <button type="button" class="action-btn reset-btn" onclick="resetKanji32Score()">↺ Reset all (clears saved progress)</button>
+      <button type="button" class="action-btn check-btn" onclick="checkN3_2Score()">✓ Check All</button>
+      <button type="button" class="action-btn reset-btn" onclick="resetN3_2Score()">↺ Reset all (clears saved progress)</button>
     </div>
     <div id="scoreParts" class="score-parts"></div>
     <div id="scoreResult" class="score-result" style="display: none;"></div>
@@ -669,7 +846,6 @@
 
 <script>
   let currentSlide = 1;
-  const totalSlides = 5;
 
   function toggleDisplay(elementId) {
     var element = document.getElementById(elementId);
@@ -681,47 +857,46 @@
   }
 
   function jumpToSlide(slideNumber) {
-    // 全スライドとボタンの状態をリセット
-    for (let i = 1; i <= totalSlides; i++) {
-      document.getElementById('slide' + i).classList.remove('active');
-      document.getElementById('jumpBtn' + i).classList.remove('active-btn');
-    }
+    // 全スライドからactiveを削除
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    // 全ボタンからactiveを削除
+    document.querySelectorAll('.slide-jump-btn').forEach(b => b.classList.remove('active'));
     
-    // 選択されたスライドを表示し、ボタンをハイライト
+    // 指定のスライドとボタンをactiveにする
+    document.getElementById('slide' + slideNumber).classList.add('active');
+    document.querySelectorAll('.slide-jump-btn')[slideNumber - 1].classList.add('active');
+    
     currentSlide = slideNumber;
-    document.getElementById('slide' + currentSlide).classList.add('active');
-    document.getElementById('jumpBtn' + currentSlide).classList.add('active-btn');
-    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 
 <script>
   // --- Quiz scoring: parts + saved progress ---
-  var KANJI32_ANSWERS = { q1: 'B', q2: 'D', q3: 'B', q4: 'C', q5: 'D', q6: 'B', q7: 'D', q8: 'D', q9: 'B', q10: 'C', q11: 'A', q12: 'C', q13: 'D', q14: 'C', q15: 'D', q16: 'C', q17: 'A', q18: 'D', q19: 'A', q20: 'D', q21: 'D', q22: 'B', q23: 'C', q24: 'A', q25: 'D' };
-  var KANJI32_LETTERS = ['A', 'B', 'C', 'D'];
-  var KANJI32_TOTAL = 25;
-  var KANJI32_PARTS = [
+  var N3_2_ANSWERS = { q1: 'A', q2: 'B', q3: 'A', q4: 'A', q5: 'B', q6: 'A', q7: 'C', q8: 'A', q9: 'A', q10: 'C', q11: 'A', q12: 'B', q13: 'C', q14: 'B', q15: 'A', q16: 'B', q17: 'C', q18: 'A', q19: 'C', q20: 'B', q21: 'C', q22: 'A', q23: 'C', q24: 'B', q25: 'B' };
+  var N3_2_LETTERS = ['A', 'B', 'C', 'D'];
+  var N3_2_TOTAL = 25;
+  var N3_2_PARTS = [
     { part: 1, from: 1, to: 10, size: 10 },
     { part: 2, from: 11, to: 20, size: 10 },
     { part: 3, from: 21, to: 25, size: 5 }
   ];
-  var KANJI32_PROGRESS_KEY = 'ohayo_kanji3_2_progress';
-  var kanji32PartScores = { 1: null, 2: null, 3: null };
+  var N3_2_PROGRESS_KEY = 'ohayo_n3_2_progress';
+  var n3_2PartScores = { 1: null, 2: null, 3: null };
 
-  function kanji32DefaultProgress() {
+  function n3_2DefaultProgress() {
     return { v: 1, totalBest: null, parts: { '1': { best: 0, done: false }, '2': { best: 0, done: false }, '3': { best: 0, done: false } } };
   }
 
-  function loadKanji32Progress() {
-    var def = kanji32DefaultProgress();
+  function loadN3_2Progress() {
+    var def = n3_2DefaultProgress();
     try {
-      var raw = window.localStorage.getItem(KANJI32_PROGRESS_KEY);
+      var raw = window.localStorage.getItem(N3_2_PROGRESS_KEY);
       if (!raw) return def;
       var data = JSON.parse(raw);
       if (!data || data.v !== 1 || !data.parts) return def;
-      for (var i = 0; i < KANJI32_PARTS.length; i++) {
-        var key = String(KANJI32_PARTS[i].part);
+      for (var i = 0; i < N3_2_PARTS.length; i++) {
+        var key = String(N3_2_PARTS[i].part);
         if (data.parts[key] && typeof data.parts[key].best === 'number') {
           def.parts[key] = { best: data.parts[key].best, done: !!data.parts[key].done };
         }
@@ -733,23 +908,23 @@
     }
   }
 
-  function saveKanji32Progress() {
+  function saveN3_2Progress() {
     try {
-      window.localStorage.setItem(KANJI32_PROGRESS_KEY, JSON.stringify(kanji32Progress));
+      window.localStorage.setItem(N3_2_PROGRESS_KEY, JSON.stringify(n3_2Progress));
     } catch (e) { /* storage unavailable: progress just will not persist */ }
   }
 
-  var kanji32Progress = loadKanji32Progress();
+  var n3_2Progress = loadN3_2Progress();
 
-  function kanji32BlockFor(n) {
+  function n3_2BlockFor(n) {
     var radios = document.querySelectorAll('input[name="q' + n + '"]');
     if (!radios.length) return null;
     return radios[0].closest('.question-block');
   }
 
-  function clearKanji32MarksRange(from, to) {
+  function clearN3_2MarksRange(from, to) {
     for (var n = from; n <= to; n++) {
-      var block = kanji32BlockFor(n);
+      var block = n3_2BlockFor(n);
       if (!block) continue;
       block.classList.remove('q-correct', 'q-wrong', 'q-unanswered');
       var badges = block.querySelectorAll('.q-badge');
@@ -759,16 +934,16 @@
     }
   }
 
-  function clearKanji32Marks() {
-    clearKanji32MarksRange(1, KANJI32_TOTAL);
+  function clearN3_2Marks() {
+    clearN3_2MarksRange(1, N3_2_TOTAL);
   }
 
-  function markKanji32Question(n) {
+  function markN3_2Question(n) {
     var name = 'q' + n;
     var radios = document.querySelectorAll('input[name="' + name + '"]');
     if (!radios.length) return 0;
     var block = radios[0].closest('.question-block');
-    var correctIdx = KANJI32_LETTERS.indexOf(KANJI32_ANSWERS[name]);
+    var correctIdx = N3_2_LETTERS.indexOf(N3_2_ANSWERS[name]);
     var selectedIdx = -1;
     for (var i = 0; i < radios.length; i++) {
       if (radios[i].checked) selectedIdx = i;
@@ -797,109 +972,109 @@
     return point;
   }
 
-  function refreshKanji32PartBest(part) {
+  function refreshN3_2PartBest(part) {
     var el = document.getElementById('partBest' + part);
     if (!el) return;
-    var info = kanji32Progress.parts[String(part)];
+    var info = n3_2Progress.parts[String(part)];
     if (info && info.done) {
-      el.textContent = 'Best: ' + info.best + ' / ' + KANJI32_PARTS[part - 1].size + ' ✓';
+      el.textContent = 'Best: ' + info.best + ' / ' + N3_2_PARTS[part - 1].size + ' ✓';
     } else {
       el.textContent = '';
     }
   }
 
-  function refreshKanji32Summary() {
+  function refreshN3_2Summary() {
     var el = document.getElementById('scoreParts');
     if (!el) return;
     var lines = [];
-    for (var i = 0; i < KANJI32_PARTS.length; i++) {
-      var p = KANJI32_PARTS[i];
-      var info = kanji32Progress.parts[String(p.part)];
+    for (var i = 0; i < N3_2_PARTS.length; i++) {
+      var p = N3_2_PARTS[i];
+      var info = n3_2Progress.parts[String(p.part)];
       var line = 'Part ' + p.part + ': ';
-      line += (kanji32PartScores[p.part] !== null) ? (kanji32PartScores[p.part] + ' / ' + p.size) : ('— / ' + p.size);
+      line += (n3_2PartScores[p.part] !== null) ? (n3_2PartScores[p.part] + ' / ' + p.size) : ('— / ' + p.size);
       if (info && info.done) line += ' (Best: ' + info.best + ' ✓)';
       lines.push(line);
     }
-    if (kanji32Progress.totalBest !== null && kanji32Progress.totalBest !== undefined) {
-      lines.push('Best total: ' + kanji32Progress.totalBest + ' / ' + KANJI32_TOTAL + ' ✓');
+    if (n3_2Progress.totalBest !== null && n3_2Progress.totalBest !== undefined) {
+      lines.push('Best total: ' + n3_2Progress.totalBest + ' / ' + N3_2_TOTAL + ' ✓');
     }
     el.innerHTML = lines.join('<br>');
   }
 
   // Marks one part, saves its best, updates its panel. Returns the part score.
-  function runKanji32PartCheck(part) {
-    var def = KANJI32_PARTS[part - 1];
-    clearKanji32MarksRange(def.from, def.to);
+  function runN3_2PartCheck(part) {
+    var def = N3_2_PARTS[part - 1];
+    clearN3_2MarksRange(def.from, def.to);
     var score = 0;
-    for (var n = def.from; n <= def.to; n++) score += markKanji32Question(n);
-    kanji32PartScores[part] = score;
-    var info = kanji32Progress.parts[String(part)];
+    for (var n = def.from; n <= def.to; n++) score += markN3_2Question(n);
+    n3_2PartScores[part] = score;
+    var info = n3_2Progress.parts[String(part)];
     var newRecord = info.done && score > info.best;
     if (score > info.best) info.best = score;
     info.done = true;
-    saveKanji32Progress();
+    saveN3_2Progress();
     var res = document.getElementById('partResult' + part);
     if (res) {
       res.innerHTML = 'Part ' + part + ': ' + score + ' / ' + def.size + (newRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
       res.style.display = 'block';
     }
-    refreshKanji32PartBest(part);
-    refreshKanji32Summary();
+    refreshN3_2PartBest(part);
+    refreshN3_2Summary();
     return score;
   }
 
-  function checkKanji32Part(part) {
-    runKanji32PartCheck(part);
+  function checkN3_2Part(part) {
+    runN3_2PartCheck(part);
     var panel = document.getElementById('partPanel' + part);
     if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function kanji32ScoreMessage(pct) {
-    if (pct === 100) return 'Perfect! N3 kanji mastered! 🎉';
+  function n3_2ScoreMessage(pct) {
+    if (pct === 100) return 'Perfect! N3 vocabulary mastered! 🎉';
     if (pct >= 80) return 'Excellent! Almost perfect!';
     if (pct >= 60) return 'Good job! Keep practicing!';
     if (pct >= 40) return 'Nice try! Review the answers and try again!';
     return 'Keep going! Use the hints and answers, then try again!';
   }
 
-  function checkKanji32Score() {
+  function checkN3_2Score() {
     var total = 0;
-    for (var i = 0; i < KANJI32_PARTS.length; i++) total += runKanji32PartCheck(KANJI32_PARTS[i].part);
-    var newTotalRecord = (typeof kanji32Progress.totalBest === 'number') && total > kanji32Progress.totalBest;
-    if (kanji32Progress.totalBest === null || kanji32Progress.totalBest === undefined || total > kanji32Progress.totalBest) {
-      kanji32Progress.totalBest = total;
+    for (var i = 0; i < N3_2_PARTS.length; i++) total += runN3_2PartCheck(N3_2_PARTS[i].part);
+    var newTotalRecord = (typeof n3_2Progress.totalBest === 'number') && total > n3_2Progress.totalBest;
+    if (n3_2Progress.totalBest === null || n3_2Progress.totalBest === undefined || total > n3_2Progress.totalBest) {
+      n3_2Progress.totalBest = total;
     }
-    saveKanji32Progress();
-    refreshKanji32Summary();
-    var pct = Math.round(total / KANJI32_TOTAL * 100);
+    saveN3_2Progress();
+    refreshN3_2Summary();
+    var pct = Math.round(total / N3_2_TOTAL * 100);
     var res = document.getElementById('scoreResult');
-    res.innerHTML = 'Score: ' + total + ' / ' + KANJI32_TOTAL + ' (' + pct + '%)<br><span class="score-msg">' + kanji32ScoreMessage(pct) + '</span>' + (newTotalRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
+    res.innerHTML = 'Score: ' + total + ' / ' + N3_2_TOTAL + ' (' + pct + '%)<br><span class="score-msg">' + n3_2ScoreMessage(pct) + '</span>' + (newTotalRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
     res.style.display = 'block';
     document.getElementById('scorePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function resetKanji32Score() {
-    clearKanji32Marks();
+  function resetN3_2Score() {
+    clearN3_2Marks();
     var radios = document.querySelectorAll('.question-block input[type="radio"]');
     for (var i = 0; i < radios.length; i++) radios[i].checked = false;
-    kanji32PartScores = { 1: null, 2: null, 3: null };
-    kanji32Progress = kanji32DefaultProgress();
-    try { window.localStorage.removeItem(KANJI32_PROGRESS_KEY); } catch (e) { /* ignore */ }
+    n3_2PartScores = { 1: null, 2: null, 3: null };
+    n3_2Progress = n3_2DefaultProgress();
+    try { window.localStorage.removeItem(N3_2_PROGRESS_KEY); } catch (e) { /* ignore */ }
     for (var p = 1; p <= 3; p++) {
       var res = document.getElementById('partResult' + p);
       if (res) { res.style.display = 'none'; res.innerHTML = ''; }
-      refreshKanji32PartBest(p);
+      refreshN3_2PartBest(p);
     }
     var total = document.getElementById('scoreResult');
     total.style.display = 'none';
     total.innerHTML = '';
-    refreshKanji32Summary();
+    refreshN3_2Summary();
   }
 
   // Show saved bests on load, so returning learners see their growth.
-  (function initKanji32Progress() {
-    for (var p = 1; p <= 3; p++) refreshKanji32PartBest(p);
-    refreshKanji32Summary();
+  (function initN3_2Progress() {
+    for (var p = 1; p <= 3; p++) refreshN3_2PartBest(p);
+    refreshN3_2Summary();
   })();
 </script>
 </body>
