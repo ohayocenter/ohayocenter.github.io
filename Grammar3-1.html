@@ -3,27 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N3 JLPT Grammar Practice | OHAYO CENTER</title>
+    <title>N4/5 Conditional type Practice - OHAYO CENTER</title>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="N3 JLPT Grammar Practice | OHAYO CENTER">
-    <meta property="og:description" content="JLPT N3 grammar practice, part 1: slide-based exercises on N3 grammar points.">
-    <meta property="og:url" content="https://ohayocenter.com/Grammar3-1.html">
+    <meta property="og:title" content="N4/N5 Conditional Practice | OHAYO CENTER">
+    <meta property="og:description" content="Practice Japanese conditional forms at N4/N5 level: build correct sentences in slide-based exercises.">
+    <meta property="og:url" content="https://ohayocenter.com/conditional1.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="N3 JLPT Grammar Practice | OHAYO CENTER">
-    <meta name="twitter:description" content="JLPT N3 grammar practice, part 1: slide-based exercises on N3 grammar points.">
+    <meta name="twitter:title" content="N4/N5 Conditional Practice | OHAYO CENTER">
+    <meta name="twitter:description" content="Practice Japanese conditional forms at N4/N5 level: build correct sentences in slide-based exercises.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f0f2f5; --card-bg: #ffffff; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 90px 20px 80px; }
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #F5F7FA;
+            --text-color: #333;
+            --accent-color: #E74C3C;
+            --bmc-color: #FFDD00;
+            --dark: #2c3e50;
+        }
         
-        /* トップページと完全に揃えたヘッダーCSS */
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; 
+            background-color: var(--secondary-color); 
+            color: var(--text-color); 
+            margin: 0; 
+            padding: 100px 20px 20px 20px; 
+        }
+
+        /* --- ヘッダー --- */
         nav { 
             background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(5px); 
@@ -39,55 +54,58 @@
             align-items: center; 
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: #2c3e50; font-size: 1.2rem; white-space: nowrap; }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
         .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
 
-        .container { width: 100%; max-width: 800px; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 30px;}
-        h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 20px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
-        .question-list { display: flex; flex-direction: column; gap: 20px; }
-        .slide { display: none; flex-direction: column; gap: 20px; animation: fadeIn 0.4s; }
-        .slide.active { display: flex; }
-        .question-box { border: 2px solid #edf2f7; padding: 20px; border-radius: 10px; background: #fff; text-align: left; }
-        .question-text { font-size: 1.2rem; font-weight: bold; color: #333; margin-bottom: 15px; }
-        .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .choice-item { background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 1rem; color: #555; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
-        .choice-item:hover { background: #e2e8f0; }
-        .choice-item.selected { border-color: var(--accent-color); background: #ebf5fb; }
-        .choice-item.correct { background: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
-        .choice-item.incorrect { background: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
-        .answer-area { display: none; background: #eef2f5; padding: 15px; border-radius: 5px; margin-top: 10px; border-left: 4px solid var(--accent-color); }
-        .answer-area.show { display: block; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        .correct-ans { font-weight: bold; color: #2ecc71; font-size: 1.1rem; margin-bottom: 5px; }
-        .en-translation { color: #666; font-size: 0.9rem; }
-        .btn-ans { background-color: var(--primary-color); border: none; padding: 10px 16px; border-radius: 5px; cursor: pointer; font-size: 1rem; color: white; font-weight: bold; transition: 0.2s; width: 100%; margin-top: 5px; }
-        .btn-ans:hover { background-color: #1a252f; }
-        .btn-ans:disabled { background-color: #95a5a6; cursor: not-allowed; }
+        .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
+        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 0; font-size: 1.5rem; }
         
-        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
-        .page-btn { padding: 10px 15px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--primary-color); transition: 0.2s; font-size: 1rem; }
-        .page-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
-        .page-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+        /* スライド制御 */
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
+        .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
+        .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
+        .sentence-builder { font-size: 1.2em; line-height: 2.5em; margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; }
+        .drop-slot-wrapper { display: inline-flex; flex-direction: column; align-items: center; margin: 0 5px; }
+        .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; }
+        
+        .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
+        .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .word-btn:hover { background-color: var(--primary-color); color: #fff; }
+        
+        .action-area { display: flex; align-items: center; gap: 15px; }
+        .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; font-weight: bold; }
+        .check-btn { background-color: var(--primary-color); }
+        .reset-btn { background-color: #95a5a6; }
+        
+        .result-display { font-weight: bold; font-size: 1.1em; }
+        .correct { color: #2ecc71; }
+        .incorrect { color: var(--accent-color); }
+        .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 10px; border-left: 4px solid var(--primary-color); font-size: 0.95em; line-height: 1.6; }
 
-        .support-section { text-align: center; margin-top: 20px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 800px; }
-        .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
+        /* スライド切り替えボタン（新規追加） */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid #eee; }
+        .page-btn { padding: 10px 18px; border: 2px solid var(--dark); background: #fff; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--dark); transition: 0.3s; font-size: 0.9rem; }
+        .page-btn:hover { background: var(--dark); color: #fff; }
+        .page-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3); }
+
+        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
+        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
         .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-        .bmc-custom-btn span { margin-left: 8px; }
         
-        /* トップページと完全に揃えたスマホ用CSS */
         @media (max-width: 600px) {
             nav { padding: 0 15px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
-            
-            /* マテリアル固有のスマホ設定 */
-            .choices { grid-template-columns: 1fr; }
-            .page-btn { padding: 8px 12px; font-size: 0.9rem; }
+            .page-btn { padding: 8px 12px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -102,153 +120,200 @@
     </ul>
 </nav>
 
-<div class="container" id="slides-container">
-    <h1 id="page-title">第1回 N3文法</h1>
-    <div class="question-list" id="q-list"></div>
+<div class="container">
+    <h1 id="page-title">N4/5 Conditional type (Slide 1)</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 20px;">
+        Click the words below to build the correct sentence.
+    </p>
+    
+    <div id="quiz-container"></div>
+    
     <div class="pagination" id="pagination"></div>
-</div>
 
-<div class="support-section">
-    <h2>Support OHAYO CENTER</h2>
-    <p>If you find these materials helpful, please consider supporting us via Buy Me a Coffee or Stripe!</p>
-    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-        ☕️ <span>SUPPORT OHAYO CENTER</span>
-    </a>
+    <div class="support-section">
+        <h2>Support OHAYO CENTER</h2>
+        <p>If you find these materials helpful, please consider supporting us!</p>
+        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+            ☕️ <span>SUPPORT OHAYO CENTER</span>
+        </a>
+    </div>
 </div>
 
 <script>
-    const allData = [
-        { q: "先生が教えてくれた＿＿＿、試験に合格することができました。", choices: ["おかげで", "せいで", "ついでに", "かわりに"], ans: 1, en: "Thanks to the teacher's instruction, I was able to pass the exam." },
-        { q: "昨日は飲みすぎた＿＿＿、今日は一日中頭が痛いです。", choices: ["おかげで", "せいで", "ついでに", "わけで"], ans: 2, en: "Because I drank too much yesterday, my head hurts all day today." },
-        { q: "この写真を見る＿＿＿、楽しかった子供のころを思い出します。", choices: ["うちに", "最中に", "たびに", "とたんに"], ans: 3, en: "Every time I look at this photo, I remember my fun childhood." },
-        { q: "犬の散歩の＿＿＿、郵便局で手紙を出してきました。", choices: ["あいまに", "ついでに", "とおりに", "おかげで"], ans: 2, en: "While walking the dog, I dropped off a letter at the post office." },
-        { q: "大事な会議の＿＿＿、携帯電話が鳴ってしまった。", choices: ["あとで", "前に", "最中に", "次第に"], ans: 3, en: "My cell phone rang right in the middle of an important meeting." },
-        
-        { q: "窓を開け＿＿＿、冷たい風が入ってきた。", choices: ["たとたん", "たまま", "たきり", "たところ"], ans: 1, en: "The moment I opened the window, a cold wind blew in." },
-        { q: "泣きたい＿＿＿痛かったが、最後まで我慢した。", choices: ["ぐらい", "みたい", "らしい", "っぽい"], ans: 1, en: "It hurt so much I wanted to cry, but I endured it until the end." },
-        { q: "こんな難しい問題、私にわかる＿＿＿。", choices: ["わけがありません", "ことはありません", "ものがありません", "どころではありません"], ans: 1, en: "There is no way I can understand such a difficult problem." },
-        { q: "終電に乗り遅れてしまったので、歩いて帰る＿＿＿。", choices: ["しかない", "わけがない", "はずがない", "べきではない"], ans: 1, en: "Since I missed the last train, I have no choice but to walk home." },
-        { q: "彼は留学生＿＿＿日本にやって来た。", choices: ["にとって", "にたいして", "として", "にしては"], ans: 3, en: "He came to Japan as an international student." },
-        
-        { q: "漢字を覚えることは、外国人の学生＿＿＿とても大変です。", choices: ["について", "にとって", "にたいして", "として"], ans: 2, en: "Memorizing kanji is very difficult for foreign students." },
-        { q: "兄がスポーツが得意なの＿＿＿、弟は勉強が得意だ。", choices: ["にたいして", "について", "にとって", "によって"], ans: 1, en: "In contrast to the older brother who is good at sports, the younger brother is good at studying." },
-        { q: "あんなに練習したのだから、明日の試合は勝つ＿＿＿。", choices: ["にきまっている", "にかわっている", "にすぎない", "にきめている"], ans: 1, en: "Because they practiced so much, they will definitely win tomorrow's game." },
-        { q: "明日の会議は、何時からでした＿＿＿。", choices: ["っけ", "かな", "もの", "こと"], ans: 1, en: "What time was tomorrow's meeting again?" },
-        { q: "彼女はまるで本当の家族＿＿＿私に優しくしてくれた。", choices: ["らしい", "みたいに", "っぽく", "ぐらい"], ans: 2, en: "She was kind to me as if we were real family." },
-        
-        { q: "今日は春＿＿＿、とても暖かくていい天気ですね。", choices: ["みたい", "らしい", "っぽくて", "のような"], ans: 2, en: "It's a very warm and nice day today, typical of spring." },
-        { q: "彼はまだ若いのに、言うことが少し年寄り＿＿＿。", choices: ["らしい", "そうだ", "っぽい", "くらいだ"], ans: 3, en: "Even though he is still young, the things he says sound a bit old." },
-        { q: "私は子供のころ、体が弱くてよく病気をし＿＿＿でした。", choices: ["がち", "気味", "だらけ", "かけ"], ans: 1, en: "When I was a child, my body was weak and I tended to get sick often." },
-        { q: "最近ずっと忙しくて、少し風邪＿＿＿です。", choices: ["がち", "気味", "だらけ", "になった"], ans: 2, en: "I've been busy lately, so I feel a slight cold coming on." },
-        { q: "一生懸命書いたのに、彼の作文は間違い＿＿＿だった。", choices: ["だらけ", "ぐらい", "がち", "気味"], ans: 1, en: "Even though he wrote it with all his effort, his essay was full of mistakes." },
-        
-        { q: "テーブルの上に、飲み＿＿＿のコーヒーが置いてある。", choices: ["かけ", "きり", "がち", "ぬき"], ans: 1, en: "There is a half-finished cup of coffee on the table." },
-        { q: "彼女とは10年前に会った＿＿＿、一度も連絡を取っていない。", choices: ["まま", "きり", "以来", "ほど"], ans: 2, en: "I haven't contacted her even once since we met 10 years ago." },
-        { q: "彼は私の話を聞いていないのに、聞いている＿＿＿をした。", choices: ["つもり", "ふり", "わけ", "はず"], ans: 2, en: "Even though he wasn't listening to me, he pretended to listen." },
-        { q: "英語を教えてもらう＿＿＿、彼に日本語を教えている。", choices: ["ついでに", "かわりに", "くせに", "おかげで"], ans: 2, en: "In exchange for him teaching me English, I am teaching him Japanese." },
-        { q: "一人暮らしは寂しくて、家族に会いたくて＿＿＿。", choices: ["しかたがない", "わけがない", "べきではない", "ことはない"], ans: 1, en: "Living alone is lonely, and I miss my family so much I can't stand it." }
+    const quizData = [
+        // Slide 1
+        [
+            { prefix: "", suffix: "。", en: "When spring comes, cherry blossoms bloom.", choices: ["桜が", "春に", "咲きます", "なると、"], ansOrder: [1, 3, 0, 2], ansText: "春に なると、 桜が 咲きます" },
+            { prefix: "", suffix: "。", en: "When you turn right at the next corner, you will see the station.", choices: ["曲がると、", "駅が", "次の角を", "見えます"], ansOrder: [2, 0, 1, 3], ansText: "次の角を 曲がると、 駅が 見えます" },
+            { prefix: "", suffix: "。", en: "If you touch that machine, it will stop suddenly.", choices: ["触ると、", "その機械に", "止まってしまいます", "急に"], ansOrder: [1, 0, 3, 2], ansText: "その機械に 触ると、 急に 止まってしまいます" },
+            { prefix: "", suffix: "。", en: "When it becomes night, it gets dark.", choices: ["夜に", "暗く", "なると、", "なります"], ansOrder: [0, 2, 1, 3], ansText: "夜に なると、 暗く なります" },
+            { prefix: "", suffix: "。", en: "When I drink alcohol, my face turns red.", choices: ["顔が", "飲むと、", "お酒を", "赤くなります"], ansOrder: [2, 1, 0, 3], ansText: "お酒を 飲むと、 顔が 赤くなります" }
+        ],
+        // Slide 2
+        [
+            { prefix: "", suffix: "。", en: "If the weather is good, let's go to the sea.", choices: ["海へ", "天気が", "行きましょう", "良ければ、"], ansOrder: [1, 3, 0, 2], ansText: "天気が 良ければ、 海へ 行きましょう" },
+            { prefix: "", suffix: "。", en: "If it is close from here, let's walk.", choices: ["歩いて", "行きましょう", "近ければ、", "ここから"], ansOrder: [3, 2, 0, 1], ansText: "ここから 近ければ、 歩いて 行きましょう" },
+            { prefix: "", suffix: "。", en: "If I have time, I will read a book.", choices: ["読みます", "本を", "時間が", "あれば、"], ansOrder: [2, 3, 1, 0], ansText: "時間が あれば、 本を 読みます" },
+            { prefix: "", suffix: "。", en: "If you wait for 5 minutes, the next bus will come.", choices: ["次のバスが", "来ます", "待てば、", "五分"], ansOrder: [3, 2, 0, 1], ansText: "五分 待てば、 次のバスが 来ます" },
+            { prefix: "", suffix: "。", en: "If you wake up early, you will be in time for the train.", choices: ["間に合います", "電車に", "起きれば、", "早く"], ansOrder: [3, 2, 1, 0], ansText: "早く 起きれば、 電車に 間に合います" }
+        ],
+        // Slide 3
+        [
+            { prefix: "", suffix: "。", en: "If it rains, the match will be canceled.", choices: ["降ったら、", "試合は", "雨が", "中止です"], ansOrder: [2, 0, 1, 3], ansText: "雨が 降ったら、 試合は 中止です" },
+            { prefix: "", suffix: "。", en: "If I had money, I would want to go on a trip.", choices: ["旅行に", "あったら、", "行きたいです", "お金が"], ansOrder: [3, 1, 0, 2], ansText: "お金が あったら、 旅行に 行きたいです" },
+            { prefix: "", suffix: "。", en: "When you arrive at the station, please call me.", choices: ["駅に", "してください", "電話を", "着いたら、"], ansOrder: [0, 3, 2, 1], ansText: "駅に 着いたら、 電話を してください" },
+            { prefix: "", suffix: "。", en: "When work is finished, let's go drinking.", choices: ["行きましょう", "飲みに", "仕事が", "終わったら、"], ansOrder: [2, 3, 1, 0], ansText: "仕事が 終わったら、 飲みに 行きましょう" },
+            { prefix: "", suffix: "。", en: "When summer vacation comes, I will return to my country.", choices: ["帰ります", "夏休みに", "国へ", "なったら、"], ansOrder: [1, 3, 2, 0], ansText: "夏休みに なったら、 国へ 帰ります" }
+        ],
+        // Slide 4
+        [
+            { prefix: "", suffix: "。", en: "If you are going to Hokkaido, summer is the best.", choices: ["行くなら、", "北海道へ", "一番いいです", "夏が"], ansOrder: [1, 0, 3, 2], ansText: "北海道へ 行くなら、 夏が 一番いいです" },
+            { prefix: "", suffix: "。", en: "If you are going to buy a computer, that store is cheap.", choices: ["買うなら、", "安いです", "あの店が", "パソコンを"], ansOrder: [3, 0, 2, 1], ansText: "パソコンを 買うなら、 あの店が 安いです" },
+            { prefix: "", suffix: "。", en: "If you don't like it, you don't have to force yourself to go.", choices: ["行かなくても", "無理に", "嫌なら、", "いいです"], ansOrder: [2, 1, 0, 3], ansText: "嫌なら、 無理に 行かなくても いいです" },
+            { prefix: "", suffix: "。", en: "If you are studying Japanese, this book is recommended.", choices: ["この本が", "おすすめです", "勉強するなら、", "日本語を"], ansOrder: [3, 2, 0, 1], ansText: "日本語を 勉強するなら、 この本が おすすめです" },
+            { prefix: "", suffix: "。", en: "If you are free tomorrow, would you like to watch a movie together?", choices: ["暇なら、", "映画を見ませんか", "一緒に", "明日"], ansOrder: [3, 0, 2, 1], ansText: "明日 暇なら、 一緒に 映画を見ませんか" }
+        ],
+        // Slide 5
+        [
+            { prefix: "", suffix: "。", en: "When I opened the window, a cool breeze came in.", choices: ["涼しい風が", "開けると、", "入ってきました", "窓を"], ansOrder: [3, 1, 0, 2], ansText: "窓を 開けると、 涼しい風が 入ってきました" },
+            { prefix: "", suffix: "。", en: "If you read the manual, you will understand how to use it.", choices: ["読めば、", "説明書を", "わかります", "使い方が"], ansOrder: [1, 0, 3, 2], ansText: "説明書を 読めば、 使い方が わかります" },
+            { prefix: "", suffix: "。", en: "If I win the lottery, I want to buy a house.", choices: ["当たったら、", "もし", "宝くじが", "家を買いたいです"], ansOrder: [1, 2, 0, 3], ansText: "もし 宝くじが 当たったら、 家を買いたいです" },
+            { prefix: "", suffix: "。", en: "If you are driving a car, you must not drink alcohol.", choices: ["車を", "お酒を", "飲んではいけません", "運転するなら、"], ansOrder: [0, 3, 1, 2], ansText: "車を 運転するなら、 お酒を 飲んではいけません" },
+            { prefix: "", suffix: "。", en: "If you are a student, you can watch this movie cheaply.", choices: ["安く", "学生なら、", "この映画が", "見られます"], ansOrder: [[1, 2, 0, 3], [1, 0, 2, 3]], ansText: "学生なら、 この映画が 安く 見られます" }
+        ]
     ];
 
-    const questionsPerPage = 5;
-    const totalPages = Math.ceil(allData.length / questionsPerPage);
+    let currentSlide = 0;
 
-    function init() {
-        const list = document.getElementById('q-list');
+    function renderQuiz() {
+        const container = document.getElementById('quiz-container');
         const pagination = document.getElementById('pagination');
-        
-        for (let p = 1; p <= totalPages; p++) {
-            const slide = document.createElement('div');
-            slide.className = 'slide' + (p === 1 ? ' active' : '');
-            slide.id = `slide-${p}`;
-            
-            const start = (p - 1) * questionsPerPage;
-            const end = start + questionsPerPage;
-            const pageData = allData.slice(start, end);
+        container.innerHTML = '';
+        pagination.innerHTML = '';
 
-            pageData.forEach((q, i) => {
-                const absoluteIndex = start + i;
-                const box = document.createElement('div');
-                box.className = 'question-box';
-                box.innerHTML = `
-                    <div class="question-text">Q${absoluteIndex + 1}. ${q.q}</div>
-                    <div class="choices" id="choices-${absoluteIndex}">
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 1)">1. ${q.choices[0]}</div>
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 2)">2. ${q.choices[1]}</div>
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 3)">3. ${q.choices[2]}</div>
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 4)">4. ${q.choices[3]}</div>
+        quizData.forEach((slideData, slideIndex) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `slide ${slideIndex === currentSlide ? 'active' : ''}`;
+            slideDiv.id = `slide-${slideIndex}`;
+            
+            slideData.forEach((qData, qIndex) => {
+                const qId = `s${slideIndex}_q${qIndex}`;
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'question-block';
+                let choicesHTML = '';
+                qData.choices.forEach((choice, idx) => {
+                    choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
+                });
+                
+                let correctStr = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder.map(arr => arr.join(',')).join('|') : qData.ansOrder.join(',');
+
+                questionBlock.innerHTML = `
+                    <div class="question-header">Q${(slideIndex * 5) + qIndex + 1}.</div>
+                    <div class="english-translation">${qData.en}</div>
+                    <div class="sentence-builder" id="builder-${qId}">
+                        ${qData.prefix ? `<span class="text-part">${qData.prefix}</span>` : ''}
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-0" onclick="returnWord('${qId}', 0)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-1" onclick="returnWord('${qId}', 1)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-2" onclick="returnWord('${qId}', 2)"></span></div>
+                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-3" onclick="returnWord('${qId}', 3)"></span></div>
+                        ${qData.suffix ? `<span class="text-part">${qData.suffix}</span>` : ''}
                     </div>
-                    <button class="btn-ans" onclick="checkAnswer(this, ${absoluteIndex})">Check Answer</button>
-                    <div class="answer-area" id="ans-area-${absoluteIndex}">
-                        <div class="correct-ans">Correct Answer: ${q.ans} (${q.choices[q.ans - 1]})</div>
-                        <div class="en-translation">${q.en}</div>
+                    <div class="word-bank" id="bank-${qId}">${choicesHTML}</div>
+                    <div class="action-area">
+                        <button class="check-btn" onclick="checkAnswer('${qId}', '${correctStr}')">Check Answer</button>
+                        <button class="reset-btn" onclick="resetQuestion('${qId}')">Reset</button>
+                        <span id="result-${qId}" class="result-display"></span>
+                    </div>
+                    <div id="explanation-${qId}" class="explanation">
+                        <strong>Correct Sentence:</strong><br>
+                        ${qData.ansText}
                     </div>
                 `;
-                slide.appendChild(box);
+                slideDiv.appendChild(questionBlock);
             });
-            list.appendChild(slide);
+            container.appendChild(slideDiv);
 
+            // ページネーションボタン作成
             const btn = document.createElement('button');
-            btn.className = 'page-btn' + (p === 1 ? ' active' : '');
-            btn.textContent = `Slide ${p}`;
-            btn.onclick = () => changePage(p);
+            btn.className = `page-btn ${slideIndex === currentSlide ? 'active' : ''}`;
+            btn.textContent = `SLIDE ${slideIndex + 1}`;
+            btn.onclick = () => goToSlide(slideIndex);
             pagination.appendChild(btn);
-        }
+        });
     }
 
-    function changePage(pageNum) {
-        for (let i = 1; i <= totalPages; i++) {
-            document.getElementById(`slide-${i}`).classList.remove('active');
-        }
-        document.getElementById(`slide-${pageNum}`).classList.add('active');
-
-        const btns = document.getElementById('pagination').children;
-        for (let i = 0; i < btns.length; i++) {
-            btns[i].classList.remove('active');
-        }
-        btns[pageNum - 1].classList.add('active');
+    window.goToSlide = function(index) {
+        const slides = document.querySelectorAll('.slide');
+        const btns = document.querySelectorAll('.page-btn');
         
-        document.getElementById('page-title').textContent = `第1回　N3文法 (Slide ${pageNum})`;
-        window.scrollTo({ top: document.getElementById('slides-container').offsetTop - 90, behavior: 'smooth' });
-    }
+        slides[currentSlide].classList.remove('active');
+        btns[currentSlide].classList.remove('active');
+        
+        currentSlide = index;
+        
+        slides[currentSlide].classList.add('active');
+        btns[currentSlide].classList.add('active');
+        
+        document.getElementById('page-title').textContent = `N4/5 Conditional type (Slide ${currentSlide + 1})`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-    function selectChoice(elem, qIndex, choiceNum) {
-        const choicesContainer = document.getElementById('choices-' + qIndex);
-        if (choicesContainer.dataset.answered === "true") return;
+    window.selectWord = function(qId, choiceIdx, text) { 
+        for(let i=0; i<4; i++) { 
+            const slot = document.getElementById(`slot-${qId}-${i}`); 
+            if(!slot.hasAttribute('data-choice')) { 
+                slot.innerText = text; 
+                slot.setAttribute('data-choice', choiceIdx); 
+                document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none'; 
+                break; 
+            } 
+        } 
+    };
+    
+    window.returnWord = function(qId, slotIdx) { 
+        const slot = document.getElementById(`slot-${qId}-${slotIdx}`); 
+        if(slot.hasAttribute('data-choice')) { 
+            const choiceIdx = slot.getAttribute('data-choice'); 
+            document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; 
+            slot.innerText = ''; 
+            slot.removeAttribute('data-choice'); 
+        } 
+    };
+    
+    window.resetQuestion = function(qId) { 
+        for(let i=0; i<4; i++) { returnWord(qId, i); } 
+        document.getElementById(`result-${qId}`).textContent = ''; 
+        document.getElementById(`explanation-${qId}`).style.display = 'none'; 
+    };
+    
+    window.checkAnswer = function(qId, correctStr) { 
+        let userArr = []; 
+        let isComplete = true; 
+        for(let i=0; i<4; i++) { 
+            const slot = document.getElementById(`slot-${qId}-${i}`); 
+            if(slot.hasAttribute('data-choice')) { userArr.push(slot.getAttribute('data-choice')); } 
+            else { isComplete = false; } 
+        } 
+        const resultSpan = document.getElementById(`result-${qId}`); 
+        const expDiv = document.getElementById(`explanation-${qId}`); 
+        if(!isComplete) { 
+            resultSpan.textContent = "Please place all words."; 
+            resultSpan.className = "result-display incorrect"; 
+            return; 
+        } 
+        const userAns = userArr.join(',');
+        const correctArr = correctStr.split('|');
+        if(correctArr.includes(userAns)) { 
+            resultSpan.textContent = "⭕️ Correct!"; 
+            resultSpan.className = "result-display correct"; 
+        } else { 
+            resultSpan.textContent = "❌ Incorrect"; 
+            resultSpan.className = "result-display incorrect"; 
+        } 
+        expDiv.style.display = "block"; 
+    };
 
-        const choices = choicesContainer.children;
-        for(let i=0; i<choices.length; i++) {
-            choices[i].classList.remove('selected');
-        }
-        elem.classList.add('selected');
-        choicesContainer.dataset.selected = choiceNum;
-    }
-
-    function checkAnswer(btn, qIndex) {
-        const choicesContainer = document.getElementById('choices-' + qIndex);
-        const selected = choicesContainer.dataset.selected;
-        const ansArea = document.getElementById('ans-area-' + qIndex);
-        const correctAnswer = allData[qIndex].ans;
-        const choices = choicesContainer.children;
-
-        if (!selected) {
-            return;
-        }
-
-        choicesContainer.dataset.answered = "true";
-
-        if (parseInt(selected) === correctAnswer) {
-            choices[parseInt(selected) - 1].classList.add('correct');
-        } else {
-            choices[parseInt(selected) - 1].classList.add('incorrect');
-            choices[correctAnswer - 1].classList.add('correct');
-        }
-
-        ansArea.classList.add('show');
-        btn.textContent = 'Checked';
-        btn.disabled = true;
-    }
-
-    init();
+    window.onload = renderQuiz;
 </script>
 </body>
 </html>
