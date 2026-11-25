@@ -1,1186 +1,2759 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel Japanese Situational - OHAYO CENTER</title>
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="OHAYO CENTER">
-<meta property="og:title" content="Travel Japanese Situational Quiz | OHAYO CENTER">
-<meta property="og:description" content="A 25-question situational quiz for traveling in Japan, with audio answers, part scoring and saved best scores.">
-<meta property="og:url" content="https://ohayocenter.com/trip-quiz.html">
-<meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Travel Japanese Situational Quiz | OHAYO CENTER">
-<meta name="twitter:description" content="A 25-question situational quiz for traveling in Japan, with audio answers, part scoring and saved best scores.">
-<meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Japanese Situational Quiz (25 Scenes) | OHAYO CENTER</title>
+  <meta name="description" content="Practice 25 real Japan travel situations with interactive quizzes, listening challenges, slow audio, mistake review, and a searchable pocket phrase list in English, Portuguese, Italian, and Spanish.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OHAYO CENTER">
+  <meta property="og:title" content="Travel Japanese Situational Quiz | OHAYO CENTER">
+  <meta property="og:description" content="25 real Japan travel situations with interactive Quiz, Listening Challenge, slow 0.75x audio, mistake review, and 4-language support (EN/PT/IT/ES).">
+  <meta property="og:url" content="https://ohayocenter.com/trip-quiz.html">
+  <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Travel Japanese Situational Quiz | OHAYO CENTER">
+  <meta name="twitter:description" content="25 real Japan travel situations with interactive Quiz, Listening Challenge, slow 0.75x audio, mistake review, and 4-language support (EN/PT/IT/ES).">
+  <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+
   <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-<style>
-  /* --- ナビゲーションバーのスタイル追加 --- */
-  nav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    padding: 0 5%;
-    height: 70px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    font-family: 'Noto Sans JP', sans-serif;
-    box-sizing: border-box; /* 横スクロール防止 */
-  }
-  .logo {
-    font-family: 'Sawarabi Mincho', serif;
-    font-weight: bold;
-    font-size: 1.2rem;
-    white-space: nowrap;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #2c3e50;
-  }
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
-    margin: 0;
-    padding: 0;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-  }
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" sizes="192x192" href="icon.png">
 
-  /* スマホ用デザイン調整 */
-  @media (max-width: 600px) {
-    nav { padding: 0 15px; }
-    .logo { font-size: 1rem; }
-    .nav-links { gap: 0.8rem; }
-    .nav-links a { font-size: 0.7rem; }
-  }
-  /* ------------------------------------- */
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 
-  body {
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    /* bodyのpaddingを変更し、上部に90pxの余白を設ける（メニューに隠れないようにするため） */
-    padding: 90px 20px 80px; 
-  }
-  .slide-container {
-    background-color: #ffffff;
-    width: 100%;
-    max-width: 800px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    padding: 40px;
-    box-sizing: border-box;
-    position: relative;
-  }
-  h1 {
-    text-align: center;
-    color: #2c3e50;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-  }
-  .topic-label {
-    background-color: #e2e8f0;
-    color: #4a5568;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    display: inline-block;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-  
-  /* スライド切り替え用のクラス */
-  .slide {
-    display: none;
-    animation: fadeIn 0.4s;
-  }
-  .slide.active {
-    display: block;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .question-block {
-    margin-bottom: 35px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed #e2e8f0;
-  }
-  .question-block:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-  .question-text {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 15px;
-    line-height: 1.5;
-  }
-  .options {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 15px 0;
-  }
-  .options li {
-    background-color: #f7fafc;
-    border: 1px solid #cbd5e0;
-    margin-bottom: 8px;
-    padding: 10px 15px;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-  }
-  .options li:hover {
-    background-color: #ebf4ff;
-    cursor: pointer;
-  }
-  .options label {
-    cursor: pointer;
-    display: block;
-    width: 100%;
-  }
-  .btn-group {
-    display: flex;
-    gap: 10px;
-  }
-  .action-btn {
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.2s;
-    font-weight: bold;
-  }
-  .hint-btn { background-color: #4299e1; }
-  .hint-btn:hover { background-color: #3182ce; }
-  .answer-btn { background-color: #48bb78; }
-  .answer-btn:hover { background-color: #38a169; }
-  
-  .info-box {
-    display: none;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 4px;
-    font-size: 0.95em;
-  }
-  .hint-text {
-    background-color: #fffaf0;
-    border-left: 4px solid #ed8936;
-    color: #555;
-    font-style: italic;
-  }
-  .answer-text {
-    background-color: #f0fff4;
-    border-left: 4px solid #48bb78;
-    color: #276749;
-    font-weight: bold;
-  }
-
-  /* ナビゲーションボタン */
-  .nav-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 2px solid #e2e8f0;
-  }
-  .nav-btn {
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  .nav-btn:hover {
-    background-color: #1a252f;
-  }
-  .nav-btn:disabled {
-    background-color: #a0aec0;
-    cursor: not-allowed;
-  }
-  .slide-indicator {
-    font-size: 0.9em;
-    color: #718096;
-    align-self: center;
-    font-weight: bold;
-  }
-
-  /* --- Support Section (新しく追加・変更した部分) --- */
-  .support-section {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 30px;
-    border-top: 1px dashed #e2e8f0;
-    width: 100%;
-  }
-  .support-section h2 {
-    color: #2c3e50;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  .support-section p {
-    color: #666;
-    font-size: 0.95em;
-    margin-bottom: 20px;
-  }
-  .bmc-custom-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #FFDD00;
-    color: #000;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.1em;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .bmc-custom-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  }
-  .bmc-custom-btn span {
-    margin-left: 8px;
-    letter-spacing: 0.5px;
-  }
-
-  /* --- Score Section (追加) --- */
-  .score-panel {
-    text-align: center;
-    margin-top: 40px;
-    padding: 25px 20px;
-    border-top: 2px solid #e2e8f0;
-    background-color: #f7fafc;
-    border-radius: 8px;
-  }
-  .score-title {
-    color: #2c3e50;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  .score-desc {
-    color: #666;
-    font-size: 0.95em;
-    margin: 0 0 18px 0;
-  }
-  .score-btns {
-    justify-content: center;
-  }
-  .check-btn { background-color: #48bb78; }
-  .check-btn:hover { background-color: #38a169; }
-  .reset-btn { background-color: #a0aec0; }
-  .reset-btn:hover { background-color: #718096; }
-  .score-result {
-    margin-top: 18px;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #2c3e50;
-    line-height: 1.4;
-  }
-  .score-msg {
-    font-size: 0.75em;
-    color: #4a5568;
-  }
-  .question-block.q-correct {
-    background-color: #f0fff4;
-    border-left: 4px solid #48bb78;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .question-block.q-wrong {
-    background-color: #fff5f5;
-    border-left: 4px solid #e53e3e;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .question-block.q-unanswered {
-    background-color: #f7fafc;
-    border-left: 4px solid #a0aec0;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .q-badge {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 0.75em;
-    font-weight: bold;
-    color: #fff;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-  .q-badge.correct { background-color: #48bb78; }
-  .q-badge.wrong { background-color: #e53e3e; }
-  .q-badge.unanswered { background-color: #a0aec0; }
-  .options li.correct-option {
-    background-color: #c6f6d5;
-    border-color: #48bb78;
-    font-weight: bold;
-  }
-  .options li.wrong-option {
-    background-color: #fed7d7;
-    border-color: #e53e3e;
-  }
-  .part-panel {
-    text-align: center;
-    margin-top: 30px;
-    padding: 18px 15px;
-    border-top: 2px solid #e2e8f0;
-    background-color: #f7fafc;
-    border-radius: 8px;
-  }
-  .part-title {
-    color: #2c3e50;
-    font-size: 1.05em;
-    font-weight: bold;
-    margin-bottom: 12px;
-  }
-  .part-result {
-    margin-top: 14px;
-    font-size: 1.15em;
-    font-weight: bold;
-    color: #2c3e50;
-    line-height: 1.4;
-  }
-  .part-best {
-    margin-top: 8px;
-    font-size: 0.9em;
-    color: #718096;
-  }
-  .part-best:empty { display: none; }
-  .new-record {
-    color: #d69e2e;
-    font-weight: bold;
-  }
-  .score-parts {
-    margin-top: 14px;
-    font-size: 1em;
-    color: #2c3e50;
-    line-height: 1.7;
-  }
-  .score-parts:empty { display: none; }
-
-  @media (max-width: 600px) {
-    .slide-container {
-      padding: 30px 20px 50px; 
+  <style>
+    :root {
+      --primary: #ff9f43;
+      --primary-dark: #ee8a2e;
+      --primary-light: #fff5eb;
+      --accent: #244c78;
+      --accent-soft: #eef5fc;
+      --dark: #2c3e50;
+      --text: #444444;
+      --muted: #64748b;
+      --bg: #fdfaf6;
+      --card: #ffffff;
+      --border: #e9e2d8;
+      --shadow: 0 10px 28px rgba(44, 62, 80, 0.08);
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --good-text: #14532d;
+      --bad: #dc2626;
+      --bad-soft: #fee2e2;
+      --bad-text: #7f1d1d;
     }
-  }
-</style>
-<style id="ohayo-cta-style">
-.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
-.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
-.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
-.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
-.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
-.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
-.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
-.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
-.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
-.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
-.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
-.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
-.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
-@media (max-width: 600px) {
-  .ohayo-cta-grid { grid-template-columns: 1fr; }
-  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
-  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
-}
-</style>
+
+    body.dark-mode {
+      --dark: #f8fafc;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary-light: rgba(255, 159, 67, 0.16);
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.15);
+      --good-soft: rgba(22, 163, 74, 0.22);
+      --good-text: #bbf7d0;
+      --bad-soft: rgba(220, 38, 38, 0.22);
+      --bad-text: #fecaca;
+      --shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      transition: background 0.25s, color 0.25s;
+      overflow-x: hidden;
+    }
+
+    /* --- Fixed Top Navigation (70px) --- */
+    .site-nav {
+      background: rgba(255, 255, 255, 0.96);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 70px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+    body.dark-mode .site-nav {
+      background: rgba(15, 23, 42, 0.94);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-logo a {
+      font-family: 'Sawarabi Mincho', serif;
+      font-weight: bold;
+      color: var(--dark);
+      font-size: 1.2rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .site-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav-links a {
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-nav-links a:hover { color: var(--primary); }
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.92rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .site-nav { padding: 0 12px; }
+      .site-logo a { font-size: 1rem; }
+      .nav-right { gap: 0.55rem; }
+      .site-nav-links { gap: 0.65rem; }
+      .site-nav-links a { font-size: 0.68rem; }
+      .theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+    }
+
+    /* --- Main Container --- */
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 20px 14px 44px;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #c8640b;
+      background: var(--primary-light);
+      padding: 4px 11px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    body.dark-mode .eyebrow { color: #ffbe76; }
+    .top-bar h1 {
+      margin: 0;
+      font-size: clamp(1.3rem, 3.6vw, 1.72rem);
+      font-family: 'Sawarabi Mincho', serif;
+      color: var(--dark);
+      line-height: 1.25;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .mode-tab {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .mode-tab:hover { border-color: var(--primary); }
+    .mode-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255, 159, 67, 0.34);
+    }
+
+    /* --- Quick Control Bar --- */
+    .control-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 12px;
+      box-shadow: 0 4px 14px rgba(44, 62, 80, 0.04);
+    }
+    .ctrl-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .ctrl-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-right: 2px;
+    }
+    .lang-btn, .script-btn, .mini-toggle {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 4px 9px;
+      border-radius: 9px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .script-btn, .mini-toggle { border-radius: 999px; padding: 4px 11px; }
+    .lang-btn:hover, .script-btn:hover, .mini-toggle:hover { border-color: var(--primary); }
+    .lang-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: #c8640b;
+    }
+    body.dark-mode .lang-btn.active { color: #ffbe76; }
+    .script-btn.active, .mini-toggle.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* --- Scene Chips --- */
+    .scene-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .scene-chip {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .scene-chip:hover { border-color: var(--primary); color: var(--dark); }
+    .scene-chip.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255, 159, 67, 0.3);
+    }
+    .scene-chip.has-mistakes {
+      border-color: #f59e0b;
+      color: #b45309;
+    }
+    body.dark-mode .scene-chip.has-mistakes { color: #fcd34d; }
+    .scene-chip.has-mistakes.active { color: #fff; border-color: var(--primary); }
+
+    /* --- Progress Row --- */
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .prog-track {
+      height: 8px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .prog-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), #22c55e);
+      transition: width 0.3s ease;
+    }
+
+    /* --- Main Quiz Card --- */
+    .quiz-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 22px 20px;
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.22s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .scene-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+    .card-meta-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .hint-toggle-btn {
+      border: 1.5px solid var(--primary);
+      background: var(--primary-light);
+      color: #c8640b;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    body.dark-mode .hint-toggle-btn { color: #ffbe76; }
+    .hint-toggle-btn:hover { background: var(--primary); color: #fff; }
+
+    .prompt-text {
+      font-size: clamp(1rem, 2.8vw, 1.16rem);
+      font-weight: 700;
+      line-height: 1.6;
+      color: var(--dark);
+      margin: 0 0 14px;
+    }
+
+    /* --- Listening Mode Box --- */
+    .listen-box {
+      background: linear-gradient(180deg, var(--accent-soft) 0%, var(--card) 100%);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .listen-box-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .audio-btn-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .audio-pill {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.15s;
+    }
+    .audio-pill:hover { border-color: var(--primary); background: var(--primary-light); }
+    .audio-pill.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.34);
+    }
+    .audio-pill.primary:hover { background: var(--primary-dark); }
+    .audio-pill.compact {
+      padding: 5px 11px;
+      font-size: 0.76rem;
+    }
+
+    .hint-box {
+      display: none;
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 11px 14px;
+      margin-bottom: 14px;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .hint-box.show { display: block; animation: fadeUp 0.18s ease; }
+
+    /* --- Options List --- */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .opt-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--card);
+      border: 2px solid var(--border);
+      color: var(--dark);
+      border-radius: 16px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .opt-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+    .opt-btn:disabled { cursor: default; }
+    .opt-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .opt-body { flex: 1; min-width: 0; }
+    .opt-main {
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: inherit;
+      overflow-wrap: anywhere;
+    }
+    .opt-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+    .opt-btn.is-correct {
+      background: var(--good-soft);
+      border-color: var(--good);
+      color: var(--good-text);
+    }
+    .opt-btn.is-correct .opt-letter {
+      background: var(--good);
+      color: #fff;
+    }
+    .opt-btn.is-correct .opt-sub { color: var(--good-text); opacity: 0.88; }
+    .opt-btn.is-wrong {
+      background: var(--bad-soft);
+      border-color: var(--bad);
+      color: var(--bad-text);
+    }
+    .opt-btn.is-wrong .opt-letter {
+      background: var(--bad);
+      color: #fff;
+    }
+    .opt-btn.is-wrong .opt-sub { color: var(--bad-text); opacity: 0.88; }
+
+    /* --- Feedback Box --- */
+    .feedback-box {
+      display: none;
+      margin-top: 16px;
+      border-radius: 18px;
+      padding: 15px 16px;
+      border: 2px solid var(--border);
+      animation: fadeUp 0.2s ease;
+    }
+    .feedback-box.show { display: block; }
+    .feedback-box.good {
+      background: var(--good-soft);
+      border-color: var(--good);
+    }
+    .feedback-box.bad {
+      background: var(--bad-soft);
+      border-color: var(--bad);
+    }
+    .feedback-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .feedback-title {
+      font-size: 0.94rem;
+      font-weight: 800;
+    }
+    .feedback-box.good .feedback-title { color: var(--good-text); }
+    .feedback-box.bad .feedback-title { color: var(--bad-text); }
+    .feedback-phrase {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+    .feedback-romaji {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .feedback-note {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    /* --- Card Footer Nav --- */
+    .card-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-action {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 9px 16px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .nav-action:hover:not(:disabled) { border-color: var(--primary); }
+    .nav-action:disabled { opacity: 0.45; cursor: not-allowed; }
+    .nav-action.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.34);
+    }
+    .nav-action.primary:hover:not(:disabled) { background: var(--primary-dark); }
+    .q-counter {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* --- Summary Card --- */
+    .summary-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.25s ease;
+    }
+    .summary-emoji { font-size: 2.6rem; margin-bottom: 6px; }
+    .summary-score {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 4px 0;
+    }
+    .summary-msg {
+      font-size: 0.92rem;
+      color: var(--text);
+      margin: 0 0 14px;
+    }
+    .summary-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: #c8640b;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    body.dark-mode .summary-badge { color: #ffbe76; }
+    .summary-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* --- Phrase List View --- */
+    .search-box {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .search-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--dark);
+      font-size: 0.88rem;
+      font-family: inherit;
+    }
+    .phrase-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .phrase-item {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(44, 62, 80, 0.04);
+    }
+    .phrase-info { flex: 1; min-width: 220px; }
+    .phrase-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+    }
+    .phrase-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .phrase-jp {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+    .phrase-romaji {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+    .phrase-meaning {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+    .phrase-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .master-toggle {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .master-toggle.done {
+      background: var(--good-soft);
+      border-color: var(--good);
+      color: var(--good-text);
+    }
+
+    /* --- Utility Footer Bar --- */
+    .utility-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+    .reset-link {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.76rem;
+      font-family: inherit;
+      padding: 4px 0;
+    }
+    .reset-link:hover { color: var(--bad); }
+
+    .hidden { display: none !important; }
+
+    /* --- Bottom CTA (Recommended Next + Trial Lesson Hero + BMC Support) --- */
+    .ohayo-cta-wrap {
+      max-width: 780px;
+      width: 100%;
+      margin: 34px auto 22px;
+      text-align: left;
+    }
+    .ohayo-cta-next {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    }
+    .ohayo-cta-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+    .ohayo-cta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .ohayo-cta-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 15px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--dark);
+      background: var(--bg);
+      transition: 0.2s;
+    }
+    .ohayo-cta-link:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    .ohayo-cta-tag {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+    .ohayo-cta-name {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+    .ohayo-cta-arrow {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .ohayo-cta-lesson {
+      background: var(--primary-light);
+      border: 2px solid #ffd8b3;
+      border-radius: 18px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 6px 20px rgba(255, 159, 67, 0.12);
+    }
+    body.dark-mode .ohayo-cta-lesson { border-color: var(--primary); }
+    .ohayo-cta-lesson-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #e67e22;
+      letter-spacing: 0.05em;
+      margin: 0 0 4px;
+    }
+    .ohayo-cta-lesson h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      color: var(--dark);
+      line-height: 1.4;
+      font-family: 'Sawarabi Mincho', serif;
+    }
+    .ohayo-cta-lesson p {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .ohayo-cta-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff !important;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 12px 22px;
+      border-radius: 50px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35);
+      transition: 0.2s;
+    }
+    .ohayo-cta-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .support-section {
+      text-align: center;
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px dashed var(--border);
+    }
+    .support-section p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin: 0 0 12px;
+    }
+    .bmc-custom-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #FFDD00;
+      color: #000000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .bmc-custom-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+    }
+    .bmc-custom-btn span { margin-left: 7px; letter-spacing: 0.4px; }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 14px 10px 36px; }
+      .quiz-card { padding: 16px 14px; border-radius: 20px; }
+      .opt-btn { padding: 11px 12px; gap: 10px; }
+      .opt-main { font-size: 0.9rem; }
+      .ohayo-cta-grid { grid-template-columns: 1fr; }
+      .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+      .ohayo-cta-btn { width: 100%; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
-        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
-        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
-        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+<nav class="site-nav">
+  <div class="site-logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+  <div class="nav-right">
+    <ul class="site-nav-links">
+      <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+      <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+      <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
     </ul>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+  </div>
 </nav>
 
-<div class="slide-container">
-  <h1>Japan Travel Situational Quiz (1-25)</h1>
-  
-  <div id="slide1" class="slide active">
-    <div class="topic-label">Situation 1: Station & Transportation (Slide 1/5)</div>
-    
-    <div class="question-block">
-      <div class="question-text">Q1. You are at the station and want to find the ticket gate. What do you ask a station staff member?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q1"> A. 切符はいくらですか。(Kippu wa ikura desu ka.)</label></li>
-        <li><label><input type="radio" name="q1"> B. 電車はどこですか。(Densha wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q1"> C. 改札はどこですか。(Kaisatsu wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q1"> D. トイレはありますか。(Toire wa arimasu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint1')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans1')">Show Answer</button>
-      </div>
-      <div id="hint1" class="info-box hint-text">Hint: The word for "ticket gate" is "kaisatsu" (改札).</div>
-      <div id="ans1" class="info-box answer-text">Answer: C. 改札はどこですか。(Kaisatsu wa doko desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a01.mp3', '改札はどこですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q2. You want to ask how much the train fare to Kyoto is. What do you say?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q2"> A. 京都までいくらですか。(Kyōto made ikura desu ka.)</label></li>
-        <li><label><input type="radio" name="q2"> B. 京都まで何時間かかりますか。(Kyōto made nan-jikan kakarimasu ka.)</label></li>
-        <li><label><input type="radio" name="q2"> C. 京都に行きたいです。(Kyōto ni ikitai desu.)</label></li>
-        <li><label><input type="radio" name="q2"> D. 京都はどうですか。(Kyōto wa dō desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint2')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans2')">Show Answer</button>
-      </div>
-      <div id="hint2" class="info-box hint-text">Hint: "How much" is "ikura" (いくら) and "up to/until" is "made" (まで).</div>
-      <div id="ans2" class="info-box answer-text">Answer: A. 京都までいくらですか。(Kyōto made ikura desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a02.mp3', '京都までいくらですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q3. A train arrives, but you are not sure if it goes to Shinjuku. What do you ask someone nearby?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q3"> A. 新宿は大きいですか。(Shinjuku wa ōkii desu ka.)</label></li>
-        <li><label><input type="radio" name="q3"> B. この電車は新宿に行きますか。(Kono densha wa Shinjuku ni ikimasu ka.)</label></li>
-        <li><label><input type="radio" name="q3"> C. 新宿はどこですか。(Shinjuku wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q3"> D. この電車は新宿から来ましたか。(Kono densha wa Shinjuku kara kimashita ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint3')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans3')">Show Answer</button>
-      </div>
-      <div id="hint3" class="info-box hint-text">Hint: You need to ask "Does this train go to...?" (Kono densha wa ... ni ikimasu ka.)</div>
-      <div id="ans3" class="info-box answer-text">Answer: B. この電車は新宿に行きますか。(Kono densha wa Shinjuku ni ikimasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a03.mp3', 'この電車は新宿に行きますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q4. You want to buy a Shinkansen ticket to Tokyo at the counter. What do you say?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q4"> A. 東京までの切符をください。(Tōkyō made no kippu o kudasai.)</label></li>
-        <li><label><input type="radio" name="q4"> B. 東京の新幹線はどこですか。(Tōkyō no shinkansen wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q4"> C. 東京の切符を見せてください。(Tōkyō no kippu o misete kudasai.)</label></li>
-        <li><label><input type="radio" name="q4"> D. 東京まで歩きます。(Tōkyō made arukimasu.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint4')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans4')">Show Answer</button>
-      </div>
-      <div id="hint4" class="info-box hint-text">Hint: "Ticket" is "Kippu" (切符) and "Please give me" is "Kudasai" (ください).</div>
-      <div id="ans4" class="info-box answer-text">Answer: A. 東京までの切符をください。(Tōkyō made no kippu o kudasai.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a04.mp3', '東京までの切符をください。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q5. You want to store your heavy luggage before sightseeing. What do you look for?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q5"> A. 自動販売機 (Jidō hanbaiki)</label></li>
-        <li><label><input type="radio" name="q5"> B. コインロッカー (Koin rokkā)</label></li>
-        <li><label><input type="radio" name="q5"> C. エレベーター (Erebētā)</label></li>
-        <li><label><input type="radio" name="q5"> D. 券売機 (Kenbaiki)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint5')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans5')">Show Answer</button>
-      </div>
-      <div id="hint5" class="info-box hint-text">Hint: It's a loan word (Katakana) for a place where you put coins to lock your bags.</div>
-      <div id="ans5" class="info-box answer-text">Answer: B. コインロッカー (Koin rokkā) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a05.mp3', 'コインロッカー')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-  </div>
-
-  <div id="slide2" class="slide">
-    <div class="topic-label">Situation 2: At the Hotel (Slide 2/5)</div>
-    
-    <div class="question-block">
-      <div class="question-text">Q6. You arrive at your hotel and approach the front desk. What do you say first?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q6"> A. お会計をお願いします。(O-kaikei o onegaishimasu.)</label></li>
-        <li><label><input type="radio" name="q6"> B. チェックインをお願いします。(Chekkuin o onegaishimasu.)</label></li>
-        <li><label><input type="radio" name="q6"> C. 部屋を見せてください。(Heya o misete kudasai.)</label></li>
-        <li><label><input type="radio" name="q6"> D. チェックアウトをお願いします。(Chekku-auto o onegaishimasu.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans6')">Show Answer</button>
-      </div>
-      <div id="hint6" class="info-box hint-text">Hint: Use the English loan word for registering at a hotel + "onegaishimasu".</div>
-      <div id="ans6" class="info-box answer-text">Answer: B. チェックインをお願いします。(Chekkuin o onegaishimasu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a06.mp3', 'チェックインをお願いします。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q7. You want to know if breakfast is included with your room. What do you ask?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q7"> A. 朝食はついていますか。(Chōshoku wa tsuite imasu ka.)</label></li>
-        <li><label><input type="radio" name="q7"> B. 朝食はどこで食べますか。(Chōshoku wa doko de tabemasu ka.)</label></li>
-        <li><label><input type="radio" name="q7"> C. 朝食はおいしいですか。(Chōshoku wa oishii desu ka.)</label></li>
-        <li><label><input type="radio" name="q7"> D. 朝食は何時ですか。(Chōshoku wa nan-ji desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint7')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans7')">Show Answer</button>
-      </div>
-      <div id="hint7" class="info-box hint-text">Hint: "Is it included/attached?" is "tsuite imasu ka".</div>
-      <div id="ans7" class="info-box answer-text">Answer: A. 朝食はついていますか。(Chōshoku wa tsuite imasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a07.mp3', '朝食はついていますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q8. Oh no! You lost your room key. What do you tell the receptionist?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q8"> A. 鍵を部屋に忘れました。(Kagi o heya ni wasuremashita.)</label></li>
-        <li><label><input type="radio" name="q8"> B. 鍵をもらっていません。(Kagi o moratte imasen.)</label></li>
-        <li><label><input type="radio" name="q8"> C. 部屋の鍵をなくしてしまいました。(Heya no kagi o nakushite shimaimashita.)</label></li>
-        <li><label><input type="radio" name="q8"> D. 鍵が壊れました。(Kagi ga kowaremashita.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint8')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans8')">Show Answer</button>
-      </div>
-      <div id="hint8" class="info-box hint-text">Hint: "To lose" is "nakusu" (なくす). "...te shimaimashita" shows regret.</div>
-      <div id="ans8" class="info-box answer-text">Answer: C. 部屋の鍵をなくしてしまいました。(Heya no kagi o nakushite shimaimashita.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a08.mp3', '部屋の鍵をなくしてしまいました。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q9. You arrived early. You want to ask if the hotel can keep your luggage before check-in.</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q9"> A. 荷物を送ってください。(Nimotsu o okutte kudasai.)</label></li>
-        <li><label><input type="radio" name="q9"> B. 荷物を預かってもらえますか。(Nimotsu o azukatte moraemasu ka.)</label></li>
-        <li><label><input type="radio" name="q9"> C. 荷物を持ちたいです。(Nimotsu o mochitai desu.)</label></li>
-        <li><label><input type="radio" name="q9"> D. 荷物を持っていきますか。(Nimotsu o motte ikimasu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint9')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans9')">Show Answer</button>
-      </div>
-      <div id="hint9" class="info-box hint-text">Hint: "To keep/store something for someone" is "azukaru" (預かる).</div>
-      <div id="ans9" class="info-box answer-text">Answer: B. 荷物を預かってもらえますか。(Nimotsu o azukatte moraemasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a09.mp3', '荷物を預かってもらえますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q10. You need a password to connect to the internet. What do you ask?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q10"> A. Wi-Fiのパスワードは何ですか。(Wi-Fi no pasuwādo wa nan desu ka.)</label></li>
-        <li><label><input type="radio" name="q10"> B. Wi-Fiはどこですか。(Wi-Fi wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q10"> C. Wi-Fiをください。(Wi-Fi o kudasai.)</label></li>
-        <li><label><input type="radio" name="q10"> D. Wi-Fiは無料ですか。(Wi-Fi wa muryō desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint10')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans10')">Show Answer</button>
-      </div>
-      <div id="hint10" class="info-box hint-text">Hint: "What is it?" is "Nan desu ka".</div>
-      <div id="ans10" class="info-box answer-text">Answer: A. Wi-Fiのパスワードは何ですか。(Wi-Fi no pasuwādo wa nan desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a10.mp3', 'Wi-Fiのパスワードは何ですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-    <div class="part-panel" id="partPanel1">
-      <div class="part-title">📝 Part 1 (Q1–Q10)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkTripPart(1)">✓ Check Part 1</button>
-      </div>
-      <div id="partResult1" class="part-result" style="display: none;"></div>
-      <div id="partBest1" class="part-best"></div>
-    </div>
-  </div>
-
-  <div id="slide3" class="slide">
-    <div class="topic-label">Situation 3: At a Restaurant (Slide 3/5)</div>
-    
-    <div class="question-block">
-      <div class="question-text">Q11. You enter a restaurant and the staff says "Nan-mei sama desu ka?" (How many people?). You are a group of 2.</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q11"> A. ふたつです。(Futatsu desu.)</label></li>
-        <li><label><input type="radio" name="q11"> B. ２名です。(Ni-mei desu.)</label></li>
-        <li><label><input type="radio" name="q11"> C. ２番です。(Ni-ban desu.)</label></li>
-        <li><label><input type="radio" name="q11"> D. ２回です。(Ni-kai desu.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint11')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans11')">Show Answer</button>
-      </div>
-      <div id="hint11" class="info-box hint-text">Hint: The counter for people in formal situations (like restaurants) is "-mei" (名).</div>
-      <div id="ans11" class="info-box answer-text">Answer: B. ２名です。(Ni-mei desu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a11.mp3', '２名です。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q12. You are ready to order your food. How do you get the waiter's attention?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q12"> A. いただきます。(Itadakimasu.)</label></li>
-        <li><label><input type="radio" name="q12"> B. ごちそうさまでした。(Gochisōsama deshita.)</label></li>
-        <li><label><input type="radio" name="q12"> C. すみません、注文をお願いします。(Sumimasen, chūmon o onegaishimasu.)</label></li>
-        <li><label><input type="radio" name="q12"> D. 料理を持ってきてください。(Ryōri o motte kite kudasai.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint12')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans12')">Show Answer</button>
-      </div>
-      <div id="hint12" class="info-box hint-text">Hint: Start with "Excuse me" (Sumimasen), followed by "Order, please" (Chūmon o onegaishimasu).</div>
-      <div id="ans12" class="info-box answer-text">Answer: C. すみません、注文をお願いします。(Sumimasen, chūmon o onegaishimasu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a12.mp3', 'すみません、注文をお願いします。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q13. You cannot read the Japanese menu. How do you ask if they have an English menu?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q13"> A. 英語のメニューはありますか。(Eigo no menyū wa arimasu ka.)</label></li>
-        <li><label><input type="radio" name="q13"> B. 英語を話せますか。(Eigo o hanasemasu ka.)</label></li>
-        <li><label><input type="radio" name="q13"> C. メニューは英語ですか。(Menyū wa eigo desu ka.)</label></li>
-        <li><label><input type="radio" name="q13"> D. 英語で注文してもいいですか。(Eigo de chūmon shite mo ii desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint13')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans13')">Show Answer</button>
-      </div>
-      <div id="hint13" class="info-box hint-text">Hint: "Do you have...?" is "...wa arimasu ka".</div>
-      <div id="ans13" class="info-box answer-text">Answer: A. 英語のメニューはありますか。(Eigo no menyū wa arimasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a13.mp3', '英語のメニューはありますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q14. You want to eat the restaurant's best dish. How do you ask "What do you recommend?"</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q14"> A. 一番安いのは何ですか。(Ichiban yasui no wa nan desu ka.)</label></li>
-        <li><label><input type="radio" name="q14"> B. おすすめは何ですか。(Osusume wa nan desu ka.)</label></li>
-        <li><label><input type="radio" name="q14"> C. 人気がありますか。(Ninki ga arimasu ka.)</label></li>
-        <li><label><input type="radio" name="q14"> D. 飲み物はありますか。(Nomimono wa arimasu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans14')">Show Answer</button>
-      </div>
-      <div id="hint14" class="info-box hint-text">Hint: The noun for "recommendation" is "Osusume" (おすすめ).</div>
-      <div id="ans14" class="info-box answer-text">Answer: B. おすすめは何ですか。(Osusume wa nan desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a14.mp3', 'おすすめは何ですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q15. You are finished eating and want to pay the bill. What do you say?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q15"> A. お会計をお願いします。(O-kaikei o onegaishimasu.)</label></li>
-        <li><label><input type="radio" name="q15"> B. お金を出します。(O-kane o dashimasu.)</label></li>
-        <li><label><input type="radio" name="q15"> C. ごちそうさまでした。(Gochisōsama deshita.)</label></li>
-        <li><label><input type="radio" name="q15"> D. いくら払いますか。(Ikura haraimasu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint15')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans15')">Show Answer</button>
-      </div>
-      <div id="hint15" class="info-box hint-text">Hint: "Check / bill" at a restaurant is "O-kaikei" (お会計).</div>
-      <div id="ans15" class="info-box answer-text">Answer: A. お会計をお願いします。(O-kaikei o onegaishimasu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a15.mp3', 'お会計をお願いします。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-  </div>
-
-  <div id="slide4" class="slide">
-    <div class="topic-label">Situation 4: Shopping (Slide 4/5)</div>
-    
-    <div class="question-block">
-      <div class="question-text">Q16. You see a beautiful fan. You want to ask the clerk "How much is this?"</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q16"> A. これはいくらですか。(Kore wa ikura desu ka.)</label></li>
-        <li><label><input type="radio" name="q16"> B. これはいくつですか。(Kore wa ikutsu desu ka.)</label></li>
-        <li><label><input type="radio" name="q16"> C. これは何ですか。(Kore wa nan desu ka.)</label></li>
-        <li><label><input type="radio" name="q16"> D. これはどこですか。(Kore wa doko desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint16')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans16')">Show Answer</button>
-      </div>
-      <div id="hint16" class="info-box hint-text">Hint: "How much (money)" is "ikura".</div>
-      <div id="ans16" class="info-box answer-text">Answer: A. これはいくらですか。(Kore wa ikura desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a16.mp3', 'これはいくらですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q17. You want to try on a t-shirt before buying it. How do you ask for permission?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q17"> A. これを着ます。(Kore o kimasu.)</label></li>
-        <li><label><input type="radio" name="q17"> B. 試着してもいいですか。(Shichaku shite mo ii desu ka.)</label></li>
-        <li><label><input type="radio" name="q17"> C. サイズは合いますか。(Saizu wa aimasu ka.)</label></li>
-        <li><label><input type="radio" name="q17"> D. 服を買ってもいいですか。(Fuku o katte mo ii desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint17')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans17')">Show Answer</button>
-      </div>
-      <div id="hint17" class="info-box hint-text">Hint: "Trying on clothes" is "Shichaku" (試着). "May I...?" is "...te mo ii desu ka".</div>
-      <div id="ans17" class="info-box answer-text">Answer: B. 試着してもいいですか。(Shichaku shite mo ii desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a17.mp3', '試着してもいいですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q18. You are buying souvenirs and want to know if you can pay by credit card.</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q18"> A. クレジットカードは使えますか。(Kurejitto kādo wa tsukaemasu ka.)</label></li>
-        <li><label><input type="radio" name="q18"> B. クレジットカードはありますか。(Kurejitto kādo wa arimasu ka.)</label></li>
-        <li><label><input type="radio" name="q18"> C. クレジットカードをください。(Kurejitto kādo o kudasai.)</label></li>
-        <li><label><input type="radio" name="q18"> D. クレジットカードで作れますか。(Kurejitto kādo de tsukuremasu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint18')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans18')">Show Answer</button>
-      </div>
-      <div id="hint18" class="info-box hint-text">Hint: "Can I use...?" is "Tsukaemasu ka" (使えますか).</div>
-      <div id="ans18" class="info-box answer-text">Answer: A. クレジットカードは使えますか。(Kurejitto kādo wa tsukaemasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a18.mp3', 'クレジットカードは使えますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q19. You want to buy this item. What is the most natural way to say "I'll take this"?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q19"> A. これにします。(Kore ni shimasu.)</label></li>
-        <li><label><input type="radio" name="q19"> B. これを取ります。(Kore o torimasu.)</label></li>
-        <li><label><input type="radio" name="q19"> C. これを見ます。(Kore o mimasu.)</label></li>
-        <li><label><input type="radio" name="q19"> D. これを返します。(Kore o kaeshimasu.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
-      </div>
-      <div id="hint19" class="info-box hint-text">Hint: "Kore ni shimasu" (I've decided on this) is the standard way to say "I'll take this".</div>
-      <div id="ans19" class="info-box answer-text">Answer: A. これにします。(Kore ni shimasu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a19.mp3', 'これにします。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q20. The cashier asks if you need a plastic shopping bag (Fukuro), but you have your own eco-bag. How do you decline politely?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q20"> A. 袋は結構です。(Fukuro wa kekkō desu.)</label></li>
-        <li><label><input type="radio" name="q20"> B. 袋はダメです。(Fukuro wa dame desu.)</label></li>
-        <li><label><input type="radio" name="q20"> C. 袋をください。(Fukuro o kudasai.)</label></li>
-        <li><label><input type="radio" name="q20"> D. 袋は大きいですか。(Fukuro wa ōkii desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
-      </div>
-      <div id="hint20" class="info-box hint-text">Hint: "Kekkō desu" is a very standard and polite way to say "No thank you."</div>
-      <div id="ans20" class="info-box answer-text">Answer: A. 袋は結構です。(Fukuro wa kekkō desu.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a20.mp3', '袋は結構です。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-    <div class="part-panel" id="partPanel2">
-      <div class="part-title">📝 Part 2 (Q11–Q20)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkTripPart(2)">✓ Check Part 2</button>
-      </div>
-      <div id="partResult2" class="part-result" style="display: none;"></div>
-      <div id="partBest2" class="part-best"></div>
-    </div>
-  </div>
-
-  <div id="slide5" class="slide">
-    <div class="topic-label">Situation 5: Sightseeing & Asking Directions (Slide 5/5)</div>
-    
-    <div class="question-block">
-      <div class="question-text">Q21. You are lost. You want to ask a passerby "Where is the station?"</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q21"> A. 駅はどこですか。(Eki wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q21"> B. 駅はどうですか。(Eki wa dō desu ka.)</label></li>
-        <li><label><input type="radio" name="q21"> C. 駅は遠いですか。(Eki wa tōi desu ka.)</label></li>
-        <li><label><input type="radio" name="q21"> D. 駅は大きいですか。(Eki wa ōkii desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans21')">Show Answer</button>
-      </div>
-      <div id="hint21" class="info-box hint-text">Hint: "Where" is "doko". Start with "Sumimasen" to be polite!</div>
-      <div id="ans21" class="info-box answer-text">Answer: A. 駅はどこですか。(Eki wa doko desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a21.mp3', '駅はどこですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q22. You want to take a picture inside a museum, but you are not sure if it's allowed. What do you ask a staff member?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q22"> A. 写真をください。(Shashin o kudasai.)</label></li>
-        <li><label><input type="radio" name="q22"> B. 写真を見てもいいですか。(Shashin o mite mo ii desu ka.)</label></li>
-        <li><label><input type="radio" name="q22"> C. 写真を撮ってもいいですか。(Shashin o totte mo ii desu ka.)</label></li>
-        <li><label><input type="radio" name="q22"> D. 写真を撮ってください。(Shashin o totte kudasai.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint22')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans22')">Show Answer</button>
-      </div>
-      <div id="hint22" class="info-box hint-text">Hint: "To take (a picture)" is "toru" (撮る).</div>
-      <div id="ans22" class="info-box answer-text">Answer: C. 写真を撮ってもいいですか。(Shashin o totte mo ii desu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a22.mp3', '写真を撮ってもいいですか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q23. You want someone to take a picture of you and your friends. How do you ask?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q23"> A. 写真を撮りましょうか。(Shashin o torimashō ka.)</label></li>
-        <li><label><input type="radio" name="q23"> B. 写真を撮ってもらえませんか。(Shashin o totte moraemasen ka.)</label></li>
-        <li><label><input type="radio" name="q23"> C. 写真を撮りたいです。(Shashin o toritai desu.)</label></li>
-        <li><label><input type="radio" name="q23"> D. 写真を撮ります。(Shashin o torimasu.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint23')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans23')">Show Answer</button>
-      </div>
-      <div id="hint23" class="info-box hint-text">Hint: "...te moraemasen ka" means "Could you please (do something for me)?"</div>
-      <div id="ans23" class="info-box answer-text">Answer: B. 写真を撮ってもらえませんか。(Shashin o totte moraemasen ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a23.mp3', '写真を撮ってもらえませんか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q24. You are at a beautiful shrine and want to know what time it closes.</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q24"> A. 何時に終わりますか。(Nan-ji ni owarimasu ka.)</label></li>
-        <li><label><input type="radio" name="q24"> B. 何時に開きますか。(Nan-ji ni aite imasu ka.)</label></li>
-        <li><label><input type="radio" name="q24"> C. 何時に閉まりますか。(Nan-ji ni shimarimasu ka.)</label></li>
-        <li><label><input type="radio" name="q24"> D. 神社は広いですか。(Jinja wa hiroi desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
-      </div>
-      <div id="hint24" class="info-box hint-text">Hint: "To close" is "shimaru" (閉まる).</div>
-      <div id="ans24" class="info-box answer-text">Answer: C. 何時に閉まりますか。(Nan-ji ni shimarimasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a24.mp3', '何時に閉まりますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-
-    <div class="question-block">
-      <div class="question-text">Q25. You are showing a map on your phone to someone. You want to ask "How do I get here?"</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q25"> A. ここへはどう行きますか。(Koko e wa dō ikimasu ka.)</label></li>
-        <li><label><input type="radio" name="q25"> B. ここはどこですか。(Koko wa doko desu ka.)</label></li>
-        <li><label><input type="radio" name="q25"> C. ここに住みたいです。(Koko ni sumitai desu.)</label></li>
-        <li><label><input type="radio" name="q25"> D. ここは静かですか。(Koko wa shizuka desu ka.)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
-      </div>
-      <div id="hint25" class="info-box hint-text">Hint: "How" is "dō" (どう). "I want to go" is "ikitai desu" (行きたいです).</div>
-      <div id="ans25" class="info-box answer-text">Answer: A. ここへはどう行きますか。(Koko e wa dō ikimasu ka.) <button type="button" title="Listen" aria-label="Listen" onclick="playTripAudio('trip-audio/a25.mp3', 'ここへはどう行きますか。')" style="background:#fff;border:1px solid #48bb78;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;line-height:1;vertical-align:middle;margin-left:6px;">🔊</button></div>
-    </div>
-    <div class="part-panel" id="partPanel3">
-      <div class="part-title">📝 Part 3 (Q21–Q25)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkTripPart(3)">✓ Check Part 3</button>
-      </div>
-      <div id="partResult3" class="part-result" style="display: none;"></div>
-      <div id="partBest3" class="part-best"></div>
-    </div>
-  </div>
-
-  <div class="nav-controls">
-    <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
-    <div id="slideIndicator" class="slide-indicator">Slide 1 of 5</div>
-    <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
-  </div>
-
-  <div class="score-panel" id="scorePanel">
-    <div class="score-title">📝 Your Score</div>
-    <p class="score-desc">Check each part as you finish it, or check everything at once here. Unanswered questions count as wrong. Your best scores are saved on this device, so you can see your growth on every visit.</p>
-    <div class="btn-group score-btns">
-      <button type="button" class="action-btn check-btn" onclick="checkTripScore()">✓ Check All</button>
-      <button type="button" class="action-btn reset-btn" onclick="resetTripScore()">↺ Reset all (clears saved progress)</button>
-    </div>
-    <div id="scoreParts" class="score-parts"></div>
-    <div id="scoreResult" class="score-result" style="display: none;"></div>
-  </div>
-  <!-- OHAYO_NEXT_CTA -->
-<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
-  <div class="ohayo-cta-next">
-    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
-    <div class="ohayo-cta-grid">
-      <a class="ohayo-cta-link" href="trip-listen.html"><div><span class="ohayo-cta-tag">★ RECOMMENDED NEXT</span><span class="ohayo-cta-name">Listening Quests (9 Travel Scenes)</span></div><span class="ohayo-cta-arrow">→</span></a>
-      <a class="ohayo-cta-link" href="trip-flashcards.html"><div><span class="ohayo-cta-tag">FLASHCARDS</span><span class="ohayo-cta-name">Travel Flashcards &amp; Quiz (EN/PT/IT/ES)</span></div><span class="ohayo-cta-arrow">→</span></a>
-    </div>
-  </div>
-  <div class="ohayo-cta-lesson">
+<main class="wrap">
+  <div class="top-bar">
     <div>
-      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
-      <h3>Want to use what you just practiced with a native teacher?</h3>
-      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+      <span class="eyebrow" id="uiEyebrow">✈️ TRAVEL JAPAN · 25 REAL SITUATIONS</span>
+      <h1 id="uiTitle">Travel Situational Quiz</h1>
     </div>
-    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
-  </div>
-</section>
-
-<div class="support-section">
-      <p>If you find these materials helpful, please consider supporting us!</p>
-      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-        ☕️ <span>SUPPORT OHAYO CENTER</span>
-      </a>
+    <div class="mode-tabs" role="tablist">
+      <button type="button" class="mode-tab active" id="tabQuiz" data-mode="quiz">🎯 Quiz</button>
+      <button type="button" class="mode-tab" id="tabListen" data-mode="listen">🎧 Listen</button>
+      <button type="button" class="mode-tab" id="tabList" data-mode="list">📋 All 25 Phrases</button>
+    </div>
   </div>
 
-</div>
+  <div class="control-bar">
+    <div class="ctrl-group">
+      <span class="ctrl-label" id="uiLangLabel">Lang:</span>
+      <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+      <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+      <button type="button" class="lang-btn" data-lang="it">🇮🇹 IT</button>
+      <button type="button" class="lang-btn" data-lang="es">🇪🇸 ES</button>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label" id="uiTextLabel">Text:</span>
+      <button type="button" class="script-btn active" data-script="both">JP + Romaji</button>
+      <button type="button" class="script-btn" data-script="romaji">Romaji First</button>
+      <button type="button" class="script-btn" data-script="jp">JP Only</button>
+    </div>
+    <div class="ctrl-group">
+      <button type="button" class="mini-toggle" id="shuffleToggle">🔀 Shuffle</button>
+      <button type="button" class="mini-toggle active" id="autoAudioToggle">🔊 Auto Audio</button>
+    </div>
+  </div>
+
+  <div class="scene-row" id="sceneRow"></div>
+
+  <div class="stats-row">
+    <span id="progressText">Question 1 / 25</span>
+    <span id="masteryText">✅ Mastered: 0/25 · 🔥 Streak: 0</span>
+  </div>
+  <div class="prog-track">
+    <div class="prog-fill" id="progressFill"></div>
+  </div>
+
+  <!-- QUIZ & LISTENING VIEW -->
+  <section id="quizSection">
+    <div class="quiz-card" id="questionCard">
+      <div class="card-meta">
+        <span class="scene-badge" id="qSceneBadge">🚉 Station · Q1</span>
+        <div class="card-meta-actions">
+          <button type="button" class="hint-toggle-btn" id="hintBtn">💡 Hint</button>
+        </div>
+      </div>
+
+      <div class="listen-box hidden" id="listenBox">
+        <div class="listen-box-title" id="listenPromptTitle">🎧 Listen to the phrase and pick the matching travel situation!</div>
+        <div class="audio-btn-row">
+          <button type="button" class="audio-pill primary" id="listenNormalBtn">🔊 Play Audio (1.0x)</button>
+          <button type="button" class="audio-pill" id="listenSlowBtn">🐢 Slow (0.75x)</button>
+        </div>
+      </div>
+
+      <p class="prompt-text" id="qPrompt"></p>
+      <div class="hint-box" id="hintBox"></div>
+
+      <div class="options-list" id="optionsList"></div>
+
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-head">
+          <div class="feedback-title" id="feedbackTitle"></div>
+          <div class="audio-btn-row">
+            <button type="button" class="audio-pill compact" id="fbNormalBtn">🔊 1.0x</button>
+            <button type="button" class="audio-pill compact" id="fbSlowBtn">🐢 0.75x</button>
+          </div>
+        </div>
+        <div class="feedback-phrase" id="feedbackPhrase"></div>
+        <div class="feedback-romaji" id="feedbackRomaji"></div>
+        <div class="feedback-note" id="feedbackNote"></div>
+      </div>
+
+      <div class="card-nav">
+        <button type="button" class="nav-action" id="prevBtn">← Prev</button>
+        <div class="q-counter" id="qCounter">1 / 25</div>
+        <button type="button" class="nav-action primary" id="nextBtn">Next →</button>
+      </div>
+    </div>
+
+    <div class="summary-card hidden" id="summaryCard">
+      <div class="summary-emoji" id="summaryEmoji">🎉</div>
+      <div class="summary-score" id="summaryScore">0 / 25 (0%)</div>
+      <p class="summary-msg" id="summaryMsg"></p>
+      <div class="summary-badge" id="summaryBest"></div>
+      <div class="summary-btns">
+        <button type="button" class="nav-action primary" id="retrySetBtn">↺ Practice Again</button>
+        <button type="button" class="nav-action hidden" id="reviewMistakesBtn">🔁 Review Mistakes</button>
+        <button type="button" class="nav-action" id="switchListenBtn">🎧 Try Listening Mode</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHRASE LIST VIEW -->
+  <section id="listSection" class="hidden">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Search station, hotel, photo, Wi-Fi, romaji...">
+    </div>
+    <div class="phrase-list" id="phraseList"></div>
+  </section>
+
+  <div class="utility-bar">
+    <span id="bestScoreBar">🏆 Best: Quiz — · Listen —</span>
+    <button type="button" class="reset-link" id="resetProgressBtn">↺ Reset saved progress</button>
+  </div>
+
+  <!-- OHAYO_NEXT_CTA -->
+  <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+    <div class="ohayo-cta-next">
+      <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+      <div class="ohayo-cta-grid">
+        <a class="ohayo-cta-link" href="trip-listen.html">
+          <div>
+            <span class="ohayo-cta-tag">★ RECOMMENDED NEXT</span>
+            <span class="ohayo-cta-name">Listening Quests (9 Travel Scenes)</span>
+          </div>
+          <span class="ohayo-cta-arrow">→</span>
+        </a>
+        <a class="ohayo-cta-link" href="trip-flashcards.html">
+          <div>
+            <span class="ohayo-cta-tag">FLASHCARDS</span>
+            <span class="ohayo-cta-name">Travel Flashcards &amp; Quiz (EN/PT/IT/ES)</span>
+          </div>
+          <span class="ohayo-cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="ohayo-cta-lesson">
+      <div>
+        <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
+        <h3>Want to use what you just practiced with a native teacher?</h3>
+        <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+      </div>
+      <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+    </div>
+  </section>
+
+  <div class="support-section">
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+      ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+  </div>
+</main>
 
 <script>
-  let currentSlide = 1;
-  const totalSlides = 5;
+(function () {
+  'use strict';
 
-  function toggleDisplay(elementId) {
-    var element = document.getElementById(elementId);
-    if (element.style.display === "none" || element.style.display === "") {
-      element.style.display = "block";
-    } else {
-      element.style.display = "none";
+  var STORAGE_KEY = 'ohayo_trip_quiz_v2';
+  var LEGACY_KEY = 'ohayo_trip_progress';
+
+  var UI = {
+    en: {
+      eyebrow: '✈️ TRAVEL JAPAN · 25 REAL SITUATIONS',
+      title: 'Travel Situational Quiz',
+      tabQuiz: '🎯 Quiz',
+      tabListen: '🎧 Listen',
+      tabList: '📋 All 25 Phrases',
+      langLabel: 'Lang:',
+      textLabel: 'Text:',
+      shuffle: '🔀 Shuffle',
+      autoAudio: '🔊 Auto Audio',
+      hintBtn: '💡 Hint',
+      listenTitle: '🎧 Listen to the Japanese phrase, then pick the matching travel situation!',
+      playNormal: '🔊 Play Audio (1.0x)',
+      playSlow: '🐢 Slow (0.75x)',
+      prev: '← Prev',
+      next: 'Next →',
+      finish: 'See Results ✓',
+      correctTitle: '✅ Correct! Great travel Japanese!',
+      wrongTitle: '❌ Not quite — check the natural phrase below:',
+      searchPh: 'Search station, hotel, Wi-Fi, photo, romaji...',
+      mastered: '✅ Mastered',
+      markDone: '✓ Mark mastered',
+      streak: '🔥 Streak',
+      questionWord: 'Question',
+      showingPhrases: 'Showing',
+      phrasesWord: 'phrases',
+      retrySet: '↺ Practice Again',
+      reviewMistakes: '🔁 Review Mistakes',
+      tryListen: '🎧 Try Listening Mode',
+      tryQuiz: '🎯 Back to Quiz Mode',
+      resetBtn: '↺ Reset saved progress',
+      resetConfirm: 'Reset all saved mastery, mistakes, and best scores on this device?',
+      noMistakes: 'No mistakes saved right now! Great job!',
+      noResults: 'No matching phrases found.',
+      newRecord: '🎉 New Best Score!',
+      bestLabel: '🏆 Best:',
+      msgPerfect: 'Perfect! You are ready for your Japan trip! 🎉',
+      msgGreat: 'Excellent! You can handle almost any travel scene!',
+      msgGood: 'Good job! Review any missed phrases and try again!',
+      msgTry: 'Nice start! Use hints and slow audio, then give it another go!'
+    },
+    pt: {
+      eyebrow: '✈️ VIAGEM AO JAPÃO · 25 SITUAÇÕES REAIS',
+      title: 'Quiz de Situações de Viagem',
+      tabQuiz: '🎯 Quiz',
+      tabListen: '🎧 Áudio',
+      tabList: '📋 25 Frases',
+      langLabel: 'Idioma:',
+      textLabel: 'Texto:',
+      shuffle: '🔀 Aleatório',
+      autoAudio: '🔊 Áudio Auto',
+      hintBtn: '💡 Dica',
+      listenTitle: '🎧 Ouça a frase em japonês e escolha a situação de viagem correspondente!',
+      playNormal: '🔊 Ouvir (1.0x)',
+      playSlow: '🐢 Devagar (0.75x)',
+      prev: '← Anterior',
+      next: 'Próxima →',
+      finish: 'Ver Resultado ✓',
+      correctTitle: '✅ Correto! Ótimo japonês de viagem!',
+      wrongTitle: '❌ Quase lá — veja a frase natural abaixo:',
+      searchPh: 'Buscar estação, hotel, Wi-Fi, foto, romaji...',
+      mastered: '✅ Dominadas',
+      markDone: '✓ Marcar dominada',
+      streak: '🔥 Sequência',
+      questionWord: 'Pergunta',
+      showingPhrases: 'Mostrando',
+      phrasesWord: 'frases',
+      retrySet: '↺ Praticar de Novo',
+      reviewMistakes: '🔁 Revisar Erros',
+      tryListen: '🎧 Modo Audição',
+      tryQuiz: '🎯 Voltar ao Quiz',
+      resetBtn: '↺ Limpar progresso salvo',
+      resetConfirm: 'Apagar todo o progresso, erros e recordes salvos neste dispositivo?',
+      noMistakes: 'Nenhum erro salvo no momento! Mandou bem!',
+      noResults: 'Nenhuma frase encontrada.',
+      newRecord: '🎉 Novo Recorde!',
+      bestLabel: '🏆 Recorde:',
+      msgPerfect: 'Perfeito! Você está pronto para sua viagem ao Japão! 🎉',
+      msgGreat: 'Excelente! Você já se vira em quase qualquer situação!',
+      msgGood: 'Bom trabalho! Revise as frases erradas e tente novamente!',
+      msgTry: 'Bom começo! Use as dicas e o áudio lento para praticar!'
+    },
+    it: {
+      eyebrow: '✈️ VIAGGIO IN GIAPPONE · 25 SITUAZIONI REALI',
+      title: 'Quiz di Situazioni di Viaggio',
+      tabQuiz: '🎯 Quiz',
+      tabListen: '🎧 Ascolto',
+      tabList: '📋 25 Frasi',
+      langLabel: 'Lingua:',
+      textLabel: 'Testo:',
+      shuffle: '🔀 Casuale',
+      autoAudio: '🔊 Audio Auto',
+      hintBtn: '💡 Indizio',
+      listenTitle: '🎧 Ascolta la frase in giapponese e scegli la situazione di viaggio corretta!',
+      playNormal: '🔊 Ascolta (1.0x)',
+      playSlow: '🐢 Lento (0.75x)',
+      prev: '← Indietro',
+      next: 'Avanti →',
+      finish: 'Vedi Risultati ✓',
+      correctTitle: '✅ Esatto! Ottimo giapponese da viaggio!',
+      wrongTitle: '❌ Non proprio — controlla la frase naturale qui sotto:',
+      searchPh: 'Cerca stazione, hotel, Wi-Fi, foto, romaji...',
+      mastered: '✅ Imparate',
+      markDone: '✓ Segna imparata',
+      streak: '🔥 Serie',
+      questionWord: 'Domanda',
+      showingPhrases: 'Mostrate',
+      phrasesWord: 'frasi',
+      retrySet: '↺ Riprova',
+      reviewMistakes: '🔁 Ripassa Errori',
+      tryListen: '🎧 Prova Ascolto',
+      tryQuiz: '🎯 Torna al Quiz',
+      resetBtn: '↺ Azzera progressi salvati',
+      resetConfirm: 'Vuoi azzerare tutti i progressi, gli errori e i punteggi salvati?',
+      noMistakes: 'Nessun errore da ripassare! Ottimo lavoro!',
+      noResults: 'Nessuna frase trovata.',
+      newRecord: '🎉 Nuovo Record!',
+      bestLabel: '🏆 Record:',
+      msgPerfect: 'Perfetto! Sei pronto per il tuo viaggio in Giappone! 🎉',
+      msgGreat: 'Eccellente! Te la cavi in quasi ogni situazione!',
+      msgGood: 'Ottimo lavoro! Ripassa le frasi sbagliate e riprova!',
+      msgTry: 'Buon inizio! Usa gli indizi e l’audio lento per esercitarti!'
+    },
+    es: {
+      eyebrow: '✈️ VIAJE A JAPÓN · 25 SITUACIONES REALES',
+      title: 'Quiz de Situaciones de Viaje',
+      tabQuiz: '🎯 Quiz',
+      tabListen: '🎧 Audio',
+      tabList: '📋 25 Frases',
+      langLabel: 'Idioma:',
+      textLabel: 'Texto:',
+      shuffle: '🔀 Aleatorio',
+      autoAudio: '🔊 Audio Auto',
+      hintBtn: '💡 Pista',
+      listenTitle: '🎧 ¡Escucha la frase en japonés y elige la situación de viaje correcta!',
+      playNormal: '🔊 Escuchar (1.0x)',
+      playSlow: '🐢 Lento (0.75x)',
+      prev: '← Anterior',
+      next: 'Siguiente →',
+      finish: 'Ver Resultados ✓',
+      correctTitle: '✅ ¡Correcto! ¡Muy buen japonés de viaje!',
+      wrongTitle: '❌ Casi — mira la frase natural abajo:',
+      searchPh: 'Buscar estación, hotel, Wi-Fi, foto, romaji...',
+      mastered: '✅ Dominadas',
+      markDone: '✓ Marcar dominada',
+      streak: '🔥 Racha',
+      questionWord: 'Pregunta',
+      showingPhrases: 'Mostrando',
+      phrasesWord: 'frases',
+      retrySet: '↺ Practicar Otra Vez',
+      reviewMistakes: '🔁 Repasar Errores',
+      tryListen: '🎧 Modo Escucha',
+      tryQuiz: '🎯 Volver al Quiz',
+      resetBtn: '↺ Borrar progreso guardado',
+      resetConfirm: '¿Quieres borrar todo el progreso, errores y récords en este dispositivo?',
+      noMistakes: '¡No hay errores pendientes! ¡Gran trabajo!',
+      noResults: 'No se encontraron frases.',
+      newRecord: '🎉 ¡Nuevo Récord!',
+      bestLabel: '🏆 Récord:',
+      msgPerfect: '¡Perfecto! ¡Estás listo para tu viaje a Japón! 🎉',
+      msgGreat: '¡Excelente! ¡Ya dominas casi cualquier situación!',
+      msgGood: '¡Buen trabajo! ¡Repasa los errores e inténtalo de nuevo!',
+      msgTry: '¡Buen comienzo! Usa las pistas y el audio lento para practicar.'
     }
-  }
+  };
 
-  function changeSlide(direction) {
-    document.getElementById('slide' + currentSlide).classList.remove('active');
-    currentSlide += direction;
-    document.getElementById('slide' + currentSlide).classList.add('active');
-    
-    document.getElementById('prevBtn').disabled = (currentSlide === 1);
-    document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
-    
-    document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
-
-<script>
-  // --- Pre-recorded audio (trip-audio/) ---
-  var tripAudioPlayer = new Audio();
-  function speakTripFallback(text) {
-    if (!text || !('speechSynthesis' in window)) return;
-    var u = new SpeechSynthesisUtterance(text);
-    u.lang = 'ja-JP';
-    u.rate = 0.9;
-    speechSynthesis.cancel();
-    speechSynthesis.speak(u);
-  }
-  function playTripAudio(src, text) {
-    tripAudioPlayer.pause();
-    tripAudioPlayer.src = src;
-    tripAudioPlayer.currentTime = 0;
-    var p = tripAudioPlayer.play();
-    if (p && p.catch) p.catch(function (err) { if (err && err.name !== 'AbortError') speakTripFallback(text); });
-  }
-</script>
-
-<script>
-  // --- Quiz scoring: parts + saved progress ---
-  var TRIP_ANSWERS = { q1: 'C', q2: 'A', q3: 'B', q4: 'A', q5: 'B', q6: 'B', q7: 'A', q8: 'C', q9: 'B', q10: 'A', q11: 'B', q12: 'C', q13: 'A', q14: 'B', q15: 'A', q16: 'A', q17: 'B', q18: 'A', q19: 'A', q20: 'A', q21: 'A', q22: 'C', q23: 'B', q24: 'C', q25: 'A' };
-  var TRIP_LETTERS = ['A', 'B', 'C', 'D'];
-  var TRIP_TOTAL = 25;
-  var TRIP_PARTS = [
-    { part: 1, from: 1, to: 10, size: 10 },
-    { part: 2, from: 11, to: 20, size: 10 },
-    { part: 3, from: 21, to: 25, size: 5 }
+  var SCENES = [
+    { key: 'all', label: { en: '🌐 All (25)', pt: '🌐 Todas (25)', it: '🌐 Tutte (25)', es: '🌐 Todas (25)' } },
+    { key: 'station', label: { en: '🚉 Station', pt: '🚉 Estação', it: '🚉 Stazione', es: '🚉 Estación' } },
+    { key: 'hotel', label: { en: '🏨 Hotel', pt: '🏨 Hotel', it: '🏨 Hotel', es: '🏨 Hotel' } },
+    { key: 'restaurant', label: { en: '🍜 Restaurant', pt: '🍜 Restaurante', it: '🍜 Ristorante', es: '🍜 Restaurante' } },
+    { key: 'shopping', label: { en: '🛍️ Shopping', pt: '🛍️ Compras', it: '🛍️ Shopping', es: '🛍️ Compras' } },
+    { key: 'sightseeing', label: { en: '⛩️ Sightseeing', pt: '⛩️ Turismo', it: '⛩️ Turismo', es: '⛩️ Turismo' } },
+    { key: 'mistakes', label: { en: '🔁 Mistakes', pt: '🔁 Erros', it: '🔁 Errori', es: '🔁 Errores' } }
   ];
-  var TRIP_PROGRESS_KEY = 'ohayo_trip_progress';
-  var tripPartScores = { 1: null, 2: null, 3: null };
 
-  function tripDefaultProgress() {
-    return { v: 1, totalBest: null, parts: { '1': { best: 0, done: false }, '2': { best: 0, done: false }, '3': { best: 0, done: false } } };
+  var QUESTIONS = [
+    // --- Situation 1: Station & Transportation (Q1-Q5) ---
+    {
+      id: 1, scene: 'station', audio: 'trip-audio/a01.mp3', correct: 2,
+      prompt: {
+        en: 'You are at the station and want to find the ticket gate. What do you ask a station staff member?',
+        pt: 'Você está na estação e quer encontrar a catraca (ticket gate). O que pergunta ao funcionário?',
+        it: 'Sei in stazione e cerchi i tornelli (ticket gate). Cosa chiedi al personale?',
+        es: 'Estás en la estación y buscas la puerta de boletos. ¿Qué le preguntas al personal?'
+      },
+      shortSit: {
+        en: 'Asking where the ticket gate is at a station',
+        pt: 'Perguntar onde fica a catraca na estação',
+        it: 'Chiedere dove sono i tornelli in stazione',
+        es: 'Preguntar dónde está la puerta de boletos'
+      },
+      hint: {
+        en: 'The word for "ticket gate" is "kaisatsu" (改札).',
+        pt: 'A palavra para "catraca / portão de bilhetes" é "kaisatsu" (改札).',
+        it: 'La parola per "tornelli" è "kaisatsu" (改札).',
+        es: 'La palabra para "puerta de boletos" es "kaisatsu" (改札).'
+      },
+      note: {
+        en: 'Start with "Sumimasen," to politely get station staff attention.',
+        pt: 'Comece com "Sumimasen," para chamar o funcionário com educação.',
+        it: 'Inizia con "Sumimasen," per attirare l’attenzione con cortesia.',
+        es: 'Empieza con "Sumimasen," para llamar al personal con cortesía.'
+      },
+      options: [
+        { jp: '切符はいくらですか。', romaji: 'Kippu wa ikura desu ka.' },
+        { jp: '電車はどこですか。', romaji: 'Densha wa doko desu ka.' },
+        { jp: '改札はどこですか。', romaji: 'Kaisatsu wa doko desu ka.' },
+        { jp: 'トイレはありますか。', romaji: 'Toire wa arimasu ka.' }
+      ]
+    },
+    {
+      id: 2, scene: 'station', audio: 'trip-audio/a02.mp3', correct: 0,
+      prompt: {
+        en: 'You want to ask how much the train fare to Kyoto is. What do you say?',
+        pt: 'Você quer perguntar quanto custa a passagem de trem até Quioto. O que diz?',
+        it: 'Vuoi chiedere quanto costa il biglietto del treno per Kyoto. Cosa dici?',
+        es: 'Quieres preguntar cuánto cuesta el pasaje de tren hasta Kioto. ¿Qué dices?'
+      },
+      shortSit: {
+        en: 'Asking how much the train fare to Kyoto is',
+        pt: 'Perguntar quanto custa o trem até Quioto',
+        it: 'Chiedere quanto costa il treno per Kyoto',
+        es: 'Preguntar cuánto cuesta el tren a Kioto'
+      },
+      hint: {
+        en: '"How much" is "ikura" (いくら) and "up to / to" is "made" (まで).',
+        pt: '"Quanto custa" é "ikura" (いくら) e "até" é "made" (まで).',
+        it: '"Quanto costa" è "ikura" (いくら) e "fino a" è "made" (まで).',
+        es: '"Cuánto cuesta" es "ikura" (いくら) y "hasta" es "made" (まで).'
+      },
+      note: {
+        en: 'Swap "Kyōto" for any destination: "[Place] made ikura desu ka."',
+        pt: 'Troque "Kyōto" por qualquer destino: "[Lugar] made ikura desu ka."',
+        it: 'Sostituisci "Kyōto" con qualsiasi meta: "[Luogo] made ikura desu ka."',
+        es: 'Cambia "Kyōto" por cualquier destino: "[Lugar] made ikura desu ka."'
+      },
+      options: [
+        { jp: '京都までいくらですか。', romaji: 'Kyōto made ikura desu ka.' },
+        { jp: '京都まで何時間かかりますか。', romaji: 'Kyōto made nan-jikan kakarimasu ka.' },
+        { jp: '京都に行きたいです。', romaji: 'Kyōto ni ikitai desu.' },
+        { jp: '京都はどうですか。', romaji: 'Kyōto wa dō desu ka.' }
+      ]
+    },
+    {
+      id: 3, scene: 'station', audio: 'trip-audio/a03.mp3', correct: 1,
+      prompt: {
+        en: 'A train arrives, but you are not sure if it goes to Shinjuku. What do you ask someone nearby?',
+        pt: 'Um trem chega, mas você não tem certeza se ele vai para Shinjuku. O que pergunta a alguém por perto?',
+        it: 'Arriva un treno, ma non sei sicuro che vada a Shinjuku. Cosa chiedi a qualcuno vicino?',
+        es: 'Llega un tren, pero no estás seguro de si va a Shinjuku. ¿Qué le preguntas a alguien cerca?'
+      },
+      shortSit: {
+        en: 'Checking if this train goes to Shinjuku',
+        pt: 'Confirmar se este trem vai para Shinjuku',
+        it: 'Chiedere se questo treno va a Shinjuku',
+        es: 'Preguntar si este tren va a Shinjuku'
+      },
+      hint: {
+        en: 'Ask "Does this train go to...?" → "Kono densha wa ... ni ikimasu ka."',
+        pt: 'Pergunte "Este trem vai para...?" → "Kono densha wa ... ni ikimasu ka."',
+        it: 'Chiedi "Questo treno va a...?" → "Kono densha wa ... ni ikimasu ka."',
+        es: 'Pregunta "¿Este tren va a...?" → "Kono densha wa ... ni ikimasu ka."'
+      },
+      note: {
+        en: 'Super useful on platforms with Express & Local trains!',
+        pt: 'Super útil em plataformas com trens expressos e locais!',
+        it: 'Utilissimo sui binari dove passano treni espressi e locali!',
+        es: '¡Muy útil en andenes donde pasan trenes expresos y locales!'
+      },
+      options: [
+        { jp: '新宿は大きいですか。', romaji: 'Shinjuku wa ōkii desu ka.' },
+        { jp: 'この電車は新宿に行きますか。', romaji: 'Kono densha wa Shinjuku ni ikimasu ka.' },
+        { jp: '新宿はどこですか。', romaji: 'Shinjuku wa doko desu ka.' },
+        { jp: 'この電車は新宿から来ましたか。', romaji: 'Kono densha wa Shinjuku kara kimashita ka.' }
+      ]
+    },
+    {
+      id: 4, scene: 'station', audio: 'trip-audio/a04.mp3', correct: 0,
+      prompt: {
+        en: 'You want to buy a Shinkansen ticket to Tokyo at the counter. What do you say?',
+        pt: 'Você quer comprar uma passagem de Shinkansen para Tóquio no guichê. O que diz?',
+        it: 'Vuoi comprare un biglietto dello Shinkansen per Tokyo allo sportello. Cosa dici?',
+        es: 'Quieres comprar un boleto de Shinkansen a Tokio en la taquilla. ¿Qué dices?'
+      },
+      shortSit: {
+        en: 'Buying a train ticket to Tokyo at the counter',
+        pt: 'Comprar uma passagem de trem até Tóquio no guichê',
+        it: 'Comprare un biglietto del treno per Tokyo',
+        es: 'Comprar un boleto de tren a Tokio en la taquilla'
+      },
+      hint: {
+        en: '"Ticket" is "kippu" (切符) and "Please give me" is "kudasai" (ください).',
+        pt: '"Bilhete/passagem" é "kippu" (切符) e "por favor me dê" é "kudasai" (ください).',
+        it: '"Biglietto" è "kippu" (切符) e "per favore" è "kudasai" (ください).',
+        es: '"Boleto" es "kippu" (切符) y "por favor deme" es "kudasai" (ください).'
+      },
+      note: {
+        en: 'You can add the number of tickets: "Ichi-mai" (1) or "Ni-mai" (2) before kudasai.',
+        pt: 'Você pode acrescentar a quantidade: "Ichi-mai" (1) ou "Ni-mai" (2) antes de kudasai.',
+        it: 'Puoi aggiungere la quantità: "Ichi-mai" (1) o "Ni-mai" (2) prima di kudasai.',
+        es: 'Puedes añadir la cantidad: "Ichi-mai" (1) o "Ni-mai" (2) antes de kudasai.'
+      },
+      options: [
+        { jp: '東京までの切符をください。', romaji: 'Tōkyō made no kippu o kudasai.' },
+        { jp: '東京の新幹線はどこですか。', romaji: 'Tōkyō no shinkansen wa doko desu ka.' },
+        { jp: '東京の切符を見せてください。', romaji: 'Tōkyō no kippu o misete kudasai.' },
+        { jp: '東京まで歩きます。', romaji: 'Tōkyō made arukimasu.' }
+      ]
+    },
+    {
+      id: 5, scene: 'station', audio: 'trip-audio/a05.mp3', correct: 1,
+      prompt: {
+        en: 'You want to store your heavy luggage before sightseeing. What do you look for?',
+        pt: 'Você quer guardar sua mala pesada antes de passear. O que você procura na estação?',
+        it: 'Vuoi depositare il bagaglio pesante prima di visitare la città. Cosa cerchi?',
+        es: 'Quieres guardar tu equipaje pesado antes de pasear. ¿Qué buscas en la estación?'
+      },
+      shortSit: {
+        en: 'Looking for coin lockers to store heavy luggage',
+        pt: 'Procurar armários (coin lockers) para guardar malas',
+        it: 'Cercare gli armadietti (coin locker) per i bagagli',
+        es: 'Buscar casilleros (coin lockers) para el equipaje'
+      },
+      hint: {
+        en: 'It is a Katakana loan word for lockers where you store bags.',
+        pt: 'É uma palavra em katakana vinda do inglês para armário de bagagens.',
+        it: 'È una parola in katakana dall’inglese per gli armadietti a monete.',
+        es: 'Es una palabra en katakana tomada del inglés para los casilleros.'
+      },
+      note: {
+        en: 'Most station coin lockers accept IC cards (Suica / PASMO / ICOCA) too!',
+        pt: 'A maioria dos coin lockers nas estações também aceita cartões IC (Suica / PASMO)!',
+        it: 'Quasi tutti i coin locker accettano anche carte IC come Suica o PASMO!',
+        es: '¡La mayoría de los coin lockers también aceptan tarjetas IC (Suica / PASMO)!'
+      },
+      options: [
+        { jp: '自動販売機', romaji: 'Jidō hanbaiki' },
+        { jp: 'コインロッカー', romaji: 'Koin rokkā' },
+        { jp: 'エレベーター', romaji: 'Erebētā' },
+        { jp: '券売機', romaji: 'Kenbaiki' }
+      ]
+    },
+
+    // --- Situation 2: At the Hotel (Q6-Q10) ---
+    {
+      id: 6, scene: 'hotel', audio: 'trip-audio/a06.mp3', correct: 1,
+      prompt: {
+        en: 'You arrive at your hotel and approach the front desk. What do you say first?',
+        pt: 'Você chega ao hotel e vai até a recepção. O que diz primeiro?',
+        it: 'Arrivi in hotel e vai alla reception. Cosa dici per prima cosa?',
+        es: 'Llegas a tu hotel y te acercas a la recepción. ¿Qué dices primero?'
+      },
+      shortSit: {
+        en: 'Checking in at the hotel front desk',
+        pt: 'Fazer check-in na recepção do hotel',
+        it: 'Fare il check-in alla reception dell’hotel',
+        es: 'Hacer el check-in en la recepción del hotel'
+      },
+      hint: {
+        en: 'Use the English loan word for registering at a hotel + "onegaishimasu".',
+        pt: 'Use a palavra "chekkuin" + "onegaishimasu".',
+        it: 'Usa la parola "chekkuin" + "onegaishimasu".',
+        es: 'Usa la palabra "chekkuin" + "onegaishimasu".'
+      },
+      note: {
+        en: 'Keep your passport ready — hotels in Japan are required to photocopy it for foreign guests.',
+        pt: 'Deixe seu passaporte à mão — hotéis no Japão precisam fazer uma cópia para estrangeiros.',
+        it: 'Tieni pronto il passaporto — gli hotel in Giappone devono farne una fotocopia.',
+        es: 'Ten listo tu pasaporte — los hoteles en Japón deben fotocopiarlo para extranjeros.'
+      },
+      options: [
+        { jp: 'お会計をお願いします。', romaji: 'O-kaikei o onegaishimasu.' },
+        { jp: 'チェックインをお願いします。', romaji: 'Chekkuin o onegaishimasu.' },
+        { jp: '部屋を見せてください。', romaji: 'Heya o misete kudasai.' },
+        { jp: 'チェックアウトをお願いします。', romaji: 'Chekku-auto o onegaishimasu.' }
+      ]
+    },
+    {
+      id: 7, scene: 'hotel', audio: 'trip-audio/a07.mp3', correct: 0,
+      prompt: {
+        en: 'You want to know if breakfast is included with your room. What do you ask?',
+        pt: 'Você quer saber se o café da manhã está incluído na diária. O que pergunta?',
+        it: 'Vuoi sapere se la colazione è inclusa nella camera. Cosa chiedi?',
+        es: 'Quieres saber si el desayuno está incluido con tu habitación. ¿Qué preguntas?'
+      },
+      shortSit: {
+        en: 'Asking if breakfast is included with the room',
+        pt: 'Perguntar se o café da manhã está incluído',
+        it: 'Chiedere se la colazione è inclusa',
+        es: 'Preguntar si el desayuno está incluido'
+      },
+      hint: {
+        en: '"Is it included / attached?" is "tsuite imasu ka" (ついていますか).',
+        pt: '"Está incluído?" é "tsuite imasu ka" (ついていますか).',
+        it: '"È incluso?" si dice "tsuite imasu ka" (ついていますか).',
+        es: '"¿Está incluido?" se dice "tsuite imasu ka" (ついていますか).'
+      },
+      note: {
+        en: 'You can also say "Asagohan wa tsuite imasu ka." (casual word for breakfast).',
+        pt: 'Também funciona com "Asagohan wa tsuite imasu ka." (forma mais cotidiana).',
+        it: 'Puoi usare anche "Asagohan wa tsuite imasu ka." (parola più quotidiana).',
+        es: 'También puedes decir "Asagohan wa tsuite imasu ka." (forma más cotidiana).'
+      },
+      options: [
+        { jp: '朝食はついていますか。', romaji: 'Chōshoku wa tsuite imasu ka.' },
+        { jp: '朝食はどこで食べますか。', romaji: 'Chōshoku wa doko de tabemasu ka.' },
+        { jp: '朝食はおいしいですか。', romaji: 'Chōshoku wa oishii desu ka.' },
+        { jp: '朝食は何時ですか。', romaji: 'Chōshoku wa nan-ji desu ka.' }
+      ]
+    },
+    {
+      id: 8, scene: 'hotel', audio: 'trip-audio/a08.mp3', correct: 2,
+      prompt: {
+        en: 'Oh no! You lost your room key. What do you tell the receptionist?',
+        pt: 'Ah não! Você perdeu a chave do quarto. O que diz ao recepcionista?',
+        it: 'Oh no! Hai perso la chiave della camera. Cosa dici alla reception?',
+        es: '¡Oh no! Perdiste la llave de tu habitación. ¿Qué le dices al recepcionista?'
+      },
+      shortSit: {
+        en: 'Telling the hotel receptionist you lost your room key',
+        pt: 'Avisar a recepção que perdeu a chave do quarto',
+        it: 'Dire alla reception di aver perso la chiave della camera',
+        es: 'Avisar en recepción que perdiste la llave de la habitación'
+      },
+      hint: {
+        en: '"To lose" is "nakusu" (なくす). "...te shimaimashita" expresses regret.',
+        pt: '"Perder" é "nakusu" (なくす). "...te shimaimashita" expressa pesar.',
+        it: '"Perdere" è "nakusu" (なくす). "...te shimaimashita" esprime dispiacere.',
+        es: '"Perder" es "nakusu" (なくす). "...te shimaimashita" expresa lamento.'
+      },
+      note: {
+        en: 'Compare: "wasuremashita" = left behind / forgot; "nakushite shimaimashita" = lost.',
+        pt: 'Compare: "wasuremashita" = esqueci; "nakushite shimaimashita" = perdi.',
+        it: 'Confronta: "wasuremashita" = dimenticato; "nakushite shimaimashita" = perso.',
+        es: 'Compara: "wasuremashita" = olvidé; "nakushite shimaimashita" = perdí.'
+      },
+      options: [
+        { jp: '鍵を部屋に忘れました。', romaji: 'Kagi o heya ni wasuremashita.' },
+        { jp: '鍵をもらっていません。', romaji: 'Kagi o moratte imasen.' },
+        { jp: '部屋の鍵をなくしてしまいました。', romaji: 'Heya no kagi o nakushite shimaimashita.' },
+        { jp: '鍵が壊れました。', romaji: 'Kagi ga kowaremashita.' }
+      ]
+    },
+    {
+      id: 9, scene: 'hotel', audio: 'trip-audio/a09.mp3', correct: 1,
+      prompt: {
+        en: 'You arrived early and want to ask if the hotel can keep your luggage before check-in.',
+        pt: 'Você chegou cedo e quer perguntar se o hotel pode guardar sua bagagem antes do check-in.',
+        it: 'Sei arrivato presto e vuoi chiedere se l’hotel può tenere i bagagli prima del check-in.',
+        es: 'Llegaste temprano y quieres preguntar si el hotel puede guardar tu equipaje antes del check-in.'
+      },
+      shortSit: {
+        en: 'Asking the hotel to hold your luggage before check-in',
+        pt: 'Pedir ao hotel para guardar suas malas antes do check-in',
+        it: 'Chiedere all’hotel di custodire i bagagli prima del check-in',
+        es: 'Pedir al hotel que guarde tu equipaje antes del check-in'
+      },
+      hint: {
+        en: '"To keep / hold for someone" is "azukaru" (預かる).',
+        pt: '"Guardar para alguém" é "azukaru" (預かる).',
+        it: '"Custodire per qualcuno" è "azukaru" (預かる).',
+        es: '"Guardar para alguien" es "azukaru" (預かる).'
+      },
+      note: {
+        en: 'Almost all Japanese hotels happily hold luggage both before check-in and after check-out!',
+        pt: 'Quase todos os hotéis japoneses guardam malas antes do check-in e após o check-out!',
+        it: 'Quasi tutti gli hotel giapponesi tengono i bagagli sia prima del check-in che dopo il check-out!',
+        es: '¡Casi todos los hoteles en Japón guardan maletas antes del check-in y después del check-out!'
+      },
+      options: [
+        { jp: '荷物を送ってください。', romaji: 'Nimotsu o okutte kudasai.' },
+        { jp: '荷物を預かってもらえますか。', romaji: 'Nimotsu o azukatte moraemasu ka.' },
+        { jp: '荷物を持ちたいです。', romaji: 'Nimotsu o mochitai desu.' },
+        { jp: '荷物を持っていきますか。', romaji: 'Nimotsu o motte ikimasu ka.' }
+      ]
+    },
+    {
+      id: 10, scene: 'hotel', audio: 'trip-audio/a10.mp3', correct: 0,
+      prompt: {
+        en: 'You need a password to connect to the internet. What do you ask?',
+        pt: 'Você precisa da senha para conectar à internet. O que pergunta?',
+        it: 'Hai bisogno della password per collegarti a internet. Cosa chiedi?',
+        es: 'Necesitas la contraseña para conectarte a internet. ¿Qué preguntas?'
+      },
+      shortSit: {
+        en: 'Asking for the Wi-Fi password',
+        pt: 'Perguntar qual é a senha do Wi-Fi',
+        it: 'Chiedere la password del Wi-Fi',
+        es: 'Preguntar cuál es la contraseña del Wi-Fi'
+      },
+      hint: {
+        en: '"What is...?" is "wa nan desu ka" (は何ですか).',
+        pt: '"Qual é...?" é "wa nan desu ka" (は何ですか).',
+        it: '"Qual è...?" si dice "wa nan desu ka" (は何ですか).',
+        es: '"¿Cuál es...?" se dice "wa nan desu ka" (は何ですか).'
+      },
+      note: {
+        en: 'Pronounced "Wai-fai no pasuwādo wa nan desu ka." — works in cafes too!',
+        pt: 'Pronuncia-se "Wai-fai no pasuwādo wa nan desu ka." — funciona em cafés também!',
+        it: 'Si pronuncia "Wai-fai no pasuwādo wa nan desu ka." — utile anche nei caffè!',
+        es: 'Se pronuncia "Wai-fai no pasuwādo wa nan desu ka." — ¡sirve en cafeterías también!'
+      },
+      options: [
+        { jp: 'Wi-Fiのパスワードは何ですか。', romaji: 'Wi-Fi no pasuwādo wa nan desu ka.' },
+        { jp: 'Wi-Fiはどこですか。', romaji: 'Wi-Fi wa doko desu ka.' },
+        { jp: 'Wi-Fiをください。', romaji: 'Wi-Fi o kudasai.' },
+        { jp: 'Wi-Fiは無料ですか。', romaji: 'Wi-Fi wa muryō desu ka.' }
+      ]
+    },
+
+    // --- Situation 3: At a Restaurant (Q11-Q15) ---
+    {
+      id: 11, scene: 'restaurant', audio: 'trip-audio/a11.mp3', correct: 1,
+      prompt: {
+        en: 'You enter a restaurant and the staff asks "Nan-mei sama desu ka?" (How many people?). You are a group of 2.',
+        pt: 'Você entra no restaurante e o atendente pergunta "Nan-mei sama desu ka?" (Quantas pessoas?). Vocês são 2.',
+        it: 'Entri in un ristorante e il cameriere chiede "Nan-mei sama desu ka?" (Quante persone?). Siete in 2.',
+        es: 'Entras a un restaurante y el personal pregunta "Nan-mei sama desu ka?" (¿Cuántas personas?). Son 2.'
+      },
+      shortSit: {
+        en: 'Telling restaurant staff you are a party of 2',
+        pt: 'Dizer no restaurante que são 2 pessoas',
+        it: 'Dire al ristorante che siete in 2 persone',
+        es: 'Decir en el restaurante que son 2 personas'
+      },
+      hint: {
+        en: 'The polite counter for people in restaurants is "-mei" (名).',
+        pt: 'O contador formal para pessoas em restaurantes é "-mei" (名).',
+        it: 'Il contatore cortese per le persone al ristorante è "-mei" (名).',
+        es: 'El contador formal para personas en restaurantes es "-mei" (名).'
+      },
+      note: {
+        en: '"Futari desu" (2 people) is also completely natural and widely used!',
+        pt: '"Futari desu" (2 pessoas) também é super natural e muito usado!',
+        it: 'Anche "Futari desu" (2 persone) è molto naturale e usato!',
+        es: '¡"Futari desu" (2 personas) también es muy natural y frecuente!'
+      },
+      options: [
+        { jp: 'ふたつです。', romaji: 'Futatsu desu.' },
+        { jp: '２名です。', romaji: 'Ni-mei desu.' },
+        { jp: '２番です。', romaji: 'Ni-ban desu.' },
+        { jp: '２回です。', romaji: 'Ni-kai desu.' }
+      ]
+    },
+    {
+      id: 12, scene: 'restaurant', audio: 'trip-audio/a12.mp3', correct: 2,
+      prompt: {
+        en: 'You are ready to order your food. How do you get the waiter\'s attention?',
+        pt: 'Você está pronto para pedir sua comida. Como chama o garçom?',
+        it: 'Sei pronto per ordinare il cibo. Come chiami il cameriere?',
+        es: 'Estás listo para pedir tu comida. ¿Cómo llamas al camarero?'
+      },
+      shortSit: {
+        en: 'Calling the waiter when ready to order',
+        pt: 'Chamar o garçom para fazer o pedido',
+        it: 'Chiamare il cameriere per ordinare',
+        es: 'Llamar al camarero para pedir'
+      },
+      hint: {
+        en: 'Start with "Sumimasen" (Excuse me), followed by "Chūmon o onegaishimasu" (Order, please).',
+        pt: 'Comece com "Sumimasen" (Com licença), seguido de "Chūmon o onegaishimasu".',
+        it: 'Inizia con "Sumimasen" (Scusi), seguito da "Chūmon o onegaishimasu".',
+        es: 'Empieza con "Sumimasen" (Disculpe), seguido de "Chūmon o onegaishimasu".'
+      },
+      note: {
+        en: 'In Japan, calling out "Sumimasen!" clearly (or pressing the table call button) is completely polite.',
+        pt: 'No Japão, chamar "Sumimasen!" claramente (ou apertar o botão na mesa) é perfeitamente educado.',
+        it: 'In Giappone chiamare "Sumimasen!" chiaramente (o premere il pulsante al tavolo) è del tutto cortese.',
+        es: 'En Japón, decir "¡Sumimasen!" claramente (o pulsar el botón de la mesa) es totalmente educado.'
+      },
+      options: [
+        { jp: 'いただきます。', romaji: 'Itadakimasu.' },
+        { jp: 'ごちそうさまでした。', romaji: 'Gochisōsama deshita.' },
+        { jp: 'すみません、注文をお願いします。', romaji: 'Sumimasen, chūmon o onegaishimasu.' },
+        { jp: '料理を持ってきてください。', romaji: 'Ryōri o motte kite kudasai.' }
+      ]
+    },
+    {
+      id: 13, scene: 'restaurant', audio: 'trip-audio/a13.mp3', correct: 0,
+      prompt: {
+        en: 'You cannot read the Japanese menu. How do you ask if they have an English menu?',
+        pt: 'Você não consegue ler o cardápio em japonês. Como pergunta se há cardápio em inglês?',
+        it: 'Non riesci a leggere il menu giapponese. Come chiedi se hanno un menu in inglese?',
+        es: 'No puedes leer el menú en japonés. ¿Cómo preguntas si tienen menú en inglés?'
+      },
+      shortSit: {
+        en: 'Asking if the restaurant has an English menu',
+        pt: 'Perguntar se há cardápio em inglês',
+        it: 'Chiedere se c’è un menu in inglese',
+        es: 'Preguntar si tienen menú en inglés'
+      },
+      hint: {
+        en: '"Do you have...?" is "...wa arimasu ka" (はありますか).',
+        pt: '"Vocês têm...?" é "...wa arimasu ka" (はありますか).',
+        it: '"Avete...?" si dice "...wa arimasu ka" (はありますか).',
+        es: '"¿Tienen...?" se dice "...wa arimasu ka" (はありますか).'
+      },
+      note: {
+        en: 'You can also ask for a photo menu: "Shashin no menyū wa arimasu ka."',
+        pt: 'Você também pode pedir cardápio com fotos: "Shashin no menyū wa arimasu ka."',
+        it: 'Puoi chiedere anche un menu con foto: "Shashin no menyū wa arimasu ka."',
+        es: 'También puedes pedir un menú con fotos: "Shashin no menyū wa arimasu ka."'
+      },
+      options: [
+        { jp: '英語のメニューはありますか。', romaji: 'Eigo no menyū wa arimasu ka.' },
+        { jp: '英語を話せますか。', romaji: 'Eigo o hanasemasu ka.' },
+        { jp: 'メニューは英語ですか。', romaji: 'Menyū wa eigo desu ka.' },
+        { jp: '英語で注文してもいいですか。', romaji: 'Eigo de chūmon shite mo ii desu ka.' }
+      ]
+    },
+    {
+      id: 14, scene: 'restaurant', audio: 'trip-audio/a14.mp3', correct: 1,
+      prompt: {
+        en: 'You want to eat the restaurant\'s best dish. How do you ask "What do you recommend?"',
+        pt: 'Você quer experimentar o melhor prato da casa. Como pergunta "O que você recomenda?"',
+        it: 'Vuoi provare il piatto migliore del locale. Come chiedi "Cosa consiglia?"',
+        es: 'Quieres probar el mejor plato del restaurante. ¿Cómo preguntas "¿Qué recomienda?"'
+      },
+      shortSit: {
+        en: 'Asking the waiter what they recommend',
+        pt: 'Perguntar ao garçom o que ele recomenda',
+        it: 'Chiedere al cameriere cosa consiglia',
+        es: 'Preguntar al camarero qué recomienda'
+      },
+      hint: {
+        en: 'The noun for "recommendation" is "osusume" (おすすめ).',
+        pt: 'A palavra para "recomendação" é "osusume" (おすすめ).',
+        it: 'La parola per "consiglio / piatto consigliato" è "osusume" (おすすめ).',
+        es: 'La palabra para "recomendación" es "osusume" (おすすめ).'
+      },
+      note: {
+        en: 'Great conversation starter at ramen shops, izakaya, and sushi counters!',
+        pt: 'Ótima frase para lojas de ramen, izakaya e balcões de sushi!',
+        it: 'Frase fantastica nei negozi di ramen, negli izakaya e al sushi bar!',
+        es: '¡Frase genial en locales de ramen, izakayas y barras de sushi!'
+      },
+      options: [
+        { jp: '一番安いのは何ですか。', romaji: 'Ichiban yasui no wa nan desu ka.' },
+        { jp: 'おすすめは何ですか。', romaji: 'Osusume wa nan desu ka.' },
+        { jp: '人気がありますか。', romaji: 'Ninki ga arimasu ka.' },
+        { jp: '飲み物はありますか。', romaji: 'Nomimono wa arimasu ka.' }
+      ]
+    },
+    {
+      id: 15, scene: 'restaurant', audio: 'trip-audio/a15.mp3', correct: 0,
+      prompt: {
+        en: 'You are finished eating and want to pay the bill. What do you say?',
+        pt: 'Você terminou de comer e quer pagar a conta. O que diz?',
+        it: 'Hai finito di mangiare e vuoi pagare il conto. Cosa dici?',
+        es: 'Terminaste de comer y quieres pedir la cuenta. ¿Qué dices?'
+      },
+      shortSit: {
+        en: 'Asking for the bill at a restaurant',
+        pt: 'Pedir a conta no restaurante',
+        it: 'Chiedere il conto al ristorante',
+        es: 'Pedir la cuenta en un restaurante'
+      },
+      hint: {
+        en: '"Check / bill" at a restaurant is "o-kaikei" (お会計).',
+        pt: '"Conta" no restaurante é "o-kaikei" (お会計).',
+        it: '"Il conto" al ristorante è "o-kaikei" (お会計).',
+        es: '"La cuenta" en un restaurante es "o-kaikei" (お会計).'
+      },
+      note: {
+        en: 'In many Japanese restaurants, you bring the small slip on your table to the register near the exit.',
+        pt: 'Em muitos restaurantes no Japão, você leva a comanda da mesa até o caixa perto da saída.',
+        it: 'In molti ristoranti giapponesi si porta lo scontrino del tavolo alla cassa vicino all’uscita.',
+        es: 'En muchos restaurantes de Japón, llevas la cuenta de tu mesa a la caja cerca de la salida.'
+      },
+      options: [
+        { jp: 'お会計をお願いします。', romaji: 'O-kaikei o onegaishimasu.' },
+        { jp: 'お金を出します。', romaji: 'O-kane o dashimasu.' },
+        { jp: 'ごちそうさまでした。', romaji: 'Gochisōsama deshita.' },
+        { jp: 'いくら払いますか。', romaji: 'Ikura haraimasu ka.' }
+      ]
+    },
+
+    // --- Situation 4: Shopping (Q16-Q20) ---
+    {
+      id: 16, scene: 'shopping', audio: 'trip-audio/a16.mp3', correct: 0,
+      prompt: {
+        en: 'You see a beautiful folding fan. You want to ask the clerk "How much is this?"',
+        pt: 'Você vê um leque lindo e quer perguntar ao vendedor "Quanto custa isto?"',
+        it: 'Vedi un bellissimo ventaglio e vuoi chiedere al commesso "Quanto costa questo?"',
+        es: 'Ves un abanico precioso y quieres preguntarle al vendedor "¿Cuánto cuesta esto?"'
+      },
+      shortSit: {
+        en: 'Asking how much an item costs',
+        pt: 'Perguntar quanto custa um produto',
+        it: 'Chiedere quanto costa un articolo',
+        es: 'Preguntar cuánto cuesta un artículo'
+      },
+      hint: {
+        en: '"How much (money)" is "ikura" (いくら).',
+        pt: '"Quanto (dinheiro)" é "ikura" (いくら).',
+        it: '"Quanto (prezzo)" è "ikura" (いくら).',
+        es: '"Cuánto (precio)" es "ikura" (いくら).'
+      },
+      note: {
+        en: 'Watch out for "ikutsu" (how many / how old) vs "ikura" (how much money).',
+        pt: 'Cuidado para não confundir "ikutsu" (quantos) com "ikura" (quanto custa).',
+        it: 'Attenzione: "ikutsu" significa quanti/età, mentre "ikura" significa quanto costa.',
+        es: 'Ojo: "ikutsu" es cuántos/edad, mientras que "ikura" es cuánto cuesta.'
+      },
+      options: [
+        { jp: 'これはいくらですか。', romaji: 'Kore wa ikura desu ka.' },
+        { jp: 'これはいくつですか。', romaji: 'Kore wa ikutsu desu ka.' },
+        { jp: 'これは何ですか。', romaji: 'Kore wa nan desu ka.' },
+        { jp: 'これはどこですか。', romaji: 'Kore wa doko desu ka.' }
+      ]
+    },
+    {
+      id: 17, scene: 'shopping', audio: 'trip-audio/a17.mp3', correct: 1,
+      prompt: {
+        en: 'You want to try on a t-shirt before buying it. How do you ask for permission?',
+        pt: 'Você quer experimentar uma camiseta antes de comprar. Como pede permissão?',
+        it: 'Vuoi provare una maglietta prima di comprarla. Come chiedi il permesso?',
+        es: 'Quieres probarte una camiseta antes de comprarla. ¿Cómo pides permiso?'
+      },
+      shortSit: {
+        en: 'Asking to try on clothes in a shop',
+        pt: 'Pedir para experimentar roupas na loja',
+        it: 'Chiedere di provare un capo in negozio',
+        es: 'Pedir permiso para probarse ropa en una tienda'
+      },
+      hint: {
+        en: '"Trying on clothes" is "shichaku" (試着). "May I...?" is "...te mo ii desu ka".',
+        pt: '"Experimentar roupa" é "shichaku" (試着). "Posso...?" é "...te mo ii desu ka".',
+        it: '"Provare vestiti" è "shichaku" (試着). "Posso...?" è "...te mo ii desu ka".',
+        es: '"Probarse ropa" es "shichaku" (試着). "¿Puedo...?" es "...te mo ii desu ka".'
+      },
+      note: {
+        en: 'Remember to take off your shoes before stepping into Japanese fitting rooms!',
+        pt: 'Lembre-se de tirar os sapatos antes de entrar nos provadores no Japão!',
+        it: 'Ricorda di togliere le scarpe prima di entrare nei camerini in Giappone!',
+        es: '¡Recuerda quitarte los zapatos antes de entrar a los probadores en Japón!'
+      },
+      options: [
+        { jp: 'これを着ます。', romaji: 'Kore o kimasu.' },
+        { jp: '試着してもいいですか。', romaji: 'Shichaku shite mo ii desu ka.' },
+        { jp: 'サイズは合いますか。', romaji: 'Saizu wa aimasu ka.' },
+        { jp: '服を買ってもいいですか。', romaji: 'Fuku o katte mo ii desu ka.' }
+      ]
+    },
+    {
+      id: 18, scene: 'shopping', audio: 'trip-audio/a18.mp3', correct: 0,
+      prompt: {
+        en: 'You are buying souvenirs and want to know if you can pay by credit card.',
+        pt: 'Você está comprando lembranças e quer saber se aceitam cartão de crédito.',
+        it: 'Stai comprando souvenir e vuoi sapere se puoi pagare con carta di credito.',
+        es: 'Estás comprando recuerdos y quieres saber si puedes pagar con tarjeta de crédito.'
+      },
+      shortSit: {
+        en: 'Asking if you can pay by credit card',
+        pt: 'Perguntar se aceitam cartão de crédito',
+        it: 'Chiedere se accettano la carta di credito',
+        es: 'Preguntar si aceptan tarjeta de crédito'
+      },
+      hint: {
+        en: '"Can I use...?" is "tsukaemasu ka" (使えますか).',
+        pt: '"Posso usar...?" é "tsukaemasu ka" (使えますか).',
+        it: '"Posso usare...?" è "tsukaemasu ka" (使えますか).',
+        es: '"¿Se puede usar...?" es "tsukaemasu ka" (使えますか).'
+      },
+      note: {
+        en: 'You can shorten it in daily speech to "Kādo wa tsukaemasu ka." — or ask with "Suica wa tsukaemasu ka."',
+        pt: 'No dia a dia também se usa "Kādo wa tsukaemasu ka." — ou "Suica wa tsukaemasu ka."',
+        it: 'Puoi anche dire semplicemente "Kādo wa tsukaemasu ka." — oppure "Suica wa tsukaemasu ka."',
+        es: 'También puedes acortarlo a "Kādo wa tsukaemasu ka." — o "Suica wa tsukaemasu ka."'
+      },
+      options: [
+        { jp: 'クレジットカードは使えますか。', romaji: 'Kurejitto kādo wa tsukaemasu ka.' },
+        { jp: 'クレジットカードはありますか。', romaji: 'Kurejitto kādo wa arimasu ka.' },
+        { jp: 'クレジットカードをください。', romaji: 'Kurejitto kādo o kudasai.' },
+        { jp: 'クレジットカードで作れますか。', romaji: 'Kurejitto kādo de tsukuremasu ka.' }
+      ]
+    },
+    {
+      id: 19, scene: 'shopping', audio: 'trip-audio/a19.mp3', correct: 0,
+      prompt: {
+        en: 'You want to buy this item. What is the most natural way to say "I\'ll take this"?',
+        pt: 'Você decidiu comprar este item. Qual é a forma mais natural de dizer "Vou levar este"?',
+        it: 'Hai deciso di comprare questo articolo. Qual è il modo più naturale per dire "Prendo questo"?',
+        es: 'Decidiste comprar este artículo. ¿Cuál es la forma más natural de decir "Me llevo este"?'
+      },
+      shortSit: {
+        en: 'Saying "I\'ll take this" when deciding to buy',
+        pt: 'Dizer "Vou levar este" ao decidir comprar',
+        it: 'Dire "Prendo questo" quando decidi cosa comprare',
+        es: 'Decir "Me llevo este" al decidir comprar'
+      },
+      hint: {
+        en: '"Kore ni shimasu" (I\'ve decided on this) is the standard phrase for "I\'ll take this".',
+        pt: '"Kore ni shimasu" (escolho este) é a frase padrão para "vou levar este".',
+        it: '"Kore ni shimasu" (scelgo questo) è la frase standard per "prendo questo".',
+        es: '"Kore ni shimasu" (elijo este) es la expresión estándar para "me llevo este".'
+      },
+      note: {
+        en: 'Works equally well at restaurants when choosing a dish from the menu!',
+        pt: 'Funciona igualmente bem em restaurantes ao escolher um prato do cardápio!',
+        it: 'Funziona benissimo anche al ristorante quando scegli un piatto dal menu!',
+        es: '¡Funciona igual de bien en restaurantes al elegir un plato del menú!'
+      },
+      options: [
+        { jp: 'これにします。', romaji: 'Kore ni shimasu.' },
+        { jp: 'これを取ります。', romaji: 'Kore o torimasu.' },
+        { jp: 'これを見ます。', romaji: 'Kore o mimasu.' },
+        { jp: 'これを返します。', romaji: 'Kore o kaeshimasu.' }
+      ]
+    },
+    {
+      id: 20, scene: 'shopping', audio: 'trip-audio/a20.mp3', correct: 0,
+      prompt: {
+        en: 'The cashier asks if you need a plastic bag (fukuro), but you have your own eco-bag. How do you decline politely?',
+        pt: 'O caixa pergunta se você precisa de sacola (fukuro), mas você tem sua ecobag. Como recusa com educação?',
+        it: 'Il cassiere chiede se vuoi un sacchetto (fukuro), ma hai la tua borsa. Come rifiuti gentilmente?',
+        es: 'El cajero pregunta si necesitas bolsa (fukuro), pero llevas tu propia bolsa. ¿Cómo rechazas con cortesía?'
+      },
+      shortSit: {
+        en: 'Politely declining a shopping bag at the cashier',
+        pt: 'Recusar educadamente a sacola no caixa',
+        it: 'Rifiutare gentilmente il sacchetto alla cassa',
+        es: 'Rechazar cortésmente la bolsa en la caja'
+      },
+      hint: {
+        en: '"Kekkō desu" (結構です) is a standard and polite way to say "No, thank you".',
+        pt: '"Kekkō desu" (結構です) é uma forma padrão e educada de dizer "Não, obrigado".',
+        it: '"Kekkō desu" (結構です) è il modo standard e cortese per dire "No, grazie".',
+        es: '"Kekkō desu" (結構です) es la forma estándar y educada de decir "No, gracias".'
+      },
+      note: {
+        en: 'At konbini, "Daijōbu desu" (I\'m fine / No thanks) is also heard all the time!',
+        pt: 'Em konbini, "Daijōbu desu" (Tudo bem / Não precisa) também é super comum!',
+        it: 'Nei konbini si usa molto spesso anche "Daijōbu desu" (Va bene così, grazie)!',
+        es: '¡En los konbini también se escucha muchísimo "Daijōbu desu" (Está bien, gracias)!'
+      },
+      options: [
+        { jp: '袋は結構です。', romaji: 'Fukuro wa kekkō desu.' },
+        { jp: '袋はダメです。', romaji: 'Fukuro wa dame desu.' },
+        { jp: '袋をください。', romaji: 'Fukuro o kudasai.' },
+        { jp: '袋は大きいですか。', romaji: 'Fukuro wa ōkii desu ka.' }
+      ]
+    },
+
+    // --- Situation 5: Sightseeing & Directions (Q21-Q25) ---
+    {
+      id: 21, scene: 'sightseeing', audio: 'trip-audio/a21.mp3', correct: 0,
+      prompt: {
+        en: 'You are lost. You want to ask a passerby "Where is the station?"',
+        pt: 'Você se perdeu e quer perguntar a alguém na rua "Onde fica a estação?"',
+        it: 'Ti sei perso e vuoi chiedere a un passante "Dov’è la stazione?"',
+        es: 'Te perdiste y quieres preguntarle a alguien "¿Dónde está la estación?"'
+      },
+      shortSit: {
+        en: 'Asking a passerby where the station is',
+        pt: 'Perguntar na rua onde fica a estação',
+        it: 'Chiedere a un passante dov’è la stazione',
+        es: 'Preguntar a alguien dónde está la estación'
+      },
+      hint: {
+        en: '"Where" is "doko" (どこ). Start with "Sumimasen" to be polite!',
+        pt: '"Onde" é "doko" (どこ). Comece com "Sumimasen" para ser educado!',
+        it: '"Dove" è "doko" (どこ). Inizia con "Sumimasen" per cortesia!',
+        es: '"Dónde" es "doko" (どこ). ¡Empieza con "Sumimasen" para ser educado!'
+      },
+      note: {
+        en: 'Replace "Eki" (station) with any place: "Toire wa doko desu ka." (Where is the restroom?).',
+        pt: 'Troque "Eki" por qualquer lugar: "Toire wa doko desu ka." (Onde é o banheiro?).',
+        it: 'Sostituisci "Eki" con qualsiasi luogo: "Toire wa doko desu ka." (Dov’è il bagno?).',
+        es: 'Cambia "Eki" por cualquier lugar: "Toire wa doko desu ka." (¿Dónde está el baño?).'
+      },
+      options: [
+        { jp: '駅はどこですか。', romaji: 'Eki wa doko desu ka.' },
+        { jp: '駅はどうですか。', romaji: 'Eki wa dō desu ka.' },
+        { jp: '駅は遠いですか。', romaji: 'Eki wa tōi desu ka.' },
+        { jp: '駅は大きいですか。', romaji: 'Eki wa ōkii desu ka.' }
+      ]
+    },
+    {
+      id: 22, scene: 'sightseeing', audio: 'trip-audio/a22.mp3', correct: 2,
+      prompt: {
+        en: 'You want to take a picture inside a museum, but are not sure if it\'s allowed. What do you ask staff?',
+        pt: 'Você quer tirar uma foto dentro de um museu, mas não sabe se é permitido. O que pergunta?',
+        it: 'Vuoi fare una foto in un museo ma non sai se è permesso. Cosa chiedi al personale?',
+        es: 'Quieres sacar una foto en un museo, pero no sabes si está permitido. ¿Qué preguntas?'
+      },
+      shortSit: {
+        en: 'Asking if taking photos is allowed',
+        pt: 'Perguntar se é permitido tirar fotos',
+        it: 'Chiedere se è permesso fare foto',
+        es: 'Preguntar si está permitido sacar fotos'
+      },
+      hint: {
+        en: '"To take (a picture)" is "toru" (撮る) → "totte mo ii desu ka".',
+        pt: '"Tirar (foto)" é "toru" (撮る) → "totte mo ii desu ka".',
+        it: '"Scattare (una foto)" è "toru" (撮る) → "totte mo ii desu ka".',
+        es: '"Sacar (una foto)" es "toru" (撮る) → "totte mo ii desu ka".'
+      },
+      note: {
+        en: 'Useful at museums, temples, and small shops where photography may be restricted.',
+        pt: 'Muito útil em museus, templos e lojinhas onde fotos podem ser proibidas.',
+        it: 'Utile nei musei, nei templi e nei piccoli negozi dove le foto possono essere vietate.',
+        es: 'Muy útil en museos, templos y tiendas pequeñas donde puede estar prohibido fotografiar.'
+      },
+      options: [
+        { jp: '写真をください。', romaji: 'Shashin o kudasai.' },
+        { jp: '写真を見てもいいですか。', romaji: 'Shashin o mite mo ii desu ka.' },
+        { jp: '写真を撮ってもいいですか。', romaji: 'Shashin o totte mo ii desu ka.' },
+        { jp: '写真を撮ってください。', romaji: 'Shashin o totte kudasai.' }
+      ]
+    },
+    {
+      id: 23, scene: 'sightseeing', audio: 'trip-audio/a23.mp3', correct: 1,
+      prompt: {
+        en: 'You want someone to take a picture of you and your friends. How do you ask?',
+        pt: 'Você quer pedir para alguém tirar uma foto sua com seus amigos. Como pergunta?',
+        it: 'Vuoi chiedere a qualcuno di fare una foto a te e ai tuoi amici. Come lo chiedi?',
+        es: 'Quieres pedirle a alguien que te saque una foto con tus amigos. ¿Cómo lo pides?'
+      },
+      shortSit: {
+        en: 'Asking someone to take a photo of you',
+        pt: 'Pedir para alguém tirar uma foto sua',
+        it: 'Chiedere a qualcuno di farti una foto',
+        es: 'Pedirle a alguien que te tome una foto'
+      },
+      hint: {
+        en: '"...te moraemasen ka" means "Could you please (do something for me)?"',
+        pt: '"...te moraemasen ka" significa "Você poderia, por favor...?"',
+        it: '"...te moraemasen ka" significa "Potrebbe gentilmente...?"',
+        es: '"...te moraemasen ka" significa "¿Podría por favor...?"'
+      },
+      note: {
+        en: 'Compare Q22 & Q23: "totte mo ii desu ka" (May I take?) vs "totte moraemasen ka" (Could you take one of us?).',
+        pt: 'Compare Q22 e Q23: "totte mo ii desu ka" (Posso tirar?) vs "totte moraemasen ka" (Pode tirar uma foto nossa?).',
+        it: 'Confronta Q22 e Q23: "totte mo ii desu ka" (Posso fare?) vs "totte moraemasen ka" (Può farci una foto?).',
+        es: 'Compara Q22 y Q23: "totte mo ii desu ka" (¿Puedo sacar?) vs "totte moraemasen ka" (¿Nos saca una foto?).'
+      },
+      options: [
+        { jp: '写真を撮りましょうか。', romaji: 'Shashin o torimashō ka.' },
+        { jp: '写真を撮ってもらえませんか。', romaji: 'Shashin o totte moraemasen ka.' },
+        { jp: '写真を撮りたいです。', romaji: 'Shashin o toritai desu.' },
+        { jp: '写真を撮ります。', romaji: 'Shashin o torimasu.' }
+      ]
+    },
+    {
+      id: 24, scene: 'sightseeing', audio: 'trip-audio/a24.mp3', correct: 2,
+      prompt: {
+        en: 'You are at a beautiful shrine and want to know what time it closes.',
+        pt: 'Você está em um santuário lindo e quer saber que horas ele fecha.',
+        it: 'Sei in un bellissimo santuario e vuoi sapere a che ora chiude.',
+        es: 'Estás en un santuario hermoso y quieres saber a qué hora cierra.'
+      },
+      shortSit: {
+        en: 'Asking what time a shrine or attraction closes',
+        pt: 'Perguntar que horas um santuário ou local fecha',
+        it: 'Chiedere a che ora chiude un santuario o un locale',
+        es: 'Preguntar a qué hora cierra un santuario o lugar'
+      },
+      hint: {
+        en: '"To close" is "shimaru" (閉まる) → "shimarimasu ka".',
+        pt: '"Fechar" é "shimaru" (閉まる) → "shimarimasu ka".',
+        it: '"Chiudere" è "shimaru" (閉まる) → "shimarimasu ka".',
+        es: '"Cerrar" es "shimaru" (閉まる) → "shimarimasu ka".'
+      },
+      note: {
+        en: 'Many temples and shrines in Japan close around 4:30 PM or 5:00 PM — always worth checking!',
+        pt: 'Muitos templos e santuários fecham por volta das 16h30 ou 17h — vale sempre confirmar!',
+        it: 'Molti templi e santuari chiudono intorno alle 16:30 o 17:00 — conviene sempre chiedere!',
+        es: 'Muchos templos y santuarios cierran alrededor de las 16:30 o 17:00 — ¡siempre conviene preguntar!'
+      },
+      options: [
+        { jp: '何時に終わりますか。', romaji: 'Nan-ji ni owarimasu ka.' },
+        { jp: '何時に開きますか。', romaji: 'Nan-ji ni akimasu ka.' },
+        { jp: '何時に閉まりますか。', romaji: 'Nan-ji ni shimarimasu ka.' },
+        { jp: '神社は広いですか。', romaji: 'Jinja wa hiroi desu ka.' }
+      ]
+    },
+    {
+      id: 25, scene: 'sightseeing', audio: 'trip-audio/a25.mp3', correct: 0,
+      prompt: {
+        en: 'You are showing a map on your phone to someone. You want to ask "How do I get here?"',
+        pt: 'Você mostra um mapa no celular para alguém e quer perguntar "Como chego aqui?"',
+        it: 'Mostri una mappa sul telefono a qualcuno e vuoi chiedere "Come arrivo qui?"',
+        es: 'Muestras un mapa en tu teléfono a alguien y quieres preguntar "¿Cómo llego aquí?"'
+      },
+      shortSit: {
+        en: 'Pointing at a map and asking how to get there',
+        pt: 'Apontar no mapa e perguntar como chegar lá',
+        it: 'Indicare sulla mappa e chiedere come arrivarci',
+        es: 'Señalar en el mapa y preguntar cómo llegar ahí'
+      },
+      hint: {
+        en: '"How" is "dō" (どう) and "go" is "ikimasu" (行きます).',
+        pt: '"Como" é "dō" (どう) e "ir" é "ikimasu" (行きます).',
+        it: '"Come" è "dō" (どう) e "andare" è "ikimasu" (行きます).',
+        es: '"Cómo" es "dō" (どう) e "ir" es "ikimasu" (行きます).'
+      },
+      note: {
+        en: 'Point to the destination on your phone screen while saying "Sumimasen, koko e wa dō ikimasu ka."',
+        pt: 'Aponte o destino na tela do celular dizendo "Sumimasen, koko e wa dō ikimasu ka."',
+        it: 'Indica la meta sullo schermo del telefono dicendo "Sumimasen, koko e wa dō ikimasu ka."',
+        es: 'Señala el destino en la pantalla del teléfono diciendo "Sumimasen, koko e wa dō ikimasu ka."'
+      },
+      options: [
+        { jp: 'ここへはどう行きますか。', romaji: 'Koko e wa dō ikimasu ka.' },
+        { jp: 'ここはどこですか。', romaji: 'Koko wa doko desu ka.' },
+        { jp: 'ここに住みたいです。', romaji: 'Koko ni sumitai desu.' },
+        { jp: 'ここは静かですか。', romaji: 'Koko wa shizuka desu ka.' }
+      ]
+    }
+  ];
+
+  var LETTERS = ['A', 'B', 'C', 'D'];
+  var audioPlayer = new Audio();
+
+  function defaultSaved() {
+    return {
+      v: 2,
+      lang: 'en',
+      script: 'both',
+      dark: false,
+      shuffle: false,
+      autoAudio: true,
+      mastered: [],
+      mistakes: [],
+      bestQuiz: null,
+      bestListen: null
+    };
   }
 
-  function loadTripProgress() {
-    var def = tripDefaultProgress();
+  function loadSaved() {
+    var def = defaultSaved();
     try {
-      var raw = window.localStorage.getItem(TRIP_PROGRESS_KEY);
-      if (!raw) return def;
-      var data = JSON.parse(raw);
-      if (!data || data.v !== 1 || !data.parts) return def;
-      for (var i = 0; i < TRIP_PARTS.length; i++) {
-        var key = String(TRIP_PARTS[i].part);
-        if (data.parts[key] && typeof data.parts[key].best === 'number') {
-          def.parts[key] = { best: data.parts[key].best, done: !!data.parts[key].done };
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && parsed.v === 2) {
+          def.lang = UI[parsed.lang] ? parsed.lang : 'en';
+          def.script = (parsed.script === 'both' || parsed.script === 'romaji' || parsed.script === 'jp') ? parsed.script : 'both';
+          def.dark = !!parsed.dark;
+          def.shuffle = !!parsed.shuffle;
+          def.autoAudio = parsed.autoAudio !== false;
+          if (Array.isArray(parsed.mastered)) def.mastered = parsed.mastered;
+          if (Array.isArray(parsed.mistakes)) def.mistakes = parsed.mistakes;
+          if (typeof parsed.bestQuiz === 'number') def.bestQuiz = parsed.bestQuiz;
+          if (typeof parsed.bestListen === 'number') def.bestListen = parsed.bestListen;
+          return def;
         }
       }
-      if (typeof data.totalBest === 'number') def.totalBest = data.totalBest;
-      return def;
-    } catch (e) {
-      return def;
-    }
+      // Migrate legacy totalBest if present
+      var leg = window.localStorage.getItem(LEGACY_KEY);
+      if (leg) {
+        var lp = JSON.parse(leg);
+        if (lp && typeof lp.totalBest === 'number') def.bestQuiz = lp.totalBest;
+      }
+    } catch (e) {}
+    return def;
   }
 
-  function saveTripProgress() {
+  var saved = loadSaved();
+
+  function persist() {
     try {
-      window.localStorage.setItem(TRIP_PROGRESS_KEY, JSON.stringify(tripProgress));
-    } catch (e) { /* storage unavailable: progress just will not persist */ }
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        v: 2,
+        lang: state.lang,
+        script: state.script,
+        dark: state.dark,
+        shuffle: state.shuffle,
+        autoAudio: state.autoAudio,
+        mastered: Array.from(state.mastered),
+        mistakes: Array.from(state.mistakes),
+        bestQuiz: state.bestQuiz,
+        bestListen: state.bestListen
+      }));
+    } catch (e) {}
   }
 
-  var tripProgress = loadTripProgress();
+  var state = {
+    mode: 'quiz',
+    lang: saved.lang,
+    script: saved.script,
+    dark: saved.dark,
+    shuffle: saved.shuffle,
+    autoAudio: saved.autoAudio,
+    scene: 'all',
+    deck: [],
+    index: 0,
+    answered: false,
+    selected: -1,
+    hintOpen: false,
+    sessionCorrect: 0,
+    sessionAnswered: 0,
+    sessionMistakes: new Set(),
+    streak: 0,
+    finished: false,
+    listenChoices: [],
+    mastered: new Set(saved.mastered),
+    mistakes: new Set(saved.mistakes),
+    bestQuiz: saved.bestQuiz,
+    bestListen: saved.bestListen
+  };
 
-  function tripBlockFor(n) {
-    var radios = document.querySelectorAll('input[name="q' + n + '"]');
-    if (!radios.length) return null;
-    return radios[0].closest('.question-block');
+  function shuffleArray(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copy[i];
+      copy[i] = copy[j];
+      copy[j] = tmp;
+    }
+    return copy;
   }
 
-  function clearTripMarksRange(from, to) {
-    for (var n = from; n <= to; n++) {
-      var block = tripBlockFor(n);
-      if (!block) continue;
-      block.classList.remove('q-correct', 'q-wrong', 'q-unanswered');
-      var badges = block.querySelectorAll('.q-badge');
-      for (var j = badges.length - 1; j >= 0; j--) badges[j].remove();
-      var opts = block.querySelectorAll('.options li');
-      for (var k = 0; k < opts.length; k++) opts[k].classList.remove('correct-option', 'wrong-option');
+  function speakFallback(text, rate) {
+    if (!text || !('speechSynthesis' in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ja-JP';
+      u.rate = rate || 1.0;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  function playAudio(src, fallbackText, rate) {
+    var speed = rate || 1.0;
+    try {
+      audioPlayer.pause();
+      audioPlayer.src = src;
+      audioPlayer.currentTime = 0;
+      audioPlayer.playbackRate = speed;
+      var p = audioPlayer.play();
+      if (p && p.catch) {
+        p.catch(function (err) {
+          if (err && err.name !== 'AbortError') speakFallback(fallbackText, speed);
+        });
+      }
+    } catch (e) {
+      speakFallback(fallbackText, speed);
     }
   }
 
-  function clearTripMarks() {
-    clearTripMarksRange(1, TRIP_TOTAL);
+  function buildListenChoices(q) {
+    var pool = QUESTIONS.filter(function (x) { return x.id !== q.id; });
+    var distractors = shuffleArray(pool).slice(0, 3);
+    return shuffleArray([q].concat(distractors));
   }
 
-  function markTripQuestion(n) {
-    var name = 'q' + n;
-    var radios = document.querySelectorAll('input[name="' + name + '"]');
-    if (!radios.length) return 0;
-    var block = radios[0].closest('.question-block');
-    var correctIdx = TRIP_LETTERS.indexOf(TRIP_ANSWERS[name]);
-    var selectedIdx = -1;
-    for (var i = 0; i < radios.length; i++) {
-      if (radios[i].checked) selectedIdx = i;
-    }
-    var badge = document.createElement('span');
-    var point = 0;
-    if (selectedIdx === -1) {
-      block.classList.add('q-unanswered');
-      badge.className = 'q-badge unanswered';
-      badge.textContent = '— Not answered';
-      radios[correctIdx].closest('li').classList.add('correct-option');
-    } else if (selectedIdx === correctIdx) {
-      point = 1;
-      block.classList.add('q-correct');
-      badge.className = 'q-badge correct';
-      badge.textContent = '✓ Correct';
-      radios[correctIdx].closest('li').classList.add('correct-option');
+  function buildDeck() {
+    var list;
+    if (state.scene === 'all') {
+      list = QUESTIONS.slice();
+    } else if (state.scene === 'mistakes') {
+      list = QUESTIONS.filter(function (q) { return state.mistakes.has(q.id); });
+      if (!list.length) {
+        state.scene = 'all';
+        list = QUESTIONS.slice();
+      }
     } else {
-      block.classList.add('q-wrong');
-      badge.className = 'q-badge wrong';
-      badge.textContent = '✗ Wrong';
-      radios[selectedIdx].closest('li').classList.add('wrong-option');
-      radios[correctIdx].closest('li').classList.add('correct-option');
+      list = QUESTIONS.filter(function (q) { return q.scene === state.scene; });
     }
-    block.querySelector('.question-text').appendChild(badge);
-    return point;
+    state.deck = state.shuffle ? shuffleArray(list) : list;
+    state.index = 0;
+    state.answered = false;
+    state.selected = -1;
+    state.hintOpen = false;
+    state.sessionCorrect = 0;
+    state.sessionAnswered = 0;
+    state.sessionMistakes = new Set();
+    state.finished = false;
+    if (state.deck.length) {
+      state.listenChoices = buildListenChoices(state.deck[0]);
+    }
   }
 
-  function refreshTripPartBest(part) {
-    var el = document.getElementById('partBest' + part);
-    if (!el) return;
-    var info = tripProgress.parts[String(part)];
-    if (info && info.done) {
-      el.textContent = 'Best: ' + info.best + ' / ' + TRIP_PARTS[part - 1].size + ' ✓';
+  function sceneLabelFor(sceneKey) {
+    for (var i = 0; i < SCENES.length; i++) {
+      if (SCENES[i].key === sceneKey) return SCENES[i].label[state.lang];
+    }
+    return sceneKey;
+  }
+
+  function applyTheme() {
+    document.body.classList.toggle('dark-mode', state.dark);
+    document.getElementById('themeBtn').textContent = state.dark ? '☀️' : '🌙';
+  }
+
+  function renderUIStatic() {
+    var t = UI[state.lang];
+    document.getElementById('uiEyebrow').textContent = t.eyebrow;
+    document.getElementById('uiTitle').textContent = t.title;
+    document.getElementById('tabQuiz').textContent = t.tabQuiz;
+    document.getElementById('tabListen').textContent = t.tabListen;
+    document.getElementById('tabList').textContent = t.tabList;
+    document.getElementById('uiLangLabel').textContent = t.langLabel;
+    document.getElementById('uiTextLabel').textContent = t.textLabel;
+    document.getElementById('shuffleToggle').textContent = t.shuffle;
+    document.getElementById('autoAudioToggle').textContent = t.autoAudio;
+    document.getElementById('hintBtn').textContent = t.hintBtn;
+    document.getElementById('listenPromptTitle').textContent = t.listenTitle;
+    document.getElementById('listenNormalBtn').textContent = t.playNormal;
+    document.getElementById('listenSlowBtn').textContent = t.playSlow;
+    document.getElementById('prevBtn').textContent = t.prev;
+    document.getElementById('searchInput').placeholder = t.searchPh;
+    document.getElementById('resetProgressBtn').textContent = t.resetBtn;
+    document.getElementById('retrySetBtn').textContent = t.retrySet;
+    document.getElementById('reviewMistakesBtn').textContent = t.reviewMistakes;
+    document.getElementById('switchListenBtn').textContent = state.mode === 'listen' ? t.tryQuiz : t.tryListen;
+
+    document.querySelectorAll('.mode-tab').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.mode === state.mode);
+    });
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.lang === state.lang);
+    });
+    document.querySelectorAll('.script-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.script === state.script);
+    });
+    document.getElementById('shuffleToggle').classList.toggle('active', state.shuffle);
+    document.getElementById('autoAudioToggle').classList.toggle('active', state.autoAudio);
+
+    var qBest = state.bestQuiz !== null ? (state.bestQuiz + '/25') : '—';
+    var lBest = state.bestListen !== null ? (state.bestListen + '/25') : '—';
+    document.getElementById('bestScoreBar').textContent = t.bestLabel + ' Quiz ' + qBest + ' · Listen ' + lBest;
+  }
+
+  function renderScenes() {
+    var row = document.getElementById('sceneRow');
+    row.innerHTML = '';
+    SCENES.forEach(function (sc) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'scene-chip' + (state.scene === sc.key ? ' active' : '');
+      var text = sc.label[state.lang];
+      if (sc.key === 'mistakes') {
+        text += ' (' + state.mistakes.size + ')';
+        if (state.mistakes.size > 0) btn.className += ' has-mistakes';
+      }
+      btn.textContent = text;
+      btn.onclick = function () {
+        if (sc.key === 'mistakes' && state.mistakes.size === 0) {
+          alert(UI[state.lang].noMistakes);
+          return;
+        }
+        state.scene = sc.key;
+        buildDeck();
+        renderAll();
+      };
+      row.appendChild(btn);
+    });
+  }
+
+  function formatOptionHTML(opt) {
+    if (state.script === 'jp') {
+      return '<div class="opt-main">' + opt.jp + '</div>';
+    }
+    if (state.script === 'romaji') {
+      return '<div class="opt-main">' + opt.romaji + '</div><div class="opt-sub">' + opt.jp + '</div>';
+    }
+    return '<div class="opt-main">' + opt.jp + '</div><div class="opt-sub">' + opt.romaji + '</div>';
+  }
+
+  function renderProgress() {
+    var t = UI[state.lang];
+    document.getElementById('masteryText').textContent =
+      t.mastered + ': ' + state.mastered.size + '/' + QUESTIONS.length + ' · ' + t.streak + ': ' + state.streak;
+
+    if (state.mode === 'list') {
+      var count = getFilteredList().length;
+      document.getElementById('progressText').textContent = t.showingPhrases + ' ' + count + ' ' + t.phrasesWord;
+      document.getElementById('progressFill').style.width = Math.round((state.mastered.size / QUESTIONS.length) * 100) + '%';
+    } else if (state.finished) {
+      document.getElementById('progressText').textContent = state.deck.length + ' / ' + state.deck.length;
+      document.getElementById('progressFill').style.width = '100%';
     } else {
-      el.textContent = '';
+      var total = state.deck.length || 1;
+      document.getElementById('progressText').textContent = t.questionWord + ' ' + (state.index + 1) + ' / ' + total;
+      document.getElementById('progressFill').style.width = Math.round(((state.index + 1) / total) * 100) + '%';
     }
   }
 
-  function refreshTripSummary() {
-    var el = document.getElementById('scoreParts');
-    if (!el) return;
-    var lines = [];
-    for (var i = 0; i < TRIP_PARTS.length; i++) {
-      var p = TRIP_PARTS[i];
-      var info = tripProgress.parts[String(p.part)];
-      var line = 'Part ' + p.part + ': ';
-      line += (tripPartScores[p.part] !== null) ? (tripPartScores[p.part] + ' / ' + p.size) : ('— / ' + p.size);
-      if (info && info.done) line += ' (Best: ' + info.best + ' ✓)';
-      lines.push(line);
+  function renderQuestion() {
+    var t = UI[state.lang];
+    var isList = state.mode === 'list';
+    document.getElementById('quizSection').classList.toggle('hidden', isList);
+    document.getElementById('listSection').classList.toggle('hidden', !isList);
+    if (isList) {
+      renderPhraseList();
+      return;
     }
-    if (tripProgress.totalBest !== null && tripProgress.totalBest !== undefined) {
-      lines.push('Best total: ' + tripProgress.totalBest + ' / ' + TRIP_TOTAL + ' ✓');
+
+    document.getElementById('questionCard').classList.toggle('hidden', state.finished);
+    document.getElementById('summaryCard').classList.toggle('hidden', !state.finished);
+    if (state.finished) {
+      renderSummary();
+      return;
     }
-    el.innerHTML = lines.join('<br>');
-  }
 
-  // Marks one part, saves its best, updates its panel. Returns the part score.
-  function runTripPartCheck(part) {
-    var def = TRIP_PARTS[part - 1];
-    clearTripMarksRange(def.from, def.to);
-    var score = 0;
-    for (var n = def.from; n <= def.to; n++) score += markTripQuestion(n);
-    tripPartScores[part] = score;
-    var info = tripProgress.parts[String(part)];
-    var newRecord = info.done && score > info.best;
-    if (score > info.best) info.best = score;
-    info.done = true;
-    saveTripProgress();
-    var res = document.getElementById('partResult' + part);
-    if (res) {
-      res.innerHTML = 'Part ' + part + ': ' + score + ' / ' + def.size + (newRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
-      res.style.display = 'block';
+    var q = state.deck[state.index];
+    var isListen = state.mode === 'listen';
+
+    document.getElementById('qSceneBadge').textContent = sceneLabelFor(q.scene) + ' · Q' + q.id;
+    document.getElementById('listenBox').classList.toggle('hidden', !isListen);
+    document.getElementById('qPrompt').classList.toggle('hidden', isListen);
+    document.getElementById('qPrompt').textContent = q.prompt[state.lang];
+
+    var hintEl = document.getElementById('hintBox');
+    hintEl.textContent = '💡 ' + q.hint[state.lang];
+    hintEl.classList.toggle('show', state.hintOpen);
+
+    var optsEl = document.getElementById('optionsList');
+    optsEl.innerHTML = '';
+
+    if (!isListen) {
+      q.options.forEach(function (opt, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'opt-btn';
+        if (state.answered) {
+          btn.disabled = true;
+          if (idx === q.correct) btn.className += ' is-correct';
+          else if (idx === state.selected) btn.className += ' is-wrong';
+        }
+        btn.innerHTML = '<span class="opt-letter">' + LETTERS[idx] + '</span><div class="opt-body">' + formatOptionHTML(opt) + '</div>';
+        btn.onclick = function () { handleAnswer(idx); };
+        optsEl.appendChild(btn);
+      });
+    } else {
+      state.listenChoices.forEach(function (choiceQ, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'opt-btn';
+        if (state.answered) {
+          btn.disabled = true;
+          if (choiceQ.id === q.id) btn.className += ' is-correct';
+          else if (choiceQ.id === state.selected) btn.className += ' is-wrong';
+        }
+        btn.innerHTML = '<span class="opt-letter">' + LETTERS[idx] + '</span><div class="opt-body"><div class="opt-main">' + choiceQ.shortSit[state.lang] + '</div></div>';
+        btn.onclick = function () { handleAnswer(choiceQ.id); };
+        optsEl.appendChild(btn);
+      });
     }
-    refreshTripPartBest(part);
-    refreshTripSummary();
-    return score;
-  }
 
-  function checkTripPart(part) {
-    runTripPartCheck(part);
-    var panel = document.getElementById('partPanel' + part);
-    if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  function tripScoreMessage(pct) {
-    if (pct === 100) return 'Perfect! You are ready for your Japan trip! 🎉';
-    if (pct >= 80) return 'Excellent! Almost perfect!';
-    if (pct >= 60) return 'Good job! Keep practicing!';
-    if (pct >= 40) return 'Nice try! Review the answers and try again!';
-    return 'Keep going! Use the hints and answers, then try again!';
-  }
-
-  function checkTripScore() {
-    var total = 0;
-    for (var i = 0; i < TRIP_PARTS.length; i++) total += runTripPartCheck(TRIP_PARTS[i].part);
-    var newTotalRecord = (typeof tripProgress.totalBest === 'number') && total > tripProgress.totalBest;
-    if (tripProgress.totalBest === null || tripProgress.totalBest === undefined || total > tripProgress.totalBest) {
-      tripProgress.totalBest = total;
+    var fb = document.getElementById('feedbackBox');
+    if (state.answered) {
+      var ok = isListen ? (state.selected === q.id) : (state.selected === q.correct);
+      var ans = q.options[q.correct];
+      fb.className = 'feedback-box show ' + (ok ? 'good' : 'bad');
+      document.getElementById('feedbackTitle').textContent = ok ? t.correctTitle : t.wrongTitle;
+      document.getElementById('feedbackPhrase').textContent = ans.jp;
+      document.getElementById('feedbackRomaji').textContent = ans.romaji;
+      document.getElementById('feedbackNote').textContent = q.note[state.lang];
+    } else {
+      fb.className = 'feedback-box';
     }
-    saveTripProgress();
-    refreshTripSummary();
-    var pct = Math.round(total / TRIP_TOTAL * 100);
-    var res = document.getElementById('scoreResult');
-    res.innerHTML = 'Score: ' + total + ' / ' + TRIP_TOTAL + ' (' + pct + '%)<br><span class="score-msg">' + tripScoreMessage(pct) + '</span>' + (newTotalRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
-    res.style.display = 'block';
-    document.getElementById('scorePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    document.getElementById('prevBtn').disabled = (state.index === 0);
+    document.getElementById('qCounter').textContent = (state.index + 1) + ' / ' + state.deck.length;
+    document.getElementById('nextBtn').textContent = (state.index === state.deck.length - 1) ? t.finish : t.next;
   }
 
-  function resetTripScore() {
-    clearTripMarks();
-    var radios = document.querySelectorAll('.question-block input[type="radio"]');
-    for (var i = 0; i < radios.length; i++) radios[i].checked = false;
-    tripPartScores = { 1: null, 2: null, 3: null };
-    tripProgress = tripDefaultProgress();
-    try { window.localStorage.removeItem(TRIP_PROGRESS_KEY); } catch (e) { /* ignore */ }
-    for (var p = 1; p <= 3; p++) {
-      var res = document.getElementById('partResult' + p);
-      if (res) { res.style.display = 'none'; res.innerHTML = ''; }
-      refreshTripPartBest(p);
+  function handleAnswer(val) {
+    if (state.answered) return;
+    var q = state.deck[state.index];
+    var isListen = state.mode === 'listen';
+    var ok = isListen ? (val === q.id) : (val === q.correct);
+
+    state.answered = true;
+    state.selected = val;
+    state.sessionAnswered += 1;
+
+    if (ok) {
+      state.sessionCorrect += 1;
+      state.streak += 1;
+      state.mastered.add(q.id);
+      state.mistakes.delete(q.id);
+    } else {
+      state.streak = 0;
+      state.mistakes.add(q.id);
+      state.sessionMistakes.add(q.id);
     }
-    var total = document.getElementById('scoreResult');
-    total.style.display = 'none';
-    total.innerHTML = '';
-    refreshTripSummary();
+
+    persist();
+    renderAll();
+
+    if (state.autoAudio) {
+      var ans = q.options[q.correct];
+      playAudio(q.audio, ans.jp, 1.0);
+    }
   }
 
-  // Show saved bests on load, so returning learners see their growth.
-  (function initTripProgress() {
-    for (var p = 1; p <= 3; p++) refreshTripPartBest(p);
-    refreshTripSummary();
-  })();
+  function renderSummary() {
+    var t = UI[state.lang];
+    var total = state.deck.length || 1;
+    var score = state.sessionCorrect;
+    var pct = Math.round((score / total) * 100);
+
+    var isFullSet = (state.scene === 'all' && total === QUESTIONS.length);
+    var isNewRecord = false;
+    if (isFullSet) {
+      if (state.mode === 'quiz') {
+        if (state.bestQuiz === null || score > state.bestQuiz) {
+          isNewRecord = (state.bestQuiz !== null);
+          state.bestQuiz = score;
+          persist();
+        }
+      } else if (state.mode === 'listen') {
+        if (state.bestListen === null || score > state.bestListen) {
+          isNewRecord = (state.bestListen !== null);
+          state.bestListen = score;
+          persist();
+        }
+      }
+    }
+
+    document.getElementById('summaryEmoji').textContent = pct === 100 ? '🏆' : pct >= 80 ? '🎉' : pct >= 60 ? '👏' : '💪';
+    document.getElementById('summaryScore').textContent = score + ' / ' + total + ' (' + pct + '%)';
+    document.getElementById('summaryMsg').textContent =
+      pct === 100 ? t.msgPerfect : pct >= 80 ? t.msgGreat : pct >= 60 ? t.msgGood : t.msgTry;
+
+    var badgeText = isNewRecord
+      ? t.newRecord
+      : (t.mastered + ': ' + state.mastered.size + ' / ' + QUESTIONS.length);
+    document.getElementById('summaryBest').textContent = badgeText;
+
+    var revBtn = document.getElementById('reviewMistakesBtn');
+    revBtn.classList.toggle('hidden', state.mistakes.size === 0);
+    revBtn.textContent = t.reviewMistakes + ' (' + state.mistakes.size + ')';
+    renderUIStatic();
+  }
+
+  function getFilteredList() {
+    var query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+    return QUESTIONS.filter(function (q) {
+      if (state.scene === 'mistakes' && !state.mistakes.has(q.id)) return false;
+      if (state.scene !== 'all' && state.scene !== 'mistakes' && q.scene !== state.scene) return false;
+      if (!query) return true;
+      var ans = q.options[q.correct];
+      var hay = [
+        ans.jp, ans.romaji,
+        q.prompt.en, q.prompt[state.lang],
+        q.shortSit.en, q.shortSit[state.lang],
+        q.scene
+      ].join(' ').toLowerCase();
+      return hay.indexOf(query) !== -1;
+    });
+  }
+
+  function renderPhraseList() {
+    var t = UI[state.lang];
+    var list = getFilteredList();
+    var container = document.getElementById('phraseList');
+    container.innerHTML = '';
+
+    if (!list.length) {
+      var empty = document.createElement('div');
+      empty.className = 'quiz-card';
+      empty.style.textAlign = 'center';
+      empty.style.color = 'var(--muted)';
+      empty.textContent = t.noResults;
+      container.appendChild(empty);
+      return;
+    }
+
+    list.forEach(function (q) {
+      var ans = q.options[q.correct];
+      var isDone = state.mastered.has(q.id);
+      var item = document.createElement('div');
+      item.className = 'phrase-item';
+
+      var mainLine = state.script === 'romaji' ? ans.romaji : ans.jp;
+      var subLine = state.script === 'jp' ? '' : (state.script === 'romaji' ? ans.jp : ans.romaji);
+
+      item.innerHTML =
+        '<div class="phrase-info">' +
+          '<div class="phrase-meta"><span class="phrase-tag">' + sceneLabelFor(q.scene) + ' · Q' + q.id + '</span></div>' +
+          '<div class="phrase-jp">' + mainLine + '</div>' +
+          (subLine ? '<div class="phrase-romaji">' + subLine + '</div>' : '') +
+          '<div class="phrase-meaning">' + q.shortSit[state.lang] + '</div>' +
+        '</div>' +
+        '<div class="phrase-actions">' +
+          '<button type="button" class="audio-pill compact" data-act="play1">🔊 1.0x</button>' +
+          '<button type="button" class="audio-pill compact" data-act="playSlow">🐢 0.75x</button>' +
+          '<button type="button" class="master-toggle' + (isDone ? ' done' : '') + '" data-act="toggle">' + (isDone ? t.mastered : t.markDone) + '</button>' +
+        '</div>';
+
+      item.querySelector('[data-act="play1"]').onclick = function () { playAudio(q.audio, ans.jp, 1.0); };
+      item.querySelector('[data-act="playSlow"]').onclick = function () { playAudio(q.audio, ans.jp, 0.75); };
+      item.querySelector('[data-act="toggle"]').onclick = function () {
+        if (state.mastered.has(q.id)) state.mastered.delete(q.id);
+        else { state.mastered.add(q.id); state.mistakes.delete(q.id); }
+        persist();
+        renderAll();
+      };
+      container.appendChild(item);
+    });
+  }
+
+  function goToQuestion(newIdx) {
+    if (newIdx < 0) return;
+    if (newIdx >= state.deck.length) {
+      state.finished = true;
+      renderAll();
+      return;
+    }
+    state.index = newIdx;
+    state.answered = false;
+    state.selected = -1;
+    state.hintOpen = false;
+    state.listenChoices = buildListenChoices(state.deck[state.index]);
+    renderAll();
+    if (state.mode === 'listen' && state.autoAudio) {
+      var q = state.deck[state.index];
+      playAudio(q.audio, q.options[q.correct].jp, 1.0);
+    }
+  }
+
+  function renderAll() {
+    applyTheme();
+    renderUIStatic();
+    renderScenes();
+    renderProgress();
+    renderQuestion();
+  }
+
+  // --- Event Listeners ---
+  document.getElementById('themeBtn').onclick = function () {
+    state.dark = !state.dark;
+    persist();
+    applyTheme();
+  };
+
+  document.querySelectorAll('.mode-tab').forEach(function (btn) {
+    btn.onclick = function () {
+      var m = btn.dataset.mode;
+      if (state.mode === m) return;
+      state.mode = m;
+      if (m !== 'list') buildDeck();
+      renderAll();
+      if (m === 'listen' && state.deck.length && state.autoAudio) {
+        var q = state.deck[0];
+        playAudio(q.audio, q.options[q.correct].jp, 1.0);
+      }
+    };
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.onclick = function () {
+      state.lang = btn.dataset.lang;
+      persist();
+      renderAll();
+    };
+  });
+
+  document.querySelectorAll('.script-btn').forEach(function (btn) {
+    btn.onclick = function () {
+      state.script = btn.dataset.script;
+      persist();
+      renderAll();
+    };
+  });
+
+  document.getElementById('shuffleToggle').onclick = function () {
+    state.shuffle = !state.shuffle;
+    persist();
+    buildDeck();
+    renderAll();
+  };
+
+  document.getElementById('autoAudioToggle').onclick = function () {
+    state.autoAudio = !state.autoAudio;
+    persist();
+    renderUIStatic();
+  };
+
+  document.getElementById('hintBtn').onclick = function () {
+    state.hintOpen = !state.hintOpen;
+    document.getElementById('hintBox').classList.toggle('show', state.hintOpen);
+  };
+
+  function playCurrent(rate) {
+    if (!state.deck.length || state.finished) return;
+    var q = state.deck[state.index];
+    playAudio(q.audio, q.options[q.correct].jp, rate);
+  }
+  document.getElementById('listenNormalBtn').onclick = function () { playCurrent(1.0); };
+  document.getElementById('listenSlowBtn').onclick = function () { playCurrent(0.75); };
+  document.getElementById('fbNormalBtn').onclick = function () { playCurrent(1.0); };
+  document.getElementById('fbSlowBtn').onclick = function () { playCurrent(0.75); };
+
+  document.getElementById('prevBtn').onclick = function () { goToQuestion(state.index - 1); };
+  document.getElementById('nextBtn').onclick = function () { goToQuestion(state.index + 1); };
+
+  document.getElementById('retrySetBtn').onclick = function () {
+    buildDeck();
+    renderAll();
+  };
+
+  document.getElementById('reviewMistakesBtn').onclick = function () {
+    if (state.mistakes.size === 0) return;
+    state.scene = 'mistakes';
+    buildDeck();
+    renderAll();
+  };
+
+  document.getElementById('switchListenBtn').onclick = function () {
+    state.mode = (state.mode === 'listen') ? 'quiz' : 'listen';
+    buildDeck();
+    renderAll();
+  };
+
+  document.getElementById('searchInput').addEventListener('input', function () {
+    renderProgress();
+    renderPhraseList();
+  });
+
+  document.getElementById('resetProgressBtn').onclick = function () {
+    if (!confirm(UI[state.lang].resetConfirm)) return;
+    state.mastered = new Set();
+    state.mistakes = new Set();
+    state.bestQuiz = null;
+    state.bestListen = null;
+    state.streak = 0;
+    state.scene = 'all';
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.removeItem(LEGACY_KEY);
+    } catch (e) {}
+    buildDeck();
+    renderAll();
+  };
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function (e) {
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (state.mode === 'list' || state.finished) return;
+    if (e.key >= '1' && e.key <= '4' && !state.answered) {
+      var idx = parseInt(e.key, 10) - 1;
+      var btns = document.querySelectorAll('#optionsList .opt-btn');
+      if (btns[idx]) btns[idx].click();
+    } else if (e.key === 'h' || e.key === 'H') {
+      document.getElementById('hintBtn').click();
+    } else if (e.key === 'r' || e.key === 'R') {
+      playCurrent(1.0);
+    } else if (e.key === 'ArrowRight' || (e.key === 'Enter' && state.answered)) {
+      goToQuestion(state.index + 1);
+    } else if (e.key === 'ArrowLeft') {
+      goToQuestion(state.index - 1);
+    }
+  });
+
+  // Init
+  buildDeck();
+  renderAll();
+})();
 </script>
 </body>
 </html>
-
-
