@@ -1,32 +1,76 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ohayo Center - Traveler's Japanese Flashcards & Quiz</title>
+  <title>Ohayo Center - Traveler's Japanese Flashcards &amp; Quiz</title>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OHAYO CENTER">
-  <meta property="og:title" content="Travel Japanese Flashcards & Quiz | OHAYO CENTER">
-  <meta property="og:description" content="Travel Japanese flashcards and quiz: 50 essential phrases and 50 verbs with audio, in English, Portuguese, Italian and Spanish.">
+  <meta property="og:title" content="Travel Japanese Flashcards &amp; Quiz | OHAYO CENTER">
+  <meta property="og:description" content="Travel Japanese flashcards, 10-question listening quiz, and searchable pocket phrasebook: 50 essential phrases and 50 verbs with native audio in English, Portuguese, Italian and Spanish.">
   <meta property="og:url" content="https://ohayocenter.com/trip-flashcards.html">
   <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Travel Japanese Flashcards & Quiz | OHAYO CENTER">
-  <meta name="twitter:description" content="Travel Japanese flashcards and quiz: 50 essential phrases and 50 verbs with audio, in English, Portuguese, Italian and Spanish.">
+  <meta name="twitter:title" content="Travel Japanese Flashcards &amp; Quiz | OHAYO CENTER">
+  <meta name="twitter:description" content="Travel Japanese flashcards, 10-question listening quiz, and searchable pocket phrasebook: 50 essential phrases and 50 verbs with native audio in English, Portuguese, Italian and Spanish.">
   <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-
-  <meta name="description" content="OHAYO CENTER: Japanese travel flashcards and quiz. Learn useful travel phrases and verbs with English, Portuguese and Italian translations.">
+  <meta name="description" content="OHAYO CENTER: Japanese travel flashcards, listening quiz, and pocket phrasebook. Learn 50 useful travel phrases and 50 verbs with native audio in English, Portuguese, Italian and Spanish.">
   <link rel="icon" href="icon.png" type="image/png">
   <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" sizes="192x192" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Noto+Sans+JP:wght@400;700;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+
   <style>
-    body { margin: 0; padding-top: 70px; }
+    :root {
+      --primary: #ff9f43;
+      --primary-dark: #ee8a2e;
+      --primary-light: #fff5eb;
+      --accent: #244c78;
+      --accent-soft: #eef5fc;
+      --dark: #2c3e50;
+      --text: #444;
+      --muted: #64748b;
+      --bg: #fdfaf6;
+      --card: #ffffff;
+      --border: #e9e2d8;
+      --shadow: 0 10px 28px rgba(44, 62, 80, 0.08);
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --bad: #dc2626;
+      --bad-soft: #fee2e2;
+    }
+    body.dark-mode {
+      --dark: #f8fafc;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary-light: rgba(255, 159, 67, 0.16);
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.14);
+      --good-soft: rgba(22, 163, 74, 0.2);
+      --bad-soft: rgba(220, 38, 38, 0.2);
+      --shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    /* --- Fixed Top Navigation (70px) --- */
     .site-nav {
-      background: rgba(255,255,255,.95);
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.96);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
       padding: 0 5%;
       height: 70px;
       position: fixed;
@@ -37,18 +81,22 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
       box-sizing: border-box;
-      font-family: 'Noto Sans JP', sans-serif;
+    }
+    body.dark-mode .site-nav {
+      background: rgba(15, 23, 42, 0.94);
+      border-bottom: 1px solid var(--border);
     }
     .site-logo a {
       font-family: 'Sawarabi Mincho', serif;
       font-weight: bold;
-      color: #2c3e50;
+      color: var(--dark);
       font-size: 1.2rem;
       text-decoration: none;
       white-space: nowrap;
     }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
     .site-nav-links {
       display: flex;
       align-items: center;
@@ -58,1016 +106,2114 @@
       padding: 0;
     }
     .site-nav-links a {
-      color: #2c3e50;
-      font-size: .8rem;
-      letter-spacing: 1px;
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
       text-decoration: none;
-      position: relative;
       white-space: nowrap;
     }
-    .site-nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0;
-      height: 2px;
-      background: #ff9f43;
-      transition: width .2s ease;
+    .site-nav-links a:hover { color: var(--primary); }
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.92rem;
+      flex-shrink: 0;
     }
-    .site-nav-links a:hover::after { width: 100%; }
     @media (max-width: 600px) {
-      .site-nav { padding: 0 15px; }
+      .site-nav { padding: 0 12px; }
       .site-logo a { font-size: 1rem; }
-      .site-nav-links { gap: .8rem; }
-      .site-nav-links a { font-size: .75rem; }
+      .nav-right { gap: 0.55rem; }
+      .site-nav-links { gap: 0.65rem; }
+      .site-nav-links a { font-size: 0.68rem; }
+      .theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
     }
-  </style>
 
-<style id="ohayo-cta-style">
-.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
-.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
-.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
-.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
-.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
-.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
-.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
-.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
-.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
-.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
-.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
-.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
-.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
-@media (max-width: 600px) {
-  .ohayo-cta-grid { grid-template-columns: 1fr; }
-  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
-  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
-}
-</style>
-</head>
-<body>
+    /* --- Main Container --- */
+    .wrap { max-width: 740px; margin: 0 auto; padding: 18px 14px 40px; }
 
-  <nav class="site-nav" aria-label="Main navigation">
-    <div class="site-logo">
-      <a href="https://ohayocenter.com/">OHAYO CENTER</a>
-    </div>
-    <ul class="site-nav-links">
-      <li><a href="https://ohayocenter.com/#lessons">LESSON</a></li>
-      <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
-      <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-    </ul>
-  </nav>
-
-<div id="ohayo-flashcards">
-  <style>
-    #ohayo-flashcards {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      max-width: 680px;
-      margin: 30px auto;
-      color: #263445;
-    }
-    #ohayo-flashcards * { box-sizing: border-box; }
-    #ohayo-flashcards .brand {
-      text-align: center;
-      font-size: 13px;
-      letter-spacing: 3px;
-      color: #64748b;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-    #ohayo-flashcards h2 {
-      text-align: center;
-      font-size: 25px;
-      margin: 5px 0 10px;
-      color: #1e293b;
-    }
-    #ohayo-flashcards .intro {
-      text-align: center;
-      color: #64748b;
-      font-size: 14px;
-      line-height: 1.7;
-      margin: 0 auto 22px;
-      max-width: 560px;
-    }
-    #ohayo-flashcards .tabs {
+    .top-bar {
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
     }
-    #ohayo-flashcards button {
+    .top-bar h1 {
+      margin: 0;
+      font-size: clamp(1.22rem, 3.2vw, 1.58rem);
+      font-family: 'Sawarabi Mincho', serif;
+      color: var(--dark);
+    }
+    .mode-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mode-tab {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
       cursor: pointer;
-      font: inherit;
+      font-family: inherit;
+      transition: 0.15s;
     }
-    #ohayo-flashcards .tab {
-      flex: 1;
-      padding: 12px 4px;
-      border: 1px solid #dce3eb;
-      border-radius: 10px;
-      background: white;
-      color: #334155;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.2s;
-    }
-    #ohayo-flashcards .tab:hover {
-      background: #f0f6fc;
-    }
-    #ohayo-flashcards .tab.active {
-      background: #244c78;
-      color: white;
-      border-color: #244c78;
+    .mode-tab:hover { border-color: var(--primary); }
+    .mode-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255, 159, 67, 0.34);
     }
 
-    /* Card Styles */
-    #ohayo-flashcards .card-area {
-      display: block;
+    /* --- Deck & Language Quick Bar --- */
+    .deck-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 8px 12px;
     }
-    #ohayo-flashcards .card {
-      perspective: 1000px;
-      min-height: 285px;
+    .seg-group { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .seg-btn {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
       cursor: pointer;
+      font-family: inherit;
     }
-    #ohayo-flashcards .inner {
+    .seg-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .lang-btn {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 4px 9px;
+      border-radius: 8px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .lang-btn.active { background: var(--primary-light); border-color: var(--primary); color: #c8640b; }
+    body.dark-mode .lang-btn.active { color: #ffbe76; }
+
+    /* --- Mastery Row --- */
+    .mastery-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .prog-track { height: 7px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
+    .prog-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), #22c55e); transition: width 0.3s; }
+
+    /* --- 3D Flashcard --- */
+    .card-stage { perspective: 1000px; min-height: 295px; margin-bottom: 14px; cursor: pointer; }
+    .card-inner {
       position: relative;
-      min-height: 285px;
+      min-height: 295px;
       transform-style: preserve-3d;
-      transition: transform .5s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1);
     }
-    #ohayo-flashcards .card.flipped .inner {
-      transform: rotateY(180deg);
-    }
-    #ohayo-flashcards .face {
+    .card-stage.flipped .card-inner { transform: rotateY(180deg); }
+    .card-face {
       position: absolute;
       inset: 0;
-      min-height: 285px;
+      min-height: 295px;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      border: 1px solid #e2e8f0;
-      border-radius: 18px;
-      padding: 30px 20px;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 22px;
+      padding: 24px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: #fff;
-      box-shadow: 0 5px 18px rgba(0,0,0,.06);
+      box-shadow: var(--shadow);
     }
-    #ohayo-flashcards .front { background: #f0f6fc; }
-    #ohayo-flashcards .back {
-      transform: rotateY(180deg);
-      background: #f7faf8;
-    }
-    #ohayo-flashcards .tag {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #64748b;
-      margin-bottom: 18px;
-      font-weight: bold;
-    }
-    #ohayo-flashcards .jp {
-      font-size: clamp(27px, 6vw, 38px);
+    .card-face.front { background: linear-gradient(180deg, var(--card) 0%, var(--accent-soft) 100%); }
+    .card-face.back { transform: rotateY(180deg); background: linear-gradient(180deg, var(--card) 0%, var(--primary-light) 100%); }
+
+    .scene-chip {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
       font-weight: 700;
-      color: #244c78;
+      color: var(--muted);
+    }
+    .audio-tools { position: absolute; top: 12px; right: 14px; display: flex; gap: 6px; z-index: 3; }
+    .audio-btn {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      font-family: inherit;
+      transition: 0.14s;
+    }
+    .audio-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+
+    .jp-main {
+      font-size: clamp(1.45rem, 4.8vw, 2.15rem);
+      font-weight: 800;
+      color: var(--accent);
       line-height: 1.3;
+      margin-top: 20px;
       overflow-wrap: anywhere;
     }
-    #ohayo-flashcards .kana {
-      color: #64748b;
-      font-size: 18px;
-      margin-top: 10px;
-    }
-    #ohayo-flashcards .hint {
-      color: #94a3b8;
-      font-size: 12px;
-      margin-top: 25px;
-    }
-    #ohayo-flashcards .translation {
-      width: 100%;
-      padding: 10px 0;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    #ohayo-flashcards .translation:last-child {
-      border: 0;
-    }
-    #ohayo-flashcards .translation small {
-      display: block;
-      color: #64748b;
-      font-weight: bold;
-      margin-bottom: 5px;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-    #ohayo-flashcards .translation strong {
-      font-size: 19px;
-      color: #1e293b;
+    .jp-kana { font-size: 1.12rem; color: var(--dark); margin-top: 8px; font-weight: 700; }
+    .tap-hint { font-size: 0.76rem; color: var(--muted); margin-top: 22px; }
+
+    .trans-block { width: 100%; padding: 10px 0; border-bottom: 1px dashed var(--border); }
+    .trans-block:last-of-type { border-bottom: 0; }
+    .trans-block small { display: block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 3px; }
+    .trans-block strong { font-size: 1.22rem; color: var(--dark); }
+    .dict-note {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--card);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
     }
 
-    /* Quiz Styles */
-    #ohayo-flashcards .quiz-area {
-      display: none;
-      min-height: 285px;
-      border: 1px solid #e2e8f0;
+    /* --- Self-Check & Navigation --- */
+    .self-check { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .btn-again, .btn-got {
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 11px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .btn-again { background: var(--card); color: #d97706; border-color: #fde68a; }
+    .btn-again:hover { background: #fffbeb; }
+    body.dark-mode .btn-again { border-color: rgba(245, 158, 11, 0.45); color: #fcd34d; }
+    .btn-got { background: var(--good); color: #fff; border-color: var(--good); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.28); }
+    .btn-got:hover { filter: brightness(1.06); }
+
+    .nav-row { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .nav-btn {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 9px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nav-btn.primary { flex: 1; background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    /* --- Scene Filter Panel Below Card --- */
+    .filter-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 30px 20px;
-      background: #fff;
-      box-shadow: 0 5px 18px rgba(0,0,0,.06);
-      text-align: center;
+      padding: 13px 14px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
     }
-    #ohayo-flashcards .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 25px;
-      width: 100%;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+    .filter-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 9px; flex-wrap: wrap; }
+    .filter-head span { font-size: 0.82rem; font-weight: 800; color: var(--dark); }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.77rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
     }
-    #ohayo-flashcards .quiz-option {
-      padding: 14px 20px;
-      border: 1px solid #dce3eb;
-      border-radius: 10px;
-      background: white;
-      color: #244c78;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.2s;
-    }
-    #ohayo-flashcards .quiz-option:hover:not(:disabled) {
-      background: #f0f6fc;
-      border-color: #244c78;
-    }
-    #ohayo-flashcards .quiz-option.correct {
-      background: #d1fae5;
-      border-color: #10b981;
-      color: #065f46;
-    }
-    #ohayo-flashcards .quiz-option.wrong {
-      background: #fee2e2;
-      border-color: #ef4444;
-      color: #991b1b;
-    }
-    #ohayo-flashcards .quiz-feedback {
-      margin-top: 15px;
-      font-weight: bold;
-      font-size: 16px;
-      min-height: 24px;
-    }
-    #ohayo-flashcards .quiz-result {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      min-height: 220px;
-    }
-    #ohayo-flashcards .quiz-result h3 {
-      font-size: 28px;
-      color: #244c78;
-      margin-bottom: 10px;
-    }
-    #ohayo-flashcards .cta-area {
-      margin-top: 26px;
-      padding-top: 20px;
-      border-top: 1px solid #e2e8f0;
-      width: 100%;
-      text-align: center;
-    }
-    #ohayo-flashcards .cta-area p {
-      color: #64748b;
-      font-size: 14px;
-      margin: 0 0 12px;
-    }
-    #ohayo-flashcards .cta-buttons {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    #ohayo-flashcards .cta-btn {
-      display: inline-block;
-      padding: 12px 22px;
-      border-radius: 9px;
-      background: #ff9f43;
-      color: white;
-      font-weight: bold;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    #ohayo-flashcards .cta-btn:hover { background: #f08c1d; }
-    #ohayo-flashcards .cta-btn.secondary {
-      background: white;
-      color: #244c78;
-      border: 1px solid #244c78;
-    }
-    #ohayo-flashcards .cta-btn.secondary:hover { background: #f0f6fc; }
+    .chip.active { background: var(--primary-light); border-color: var(--primary); color: #c8640b; }
+    body.dark-mode .chip.active { color: #ffbe76; }
 
-    /* Common Controls */
-    #ohayo-flashcards .controls {
+    /* --- 10-Q Quiz View --- */
+    .quiz-box {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 22px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+    .quiz-q { font-size: clamp(1.2rem, 4vw, 1.55rem); font-weight: 800; color: var(--accent); margin: 10px 0 4px; }
+    .quiz-sub { font-size: 0.92rem; color: var(--muted); margin-bottom: 16px; }
+    .quiz-opts { display: grid; gap: 9px; max-width: 460px; margin: 0 auto; }
+    .quiz-opt {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 13px 16px;
+      border-radius: 13px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.14s;
+      text-align: left;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+    .quiz-opt.ok { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+    .quiz-opt.ng { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+
+    /* --- Pocket List View --- */
+    .search-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid var(--border);
+      border-radius: 13px;
+      background: var(--card);
+      color: var(--dark);
+      font-size: 0.92rem;
+      font-family: inherit;
+      margin-bottom: 12px;
+    }
+    .list-item {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-top: 20px;
     }
-    #ohayo-flashcards .controls button {
-      padding: 11px 18px;
-      border-radius: 9px;
-      border: 1px solid #dce3eb;
-      background: white;
-      color: #334155;
-      font-weight: bold;
-      transition: all 0.2s;
+    .list-item.mastered { border-left: 4px solid var(--good); }
+    .list-jp { font-weight: 800; color: var(--accent); font-size: 0.98rem; }
+    .list-kana { font-size: 0.85rem; color: var(--dark); }
+    .list-en { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+    .list-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s;
+      z-index: 2000;
+      white-space: nowrap;
     }
-    #ohayo-flashcards .controls button:hover:not(:disabled) {
-      background: #f8fafc;
-    }
-    #ohayo-flashcards .controls button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    #ohayo-flashcards .controls .primary-btn {
-      background: #244c78;
-      color: white;
-      border-color: #244c78;
-      flex: 1;
-    }
-    #ohayo-flashcards .controls .primary-btn:hover:not(:disabled) {
-      background: #1a3a5c;
-    }
-    #ohayo-flashcards .counter {
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .support-section {
       text-align: center;
-      color: #64748b;
-      font-size: 13px;
-      margin-top: 15px;
-      font-weight: 600;
+      margin: 24px auto 12px;
+      padding: 28px 15px;
+      border-top: 2px solid var(--border);
+      max-width: 600px;
     }
-    #ohayo-flashcards .progress {
-      height: 6px;
-      background: #e2e8f0;
-      border-radius: 5px;
-      margin-top: 10px;
-      overflow: hidden;
-    }
-    #ohayo-flashcards .bar {
-      height: 100%;
-      width: 0;
-      background: #4b8cba;
-      transition: width .3s ease;
-    }
-    #ohayo-flashcards .dictionary {
-      font-size: 13px;
-      color: #64748b;
-      margin-top: 15px;
-    }
-    #ohayo-flashcards .speak-btn {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid #dce3eb;
-      background: white;
-      font-size: 19px;
-      line-height: 1;
-      display: flex;
+    .support-section p { color: var(--muted); font-size: 0.9rem; margin: 0 0 14px; }
+    .bmc-custom-btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-      transition: all 0.2s;
-      z-index: 2;
+      gap: 8px;
+      background-color: #FFDD00;
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.02rem;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      font-family: 'Fredoka', sans-serif;
     }
-    #ohayo-flashcards .speak-btn:hover {
-      background: #f0f6fc;
-      border-color: #244c78;
-    }
-    #ohayo-flashcards .sub-controls {
-      display: flex;
-      justify-content: center;
-      margin-top: 12px;
-    }
-    #ohayo-flashcards .sub-controls button {
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid #dce3eb;
-      background: white;
-      color: #64748b;
-      font-weight: 600;
-      font-size: 13px;
-      transition: all 0.2s;
-    }
-    #ohayo-flashcards .sub-controls button:hover {
-      background: #f8fafc;
-    }
-    #ohayo-flashcards .sub-controls button.on {
-      background: #244c78;
-      border-color: #244c78;
-      color: white;
-    }
-    #ohayo-flashcards #lang-row { gap: 8px; align-items: center; }
-    #ohayo-flashcards .lang-label { font-size: 13px; color: #64748b; font-weight: 600; }
-    @media (max-width: 450px) {
-      #ohayo-flashcards .controls button { padding: 10px 12px; font-size: 14px; }
-      #ohayo-flashcards .tab { font-size: 12px; padding: 10px 2px; }
-    }
+    .bmc-custom-btn:hover { transform: translateY(-2px); }
+
+    .hidden { display: none !important; }
   </style>
 
-  <div class="brand">OHAYO CENTER</div>
-  <h2>Japanese Travel Flashcards</h2>
-  <p class="intro">Planning a trip to Japan? Learn 50 essential travel phrases and 50 useful verbs with flashcards — flip a card to see the meaning in English and Portuguese, and tap 🔊 to hear the pronunciation. When you are ready, test yourself with the 50-question quiz!</p>
+  <style id="ohayo-cta-style">
+    .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 32px auto 20px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
+    .ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+    .ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
+    .ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
+    .ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
+    .ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
+    .ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
+    .ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
+    .ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
+    .ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
+    .ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
+    .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
+    .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
+    .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
+    body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
+    body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
+    body.dark-mode .ohayo-cta-name { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
+    body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
+    @media (max-width: 600px) {
+      .ohayo-cta-grid { grid-template-columns: 1fr; }
+      .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+      .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <div class="nav-right">
+      <ul class="site-nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
 
-  <div class="tabs">
-    <button class="tab active" data-type="phrases">Travel Phrases</button>
-    <button class="tab" data-type="verbs">Verbs</button>
-    <button class="tab" data-type="quiz">Quiz</button>
-  </div>
+  <main class="wrap">
+    <!-- Compact Header + 3 Clear Modes -->
+    <header class="top-bar">
+      <h1>✈️ Travel Japanese Flashcards</h1>
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="cards">🃏 Flashcards</button>
+        <button class="mode-tab" data-mode="quiz">🎧 10-Q Quiz</button>
+        <button class="mode-tab" data-mode="list">📋 Pocket List</button>
+      </div>
+    </header>
 
-  <!-- Flashcard Area -->
-  <div class="card-area" id="card-area">
-    <div class="card" id="ohayo-card" role="button" tabindex="0" aria-label="Flashcard. Click to flip.">
-      <div class="inner">
-        <div class="face front">
-          <button class="speak-btn" id="speak" type="button" aria-label="Listen to the pronunciation">🔊</button>
-          <div class="tag" id="front-tag">Japanese Phrase</div>
-          <div class="jp" id="front-jp">Sumimasen</div>
-          <div class="kana" id="front-kana">すみません</div>
-          <div class="hint">Click to reveal the meaning</div>
-        </div>
-        <div class="face back">
-          <div class="tag">Meaning</div>
-          <div class="translation">
-            <small>ENGLISH</small>
-            <strong id="english"></strong>
+    <!-- Deck & Language Quick Bar -->
+    <div class="deck-bar">
+      <div class="seg-group">
+        <button class="seg-btn active" data-deck="phrases">💬 Phrases (50)</button>
+        <button class="seg-btn" data-deck="verbs">🏃 Verbs (50)</button>
+      </div>
+      <div class="seg-group">
+        <span style="font-size:0.74rem; color:var(--muted); font-weight:700;">🌐 EN +</span>
+        <button class="lang-btn active" data-lang="pt">Português</button>
+        <button class="lang-btn" data-lang="it">Italiano</button>
+        <button class="lang-btn" data-lang="es">Español</button>
+      </div>
+    </div>
+
+    <!-- FLASHCARDS VIEW -->
+    <section id="cardsView">
+      <div class="mastery-row">
+        <span id="cardCounter">Card 1 / 50</span>
+        <span id="masteryLabel">✅ Mastered: 0 / 50</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+
+      <div class="card-stage" id="cardStage" role="button" tabindex="0" aria-label="Flashcard. Tap to flip.">
+        <div class="card-inner">
+          <div class="card-face front">
+            <span class="scene-chip" id="sceneChip">👋 Basics &amp; Help</span>
+            <div class="audio-tools">
+              <button class="audio-btn" id="playNormal" type="button">🔊 1.0×</button>
+              <button class="audio-btn" id="playSlow" type="button">🐢 0.75×</button>
+            </div>
+            <div class="jp-main" id="frontJp">Sumimasen</div>
+            <div class="jp-kana" id="frontKana">すみません</div>
+            <div class="tap-hint">👆 Tap card to flip &amp; see meaning</div>
           </div>
-          <div class="translation">
-            <small id="second-lang-label">PORTUGUÊS</small>
-            <strong id="second-lang"></strong>
+          <div class="card-face back">
+            <span class="scene-chip">✨ Meaning</span>
+            <div class="audio-tools">
+              <button class="audio-btn" id="playBack" type="button">🔊 Replay</button>
+            </div>
+            <div class="trans-block">
+              <small>ENGLISH</small>
+              <strong id="backEn"></strong>
+            </div>
+            <div class="trans-block">
+              <small id="backLangLabel">PORTUGUÊS</small>
+              <strong id="backLang"></strong>
+            </div>
+            <div class="dict-note hidden" id="backDict"></div>
           </div>
-          <div class="dictionary" id="dictionary"></div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Quiz Area -->
-  <div class="quiz-area" id="quiz-area">
-    <div id="quiz-active-state">
-      <div class="tag">Knowledge Check</div>
-      <div class="jp" id="quiz-question">Question text here</div>
-      <div class="quiz-options" id="quiz-options">
-        <!-- Buttons injected by JS -->
+      <div class="self-check">
+        <button class="btn-again" id="btnAgain">🔁 Practice Again</button>
+        <button class="btn-got" id="btnGot">✅ Got It!</button>
       </div>
-      <div class="quiz-feedback" id="quiz-feedback"></div>
-    </div>
-    <div class="quiz-result" id="quiz-result-state">
-      <h3>Quiz Complete!</h3>
-      <p class="jp" id="quiz-score" style="margin-top:10px; font-size: 20px;">You scored 2/2</p>
-      <button class="primary-btn" style="margin-top: 20px; padding: 10px 30px; border-radius: 8px;" id="quiz-retry">Try Again</button>
-      <div class="cta-area">
-        <p>Want to practice speaking with a teacher?</p>
-        <div class="cta-buttons">
-          <a class="cta-btn" href="https://ohayocenter.com/#lessons">Book a Lesson</a>
-          <a class="cta-btn secondary" href="https://ohayocenter.com/#resources">More Study Materials</a>
+
+      <div class="nav-row">
+        <button class="nav-btn" id="btnPrev">← Prev</button>
+        <button class="nav-btn primary" id="btnFlip">🔄 Flip Card</button>
+        <button class="nav-btn" id="btnNext">Next →</button>
+      </div>
+
+      <!-- Scene Filter & Study Options BELOW Card -->
+      <div class="filter-panel">
+        <div class="filter-head">
+          <span id="filterTitle">📍 Filter by Travel Scene</span>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="chip" id="hideRomajiBtn">🇯🇵 Hide Romaji</button>
+            <button class="chip" id="shuffleBtn">🔀 Shuffle</button>
+          </div>
+        </div>
+        <div class="chip-row" id="sceneChips"></div>
+      </div>
+    </section>
+
+    <!-- 10-Q QUIZ VIEW (Reading & Listening!) -->
+    <section id="quizView" class="hidden">
+      <div class="filter-panel">
+        <div class="filter-head" style="margin-bottom:0;">
+          <span>🎯 Quiz Style (10 Questions)</span>
+          <div style="display:flex; gap:6px;">
+            <button class="chip active" data-qmode="read">📖 Reading Quiz</button>
+            <button class="chip" data-qmode="listen">🎧 Listening Quiz</button>
+          </div>
         </div>
       </div>
+      <div class="quiz-box" id="quizBox">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px;">
+          <span id="qProg">Question 1 / 10</span>
+          <span id="qScore">⭐ 0 · 🔥 0</span>
+        </div>
+        <div style="display:flex; justify-content:center; gap:8px; margin-bottom:8px;">
+          <button class="audio-btn" id="quizAudioBtn" type="button">🔊 Listen (1.0×)</button>
+          <button class="audio-btn" id="quizSlowBtn" type="button">🐢 Slow (0.75×)</button>
+        </div>
+        <div class="quiz-q" id="quizQ"></div>
+        <div class="quiz-sub" id="quizSub"></div>
+        <div class="quiz-opts" id="quizOpts"></div>
+        <div id="quizFeedback" style="margin-top:12px; font-weight:800; min-height:22px;"></div>
+        <button class="nav-btn primary hidden" id="quizNextBtn" style="margin-top:12px; width:100%; max-width:260px;">Next Question →</button>
+      </div>
+      <div class="quiz-box hidden" id="quizDoneBox">
+        <div style="font-size:2.6rem;">🎉</div>
+        <h2 id="quizDoneTitle" style="margin:6px 0;">Quiz Complete!</h2>
+        <p id="quizDoneScore" style="font-size:1.25rem; font-weight:800; color:var(--primary-dark); margin:8px 0 16px;"></p>
+        <button class="nav-btn primary" id="quizRetryBtn" style="max-width:260px; width:100%;">🔄 Try Another 10 Questions</button>
+      </div>
+    </section>
+
+    <!-- POCKET PHRASEBOOK LIST VIEW -->
+    <section id="listView" class="hidden">
+      <input class="search-input" id="searchInput" type="search" placeholder="🔍 Search English, Japanese, Romaji, or your language (e.g. allergy, water, card, train)...">
+      <div id="listContainer"></div>
+    </section>
+
+    <!-- OHAYO_NEXT_CTA -->
+    <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+      <div class="ohayo-cta-next">
+        <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+        <div class="ohayo-cta-grid">
+          <a class="ohayo-cta-link" href="trip-listen.html"><div><span class="ohayo-cta-tag">★ RECOMMENDED NEXT</span><span class="ohayo-cta-name">Listening Quests (9 Travel Scenes)</span></div><span class="ohayo-cta-arrow">→</span></a>
+          <a class="ohayo-cta-link" href="trip-quiz.html"><div><span class="ohayo-cta-tag">QUIZ</span><span class="ohayo-cta-name">Travel Situational Quiz (25 Questions)</span></div><span class="ohayo-cta-arrow">→</span></a>
+        </div>
+      </div>
+      <div class="ohayo-cta-lesson">
+        <div>
+          <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
+          <h3>Want to use what you just practiced with a native teacher?</h3>
+          <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+        </div>
+        <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+      </div>
+    </section>
+
+    <div class="support-section">
+      <p>If you like the material please support us！</p>
+      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+      </a>
     </div>
+  </main>
 
-    <div class="quiz-result" id="quiz-break-state">
-      <h3 id="break-title">10 Questions Done!</h3>
-      <p class="jp" id="break-score" style="margin-top:10px; font-size: 20px;">Score so far: 0 / 10</p>
-      <button class="primary-btn" style="margin-top: 20px; padding: 10px 30px; border-radius: 8px;" id="quiz-continue">Continue →</button>
-    </div>
-  </div>
+  <div class="toast" id="toast">🔊 Playing audio...</div>
 
-  <!-- Shared Progress & Controls -->
-  <div class="counter" id="counter">Card 1 of X</div>
-  <div class="progress"><div class="bar" id="bar"></div></div>
+  <script>
+    const DATA = {
+      phrases: [
+  {
+    "jp": "Sumimasen",
+    "kana": "すみません",
+    "en": "Excuse me / I’m sorry",
+    "pt": "Com licença / Desculpe",
+    "it": "Mi scusi / Mi dispiace",
+    "es": "Disculpe / Perdón",
+    "id": "p01",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-01.mp3"
+  },
+  {
+    "jp": "Eki wa doko desu ka?",
+    "kana": "駅はどこですか？",
+    "en": "Where is the train station?",
+    "pt": "Onde fica a estação de trem?",
+    "it": "Dov'è la stazione?",
+    "es": "¿Dónde está la estación de tren?",
+    "id": "p02",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-02.mp3"
+  },
+  {
+    "jp": "Arigatou gozaimasu",
+    "kana": "ありがとうございます",
+    "en": "Thank you very much",
+    "pt": "Muito obrigado(a)",
+    "it": "Grazie mille",
+    "es": "Muchas gracias",
+    "id": "p03",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-03.mp3"
+  },
+  {
+    "jp": "Ikura desu ka?",
+    "kana": "いくらですか？",
+    "en": "How much is this?",
+    "pt": "Quanto custa isso?",
+    "it": "Quanto costa questo?",
+    "es": "¿Cuánto cuesta esto?",
+    "id": "p04",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-04.mp3"
+  },
+  {
+    "jp": "Kore o onegaishimasu",
+    "kana": "これをお願いします",
+    "en": "This one, please",
+    "pt": "Este, por favor",
+    "it": "Questo, per favore",
+    "es": "Este, por favor",
+    "id": "p05",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-05.mp3"
+  },
+  {
+    "jp": "Kore wa nan desu ka?",
+    "kana": "これは何ですか？",
+    "en": "What is this?",
+    "pt": "O que é isso?",
+    "it": "Che cos'è questo?",
+    "es": "¿Qué es esto?",
+    "id": "p06",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-06.mp3"
+  },
+  {
+    "jp": "O-kaikei onegaishimasu",
+    "kana": "お会計お願いします",
+    "en": "Check, please",
+    "pt": "A conta, por favor",
+    "it": "Il conto, per favore",
+    "es": "La cuenta, por favor",
+    "id": "p07",
+    "scene": "food",
+    "audio": "fc-audio/phrase-07.mp3"
+  },
+  {
+    "jp": "Shashin o totte mo ii desu ka?",
+    "kana": "写真を撮ってもいいですか？",
+    "en": "Can I take a photo?",
+    "pt": "Posso tirar uma foto?",
+    "it": "Posso fare una foto?",
+    "es": "¿Puedo tomar una foto?",
+    "id": "p08",
+    "scene": "sightseeing",
+    "audio": "fc-audio/phrase-08.mp3"
+  },
+  {
+    "jp": "Eigo o hanasemasu ka?",
+    "kana": "英語、話せますか？",
+    "en": "Can you speak English?",
+    "pt": "Você fala inglês?",
+    "it": "Parla inglese?",
+    "es": "¿Habla inglés?",
+    "id": "p09",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-09.mp3"
+  },
+  {
+    "jp": "Yukkuri hanashite kudasai",
+    "kana": "ゆっくり話してください",
+    "en": "Please speak slowly",
+    "pt": "Fale devagar, por favor",
+    "it": "Parli lentamente, per favore",
+    "es": "Hable despacio, por favor",
+    "id": "p10",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-10.mp3"
+  },
+  {
+    "jp": "Chizu wa arimasu ka?",
+    "kana": "地図はありますか？",
+    "en": "Do you have a map?",
+    "pt": "Você tem um mapa?",
+    "it": "Ha una mappa?",
+    "es": "¿Tiene un mapa?",
+    "id": "p11",
+    "scene": "sightseeing",
+    "audio": "fc-audio/phrase-11.mp3"
+  },
+  {
+    "jp": "Wi-Fi wa arimasu ka?",
+    "kana": "Wi-Fiはありますか？",
+    "en": "Do you have Wi-Fi?",
+    "pt": "Você tem Wi-Fi?",
+    "it": "C'è il Wi-Fi?",
+    "es": "¿Tiene Wi-Fi?",
+    "id": "p12",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-12.mp3"
+  },
+  {
+    "jp": "O-mizu o kudasai",
+    "kana": "お水をください",
+    "en": "Water, please",
+    "pt": "Água, por favor",
+    "it": "Dell'acqua, per favore",
+    "es": "Agua, por favor",
+    "id": "p13",
+    "scene": "food",
+    "audio": "fc-audio/phrase-13.mp3"
+  },
+  {
+    "jp": "Koko wa doko desu ka?",
+    "kana": "ここはどこですか？",
+    "en": "Where am I?",
+    "pt": "Onde estou?",
+    "it": "Dove mi trovo?",
+    "es": "¿Dónde estoy?",
+    "id": "p14",
+    "scene": "sightseeing",
+    "audio": "fc-audio/phrase-14.mp3"
+  },
+  {
+    "jp": "Osusume wa nan desu ka?",
+    "kana": "おすすめは何ですか？",
+    "en": "What do you recommend?",
+    "pt": "O que você recomenda?",
+    "it": "Cosa mi consiglia?",
+    "es": "¿Qué me recomienda?",
+    "id": "p15",
+    "scene": "food",
+    "audio": "fc-audio/phrase-15.mp3"
+  },
+  {
+    "jp": "Shashin o totte moraemasu ka?",
+    "kana": "写真をとってもらえますか？",
+    "en": "Could you take a photo for me?",
+    "pt": "Você pode tirar uma foto para mim?",
+    "it": "Potrebbe farmi una foto?",
+    "es": "¿Podría tomarme una foto?",
+    "id": "p16",
+    "scene": "sightseeing",
+    "audio": "fc-audio/phrase-16.mp3"
+  },
+  {
+    "jp": "Atatamete kudasai",
+    "kana": "あたためてください。",
+    "en": "Please heat it up.",
+    "pt": "Por favor, esquente isso.",
+    "it": "Lo riscaldi, per favore.",
+    "es": "Calientelo, por favor.",
+    "id": "p17",
+    "scene": "food",
+    "audio": "fc-audio/phrase-17.mp3"
+  },
+  {
+    "jp": "Genkin de",
+    "kana": "現金で。",
+    "en": "In cash.",
+    "pt": "Em dinheiro.",
+    "it": "In contanti.",
+    "es": "En efectivo.",
+    "id": "p18",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-18.mp3"
+  },
+  {
+    "jp": "Fukuro, ichimai onegaishimasu",
+    "kana": "ふくろ、１まいお願いします。",
+    "en": "One bag, please.",
+    "pt": "Uma sacola, por favor.",
+    "it": "Un sacchetto, per favore.",
+    "es": "Una bolsa, por favor.",
+    "id": "p19",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-19.mp3"
+  },
+  {
+    "jp": "Koori nashi de",
+    "kana": "氷なしで。",
+    "en": "Without ice.",
+    "pt": "Sem gelo.",
+    "it": "Senza ghiaccio.",
+    "es": "Sin hielo.",
+    "id": "p20",
+    "scene": "food",
+    "audio": "fc-audio/phrase-20.mp3"
+  },
+  {
+    "jp": "Miruku dake de",
+    "kana": "ミルクだけで。",
+    "en": "With milk only.",
+    "pt": "Apenas com leite.",
+    "it": "Solo con latte.",
+    "es": "Solo con leche.",
+    "id": "p21",
+    "scene": "food",
+    "audio": "fc-audio/phrase-21.mp3"
+  },
+  {
+    "jp": "Karai desu ka?",
+    "kana": "からいですか。",
+    "en": "Is it spicy?",
+    "pt": "É apimentado?",
+    "it": "È piccante?",
+    "es": "¿Es picante?",
+    "id": "p22",
+    "scene": "food",
+    "audio": "fc-audio/phrase-22.mp3"
+  },
+  {
+    "jp": "Nattsu haitte imasu ka?",
+    "kana": "ナッツはいっていますか。",
+    "en": "Does it contain nuts?",
+    "pt": "Contém nozes / castanhas?",
+    "it": "Contiene frutta secca?",
+    "es": "¿Contiene frutos secos?",
+    "id": "p23",
+    "scene": "food",
+    "audio": "fc-audio/phrase-23.mp3"
+  },
+  {
+    "jp": "Shiifuudo arerugii nan desu",
+    "kana": "シーフードアレルギーなんです。",
+    "en": "I have a seafood allergy.",
+    "pt": "Eu tenho alergia a frutos do mar.",
+    "it": "Sono allergico ai frutti di mare.",
+    "es": "Tengo alergia a los mariscos.",
+    "id": "p24",
+    "scene": "food",
+    "audio": "fc-audio/phrase-24.mp3"
+  },
+  {
+    "jp": "Menyuu o kudasai",
+    "kana": "メニューをください。",
+    "en": "Menu, please.",
+    "pt": "O cardápio, por favor.",
+    "it": "Il menù, per favore.",
+    "es": "El menú, por favor.",
+    "id": "p25",
+    "scene": "food",
+    "audio": "fc-audio/phrase-25.mp3"
+  },
+  {
+    "jp": "O-shibori o kudasai",
+    "kana": "おしぼりをください。",
+    "en": "Wet towel, please.",
+    "pt": "Uma toalha úmida, por favor.",
+    "it": "Un asciugamano bagnato, per favore.",
+    "es": "Una toalla húmeda, por favor.",
+    "id": "p26",
+    "scene": "food",
+    "audio": "fc-audio/phrase-26.mp3"
+  },
+  {
+    "jp": "Eigo no menyuu wa arimasu ka?",
+    "kana": "英語のメニューはありますか。",
+    "en": "Do you have an English menu?",
+    "pt": "Você tem um cardápio em inglês?",
+    "it": "Ha un menù in inglese?",
+    "es": "¿Tiene un menú en inglés?",
+    "id": "p27",
+    "scene": "food",
+    "audio": "fc-audio/phrase-27.mp3"
+  },
+  {
+    "jp": "Koko de taberaremasu ka?",
+    "kana": "ここで食べられますか。",
+    "en": "Can I eat here?",
+    "pt": "Posso comer aqui?",
+    "it": "Posso mangiare qui?",
+    "es": "¿Puedo comer aquí?",
+    "id": "p28",
+    "scene": "food",
+    "audio": "fc-audio/phrase-28.mp3"
+  },
+  {
+    "jp": "Mochikaeri de",
+    "kana": "持ち帰りで。",
+    "en": "For takeout.",
+    "pt": "Para viagem.",
+    "it": "Da asporto.",
+    "es": "Para llevar.",
+    "id": "p29",
+    "scene": "food",
+    "audio": "fc-audio/phrase-29.mp3"
+  },
+  {
+    "jp": "Toire wa doko desu ka?",
+    "kana": "トイレはどこですか。",
+    "en": "Where is the restroom?",
+    "pt": "Onde fica o banheiro?",
+    "it": "Dov'è il bagno?",
+    "es": "¿Dónde está el baño?",
+    "id": "p30",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-30.mp3"
+  },
+  {
+    "jp": "Kuukou made onegaishimasu",
+    "kana": "空港までお願いします。",
+    "en": "To the airport, please.",
+    "pt": "Para o aeroporto, por favor.",
+    "it": "All'aeroporto, per favore.",
+    "es": "Al aeropuerto, por favor.",
+    "id": "p31",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-31.mp3"
+  },
+  {
+    "jp": "Kippu uriba wa doko desu ka?",
+    "kana": "切符売り場はどこですか。",
+    "en": "Where is the ticket counter?",
+    "pt": "Onde é a bilheteria?",
+    "it": "Dov'è la biglietteria?",
+    "es": "¿Dónde está la taquilla?",
+    "id": "p32",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-32.mp3"
+  },
+  {
+    "jp": "[Basho] made ikimasu ka?",
+    "kana": "〇〇まで行きますか。",
+    "en": "Does it go to [place]?",
+    "pt": "Vai até [lugar]?",
+    "it": "Va a [luogo]?",
+    "es": "¿Va hasta [lugar]?",
+    "id": "p33",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-33.mp3"
+  },
+  {
+    "jp": "Nan-ban sen desu ka?",
+    "kana": "何番線ですか。",
+    "en": "Which platform?",
+    "pt": "Qual plataforma?",
+    "it": "Quale binario?",
+    "es": "¿Qué andén es?",
+    "id": "p34",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-34.mp3"
+  },
+  {
+    "jp": "Mayotte shimaimashita",
+    "kana": "迷ってしまいました。",
+    "en": "I am lost.",
+    "pt": "Eu estou perdido(a).",
+    "it": "Mi sono perso(a).",
+    "es": "Estoy perdido(a).",
+    "id": "p35",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-35.mp3"
+  },
+  {
+    "jp": "Tetsudatte kurete, arigatou gozaimasu",
+    "kana": "手伝ってくれて、ありがとうございます。",
+    "en": "Thank you for helping me.",
+    "pt": "Obrigado(a) por me ajudar.",
+    "it": "Grazie per avermi aiutato.",
+    "es": "Gracias por ayudarme.",
+    "id": "p36",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-36.mp3"
+  },
+  {
+    "jp": "Mou ichido onegai shimasu",
+    "kana": "もう一度おねがいします。",
+    "en": "Could you say that again?",
+    "pt": "Poderia dizer isso de novo?",
+    "it": "Può ripetere, per favore?",
+    "es": "¿Podría repetirlo, por favor?",
+    "id": "p37",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-37.mp3"
+  },
+  {
+    "jp": "Wakarimasen",
+    "kana": "分かりません。",
+    "en": "I do not understand.",
+    "pt": "Eu não entendo.",
+    "it": "Non capisco.",
+    "es": "No entiendo.",
+    "id": "p38",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-38.mp3"
+  },
+  {
+    "jp": "Koko ni kaite kudasai",
+    "kana": "ここに書いてください。",
+    "en": "Please write it down here.",
+    "pt": "Por favor, escreva aqui.",
+    "it": "Lo scriva qui, per favore.",
+    "es": "Escríbalo aquí, por favor.",
+    "id": "p39",
+    "scene": "basics",
+    "audio": "fc-audio/phrase-39.mp3"
+  },
+  {
+    "jp": "Kaado de haraemasu ka?",
+    "kana": "カードで払えますか。",
+    "en": "Can I pay by card?",
+    "pt": "Posso pagar com cartão?",
+    "it": "Posso pagare con la carta?",
+    "es": "¿Puedo pagar con tarjeta?",
+    "id": "p40",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-40.mp3"
+  },
+  {
+    "jp": "Reshiito onegaishimasu",
+    "kana": "レシートお願いします。",
+    "en": "A receipt, please.",
+    "pt": "Um recibo, por favor.",
+    "it": "Lo scontrino, per favore.",
+    "es": "Un recibo, por favor.",
+    "id": "p41",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-41.mp3"
+  },
+  {
+    "jp": "Mite iru dake desu",
+    "kana": "見ているだけです。",
+    "en": "I am just looking.",
+    "pt": "Estou só olhando.",
+    "it": "Sto solo guardando.",
+    "es": "Solo estoy mirando.",
+    "id": "p42",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-42.mp3"
+  },
+  {
+    "jp": "Shichaku shite mo ii desu ka?",
+    "kana": "試着してもいいですか。",
+    "en": "Can I try this on?",
+    "pt": "Posso provar isso?",
+    "it": "Posso provarlo?",
+    "es": "¿Puedo probármelo?",
+    "id": "p43",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-43.mp3"
+  },
+  {
+    "jp": "Ookii saizu wa arimasu ka?",
+    "kana": "大きいサイズはありますか。",
+    "en": "Do you have a larger size?",
+    "pt": "Você tem um tamanho maior?",
+    "it": "Ha una taglia più grande?",
+    "es": "¿Tiene una talla más grande?",
+    "id": "p44",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-44.mp3"
+  },
+  {
+    "jp": "Jikan wa dorekurai kakarimasu ka?",
+    "kana": "時間はどれくらいかかりますか。",
+    "en": "How long does it take?",
+    "pt": "Quanto tempo leva?",
+    "it": "Quanto tempo ci vuole?",
+    "es": "¿Cuánto tiempo tarda?",
+    "id": "p45",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-45.mp3"
+  },
+  {
+    "jp": "Chikai desu ka?",
+    "kana": "近いですか。",
+    "en": "Is it near?",
+    "pt": "É perto?",
+    "it": "È vicino?",
+    "es": "¿Está cerca?",
+    "id": "p46",
+    "scene": "sightseeing",
+    "audio": "fc-audio/phrase-46.mp3"
+  },
+  {
+    "jp": "Tooi desu ka?",
+    "kana": "遠いですか。",
+    "en": "Is it far?",
+    "pt": "É longe?",
+    "it": "È lontano?",
+    "es": "¿Está lejos?",
+    "id": "p47",
+    "scene": "sightseeing",
+    "audio": "fc-audio/phrase-47.mp3"
+  },
+  {
+    "jp": "Shashin o misete kudasai",
+    "kana": "写真を見せてください。",
+    "en": "Please show me a photo.",
+    "pt": "Por favor, mostre-me uma foto.",
+    "it": "Mi mostri una foto, per favore.",
+    "es": "Muéstreme una foto, por favor.",
+    "id": "p48",
+    "scene": "sightseeing",
+    "audio": "fc-audio/phrase-48.mp3"
+  },
+  {
+    "jp": "Mou sukoshi yasui no wa arimasu ka?",
+    "kana": "もう少し安いのはありますか。",
+    "en": "Do you have anything a little cheaper?",
+    "pt": "Você tem algo um pouco mais barato?",
+    "it": "Ha qualcosa di un po' più economico?",
+    "es": "¿Tiene algo un poco más barato?",
+    "id": "p49",
+    "scene": "shopping",
+    "audio": "fc-audio/phrase-49.mp3"
+  },
+  {
+    "jp": "Koko ni ikitai desu",
+    "kana": "ここに行きたいです。",
+    "en": "I want to go here.",
+    "pt": "Eu quero ir para cá.",
+    "it": "Voglio andare qui.",
+    "es": "Quiero ir aquí.",
+    "id": "p50",
+    "scene": "transport",
+    "audio": "fc-audio/phrase-50.mp3"
+  }
+],
+      verbs: [
+  {
+    "jp": "Tabemasu",
+    "kana": "食べます",
+    "en": "To eat",
+    "pt": "Comer",
+    "it": "Mangiare",
+    "es": "Comer",
+    "dictionary": "Dictionary form: Taberu (食べる)",
+    "id": "v01",
+    "scene": "daily",
+    "audio": "fc-audio/verb-01.mp3"
+  },
+  {
+    "jp": "Ikimasu",
+    "kana": "行きます",
+    "en": "To go",
+    "pt": "Ir",
+    "it": "Andare",
+    "es": "Ir",
+    "dictionary": "Dictionary form: Iku (行く)",
+    "id": "v02",
+    "scene": "move",
+    "audio": "fc-audio/verb-02.mp3"
+  },
+  {
+    "jp": "Nomimasu",
+    "kana": "飲みます",
+    "en": "To drink",
+    "pt": "Beber",
+    "it": "Bere",
+    "es": "Beber",
+    "dictionary": "Dictionary form: Nomu (飲む)",
+    "id": "v03",
+    "scene": "daily",
+    "audio": "fc-audio/verb-03.mp3"
+  },
+  {
+    "jp": "Kaimasu",
+    "kana": "買います",
+    "en": "To buy",
+    "pt": "Comprar",
+    "it": "Comprare",
+    "es": "Comprar",
+    "dictionary": "Dictionary form: Kau (買う)",
+    "id": "v04",
+    "scene": "daily",
+    "audio": "fc-audio/verb-04.mp3"
+  },
+  {
+    "jp": "Mimasu",
+    "kana": "見ます",
+    "en": "To see / look",
+    "pt": "Ver / Olhar",
+    "it": "Vedere / Guardare",
+    "es": "Ver / mirar",
+    "dictionary": "Dictionary form: Miru (見る)",
+    "id": "v05",
+    "scene": "daily",
+    "audio": "fc-audio/verb-05.mp3"
+  },
+  {
+    "jp": "Norimasu",
+    "kana": "乗ります",
+    "en": "To ride / get on",
+    "pt": "Andar / Subir",
+    "it": "Salire (su un mezzo)",
+    "es": "Subir (a un transporte)",
+    "dictionary": "Dictionary form: Noru (乗る)",
+    "id": "v06",
+    "scene": "move",
+    "audio": "fc-audio/verb-06.mp3"
+  },
+  {
+    "jp": "Orimasu",
+    "kana": "降ります",
+    "en": "To get off",
+    "pt": "Descer",
+    "it": "Scendere",
+    "es": "Bajar (de un transporte)",
+    "dictionary": "Dictionary form: Oriru (降りる)",
+    "id": "v07",
+    "scene": "move",
+    "audio": "fc-audio/verb-07.mp3"
+  },
+  {
+    "jp": "Shimasu",
+    "kana": "します",
+    "en": "To do",
+    "pt": "Fazer",
+    "it": "Fare",
+    "es": "Hacer",
+    "dictionary": "Dictionary form: Suru (する)",
+    "id": "v08",
+    "scene": "actions",
+    "audio": "fc-audio/verb-08.mp3"
+  },
+  {
+    "jp": "Hanashimasu",
+    "kana": "話します",
+    "en": "To speak",
+    "pt": "Falar",
+    "it": "Parlare",
+    "es": "Hablar",
+    "dictionary": "Dictionary form: Hanasu (話す)",
+    "id": "v09",
+    "scene": "daily",
+    "audio": "fc-audio/verb-09.mp3"
+  },
+  {
+    "jp": "Kaerimasu",
+    "kana": "帰ります",
+    "en": "To go home / return",
+    "pt": "Voltar / Ir para casa",
+    "it": "Tornare (a casa)",
+    "es": "Volver a casa",
+    "dictionary": "Dictionary form: Kaeru (帰る)",
+    "id": "v10",
+    "scene": "move",
+    "audio": "fc-audio/verb-10.mp3"
+  },
+  {
+    "jp": "Wakarimasu",
+    "kana": "分かります",
+    "en": "To understand",
+    "pt": "Entender",
+    "it": "Capire",
+    "es": "Entender",
+    "dictionary": "Dictionary form: Wakaru (分かる)",
+    "id": "v11",
+    "scene": "actions",
+    "audio": "fc-audio/verb-11.mp3"
+  },
+  {
+    "jp": "Kimasu",
+    "kana": "来ます",
+    "en": "To come",
+    "pt": "Vir",
+    "it": "Venire",
+    "es": "Venir",
+    "dictionary": "Dictionary form: Kuru (来る)",
+    "id": "v12",
+    "scene": "move",
+    "audio": "fc-audio/verb-12.mp3"
+  },
+  {
+    "jp": "Machimasu",
+    "kana": "待ちます",
+    "en": "To wait",
+    "pt": "Esperar",
+    "it": "Aspettare",
+    "es": "Esperar",
+    "dictionary": "Dictionary form: Matsu (待つ)",
+    "id": "v13",
+    "scene": "move",
+    "audio": "fc-audio/verb-13.mp3"
+  },
+  {
+    "jp": "Kikimasu",
+    "kana": "聞きます",
+    "en": "To listen / ask",
+    "pt": "Ouvir / Perguntar",
+    "it": "Ascoltare / Chiedere",
+    "es": "Escuchar / preguntar",
+    "dictionary": "Dictionary form: Kiku (聞く)",
+    "id": "v14",
+    "scene": "daily",
+    "audio": "fc-audio/verb-14.mp3"
+  },
+  {
+    "jp": "Yobimasu",
+    "kana": "呼びます",
+    "en": "To call",
+    "pt": "Chamar",
+    "it": "Chiamare",
+    "es": "Llamar",
+    "dictionary": "Dictionary form: Yobu (呼ぶ)",
+    "id": "v15",
+    "scene": "actions",
+    "audio": "fc-audio/verb-15.mp3"
+  },
+  {
+    "jp": "Yomimasu",
+    "kana": "読みます",
+    "en": "To read",
+    "pt": "Ler",
+    "it": "Leggere",
+    "es": "Leer",
+    "dictionary": "Dictionary form: Yomu (読む)",
+    "id": "v16",
+    "scene": "daily",
+    "audio": "fc-audio/verb-16.mp3"
+  },
+  {
+    "jp": "Kakimasu",
+    "kana": "書きます",
+    "en": "To write",
+    "pt": "Escrever",
+    "it": "Scrivere",
+    "es": "Escribir",
+    "dictionary": "Dictionary form: Kaku (書く)",
+    "id": "v17",
+    "scene": "daily",
+    "audio": "fc-audio/verb-17.mp3"
+  },
+  {
+    "jp": "Oyogimasu",
+    "kana": "泳ぎます",
+    "en": "To swim",
+    "pt": "Nadar",
+    "it": "Nuotare",
+    "es": "Nadar",
+    "dictionary": "Dictionary form: Oyogu (泳ぐ)",
+    "id": "v18",
+    "scene": "daily",
+    "audio": "fc-audio/verb-18.mp3"
+  },
+  {
+    "jp": "Asobimasu",
+    "kana": "遊びます",
+    "en": "To play / hang out",
+    "pt": "Brincar / Sair",
+    "it": "Giocare / Divertirsi",
+    "es": "Jugar / divertirse",
+    "dictionary": "Dictionary form: Asobu (遊ぶ)",
+    "id": "v19",
+    "scene": "daily",
+    "audio": "fc-audio/verb-19.mp3"
+  },
+  {
+    "jp": "Yasumimasu",
+    "kana": "休みます",
+    "en": "To rest",
+    "pt": "Descansar",
+    "it": "Riposare",
+    "es": "Descansar",
+    "dictionary": "Dictionary form: Yasumu (休む)",
+    "id": "v20",
+    "scene": "daily",
+    "audio": "fc-audio/verb-20.mp3"
+  },
+  {
+    "jp": "Okimasu",
+    "kana": "起きます",
+    "en": "To wake up",
+    "pt": "Acordar",
+    "it": "Svegliarsi",
+    "es": "Despertarse",
+    "dictionary": "Dictionary form: Okiru (起きる)",
+    "id": "v21",
+    "scene": "daily",
+    "audio": "fc-audio/verb-21.mp3"
+  },
+  {
+    "jp": "Nemasu",
+    "kana": "寝ます",
+    "en": "To sleep",
+    "pt": "Dormir",
+    "it": "Dormire",
+    "es": "Dormir",
+    "dictionary": "Dictionary form: Neru (寝る)",
+    "id": "v22",
+    "scene": "daily",
+    "audio": "fc-audio/verb-22.mp3"
+  },
+  {
+    "jp": "Hatarakimasu",
+    "kana": "働きます",
+    "en": "To work",
+    "pt": "Trabalhar",
+    "it": "Lavorare",
+    "es": "Trabajar",
+    "dictionary": "Dictionary form: Hataraku (働く)",
+    "id": "v23",
+    "scene": "daily",
+    "audio": "fc-audio/verb-23.mp3"
+  },
+  {
+    "jp": "Benkyou shimasu",
+    "kana": "勉強します",
+    "en": "To study",
+    "pt": "Estudar",
+    "it": "Studiare",
+    "es": "Estudiar",
+    "dictionary": "Dictionary form: Benkyou suru (勉強する)",
+    "id": "v24",
+    "scene": "daily",
+    "audio": "fc-audio/verb-24.mp3"
+  },
+  {
+    "jp": "Oshiemasu",
+    "kana": "教えます",
+    "en": "To teach",
+    "pt": "Ensinar",
+    "it": "Insegnare",
+    "es": "Enseñar",
+    "dictionary": "Dictionary form: Oshieru (教える)",
+    "id": "v25",
+    "scene": "actions",
+    "audio": "fc-audio/verb-25.mp3"
+  },
+  {
+    "jp": "Naraimasu",
+    "kana": "習います",
+    "en": "To learn",
+    "pt": "Aprender",
+    "it": "Imparare",
+    "es": "Aprender",
+    "dictionary": "Dictionary form: Narau (習う)",
+    "id": "v26",
+    "scene": "actions",
+    "audio": "fc-audio/verb-26.mp3"
+  },
+  {
+    "jp": "Kakarimasu",
+    "kana": "かかります",
+    "en": "To take (time) / cost",
+    "pt": "Levar (tempo) / Custar",
+    "it": "Impiegare (tempo) / Costare",
+    "es": "Tardar / costar",
+    "dictionary": "Dictionary form: Kakaru (かかる)",
+    "id": "v27",
+    "scene": "move",
+    "audio": "fc-audio/verb-27.mp3"
+  },
+  {
+    "jp": "Magarimasu",
+    "kana": "曲がります",
+    "en": "To turn",
+    "pt": "Virar",
+    "it": "Girare / Svoltare",
+    "es": "Girar",
+    "dictionary": "Dictionary form: Magaru (曲がる)",
+    "id": "v28",
+    "scene": "move",
+    "audio": "fc-audio/verb-28.mp3"
+  },
+  {
+    "jp": "Tomarimasu",
+    "kana": "止まります",
+    "en": "To stop",
+    "pt": "Parar",
+    "it": "Fermarsi",
+    "es": "Parar / detenerse",
+    "dictionary": "Dictionary form: Tomaru (止まる)",
+    "id": "v29",
+    "scene": "move",
+    "audio": "fc-audio/verb-29.mp3"
+  },
+  {
+    "jp": "Arukimasu",
+    "kana": "歩きます",
+    "en": "To walk",
+    "pt": "Andar / Caminhar",
+    "it": "Camminare",
+    "es": "Caminar",
+    "dictionary": "Dictionary form: Aruku (歩く)",
+    "id": "v30",
+    "scene": "move",
+    "audio": "fc-audio/verb-30.mp3"
+  },
+  {
+    "jp": "Hashirimasu",
+    "kana": "走ります",
+    "en": "To run",
+    "pt": "Correr",
+    "it": "Correre",
+    "es": "Correr",
+    "dictionary": "Dictionary form: Hashiru (走る)",
+    "id": "v31",
+    "scene": "move",
+    "audio": "fc-audio/verb-31.mp3"
+  },
+  {
+    "jp": "Tsukaimasu",
+    "kana": "使います",
+    "en": "To use",
+    "pt": "Usar",
+    "it": "Usare",
+    "es": "Usar",
+    "dictionary": "Dictionary form: Tsukau (使う)",
+    "id": "v32",
+    "scene": "actions",
+    "audio": "fc-audio/verb-32.mp3"
+  },
+  {
+    "jp": "Tsukurimasu",
+    "kana": "作ります",
+    "en": "To make",
+    "pt": "Fazer / Preparar",
+    "it": "Fare / Creare",
+    "es": "Hacer / preparar",
+    "dictionary": "Dictionary form: Tsukuru (作る)",
+    "id": "v33",
+    "scene": "actions",
+    "audio": "fc-audio/verb-33.mp3"
+  },
+  {
+    "jp": "Hairimasu",
+    "kana": "入ります",
+    "en": "To enter",
+    "pt": "Entrar",
+    "it": "Entrare",
+    "es": "Entrar",
+    "dictionary": "Dictionary form: Hairu (入る)",
+    "id": "v34",
+    "scene": "move",
+    "audio": "fc-audio/verb-34.mp3"
+  },
+  {
+    "jp": "Demasu",
+    "kana": "出ます",
+    "en": "To exit / leave",
+    "pt": "Sair",
+    "it": "Uscire",
+    "es": "Salir",
+    "dictionary": "Dictionary form: Deru (出る)",
+    "id": "v35",
+    "scene": "move",
+    "audio": "fc-audio/verb-35.mp3"
+  },
+  {
+    "jp": "Suwarimasu",
+    "kana": "座ります",
+    "en": "To sit",
+    "pt": "Sentar",
+    "it": "Sedersi",
+    "es": "Sentarse",
+    "dictionary": "Dictionary form: Suwaru (座る)",
+    "id": "v36",
+    "scene": "actions",
+    "audio": "fc-audio/verb-36.mp3"
+  },
+  {
+    "jp": "Tachimasu",
+    "kana": "立ちます",
+    "en": "To stand",
+    "pt": "Levantar / Ficar em pé",
+    "it": "Alzarsi in piedi",
+    "es": "Ponerse de pie",
+    "dictionary": "Dictionary form: Tatsu (立つ)",
+    "id": "v37",
+    "scene": "actions",
+    "audio": "fc-audio/verb-37.mp3"
+  },
+  {
+    "jp": "Kaeshimasu",
+    "kana": "返します",
+    "en": "To return (something)",
+    "pt": "Devolver",
+    "it": "Restituire",
+    "es": "Devolver (algo)",
+    "dictionary": "Dictionary form: Kaesu (返す)",
+    "id": "v38",
+    "scene": "actions",
+    "audio": "fc-audio/verb-38.mp3"
+  },
+  {
+    "jp": "Kashimasu",
+    "kana": "貸します",
+    "en": "To lend",
+    "pt": "Emprestar (para alguém)",
+    "it": "Prestare",
+    "es": "Prestar",
+    "dictionary": "Dictionary form: Kasu (貸す)",
+    "id": "v39",
+    "scene": "actions",
+    "audio": "fc-audio/verb-39.mp3"
+  },
+  {
+    "jp": "Karimasu",
+    "kana": "借ります",
+    "en": "To borrow",
+    "pt": "Pegar emprestado",
+    "it": "Prendere in prestito",
+    "es": "Pedir prestado",
+    "dictionary": "Dictionary form: Kariru (借りる)",
+    "id": "v40",
+    "scene": "actions",
+    "audio": "fc-audio/verb-40.mp3"
+  },
+  {
+    "jp": "Shimemasu",
+    "kana": "閉めます",
+    "en": "To close",
+    "pt": "Fechar",
+    "it": "Chiudere",
+    "es": "Cerrar",
+    "dictionary": "Dictionary form: Shimeru (閉める)",
+    "id": "v41",
+    "scene": "actions",
+    "audio": "fc-audio/verb-41.mp3"
+  },
+  {
+    "jp": "Akemasu",
+    "kana": "開けます",
+    "en": "To open",
+    "pt": "Abrir",
+    "it": "Aprire",
+    "es": "Abrir",
+    "dictionary": "Dictionary form: Akeru (開ける)",
+    "id": "v42",
+    "scene": "actions",
+    "audio": "fc-audio/verb-42.mp3"
+  },
+  {
+    "jp": "Keshimasu",
+    "kana": "消します",
+    "en": "To turn off / erase",
+    "pt": "Desligar / Apagar",
+    "it": "Spegnere / Cancellare",
+    "es": "Apagar / borrar",
+    "dictionary": "Dictionary form: Kesu (消す)",
+    "id": "v43",
+    "scene": "actions",
+    "audio": "fc-audio/verb-43.mp3"
+  },
+  {
+    "jp": "Tsukemasu",
+    "kana": "つけます",
+    "en": "To turn on",
+    "pt": "Ligar",
+    "it": "Accendere",
+    "es": "Encender",
+    "dictionary": "Dictionary form: Tsukeru (つける)",
+    "id": "v44",
+    "scene": "actions",
+    "audio": "fc-audio/verb-44.mp3"
+  },
+  {
+    "jp": "Isogimasu",
+    "kana": "急ぎます",
+    "en": "To hurry",
+    "pt": "Apressar-se",
+    "it": "Sbrigarsi",
+    "es": "Darse prisa",
+    "dictionary": "Dictionary form: Isogu (急ぐ)",
+    "id": "v45",
+    "scene": "move",
+    "audio": "fc-audio/verb-45.mp3"
+  },
+  {
+    "jp": "Okuremasu",
+    "kana": "遅れます",
+    "en": "To be late",
+    "pt": "Atrasar-se",
+    "it": "Essere in ritardo",
+    "es": "Llegar tarde",
+    "dictionary": "Dictionary form: Okureru (遅れる)",
+    "id": "v46",
+    "scene": "move",
+    "audio": "fc-audio/verb-46.mp3"
+  },
+  {
+    "jp": "Wasuremasu",
+    "kana": "忘れます",
+    "en": "To forget",
+    "pt": "Esquecer",
+    "it": "Dimenticare",
+    "es": "Olvidar",
+    "dictionary": "Dictionary form: Wasureru (忘れる)",
+    "id": "v47",
+    "scene": "actions",
+    "audio": "fc-audio/verb-47.mp3"
+  },
+  {
+    "jp": "Oboemasu",
+    "kana": "覚えます",
+    "en": "To remember / memorize",
+    "pt": "Lembrar / Memorizar",
+    "it": "Ricordare / Memorizzare",
+    "es": "Recordar / memorizar",
+    "dictionary": "Dictionary form: Oboeru (覚える)",
+    "id": "v48",
+    "scene": "actions",
+    "audio": "fc-audio/verb-48.mp3"
+  },
+  {
+    "jp": "Shirimasu",
+    "kana": "知ります",
+    "en": "To know",
+    "pt": "Saber / Conhecer",
+    "it": "Sapere / Conoscere",
+    "es": "Saber",
+    "dictionary": "Dictionary form: Shiru (知る)",
+    "id": "v49",
+    "scene": "actions",
+    "audio": "fc-audio/verb-49.mp3"
+  },
+  {
+    "jp": "Omoimasu",
+    "kana": "思います",
+    "en": "To think",
+    "pt": "Achar / Pensar",
+    "it": "Pensare",
+    "es": "Pensar",
+    "dictionary": "Dictionary form: Omou (思う)",
+    "id": "v50",
+    "scene": "actions",
+    "audio": "fc-audio/verb-50.mp3"
+  }
+]
+    };
 
-  <div class="controls" id="card-controls">
-    <button id="prev">← Previous</button>
-    <button class="primary-btn" id="flip">Flip Card</button>
-    <button id="next">Next →</button>
-  </div>
+    const SCENES = {
+      phrases: [
+        { key: 'all', label: 'All (50)' },
+        { key: 'basics', label: '👋 Basics & Help' },
+        { key: 'food', label: '🍜 Café & Food' },
+        { key: 'transport', label: '🚃 Train & Airport' },
+        { key: 'shopping', label: '🛍️ Shopping' },
+        { key: 'sightseeing', label: '📸 Sightseeing' },
+        { key: 'review', label: '🔁 Review' }
+      ],
+      verbs: [
+        { key: 'all', label: 'All (50)' },
+        { key: 'daily', label: '🍽️ Daily & Food' },
+        { key: 'move', label: '🚃 Moving & Travel' },
+        { key: 'actions', label: '✨ Useful Actions' },
+        { key: 'review', label: '🔁 Review' }
+      ]
+    };
 
-  <div class="sub-controls" id="shuffle-row">
-    <button id="shuffle" type="button">🔀 Shuffle cards</button>
-  </div>
+    const LANG_NAMES = { pt: 'PORTUGUÊS', it: 'ITALIANO', es: 'ESPAÑOL' };
+    const LS_MASTER = 'ohayo_trip_fc_mastered_v1';
+    const LS_REVIEW = 'ohayo_trip_fc_review_v1';
+    const LS_LANG = 'ohayo_trip_fc_lang_v1';
 
-  <div class="sub-controls" id="lang-row">
-    <span class="lang-label">🌐 Translation:</span>
-    <button id="lang-pt" type="button" class="on">Português</button>
-    <button id="lang-it" type="button">Italiano</button>
-    <button id="lang-es" type="button">Español</button>
-  </div>
+    function loadSet(key) {
+      try { return new Set(JSON.parse(localStorage.getItem(key) || '[]')); } catch (e) { return new Set(); }
+    }
+    function saveSet(key, set) {
+      try { localStorage.setItem(key, JSON.stringify([...set])); } catch (e) {}
+    }
 
-  <div class="controls" id="quiz-controls" style="display: none; justify-content: center;">
-    <button class="primary-btn" id="next-question" style="max-width: 200px;" disabled>Next Question →</button>
-  </div>
+    let mode = 'cards';
+    let deck = 'phrases';
+    let lang = localStorage.getItem(LS_LANG) || 'pt';
+    if (!LANG_NAMES[lang]) lang = 'pt';
+    let scene = 'all';
+    let idx = 0;
+    let hideRomaji = false;
+    let customOrder = null;
+    let quizMode = 'read';
+    let mastered = loadSet(LS_MASTER);
+    let reviewSet = loadSet(LS_REVIEW);
 
-  
-<!-- OHAYO_NEXT_CTA -->
-<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
-  <div class="ohayo-cta-next">
-    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
-    <div class="ohayo-cta-grid">
-      <a class="ohayo-cta-link" href="trip-listen.html"><div><span class="ohayo-cta-tag">★ RECOMMENDED NEXT</span><span class="ohayo-cta-name">Listening Quests (9 Travel Scenes)</span></div><span class="ohayo-cta-arrow">→</span></a>
-      <a class="ohayo-cta-link" href="trip-quiz.html"><div><span class="ohayo-cta-tag">QUIZ</span><span class="ohayo-cta-name">Travel Situational Quiz (25 Questions)</span></div><span class="ohayo-cta-arrow">→</span></a>
-    </div>
-  </div>
-  <div class="ohayo-cta-lesson">
-    <div>
-      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
-      <h3>Want to use what you just practiced with a native teacher?</h3>
-      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
-    </div>
-    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
-  </div>
-</section>
+    // Quiz state
+    let qList = [], qIdx = 0, qScore = 0, qCombo = 0, qMaxCombo = 0;
 
-<script>
-    (() => {
-      const root = document.getElementById('ohayo-flashcards');
+    // Native MP3 player (100% fc-audio/*.mp3, zero browser TTS)
+    const player = new Audio();
+    player.preload = 'auto';
+    function playAudio(src, rate = 1.0) {
+      if (!src) return;
+      try {
+        player.pause();
+        player.src = src;
+        player.playbackRate = rate;
+        player.currentTime = 0;
+        player.play().catch(() => {});
+      } catch (e) {}
+    }
 
-      // Data source
-      const data = {
-        phrases: [
-          { jp: 'Sumimasen', kana: 'すみません', en: 'Excuse me / I’m sorry', pt: 'Com licença / Desculpe', it: 'Mi scusi / Mi dispiace', es: 'Disculpe / Perdón' },
-          { jp: 'Eki wa doko desu ka?', kana: '駅はどこですか？', en: 'Where is the train station?', pt: 'Onde fica a estação de trem?', it: 'Dov\'è la stazione?', es: '¿Dónde está la estación de tren?' },
-          { jp: 'Arigatou gozaimasu', kana: 'ありがとうございます', en: 'Thank you very much', pt: 'Muito obrigado(a)', it: 'Grazie mille', es: 'Muchas gracias' },
-          { jp: 'Ikura desu ka?', kana: 'いくらですか？', en: 'How much is this?', pt: 'Quanto custa isso?', it: 'Quanto costa questo?', es: '¿Cuánto cuesta esto?' },
-          { jp: 'Kore o onegaishimasu', kana: 'これをお願いします', en: 'This one, please', pt: 'Este, por favor', it: 'Questo, per favore', es: 'Este, por favor' },
-          { jp: 'Kore wa nan desu ka?', kana: 'これは何ですか？', en: 'What is this?', pt: 'O que é isso?', it: 'Che cos\'è questo?', es: '¿Qué es esto?' },
-          { jp: 'O-kaikei onegaishimasu', kana: 'お会計お願いします', en: 'Check, please', pt: 'A conta, por favor', it: 'Il conto, per favore', es: 'La cuenta, por favor' },
-          { jp: 'Shashin o totte mo ii desu ka?', kana: '写真を撮ってもいいですか？', en: 'Can I take a photo?', pt: 'Posso tirar uma foto?', it: 'Posso fare una foto?', es: '¿Puedo tomar una foto?' },
-          { jp: 'Eigo o hanasemasu ka?', kana: '英語、話せますか？', en: 'Can you speak English?', pt: 'Você fala inglês?', it: 'Parla inglese?', es: '¿Habla inglés?' },
-          { jp: 'Yukkuri hanashite kudasai', kana: 'ゆっくり話してください', en: 'Please speak slowly', pt: 'Fale devagar, por favor', it: 'Parli lentamente, per favore', es: 'Hable despacio, por favor' },
-          { jp: 'Chizu wa arimasu ka?', kana: '地図はありますか？', en: 'Do you have a map?', pt: 'Você tem um mapa?', it: 'Ha una mappa?', es: '¿Tiene un mapa?' },
-          { jp: 'Wi-Fi wa arimasu ka?', kana: 'Wi-Fiはありますか？', en: 'Do you have Wi-Fi?', pt: 'Você tem Wi-Fi?', it: 'C\'è il Wi-Fi?', es: '¿Tiene Wi-Fi?' },
-          { jp: 'O-mizu o kudasai', kana: 'お水をください', en: 'Water, please', pt: 'Água, por favor', it: 'Dell\'acqua, per favore', es: 'Agua, por favor' },
-          { jp: 'Koko wa doko desu ka?', kana: 'ここはどこですか？', en: 'Where am I?', pt: 'Onde estou?', it: 'Dove mi trovo?', es: '¿Dónde estoy?' },
-          { jp: 'Osusume wa nan desu ka?', kana: 'おすすめは何ですか？', en: 'What do you recommend?', pt: 'O que você recomenda?', it: 'Cosa mi consiglia?', es: '¿Qué me recomienda?' },
-          { jp: 'Shashin o totte moraemasu ka?', kana: '写真をとってもらえますか？', en: 'Could you take a photo for me?', pt: 'Você pode tirar uma foto para mim?', it: 'Potrebbe farmi una foto?', es: '¿Podría tomarme una foto?' },
-          { jp: 'Atatamete kudasai', kana: 'あたためてください。', en: 'Please heat it up.', pt: 'Por favor, esquente isso.', it: 'Lo riscaldi, per favore.', es: 'Calientelo, por favor.' },
-          { jp: 'Genkin de', kana: '現金で。', en: 'In cash.', pt: 'Em dinheiro.', it: 'In contanti.', es: 'En efectivo.' },
-          { jp: 'Fukuro, ichimai onegaishimasu', kana: 'ふくろ、１まいお願いします。', en: 'One bag, please.', pt: 'Uma sacola, por favor.', it: 'Un sacchetto, per favore.', es: 'Una bolsa, por favor.' },
-          { jp: 'Koori nashi de', kana: '氷なしで。', en: 'Without ice.', pt: 'Sem gelo.', it: 'Senza ghiaccio.', es: 'Sin hielo.' },
-          { jp: 'Miruku dake de', kana: 'ミルクだけで。', en: 'With milk only.', pt: 'Apenas com leite.', it: 'Solo con latte.', es: 'Solo con leche.' },
-          { jp: 'Karai desu ka?', kana: 'からいですか。', en: 'Is it spicy?', pt: 'É apimentado?', it: 'È piccante?', es: '¿Es picante?' },
-          { jp: 'Nattsu haitte imasu ka?', kana: 'ナッツはいっていますか。', en: 'Does it contain nuts?', pt: 'Contém nozes / castanhas?', it: 'Contiene frutta secca?', es: '¿Contiene frutos secos?' },
-          { jp: 'Shiifuudo arerugii nan desu', kana: 'シーフードアレルギーなんです。', en: 'I have a seafood allergy.', pt: 'Eu tenho alergia a frutos do mar.', it: 'Sono allergico ai frutti di mare.', es: 'Tengo alergia a los mariscos.' },
-          { jp: 'Menyuu o kudasai', kana: 'メニューをください。', en: 'Menu, please.', pt: 'O cardápio, por favor.', it: 'Il menù, per favore.', es: 'El menú, por favor.' },
-          { jp: 'O-shibori o kudasai', kana: 'おしぼりをください。', en: 'Wet towel, please.', pt: 'Uma toalha úmida, por favor.', it: 'Un asciugamano bagnato, per favore.', es: 'Una toalla húmeda, por favor.' },
-          { jp: 'Eigo no menyuu wa arimasu ka?', kana: '英語のメニューはありますか。', en: 'Do you have an English menu?', pt: 'Você tem um cardápio em inglês?', it: 'Ha un menù in inglese?', es: '¿Tiene un menú en inglés?' },
-          { jp: 'Koko de taberaremasu ka?', kana: 'ここで食べられますか。', en: 'Can I eat here?', pt: 'Posso comer aqui?', it: 'Posso mangiare qui?', es: '¿Puedo comer aquí?' },
-          { jp: 'Mochikaeri de', kana: '持ち帰りで。', en: 'For takeout.', pt: 'Para viagem.', it: 'Da asporto.', es: 'Para llevar.' },
-          { jp: 'Toire wa doko desu ka?', kana: 'トイレはどこですか。', en: 'Where is the restroom?', pt: 'Onde fica o banheiro?', it: 'Dov\'è il bagno?', es: '¿Dónde está el baño?' },
-          { jp: 'Kuukou made onegaishimasu', kana: '空港までお願いします。', en: 'To the airport, please.', pt: 'Para o aeroporto, por favor.', it: 'All\'aeroporto, per favore.', es: 'Al aeropuerto, por favor.' },
-          { jp: 'Kippu uriba wa doko desu ka?', kana: '切符売り場はどこですか。', en: 'Where is the ticket counter?', pt: 'Onde é a bilheteria?', it: 'Dov\'è la biglietteria?', es: '¿Dónde está la taquilla?' },
-          { jp: '[Basho] made ikimasu ka?', kana: '〇〇まで行きますか。', en: 'Does it go to [place]?', pt: 'Vai até [lugar]?', it: 'Va a [luogo]?', es: '¿Va hasta [lugar]?' },
-          { jp: 'Nan-ban sen desu ka?', kana: '何番線ですか。', en: 'Which platform?', pt: 'Qual plataforma?', it: 'Quale binario?', es: '¿Qué andén es?' },
-          { jp: 'Mayotte shimaimashita', kana: '迷ってしまいました。', en: 'I am lost.', pt: 'Eu estou perdido(a).', it: 'Mi sono perso(a).', es: 'Estoy perdido(a).' },
-          { jp: 'Tetsudatte kurete, arigatou gozaimasu', kana: '手伝ってくれて、ありがとうございます。', en: 'Thank you for helping me.', pt: 'Obrigado(a) por me ajudar.', it: 'Grazie per avermi aiutato.', es: 'Gracias por ayudarme.' },
-          { jp: 'Mou ichido onegai shimasu', kana: 'もう一度おねがいします。', en: 'Could you say that again?', pt: 'Poderia dizer isso de novo?', it: 'Può ripetere, per favore?', es: '¿Podría repetirlo, por favor?' },
-          { jp: 'Wakarimasen', kana: '分かりません。', en: 'I do not understand.', pt: 'Eu não entendo.', it: 'Non capisco.', es: 'No entiendo.' },
-          { jp: 'Koko ni kaite kudasai', kana: 'ここに書いてください。', en: 'Please write it down here.', pt: 'Por favor, escreva aqui.', it: 'Lo scriva qui, per favore.', es: 'Escríbalo aquí, por favor.' },
-          { jp: 'Kaado de haraemasu ka?', kana: 'カードで払えますか。', en: 'Can I pay by card?', pt: 'Posso pagar com cartão?', it: 'Posso pagare con la carta?', es: '¿Puedo pagar con tarjeta?' },
-          { jp: 'Reshiito onegaishimasu', kana: 'レシートお願いします。', en: 'A receipt, please.', pt: 'Um recibo, por favor.', it: 'Lo scontrino, per favore.', es: 'Un recibo, por favor.' },
-          { jp: 'Mite iru dake desu', kana: '見ているだけです。', en: 'I am just looking.', pt: 'Estou só olhando.', it: 'Sto solo guardando.', es: 'Solo estoy mirando.' },
-          { jp: 'Shichaku shite mo ii desu ka?', kana: '試着してもいいですか。', en: 'Can I try this on?', pt: 'Posso provar isso?', it: 'Posso provarlo?', es: '¿Puedo probármelo?' },
-          { jp: 'Ookii saizu wa arimasu ka?', kana: '大きいサイズはありますか。', en: 'Do you have a larger size?', pt: 'Você tem um tamanho maior?', it: 'Ha una taglia più grande?', es: '¿Tiene una talla más grande?' },
-          { jp: 'Jikan wa dorekurai kakarimasu ka?', kana: '時間はどれくらいかかりますか。', en: 'How long does it take?', pt: 'Quanto tempo leva?', it: 'Quanto tempo ci vuole?', es: '¿Cuánto tiempo tarda?' },
-          { jp: 'Chikai desu ka?', kana: '近いですか。', en: 'Is it near?', pt: 'É perto?', it: 'È vicino?', es: '¿Está cerca?' },
-          { jp: 'Tooi desu ka?', kana: '遠いですか。', en: 'Is it far?', pt: 'É longe?', it: 'È lontano?', es: '¿Está lejos?' },
-          { jp: 'Shashin o misete kudasai', kana: '写真を見せてください。', en: 'Please show me a photo.', pt: 'Por favor, mostre-me uma foto.', it: 'Mi mostri una foto, per favore.', es: 'Muéstreme una foto, por favor.' },
-          { jp: 'Mou sukoshi yasui no wa arimasu ka?', kana: 'もう少し安いのはありますか。', en: 'Do you have anything a little cheaper?', pt: 'Você tem algo um pouco mais barato?', it: 'Ha qualcosa di un po\' più economico?', es: '¿Tiene algo un poco más barato?' },
-          { jp: 'Koko ni ikitai desu', kana: 'ここに行きたいです。', en: 'I want to go here.', pt: 'Eu quero ir para cá.', it: 'Voglio andare qui.', es: 'Quiero ir aquí.' }
-        ],
-        verbs: [
-          { jp: 'Tabemasu', kana: '食べます', en: 'To eat', pt: 'Comer', it: 'Mangiare', es: 'Comer', dictionary: 'Dictionary form: Taberu (食べる)' },
-          { jp: 'Ikimasu', kana: '行きます', en: 'To go', pt: 'Ir', it: 'Andare', es: 'Ir', dictionary: 'Dictionary form: Iku (行く)' },
-          { jp: 'Nomimasu', kana: '飲みます', en: 'To drink', pt: 'Beber', it: 'Bere', es: 'Beber', dictionary: 'Dictionary form: Nomu (飲む)' },
-          { jp: 'Kaimasu', kana: '買います', en: 'To buy', pt: 'Comprar', it: 'Comprare', es: 'Comprar', dictionary: 'Dictionary form: Kau (買う)' },
-          { jp: 'Mimasu', kana: '見ます', en: 'To see / look', pt: 'Ver / Olhar', it: 'Vedere / Guardare', es: 'Ver / mirar', dictionary: 'Dictionary form: Miru (見る)' },
-          { jp: 'Norimasu', kana: '乗ります', en: 'To ride / get on', pt: 'Andar / Subir', it: 'Salire (su un mezzo)', es: 'Subir (a un transporte)', dictionary: 'Dictionary form: Noru (乗る)' },
-          { jp: 'Orimasu', kana: '降ります', en: 'To get off', pt: 'Descer', it: 'Scendere', es: 'Bajar (de un transporte)', dictionary: 'Dictionary form: Oriru (降りる)' },
-          { jp: 'Shimasu', kana: 'します', en: 'To do', pt: 'Fazer', it: 'Fare', es: 'Hacer', dictionary: 'Dictionary form: Suru (する)' },
-          { jp: 'Hanashimasu', kana: '話します', en: 'To speak', pt: 'Falar', it: 'Parlare', es: 'Hablar', dictionary: 'Dictionary form: Hanasu (話す)' },
-          { jp: 'Kaerimasu', kana: '帰ります', en: 'To go home / return', pt: 'Voltar / Ir para casa', it: 'Tornare (a casa)', es: 'Volver a casa', dictionary: 'Dictionary form: Kaeru (帰る)' },
-          { jp: 'Wakarimasu', kana: '分かります', en: 'To understand', pt: 'Entender', it: 'Capire', es: 'Entender', dictionary: 'Dictionary form: Wakaru (分かる)' },
-          { jp: 'Kimasu', kana: '来ます', en: 'To come', pt: 'Vir', it: 'Venire', es: 'Venir', dictionary: 'Dictionary form: Kuru (来る)' },
-          { jp: 'Machimasu', kana: '待ちます', en: 'To wait', pt: 'Esperar', it: 'Aspettare', es: 'Esperar', dictionary: 'Dictionary form: Matsu (待つ)' },
-          { jp: 'Kikimasu', kana: '聞きます', en: 'To listen / ask', pt: 'Ouvir / Perguntar', it: 'Ascoltare / Chiedere', es: 'Escuchar / preguntar', dictionary: 'Dictionary form: Kiku (聞く)' },
-          { jp: 'Yobimasu', kana: '呼びます', en: 'To call', pt: 'Chamar', it: 'Chiamare', es: 'Llamar', dictionary: 'Dictionary form: Yobu (呼ぶ)' },
-          { jp: 'Yomimasu', kana: '読みます', en: 'To read', pt: 'Ler', it: 'Leggere', es: 'Leer', dictionary: 'Dictionary form: Yomu (読む)' },
-          { jp: 'Kakimasu', kana: '書きます', en: 'To write', pt: 'Escrever', it: 'Scrivere', es: 'Escribir', dictionary: 'Dictionary form: Kaku (書く)' },
-          { jp: 'Oyogimasu', kana: '泳ぎます', en: 'To swim', pt: 'Nadar', it: 'Nuotare', es: 'Nadar', dictionary: 'Dictionary form: Oyogu (泳ぐ)' },
-          { jp: 'Asobimasu', kana: '遊びます', en: 'To play / hang out', pt: 'Brincar / Sair', it: 'Giocare / Divertirsi', es: 'Jugar / divertirse', dictionary: 'Dictionary form: Asobu (遊ぶ)' },
-          { jp: 'Yasumimasu', kana: '休みます', en: 'To rest', pt: 'Descansar', it: 'Riposare', es: 'Descansar', dictionary: 'Dictionary form: Yasumu (休む)' },
-          { jp: 'Okimasu', kana: '起きます', en: 'To wake up', pt: 'Acordar', it: 'Svegliarsi', es: 'Despertarse', dictionary: 'Dictionary form: Okiru (起きる)' },
-          { jp: 'Nemasu', kana: '寝ます', en: 'To sleep', pt: 'Dormir', it: 'Dormire', es: 'Dormir', dictionary: 'Dictionary form: Neru (寝る)' },
-          { jp: 'Hatarakimasu', kana: '働きます', en: 'To work', pt: 'Trabalhar', it: 'Lavorare', es: 'Trabajar', dictionary: 'Dictionary form: Hataraku (働く)' },
-          { jp: 'Benkyou shimasu', kana: '勉強します', en: 'To study', pt: 'Estudar', it: 'Studiare', es: 'Estudiar', dictionary: 'Dictionary form: Benkyou suru (勉強する)' },
-          { jp: 'Oshiemasu', kana: '教えます', en: 'To teach', pt: 'Ensinar', it: 'Insegnare', es: 'Enseñar', dictionary: 'Dictionary form: Oshieru (教える)' },
-          { jp: 'Naraimasu', kana: '習います', en: 'To learn', pt: 'Aprender', it: 'Imparare', es: 'Aprender', dictionary: 'Dictionary form: Narau (習う)' },
-          { jp: 'Kakarimasu', kana: 'かかります', en: 'To take (time) / cost', pt: 'Levar (tempo) / Custar', it: 'Impiegare (tempo) / Costare', es: 'Tardar / costar', dictionary: 'Dictionary form: Kakaru (かかる)' },
-          { jp: 'Magarimasu', kana: '曲がります', en: 'To turn', pt: 'Virar', it: 'Girare / Svoltare', es: 'Girar', dictionary: 'Dictionary form: Magaru (曲がる)' },
-          { jp: 'Tomarimasu', kana: '止まります', en: 'To stop', pt: 'Parar', it: 'Fermarsi', es: 'Parar / detenerse', dictionary: 'Dictionary form: Tomaru (止まる)' },
-          { jp: 'Arukimasu', kana: '歩きます', en: 'To walk', pt: 'Andar / Caminhar', it: 'Camminare', es: 'Caminar', dictionary: 'Dictionary form: Aruku (歩く)' },
-          { jp: 'Hashirimasu', kana: '走ります', en: 'To run', pt: 'Correr', it: 'Correre', es: 'Correr', dictionary: 'Dictionary form: Hashiru (走る)' },
-          { jp: 'Tsukaimasu', kana: '使います', en: 'To use', pt: 'Usar', it: 'Usare', es: 'Usar', dictionary: 'Dictionary form: Tsukau (使う)' },
-          { jp: 'Tsukurimasu', kana: '作ります', en: 'To make', pt: 'Fazer / Preparar', it: 'Fare / Creare', es: 'Hacer / preparar', dictionary: 'Dictionary form: Tsukuru (作る)' },
-          { jp: 'Hairimasu', kana: '入ります', en: 'To enter', pt: 'Entrar', it: 'Entrare', es: 'Entrar', dictionary: 'Dictionary form: Hairu (入る)' },
-          { jp: 'Demasu', kana: '出ます', en: 'To exit / leave', pt: 'Sair', it: 'Uscire', es: 'Salir', dictionary: 'Dictionary form: Deru (出る)' },
-          { jp: 'Suwarimasu', kana: '座ります', en: 'To sit', pt: 'Sentar', it: 'Sedersi', es: 'Sentarse', dictionary: 'Dictionary form: Suwaru (座る)' },
-          { jp: 'Tachimasu', kana: '立ちます', en: 'To stand', pt: 'Levantar / Ficar em pé', it: 'Alzarsi in piedi', es: 'Ponerse de pie', dictionary: 'Dictionary form: Tatsu (立つ)' },
-          { jp: 'Kaeshimasu', kana: '返します', en: 'To return (something)', pt: 'Devolver', it: 'Restituire', es: 'Devolver (algo)', dictionary: 'Dictionary form: Kaesu (返す)' },
-          { jp: 'Kashimasu', kana: '貸します', en: 'To lend', pt: 'Emprestar (para alguém)', it: 'Prestare', es: 'Prestar', dictionary: 'Dictionary form: Kasu (貸す)' },
-          { jp: 'Karimasu', kana: '借ります', en: 'To borrow', pt: 'Pegar emprestado', it: 'Prendere in prestito', es: 'Pedir prestado', dictionary: 'Dictionary form: Kariru (借りる)' },
-          { jp: 'Shimemasu', kana: '閉めます', en: 'To close', pt: 'Fechar', it: 'Chiudere', es: 'Cerrar', dictionary: 'Dictionary form: Shimeru (閉める)' },
-          { jp: 'Akemasu', kana: '開けます', en: 'To open', pt: 'Abrir', it: 'Aprire', es: 'Abrir', dictionary: 'Dictionary form: Akeru (開ける)' },
-          { jp: 'Keshimasu', kana: '消します', en: 'To turn off / erase', pt: 'Desligar / Apagar', it: 'Spegnere / Cancellare', es: 'Apagar / borrar', dictionary: 'Dictionary form: Kesu (消す)' },
-          { jp: 'Tsukemasu', kana: 'つけます', en: 'To turn on', pt: 'Ligar', it: 'Accendere', es: 'Encender', dictionary: 'Dictionary form: Tsukeru (つける)' },
-          { jp: 'Isogimasu', kana: '急ぎます', en: 'To hurry', pt: 'Apressar-se', it: 'Sbrigarsi', es: 'Darse prisa', dictionary: 'Dictionary form: Isogu (急ぐ)' },
-          { jp: 'Okuremasu', kana: '遅れます', en: 'To be late', pt: 'Atrasar-se', it: 'Essere in ritardo', es: 'Llegar tarde', dictionary: 'Dictionary form: Okureru (遅れる)' },
-          { jp: 'Wasuremasu', kana: '忘れます', en: 'To forget', pt: 'Esquecer', it: 'Dimenticare', es: 'Olvidar', dictionary: 'Dictionary form: Wasureru (忘れる)' },
-          { jp: 'Oboemasu', kana: '覚えます', en: 'To remember / memorize', pt: 'Lembrar / Memorizar', it: 'Ricordare / Memorizzare', es: 'Recordar / memorizar', dictionary: 'Dictionary form: Oboeru (覚える)' },
-          { jp: 'Shirimasu', kana: '知ります', en: 'To know', pt: 'Saber / Conhecer', it: 'Sapere / Conoscere', es: 'Saber', dictionary: 'Dictionary form: Shiru (知る)' },
-          { jp: 'Omoimasu', kana: '思います', en: 'To think', pt: 'Achar / Pensar', it: 'Pensare', es: 'Pensar', dictionary: 'Dictionary form: Omou (思う)' }
-        ],
-        quiz: [
-          { q: 'What does "Eki wa doko desu ka?" mean?', options: ['Where is the train station?', 'How much is this?', 'Can I take a photo?'], ans: 0 },
-          { q: 'How do you say "To eat" in Japanese?', options: ['Nomimasu (飲みます)', 'Tabemasu (食べます)', 'Ikimasu (行きます)'], ans: 1 },
-          { q: 'What does "Ikura desu ka?" mean?', options: ['What is this?', 'How much is this?', 'Where am I?'], ans: 1 },
-          { q: 'How do you say "This one, please"?', options: ['Kore o onegaishimasu', 'O-kaikei onegaishimasu', 'Arigatou gozaimasu'], ans: 0 },
-          { q: 'What does "Shimasu" mean?', options: ['To do', 'To go', 'To wait'], ans: 0 },
-          { q: 'How do you say "Water, please"?', options: ['O-mizu o kudasai', 'Wi-Fi wa arimasu ka?', 'Chizu wa arimasu ka?'], ans: 0 },
-          { q: 'What does "Kore wa nan desu ka?" mean?', options: ['Where is the train station?', 'What is this?', 'Can you speak English?'], ans: 1 },
-          { q: 'How do you say "To get off"?', options: ['Orimasu (降ります)', 'Norimasu (乗ります)', 'Shimasu (します)'], ans: 0 },
-          { q: 'What does "Yukkuri hanashite kudasai" mean?', options: ['Can I take a photo?', 'Please speak slowly', 'Can you speak English?'], ans: 1 },
-          { q: 'How do you say "Could you take a photo for me?"', options: ['Shashin o totte moraemasu ka?', 'Chizu wa arimasu ka?', 'Eki wa doko desu ka?'], ans: 0 },
-          { q: 'What does "Osusume wa nan desu ka?" mean?', options: ['What do you recommend?', 'Where is this?', 'What is this?'], ans: 0 },
-          { q: 'How do you say "Please heat it up"?', options: ['Atatamete kudasai', 'Koori nashi de', 'Genkin de'], ans: 0 },
-          { q: 'What does "Koori nashi de" mean?', options: ['Without ice', 'With milk only', 'One bag, please'], ans: 0 },
-          { q: 'How do you say "In cash"?', options: ['Genkin de', 'Karai desu ka?', 'O-kaikei onegaishimasu'], ans: 0 },
-          { q: 'What does "Karai desu ka?" mean?', options: ['Is it spicy?', 'What is this?', 'Does it contain nuts?'], ans: 0 },
-          { q: 'How do you say "I have a seafood allergy"?', options: ['Shiifuudo arerugii nan desu', 'Nattsu haitte imasu ka?', 'O-mizu o kudasai'], ans: 0 },
-          { q: 'How do you say "Menu, please"?', options: ['O-shibori o kudasai', 'Menyuu o kudasai', 'Reshiito onegaishimasu'], ans: 1 },
-          { q: 'What does "Toire wa doko desu ka?" mean?', options: ['Where is the restroom?', 'What is this?', 'Where am I?'], ans: 0 },
-          { q: 'How do you say "I am lost"?', options: ['Mayotte shimaimashita', 'Tetsudatte kurete arigatou gozaimasu', 'Wakarimasen'], ans: 0 },
-          { q: 'What is the dictionary form of "Nemasu" (To sleep)?', options: ['Nemu (ねむ)', 'Neru (寝る)', 'Okiru (起きる)'], ans: 1 },
-          { q: 'How do you say "To read" in Japanese?', options: ['Yomimasu (読みます)', 'Kakimasu (書きます)', 'Kikimasu (聞きます)'], ans: 0 },
-          { q: 'What does "Kaado de haraemasu ka?" mean?', options: ['Do you have a larger size?', 'Can I pay by card?', 'For takeout, please.'], ans: 1 },
-          { q: 'How do you say "For takeout"?', options: ['Koko de taberaremasu ka?', 'Reshiito onegaishimasu', 'Mochikaeri de'], ans: 2 },
-          { q: 'What does "Arukimasu" mean?', options: ['To walk', 'To run', 'To turn'], ans: 0 },
-          { q: 'How do you say "Could you say that again?"', options: ['Mou ichido onegai shimasu', 'Yukkuri hanashite kudasai', 'Koko ni kaite kudasai'], ans: 0 },
-          { q: 'What is the dictionary form of "Asobimasu"?', options: ['Asobu (遊ぶ)', 'Asobiru (遊びる)', 'Aso (あそ)'], ans: 0 },
-          { q: 'What does "Tsukurimasu" mean?', options: ['To use', 'To enter', 'To make'], ans: 2 },
-          { q: 'How do you say "A receipt, please"?', options: ['Reshiito onegaishimasu', 'Kippu uriba wa doko desu ka?', 'Kaado de haraemasu ka?'], ans: 0 },
-          { q: 'What does "Mite iru dake desu" mean?', options: ['Can I try this on?', 'I am just looking.', 'Do you have a larger size?'], ans: 1 },
-          { q: 'How do you say "To swim" in Japanese?', options: ['Hatarakimasu (働きます)', 'Yasumimasu (休みます)', 'Oyogimasu (泳ぎます)'], ans: 2 },
-          { q: 'What does "Tsukaimasu" mean?', options: ['To use', 'To make', 'To enter'], ans: 0 },
-          { q: 'How do you say "Can I try this on?"', options: ['Shichaku shite mo ii desu ka?', 'Mite iru dake desu', 'Koko de taberaremasu ka?'], ans: 0 },
-          { q: 'What is the meaning of "Okimasu"?', options: ['To wake up', 'To sleep', 'To work'], ans: 0 },
-          { q: 'How do you say "To teach" in Japanese?', options: ['Naraimasu (習います)', 'Oshiemasu (教えます)', 'Benkyou shimasu (勉強します)'], ans: 1 },
-          { q: 'What does "Magarimasu" mean?', options: ['To take (time/money)', 'To stop', 'To turn'], ans: 2 },
-          { q: 'How do you say "To the airport, please"?', options: ['Kuukou made onegaishimasu', 'Tsugi no eki wa doko desu ka?', 'Nan-ban sen desu ka?'], ans: 0 },
-          { q: 'How do you say "To sit"?', options: ['Tachimasu (立ちます)', 'Suwarimasu (座ります)', 'Kaeshimasu (返します)'], ans: 1 },
-          { q: 'What does "Koko ni ikitai desu" mean?', options: ['I want to go here.', 'Is it near?', 'Is it far?'], ans: 0 },
-          { q: 'How do you say "To close"?', options: ['Akemasu (開けます)', 'Tsukemasu (つけます)', 'Shimemasu (閉めます)'], ans: 2 },
-          { q: 'What does "Akemasu" mean?', options: ['To open', 'To close', 'To turn on'], ans: 0 },
-          { q: 'How do you say "Is it near?"?', options: ['Tooi desu ka?', 'Chikai desu ka?', 'Jikan wa dorekurai kakarimasu ka?'], ans: 1 },
-          { q: 'What does "Tsukemasu" mean?', options: ['To turn off', 'To turn on', 'To erase'], ans: 1 },
-          { q: 'How do you say "To hurry"?', options: ['Isogimasu (急ぎます)', 'Okuremasu (遅れます)', 'Wasuremasu (忘れます)'], ans: 0 },
-          { q: 'What does "Oboemasu" mean?', options: ['To forget', 'To know', 'To remember'], ans: 2 },
-          { q: 'How do you say "Do you have anything a little cheaper?"?', options: ['Mou sukoshi yasui no wa arimasu ka?', 'Shashin o misete kudasai.', 'Koko ni ikitai desu.'], ans: 0 },
-          { q: 'What does "Wasuremasu" mean?', options: ['To forget', 'To think', 'To know'], ans: 0 },
-          { q: 'How do you say "To turn off"?', options: ['Keshimasu (消します)', 'Tsukemasu (つけます)', 'Akemasu (開けます)'], ans: 0 },
-          { q: 'What does "Tachimasu" mean?', options: ['To stand', 'To sit', 'To return'], ans: 0 },
-          { q: 'How do you say "I want to go here"?', options: ['Koko ni ikitai desu', 'Tooi desu ka?', 'Chikai desu ka?'], ans: 0 },
-          { q: 'What does "Shirimasu" mean?', options: ['To know', 'To think', 'To memorize'], ans: 0 }
-        ]
-      };
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 1400);
+    }
 
-      // Pre-recorded pronunciation files: real audio, so the speak button
-      // works even on devices/browsers with no Japanese TTS voice.
-      data.phrases.forEach((item, i) => {
-        item.audio = `fc-audio/phrase-${String(i + 1).padStart(2, '0')}.mp3`;
-      });
-      data.verbs.forEach((item, i) => {
-        item.audio = `fc-audio/verb-${String(i + 1).padStart(2, '0')}.mp3`;
-      });
-
-      let type = 'phrases';
-      let index = 0;
-      const deckOrders = { phrases: null, verbs: null };
-
-      function currentItem() {
-        const order = deckOrders[type];
-        return order ? data[type][order[index]] : data[type][index];
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
       }
-      let quizIndex = 0;
-      let quizScore = 0;
-      let quizOrder = [];
+      return a;
+    }
 
-      function shuffled(arr) {
-        const a = arr.slice();
-        for (let i = a.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [a[i], a[j]] = [a[j], a[i]];
-        }
-        return a;
+    function filteredList() {
+      let arr = DATA[deck];
+      if (scene === 'review') arr = arr.filter(x => reviewSet.has(x.id));
+      else if (scene !== 'all') arr = arr.filter(x => x.scene === scene);
+      if (!arr.length) arr = DATA[deck];
+      if (customOrder) {
+        const map = new Map(arr.map(x => [x.id, x]));
+        const ordered = customOrder.map(id => map.get(id)).filter(Boolean);
+        if (ordered.length === arr.length) return ordered;
       }
+      return arr;
+    }
 
-      const card = root.querySelector('#ohayo-card');
-      const cardArea = root.querySelector('#card-area');
-      const quizArea = root.querySelector('#quiz-area');
-      const cardControls = root.querySelector('#card-controls');
-      const quizControls = root.querySelector('#quiz-controls');
-
-      // --- TRANSLATION LANGUAGE (second slot on the card back) ---
-      const LANG_LABELS = { pt: 'PORTUGUÊS', it: 'ITALIANO', es: 'ESPAÑOL' };
-      let secondLang = 'pt';
-      function setSecondLang(lang) {
-        secondLang = lang;
-        root.querySelector('#lang-pt').classList.toggle('on', lang === 'pt');
-        root.querySelector('#lang-it').classList.toggle('on', lang === 'it');
-        root.querySelector('#lang-es').classList.toggle('on', lang === 'es');
-        renderCard();
-      }
-      root.querySelector('#lang-pt').addEventListener('click', () => setSecondLang('pt'));
-      root.querySelector('#lang-it').addEventListener('click', () => setSecondLang('it'));
-      root.querySelector('#lang-es').addEventListener('click', () => setSecondLang('es'));
-
-      // --- CARD LOGIC ---
-      function renderCard() {
-        const item = currentItem();
-        card.classList.remove('flipped');
-
-        root.querySelector('#front-tag').textContent =
-          type === 'phrases' ? 'Japanese Phrase' : 'Japanese Verb · ます Form';
-
-        root.querySelector('#front-jp').textContent = item.jp;
-        root.querySelector('#front-kana').textContent = item.kana;
-        root.querySelector('#english').textContent = item.en;
-        root.querySelector('#second-lang-label').textContent = LANG_LABELS[secondLang];
-        root.querySelector('#second-lang').textContent = item[secondLang];
-        const dictEl = root.querySelector('#dictionary');
-        dictEl.textContent = item.dictionary || '';
-        dictEl.style.display = item.dictionary ? '' : 'none';
-
-        updateProgress(index + 1, data[type].length, 'Card');
-        const shBtn = root.querySelector('#shuffle');
-        const isShuffled = !!deckOrders[type];
-        shBtn.classList.toggle('on', isShuffled);
-        shBtn.textContent = isShuffled ? '🔀 Shuffled (tap to reset)' : '🔀 Shuffle cards';
-      }
-
-      function flipCard() {
-        card.classList.toggle('flipped');
-      }
-
-      // --- SPEECH (pre-recorded MP3s first; browser text-to-speech as fallback) ---
-      const speakBtn = root.querySelector('#speak');
-      // One reusable player for the pre-recorded pronunciation files.
-      const fcPlayer = new Audio();
-      fcPlayer.preload = 'auto';
-      // Warm up the voice list: iOS loads voices asynchronously, and an
-      // empty list on the first tap can make speech fail silently.
-      let cachedVoices = [];
-      function refreshVoices() {
-        if ('speechSynthesis' in window) cachedVoices = window.speechSynthesis.getVoices() || [];
-      }
-      if ('speechSynthesis' in window) {
-        refreshVoices();
-        window.speechSynthesis.addEventListener('voiceschanged', refreshVoices);
-      }
-      const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent || '');
-      function speakWithBrowserTTS(item) {
-        if (!('speechSynthesis' in window)) return;
-        const synth = window.speechSynthesis;
-        const utter = new SpeechSynthesisUtterance(item.kana);
-        utter.lang = 'ja-JP';
-        utter.rate = 0.85;
-        // On iOS, forcing a listed-but-not-downloaded voice can produce no
-        // sound at all, so let iOS pick its own Japanese voice there.
-        if (!isIOS) {
-          const jaVoice = cachedVoices.find(v => v.lang && v.lang.toLowerCase().replace(/_/g, '-').startsWith('ja'));
-          if (jaVoice) utter.voice = jaVoice;
-        }
-        const speakNow = () => {
-          synth.speak(utter);
-          if (synth.paused) synth.resume();
-        };
-        if (synth.speaking || synth.pending) {
-          // iOS drops utterances queued in the same tick as cancel().
-          synth.cancel();
-          setTimeout(speakNow, 80);
-        } else {
-          speakNow();
-        }
-      }
-      speakBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const item = currentItem();
-        if (!item) return;
-        if (item.audio) {
-          let fellBack = false;
-          const fallback = () => {
-            if (fellBack) return;
-            fellBack = true;
-            speakWithBrowserTTS(item);
-          };
-          fcPlayer.onerror = fallback;
-          fcPlayer.src = item.audio;
-          const playPromise = fcPlayer.play();
-          if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(fallback);
-          }
-        } else {
-          speakWithBrowserTTS(item);
-        }
-      });
-
-      // --- QUIZ LOGIC ---
-      let lastBreakAt = -1;
-
-      function renderQuiz() {
-        if (quizIndex >= data.quiz.length) {
-          showQuizResult();
-          return;
-        }
-
-        if (quizIndex > 0 && quizIndex % 10 === 0 && lastBreakAt !== quizIndex) {
-          lastBreakAt = quizIndex;
-          root.querySelector('#quiz-active-state').style.display = 'none';
-          root.querySelector('#quiz-result-state').style.display = 'none';
-          root.querySelector('#quiz-break-state').style.display = 'flex';
-          root.querySelector('#quiz-controls').style.display = 'none';
-          root.querySelector('#break-title').textContent = `${quizIndex} Questions Done!`;
-          root.querySelector('#break-score').textContent = `Score so far: ${quizScore} / ${quizIndex}`;
-          root.querySelector('#counter').textContent = `Question ${quizIndex} of ${data.quiz.length}`;
-          root.querySelector('#bar').style.width = `${(quizIndex / data.quiz.length) * 100}%`;
-          return;
-        }
-        root.querySelector('#quiz-break-state').style.display = 'none';
-        root.querySelector('#quiz-controls').style.display = 'flex';
-
-        const item = data.quiz[quizOrder[quizIndex]];
-        root.querySelector('#quiz-break-state').style.display = 'none';
-        root.querySelector('#quiz-active-state').style.display = 'block';
-        root.querySelector('#quiz-result-state').style.display = 'none';
-
-        root.querySelector('#quiz-question').textContent = item.q;
-        root.querySelector('#quiz-feedback').textContent = '';
-        root.querySelector('#next-question').disabled = true;
-
-        const optionsContainer = root.querySelector('#quiz-options');
-        optionsContainer.innerHTML = '';
-
-        const correctText = item.options[item.ans];
-        shuffled(item.options).forEach((opt) => {
-          const btn = document.createElement('button');
-          btn.className = 'quiz-option';
-          btn.textContent = opt;
-          btn.onclick = () => handleQuizAnswer(opt === correctText, btn, optionsContainer);
-          optionsContainer.appendChild(btn);
-        });
-
-        updateProgress(quizIndex + 1, data.quiz.length, 'Question');
-        root.querySelector('#counter').textContent = `Question ${quizIndex + 1} of ${data.quiz.length} · Score: ${quizScore}`;
-      }
-
-      function handleQuizAnswer(isCorrect, selectedBtn, container) {
-        const buttons = container.querySelectorAll('button');
-        buttons.forEach(btn => btn.disabled = true);
-
-        if (isCorrect) {
-          selectedBtn.classList.add('correct');
-          root.querySelector('#quiz-feedback').textContent = '✅ Correct!';
-          root.querySelector('#quiz-feedback').style.color = '#065f46';
-          quizScore++;
-        } else {
-          selectedBtn.classList.add('wrong');
-          const item = data.quiz[quizOrder[quizIndex]];
-          buttons.forEach(btn => {
-            if (btn.textContent === item.options[item.ans]) btn.classList.add('correct');
-          });
-          root.querySelector('#quiz-feedback').textContent = '❌ Incorrect';
-          root.querySelector('#quiz-feedback').style.color = '#991b1b';
-        }
-
-        root.querySelector('#counter').textContent = `Question ${quizIndex + 1} of ${data.quiz.length} · Score: ${quizScore}`;
-        root.querySelector('#next-question').disabled = false;
-      }
-
-      function showQuizResult() {
-        root.querySelector('#quiz-active-state').style.display = 'none';
-        root.querySelector('#quiz-break-state').style.display = 'none';
-        root.querySelector('#quiz-result-state').style.display = 'flex';
-        root.querySelector('#quiz-controls').style.display = 'none';
-        root.querySelector('#counter').textContent = 'Complete';
-        root.querySelector('#bar').style.width = '100%';
-        root.querySelector('#quiz-score').textContent = `You scored ${quizScore} / ${data.quiz.length}`;
-      }
-
-      function resetQuiz() {
-        quizIndex = 0;
-        quizScore = 0;
-        lastBreakAt = -1;
-        quizOrder = shuffled(data.quiz.map((_, i) => i));
-        root.querySelector('#quiz-controls').style.display = 'flex';
-        renderQuiz();
-      }
-
-      // --- SHARED LOGIC ---
-      function updateProgress(current, total, label) {
-        root.querySelector('#counter').textContent = `${label} ${current} of ${total}`;
-        root.querySelector('#bar').style.width = `${(current / total) * 100}%`;
-      }
-
-      function switchTab(newType) {
-        type = newType;
-
-        if (type === 'quiz') {
-          cardArea.style.display = 'none';
-          cardControls.style.display = 'none';
-          root.querySelector('#shuffle-row').style.display = 'none';
-          root.querySelector('#lang-row').style.display = 'none';
-          quizArea.style.display = 'block';
-          quizControls.style.display = 'flex';
-          resetQuiz();
-        } else {
-          cardArea.style.display = 'block';
-          cardControls.style.display = 'flex';
-          root.querySelector('#shuffle-row').style.display = 'flex';
-          root.querySelector('#lang-row').style.display = 'flex';
-          quizArea.style.display = 'none';
-          quizControls.style.display = 'none';
-          index = 0;
+    function renderScenes() {
+      const box = document.getElementById('sceneChips');
+      box.innerHTML = '';
+      document.getElementById('filterTitle').textContent =
+        deck === 'phrases' ? '📍 Filter by Travel Scene' : '📍 Filter by Verb Group';
+      const deckReviewCount = DATA[deck].filter(x => reviewSet.has(x.id)).length;
+      SCENES[deck].forEach(s => {
+        const b = document.createElement('button');
+        b.className = 'chip' + (scene === s.key ? ' active' : '');
+        b.textContent = s.key === 'review' ? `🔁 Review (${deckReviewCount})` : s.label;
+        b.onclick = () => {
+          scene = s.key;
+          customOrder = null;
+          idx = 0;
+          document.getElementById('shuffleBtn').classList.remove('active');
+          renderScenes();
           renderCard();
-        }
+        };
+        box.appendChild(b);
+      });
+    }
+
+    function renderCard() {
+      const list = filteredList();
+      if (idx >= list.length) idx = 0;
+      const item = list[idx];
+      document.getElementById('cardStage').classList.remove('flipped');
+      const sc = SCENES[deck].find(s => s.key === item.scene);
+      document.getElementById('sceneChip').textContent = sc ? sc.label : '✈️ Travel';
+      document.getElementById('frontJp').textContent = hideRomaji ? item.kana : item.jp;
+      document.getElementById('frontKana').textContent = hideRomaji ? '(Romaji hidden)' : item.kana;
+      document.getElementById('backEn').textContent = item.en;
+      document.getElementById('backLangLabel').textContent = LANG_NAMES[lang];
+      document.getElementById('backLang').textContent = item[lang];
+      const dictEl = document.getElementById('backDict');
+      dictEl.textContent = item.dictionary || '';
+      dictEl.classList.toggle('hidden', !item.dictionary);
+
+      const mCount = list.filter(x => mastered.has(x.id)).length;
+      document.getElementById('cardCounter').textContent = `Card ${idx + 1} / ${list.length}`;
+      document.getElementById('masteryLabel').textContent = `✅ Mastered: ${mCount} / ${list.length}`;
+      document.getElementById('progFill').style.width = `${(mCount / list.length) * 100}%`;
+    }
+
+    // 10-Q Quiz
+    function startQuiz() {
+      document.getElementById('quizBox').classList.remove('hidden');
+      document.getElementById('quizDoneBox').classList.add('hidden');
+      const pool = filteredList().length >= 4 ? filteredList() : DATA[deck];
+      qList = shuffle(pool).slice(0, Math.min(10, pool.length));
+      qIdx = 0;
+      qScore = 0;
+      qCombo = 0;
+      qMaxCombo = 0;
+      renderQuiz();
+    }
+
+    function renderQuiz() {
+      if (qIdx >= qList.length) {
+        document.getElementById('quizBox').classList.add('hidden');
+        document.getElementById('quizDoneBox').classList.remove('hidden');
+        const pct = Math.round((qScore / qList.length) * 100);
+        const rank = pct === 100 ? 'S' : pct >= 80 ? 'A' : pct >= 60 ? 'B' : 'C';
+        document.getElementById('quizDoneTitle').textContent = `Rank ${rank} — Quiz Complete!`;
+        document.getElementById('quizDoneScore').textContent = `Score: ${qScore} / ${qList.length} (Max Combo 🔥 ${qMaxCombo})`;
+        return;
       }
+      const item = qList[qIdx];
+      document.getElementById('qProg').textContent = `Question ${qIdx + 1} / ${qList.length}`;
+      document.getElementById('qScore').textContent = `⭐ ${qScore} · 🔥 ${qCombo}`;
+      document.getElementById('quizQ').textContent = quizMode === 'listen' ? '🎧 Listen & choose the meaning!' : item.jp;
+      document.getElementById('quizSub').textContent = quizMode === 'listen' ? '(Japanese hidden — tap 🔊 above)' : item.kana;
+      document.getElementById('quizFeedback').textContent = '';
+      document.getElementById('quizNextBtn').classList.add('hidden');
 
-      // --- EVENT LISTENERS ---
-      root.querySelectorAll('.tab').forEach(button => {
-        button.addEventListener('click', () => {
-          root.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-          button.classList.add('active');
-          switchTab(button.dataset.type);
-        });
-      });
+      if (quizMode === 'listen') playAudio(item.audio, 1.0);
 
-      // Card Events
-      root.querySelector('#flip').addEventListener('click', flipCard);
-      card.addEventListener('click', flipCard);
-      card.addEventListener('keydown', e => {
-        if (e.target.closest('button')) return;
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          flipCard();
-        }
+      const distractors = shuffle(DATA[deck].filter(x => x.id !== item.id)).slice(0, 3);
+      const opts = shuffle([item, ...distractors]);
+      const box = document.getElementById('quizOpts');
+      box.innerHTML = '';
+      opts.forEach(o => {
+        const b = document.createElement('button');
+        b.className = 'quiz-opt';
+        b.textContent = `${o.en}  ·  ${o[lang]}`;
+        b.onclick = () => {
+          [...box.children].forEach(c => c.disabled = true);
+          if (o.id === item.id) {
+            b.classList.add('ok');
+            qScore++;
+            qCombo++;
+            if (qCombo > qMaxCombo) qMaxCombo = qCombo;
+            mastered.add(item.id);
+            reviewSet.delete(item.id);
+            saveSet(LS_MASTER, mastered);
+            saveSet(LS_REVIEW, reviewSet);
+            document.getElementById('quizFeedback').textContent = `✅ Correct! ${item.jp} (${item.kana})`;
+            document.getElementById('quizFeedback').style.color = 'var(--good)';
+            playAudio(item.audio, 1.0);
+          } else {
+            b.classList.add('ng');
+            qCombo = 0;
+            reviewSet.add(item.id);
+            saveSet(LS_REVIEW, reviewSet);
+            [...box.children].forEach((c, i) => {
+              if (opts[i].id === item.id) c.classList.add('ok');
+            });
+            document.getElementById('quizFeedback').textContent = `❌ ${item.jp} (${item.kana}) = ${item.en}`;
+            document.getElementById('quizFeedback').style.color = 'var(--bad)';
+          }
+          document.getElementById('qScore').textContent = `⭐ ${qScore} · 🔥 ${qCombo}`;
+          document.getElementById('quizNextBtn').classList.remove('hidden');
+        };
+        box.appendChild(b);
       });
-      root.querySelector('#prev').addEventListener('click', () => {
-        index = (index - 1 + data[type].length) % data[type].length;
-        renderCard();
-      });
-      root.querySelector('#next').addEventListener('click', () => {
-        index = (index + 1) % data[type].length;
-        renderCard();
-      });
+    }
 
-      // Shuffle Event
-      root.querySelector('#shuffle').addEventListener('click', () => {
-        deckOrders[type] = deckOrders[type] ? null : shuffled(data[type].map((_, i) => i));
-        index = 0;
-        renderCard();
+    // Pocket Phrasebook List
+    function renderList() {
+      const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+      const box = document.getElementById('listContainer');
+      box.innerHTML = '';
+      const hits = DATA[deck].filter(x =>
+        !q ||
+        x.en.toLowerCase().includes(q) ||
+        x.jp.toLowerCase().includes(q) ||
+        x.kana.includes(q) ||
+        x[lang].toLowerCase().includes(q)
+      );
+      if (!hits.length) {
+        box.innerHTML = '<p style="text-align:center; color:var(--muted); padding:20px;">No matching phrases found.</p>';
+        return;
+      }
+      hits.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'list-item' + (mastered.has(item.id) ? ' mastered' : '');
+        div.innerHTML = `
+          <div>
+            <div class="list-jp">${item.jp}</div>
+            <div class="list-kana">${item.kana}</div>
+            <div class="list-en">${item.en} · ${item[lang]}${item.dictionary ? ' (' + item.dictionary + ')' : ''}</div>
+          </div>
+          <div class="list-actions">
+            <button class="audio-btn" data-act="norm" type="button" aria-label="Play audio">🔊</button>
+            <button class="audio-btn" data-act="slow" type="button" aria-label="Play slow audio">🐢</button>
+          </div>
+        `;
+        div.querySelector('[data-act="norm"]').onclick = () => playAudio(item.audio, 1.0);
+        div.querySelector('[data-act="slow"]').onclick = () => playAudio(item.audio, 0.75);
+        box.appendChild(div);
       });
+    }
 
-      // Quiz Events
-      root.querySelector('#next-question').addEventListener('click', () => {
-        quizIndex++;
-        renderQuiz();
-      });
-      root.querySelector('#quiz-retry').addEventListener('click', resetQuiz);
-      root.querySelector('#quiz-continue').addEventListener('click', renderQuiz);
+    // Events
+    document.querySelectorAll('.mode-tab').forEach(b => b.onclick = () => {
+      document.querySelectorAll('.mode-tab').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      mode = b.dataset.mode;
+      document.getElementById('cardsView').classList.toggle('hidden', mode !== 'cards');
+      document.getElementById('quizView').classList.toggle('hidden', mode !== 'quiz');
+      document.getElementById('listView').classList.toggle('hidden', mode !== 'list');
+      if (mode === 'cards') { renderScenes(); renderCard(); }
+      if (mode === 'quiz') startQuiz();
+      if (mode === 'list') renderList();
+    });
 
-      // Initialize
+    document.querySelectorAll('[data-deck]').forEach(b => b.onclick = () => {
+      document.querySelectorAll('[data-deck]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      deck = b.dataset.deck;
+      scene = 'all';
+      customOrder = null;
+      idx = 0;
+      document.getElementById('shuffleBtn').classList.remove('active');
+      renderScenes();
       renderCard();
-    })();
-  </script>
-</div>
+      if (mode === 'quiz') startQuiz();
+      if (mode === 'list') renderList();
+    });
 
+    document.querySelectorAll('[data-lang]').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+      b.onclick = () => {
+        document.querySelectorAll('[data-lang]').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        lang = b.dataset.lang;
+        localStorage.setItem(LS_LANG, lang);
+        renderCard();
+        if (mode === 'quiz' && qIdx < qList.length) renderQuiz();
+        if (mode === 'list') renderList();
+      };
+    });
+
+    document.querySelectorAll('[data-qmode]').forEach(b => b.onclick = () => {
+      document.querySelectorAll('[data-qmode]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      quizMode = b.dataset.qmode;
+      startQuiz();
+    });
+
+    const cardStage = document.getElementById('cardStage');
+    cardStage.onclick = e => { if (!e.target.closest('button')) cardStage.classList.toggle('flipped'); };
+    cardStage.onkeydown = e => {
+      if (e.target.closest('button')) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cardStage.classList.toggle('flipped'); }
+    };
+    document.getElementById('btnFlip').onclick = () => cardStage.classList.toggle('flipped');
+
+    document.getElementById('playNormal').onclick = e => { e.stopPropagation(); playAudio(filteredList()[idx].audio, 1.0); };
+    document.getElementById('playSlow').onclick = e => { e.stopPropagation(); playAudio(filteredList()[idx].audio, 0.75); };
+    document.getElementById('playBack').onclick = e => { e.stopPropagation(); playAudio(filteredList()[idx].audio, 1.0); };
+    document.getElementById('quizAudioBtn').onclick = () => { if (qList[qIdx]) playAudio(qList[qIdx].audio, 1.0); };
+    document.getElementById('quizSlowBtn').onclick = () => { if (qList[qIdx]) playAudio(qList[qIdx].audio, 0.75); };
+    document.getElementById('quizNextBtn').onclick = () => { qIdx++; renderQuiz(); };
+    document.getElementById('quizRetryBtn').onclick = startQuiz;
+
+    document.getElementById('btnPrev').onclick = () => {
+      const l = filteredList();
+      idx = (idx - 1 + l.length) % l.length;
+      renderCard();
+    };
+    document.getElementById('btnNext').onclick = () => {
+      const l = filteredList();
+      idx = (idx + 1) % l.length;
+      renderCard();
+    };
+    document.getElementById('btnGot').onclick = () => {
+      const l = filteredList();
+      const item = l[idx];
+      mastered.add(item.id);
+      reviewSet.delete(item.id);
+      saveSet(LS_MASTER, mastered);
+      saveSet(LS_REVIEW, reviewSet);
+      idx = (idx + 1) % filteredList().length;
+      renderScenes();
+      renderCard();
+      showToast('✅ Marked as Mastered!');
+    };
+    document.getElementById('btnAgain').onclick = () => {
+      const l = filteredList();
+      const item = l[idx];
+      reviewSet.add(item.id);
+      mastered.delete(item.id);
+      saveSet(LS_MASTER, mastered);
+      saveSet(LS_REVIEW, reviewSet);
+      idx = (idx + 1) % l.length;
+      renderScenes();
+      renderCard();
+      showToast('🔁 Saved to Review!');
+    };
+
+    document.getElementById('hideRomajiBtn').onclick = e => {
+      hideRomaji = !hideRomaji;
+      e.target.classList.toggle('active', hideRomaji);
+      renderCard();
+    };
+    document.getElementById('shuffleBtn').onclick = e => {
+      if (customOrder) {
+        customOrder = null;
+        e.target.classList.remove('active');
+        showToast('↩️ Order reset');
+      } else {
+        customOrder = shuffle(filteredList().map(x => x.id));
+        e.target.classList.add('active');
+        showToast('🔀 Shuffled!');
+      }
+      idx = 0;
+      renderCard();
+    };
+    document.getElementById('searchInput').oninput = renderList;
+
+    // Keyboard shortcuts in Flashcards mode
+    document.addEventListener('keydown', e => {
+      if (mode !== 'cards' || document.activeElement.tagName === 'INPUT') return;
+      if (e.key === 'ArrowRight') document.getElementById('btnNext').click();
+      else if (e.key === 'ArrowLeft') document.getElementById('btnPrev').click();
+    });
+
+    // Dark mode sync with ohayo_theme
+    const themeBtn = document.getElementById('themeBtn');
+    if (localStorage.getItem('ohayo_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeBtn.textContent = '☀️';
+    }
+    themeBtn.onclick = () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('ohayo_theme', isDark ? 'dark' : 'light');
+    };
+
+    renderScenes();
+    renderCard();
+  </script>
 </body>
 </html>
