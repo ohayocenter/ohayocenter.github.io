@@ -1,400 +1,227 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第1回 N3語彙 25問 - OHAYO CENTER</title>
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="OHAYO CENTER">
-<meta property="og:title" content="N3 Vocabulary Quiz Part 1 (25 Questions) | OHAYO CENTER">
-<meta property="og:description" content="JLPT N3 vocabulary quiz, part 1: 25 questions with part-by-part scoring and saved best scores.">
-<meta property="og:url" content="https://ohayocenter.com/N3-1.html">
-<meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="N3 Vocabulary Quiz Part 1 (25 Questions) | OHAYO CENTER">
-<meta name="twitter:description" content="JLPT N3 vocabulary quiz, part 1: 25 questions with part-by-part scoring and saved best scores.">
-<meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-  <link rel="icon" href="icon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N3 Vocabulary Trainer 1 | OHAYO CENTER</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OHAYO CENTER">
+    <meta property="og:title" content="N3 Vocabulary Trainer 1 (Daily Life & Cooking) | OHAYO CENTER">
+    <meta property="og:description" content="Interactive JLPT N3 vocabulary trainer (Part 1, 25 questions) with Romaji toggle, timed mock test, weak review, and natural Japanese audio.">
+    <meta property="og:url" content="https://ohayocenter.com/N3-1.html">
+    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="N3 Vocabulary Trainer 1 (Daily Life & Cooking) | OHAYO CENTER">
+    <meta name="twitter:description" content="Interactive JLPT N3 vocabulary trainer (Part 1, 25 questions) with Romaji toggle, timed mock test, weak review, and natural Japanese audio.">
+    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-<style>
-  /* --- ナビゲーションバーのスタイル --- */
-  nav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    padding: 0 5%;
-    height: 70px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    font-family: 'Noto Sans JP', sans-serif;
-    box-sizing: border-box;
-  }
-  .logo {
-    font-family: 'Sawarabi Mincho', serif;
-    font-weight: bold;
-    font-size: 1.2rem;
-    white-space: nowrap;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #2c3e50;
-  }
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
-    margin: 0;
-    padding: 0;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-  }
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff9f43;
+            --primary-dark: #e67e22;
+            --primary-light: #fff5eb;
+            --dark: #2c3e50;
+            --text: #374151;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --green: #16a34a;
+            --green-bg: #dcfce7;
+            --red: #dc2626;
+            --red-bg: #fee2e2;
+            --blue: #2563eb;
+            --blue-bg: #eff6ff;
+            --bmc-color: #FFDD00;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0; left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
+        .nav-links a:hover { color: var(--primary); }
 
-  @media (max-width: 600px) {
-    nav { padding: 0 15px; }
-    .logo { font-size: 1rem; }
-    .nav-links { gap: 0.8rem; }
-    .nav-links a { font-size: 0.7rem; }
-  }
+        .wrap { max-width: 800px; margin: 0 auto; padding: 22px 16px 40px; }
 
-  body {
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    padding: 90px 20px 80px;
-  }
-  .slide-container {
-    background-color: #ffffff;
-    width: 100%;
-    max-width: 800px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    padding: 40px;
-    box-sizing: border-box;
-    position: relative;
-  }
-  h1 {
-    text-align: center;
-    color: #2c3e50;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-  }
-  .topic-label {
-    background-color: #e2e8f0;
-    color: #4a5568;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    display: inline-block;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-  
-  .slide {
-    display: none;
-    animation: fadeIn 0.4s;
-  }
-  .slide.active {
-    display: block;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        .hero {
+            background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+            padding: 22px; box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05); margin-bottom: 16px;
+        }
+        .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+        .level-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--primary-light); color: var(--primary-dark);
+            font-size: 12px; font-weight: 700; padding: 4px 12px;
+            border-radius: 999px; letter-spacing: 0.03em; margin-bottom: 8px;
+        }
+        .hero h1 { margin: 0; font-family: 'Sawarabi Mincho', 'Noto Sans JP', serif; font-size: 1.48rem; color: var(--dark); line-height: 1.3; }
+        .hero-sub { margin: 5px 0 0; font-size: 0.86rem; color: var(--muted); }
+        .hero-toggles { display: flex; gap: 8px; flex-wrap: wrap; }
+        .toggle-pill {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 6px 12px; border-radius: 999px;
+            border: 1.5px solid var(--border); background: #fff;
+            font-size: 12px; font-weight: 700; color: var(--dark);
+            cursor: pointer; transition: all 0.15s; font-family: inherit;
+        }
+        .toggle-pill.on { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); }
 
-  .question-block {
-    margin-bottom: 35px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed #e2e8f0;
-  }
-  .question-block:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-  .question-text {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 15px;
-    line-height: 1.5;
-  }
-  .options {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 15px 0;
-  }
-  .options li {
-    background-color: #f7fafc;
-    border: 1px solid #cbd5e0;
-    margin-bottom: 8px;
-    padding: 10px 15px;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-  }
-  .options li:hover {
-    background-color: #ebf4ff;
-    cursor: pointer;
-  }
-  .options label {
-    cursor: pointer;
-    display: block;
-    width: 100%;
-  }
-  .btn-group {
-    display: flex;
-    gap: 10px;
-  }
-  .action-btn {
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.2s;
-    font-weight: bold;
-  }
-  .hint-btn { background-color: #4299e1; }
-  .hint-btn:hover { background-color: #3182ce; }
-  .answer-btn { background-color: #48bb78; }
-  .answer-btn:hover { background-color: #38a169; }
-  
-  .info-box {
-    display: none;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 4px;
-    font-size: 0.95em;
-  }
-  .hint-text {
-    background-color: #fffaf0;
-    border-left: 4px solid #ed8936;
-    color: #555;
-    font-style: italic;
-  }
-  .answer-text {
-    background-color: #f0fff4;
-    border-left: 4px solid #48bb78;
-    color: #276749;
-    font-weight: bold;
-  }
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+        .stat-box { background: #f9fafb; border: 1px solid #eef0f3; border-radius: 12px; padding: 10px 8px; text-align: center; }
+        .stat-val { font-size: 1.1rem; font-weight: 800; color: var(--dark); line-height: 1.2; }
+        .stat-val.green { color: var(--green); }
+        .stat-val.red { color: var(--red); }
+        .stat-val.orange { color: var(--primary-dark); }
+        .stat-lbl { font-size: 0.7rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+        .mastery-bar { height: 8px; background: #eef2f7; border-radius: 999px; overflow: hidden; margin-top: 12px; }
+        .mastery-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #fbbf24); border-radius: 999px; transition: width 0.35s ease; }
 
-  /* --- 今回の主要な変更箇所: スライド切り替えボタン --- */
-  .nav-controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 2px solid #e2e8f0;
-  }
-  .slide-btn {
-    background-color: #ffffff;
-    color: #2c3e50;
-    border: 2px solid #2c3e50;
-    padding: 10px 15px;
-    border-radius: 6px;
-    font-size: 0.9em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-    min-width: 80px;
-  }
-  .slide-btn:hover {
-    background-color: #f0f4f8;
-  }
-  .slide-btn.active {
-    background-color: #2c3e50;
-    color: #ffffff;
-  }
-  /* --------------------------------------------------- */
+        .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+        .tab-btn {
+            background: var(--card); border: 2px solid var(--border); border-radius: 14px;
+            padding: 11px 8px; cursor: pointer; text-align: center; transition: all 0.18s;
+            color: var(--dark); font-weight: 700; font-size: 0.84rem;
+            display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit;
+        }
+        .tab-btn .tab-sub { font-size: 0.68rem; font-weight: 500; color: var(--muted); }
+        .tab-btn:hover { border-color: #fed7aa; background: #fffaf5; }
+        .tab-btn.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); box-shadow: 0 4px 12px rgba(255, 159, 67, 0.18); }
+        .tab-btn.active .tab-sub { color: #b45309; }
+        .tab-badge { display: inline-block; background: var(--red); color: #fff; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; margin-left: 3px; }
 
-  .support-section {
-    text-align: center;
-    margin-top: 50px;
-    padding-top: 30px;
-    border-top: 2px solid #e2e8f0;
-    width: 100%;
-  }
-  .support-section h2 {
-    color: #2c3e50;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  .support-section p {
-    color: #666;
-    font-size: 0.95em;
-    margin-bottom: 20px;
-  }
-  .bmc-custom-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #FFDD00;
-    color: #000;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.1em;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .bmc-custom-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  }
-  .bmc-custom-btn span {
-    margin-left: 8px;
-    letter-spacing: 0.5px;
-  }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05); }
+        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 8px; flex-wrap: wrap; }
+        .q-num { font-size: 0.82rem; font-weight: 700; color: var(--muted); }
+        .tag-pill { font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--blue-bg); color: var(--blue); }
+        .timer-pill { font-size: 0.84rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; background: #fef3c7; color: #b45309; }
 
-  @media (max-width: 600px) {
-    .slide-container {
-      padding: 30px 15px 50px; 
-    }
-    .nav-controls {
-      flex-wrap: wrap; /* スマホでボタンが溢れないように */
-    }
-    .slide-btn {
-      padding: 8px 10px;
-      font-size: 0.8em;
-      min-width: 60px;
-    }
-  }
-  /* --- Score Section (追加) --- */
-  .score-panel {
-    text-align: center;
-    margin-top: 40px;
-    padding: 25px 20px;
-    border-top: 2px solid #e2e8f0;
-    background-color: #f7fafc;
-    border-radius: 8px;
-  }
-  .score-title {
-    color: #2c3e50;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  .score-desc {
-    color: #666;
-    font-size: 0.95em;
-    margin: 0 0 18px 0;
-  }
-  .score-btns {
-    justify-content: center;
-  }
-  .check-btn { background-color: #48bb78; }
-  .check-btn:hover { background-color: #38a169; }
-  .reset-btn { background-color: #a0aec0; }
-  .reset-btn:hover { background-color: #718096; }
-  .score-result {
-    margin-top: 18px;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #2c3e50;
-    line-height: 1.4;
-  }
-  .score-msg {
-    font-size: 0.75em;
-    color: #4a5568;
-  }
-  .question-block.q-correct {
-    background-color: #f0fff4;
-    border-left: 4px solid #48bb78;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .question-block.q-wrong {
-    background-color: #fff5f5;
-    border-left: 4px solid #e53e3e;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .question-block.q-unanswered {
-    background-color: #f7fafc;
-    border-left: 4px solid #a0aec0;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .q-badge {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 0.75em;
-    font-weight: bold;
-    color: #fff;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-  .q-badge.correct { background-color: #48bb78; }
-  .q-badge.wrong { background-color: #e53e3e; }
-  .q-badge.unanswered { background-color: #a0aec0; }
-  .options li.correct-option {
-    background-color: #c6f6d5;
-    border-color: #48bb78;
-    font-weight: bold;
-  }
-  .options li.wrong-option {
-    background-color: #fed7d7;
-    border-color: #e53e3e;
-  }
-  .part-panel {
-    text-align: center;
-    margin-top: 30px;
-    padding: 18px 15px;
-    border-top: 2px solid #e2e8f0;
-    background-color: #f7fafc;
-    border-radius: 8px;
-  }
-  .part-title {
-    color: #2c3e50;
-    font-size: 1.05em;
-    font-weight: bold;
-    margin-bottom: 12px;
-  }
-  .part-result {
-    margin-top: 14px;
-    font-size: 1.15em;
-    font-weight: bold;
-    color: #2c3e50;
-    line-height: 1.4;
-  }
-  .part-best {
-    margin-top: 8px;
-    font-size: 0.9em;
-    color: #718096;
-  }
-  .part-best:empty { display: none; }
-  .new-record {
-    color: #d69e2e;
-    font-weight: bold;
-  }
-  .score-parts {
-    margin-top: 14px;
-    font-size: 1em;
-    color: #2c3e50;
-    line-height: 1.7;
-  }
-  .score-parts:empty { display: none; }
-</style>
+        .prompt-box {
+            background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px;
+            padding: 20px 18px; margin-bottom: 16px; font-size: 1.18rem; font-weight: 700;
+            color: var(--dark); line-height: 1.9;
+        }
+        .prompt-box u {
+            text-decoration: none;
+            border-bottom: 3px solid var(--primary);
+            padding: 0 3px 1px;
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        .prompt-box.correct-border { border-color: var(--green); background: #f0fdf4; }
+        .prompt-box.wrong-border { border-color: var(--red); background: #fef2f2; }
+
+        .hint-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+        .hint-btn {
+            border: 1.5px solid #e5e7eb; background: #fff; color: var(--dark);
+            font-size: 0.78rem; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+            cursor: pointer; transition: 0.15s; font-family: inherit;
+        }
+        .hint-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+        .hint-text { font-size: 0.86rem; color: #374151; background: #fffbeb; border: 1px solid #fde68a; padding: 7px 12px; border-radius: 10px; flex: 1; min-width: 200px; }
+
+        .choices-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+        .choice-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 14px 16px; border-radius: 14px; border: 2px solid #e2e8f0;
+            background: #fff; color: var(--dark); font-size: 1.02rem; font-weight: 700;
+            cursor: pointer; transition: all 0.15s; text-align: left; font-family: inherit;
+        }
+        .choice-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); transform: translateY(-1px); }
+        .choice-btn:disabled { cursor: default; opacity: 0.55; }
+        .choice-btn.is-correct { border-color: var(--green); background: var(--green-bg); color: #14532d; opacity: 1 !important; }
+        .choice-btn.is-wrong { border-color: var(--red); background: var(--red-bg); color: #7f1d1d; opacity: 1 !important; }
+        .choice-num {
+            width: 26px; height: 26px; border-radius: 50%; background: #f1f5f9;
+            color: var(--muted); font-size: 0.8rem; font-weight: 800;
+            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+
+        .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .btn-primary {
+            background: var(--primary); color: #fff; border: none; border-radius: 12px;
+            padding: 12px 22px; font-size: 0.94rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35); transition: 0.15s; font-family: inherit;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-ghost { background: #f3f4f6; color: var(--dark); border: none; border-radius: 12px; padding: 12px 16px; font-size: 0.88rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+        .btn-ghost:hover { background: #e5e7eb; }
+
+        .feedback { margin-top: 18px; border-radius: 16px; padding: 18px; border: 2px solid var(--border); animation: fadeUp 0.2s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .feedback.ok { background: #f0fdf4; border-color: #86efac; }
+        .feedback.ng { background: #fef2f2; border-color: #fca5a5; }
+        .fb-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+        .fb-title { font-size: 1rem; font-weight: 800; }
+        .fb-title.ok { color: var(--green); }
+        .fb-title.ng { color: var(--red); }
+
+        .audio-btn {
+            display: inline-flex; align-items: center; gap: 6px; background: #fff;
+            border: 2px solid var(--primary); color: var(--primary-dark);
+            padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700;
+            cursor: pointer; transition: 0.15s; font-family: inherit;
+        }
+        .audio-btn:hover, .audio-btn.playing { background: var(--primary); color: #fff; }
+
+        .ans-main { font-size: 1.15rem; font-weight: 800; color: var(--dark); margin: 4px 0 8px; }
+        .explain-box { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px 14px; font-size: 0.86rem; color: #374151; }
+
+        .filter-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+        .list-item { border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; background: #fff; }
+        .list-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+        .status-dot { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+        .st-mastered { background: var(--green-bg); color: var(--green); }
+        .st-weak { background: var(--red-bg); color: var(--red); }
+        .st-unseen { background: #f3f4f6; color: var(--muted); }
+
+        .reset-progress-row { text-align: right; margin-top: 14px; }
+        .reset-link { background: none; border: none; color: var(--muted); font-size: 0.75rem; text-decoration: underline; cursor: pointer; font-family: inherit; }
+
+        .support-section { text-align: center; margin: 26px auto 0; padding: 24px 16px 10px; border-top: 1px solid #e5e7eb; max-width: 780px; }
+        .support-section h2 { color: var(--dark); font-size: 1rem; margin: 0 0 6px; }
+        .support-section p { color: #666; font-size: 0.86rem; margin: 0 0 14px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--bmc-color); color: #000; padding: 10px 22px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.08); transition: transform 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.14); }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 14px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a { font-size: 0.7rem; }
+            .hero { padding: 18px 16px; }
+            .hero h1 { font-size: 1.22rem; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .tabs { grid-template-columns: repeat(2, 1fr); }
+            .card { padding: 18px 14px; }
+            .choices-grid { grid-template-columns: 1fr; }
+            .prompt-box { font-size: 1.04rem; padding: 16px 14px; }
+        }
+    </style>
 <style id="ohayo-cta-style">
 .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
 .ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
@@ -411,12 +238,6 @@
 .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
 .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
 .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 @media (max-width: 600px) {
   .ohayo-cta-grid { grid-template-columns: 1fr; }
   .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
@@ -435,447 +256,68 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     </ul>
 </nav>
 
-<div class="slide-container">
-  <h1>第1回 N3語彙 25問</h1>
-  
-  <div id="slide1" class="slide active">
-    <div class="topic-label">Topic: Housework - Cooking (Slide 1/5)</div>
-    <div class="question-block">
-      <div class="question-text">Q1. When preparing a meal like 'Nikujaga,' what is the Japanese term for the action of 'peeling' (e.g., peeling the skin off a potato)?</div>
-      <ul class="options">
-        <li><label><input type="radio" name="q1"> A. お湯を沸かす (O-yu o wakasu)</label></li>
-        <li><label><input type="radio" name="q1"> B. 味をつける (Aji o tsukeru)</label></li>
-        <li><label><input type="radio" name="q1"> C. 材料を刻む (Zairyō o kizamu)</label></li>
-        <li><label><input type="radio" name="q1"> D. 皮をむく (Kawa o muku)</label></li>
-      </ul>
-      <div class="btn-group">
-        <button class="action-btn hint-btn" onclick="toggleDisplay('hint1')">Show Hint</button>
-        <button class="action-btn answer-btn" onclick="toggleDisplay('ans1')">Show Answer</button>
-      </div>
-      <div id="hint1" class="info-box hint-text">Hint: Focus on the verb used specifically for removing the outer layer of fruits or vegetables.</div>
-      <div id="ans1" class="info-box answer-text">Answer: D. 皮をむく (Kawa o muku)</div>
+<div class="wrap">
+    <div class="hero">
+        <div class="hero-top">
+            <div>
+                <div class="level-pill">📕 JLPT N3 · Vocabulary Trainer (Part 1)</div>
+                <h1>N3 Vocabulary Trainer 1 — Daily Life & Cooking</h1>
+                <p class="hero-sub">Master 25 essential N3 everyday expressions with hints, timed JLPT mock tests & natural audio</p>
+            </div>
+            <div class="hero-toggles">
+                <button id="btn-romaji" class="toggle-pill on" onclick="toggleRomaji()">🔤 Romaji: ON</button>
+                <button id="btn-autoaudio" class="toggle-pill on" onclick="toggleAutoAudio()">🔊 Auto-Audio: ON</button>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-val green" id="st-mastered">0 / 25</div>
+                <div class="stat-lbl">Mastered ✅</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val red" id="st-weak">0</div>
+                <div class="stat-lbl">Weak 🔴</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val orange" id="st-streak">🔥 0</div>
+                <div class="stat-lbl">Streak</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="st-best">--</div>
+                <div class="stat-lbl">JLPT Test Best</div>
+            </div>
+        </div>
+        <div class="mastery-bar"><div class="mastery-fill" id="mastery-fill" style="width: 0%"></div></div>
     </div>
-    <div class="question-block">
-        <div class="question-text">Q2. What is the correct term for "boiling water" to make tea or soup?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q2"> A. お湯を沸かす (O-yu o wakasu)</label></li>
-          <li><label><input type="radio" name="q2"> B. お湯を冷ます (O-yu o samasu)</label></li>
-          <li><label><input type="radio" name="q2"> C. 鍋を火にかける (Nabe o hi ni kakeru)</label></li>
-          <li><label><input type="radio" name="q2"> D. ご飯を炊く (Gohan o taku)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint2')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans2')">Show Answer</button>
-        </div>
-        <div id="hint2" class="info-box hint-text">Hint: The verb means "to bring to a boil," not just "to heat."</div>
-        <div id="ans2" class="info-box answer-text">Answer: A. お湯を沸かす (O-yu o wakasu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q3. When making a salad, you need to "chop" the cabbage into small pieces. Which verb means "to chop/mince"?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q3"> A. 焼く (Yaku)</label></li>
-          <li><label><input type="radio" name="q3"> B. 刻む (Kizamu)</label></li>
-          <li><label><input type="radio" name="q3"> C. 混ぜる (Mazeru)</label></li>
-          <li><label><input type="radio" name="q3"> D. 煮る (Niru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint3')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans3')">Show Answer</button>
-        </div>
-        <div id="hint3" class="info-box hint-text">Hint: Think of the rhythmic sound of cutting something finely on a cutting board.</div>
-        <div id="ans3" class="info-box answer-text">Answer: B. 刻む (Kizamu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q4. Before eating, you might want to "season" or "flavor" the dish. What is the phrase for this?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q4"> A. 味をつける (Aji o tsukeru)</label></li>
-          <li><label><input type="radio" name="q4"> B. 砂糖をはかる (Satō o hakaru)</label></li>
-          <li><label><input type="radio" name="q4"> C. 包丁をとぐ (Hōchō o togu)</label></li>
-          <li><label><input type="radio" name="q4"> D. 油を引く (Abura o hiku)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint4')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans4')">Show Answer</button>
-        </div>
-        <div id="hint4" class="info-box hint-text">Hint: The noun in this phrase literally means "taste" or "flavor".</div>
-        <div id="ans4" class="info-box answer-text">Answer: A. 味をつける (Aji o tsukeru)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q5. How do you say "to cook/boil rice" in Japanese?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q5"> A. ご飯を炊く (Gohan o taku)</label></li>
-          <li><label><input type="radio" name="q5"> B. ご飯を蒸す (Gohan o musu)</label></li>
-          <li><label><input type="radio" name="q5"> C. ご飯を炒める (Gohan o itameru)</label></li>
-          <li><label><input type="radio" name="q5"> D. ご飯を温める (Gohan o atatameru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint5')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans5')">Show Answer</button>
-        </div>
-        <div id="hint5" class="info-box hint-text">Hint: This verb is almost exclusively used for preparing rice using a rice cooker or pot.</div>
-        <div id="ans5" class="info-box answer-text">Answer: A. ご飯を炊く (Gohan o taku)</div>
-      </div>
-  </div>
 
-  <div id="slide2" class="slide">
-    <div class="topic-label">Topic: Housework - Cleaning (Slide 2/5)</div>
-    <div class="question-block">
-        <div class="question-text">Q6. What is the Japanese verb for "sweeping" the floor with a broom?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q6"> A. 床をはく (Yuka o haku)</label></li>
-          <li><label><input type="radio" name="q6"> B. 床をふく (Yuka o fuku)</label></li>
-          <li><label><input type="radio" name="q6"> C. 床を磨く (Yuka o migaku)</label></li>
-          <li><label><input type="radio" name="q6"> D. 床を汚す (Yuka o yogosu)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans6')">Show Answer</button>
-        </div>
-        <div id="hint6" class="info-box hint-text">Hint: Think of the motion used with a broom (ほうき - hōki).</div>
-        <div id="ans6" class="info-box answer-text">Answer: A. 床をはく (Yuka o haku)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q7. After eating, you need to "wipe" the table. Which verb is used for wiping?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q7"> A. こする (Kosuru)</label></li>
-          <li><label><input type="radio" name="q7"> B. ふく (Fuku)</label></li>
-          <li><label><input type="radio" name="q7"> C. はく (Haku)</label></li>
-          <li><label><input type="radio" name="q7"> D. しぼる (Shiboru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint7')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans7')">Show Answer</button>
-        </div>
-        <div id="hint7" class="info-box hint-text">Hint: You use a wet towel (ふきん) to do this action.</div>
-        <div id="ans7" class="info-box answer-text">Answer: B. ふく (Fuku)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q8. How do you say "to vacuum" in Japanese?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q8"> A. 掃除機を回す (Sōjiki o mawasu)</label></li>
-          <li><label><input type="radio" name="q8"> B. 掃除機をかける (Sōjiki o kakeru)</label></li>
-          <li><label><input type="radio" name="q8"> C. 掃除機を使う (Sōjiki o tsukau)</label></li>
-          <li><label><input type="radio" name="q8"> D. 掃除機を動かす (Sōjiki o ugokasu)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint8')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans8')">Show Answer</button>
-        </div>
-        <div id="hint8" class="info-box hint-text">Hint: This verb is often used with machines or devices, like an iron or engine.</div>
-        <div id="ans8" class="info-box answer-text">Answer: B. 掃除機をかける (Sōjiki o kakeru)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q9. When your room is messy, you need to "tidy it up". What is the phrase?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q9"> A. 部屋を汚す (Heya o yogosu)</label></li>
-          <li><label><input type="radio" name="q9"> B. 部屋を飾る (Heya o kazaru)</label></li>
-          <li><label><input type="radio" name="q9"> C. 部屋を片付ける (Heya o katazukeru)</label></li>
-          <li><label><input type="radio" name="q9"> D. 部屋を空ける (Heya o akeru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint9')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans9')">Show Answer</button>
-        </div>
-        <div id="hint9" class="info-box hint-text">Hint: The kanji 片 means "one side" or "piece", implying putting pieces back in order.</div>
-        <div id="ans9" class="info-box answer-text">Answer: C. 部屋を片付ける (Heya o katazukeru)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q10. What is the action of "taking out the trash" to the collection point?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q10"> A. ゴミを拾う (Gomi o hirou)</label></li>
-          <li><label><input type="radio" name="q10"> B. ゴミを捨てる (Gomi o suteru)</label></li>
-          <li><label><input type="radio" name="q10"> C. ゴミを分ける (Gomi o wakeru)</label></li>
-          <li><label><input type="radio" name="q10"> D. ゴミを出す (Gomi o dasu)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint10')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans10')">Show Answer</button>
-        </div>
-        <div id="hint10" class="info-box hint-text">Hint: The focus is on moving it from inside the house to the outside collection point.</div>
-        <div id="ans10" class="info-box answer-text">Answer: D. ゴミを出す (Gomi o dasu)</div>
-      </div>
-    <div class="part-panel" id="partPanel1">
-      <div class="part-title">📝 Part 1 (Q1–Q10)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkN3_1Part(1)">✓ Check Part 1</button>
-      </div>
-      <div id="partResult1" class="part-result" style="display: none;"></div>
-      <div id="partBest1" class="part-best"></div>
+    <div class="tabs">
+        <button class="tab-btn active" id="tab-focus" onclick="setMode('focus')">
+            <span>🎯 Focus Quiz</span>
+            <span class="tab-sub">Step-by-step drill</span>
+        </button>
+        <button class="tab-btn" id="tab-exam" onclick="setMode('exam')">
+            <span>⏱️ JLPT Test</span>
+            <span class="tab-sub">10-Q timed mock</span>
+        </button>
+        <button class="tab-btn" id="tab-weak" onclick="setMode('weak')">
+            <span>🔴 Review Weak <span id="weak-badge" class="tab-badge" style="display:none">0</span></span>
+            <span class="tab-sub">Retry mistakes</span>
+        </button>
+        <button class="tab-btn" id="tab-list" onclick="setMode('list')">
+            <span>📋 All 25 List</span>
+            <span class="tab-sub">Review &amp; audio</span>
+        </button>
     </div>
-  </div>
 
-  <div id="slide3" class="slide">
-    <div class="topic-label">Topic: Housework - Laundry & Cleaning (Slide 3/5)</div>
-    <div class="question-block">
-        <div class="question-text">Q11. After washing clothes, you need to "hang them out to dry". What is the verb?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q11"> A. 干す (Hosu)</label></li>
-          <li><label><input type="radio" name="q11"> B. たたむ (Tatamu)</label></li>
-          <li><label><input type="radio" name="q11"> C. ぬらす (Nurasu)</label></li>
-          <li><label><input type="radio" name="q11"> D. しぼる (Shiboru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint11')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans11')">Show Answer</button>
-        </div>
-        <div id="hint11" class="info-box hint-text">Hint: This word means exposing something to the sun or air to dry it.</div>
-        <div id="ans11" class="info-box answer-text">Answer: A. 干す (Hosu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q12. Once the clothes are dry, you "bring them inside". What is the phrase?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q12"> A. 取り込む (Torikomu)</label></li>
-          <li><label><input type="radio" name="q12"> B. 取り替える (Torikaeru)</label></li>
-          <li><label><input type="radio" name="q12"> C. しまう (Shimau)</label></li>
-          <li><label><input type="radio" name="q12"> D. 隠す (Kakusu)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint12')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans12')">Show Answer</button>
-        </div>
-        <div id="hint12" class="info-box hint-text">Hint: A compound verb meaning to take (取る) something into (込む) the house.</div>
-        <div id="ans12" class="info-box answer-text">Answer: A. 取り込む (Torikomu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q13. Before putting clothes in the drawer, you should "fold" them. What is the verb?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q13"> A. 丸める (Marumeru)</label></li>
-          <li><label><input type="radio" name="q13"> B. たたむ (Tatamu)</label></li>
-          <li><label><input type="radio" name="q13"> C. 重ねる (Kasaneru)</label></li>
-          <li><label><input type="radio" name="q13"> D. 広げる (Hirogeru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint13')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans13')">Show Answer</button>
-        </div>
-        <div id="hint13" class="info-box hint-text">Hint: You do the same action to an umbrella or a map when putting it away.</div>
-        <div id="ans13" class="info-box answer-text">Answer: B. たたむ (Tatamu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q14. What is the Japanese term for "dust" that accumulates on furniture?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q14"> A. 泥 (Doro)</label></li>
-          <li><label><input type="radio" name="q14"> B. ほこり (Hokori)</label></li>
-          <li><label><input type="radio" name="q14"> C. 泡 (Awa)</label></li>
-          <li><label><input type="radio" name="q14"> D. 汗 (Ase)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans14')">Show Answer</button>
-        </div>
-        <div id="hint14" class="info-box hint-text">Hint: You often "wipe" this off (〜をふく) or "sweep" it (〜を払う).</div>
-        <div id="ans14" class="info-box answer-text">Answer: B. ほこり (Hokori)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q15. How do you say "to iron" a shirt?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q15"> A. アイロンを回す (Airon o mawasu)</label></li>
-          <li><label><input type="radio" name="q15"> B. アイロンをひく (Airon o hiku)</label></li>
-          <li><label><input type="radio" name="q15"> C. アイロンをかける (Airon o kakeru)</label></li>
-          <li><label><input type="radio" name="q15"> D. アイロンをする (Airon o suru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint15')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans15')">Show Answer</button>
-        </div>
-        <div id="hint15" class="info-box hint-text">Hint: This is the exact same verb used with a vacuum cleaner (掃除機).</div>
-        <div id="ans15" class="info-box answer-text">Answer: C. アイロンをかける (Airon o kakeru)</div>
-      </div>
-  </div>
+    <div id="app" class="card"></div>
 
-  <div id="slide4" class="slide">
-    <div class="topic-label">Topic: Housework & Childcare (Slide 4/5)</div>
-    <div class="question-block">
-        <div class="question-text">Q16. What is the Japanese word for "diaper", which you need to change for a baby?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q16"> A. おむつ (Omutsu)</label></li>
-          <li><label><input type="radio" name="q16"> B. タオル (Taoru)</label></li>
-          <li><label><input type="radio" name="q16"> C. おもちゃ (Omocha)</label></li>
-          <li><label><input type="radio" name="q16"> D. ベビーカー (Bebīkā)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint16')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans16')">Show Answer</button>
-        </div>
-        <div id="hint16" class="info-box hint-text">Hint: The phrase is often used as "〇〇を換える (to change a ...)".</div>
-        <div id="ans16" class="info-box answer-text">Answer: A. おむつ (Omutsu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q17. Which verb means "to pick up and carry a child in one's arms" (to hug/hold)?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q17"> A. おんぶする (Onbusuru)</label></li>
-          <li><label><input type="radio" name="q17"> B. だっこする (Dakkosuru)</label></li>
-          <li><label><input type="radio" name="q17"> C. ほめる (Homeru)</label></li>
-          <li><label><input type="radio" name="q17"> D. しかる (Shikaru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint17')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans17')">Show Answer</button>
-        </div>
-        <div id="hint17" class="info-box hint-text">Hint: A very common, affectionate word used when parents hold their babies in front of them.</div>
-        <div id="ans17" class="info-box answer-text">Answer: B. だっこする (Dakkosuru)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q18. What is the verb for "to carry a child on one's back" (piggyback ride)?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q18"> A. だっこする (Dakkosuru)</label></li>
-          <li><label><input type="radio" name="q18"> B. つなぐ (Tsunagu)</label></li>
-          <li><label><input type="radio" name="q18"> C. おんぶする (Onbusuru)</label></li>
-          <li><label><input type="radio" name="q18"> D. なでる (Naderu)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint18')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans18')">Show Answer</button>
-        </div>
-        <div id="hint18" class="info-box hint-text">Hint: In contrast to holding a child in your arms, this means carrying them on your back.</div>
-        <div id="ans18" class="info-box answer-text">Answer: C. おんぶする (Onbusuru)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q19. If parents give a child everything they want and never scold them, they "spoil" the child. What is the Japanese verb for "to spoil"?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q19"> A. かわいがる (Kawaigaru)</label></li>
-          <li><label><input type="radio" name="q19"> B. 甘やかす (Amayakasu)</label></li>
-          <li><label><input type="radio" name="q19"> C. しつける (Shitsukeru)</label></li>
-          <li><label><input type="radio" name="q19"> D. 育てる (Sodateru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
-        </div>
-        <div id="hint19" class="info-box hint-text">Hint: The kanji "甘" (sweet) is used to express being too lenient.</div>
-        <div id="ans19" class="info-box answer-text">Answer: B. 甘やかす (Amayakasu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q20. How do you describe a child who is "selfish" or wants everything their own way?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q20"> A. わがまま（な） (Wagamama)</label></li>
-          <li><label><input type="radio" name="q20"> B. おとなしい (Otonashī)</label></li>
-          <li><label><input type="radio" name="q20"> C. かしこい (Kashikoi)</label></li>
-          <li><label><input type="radio" name="q20"> D. えらい (Erai)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
-        </div>
-        <div id="hint20" class="info-box hint-text">Hint: The other options mean "quiet," "smart," and "admirable."</div>
-        <div id="ans20" class="info-box answer-text">Answer: A. わがまま（な） (Wagamama)</div>
-      </div>
-    <div class="part-panel" id="partPanel2">
-      <div class="part-title">📝 Part 2 (Q11–Q20)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkN3_1Part(2)">✓ Check Part 2</button>
-      </div>
-      <div id="partResult2" class="part-result" style="display: none;"></div>
-      <div id="partBest2" class="part-best"></div>
+    <div class="reset-progress-row">
+        <button class="reset-link" onclick="resetSavedProgress()">Reset saved progress on this page</button>
     </div>
-  </div>
+</div>
 
-  <div id="slide5" class="slide">
-    <div class="topic-label">Topic: Commuting & Trains (Slide 5/5)</div>
-    <div class="question-block">
-        <div class="question-text">Q21. What is the Japanese term for a very "crowded train," especially during morning rush hour?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q21"> A. 終電 (Shūden)</label></li>
-          <li><label><input type="radio" name="q21"> B. 急行電車 (Kyūkō densha)</label></li>
-          <li><label><input type="radio" name="q21"> C. 満員電車 (Man'in densha)</label></li>
-          <li><label><input type="radio" name="q21"> D. 始発電車 (Shihatsu densha)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans21')">Show Answer</button>
-        </div>
-        <div id="hint21" class="info-box hint-text">Hint: "満員" (man'in) means "full capacity" or "packed with people."</div>
-        <div id="ans21" class="info-box answer-text">Answer: C. 満員電車 (Man'in densha)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q22. If you fall asleep on the train and miss your station, what verb do you use?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q22"> A. 乗り遅れる (Noriokureru)</label></li>
-          <li><label><input type="radio" name="q22"> B. 乗り過ごす (Norisugosu)</label></li>
-          <li><label><input type="radio" name="q22"> C. 乗り換える (Norikaeru)</label></li>
-          <li><label><input type="radio" name="q22"> D. 乗り越える (Norikoeru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint22')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans22')">Show Answer</button>
-        </div>
-        <div id="hint22" class="info-box hint-text">Hint: You pass (過ごす) the station you were supposed to get off at.</div>
-        <div id="ans22" class="info-box answer-text">Answer: B. 乗り過ごす (Norisugosu)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q23. When you see an elderly person standing, it is polite to "give up your seat." What is the phrase?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q23"> A. 席をとる (Seki o toru)</label></li>
-          <li><label><input type="radio" name="q23"> B. 席を立つ (Seki o tatsu)</label></li>
-          <li><label><input type="radio" name="q23"> C. 席を外す (Seki o hazusu)</label></li>
-          <li><label><input type="radio" name="q23"> D. 席をゆずる (Seki o yuzuru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint23')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans23')">Show Answer</button>
-        </div>
-        <div id="hint23" class="info-box hint-text">Hint: The verb means "to hand over" or "to yield."</div>
-        <div id="ans23" class="info-box answer-text">Answer: D. 席をゆずる (Seki o yuzuru)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q24. If a train is NOT crowded and you can easily find a seat, how do you describe it?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q24"> A. 混んでいる (Konde iru)</label></li>
-          <li><label><input type="radio" name="q24"> B. すいている (Suite iru)</label></li>
-          <li><label><input type="radio" name="q24"> C. 動いている (Ugoite iru)</label></li>
-          <li><label><input type="radio" name="q24"> D. 遅れている (Okurete iru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
-        </div>
-        <div id="hint24" class="info-box hint-text">Hint: This is the opposite of 混んでいる (crowded).</div>
-        <div id="ans24" class="info-box answer-text">Answer: B. すいている (Suite iru)</div>
-      </div>
-      <div class="question-block">
-        <div class="question-text">Q25. What is the verb for "changing trains" at a station?</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q25"> A. 見送る (Miokuru)</label></li>
-          <li><label><input type="radio" name="q25"> B. 待ち合わせる (Machiawaseru)</label></li>
-          <li><label><input type="radio" name="q25"> C. 引き返す (Hikikaesu)</label></li>
-          <li><label><input type="radio" name="q25"> D. 乗り換える (Norikaeru)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
-        </div>
-        <div id="hint25" class="info-box hint-text">Hint: "乗る" (ride) + "換える" (change).</div>
-        <div id="ans25" class="info-box answer-text">Answer: D. 乗り換える (Norikaeru)</div>
-      </div>
-    <div class="part-panel" id="partPanel3">
-      <div class="part-title">📝 Part 3 (Q21–Q25)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkN3_1Part(3)">✓ Check Part 3</button>
-      </div>
-      <div id="partResult3" class="part-result" style="display: none;"></div>
-      <div id="partBest3" class="part-best"></div>
-    </div>
-  </div>
-
-  <div class="nav-controls">
-    <button class="slide-btn active" onclick="goToSlide(1)">SLIDE 1</button>
-    <button class="slide-btn" onclick="goToSlide(2)">SLIDE 2</button>
-    <button class="slide-btn" onclick="goToSlide(3)">SLIDE 3</button>
-    <button class="slide-btn" onclick="goToSlide(4)">SLIDE 4</button>
-    <button class="slide-btn" onclick="goToSlide(5)">SLIDE 5</button>
-  </div>
-
-  <div class="score-panel" id="scorePanel">
-    <div class="score-title">📝 Your Score</div>
-    <p class="score-desc">Check each part as you finish it, or check everything at once here. Unanswered questions count as wrong. Your best scores are saved on this device, so you can see your growth on every visit.</p>
-    <div class="btn-group score-btns">
-      <button type="button" class="action-btn check-btn" onclick="checkN3_1Score()">✓ Check All</button>
-      <button type="button" class="action-btn reset-btn" onclick="resetN3_1Score()">↺ Reset all (clears saved progress)</button>
-    </div>
-    <div id="scoreParts" class="score-parts"></div>
-    <div id="scoreResult" class="score-result" style="display: none;"></div>
-  </div>
-  <!-- OHAYO_NEXT_CTA -->
+<!-- OHAYO_NEXT_CTA -->
 <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
   <div class="ohayo-cta-next">
     <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
@@ -895,248 +337,344 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 </section>
 
 <div class="support-section">
-      <h2>Support OHAYO CENTER</h2>
-      <p>If you find these materials helpful, please consider supporting us!</p>
-      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-          ☕️ <span>SUPPORT OHAYO CENTER</span>
-      </a>
-  </div>
-
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these free JLPT materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
 </div>
 
 <script>
-  function toggleDisplay(elementId) {
-    var element = document.getElementById(elementId);
-    if (element.style.display === "none" || element.style.display === "") {
-      element.style.display = "block";
-    } else {
-      element.style.display = "none";
-    }
-  }
+const STORAGE_KEY = 'ohayo_n3t_v1_n3_vocab_1';
+const AUDIO_DIR = 'n3-1-audio';
+const HAS_ROMAJI = true;
+const QUESTIONS = [{"id": 1, "qHtml": "When preparing a meal like 'Nikujaga,' what is the Japanese term for the action of 'peeling' (e.g., peeling the skin off a potato)?", "choices": ["お湯を沸かす (O-yu o wakasu)", "味をつける (Aji o tsukeru)", "材料を刻む (Zairyō o kizamu)", "皮をむく (Kawa o muku)"], "ansIdx": 3, "ansDetail": "皮をむく (Kawa o muku)", "hint": "Focus on the verb used specifically for removing the outer layer of fruits or vegetables."}, {"id": 2, "qHtml": "What is the correct term for \"boiling water\" to make tea or soup?", "choices": ["お湯を沸かす (O-yu o wakasu)", "お湯を冷ます (O-yu o samasu)", "鍋を火にかける (Nabe o hi ni kakeru)", "ご飯を炊く (Gohan o taku)"], "ansIdx": 0, "ansDetail": "お湯を沸かす (O-yu o wakasu)", "hint": "The verb means \"to bring to a boil,\" not just \"to heat.\""}, {"id": 3, "qHtml": "When making a salad, you need to \"chop\" the cabbage into small pieces. Which verb means \"to chop/mince\"?", "choices": ["焼く (Yaku)", "刻む (Kizamu)", "混ぜる (Mazeru)", "煮る (Niru)"], "ansIdx": 1, "ansDetail": "刻む (Kizamu)", "hint": "Think of the rhythmic sound of cutting something finely on a cutting board."}, {"id": 4, "qHtml": "Before eating, you might want to \"season\" or \"flavor\" the dish. What is the phrase for this?", "choices": ["味をつける (Aji o tsukeru)", "砂糖をはかる (Satō o hakaru)", "包丁をとぐ (Hōchō o togu)", "油を引く (Abura o hiku)"], "ansIdx": 0, "ansDetail": "味をつける (Aji o tsukeru)", "hint": "The noun in this phrase literally means \"taste\" or \"flavor\"."}, {"id": 5, "qHtml": "How do you say \"to cook/boil rice\" in Japanese?", "choices": ["ご飯を炊く (Gohan o taku)", "ご飯を蒸す (Gohan o musu)", "ご飯を炒める (Gohan o itameru)", "ご飯を温める (Gohan o atatameru)"], "ansIdx": 0, "ansDetail": "ご飯を炊く (Gohan o taku)", "hint": "This verb is almost exclusively used for preparing rice using a rice cooker or pot."}, {"id": 6, "qHtml": "What is the Japanese verb for \"sweeping\" the floor with a broom?", "choices": ["床をはく (Yuka o haku)", "床をふく (Yuka o fuku)", "床を磨く (Yuka o migaku)", "床を汚す (Yuka o yogosu)"], "ansIdx": 0, "ansDetail": "床をはく (Yuka o haku)", "hint": "Think of the motion used with a broom (ほうき - hōki)."}, {"id": 7, "qHtml": "After eating, you need to \"wipe\" the table. Which verb is used for wiping?", "choices": ["こする (Kosuru)", "ふく (Fuku)", "はく (Haku)", "しぼる (Shiboru)"], "ansIdx": 1, "ansDetail": "ふく (Fuku)", "hint": "You use a wet towel (ふきん) to do this action."}, {"id": 8, "qHtml": "How do you say \"to vacuum\" in Japanese?", "choices": ["掃除機を回す (Sōjiki o mawasu)", "掃除機をかける (Sōjiki o kakeru)", "掃除機を使う (Sōjiki o tsukau)", "掃除機を動かす (Sōjiki o ugokasu)"], "ansIdx": 1, "ansDetail": "掃除機をかける (Sōjiki o kakeru)", "hint": "This verb is often used with machines or devices, like an iron or engine."}, {"id": 9, "qHtml": "When your room is messy, you need to \"tidy it up\". What is the phrase?", "choices": ["部屋を汚す (Heya o yogosu)", "部屋を飾る (Heya o kazaru)", "部屋を片付ける (Heya o katazukeru)", "部屋を空ける (Heya o akeru)"], "ansIdx": 2, "ansDetail": "部屋を片付ける (Heya o katazukeru)", "hint": "The kanji 片 means \"one side\" or \"piece\", implying putting pieces back in order."}, {"id": 10, "qHtml": "What is the action of \"taking out the trash\" to the collection point?", "choices": ["ゴミを拾う (Gomi o hirou)", "ゴミを捨てる (Gomi o suteru)", "ゴミを分ける (Gomi o wakeru)", "ゴミを出す (Gomi o dasu)"], "ansIdx": 3, "ansDetail": "ゴミを出す (Gomi o dasu)", "hint": "The focus is on moving it from inside the house to the outside collection point."}, {"id": 11, "qHtml": "After washing clothes, you need to \"hang them out to dry\". What is the verb?", "choices": ["干す (Hosu)", "たたむ (Tatamu)", "ぬらす (Nurasu)", "しぼる (Shiboru)"], "ansIdx": 0, "ansDetail": "干す (Hosu)", "hint": "This word means exposing something to the sun or air to dry it."}, {"id": 12, "qHtml": "Once the clothes are dry, you \"bring them inside\". What is the phrase?", "choices": ["取り込む (Torikomu)", "取り替える (Torikaeru)", "しまう (Shimau)", "隠す (Kakusu)"], "ansIdx": 0, "ansDetail": "取り込む (Torikomu)", "hint": "A compound verb meaning to take (取る) something into (込む) the house."}, {"id": 13, "qHtml": "Before putting clothes in the drawer, you should \"fold\" them. What is the verb?", "choices": ["丸める (Marumeru)", "たたむ (Tatamu)", "重ねる (Kasaneru)", "広げる (Hirogeru)"], "ansIdx": 1, "ansDetail": "たたむ (Tatamu)", "hint": "You do the same action to an umbrella or a map when putting it away."}, {"id": 14, "qHtml": "What is the Japanese term for \"dust\" that accumulates on furniture?", "choices": ["泥 (Doro)", "ほこり (Hokori)", "泡 (Awa)", "汗 (Ase)"], "ansIdx": 1, "ansDetail": "ほこり (Hokori)", "hint": "You often \"wipe\" this off (〜をふく) or \"sweep\" it (〜を払う)."}, {"id": 15, "qHtml": "How do you say \"to iron\" a shirt?", "choices": ["アイロンを回す (Airon o mawasu)", "アイロンをひく (Airon o hiku)", "アイロンをかける (Airon o kakeru)", "アイロンをする (Airon o suru)"], "ansIdx": 2, "ansDetail": "アイロンをかける (Airon o kakeru)", "hint": "This is the exact same verb used with a vacuum cleaner (掃除機)."}, {"id": 16, "qHtml": "What is the Japanese word for \"diaper\", which you need to change for a baby?", "choices": ["おむつ (Omutsu)", "タオル (Taoru)", "おもちゃ (Omocha)", "ベビーカー (Bebīkā)"], "ansIdx": 0, "ansDetail": "おむつ (Omutsu)", "hint": "The phrase is often used as \"〇〇を換える (to change a ...)\"."}, {"id": 17, "qHtml": "Which verb means \"to pick up and carry a child in one's arms\" (to hug/hold)?", "choices": ["おんぶする (Onbusuru)", "だっこする (Dakkosuru)", "ほめる (Homeru)", "しかる (Shikaru)"], "ansIdx": 1, "ansDetail": "だっこする (Dakkosuru)", "hint": "A very common, affectionate word used when parents hold their babies in front of them."}, {"id": 18, "qHtml": "What is the verb for \"to carry a child on one's back\" (piggyback ride)?", "choices": ["だっこする (Dakkosuru)", "つなぐ (Tsunagu)", "おんぶする (Onbusuru)", "なでる (Naderu)"], "ansIdx": 2, "ansDetail": "おんぶする (Onbusuru)", "hint": "In contrast to holding a child in your arms, this means carrying them on your back."}, {"id": 19, "qHtml": "If parents give a child everything they want and never scold them, they \"spoil\" the child. What is the Japanese verb for \"to spoil\"?", "choices": ["かわいがる (Kawaigaru)", "甘やかす (Amayakasu)", "しつける (Shitsukeru)", "育てる (Sodateru)"], "ansIdx": 1, "ansDetail": "甘やかす (Amayakasu)", "hint": "The kanji \"甘\" (sweet) is used to express being too lenient."}, {"id": 20, "qHtml": "How do you describe a child who is \"selfish\" or wants everything their own way?", "choices": ["わがまま（な） (Wagamama)", "おとなしい (Otonashī)", "かしこい (Kashikoi)", "えらい (Erai)"], "ansIdx": 0, "ansDetail": "わがまま（な） (Wagamama)", "hint": "The other options mean \"quiet,\" \"smart,\" and \"admirable.\""}, {"id": 21, "qHtml": "What is the Japanese term for a very \"crowded train,\" especially during morning rush hour?", "choices": ["終電 (Shūden)", "急行電車 (Kyūkō densha)", "満員電車 (Man'in densha)", "始発電車 (Shihatsu densha)"], "ansIdx": 2, "ansDetail": "満員電車 (Man'in densha)", "hint": "\"満員\" (man'in) means \"full capacity\" or \"packed with people.\""}, {"id": 22, "qHtml": "If you fall asleep on the train and miss your station, what verb do you use?", "choices": ["乗り遅れる (Noriokureru)", "乗り過ごす (Norisugosu)", "乗り換える (Norikaeru)", "乗り越える (Norikoeru)"], "ansIdx": 1, "ansDetail": "乗り過ごす (Norisugosu)", "hint": "You pass (過ごす) the station you were supposed to get off at."}, {"id": 23, "qHtml": "When you see an elderly person standing, it is polite to \"give up your seat.\" What is the phrase?", "choices": ["席をとる (Seki o toru)", "席を立つ (Seki o tatsu)", "席を外す (Seki o hazusu)", "席をゆずる (Seki o yuzuru)"], "ansIdx": 3, "ansDetail": "席をゆずる (Seki o yuzuru)", "hint": "The verb means \"to hand over\" or \"to yield.\""}, {"id": 24, "qHtml": "If a train is NOT crowded and you can easily find a seat, how do you describe it?", "choices": ["混んでいる (Konde iru)", "すいている (Suite iru)", "動いている (Ugoite iru)", "遅れている (Okurete iru)"], "ansIdx": 1, "ansDetail": "すいている (Suite iru)", "hint": "This is the opposite of 混んでいる (crowded)."}, {"id": 25, "qHtml": "What is the verb for \"changing trains\" at a station?", "choices": ["見送る (Miokuru)", "待ち合わせる (Machiawaseru)", "引き返す (Hikikaesu)", "乗り換える (Norikaeru)"], "ansIdx": 3, "ansDetail": "乗り換える (Norikaeru)", "hint": "\"乗る\" (ride) + \"換える\" (change)."}];
 
-  function goToSlide(slideNumber) {
-    // 全てのスライドを非表示にする
-    const slides = document.querySelectorAll('.slide');
-    slides.forEach(slide => slide.classList.remove('active'));
+let state = { status: {}, bestExam: null, streak: 0, showRomaji: true, autoAudio: true };
 
-    // 全てのボタンからactiveクラスを削除
-    const buttons = document.querySelectorAll('.slide-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    // 指定したスライドとボタンをアクティブにする
-    document.getElementById('slide' + slideNumber).classList.add('active');
-    buttons[slideNumber - 1].classList.add('active');
-
-    // ページ上部へスムーズにスクロール
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
-
-<script>
-  // --- Quiz scoring: parts + saved progress ---
-  var N3_1_ANSWERS = { q1: 'D', q2: 'A', q3: 'B', q4: 'A', q5: 'A', q6: 'A', q7: 'B', q8: 'B', q9: 'C', q10: 'D', q11: 'A', q12: 'A', q13: 'B', q14: 'B', q15: 'C', q16: 'A', q17: 'B', q18: 'C', q19: 'B', q20: 'A', q21: 'C', q22: 'B', q23: 'D', q24: 'B', q25: 'D' };
-  var N3_1_LETTERS = ['A', 'B', 'C', 'D'];
-  var N3_1_TOTAL = 25;
-  var N3_1_PARTS = [
-    { part: 1, from: 1, to: 10, size: 10 },
-    { part: 2, from: 11, to: 20, size: 10 },
-    { part: 3, from: 21, to: 25, size: 5 }
-  ];
-  var N3_1_PROGRESS_KEY = 'ohayo_n3_1_progress';
-  var n3_1PartScores = { 1: null, 2: null, 3: null };
-
-  function n3_1DefaultProgress() {
-    return { v: 1, totalBest: null, parts: { '1': { best: 0, done: false }, '2': { best: 0, done: false }, '3': { best: 0, done: false } } };
-  }
-
-  function loadN3_1Progress() {
-    var def = n3_1DefaultProgress();
+function loadState() {
     try {
-      var raw = window.localStorage.getItem(N3_1_PROGRESS_KEY);
-      if (!raw) return def;
-      var data = JSON.parse(raw);
-      if (!data || data.v !== 1 || !data.parts) return def;
-      for (var i = 0; i < N3_1_PARTS.length; i++) {
-        var key = String(N3_1_PARTS[i].part);
-        if (data.parts[key] && typeof data.parts[key].best === 'number') {
-          def.parts[key] = { best: data.parts[key].best, done: !!data.parts[key].done };
-        }
-      }
-      if (typeof data.totalBest === 'number') def.totalBest = data.totalBest;
-      return def;
-    } catch (e) {
-      return def;
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) state = Object.assign(state, JSON.parse(raw));
+    } catch (e) {}
+    syncToggleUI();
+}
+function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {} }
+function resetSavedProgress() {
+    if (!confirm('Reset your saved mastery and JLPT Test score for this set?')) return;
+    state.status = {}; state.bestExam = null; state.streak = 0;
+    saveState(); updateStats(); setMode(mode);
+}
+
+let currentAudio = null;
+function playAudio(qId, btnEl) {
+    const src = `${AUDIO_DIR}/q${String(qId).padStart(2, '0')}.mp3`;
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+    document.querySelectorAll('.audio-btn.playing').forEach(b => b.classList.remove('playing'));
+    const a = new Audio(src);
+    currentAudio = a;
+    if (btnEl) btnEl.classList.add('playing');
+    a.onended = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.onerror = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.play().catch(() => { if (btnEl) btnEl.classList.remove('playing'); });
+}
+
+function syncToggleUI() {
+    const rBtn = document.getElementById('btn-romaji');
+    if (rBtn) {
+        rBtn.classList.toggle('on', state.showRomaji);
+        rBtn.textContent = state.showRomaji ? '🔤 Romaji: ON' : '🔤 Romaji: OFF';
     }
-  }
+    const aBtn = document.getElementById('btn-autoaudio');
+    aBtn.classList.toggle('on', state.autoAudio);
+    aBtn.textContent = state.autoAudio ? '🔊 Auto-Audio: ON' : '🔇 Auto-Audio: OFF';
+}
+function toggleRomaji() { state.showRomaji = !state.showRomaji; syncToggleUI(); saveState(); render(); }
+function toggleAutoAudio() { state.autoAudio = !state.autoAudio; syncToggleUI(); saveState(); }
 
-  function saveN3_1Progress() {
-    try {
-      window.localStorage.setItem(N3_1_PROGRESS_KEY, JSON.stringify(n3_1Progress));
-    } catch (e) { /* storage unavailable: progress just will not persist */ }
-  }
-
-  var n3_1Progress = loadN3_1Progress();
-
-  function n3_1BlockFor(n) {
-    var radios = document.querySelectorAll('input[name="q' + n + '"]');
-    if (!radios.length) return null;
-    return radios[0].closest('.question-block');
-  }
-
-  function clearN3_1MarksRange(from, to) {
-    for (var n = from; n <= to; n++) {
-      var block = n3_1BlockFor(n);
-      if (!block) continue;
-      block.classList.remove('q-correct', 'q-wrong', 'q-unanswered');
-      var badges = block.querySelectorAll('.q-badge');
-      for (var j = badges.length - 1; j >= 0; j--) badges[j].remove();
-      var opts = block.querySelectorAll('.options li');
-      for (var k = 0; k < opts.length; k++) opts[k].classList.remove('correct-option', 'wrong-option');
+function formatChoice(text, isExam) {
+    if (!HAS_ROMAJI) return text;
+    if (isExam || !state.showRomaji) {
+        return text.replace(/\s*\([^)]*\)\s*$/, '').trim();
     }
-  }
+    return text;
+}
 
-  function clearN3_1Marks() {
-    clearN3_1MarksRange(1, N3_1_TOTAL);
-  }
-
-  function markN3_1Question(n) {
-    var name = 'q' + n;
-    var radios = document.querySelectorAll('input[name="' + name + '"]');
-    if (!radios.length) return 0;
-    var block = radios[0].closest('.question-block');
-    var correctIdx = N3_1_LETTERS.indexOf(N3_1_ANSWERS[name]);
-    var selectedIdx = -1;
-    for (var i = 0; i < radios.length; i++) {
-      if (radios[i].checked) selectedIdx = i;
+function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
     }
-    var badge = document.createElement('span');
-    var point = 0;
-    if (selectedIdx === -1) {
-      block.classList.add('q-unanswered');
-      badge.className = 'q-badge unanswered';
-      badge.textContent = '— Not answered';
-      radios[correctIdx].closest('li').classList.add('correct-option');
-    } else if (selectedIdx === correctIdx) {
-      point = 1;
-      block.classList.add('q-correct');
-      badge.className = 'q-badge correct';
-      badge.textContent = '✓ Correct';
-      radios[correctIdx].closest('li').classList.add('correct-option');
+    return a;
+}
+
+let mode = 'focus', listFilter = 'all';
+let queue = [], qIdx = 0, shuffledChoices = [], answered = false, pickedIdx = null, hintOpen = false, roundDone = false;
+let examScore = 0, examResults = [], examTimerSec = 240, examTimerId = null, examFinished = false;
+
+function stopTimer() { if (examTimerId) { clearInterval(examTimerId); examTimerId = null; } }
+function formatTime(s) { return `${Math.floor(s/60)}:${s%60 < 10 ? '0' : ''}${s%60}`; }
+
+function updateStats() {
+    const mastered = Object.values(state.status).filter(v => v === 'mastered').length;
+    const weak = Object.values(state.status).filter(v => v === 'weak').length;
+    document.getElementById('st-mastered').textContent = `${mastered} / ${QUESTIONS.length}`;
+    document.getElementById('st-weak').textContent = weak;
+    document.getElementById('st-streak').textContent = `🔥 ${state.streak}`;
+    document.getElementById('st-best').textContent = state.bestExam !== null ? `${state.bestExam}%` : '--';
+    document.getElementById('mastery-fill').style.width = `${Math.round((mastered / QUESTIONS.length) * 100)}%`;
+    const badge = document.getElementById('weak-badge');
+    badge.style.display = weak > 0 ? 'inline-block' : 'none';
+    badge.textContent = weak;
+}
+
+function setMode(newMode) {
+    stopTimer();
+    mode = newMode;
+    ['focus', 'exam', 'weak', 'list'].forEach(m => document.getElementById('tab-' + m).classList.toggle('active', m === mode));
+    roundDone = false; examFinished = false;
+
+    if (mode === 'focus') {
+        const rem = QUESTIONS.filter(q => state.status[q.id] !== 'mastered');
+        queue = rem.length > 0 ? rem : QUESTIONS.slice();
+        qIdx = 0; loadQuestion();
+    } else if (mode === 'weak') {
+        queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+        qIdx = 0; if (queue.length > 0) loadQuestion();
+    } else if (mode === 'exam') {
+        startExam();
+    }
+    render();
+}
+
+function loadQuestion() {
+    const q = queue[qIdx];
+    shuffledChoices = shuffle(q.choices.map((text, origIdx) => ({ text, origIdx })));
+    answered = false; pickedIdx = null; hintOpen = false;
+}
+
+function startExam() {
+    stopTimer();
+    queue = shuffle(QUESTIONS).slice(0, 10);
+    qIdx = 0; examScore = 0; examResults = []; examFinished = false; examTimerSec = 240;
+    loadQuestion();
+    examTimerId = setInterval(() => {
+        if (examFinished) { stopTimer(); return; }
+        examTimerSec--;
+        if (examTimerSec <= 0) { examTimerSec = 0; finishExam(); }
+        else { const el = document.getElementById('exam-timer'); if (el) el.textContent = '⏱ ' + formatTime(examTimerSec); }
+    }, 1000);
+}
+
+function answerChoice(shufIdx) {
+    if (answered) return;
+    const q = queue[qIdx];
+    answered = true; pickedIdx = shufIdx;
+    const isOk = shuffledChoices[shufIdx].origIdx === q.ansIdx;
+    if (isOk) {
+        state.status[q.id] = 'mastered';
+        state.streak++;
+        if (mode === 'exam') examScore++;
     } else {
-      block.classList.add('q-wrong');
-      badge.className = 'q-badge wrong';
-      badge.textContent = '✗ Wrong';
-      radios[selectedIdx].closest('li').classList.add('wrong-option');
-      radios[correctIdx].closest('li').classList.add('correct-option');
+        state.status[q.id] = 'weak';
+        state.streak = 0;
     }
-    block.querySelector('.question-text').appendChild(badge);
-    return point;
-  }
+    if (mode === 'exam') examResults.push({ q, isOk });
+    saveState(); updateStats(); render();
+    if (state.autoAudio) {
+        setTimeout(() => playAudio(q.id, document.querySelector('.feedback .audio-btn')), 180);
+    }
+}
 
-  function refreshN3_1PartBest(part) {
-    var el = document.getElementById('partBest' + part);
-    if (!el) return;
-    var info = n3_1Progress.parts[String(part)];
-    if (info && info.done) {
-      el.textContent = 'Best: ' + info.best + ' / ' + N3_1_PARTS[part - 1].size + ' ✓';
+function nextQuestion() {
+    if (qIdx + 1 < queue.length) {
+        qIdx++; loadQuestion(); render();
     } else {
-      el.textContent = '';
+        if (mode === 'exam') finishExam();
+        else if (mode === 'weak') {
+            queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+            qIdx = 0; if (queue.length > 0) loadQuestion(); render();
+        } else { roundDone = true; render(); }
     }
-  }
+}
 
-  function refreshN3_1Summary() {
-    var el = document.getElementById('scoreParts');
-    if (!el) return;
-    var lines = [];
-    for (var i = 0; i < N3_1_PARTS.length; i++) {
-      var p = N3_1_PARTS[i];
-      var info = n3_1Progress.parts[String(p.part)];
-      var line = 'Part ' + p.part + ': ';
-      line += (n3_1PartScores[p.part] !== null) ? (n3_1PartScores[p.part] + ' / ' + p.size) : ('— / ' + p.size);
-      if (info && info.done) line += ' (Best: ' + info.best + ' ✓)';
-      lines.push(line);
+function finishExam() {
+    stopTimer(); examFinished = true;
+    const pct = Math.round((examScore / queue.length) * 100);
+    if (state.bestExam === null || pct > state.bestExam) state.bestExam = pct;
+    saveState(); updateStats(); render();
+}
+
+function startFullShuffle() { queue = shuffle(QUESTIONS); qIdx = 0; roundDone = false; loadQuestion(); render(); }
+
+function renderFeedback(q, isOk) {
+    return `
+        <div class="feedback ${isOk ? 'ok' : 'ng'}">
+            <div class="fb-head">
+                <div class="fb-title ${isOk ? 'ok' : 'ng'}">${isOk ? '⭕️ Correct! Great job!' : '❌ Not quite — Saved to Review Weak 🔴'}</div>
+                <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen (Nanami)</button>
+            </div>
+            <div class="ans-main">✅ ${q.ansDetail}</div>
+            ${q.hint ? `<div class="explain-box">💡 <strong>Study Note:</strong> ${q.hint}</div>` : ''}
+        </div>
+    `;
+}
+
+function renderQuiz() {
+    if (mode === 'weak' && queue.length === 0) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:46px; margin-bottom:8px;">🎉</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">No Weak Items!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">Any question you miss in Focus Quiz or JLPT Test appears here automatically.</p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('exam')">⏱️ Take 10-Q JLPT Test</button>
+                    <button class="btn-ghost" onclick="setMode('focus')">🎯 Focus Quiz</button>
+                </div>
+            </div>
+        `;
     }
-    if (n3_1Progress.totalBest !== null && n3_1Progress.totalBest !== undefined) {
-      lines.push('Best total: ' + n3_1Progress.totalBest + ' / ' + N3_1_TOTAL + ' ✓');
+    if (roundDone) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:48px; margin-bottom:8px;">🏆</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">Focus Session Complete!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">Challenge yourself with the 10-question timed JLPT Test next!</p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('exam')">⏱️ Start JLPT Test</button>
+                    <button class="btn-ghost" onclick="startFullShuffle()">🔀 Practice All 25 Shuffled</button>
+                </div>
+            </div>
+        `;
     }
-    el.innerHTML = lines.join('<br>');
-  }
-
-  // Marks one part, saves its best, updates its panel. Returns the part score.
-  function runN3_1PartCheck(part) {
-    var def = N3_1_PARTS[part - 1];
-    clearN3_1MarksRange(def.from, def.to);
-    var score = 0;
-    for (var n = def.from; n <= def.to; n++) score += markN3_1Question(n);
-    n3_1PartScores[part] = score;
-    var info = n3_1Progress.parts[String(part)];
-    var newRecord = info.done && score > info.best;
-    if (score > info.best) info.best = score;
-    info.done = true;
-    saveN3_1Progress();
-    var res = document.getElementById('partResult' + part);
-    if (res) {
-      res.innerHTML = 'Part ' + part + ': ' + score + ' / ' + def.size + (newRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
-      res.style.display = 'block';
+    if (mode === 'exam' && examFinished) {
+        const pct = Math.round((examScore / queue.length) * 100);
+        const pass = pct >= 80;
+        const rows = examResults.map((r, i) => `
+            <div class="list-item" style="border-left: 4px solid ${r.isOk ? 'var(--green)' : 'var(--red)'};">
+                <div class="list-top">
+                    <strong>Q${i + 1}. ${r.isOk ? '⭕️ Correct' : '❌ Missed'}</strong>
+                    <button class="audio-btn" onclick="playAudio(${r.q.id}, this)">🔊 Listen</button>
+                </div>
+                <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">${r.q.qHtml}</div>
+                <div style="font-size:0.86rem; font-weight:700; color:var(--green); margin-bottom:3px;">✅ ${r.q.ansDetail}</div>
+                ${r.q.hint ? `<div style="font-size:0.8rem; color:#4b5563;">💡 ${r.q.hint}</div>` : ''}
+            </div>
+        `).join('');
+        return `
+            <div style="text-align:center; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 16px;">
+                <div style="font-size:48px;">${pass ? '🏆' : '💪'}</div>
+                <h2 style="margin:6px 0 4px; color:var(--dark);">${pass ? 'JLPT N3 Test PASSED!' : 'Keep Practicing!'}</h2>
+                <div style="font-size:1.8rem; font-weight:900; color:${pass ? 'var(--green)' : 'var(--primary-dark)'};">${examScore} / ${queue.length} (${pct}%)</div>
+                <p style="font-size:0.86rem; color:var(--muted); margin:6px 0 16px;">
+                    ${pass ? '80%+ cleared! You are building solid JLPT N3 recall.' : 'Goal: 80%+. Missed questions were automatically saved to 🔴 Review Weak.'}
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="startExam(); render();">🔄 Try New 10-Q Test</button>
+                    <button class="btn-ghost" onclick="setMode('weak')">🔴 Review Weak</button>
+                </div>
+            </div>
+            ${rows}
+        `;
     }
-    refreshN3_1PartBest(part);
-    refreshN3_1Summary();
-    return score;
-  }
 
-  function checkN3_1Part(part) {
-    runN3_1PartCheck(part);
-    var panel = document.getElementById('partPanel' + part);
-    if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+    const q = queue[qIdx];
+    const isOk = answered && shuffledChoices[pickedIdx].origIdx === q.ansIdx;
+    const isExam = mode === 'exam';
 
-  function n3_1ScoreMessage(pct) {
-    if (pct === 100) return 'Perfect! N3 vocabulary mastered! 🎉';
-    if (pct >= 80) return 'Excellent! Almost perfect!';
-    if (pct >= 60) return 'Good job! Keep practicing!';
-    if (pct >= 40) return 'Nice try! Review the answers and try again!';
-    return 'Keep going! Use the hints and answers, then try again!';
-  }
+    return `
+        <div class="q-meta">
+            <span class="q-num">${isExam ? '⏱️ JLPT Test' : mode === 'weak' ? '🔴 Weak Review' : '🎯 Focus'} · Q${qIdx + 1} / ${queue.length}</span>
+            ${isExam ? `<span class="timer-pill" id="exam-timer">⏱ ${formatTime(examTimerSec)}</span>` : `<span class="tag-pill">JLPT N3 (#${q.id})</span>`}
+        </div>
 
-  function checkN3_1Score() {
-    var total = 0;
-    for (var i = 0; i < N3_1_PARTS.length; i++) total += runN3_1PartCheck(N3_1_PARTS[i].part);
-    var newTotalRecord = (typeof n3_1Progress.totalBest === 'number') && total > n3_1Progress.totalBest;
-    if (n3_1Progress.totalBest === null || n3_1Progress.totalBest === undefined || total > n3_1Progress.totalBest) {
-      n3_1Progress.totalBest = total;
-    }
-    saveN3_1Progress();
-    refreshN3_1Summary();
-    var pct = Math.round(total / N3_1_TOTAL * 100);
-    var res = document.getElementById('scoreResult');
-    res.innerHTML = 'Score: ' + total + ' / ' + N3_1_TOTAL + ' (' + pct + '%)<br><span class="score-msg">' + n3_1ScoreMessage(pct) + '</span>' + (newTotalRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
-    res.style.display = 'block';
-    document.getElementById('scorePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+        <div class="prompt-box ${answered ? (isOk ? 'correct-border' : 'wrong-border') : ''}">
+            ${q.qHtml}
+        </div>
 
-  function resetN3_1Score() {
-    clearN3_1Marks();
-    var radios = document.querySelectorAll('.question-block input[type="radio"]');
-    for (var i = 0; i < radios.length; i++) radios[i].checked = false;
-    n3_1PartScores = { 1: null, 2: null, 3: null };
-    n3_1Progress = n3_1DefaultProgress();
-    try { window.localStorage.removeItem(N3_1_PROGRESS_KEY); } catch (e) { /* ignore */ }
-    for (var p = 1; p <= 3; p++) {
-      var res = document.getElementById('partResult' + p);
-      if (res) { res.style.display = 'none'; res.innerHTML = ''; }
-      refreshN3_1PartBest(p);
-    }
-    var total = document.getElementById('scoreResult');
-    total.style.display = 'none';
-    total.innerHTML = '';
-    refreshN3_1Summary();
-  }
+        ${!isExam && q.hint ? `
+            <div class="hint-row">
+                <button class="hint-btn" onclick="hintOpen = !hintOpen; render();">${hintOpen ? '🙈 Hide Hint' : '💡 Show Hint'}</button>
+                ${hintOpen ? `<div class="hint-text">💡 ${q.hint}</div>` : '<span style="font-size:0.78rem; color:var(--muted);">Try answering before peeking at the hint!</span>'}
+            </div>
+        ` : (isExam ? `<div style="font-size:0.78rem; color:var(--muted); margin-bottom:12px;">Real JLPT style: no hints${HAS_ROMAJI ? ' &amp; no Romaji' : ''}. Click or press 1–4.</div>` : '')}
 
-  // Show saved bests on load, so returning learners see their growth.
-  (function initN3_1Progress() {
-    for (var p = 1; p <= 3; p++) refreshN3_1PartBest(p);
-    refreshN3_1Summary();
-  })();
+        <div class="choices-grid">
+            ${shuffledChoices.map((c, sIdx) => {
+                let cls = 'choice-btn';
+                if (answered) {
+                    if (c.origIdx === q.ansIdx) cls += ' is-correct';
+                    else if (sIdx === pickedIdx) cls += ' is-wrong';
+                }
+                const label = answered ? c.text : formatChoice(c.text, isExam);
+                return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerChoice(${sIdx})"><span class="choice-num">${sIdx + 1}</span><span>${label}</span></button>`;
+            }).join('')}
+        </div>
+
+        ${answered ? `
+            <div class="actions">
+                <button class="btn-primary" onclick="nextQuestion()">${qIdx + 1 < queue.length ? 'Next Question →' : (isExam ? 'See Test Result 🏆' : 'Finish Session →')}</button>
+            </div>
+            ${renderFeedback(q, isOk)}
+        ` : ''}
+    `;
+}
+
+function renderList() {
+    const filtered = QUESTIONS.filter(q => {
+        const st = state.status[q.id] || 'unseen';
+        if (listFilter === 'weak') return st === 'weak';
+        if (listFilter === 'mastered') return st === 'mastered';
+        return true;
+    });
+    return `
+        <div style="margin-bottom:12px;">
+            <strong style="font-size:1.02rem; color:var(--dark);">📋 All ${QUESTIONS.length} Questions &amp; Study Notes</strong>
+            <div style="font-size:0.78rem; color:var(--muted);">Review all items with natural Nanami audio pronunciation</div>
+        </div>
+        <div class="filter-row">
+            <button class="toggle-pill ${listFilter === 'all' ? 'on' : ''}" onclick="listFilter='all'; render();">All (${QUESTIONS.length})</button>
+            <button class="toggle-pill ${listFilter === 'weak' ? 'on' : ''}" onclick="listFilter='weak'; render();">🔴 Weak (${Object.values(state.status).filter(v=>v==='weak').length})</button>
+            <button class="toggle-pill ${listFilter === 'mastered' ? 'on' : ''}" onclick="listFilter='mastered'; render();">✅ Mastered (${Object.values(state.status).filter(v=>v==='mastered').length})</button>
+        </div>
+        ${filtered.length === 0 ? `<p style="color:var(--muted); text-align:center; padding:24px 0;">No items match this filter yet.</p>` : filtered.map(q => {
+            const st = state.status[q.id] || 'unseen';
+            const stLabel = st === 'mastered' ? 'Mastered ✅' : st === 'weak' ? 'Weak 🔴' : 'Unseen ⚪';
+            const stCls = st === 'mastered' ? 'st-mastered' : st === 'weak' ? 'st-weak' : 'st-unseen';
+            return `
+                <div class="list-item">
+                    <div class="list-top">
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <strong>Q${q.id}.</strong>
+                            <span class="status-dot ${stCls}">${stLabel}</span>
+                        </div>
+                        <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen</button>
+                    </div>
+                    <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">${q.qHtml}</div>
+                    <div style="font-size:0.9rem; font-weight:800; color:var(--green); margin-bottom:4px;">✅ ${q.ansDetail}</div>
+                    ${q.hint ? `<div style="font-size:0.8rem; color:#4b5563; background:#f8fafc; padding:8px 10px; border-radius:8px;">💡 ${q.hint}</div>` : ''}
+                </div>
+            `;
+        }).join('')}
+    `;
+}
+
+function render() {
+    const app = document.getElementById('app');
+    app.innerHTML = mode === 'list' ? renderList() : renderQuiz();
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (mode === 'list' || roundDone || examFinished || (mode === 'weak' && queue.length === 0)) return;
+    if (['1','2','3','4'].includes(e.key) && !answered) answerChoice(parseInt(e.key, 10) - 1);
+    else if (e.key === 'Enter' && answered) nextQuestion();
+});
+
+loadState();
+updateStats();
+setMode('focus');
 </script>
 </body>
 </html>

@@ -1,193 +1,227 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> 第1回 N3漢字クイズ - OHAYO CENTER</title>
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="OHAYO CENTER">
-<meta property="og:title" content="N3 Kanji Quiz Part 1 | OHAYO CENTER">
-<meta property="og:description" content="JLPT N3 kanji and vocabulary quiz, part 1: 25 questions with part-by-part scoring and saved best scores.">
-<meta property="og:url" content="https://ohayocenter.com/Kanji3-1.html">
-<meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="N3 Kanji Quiz Part 1 | OHAYO CENTER">
-<meta name="twitter:description" content="JLPT N3 kanji and vocabulary quiz, part 1: 25 questions with part-by-part scoring and saved best scores.">
-<meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-  <link rel="icon" href="icon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N3 Kanji Trainer 1 | OHAYO CENTER</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OHAYO CENTER">
+    <meta property="og:title" content="N3 Kanji Trainer 1 | OHAYO CENTER">
+    <meta property="og:description" content="Interactive JLPT N3 kanji quiz trainer (Part 1, 25 questions) with timed mock test, weak-item review, English hints, and natural Japanese audio.">
+    <meta property="og:url" content="https://ohayocenter.com/Kanji3-1.html">
+    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="N3 Kanji Trainer 1 | OHAYO CENTER">
+    <meta name="twitter:description" content="Interactive JLPT N3 kanji quiz trainer (Part 1, 25 questions) with timed mock test, weak-item review, English hints, and natural Japanese audio.">
+    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+    <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-<style>
-  /* --- ナビゲーションバー --- */
-  nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box; }
-  .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
-  .logo a { text-decoration: none; color: #2c3e50; }
-  .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-  .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
-  @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } }
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff9f43;
+            --primary-dark: #e67e22;
+            --primary-light: #fff5eb;
+            --dark: #2c3e50;
+            --text: #374151;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --green: #16a34a;
+            --green-bg: #dcfce7;
+            --red: #dc2626;
+            --red-bg: #fee2e2;
+            --blue: #2563eb;
+            --blue-bg: #eff6ff;
+            --bmc-color: #FFDD00;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0; left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
+        .nav-links a:hover { color: var(--primary); }
 
-  /* --- メインレイアウト --- */
-  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: #f0f4f8; color: #333; display: flex; justify-content: center; padding: 90px 20px 80px; }
-  .main-wrapper { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
-  .slide-container { background-color: #ffffff; width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); padding: 40px; box-sizing: border-box; position: relative; }
-  h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 30px; }
-  .topic-label { background-color: #e2e8f0; color: #4a5568; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; display: inline-block; margin-bottom: 20px; font-weight: bold; }
-  
-  /* --- スライド・クイズ部分 --- */
-  .slide { display: none; animation: fadeIn 0.4s; }
-  .slide.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .question-block { margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px dashed #e2e8f0; }
-  .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .question-text { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; line-height: 1.5; }
-  .english-translation { color: #666; font-size: 0.9em; margin-bottom: 15px; font-style: italic; }
-  .options { list-style: none; padding: 0; margin: 0 0 15px 0; }
-  .options li { background-color: #f7fafc; border: 1px solid #cbd5e0; margin-bottom: 8px; padding: 10px 15px; border-radius: 6px; transition: background-color 0.2s; }
-  .options li:hover { background-color: #ebf4ff; cursor: pointer; }
-  .options label { cursor: pointer; display: block; width: 100%; font-size: 1.05em;}
-  .btn-group { display: flex; gap: 10px; }
-  .action-btn { color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: background-color 0.2s; font-weight: bold; }
-  .hint-btn { background-color: #4299e1; }
-  .hint-btn:hover { background-color: #3182ce; }
-  .answer-btn { background-color: #48bb78; }
-  .answer-btn:hover { background-color: #38a169; }
-  .info-box { display: none; padding: 12px; margin-top: 10px; border-radius: 4px; font-size: 0.95em; }
-  .hint-text { background-color: #fffaf0; border-left: 4px solid #ed8936; color: #555; font-style: italic; }
-  .answer-text { background-color: #f0fff4; border-left: 4px solid #48bb78; color: #276749; font-weight: bold; }
+        .wrap { max-width: 800px; margin: 0 auto; padding: 22px 16px 40px; }
 
-  /* --- 新規スライド切り替えボタン --- */
-  .nav-controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; }
-  .nav-btn { background-color: #fff; color: #2c3e50; border: 2px solid #2c3e50; padding: 8px 16px; border-radius: 6px; font-size: 0.9em; font-weight: bold; cursor: pointer; transition: all 0.2s; }
-  .nav-btn:hover { background-color: #2c3e50; color: white; }
-  .nav-btn.active { background-color: #2c3e50; color: white; }
-  
-  .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; }
-  .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
-  .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-  .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-  .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-  .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
+        .hero {
+            background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+            padding: 22px; box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05); margin-bottom: 16px;
+        }
+        .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+        .level-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--primary-light); color: var(--primary-dark);
+            font-size: 12px; font-weight: 700; padding: 4px 12px;
+            border-radius: 999px; letter-spacing: 0.03em; margin-bottom: 8px;
+        }
+        .hero h1 { margin: 0; font-family: 'Sawarabi Mincho', 'Noto Sans JP', serif; font-size: 1.48rem; color: var(--dark); line-height: 1.3; }
+        .hero-sub { margin: 5px 0 0; font-size: 0.86rem; color: var(--muted); }
+        .hero-toggles { display: flex; gap: 8px; flex-wrap: wrap; }
+        .toggle-pill {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 6px 12px; border-radius: 999px;
+            border: 1.5px solid var(--border); background: #fff;
+            font-size: 12px; font-weight: 700; color: var(--dark);
+            cursor: pointer; transition: all 0.15s; font-family: inherit;
+        }
+        .toggle-pill.on { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); }
 
-  @media (max-width: 600px) { .slide-container { padding: 30px 20px 50px; } .nav-btn { font-size: 0.8em; padding: 8px 12px; } }
-  /* --- Score Section (追加) --- */
-  .score-panel {
-    text-align: center;
-    margin-top: 40px;
-    padding: 25px 20px;
-    border-top: 2px solid #e2e8f0;
-    background-color: #f7fafc;
-    border-radius: 8px;
-  }
-  .score-title {
-    color: #2c3e50;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  .score-desc {
-    color: #666;
-    font-size: 0.95em;
-    margin: 0 0 18px 0;
-  }
-  .score-btns {
-    justify-content: center;
-  }
-  .check-btn { background-color: #48bb78; }
-  .check-btn:hover { background-color: #38a169; }
-  .reset-btn { background-color: #a0aec0; }
-  .reset-btn:hover { background-color: #718096; }
-  .score-result {
-    margin-top: 18px;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #2c3e50;
-    line-height: 1.4;
-  }
-  .score-msg {
-    font-size: 0.75em;
-    color: #4a5568;
-  }
-  .question-block.q-correct {
-    background-color: #f0fff4;
-    border-left: 4px solid #48bb78;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .question-block.q-wrong {
-    background-color: #fff5f5;
-    border-left: 4px solid #e53e3e;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .question-block.q-unanswered {
-    background-color: #f7fafc;
-    border-left: 4px solid #a0aec0;
-    border-radius: 6px;
-    padding-left: 12px;
-  }
-  .q-badge {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 0.75em;
-    font-weight: bold;
-    color: #fff;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-  .q-badge.correct { background-color: #48bb78; }
-  .q-badge.wrong { background-color: #e53e3e; }
-  .q-badge.unanswered { background-color: #a0aec0; }
-  .options li.correct-option {
-    background-color: #c6f6d5;
-    border-color: #48bb78;
-    font-weight: bold;
-  }
-  .options li.wrong-option {
-    background-color: #fed7d7;
-    border-color: #e53e3e;
-  }
-  .part-panel {
-    text-align: center;
-    margin-top: 30px;
-    padding: 18px 15px;
-    border-top: 2px solid #e2e8f0;
-    background-color: #f7fafc;
-    border-radius: 8px;
-  }
-  .part-title {
-    color: #2c3e50;
-    font-size: 1.05em;
-    font-weight: bold;
-    margin-bottom: 12px;
-  }
-  .part-result {
-    margin-top: 14px;
-    font-size: 1.15em;
-    font-weight: bold;
-    color: #2c3e50;
-    line-height: 1.4;
-  }
-  .part-best {
-    margin-top: 8px;
-    font-size: 0.9em;
-    color: #718096;
-  }
-  .part-best:empty { display: none; }
-  .new-record {
-    color: #d69e2e;
-    font-weight: bold;
-  }
-  .score-parts {
-    margin-top: 14px;
-    font-size: 1em;
-    color: #2c3e50;
-    line-height: 1.7;
-  }
-  .score-parts:empty { display: none; }
-</style>
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+        .stat-box { background: #f9fafb; border: 1px solid #eef0f3; border-radius: 12px; padding: 10px 8px; text-align: center; }
+        .stat-val { font-size: 1.1rem; font-weight: 800; color: var(--dark); line-height: 1.2; }
+        .stat-val.green { color: var(--green); }
+        .stat-val.red { color: var(--red); }
+        .stat-val.orange { color: var(--primary-dark); }
+        .stat-lbl { font-size: 0.7rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+        .mastery-bar { height: 8px; background: #eef2f7; border-radius: 999px; overflow: hidden; margin-top: 12px; }
+        .mastery-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #fbbf24); border-radius: 999px; transition: width 0.35s ease; }
+
+        .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+        .tab-btn {
+            background: var(--card); border: 2px solid var(--border); border-radius: 14px;
+            padding: 11px 8px; cursor: pointer; text-align: center; transition: all 0.18s;
+            color: var(--dark); font-weight: 700; font-size: 0.84rem;
+            display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit;
+        }
+        .tab-btn .tab-sub { font-size: 0.68rem; font-weight: 500; color: var(--muted); }
+        .tab-btn:hover { border-color: #fed7aa; background: #fffaf5; }
+        .tab-btn.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); box-shadow: 0 4px 12px rgba(255, 159, 67, 0.18); }
+        .tab-btn.active .tab-sub { color: #b45309; }
+        .tab-badge { display: inline-block; background: var(--red); color: #fff; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; margin-left: 3px; }
+
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05); }
+        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 8px; flex-wrap: wrap; }
+        .q-num { font-size: 0.82rem; font-weight: 700; color: var(--muted); }
+        .tag-pill { font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--blue-bg); color: var(--blue); }
+        .timer-pill { font-size: 0.84rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; background: #fef3c7; color: #b45309; }
+
+        .prompt-box {
+            background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px;
+            padding: 20px 18px; margin-bottom: 16px; font-size: 1.18rem; font-weight: 700;
+            color: var(--dark); line-height: 1.9;
+        }
+        .prompt-box u {
+            text-decoration: none;
+            border-bottom: 3px solid var(--primary);
+            padding: 0 3px 1px;
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        .prompt-box.correct-border { border-color: var(--green); background: #f0fdf4; }
+        .prompt-box.wrong-border { border-color: var(--red); background: #fef2f2; }
+
+        .hint-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+        .hint-btn {
+            border: 1.5px solid #e5e7eb; background: #fff; color: var(--dark);
+            font-size: 0.78rem; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+            cursor: pointer; transition: 0.15s; font-family: inherit;
+        }
+        .hint-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+        .hint-text { font-size: 0.86rem; color: #374151; background: #fffbeb; border: 1px solid #fde68a; padding: 7px 12px; border-radius: 10px; flex: 1; min-width: 200px; }
+
+        .choices-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+        .choice-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 14px 16px; border-radius: 14px; border: 2px solid #e2e8f0;
+            background: #fff; color: var(--dark); font-size: 1.02rem; font-weight: 700;
+            cursor: pointer; transition: all 0.15s; text-align: left; font-family: inherit;
+        }
+        .choice-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); transform: translateY(-1px); }
+        .choice-btn:disabled { cursor: default; opacity: 0.55; }
+        .choice-btn.is-correct { border-color: var(--green); background: var(--green-bg); color: #14532d; opacity: 1 !important; }
+        .choice-btn.is-wrong { border-color: var(--red); background: var(--red-bg); color: #7f1d1d; opacity: 1 !important; }
+        .choice-num {
+            width: 26px; height: 26px; border-radius: 50%; background: #f1f5f9;
+            color: var(--muted); font-size: 0.8rem; font-weight: 800;
+            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+
+        .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .btn-primary {
+            background: var(--primary); color: #fff; border: none; border-radius: 12px;
+            padding: 12px 22px; font-size: 0.94rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35); transition: 0.15s; font-family: inherit;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-ghost { background: #f3f4f6; color: var(--dark); border: none; border-radius: 12px; padding: 12px 16px; font-size: 0.88rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+        .btn-ghost:hover { background: #e5e7eb; }
+
+        .feedback { margin-top: 18px; border-radius: 16px; padding: 18px; border: 2px solid var(--border); animation: fadeUp 0.2s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .feedback.ok { background: #f0fdf4; border-color: #86efac; }
+        .feedback.ng { background: #fef2f2; border-color: #fca5a5; }
+        .fb-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+        .fb-title { font-size: 1rem; font-weight: 800; }
+        .fb-title.ok { color: var(--green); }
+        .fb-title.ng { color: var(--red); }
+
+        .audio-btn {
+            display: inline-flex; align-items: center; gap: 6px; background: #fff;
+            border: 2px solid var(--primary); color: var(--primary-dark);
+            padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700;
+            cursor: pointer; transition: 0.15s; font-family: inherit;
+        }
+        .audio-btn:hover, .audio-btn.playing { background: var(--primary); color: #fff; }
+
+        .ans-main { font-size: 1.15rem; font-weight: 800; color: var(--dark); margin: 4px 0 8px; }
+        .explain-box { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px 14px; font-size: 0.86rem; color: #374151; }
+
+        .filter-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+        .list-item { border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; background: #fff; }
+        .list-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+        .status-dot { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+        .st-mastered { background: var(--green-bg); color: var(--green); }
+        .st-weak { background: var(--red-bg); color: var(--red); }
+        .st-unseen { background: #f3f4f6; color: var(--muted); }
+
+        .reset-progress-row { text-align: right; margin-top: 14px; }
+        .reset-link { background: none; border: none; color: var(--muted); font-size: 0.75rem; text-decoration: underline; cursor: pointer; font-family: inherit; }
+
+        .support-section { text-align: center; margin: 26px auto 0; padding: 24px 16px 10px; border-top: 1px solid #e5e7eb; max-width: 780px; }
+        .support-section h2 { color: var(--dark); font-size: 1rem; margin: 0 0 6px; }
+        .support-section p { color: #666; font-size: 0.86rem; margin: 0 0 14px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--bmc-color); color: #000; padding: 10px 22px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.08); transition: transform 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.14); }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 14px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a { font-size: 0.7rem; }
+            .hero { padding: 18px 16px; }
+            .hero h1 { font-size: 1.22rem; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .tabs { grid-template-columns: repeat(2, 1fr); }
+            .card { padding: 18px 14px; }
+            .choices-grid { grid-template-columns: 1fr; }
+            .prompt-box { font-size: 1.04rem; padding: 16px 14px; }
+        }
+    </style>
 <style id="ohayo-cta-style">
 .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
 .ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
@@ -204,12 +238,6 @@
 .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
 .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
 .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 @media (max-width: 600px) {
   .ohayo-cta-grid { grid-template-columns: 1fr; }
   .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
@@ -228,498 +256,68 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     </ul>
 </nav>
 
-<div class="main-wrapper">
-  <div class="slide-container">
-    <h1>第1回：N3 漢字・語彙マスタークイズ</h1>
-    
-    <div id="slide1" class="slide active">
-      <div class="topic-label">Topic: 交通 (Traffic) (Slide 1/5)</div>
-
-      <div class="question-block">
-        <div class="question-text">Q1. 事故で電車が<u>遅れて</u>います。</div>
-        <div class="english-translation">[The train is delayed due to an accident.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q1"> A. たおれて</label></li>
-          <li><label><input type="radio" name="q1"> B. わすれて</label></li>
-          <li><label><input type="radio" name="q1"> C. おくれて</label></li>
-          <li><label><input type="radio" name="q1"> D. はずれて</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint1')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans1')">Show Answer</button>
+<div class="wrap">
+    <div class="hero">
+        <div class="hero-top">
+            <div>
+                <div class="level-pill">📕 JLPT N3 · Kanji Trainer (Part 1)</div>
+                <h1>N3 Kanji Trainer 1 — Reading, Writing & Context</h1>
+                <p class="hero-sub">Practice 25 real JLPT N3 kanji-in-context questions with timed mock tests, weak review & natural audio</p>
+            </div>
+            <div class="hero-toggles">
+                
+                <button id="btn-autoaudio" class="toggle-pill on" onclick="toggleAutoAudio()">🔊 Auto-Audio: ON</button>
+            </div>
         </div>
-        <div id="hint1" class="info-box hint-text">Hint: It means "to be late" or "to be delayed".</div>
-        <div id="ans1" class="info-box answer-text">Answer: C. おくれて (遅れる: okureru)</div>
-      </div>
 
-      <div class="question-block">
-        <div class="question-text">Q2. 次の駅で<u>のりかえて</u>ください。</div>
-        <div class="english-translation">[Please transfer at the next station.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q2"> A. 乗り換えて</label></li>
-          <li><label><input type="radio" name="q2"> B. 乗り交えて</label></li>
-          <li><label><input type="radio" name="q2"> C. 乗り越えて</label></li>
-          <li><label><input type="radio" name="q2"> D. 乗り変えて</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint2')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans2')">Show Answer</button>
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-val green" id="st-mastered">0 / 25</div>
+                <div class="stat-lbl">Mastered ✅</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val red" id="st-weak">0</div>
+                <div class="stat-lbl">Weak 🔴</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val orange" id="st-streak">🔥 0</div>
+                <div class="stat-lbl">Streak</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="st-best">--</div>
+                <div class="stat-lbl">JLPT Test Best</div>
+            </div>
         </div>
-        <div id="hint2" class="info-box hint-text">Hint: The second kanji means "to exchange" or "to substitute".</div>
-        <div id="ans2" class="info-box answer-text">Answer: A. 乗り換えて (乗り換える: norikaeru)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q3. 道が（　　　）いて、車が全然進まない。</div>
-        <div class="english-translation">[The road is congested, and the cars aren't moving at all.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q3"> A. 空んで (すんで)</label></li>
-          <li><label><input type="radio" name="q3"> B. 混んで (こんで)</label></li>
-          <li><label><input type="radio" name="q3"> C. 開いて (あいて)</label></li>
-          <li><label><input type="radio" name="q3"> D. 迷って (まよって)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint3')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans3')">Show Answer</button>
-        </div>
-        <div id="hint3" class="info-box hint-text">Hint: Look for the verb that means "to be crowded/congested".</div>
-        <div id="ans3" class="info-box answer-text">Answer: B. 混んで (混む: komu)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q4. このバスは<u>急行</u>です。</div>
-        <div class="english-translation">[This bus is an express.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q4"> A. きゅこう</label></li>
-          <li><label><input type="radio" name="q4"> B. きゅうこ</label></li>
-          <li><label><input type="radio" name="q4"> C. きょうこう</label></li>
-          <li><label><input type="radio" name="q4"> D. きゅうこう</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint4')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans4')">Show Answer</button>
-        </div>
-        <div id="hint4" class="info-box hint-text">Hint: Both kanji have long vowel sounds.</div>
-        <div id="ans4" class="info-box answer-text">Answer: D. きゅうこう (急行: kyūkō)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q5. <u>しゅうてん</u>まで乗ります。</div>
-        <div class="english-translation">[I will ride until the last stop.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q5"> A. 終店</label></li>
-          <li><label><input type="radio" name="q5"> B. 秋点</label></li>
-          <li><label><input type="radio" name="q5"> C. 終点</label></li>
-          <li><label><input type="radio" name="q5"> D. 集中</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint5')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans5')">Show Answer</button>
-        </div>
-        <div id="hint5" class="info-box hint-text">Hint: The first kanji means "end", and the second means "point/dot".</div>
-        <div id="ans5" class="info-box answer-text">Answer: C. 終点 (終点: shūten)</div>
-      </div>
+        <div class="mastery-bar"><div class="mastery-fill" id="mastery-fill" style="width: 0%"></div></div>
     </div>
 
-    <div id="slide2" class="slide">
-      <div class="topic-label">Topic: 仕事 (Work) (Slide 2/5)</div>
-      
-      <div class="question-block">
-        <div class="question-text">Q6. <u>営業</u>の仕事をしています。</div>
-        <div class="english-translation">[I am doing sales work.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q6"> A. えいぎょ</label></li>
-          <li><label><input type="radio" name="q6"> B. けいぎょう</label></li>
-          <li><label><input type="radio" name="q6"> C. えいぎょう</label></li>
-          <li><label><input type="radio" name="q6"> D. えいご</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint6')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans6')">Show Answer</button>
-        </div>
-        <div id="hint6" class="info-box hint-text">Hint: The reading has two long vowel sounds.</div>
-        <div id="ans6" class="info-box answer-text">Answer: C. えいぎょう (営業: eigyō)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q7. 明日までに<u>しりょう</u>を作ります。</div>
-        <div class="english-translation">[I will prepare the materials/documents by tomorrow.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q7"> A. 仕料</label></li>
-          <li><label><input type="radio" name="q7"> B. 資料</label></li>
-          <li><label><input type="radio" name="q7"> C. 支料</label></li>
-          <li><label><input type="radio" name="q7"> D. 知料</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint7')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans7')">Show Answer</button>
-        </div>
-        <div id="hint7" class="info-box hint-text">Hint: The first kanji is also used in 資格 (shikaku - qualifications) and 資本 (shihon - capital).</div>
-        <div id="ans7" class="info-box answer-text">Answer: B. 資料 (資料: shiryō)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q8. 会議の（　　　）を決める。</div>
-        <div class="english-translation">[Decide the schedule for the meeting.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q8"> A. 日常 (にちじょう)</label></li>
-          <li><label><input type="radio" name="q8"> B. 日記 (にっき)</label></li>
-          <li><label><input type="radio" name="q8"> C. 日光 (にっこう)</label></li>
-          <li><label><input type="radio" name="q8"> D. 日程 (にってい)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint8')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans8')">Show Answer</button>
-        </div>
-        <div id="hint8" class="info-box hint-text">Hint: The word means "schedule" or "itinerary".</div>
-        <div id="ans8" class="info-box answer-text">Answer: D. 日程 (日程: nittei)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q9. 社長に<u>報告</u>します。</div>
-        <div class="english-translation">[I will report to the president.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q9"> A. ほこく</label></li>
-          <li><label><input type="radio" name="q9"> B. ほうごく</label></li>
-          <li><label><input type="radio" name="q9"> C. ほうこく</label></li>
-          <li><label><input type="radio" name="q9"> D. ぼうこく</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint9')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans9')">Show Answer</button>
-        </div>
-        <div id="hint9" class="info-box hint-text">Hint: The first character requires an elongated "o" sound. The second is an unvoiced "k".</div>
-        <div id="ans9" class="info-box answer-text">Answer: C. ほうこく (報告: hōkoku)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q10. <u>きゅうりょう</u>が上がった。</div>
-        <div class="english-translation">[My salary increased.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q10"> A. 給金</label></li>
-          <li><label><input type="radio" name="q10"> B. 給料</label></li>
-          <li><label><input type="radio" name="q10"> C. 急料</label></li>
-          <li><label><input type="radio" name="q10"> D. 級料</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint10')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans10')">Show Answer</button>
-        </div>
-        <div id="hint10" class="info-box hint-text">Hint: The first kanji relates to "supply/pay" (給).</div>
-        <div id="ans10" class="info-box answer-text">Answer: B. 給料 (給料: kyūryō)</div>
-      </div>
-    <div class="part-panel" id="partPanel1">
-      <div class="part-title">📝 Part 1 (Q1–Q10)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkKanji31Part(1)">✓ Check Part 1</button>
-      </div>
-      <div id="partResult1" class="part-result" style="display: none;"></div>
-      <div id="partBest1" class="part-best"></div>
-    </div>
+    <div class="tabs">
+        <button class="tab-btn active" id="tab-focus" onclick="setMode('focus')">
+            <span>🎯 Focus Quiz</span>
+            <span class="tab-sub">Step-by-step drill</span>
+        </button>
+        <button class="tab-btn" id="tab-exam" onclick="setMode('exam')">
+            <span>⏱️ JLPT Test</span>
+            <span class="tab-sub">10-Q timed mock</span>
+        </button>
+        <button class="tab-btn" id="tab-weak" onclick="setMode('weak')">
+            <span>🔴 Review Weak <span id="weak-badge" class="tab-badge" style="display:none">0</span></span>
+            <span class="tab-sub">Retry mistakes</span>
+        </button>
+        <button class="tab-btn" id="tab-list" onclick="setMode('list')">
+            <span>📋 All 25 List</span>
+            <span class="tab-sub">Review &amp; audio</span>
+        </button>
     </div>
 
-    <div id="slide3" class="slide">
-      <div class="topic-label">Topic: 健康・病院 (Health & Hospital) (Slide 3/5)</div>
-      
-      <div class="question-block">
-        <div class="question-text">Q11. <u>具合</u>が悪いです。</div>
-        <div class="english-translation">[I'm not feeling well.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q11"> A. ちょうし</label></li>
-          <li><label><input type="radio" name="q11"> B. じょうたい</label></li>
-          <li><label><input type="radio" name="q11"> C. ぐあい</label></li>
-          <li><label><input type="radio" name="q11"> D. きぶん</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint11')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans11')">Show Answer</button>
-        </div>
-        <div id="hint11" class="info-box hint-text">Hint: The word means "condition" or "health state".</div>
-        <div id="ans11" class="info-box answer-text">Answer: C. ぐあい (具合: guai)</div>
-      </div>
+    <div id="app" class="card"></div>
 
-      <div class="question-block">
-        <div class="question-text">Q12. 病院で<u>ちゅうしゃ</u>を打ちました。</div>
-        <div class="english-translation">[I got an injection at the hospital.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q12"> A. 駐車</label></li>
-          <li><label><input type="radio" name="q12"> B. 注写</label></li>
-          <li><label><input type="radio" name="q12"> C. 注者</label></li>
-          <li><label><input type="radio" name="q12"> D. 注射</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint12')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans12')">Show Answer</button>
-        </div>
-        <div id="hint12" class="info-box hint-text">Hint: The second kanji means "to shoot". (射)</div>
-        <div id="ans12" class="info-box answer-text">Answer: D. 注射 (注射: chūsha)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q13. 熱があるので、（　　　）を測ります。</div>
-        <div class="english-translation">[I have a fever, so I will measure my body temperature.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q13"> A. 体力 (たいりょく)</label></li>
-          <li><label><input type="radio" name="q13"> B. 体重 (たいじゅう)</label></li>
-          <li><label><input type="radio" name="q13"> C. 体温 (たいおん)</label></li>
-          <li><label><input type="radio" name="q13"> D. 身体 (しんたい)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint13')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans13')">Show Answer</button>
-        </div>
-        <div id="hint13" class="info-box hint-text">Hint: "Body temperature" is composed of "Body" (体) + "Warm/Temp" (温).</div>
-        <div id="ans13" class="info-box answer-text">Answer: C. 体温 (体温: taion)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q14. 今日は<u>食欲</u>がありません。</div>
-        <div class="english-translation">[I don't have an appetite today.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q14"> A. しょっき</label></li>
-          <li><label><input type="radio" name="q14"> B. しょくよう</label></li>
-          <li><label><input type="radio" name="q14"> C. しょくのう</label></li>
-          <li><label><input type="radio" name="q14"> D. しょくよく</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint14')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans14')">Show Answer</button>
-        </div>
-        <div id="hint14" class="info-box hint-text">Hint: The second kanji 欲 means "desire".</div>
-        <div id="ans14" class="info-box answer-text">Answer: D. しょくよく (食欲: shokuyoku)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q15. 医者の<u>しんさつ</u>を受けます。</div>
-        <div class="english-translation">[I will receive a medical examination from the doctor.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q15"> A. 診断</label></li>
-          <li><label><input type="radio" name="q15"> B. 診察</label></li>
-          <li><label><input type="radio" name="q15"> C. 真察</label></li>
-          <li><label><input type="radio" name="q15"> D. 新札</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint15')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans15')">Show Answer</button>
-        </div>
-        <div id="hint15" class="info-box hint-text">Hint: The first kanji 診 is used for medical examination.</div>
-        <div id="ans15" class="info-box answer-text">Answer: B. 診察 (診察: shinsatsu)</div>
-      </div>
+    <div class="reset-progress-row">
+        <button class="reset-link" onclick="resetSavedProgress()">Reset saved progress on this page</button>
     </div>
+</div>
 
-    <div id="slide4" class="slide">
-      <div class="topic-label">Topic: 買い物・お金 (Shopping & Money) (Slide 4/5)</div>
-      
-      <div class="question-block">
-        <div class="question-text">Q16. このサービスは<u>無料</u>です。</div>
-        <div class="english-translation">[This service is free of charge.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q16"> A. むだい</label></li>
-          <li><label><input type="radio" name="q16"> B. ぶだい</label></li>
-          <li><label><input type="radio" name="q16"> C. むりょう</label></li>
-          <li><label><input type="radio" name="q16"> D. ぶりょう</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint16')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans16')">Show Answer</button>
-        </div>
-        <div id="hint16" class="info-box hint-text">Hint: 無 usually reads as "mu".</div>
-        <div id="ans16" class="info-box answer-text">Answer: C. むりょう (無料: muryō)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q17. スーパーで<u>わりびき</u>の肉を買った。</div>
-        <div class="english-translation">[I bought discounted meat at the supermarket.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q17"> A. 割安</label></li>
-          <li><label><input type="radio" name="q17"> B. 割増し</label></li>
-          <li><label><input type="radio" name="q17"> C. 割引</label></li>
-          <li><label><input type="radio" name="q17"> D. 割合</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint17')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans17')">Show Answer</button>
-        </div>
-        <div id="hint17" class="info-box hint-text">Hint: Generally written with just two kanji, meaning "cut/discount".</div>
-        <div id="ans17" class="info-box answer-text">Answer: C. 割引 (割引: waribiki)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q18. この靴はとても（　　　）が良いです。</div>
-        <div class="english-translation">[These shoes are of very good quality.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q18"> A. 量 (りょう)</label></li>
-          <li><label><input type="radio" name="q18"> B. 紐 (ひも)</label></li>
-          <li><label><input type="radio" name="q18"> C. 柄 (がら)</label></li>
-          <li><label><input type="radio" name="q18"> D. 質 (しつ)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint18')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans18')">Show Answer</button>
-        </div>
-        <div id="hint18" class="info-box hint-text">Hint: The word means "quality".</div>
-        <div id="ans18" class="info-box answer-text">Answer: D. 質 (質: shitsu)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q19. <u>領収書</u>をください。</div>
-        <div class="english-translation">[Please give me a receipt.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q19"> A. りょうしゅうしょ</label></li>
-          <li><label><input type="radio" name="q19"> B. りょうしゅしょ</label></li>
-          <li><label><input type="radio" name="q19"> C. りょしゅうしょ</label></li>
-          <li><label><input type="radio" name="q19"> D. りょうじゅうしょ</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint19')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans19')">Show Answer</button>
-        </div>
-        <div id="hint19" class="info-box hint-text">Hint: Both the first and second characters require long vowels.</div>
-        <div id="ans19" class="info-box answer-text">Answer: A. りょうしゅうしょ (領収書: ryōshūsho)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q20. <u>げんきん</u>で払います。</div>
-        <div class="english-translation">[I will pay in cash.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q20"> A. 減金</label></li>
-          <li><label><input type="radio" name="q20"> B. 元金</label></li>
-          <li><label><input type="radio" name="q20"> C. 限金</label></li>
-          <li><label><input type="radio" name="q20"> D. 現金</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint20')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans20')">Show Answer</button>
-        </div>
-        <div id="hint20" class="info-box hint-text">Hint: The first kanji "現" means "present/actual".</div>
-        <div id="ans20" class="info-box answer-text">Answer: D. 現金 (現金: genkin)</div>
-      </div>
-    <div class="part-panel" id="partPanel2">
-      <div class="part-title">📝 Part 2 (Q11–Q20)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkKanji31Part(2)">✓ Check Part 2</button>
-      </div>
-      <div id="partResult2" class="part-result" style="display: none;"></div>
-      <div id="partBest2" class="part-best"></div>
-    </div>
-    </div>
-
-    <div id="slide5" class="slide">
-      <div class="topic-label">Topic: 日常生活 (Daily Life) (Slide 5/5)</div>
-      
-      <div class="question-block">
-        <div class="question-text">Q21. 部屋を<u>片付けました</u>。</div>
-        <div class="english-translation">[I tidied up the room.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q21"> A. かたづけりました</label></li>
-          <li><label><input type="radio" name="q21"> B. かたつけました</label></li>
-          <li><label><input type="radio" name="q21"> C. かたづけました</label></li>
-          <li><label><input type="radio" name="q21"> D. かたちゅけました</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint21')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans21')">Show Answer</button>
-        </div>
-        <div id="hint21" class="info-box hint-text">Hint: Notice the ten-ten (voicing marks) on "tsu".</div>
-        <div id="ans21" class="info-box answer-text">Answer: C. かたづけました (片付ける: katazukeru)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q22. 週末に<u>せんたく</u>をします。</div>
-        <div class="english-translation">[I do the laundry on weekends.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q22"> A. 選択</label></li>
-          <li><label><input type="radio" name="q22"> B. 洗濯</label></li>
-          <li><label><input type="radio" name="q22" value="C"> C. 洗浄</label></li>
-          <li><label><input type="radio" name="q22"> D. 選たく</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint22')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans22')">Show Answer</button>
-        </div>
-        <div id="hint22" class="info-box hint-text">Hint: Both kanji have the "water" radical on the left side.</div>
-        <div id="ans22" class="info-box answer-text">Answer: B. 洗濯 (洗濯: sentaku)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q23. ゴミは（　　　）に分けて捨ててください。</div>
-        <div class="english-translation">[Please sort and throw away the garbage by type.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q23"> A. 書類 (しょるい)</label></li>
-          <li><label><input type="radio" name="q23"> B. 種類 (しゅるい)</label></li>
-          <li><label><input type="radio" name="q23"> C. 人類 (じんるい)</label></li>
-          <li><label><input type="radio" name="q23"> D. 種族 (しゅぞく)</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint23')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans23')">Show Answer</button>
-        </div>
-        <div id="hint23" class="info-box hint-text">Hint: The correct word means "kind" or "type".</div>
-        <div id="ans23" class="info-box answer-text">Answer: B. 種類 (種類: shurui)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q24. <u>約束</u>の時間を守る。</div>
-        <div class="english-translation">[Keep the appointment time.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q24"> A. やっそく</label></li>
-          <li><label><input type="radio" name="q24"> B. やくぞく</label></li>
-          <li><label><input type="radio" name="q24"> C. やくそぐ</label></li>
-          <li><label><input type="radio" name="q24"> D. やくそく</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint24')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans24')">Show Answer</button>
-        </div>
-        <div id="hint24" class="info-box hint-text">Hint: There are no voiced consonants (ten-ten marks) in this reading.</div>
-        <div id="ans24" class="info-box answer-text">Answer: D. やくそく (約束: yakusoku)</div>
-      </div>
-
-      <div class="question-block">
-        <div class="question-text">Q25. 友達をパーティーに<u>しょうたい</u>した。</div>
-        <div class="english-translation">[I invited my friend to the party.]</div>
-        <ul class="options">
-          <li><label><input type="radio" name="q25"> A. 招待</label></li>
-          <li><label><input type="radio" name="q25"> B. 招持</label></li>
-          <li><label><input type="radio" name="q25"> C. 紹介</label></li>
-          <li><label><input type="radio" name="q25"> D. 昭待</label></li>
-        </ul>
-        <div class="btn-group">
-          <button class="action-btn hint-btn" onclick="toggleDisplay('hint25')">Show Hint</button>
-          <button class="action-btn answer-btn" onclick="toggleDisplay('ans25')">Show Answer</button>
-        </div>
-        <div id="hint25" class="info-box hint-text">Hint: The first kanji means "to invite" (招く).</div>
-        <div id="ans25" class="info-box answer-text">Answer: A. 招待 (招待: shōtai)</div>
-      </div>
-    <div class="part-panel" id="partPanel3">
-      <div class="part-title">📝 Part 3 (Q21–Q25)</div>
-      <div class="btn-group score-btns">
-        <button type="button" class="action-btn check-btn" onclick="checkKanji31Part(3)">✓ Check Part 3</button>
-      </div>
-      <div id="partResult3" class="part-result" style="display: none;"></div>
-      <div id="partBest3" class="part-best"></div>
-    </div>
-    </div>
-
-    <div class="nav-controls">
-      <button class="nav-btn active" onclick="goToSlide(1)">SLIDE1</button>
-      <button class="nav-btn" onclick="goToSlide(2)">SLIDE2</button>
-      <button class="nav-btn" onclick="goToSlide(3)">SLIDE3</button>
-      <button class="nav-btn" onclick="goToSlide(4)">SLIDE4</button>
-      <button class="nav-btn" onclick="goToSlide(5)">SLIDE5</button>
-    </div>
-
-  <div class="score-panel" id="scorePanel">
-    <div class="score-title">📝 Your Score</div>
-    <p class="score-desc">Check each part as you finish it, or check everything at once here. Unanswered questions count as wrong. Your best scores are saved on this device, so you can see your growth on every visit.</p>
-    <div class="btn-group score-btns">
-      <button type="button" class="action-btn check-btn" onclick="checkKanji31Score()">✓ Check All</button>
-      <button type="button" class="action-btn reset-btn" onclick="resetKanji31Score()">↺ Reset all (clears saved progress)</button>
-    </div>
-    <div id="scoreParts" class="score-parts"></div>
-    <div id="scoreResult" class="score-result" style="display: none;"></div>
-  </div>
-    <!-- OHAYO_NEXT_CTA -->
+<!-- OHAYO_NEXT_CTA -->
 <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
   <div class="ohayo-cta-next">
     <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
@@ -739,251 +337,344 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 </section>
 
 <div class="support-section">
-      <h2>Support OHAYO CENTER</h2>
-      <p>If you find these materials helpful, please consider supporting us!</p>
-      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these free JLPT materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
         ☕️ <span>SUPPORT OHAYO CENTER</span>
-      </a>
-    </div>
-
-  </div>
+    </a>
 </div>
 
 <script>
-  let currentSlide = 1;
+const STORAGE_KEY = 'ohayo_n3t_v1_kanji3_1';
+const AUDIO_DIR = 'kanji3-1-audio';
+const HAS_ROMAJI = false;
+const QUESTIONS = [{"id": 1, "qHtml": "事故で電車が<u>遅れて</u>います。", "choices": ["たおれて", "わすれて", "おくれて", "はずれて"], "ansIdx": 2, "ansDetail": "おくれて (遅れる: okureru)", "hint": "It means \"to be late\" or \"to be delayed\"."}, {"id": 2, "qHtml": "次の駅で<u>のりかえて</u>ください。", "choices": ["乗り換えて", "乗り交えて", "乗り越えて", "乗り変えて"], "ansIdx": 0, "ansDetail": "乗り換えて (乗り換える: norikaeru)", "hint": "The second kanji means \"to exchange\" or \"to substitute\"."}, {"id": 3, "qHtml": "道が（ ）いて、車が全然進まない。", "choices": ["空んで (すんで)", "混んで (こんで)", "開いて (あいて)", "迷って (まよって)"], "ansIdx": 1, "ansDetail": "混んで (混む: komu)", "hint": "Look for the verb that means \"to be crowded/congested\"."}, {"id": 4, "qHtml": "このバスは<u>急行</u>です。", "choices": ["きゅこう", "きゅうこ", "きょうこう", "きゅうこう"], "ansIdx": 3, "ansDetail": "きゅうこう (急行: kyūkō)", "hint": "Both kanji have long vowel sounds."}, {"id": 5, "qHtml": "<u>しゅうてん</u>まで乗ります。", "choices": ["終店", "秋点", "終点", "集中"], "ansIdx": 2, "ansDetail": "終点 (終点: shūten)", "hint": "The first kanji means \"end\", and the second means \"point/dot\"."}, {"id": 6, "qHtml": "<u>営業</u>の仕事をしています。", "choices": ["えいぎょ", "けいぎょう", "えいぎょう", "えいご"], "ansIdx": 2, "ansDetail": "えいぎょう (営業: eigyō)", "hint": "The reading has two long vowel sounds."}, {"id": 7, "qHtml": "明日までに<u>しりょう</u>を作ります。", "choices": ["仕料", "資料", "支料", "知料"], "ansIdx": 1, "ansDetail": "資料 (資料: shiryō)", "hint": "The first kanji is also used in 資格 (shikaku - qualifications) and 資本 (shihon - capital)."}, {"id": 8, "qHtml": "会議の（ ）を決める。", "choices": ["日常 (にちじょう)", "日記 (にっき)", "日光 (にっこう)", "日程 (にってい)"], "ansIdx": 3, "ansDetail": "日程 (日程: nittei)", "hint": "The word means \"schedule\" or \"itinerary\"."}, {"id": 9, "qHtml": "社長に<u>報告</u>します。", "choices": ["ほこく", "ほうごく", "ほうこく", "ぼうこく"], "ansIdx": 2, "ansDetail": "ほうこく (報告: hōkoku)", "hint": "The first character requires an elongated \"o\" sound. The second is an unvoiced \"k\"."}, {"id": 10, "qHtml": "<u>きゅうりょう</u>が上がった。", "choices": ["給金", "給料", "急料", "級料"], "ansIdx": 1, "ansDetail": "給料 (給料: kyūryō)", "hint": "The first kanji relates to \"supply/pay\" (給)."}, {"id": 11, "qHtml": "<u>具合</u>が悪いです。", "choices": ["ちょうし", "じょうたい", "ぐあい", "きぶん"], "ansIdx": 2, "ansDetail": "ぐあい (具合: guai)", "hint": "The word means \"condition\" or \"health state\"."}, {"id": 12, "qHtml": "病院で<u>ちゅうしゃ</u>を打ちました。", "choices": ["駐車", "注写", "注者", "注射"], "ansIdx": 3, "ansDetail": "注射 (注射: chūsha)", "hint": "The second kanji means \"to shoot\". (射)"}, {"id": 13, "qHtml": "熱があるので、（ ）を測ります。", "choices": ["体力 (たいりょく)", "体重 (たいじゅう)", "体温 (たいおん)", "身体 (しんたい)"], "ansIdx": 2, "ansDetail": "体温 (体温: taion)", "hint": "\"Body temperature\" is composed of \"Body\" (体) + \"Warm/Temp\" (温)."}, {"id": 14, "qHtml": "今日は<u>食欲</u>がありません。", "choices": ["しょっき", "しょくよう", "しょくのう", "しょくよく"], "ansIdx": 3, "ansDetail": "しょくよく (食欲: shokuyoku)", "hint": "The second kanji 欲 means \"desire\"."}, {"id": 15, "qHtml": "医者の<u>しんさつ</u>を受けます。", "choices": ["診断", "診察", "真察", "新札"], "ansIdx": 1, "ansDetail": "診察 (診察: shinsatsu)", "hint": "The first kanji 診 is used for medical examination."}, {"id": 16, "qHtml": "このサービスは<u>無料</u>です。", "choices": ["むだい", "ぶだい", "むりょう", "ぶりょう"], "ansIdx": 2, "ansDetail": "むりょう (無料: muryō)", "hint": "無 usually reads as \"mu\"."}, {"id": 17, "qHtml": "スーパーで<u>わりびき</u>の肉を買った。", "choices": ["割安", "割増し", "割引", "割合"], "ansIdx": 2, "ansDetail": "割引 (割引: waribiki)", "hint": "Generally written with just two kanji, meaning \"cut/discount\"."}, {"id": 18, "qHtml": "この靴はとても（ ）が良いです。", "choices": ["量 (りょう)", "紐 (ひも)", "柄 (がら)", "質 (しつ)"], "ansIdx": 3, "ansDetail": "質 (質: shitsu)", "hint": "The word means \"quality\"."}, {"id": 19, "qHtml": "<u>領収書</u>をください。", "choices": ["りょうしゅうしょ", "りょうしゅしょ", "りょしゅうしょ", "りょうじゅうしょ"], "ansIdx": 0, "ansDetail": "りょうしゅうしょ (領収書: ryōshūsho)", "hint": "Both the first and second characters require long vowels."}, {"id": 20, "qHtml": "<u>げんきん</u>で払います。", "choices": ["減金", "元金", "限金", "現金"], "ansIdx": 3, "ansDetail": "現金 (現金: genkin)", "hint": "The first kanji \"現\" means \"present/actual\"."}, {"id": 21, "qHtml": "部屋を<u>片付けました</u>。", "choices": ["かたづけりました", "かたつけました", "かたづけました", "かたちゅけました"], "ansIdx": 2, "ansDetail": "かたづけました (片付ける: katazukeru)", "hint": "Notice the ten-ten (voicing marks) on \"tsu\"."}, {"id": 22, "qHtml": "週末に<u>せんたく</u>をします。", "choices": ["選択", "洗濯", "洗浄", "選たく"], "ansIdx": 1, "ansDetail": "洗濯 (洗濯: sentaku)", "hint": "Both kanji have the \"water\" radical on the left side."}, {"id": 23, "qHtml": "ゴミは（ ）に分けて捨ててください。", "choices": ["書類 (しょるい)", "種類 (しゅるい)", "人類 (じんるい)", "種族 (しゅぞく)"], "ansIdx": 1, "ansDetail": "種類 (種類: shurui)", "hint": "The correct word means \"kind\" or \"type\"."}, {"id": 24, "qHtml": "<u>約束</u>の時間を守る。", "choices": ["やっそく", "やくぞく", "やくそぐ", "やくそく"], "ansIdx": 3, "ansDetail": "やくそく (約束: yakusoku)", "hint": "There are no voiced consonants (ten-ten marks) in this reading."}, {"id": 25, "qHtml": "友達をパーティーに<u>しょうたい</u>した。", "choices": ["招待", "招持", "紹介", "昭待"], "ansIdx": 0, "ansDetail": "招待 (招待: shōtai)", "hint": "The first kanji means \"to invite\" (招く)."}];
 
-  function toggleDisplay(elementId) {
-    var element = document.getElementById(elementId);
-    if (element.style.display === "none" || element.style.display === "") {
-      element.style.display = "block";
-    } else {
-      element.style.display = "none";
-    }
-  }
+let state = { status: {}, bestExam: null, streak: 0, showRomaji: true, autoAudio: true };
 
-  function goToSlide(slideNumber) {
-    // 全スライドと全ボタンを取得
-    const slides = document.querySelectorAll('.slide');
-    const buttons = document.querySelectorAll('.nav-btn');
-    
-    // 現在アクティブなクラスをすべて削除
-    slides.forEach(s => s.classList.remove('active'));
-    buttons.forEach(b => b.classList.remove('active'));
-    
-    // 指定された番号を表示・アクティブ化
-    document.getElementById('slide' + slideNumber).classList.add('active');
-    buttons[slideNumber - 1].classList.add('active');
-    
-    currentSlide = slideNumber;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
-
-<script>
-  // --- Quiz scoring: parts + saved progress ---
-  var KANJI31_ANSWERS = { q1: 'C', q2: 'A', q3: 'B', q4: 'D', q5: 'C', q6: 'C', q7: 'B', q8: 'D', q9: 'C', q10: 'B', q11: 'C', q12: 'D', q13: 'C', q14: 'D', q15: 'B', q16: 'C', q17: 'C', q18: 'D', q19: 'A', q20: 'D', q21: 'C', q22: 'B', q23: 'B', q24: 'D', q25: 'A' };
-  var KANJI31_LETTERS = ['A', 'B', 'C', 'D'];
-  var KANJI31_TOTAL = 25;
-  var KANJI31_PARTS = [
-    { part: 1, from: 1, to: 10, size: 10 },
-    { part: 2, from: 11, to: 20, size: 10 },
-    { part: 3, from: 21, to: 25, size: 5 }
-  ];
-  var KANJI31_PROGRESS_KEY = 'ohayo_kanji3_1_progress';
-  var kanji31PartScores = { 1: null, 2: null, 3: null };
-
-  function kanji31DefaultProgress() {
-    return { v: 1, totalBest: null, parts: { '1': { best: 0, done: false }, '2': { best: 0, done: false }, '3': { best: 0, done: false } } };
-  }
-
-  function loadKanji31Progress() {
-    var def = kanji31DefaultProgress();
+function loadState() {
     try {
-      var raw = window.localStorage.getItem(KANJI31_PROGRESS_KEY);
-      if (!raw) return def;
-      var data = JSON.parse(raw);
-      if (!data || data.v !== 1 || !data.parts) return def;
-      for (var i = 0; i < KANJI31_PARTS.length; i++) {
-        var key = String(KANJI31_PARTS[i].part);
-        if (data.parts[key] && typeof data.parts[key].best === 'number') {
-          def.parts[key] = { best: data.parts[key].best, done: !!data.parts[key].done };
-        }
-      }
-      if (typeof data.totalBest === 'number') def.totalBest = data.totalBest;
-      return def;
-    } catch (e) {
-      return def;
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) state = Object.assign(state, JSON.parse(raw));
+    } catch (e) {}
+    syncToggleUI();
+}
+function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {} }
+function resetSavedProgress() {
+    if (!confirm('Reset your saved mastery and JLPT Test score for this set?')) return;
+    state.status = {}; state.bestExam = null; state.streak = 0;
+    saveState(); updateStats(); setMode(mode);
+}
+
+let currentAudio = null;
+function playAudio(qId, btnEl) {
+    const src = `${AUDIO_DIR}/q${String(qId).padStart(2, '0')}.mp3`;
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+    document.querySelectorAll('.audio-btn.playing').forEach(b => b.classList.remove('playing'));
+    const a = new Audio(src);
+    currentAudio = a;
+    if (btnEl) btnEl.classList.add('playing');
+    a.onended = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.onerror = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.play().catch(() => { if (btnEl) btnEl.classList.remove('playing'); });
+}
+
+function syncToggleUI() {
+    const rBtn = document.getElementById('btn-romaji');
+    if (rBtn) {
+        rBtn.classList.toggle('on', state.showRomaji);
+        rBtn.textContent = state.showRomaji ? '🔤 Romaji: ON' : '🔤 Romaji: OFF';
     }
-  }
+    const aBtn = document.getElementById('btn-autoaudio');
+    aBtn.classList.toggle('on', state.autoAudio);
+    aBtn.textContent = state.autoAudio ? '🔊 Auto-Audio: ON' : '🔇 Auto-Audio: OFF';
+}
+function toggleRomaji() { state.showRomaji = !state.showRomaji; syncToggleUI(); saveState(); render(); }
+function toggleAutoAudio() { state.autoAudio = !state.autoAudio; syncToggleUI(); saveState(); }
 
-  function saveKanji31Progress() {
-    try {
-      window.localStorage.setItem(KANJI31_PROGRESS_KEY, JSON.stringify(kanji31Progress));
-    } catch (e) { /* storage unavailable: progress just will not persist */ }
-  }
-
-  var kanji31Progress = loadKanji31Progress();
-
-  function kanji31BlockFor(n) {
-    var radios = document.querySelectorAll('input[name="q' + n + '"]');
-    if (!radios.length) return null;
-    return radios[0].closest('.question-block');
-  }
-
-  function clearKanji31MarksRange(from, to) {
-    for (var n = from; n <= to; n++) {
-      var block = kanji31BlockFor(n);
-      if (!block) continue;
-      block.classList.remove('q-correct', 'q-wrong', 'q-unanswered');
-      var badges = block.querySelectorAll('.q-badge');
-      for (var j = badges.length - 1; j >= 0; j--) badges[j].remove();
-      var opts = block.querySelectorAll('.options li');
-      for (var k = 0; k < opts.length; k++) opts[k].classList.remove('correct-option', 'wrong-option');
+function formatChoice(text, isExam) {
+    if (!HAS_ROMAJI) return text;
+    if (isExam || !state.showRomaji) {
+        return text.replace(/\s*\([^)]*\)\s*$/, '').trim();
     }
-  }
+    return text;
+}
 
-  function clearKanji31Marks() {
-    clearKanji31MarksRange(1, KANJI31_TOTAL);
-  }
-
-  function markKanji31Question(n) {
-    var name = 'q' + n;
-    var radios = document.querySelectorAll('input[name="' + name + '"]');
-    if (!radios.length) return 0;
-    var block = radios[0].closest('.question-block');
-    var correctIdx = KANJI31_LETTERS.indexOf(KANJI31_ANSWERS[name]);
-    var selectedIdx = -1;
-    for (var i = 0; i < radios.length; i++) {
-      if (radios[i].checked) selectedIdx = i;
+function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
     }
-    var badge = document.createElement('span');
-    var point = 0;
-    if (selectedIdx === -1) {
-      block.classList.add('q-unanswered');
-      badge.className = 'q-badge unanswered';
-      badge.textContent = '— Not answered';
-      radios[correctIdx].closest('li').classList.add('correct-option');
-    } else if (selectedIdx === correctIdx) {
-      point = 1;
-      block.classList.add('q-correct');
-      badge.className = 'q-badge correct';
-      badge.textContent = '✓ Correct';
-      radios[correctIdx].closest('li').classList.add('correct-option');
+    return a;
+}
+
+let mode = 'focus', listFilter = 'all';
+let queue = [], qIdx = 0, shuffledChoices = [], answered = false, pickedIdx = null, hintOpen = false, roundDone = false;
+let examScore = 0, examResults = [], examTimerSec = 240, examTimerId = null, examFinished = false;
+
+function stopTimer() { if (examTimerId) { clearInterval(examTimerId); examTimerId = null; } }
+function formatTime(s) { return `${Math.floor(s/60)}:${s%60 < 10 ? '0' : ''}${s%60}`; }
+
+function updateStats() {
+    const mastered = Object.values(state.status).filter(v => v === 'mastered').length;
+    const weak = Object.values(state.status).filter(v => v === 'weak').length;
+    document.getElementById('st-mastered').textContent = `${mastered} / ${QUESTIONS.length}`;
+    document.getElementById('st-weak').textContent = weak;
+    document.getElementById('st-streak').textContent = `🔥 ${state.streak}`;
+    document.getElementById('st-best').textContent = state.bestExam !== null ? `${state.bestExam}%` : '--';
+    document.getElementById('mastery-fill').style.width = `${Math.round((mastered / QUESTIONS.length) * 100)}%`;
+    const badge = document.getElementById('weak-badge');
+    badge.style.display = weak > 0 ? 'inline-block' : 'none';
+    badge.textContent = weak;
+}
+
+function setMode(newMode) {
+    stopTimer();
+    mode = newMode;
+    ['focus', 'exam', 'weak', 'list'].forEach(m => document.getElementById('tab-' + m).classList.toggle('active', m === mode));
+    roundDone = false; examFinished = false;
+
+    if (mode === 'focus') {
+        const rem = QUESTIONS.filter(q => state.status[q.id] !== 'mastered');
+        queue = rem.length > 0 ? rem : QUESTIONS.slice();
+        qIdx = 0; loadQuestion();
+    } else if (mode === 'weak') {
+        queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+        qIdx = 0; if (queue.length > 0) loadQuestion();
+    } else if (mode === 'exam') {
+        startExam();
+    }
+    render();
+}
+
+function loadQuestion() {
+    const q = queue[qIdx];
+    shuffledChoices = shuffle(q.choices.map((text, origIdx) => ({ text, origIdx })));
+    answered = false; pickedIdx = null; hintOpen = false;
+}
+
+function startExam() {
+    stopTimer();
+    queue = shuffle(QUESTIONS).slice(0, 10);
+    qIdx = 0; examScore = 0; examResults = []; examFinished = false; examTimerSec = 240;
+    loadQuestion();
+    examTimerId = setInterval(() => {
+        if (examFinished) { stopTimer(); return; }
+        examTimerSec--;
+        if (examTimerSec <= 0) { examTimerSec = 0; finishExam(); }
+        else { const el = document.getElementById('exam-timer'); if (el) el.textContent = '⏱ ' + formatTime(examTimerSec); }
+    }, 1000);
+}
+
+function answerChoice(shufIdx) {
+    if (answered) return;
+    const q = queue[qIdx];
+    answered = true; pickedIdx = shufIdx;
+    const isOk = shuffledChoices[shufIdx].origIdx === q.ansIdx;
+    if (isOk) {
+        state.status[q.id] = 'mastered';
+        state.streak++;
+        if (mode === 'exam') examScore++;
     } else {
-      block.classList.add('q-wrong');
-      badge.className = 'q-badge wrong';
-      badge.textContent = '✗ Wrong';
-      radios[selectedIdx].closest('li').classList.add('wrong-option');
-      radios[correctIdx].closest('li').classList.add('correct-option');
+        state.status[q.id] = 'weak';
+        state.streak = 0;
     }
-    block.querySelector('.question-text').appendChild(badge);
-    return point;
-  }
+    if (mode === 'exam') examResults.push({ q, isOk });
+    saveState(); updateStats(); render();
+    if (state.autoAudio) {
+        setTimeout(() => playAudio(q.id, document.querySelector('.feedback .audio-btn')), 180);
+    }
+}
 
-  function refreshKanji31PartBest(part) {
-    var el = document.getElementById('partBest' + part);
-    if (!el) return;
-    var info = kanji31Progress.parts[String(part)];
-    if (info && info.done) {
-      el.textContent = 'Best: ' + info.best + ' / ' + KANJI31_PARTS[part - 1].size + ' ✓';
+function nextQuestion() {
+    if (qIdx + 1 < queue.length) {
+        qIdx++; loadQuestion(); render();
     } else {
-      el.textContent = '';
+        if (mode === 'exam') finishExam();
+        else if (mode === 'weak') {
+            queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+            qIdx = 0; if (queue.length > 0) loadQuestion(); render();
+        } else { roundDone = true; render(); }
     }
-  }
+}
 
-  function refreshKanji31Summary() {
-    var el = document.getElementById('scoreParts');
-    if (!el) return;
-    var lines = [];
-    for (var i = 0; i < KANJI31_PARTS.length; i++) {
-      var p = KANJI31_PARTS[i];
-      var info = kanji31Progress.parts[String(p.part)];
-      var line = 'Part ' + p.part + ': ';
-      line += (kanji31PartScores[p.part] !== null) ? (kanji31PartScores[p.part] + ' / ' + p.size) : ('— / ' + p.size);
-      if (info && info.done) line += ' (Best: ' + info.best + ' ✓)';
-      lines.push(line);
+function finishExam() {
+    stopTimer(); examFinished = true;
+    const pct = Math.round((examScore / queue.length) * 100);
+    if (state.bestExam === null || pct > state.bestExam) state.bestExam = pct;
+    saveState(); updateStats(); render();
+}
+
+function startFullShuffle() { queue = shuffle(QUESTIONS); qIdx = 0; roundDone = false; loadQuestion(); render(); }
+
+function renderFeedback(q, isOk) {
+    return `
+        <div class="feedback ${isOk ? 'ok' : 'ng'}">
+            <div class="fb-head">
+                <div class="fb-title ${isOk ? 'ok' : 'ng'}">${isOk ? '⭕️ Correct! Great job!' : '❌ Not quite — Saved to Review Weak 🔴'}</div>
+                <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen (Nanami)</button>
+            </div>
+            <div class="ans-main">✅ ${q.ansDetail}</div>
+            ${q.hint ? `<div class="explain-box">💡 <strong>Study Note:</strong> ${q.hint}</div>` : ''}
+        </div>
+    `;
+}
+
+function renderQuiz() {
+    if (mode === 'weak' && queue.length === 0) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:46px; margin-bottom:8px;">🎉</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">No Weak Items!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">Any question you miss in Focus Quiz or JLPT Test appears here automatically.</p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('exam')">⏱️ Take 10-Q JLPT Test</button>
+                    <button class="btn-ghost" onclick="setMode('focus')">🎯 Focus Quiz</button>
+                </div>
+            </div>
+        `;
     }
-    if (kanji31Progress.totalBest !== null && kanji31Progress.totalBest !== undefined) {
-      lines.push('Best total: ' + kanji31Progress.totalBest + ' / ' + KANJI31_TOTAL + ' ✓');
+    if (roundDone) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:48px; margin-bottom:8px;">🏆</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">Focus Session Complete!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">Challenge yourself with the 10-question timed JLPT Test next!</p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('exam')">⏱️ Start JLPT Test</button>
+                    <button class="btn-ghost" onclick="startFullShuffle()">🔀 Practice All 25 Shuffled</button>
+                </div>
+            </div>
+        `;
     }
-    el.innerHTML = lines.join('<br>');
-  }
-
-  // Marks one part, saves its best, updates its panel. Returns the part score.
-  function runKanji31PartCheck(part) {
-    var def = KANJI31_PARTS[part - 1];
-    clearKanji31MarksRange(def.from, def.to);
-    var score = 0;
-    for (var n = def.from; n <= def.to; n++) score += markKanji31Question(n);
-    kanji31PartScores[part] = score;
-    var info = kanji31Progress.parts[String(part)];
-    var newRecord = info.done && score > info.best;
-    if (score > info.best) info.best = score;
-    info.done = true;
-    saveKanji31Progress();
-    var res = document.getElementById('partResult' + part);
-    if (res) {
-      res.innerHTML = 'Part ' + part + ': ' + score + ' / ' + def.size + (newRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
-      res.style.display = 'block';
+    if (mode === 'exam' && examFinished) {
+        const pct = Math.round((examScore / queue.length) * 100);
+        const pass = pct >= 80;
+        const rows = examResults.map((r, i) => `
+            <div class="list-item" style="border-left: 4px solid ${r.isOk ? 'var(--green)' : 'var(--red)'};">
+                <div class="list-top">
+                    <strong>Q${i + 1}. ${r.isOk ? '⭕️ Correct' : '❌ Missed'}</strong>
+                    <button class="audio-btn" onclick="playAudio(${r.q.id}, this)">🔊 Listen</button>
+                </div>
+                <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">${r.q.qHtml}</div>
+                <div style="font-size:0.86rem; font-weight:700; color:var(--green); margin-bottom:3px;">✅ ${r.q.ansDetail}</div>
+                ${r.q.hint ? `<div style="font-size:0.8rem; color:#4b5563;">💡 ${r.q.hint}</div>` : ''}
+            </div>
+        `).join('');
+        return `
+            <div style="text-align:center; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 16px;">
+                <div style="font-size:48px;">${pass ? '🏆' : '💪'}</div>
+                <h2 style="margin:6px 0 4px; color:var(--dark);">${pass ? 'JLPT N3 Test PASSED!' : 'Keep Practicing!'}</h2>
+                <div style="font-size:1.8rem; font-weight:900; color:${pass ? 'var(--green)' : 'var(--primary-dark)'};">${examScore} / ${queue.length} (${pct}%)</div>
+                <p style="font-size:0.86rem; color:var(--muted); margin:6px 0 16px;">
+                    ${pass ? '80%+ cleared! You are building solid JLPT N3 recall.' : 'Goal: 80%+. Missed questions were automatically saved to 🔴 Review Weak.'}
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="startExam(); render();">🔄 Try New 10-Q Test</button>
+                    <button class="btn-ghost" onclick="setMode('weak')">🔴 Review Weak</button>
+                </div>
+            </div>
+            ${rows}
+        `;
     }
-    refreshKanji31PartBest(part);
-    refreshKanji31Summary();
-    return score;
-  }
 
-  function checkKanji31Part(part) {
-    runKanji31PartCheck(part);
-    var panel = document.getElementById('partPanel' + part);
-    if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+    const q = queue[qIdx];
+    const isOk = answered && shuffledChoices[pickedIdx].origIdx === q.ansIdx;
+    const isExam = mode === 'exam';
 
-  function kanji31ScoreMessage(pct) {
-    if (pct === 100) return 'Perfect! N3 kanji mastered! 🎉';
-    if (pct >= 80) return 'Excellent! Almost perfect!';
-    if (pct >= 60) return 'Good job! Keep practicing!';
-    if (pct >= 40) return 'Nice try! Review the answers and try again!';
-    return 'Keep going! Use the hints and answers, then try again!';
-  }
+    return `
+        <div class="q-meta">
+            <span class="q-num">${isExam ? '⏱️ JLPT Test' : mode === 'weak' ? '🔴 Weak Review' : '🎯 Focus'} · Q${qIdx + 1} / ${queue.length}</span>
+            ${isExam ? `<span class="timer-pill" id="exam-timer">⏱ ${formatTime(examTimerSec)}</span>` : `<span class="tag-pill">JLPT N3 (#${q.id})</span>`}
+        </div>
 
-  function checkKanji31Score() {
-    var total = 0;
-    for (var i = 0; i < KANJI31_PARTS.length; i++) total += runKanji31PartCheck(KANJI31_PARTS[i].part);
-    var newTotalRecord = (typeof kanji31Progress.totalBest === 'number') && total > kanji31Progress.totalBest;
-    if (kanji31Progress.totalBest === null || kanji31Progress.totalBest === undefined || total > kanji31Progress.totalBest) {
-      kanji31Progress.totalBest = total;
-    }
-    saveKanji31Progress();
-    refreshKanji31Summary();
-    var pct = Math.round(total / KANJI31_TOTAL * 100);
-    var res = document.getElementById('scoreResult');
-    res.innerHTML = 'Score: ' + total + ' / ' + KANJI31_TOTAL + ' (' + pct + '%)<br><span class="score-msg">' + kanji31ScoreMessage(pct) + '</span>' + (newTotalRecord ? '<br><span class="new-record">🎉 New record!</span>' : '');
-    res.style.display = 'block';
-    document.getElementById('scorePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+        <div class="prompt-box ${answered ? (isOk ? 'correct-border' : 'wrong-border') : ''}">
+            ${q.qHtml}
+        </div>
 
-  function resetKanji31Score() {
-    clearKanji31Marks();
-    var radios = document.querySelectorAll('.question-block input[type="radio"]');
-    for (var i = 0; i < radios.length; i++) radios[i].checked = false;
-    kanji31PartScores = { 1: null, 2: null, 3: null };
-    kanji31Progress = kanji31DefaultProgress();
-    try { window.localStorage.removeItem(KANJI31_PROGRESS_KEY); } catch (e) { /* ignore */ }
-    for (var p = 1; p <= 3; p++) {
-      var res = document.getElementById('partResult' + p);
-      if (res) { res.style.display = 'none'; res.innerHTML = ''; }
-      refreshKanji31PartBest(p);
-    }
-    var total = document.getElementById('scoreResult');
-    total.style.display = 'none';
-    total.innerHTML = '';
-    refreshKanji31Summary();
-  }
+        ${!isExam && q.hint ? `
+            <div class="hint-row">
+                <button class="hint-btn" onclick="hintOpen = !hintOpen; render();">${hintOpen ? '🙈 Hide Hint' : '💡 Show Hint'}</button>
+                ${hintOpen ? `<div class="hint-text">💡 ${q.hint}</div>` : '<span style="font-size:0.78rem; color:var(--muted);">Try answering before peeking at the hint!</span>'}
+            </div>
+        ` : (isExam ? `<div style="font-size:0.78rem; color:var(--muted); margin-bottom:12px;">Real JLPT style: no hints${HAS_ROMAJI ? ' &amp; no Romaji' : ''}. Click or press 1–4.</div>` : '')}
 
-  // Show saved bests on load, so returning learners see their growth.
-  (function initKanji31Progress() {
-    for (var p = 1; p <= 3; p++) refreshKanji31PartBest(p);
-    refreshKanji31Summary();
-  })();
+        <div class="choices-grid">
+            ${shuffledChoices.map((c, sIdx) => {
+                let cls = 'choice-btn';
+                if (answered) {
+                    if (c.origIdx === q.ansIdx) cls += ' is-correct';
+                    else if (sIdx === pickedIdx) cls += ' is-wrong';
+                }
+                const label = answered ? c.text : formatChoice(c.text, isExam);
+                return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerChoice(${sIdx})"><span class="choice-num">${sIdx + 1}</span><span>${label}</span></button>`;
+            }).join('')}
+        </div>
+
+        ${answered ? `
+            <div class="actions">
+                <button class="btn-primary" onclick="nextQuestion()">${qIdx + 1 < queue.length ? 'Next Question →' : (isExam ? 'See Test Result 🏆' : 'Finish Session →')}</button>
+            </div>
+            ${renderFeedback(q, isOk)}
+        ` : ''}
+    `;
+}
+
+function renderList() {
+    const filtered = QUESTIONS.filter(q => {
+        const st = state.status[q.id] || 'unseen';
+        if (listFilter === 'weak') return st === 'weak';
+        if (listFilter === 'mastered') return st === 'mastered';
+        return true;
+    });
+    return `
+        <div style="margin-bottom:12px;">
+            <strong style="font-size:1.02rem; color:var(--dark);">📋 All ${QUESTIONS.length} Questions &amp; Study Notes</strong>
+            <div style="font-size:0.78rem; color:var(--muted);">Review all items with natural Nanami audio pronunciation</div>
+        </div>
+        <div class="filter-row">
+            <button class="toggle-pill ${listFilter === 'all' ? 'on' : ''}" onclick="listFilter='all'; render();">All (${QUESTIONS.length})</button>
+            <button class="toggle-pill ${listFilter === 'weak' ? 'on' : ''}" onclick="listFilter='weak'; render();">🔴 Weak (${Object.values(state.status).filter(v=>v==='weak').length})</button>
+            <button class="toggle-pill ${listFilter === 'mastered' ? 'on' : ''}" onclick="listFilter='mastered'; render();">✅ Mastered (${Object.values(state.status).filter(v=>v==='mastered').length})</button>
+        </div>
+        ${filtered.length === 0 ? `<p style="color:var(--muted); text-align:center; padding:24px 0;">No items match this filter yet.</p>` : filtered.map(q => {
+            const st = state.status[q.id] || 'unseen';
+            const stLabel = st === 'mastered' ? 'Mastered ✅' : st === 'weak' ? 'Weak 🔴' : 'Unseen ⚪';
+            const stCls = st === 'mastered' ? 'st-mastered' : st === 'weak' ? 'st-weak' : 'st-unseen';
+            return `
+                <div class="list-item">
+                    <div class="list-top">
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <strong>Q${q.id}.</strong>
+                            <span class="status-dot ${stCls}">${stLabel}</span>
+                        </div>
+                        <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen</button>
+                    </div>
+                    <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">${q.qHtml}</div>
+                    <div style="font-size:0.9rem; font-weight:800; color:var(--green); margin-bottom:4px;">✅ ${q.ansDetail}</div>
+                    ${q.hint ? `<div style="font-size:0.8rem; color:#4b5563; background:#f8fafc; padding:8px 10px; border-radius:8px;">💡 ${q.hint}</div>` : ''}
+                </div>
+            `;
+        }).join('')}
+    `;
+}
+
+function render() {
+    const app = document.getElementById('app');
+    app.innerHTML = mode === 'list' ? renderList() : renderQuiz();
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (mode === 'list' || roundDone || examFinished || (mode === 'weak' && queue.length === 0)) return;
+    if (['1','2','3','4'].includes(e.key) && !answered) answerChoice(parseInt(e.key, 10) - 1);
+    else if (e.key === 'Enter' && answered) nextQuestion();
+});
+
+loadState();
+updateStats();
+setMode('focus');
 </script>
 </body>
 </html>
