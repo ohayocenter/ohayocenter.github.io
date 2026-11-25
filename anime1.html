@@ -85,6 +85,34 @@
       .flashcard-back .meaning { font-size: 0.8rem; }
   }
 </style>
+<style id="ohayo-cta-style">
+.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
+.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
+.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
+.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
+.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
+.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
+.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
+.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
+.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
+.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
+.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
+.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
+.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
+body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
+body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
+body.dark-mode .ohayo-cta-name { color: #f7fafc; }
+body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
+body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
+body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
+@media (max-width: 600px) {
+  .ohayo-cta-grid { grid-template-columns: 1fr; }
+  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
+}
+</style>
 </head>
 <body>
 
@@ -110,7 +138,26 @@
       <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
     </div>
 
-    <div class="support-section">
+    <!-- OHAYO_NEXT_CTA -->
+<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+  <div class="ohayo-cta-next">
+    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+    <div class="ohayo-cta-grid">
+      <a class="ohayo-cta-link" href="idioms.html"><div><span class="ohayo-cta-tag">CULTURE & FUN</span><span class="ohayo-cta-name">Japanese Idioms & Slang (40)</span></div><span class="ohayo-cta-arrow">→</span></a>
+      <a class="ohayo-cta-link" href="audioblog.html"><div><span class="ohayo-cta-tag">LISTENING</span><span class="ohayo-cta-name">Audio Blog (Natural Japanese)</span></div><span class="ohayo-cta-arrow">→</span></a>
+    </div>
+  </div>
+  <div class="ohayo-cta-lesson">
+    <div>
+      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
+      <h3>Want to use what you just practiced with a native teacher?</h3>
+      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+    </div>
+    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+  </div>
+</section>
+
+<div class="support-section">
       <h2>Support OHAYO CENTER</h2>
       <p>If you find these materials helpful, please consider supporting us!</p>
       <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">

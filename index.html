@@ -63,21 +63,28 @@
         .nav-links a:hover::after { width: 100%; }
 
         .hero { 
-            margin-top: 70px; height: 50vh; 
-            background: linear-gradient(rgba(30,30,40,0.6), rgba(30,30,40,0.7)), url('https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1500&q=80'); 
+            margin-top: 70px; min-height: 48vh; padding: 3rem 1.2rem;
+            background: linear-gradient(rgba(30,30,40,0.62), rgba(30,30,40,0.72)), url('https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1500&q=80'); 
             background-size: cover; background-position: center; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
         }
         .hero h1 { font-family: 'Sawarabi Mincho', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); color: #ffffff; line-height: 1.3; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .hero p.hero-subtitle { font-size: 0.9rem; letter-spacing: 2px; color: #f9f9f9; text-shadow: 0 1px 5px rgba(0,0,0,0.3); }
+        .hero-trust-badge {
+            margin-top: 1.1rem; display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem 0.8rem;
+            background: rgba(255,255,255,0.16); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.3);
+            color: #fff; padding: 8px 18px; border-radius: 50px; font-size: 0.82rem; letter-spacing: 0.3px;
+        }
+        .hero-trust-badge .sep { opacity: 0.5; }
+        .hero-trust-badge i { color: #ffd166; margin-right: 4px; }
 
-        .hero-btn-container { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
+        .hero-btn-container { margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
         .hero-btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .hero-btn:hover { transform: translateY(-3px); }
         .primary-btn { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(255,159,67,0.3); }
         .primary-btn:hover { box-shadow: 0 6px 20px rgba(255,159,67,0.4); }
         .secondary-btn { background: white; color: var(--dark); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,1); color: var(--primary); }
+        .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); color: var(--primary); }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem 1rem; }
         section { margin-bottom: 4rem; scroll-margin-top: 90px; }
@@ -94,7 +101,86 @@
         .card { background: #fff; padding: 2rem 1rem; border-radius: 20px; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
         .food-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
         .price { font-size: 1.6rem; font-weight: bold; color: var(--dark); }
+        .price-approx { font-size: 0.78rem; color: #888; margin-top: -4px; margin-bottom: 4px; }
         .package-price { font-size: 0.85rem; color: var(--primary); font-weight: bold; background: var(--primary-light); padding: 2px 10px; border-radius: 20px; display: inline-block; margin-top: 5px; }
+
+        /* ====== 初めての方へガイド（折りたたみ式） ====== */
+        .first-time-guide {
+            background: #fff; border-radius: 20px; border: 1.5px solid #ffe0c2;
+            box-shadow: var(--shadow); overflow: hidden; margin-top: 1.5rem;
+        }
+        .first-time-guide summary {
+            list-style: none; cursor: pointer; padding: 1rem 1.5rem;
+            background: var(--primary-light); display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            font-weight: bold; color: var(--dark); font-size: 0.95rem; user-select: none; transition: background 0.2s;
+        }
+        .first-time-guide summary::-webkit-details-marker { display: none; }
+        .first-time-guide summary:hover { background: #ffedd9; }
+        .guide-toggle-pill {
+            font-size: 0.75rem; font-weight: bold; color: var(--primary); background: #fff;
+            border: 1px solid #ffd5ad; padding: 4px 12px; border-radius: 50px; white-space: nowrap; transition: transform 0.25s;
+        }
+        .first-time-guide[open] .guide-toggle-pill i { transform: rotate(180deg); }
+        .guide-toggle-pill i { transition: transform 0.25s; margin-left: 4px; }
+        .guide-body { padding: 1.8rem 1.5rem; border-top: 1px solid #f5e6d8; }
+        .guide-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .guide-step-card { background: #fafafa; border: 1px solid #eee; border-radius: 14px; padding: 1rem 1.1rem; }
+        .step-badge { display: inline-block; background: var(--primary); color: #fff; font-size: 0.72rem; font-weight: bold; padding: 2px 10px; border-radius: 50px; margin-bottom: 6px; }
+        .guide-step-card h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 4px; }
+        .guide-step-card p { font-size: 0.82rem; color: #666; line-height: 1.55; }
+        .guide-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .guide-info-box { background: #fffaf5; border-left: 4px solid var(--primary); border-radius: 12px; padding: 1rem 1.2rem; }
+        .guide-faq-box { background: #f8fafc; border: 1px solid #e6ebf1; border-radius: 12px; padding: 1rem 1.2rem; }
+        .guide-info-box h4, .guide-faq-box h4 { font-size: 0.92rem; color: var(--dark); margin-bottom: 0.5rem; }
+        .guide-info-box ul, .guide-faq-box ul { list-style: none; font-size: 0.82rem; color: #555; line-height: 1.7; }
+        .guide-info-box li::before { content: "• "; color: var(--primary); font-weight: bold; }
+
+        /* ====== カレンダー凡例・ボタン ====== */
+        .cal-legend {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.8rem 1.4rem;
+            font-size: 0.82rem; color: #555; margin-bottom: 1.2rem; padding: 0.7rem 1rem;
+            background: #fafafa; border-radius: 14px; border: 1px solid #eee;
+        }
+        .cal-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+        .cal-dot-open { width: 13px; height: 13px; border-radius: 4px; background: #eaffea; border: 1px solid #8ce095; display: inline-block; }
+        .cal-dot-booked { width: 13px; height: 13px; border-radius: 4px; background: #888; display: inline-block; }
+        .cal-tz-badge { font-weight: bold; color: var(--dark); }
+        .cal-cta-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; margin-top: 2rem; }
+
+        /* ====== 30秒おすすめ教材診断 ====== */
+        .starter-quiz {
+            background: #fff; border-radius: 24px; padding: 1.8rem 1.6rem; margin: 0 auto 2.5rem;
+            box-shadow: var(--shadow); border: 1.5px solid #ffe5cc;
+        }
+        .starter-quiz-head { text-align: center; margin-bottom: 1.2rem; }
+        .starter-quiz-pill { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 0.75rem; font-weight: bold; padding: 4px 12px; border-radius: 50px; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .starter-quiz-head h3 { font-family: 'Sawarabi Mincho', serif; font-size: 1.35rem; color: var(--dark); }
+        .starter-quiz-head p { font-size: 0.85rem; color: #777; margin-top: 4px; }
+        .goal-btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+        .goal-btn {
+            background: #fff; border: 2px solid #eee; border-radius: 16px; padding: 0.9rem 0.6rem;
+            cursor: pointer; text-align: center; transition: 0.2s; font-family: inherit;
+        }
+        .goal-btn:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .goal-btn.active { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 4px 12px rgba(255,159,67,0.18); }
+        .goal-btn .goal-emoji { font-size: 1.6rem; display: block; margin-bottom: 4px; }
+        .goal-btn .goal-title { font-size: 0.88rem; font-weight: bold; color: var(--dark); display: block; }
+        .goal-btn .goal-sub { font-size: 0.74rem; color: #777; display: block; margin-top: 2px; }
+        .starter-result { margin-top: 1.3rem; padding-top: 1.2rem; border-top: 1px dashed #eee; }
+        .starter-result-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem; }
+        .starter-result-title { font-weight: bold; color: var(--dark); font-size: 0.98rem; }
+        .starter-result-tip { font-size: 0.8rem; color: #777; }
+        .starter-result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
+        .starter-rec-card {
+            background: #fafafa; border: 1px solid #ececec; border-radius: 16px; padding: 1rem;
+            text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between;
+            transition: 0.2s;
+        }
+        .starter-rec-card:hover { border-color: var(--primary); background: #fff; transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+        .starter-rec-badge { display: inline-block; color: #fff; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 6px; margin-bottom: 6px; width: fit-content; }
+        .starter-rec-card h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 4px; line-height: 1.35; }
+        .starter-rec-card p { font-size: 0.78rem; color: #666; line-height: 1.45; }
+        .starter-rec-go { margin-top: 0.8rem; font-size: 0.78rem; font-weight: bold; }
 
         .btn-bottom { margin-top: auto; font-size: 0.7rem; font-weight: bold; padding: 8px 15px; border-radius: 50px; letter-spacing: 0.5px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .btn-bottom i { transition: all 0.3s ease; }
@@ -248,10 +334,16 @@
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.75rem; }
             
-            .hero { height: 42vh; }
+            .hero { min-height: 40vh; height: auto; padding: 2.2rem 1rem; }
             .hero h1 { font-size: 1.6rem; }
-            .hero-btn-container { flex-direction: column; width: 100%; max-width: 280px; margin: 1.5rem auto 0; }
+            .hero-trust-badge { font-size: 0.74rem; padding: 6px 14px; gap: 0.35rem 0.6rem; }
+            .hero-btn-container { flex-direction: column; width: 100%; max-width: 280px; margin: 1.3rem auto 0; }
             .hero-btn { justify-content: center; width: 100%; padding: 14px 20px; }
+            .guide-steps, .guide-details-grid, .starter-result-grid { grid-template-columns: 1fr; }
+            .goal-btn-grid { grid-template-columns: repeat(2, 1fr); }
+            .first-time-guide summary { padding: 0.9rem 1rem; font-size: 0.85rem; }
+            .guide-body { padding: 1.2rem 1rem; }
+            .starter-quiz { padding: 1.3rem 1rem; }
 
             .container { padding: 2rem 0.8rem 1rem; }
 
@@ -329,6 +421,13 @@
 <header class="hero">
     <p class="hero-subtitle">ENJOY LEARNING JAPANESE</p>
     <h1>OHAYO CENTER<br><span style="font-size: clamp(1.2rem, 3vw, 1.5rem); display: block; margin-top: 5px; font-weight: normal;">Online Japanese Lessons</span></h1>
+    <div class="hero-trust-badge">
+        <span><i class="fa-solid fa-star"></i><strong>10+ Years</strong> Experience</span>
+        <span class="sep">·</span>
+        <span><i class="fa-solid fa-graduation-cap"></i><strong>4,000+</strong> Lessons</span>
+        <span class="sep">·</span>
+        <span><i class="fa-solid fa-comments"></i><strong>★★★★★</strong> Reviews</span>
+    </div>
     
     <div class="hero-btn-container">
         <a href="#lessons" class="hero-btn primary-btn"><i class="fa-solid fa-seedling"></i>New Students | Lessons</a>
@@ -353,12 +452,12 @@
                     <span class="food-icon">🍫</span>
                     <h3>Trial Lesson</h3>
                     <p class="price">1,500 yen</p>
+                    <p class="price-approx">(≈ $10 USD / €9)</p>
                     <span class="package-price">30 mins / First time</span>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.5rem;">
-                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 1,500 yen</a>
-                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card"></i> PAY NOW</a>
-                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
+                    <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card"></i> ① PAY NOW (¥1,500)</a>
+                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check"></i> ② SCHEDULE</a>
                 </div>
             </div>
 
@@ -407,15 +506,69 @@
                 </div>
             </div>
         </div>
+
+        <!-- 初めての方へガイド（折りたたみ式・既存生徒の邪魔にならない） -->
+        <details class="first-time-guide">
+            <summary>
+                <span>🌱 First time here? How to Book · Trial Details · FAQ</span>
+                <span class="guide-toggle-pill">Details <i class="fa-solid fa-chevron-down"></i></span>
+            </summary>
+            <div class="guide-body">
+                <div class="guide-steps">
+                    <div class="guide-step-card">
+                        <span class="step-badge">Step 1</span>
+                        <h4>Choose &amp; Pay</h4>
+                        <p>Start with the 30-min Trial (¥1,500 / ≈ $10 USD) or a lesson pack. Pay securely via Credit Card, Apple Pay, Google Pay, or Wise.</p>
+                    </div>
+                    <div class="guide-step-card">
+                        <span class="step-badge">Step 2</span>
+                        <h4>Pick Your Slot</h4>
+                        <p>Tap <strong>SCHEDULE</strong> to choose a date and time. Google Calendar automatically displays slots in your own local timezone.</p>
+                    </div>
+                    <div class="guide-step-card">
+                        <span class="step-badge">Step 3</span>
+                        <h4>Join via Google Meet</h4>
+                        <p>You'll receive a Google Meet link automatically by email. Just click at lesson time and relax!</p>
+                    </div>
+                </div>
+                <div class="guide-details-grid">
+                    <div class="guide-info-box">
+                        <h4>🍫 What happens in the 30-min Trial?</h4>
+                        <ul>
+                            <li>Friendly self-introduction (English OK — zero Japanese welcome!)</li>
+                            <li>Check your current level &amp; goals (travel, conversation, JLPT, anime)</li>
+                            <li>Short fun speaking practice &amp; personalized study plan</li>
+                        </ul>
+                    </div>
+                    <div class="guide-faq-box">
+                        <h4>❓ Quick FAQ</h4>
+                        <ul>
+                            <li><strong>App used:</strong> Google Meet (no installation required)</li>
+                            <li><strong>Textbooks:</strong> Not required — free original materials provided</li>
+                            <li><strong>Cancel / Reschedule:</strong> Free up to 24 hours before class</li>
+                            <li><strong>Questions?</strong> Reach out anytime via the <a href="#booking-links" style="color: var(--primary); font-weight: bold;">Contact Form</a> below.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </details>
     </section>
 
     <!-- ================= CALENDAR SECTION ================= -->
     <section id="schedule-section">
-        <h2 style="margin-bottom: 1.5rem;"><i class="fa-regular fa-calendar-check" style="color: var(--primary);"></i> Lesson Availability</h2>
+        <h2 style="margin-bottom: 1.2rem;"><i class="fa-regular fa-calendar-check" style="color: var(--primary);"></i> Lesson Availability</h2>
+        <div class="cal-legend">
+            <span class="cal-legend-item"><span class="cal-dot-open"></span> Open hours</span>
+            <span class="cal-legend-item"><span class="cal-dot-booked"></span> Already booked</span>
+            <span class="cal-legend-item cal-tz-badge" id="cal-tz-note"><i class="fa-solid fa-globe" style="color: var(--primary);"></i> Showing in your local time</span>
+        </div>
         <div id='calendar'></div>
-        <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="#booking-links" class="hero-btn primary-btn" style="display: inline-flex; width: auto; min-width: 280px; justify-content: center; font-size: 1.1rem; padding: 15px 40px;">
-                <i class="fa-solid fa-calendar-days"></i> BOOK NOW
+        <div class="cal-cta-group">
+            <a href="#lessons" class="hero-btn primary-btn" style="display: inline-flex; width: auto; min-width: 240px; justify-content: center; font-size: 0.98rem; padding: 14px 28px;">
+                <i class="fa-solid fa-seedling"></i> Book Trial Lesson (New)
+            </a>
+            <a href="#booking-links" class="hero-btn secondary-btn" style="display: inline-flex; width: auto; min-width: 240px; justify-content: center; font-size: 0.98rem; padding: 14px 28px; border: 2px solid #e0e0e0;">
+                <i class="fa-solid fa-calendar-days"></i> Current Students: Book Slot
             </a>
         </div>
     </section>
@@ -503,6 +656,38 @@
     <section id="resources">
         <h2 id="materials">Study Material</h2>
 
+        <!-- 30秒おすすめ教材診断 -->
+        <div class="starter-quiz">
+            <div class="starter-quiz-head">
+                <span class="starter-quiz-pill">🎯 FIND YOUR STARTING POINT</span>
+                <h3>Not sure where to start? Pick your goal!</h3>
+                <p>Tap one below to see the best 3 free materials for you right now.</p>
+            </div>
+            <div class="goal-btn-grid">
+                <button type="button" class="goal-btn active" onclick="pickStarterGoal('travel', this)">
+                    <span class="goal-emoji">✈️</span>
+                    <span class="goal-title">Trip to Japan</span>
+                    <span class="goal-sub">Survival phrases</span>
+                </button>
+                <button type="button" class="goal-btn" onclick="pickStarterGoal('beginner', this)">
+                    <span class="goal-emoji">🌱</span>
+                    <span class="goal-title">Zero Beginner</span>
+                    <span class="goal-sub">Kana &amp; basics</span>
+                </button>
+                <button type="button" class="goal-btn" onclick="pickStarterGoal('culture', this)">
+                    <span class="goal-emoji">🎬</span>
+                    <span class="goal-title">Fun &amp; Culture</span>
+                    <span class="goal-sub">Audio &amp; Idioms</span>
+                </button>
+                <button type="button" class="goal-btn" onclick="pickStarterGoal('jlpt', this)">
+                    <span class="goal-emoji">📝</span>
+                    <span class="goal-title">JLPT N5–N1</span>
+                    <span class="goal-sub">Grammar &amp; Kanji</span>
+                </button>
+            </div>
+            <div class="starter-result" id="starter-result"></div>
+        </div>
+
         <!-- レベル別 ポータルカード -->
         <div class="level-portal-grid">
 
@@ -538,9 +723,9 @@
                 <h3>Beginner</h3>
                 <span class="jlpt-badge">JLPT N5 - N4</span>
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> Hiragana & Katakana</li>
-                    <li><i class="fa-solid fa-check"></i> Travel Survival</li>
-                    <li><i class="fa-solid fa-check"></i> Basic Grammar & Kanji</li>
+                    <li><i class="fa-solid fa-check"></i> Hiragana &amp; Katakana</li>
+                    <li><i class="fa-solid fa-check"></i> Essential Adjectives &amp; Verbs</li>
+                    <li><i class="fa-solid fa-check"></i> Basic Grammar &amp; Kanji</li>
                 </ul>
                 <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">START HERE</div>
             </a>
@@ -1045,7 +1230,122 @@
     revealMail('mail-reveal');
     revealMail('mail-reveal-privacy');
 
+    const starterGoals = {
+        travel: {
+            title: "✈️ Best 3 Materials for Your Japan Trip",
+            tip: "No kana reading required! Start with listening and flashcards.",
+            items: [
+                { badge: "STEP 1", name: "TRIP JAPAN 4: Listening Quests", desc: "Hear the shop clerk & pick your reply (EN/PT/IT/ES).", href: "trip-listen.html", color: "#e74c3c" },
+                { badge: "STEP 2", name: "TRIP JAPAN 1: Travel Flashcards", desc: "50 essential travel phrases & 50 verbs with audio.", href: "trip-flashcards.html", color: "#e67e22" },
+                { badge: "STEP 3", name: "TRIP JAPAN 2: Situational Quiz", desc: "25 real airport, hotel & restaurant challenges.", href: "trip-quiz.html", color: "#ff9f43" }
+            ]
+        },
+        beginner: {
+            title: "🌱 Best 3 Materials for Complete Beginners",
+            tip: "Learn hiragana step by step through tracing and fun games!",
+            items: [
+                { badge: "STEP 1", name: "Hiragana Tracing", desc: "Trace each character right on your screen with audio.", href: "hiragana-nazori.html", color: "#2980b9" },
+                { badge: "STEP 2", name: "Hiragana Master (Game)", desc: "Fun typing & reading practice with saved best scores.", href: "hiraganatype.html", color: "#2ecc71" },
+                { badge: "STEP 3", name: "Adjectives 200 Flashcards", desc: "Master everyday i-adj & na-adj with native audio.", href: "adj.html", color: "#f39c12" }
+            ]
+        },
+        culture: {
+            title: "🎬 Best 3 Materials for Natural & Fun Japanese",
+            tip: "Enjoy real living Japanese beyond textbooks!",
+            items: [
+                { badge: "PICK 1", name: "Audio Blog (Vol.1–Vol.7)", desc: "Natural Japanese monologues with script & English translation.", href: "audioblog.html", color: "#2ecc71" },
+                { badge: "PICK 2", name: "Japanese Idioms & Slang (40)", desc: "Illustrated everyday idioms and modern slang.", href: "idioms.html", color: "#9b59b6" },
+                { badge: "PICK 3", name: "Japanese Onomatopoeia", desc: "Sound & feeling words with cute illustrations.", href: "onomato.html", color: "#e84393" }
+            ]
+        },
+        jlpt: {
+            title: "📝 Best 3 Materials for JLPT Preparation",
+            tip: "Build speed and accuracy with focused grammar & kanji drills!",
+            items: [
+                { badge: "N5–N4", name: "N5 Grammar Sentence Builder", desc: "Arrange words to master core N5 grammar patterns.", href: "Grammar1-1.html", color: "#f39c12" },
+                { badge: "N3", name: "N3 Kanji 100 Quiz (Verbs)", desc: "JLPT N3 kanji reading challenge with score tracking.", href: "N3verb1-1.html", color: "#3498db" },
+                { badge: "N1", name: "Kanji N1-1 (200 Questions)", desc: "Native-level challenge for advanced learners.", href: "N1-1.html", color: "#c0392b" }
+            ]
+        }
+    };
+
+    function pickStarterGoal(key, btn) {
+        if (btn) {
+            document.querySelectorAll('.goal-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        const data = starterGoals[key];
+        const el = document.getElementById('starter-result');
+        if (!data || !el) return;
+        el.innerHTML =
+            '<div class="starter-result-head">' +
+                '<div><div class="starter-result-title">' + data.title + '</div><div class="starter-result-tip">' + data.tip + '</div></div>' +
+                '<a href="#lessons" style="font-size:0.78rem; font-weight:bold; color:var(--primary); text-decoration:none; background:var(--primary-light); padding:5px 12px; border-radius:50px;">🍫 Want a personal plan? Try a 30-min Trial →</a>' +
+            '</div>' +
+            '<div class="starter-result-grid">' +
+                data.items.map(function(it) {
+                    return '<a href="' + it.href + '" class="starter-rec-card">' +
+                        '<div>' +
+                            '<span class="starter-rec-badge" style="background:' + it.color + ';">' + it.badge + '</span>' +
+                            '<h4>' + it.name + '</h4>' +
+                            '<p>' + it.desc + '</p>' +
+                        '</div>' +
+                        '<div class="starter-rec-go" style="color:' + it.color + ';">START NOW →</div>' +
+                    '</a>';
+                }).join('') +
+            '</div>';
+    }
+
+    function convertJstBusinessHours(jstBlocks) {
+        var shiftMin = -(540 + new Date().getTimezoneOffset());
+        var fmt = function(m) {
+            var h = Math.floor(m / 60);
+            var mm = m % 60;
+            return String(h).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
+        };
+        var out = [];
+        jstBlocks.forEach(function(b) {
+            b.daysOfWeek.forEach(function(d) {
+                var s = b.startMin + shiftMin;
+                var e = b.endMin + shiftMin;
+                var pushSeg = function(day, segS, segE) {
+                    if (segE > segS) out.push({ daysOfWeek: [(day + 7) % 7], startTime: fmt(segS), endTime: fmt(segE) });
+                };
+                if (s < 0 && e <= 0) {
+                    pushSeg(d - 1, s + 1440, e + 1440);
+                } else if (s < 0 && e > 0) {
+                    pushSeg(d - 1, s + 1440, 1440);
+                    pushSeg(d, 0, e);
+                } else if (s >= 1440) {
+                    pushSeg(d + 1, s - 1440, e - 1440);
+                } else if (e > 1440) {
+                    pushSeg(d, s, 1440);
+                    pushSeg(d + 1, 0, e - 1440);
+                } else {
+                    pushSeg(d, s, e);
+                }
+            });
+        });
+        return out;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+        pickStarterGoal('travel');
+
+        var tzNote = document.getElementById('cal-tz-note');
+        try {
+            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (tzNote && tz) {
+                tzNote.innerHTML = '<i class="fa-solid fa-globe" style="color: var(--primary);"></i> Your local time (' + tz + ')';
+            }
+        } catch (e) {}
+
+        var jstOpenHours = [
+            { daysOfWeek: [ 1, 2, 3, 4, 5 ], startMin: 20 * 60, endMin: 24 * 60 },
+            { daysOfWeek: [ 0, 6 ], startMin: 9 * 60, endMin: 14 * 60 },
+            { daysOfWeek: [ 0, 6 ], startMin: 18 * 60, endMin: 24 * 60 }
+        ];
+
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: window.innerWidth < 600 ? 'timeGridDay' : 'timeGridWeek', 
@@ -1054,11 +1354,7 @@
             headerToolbar: { left: 'prev,next today', center: 'title', right: window.innerWidth < 600 ? '' : 'timeGridWeek,timeGridDay' },
             slotMinTime: '00:00:00', slotMaxTime: '24:00:00', allDaySlot: false, height: 'auto', nowIndicator: true, expandRows: true, stickyHeaderDates: true,
             eventColor: '#888888', eventTextColor: '#ffffff',
-            businessHours: [
-                { daysOfWeek: [ 1, 2, 3, 4, 5 ], startTime: '20:00', endTime: '24:00' },
-                { daysOfWeek: [ 0, 6 ], startTime: '09:00', endTime: '14:00' },
-                { daysOfWeek: [ 0, 6 ], startTime: '18:00', endTime: '24:00' }
-            ],
+            businessHours: convertJstBusinessHours(jstOpenHours),
             eventSources: [
                 { url: 'https://script.google.com/macros/s/AKfycbw4u0CGA0L8v4BPIwKBNuyf6qgt2SscK_zidZAiEX2GTgb5_3vOoD26YhgIX4y91Ehmmw/exec', method: 'GET' }
             ],
