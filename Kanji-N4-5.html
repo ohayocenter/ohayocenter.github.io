@@ -3,36 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N4/N5 漢字マスター 300</title>
+    <title>300 Essential Kanji Master (N5/N4) - OHAYO CENTER</title>
+    <meta name="description" content="Master 300 essential JLPT N5/N4 kanji words across 12 themes with 4-choice quizzes, 60s speed runs, flashcards, weak-word review, Romaji toggle, and natural Japanese audio.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
     <meta property="og:title" content="N5/N4 Kanji Master 300 | OHAYO CENTER">
-    <meta property="og:description" content="Master 300 JLPT N5 and N4 kanji in 12 themed sets, from daily life and numbers to transport, nature and feelings.">
+    <meta property="og:description" content="Master 300 JLPT N5 and N4 kanji in 12 themed sets with interactive quizzes, flashcards, speed challenges, and native audio.">
     <meta property="og:url" content="https://ohayocenter.com/Kanji-N4-5.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="N5/N4 Kanji Master 300 | OHAYO CENTER">
-    <meta name="twitter:description" content="Master 300 JLPT N5 and N4 kanji in 12 themed sets, from daily life and numbers to transport, nature and feelings.">
+    <meta name="twitter:description" content="Master 300 JLPT N5 and N4 kanji in 12 themed sets with interactive quizzes, flashcards, speed challenges, and native audio.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="icon.png" sizes="192x192">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Sawarabi+Mincho&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-color: #f0f2f5;
-            --card-bg: #ffffff;
-            --hiragana-color: #e74c3c;
-            --english-color: #3498db;
-            --done-color: #2ecc71;
+            --primary: #10b981;
+            --primary-deep: #059669;
+            --primary-soft: #ecfdf5;
+            --orange: #ff9f43;
+            --orange-soft: #fff5eb;
+            --bg: #f4f7f6;
+            --card: #ffffff;
+            --surface: #f8fafc;
+            --dark: #1e293b;
+            --text: #334155;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --warn: #f59e0b;
+            --warn-soft: #fffbeb;
+            --err: #ef4444;
+            --err-soft: #fef2f2;
+            --shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+        }
+        body.dark-mode {
+            --bg: #16181d;
+            --card: #22262e;
+            --surface: #1b1f26;
+            --dark: #f8fafc;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --border: #334155;
+            --primary-soft: #064e3b;
+            --orange-soft: #3b2a19;
+            --warn-soft: #451a03;
+            --err-soft: #450a0a;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding-top: 86px;
+            min-height: 100vh;
+            transition: background 0.25s, color 0.25s;
         }
 
-        /* --- ナビゲーションバー --- */
+        /* --- NAV --- */
         nav {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(6px);
             padding: 0 5%;
             height: 70px;
             position: fixed;
@@ -43,249 +76,422 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            font-family: 'Noto Sans JP', sans-serif;
-            box-sizing: border-box;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.05);
         }
-        .logo {
-            font-family: 'Sawarabi Mincho', serif;
-            font-weight: bold;
-            font-size: 1.2rem;
-            white-space: nowrap;
+        body.dark-mode nav { background: rgba(22, 24, 29, 0.95); }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: var(--dark); }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary-deep); }
+
+        .container {
+            width: 96%;
+            max-width: 960px;
+            margin: 0 auto 30px;
         }
-        .logo a {
-            text-decoration: none;
-            color: #2c3e50;
+
+        /* --- HERO & PROGRESS --- */
+        .hero-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 22px 20px 18px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
         }
-        .nav-links {
-            list-style: none;
+        .hero-top {
             display: flex;
-            gap: 1.2rem;
-            margin: 0;
-            padding: 0;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
         }
-        .nav-links a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
+        h1 {
+            font-family: 'Sawarabi Mincho', serif;
+            font-size: 1.65rem;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        .hero-sub { font-size: 0.84rem; color: var(--muted); }
+        .hero-toggles { display: flex; gap: 7px; flex-wrap: wrap; }
+        .pill-toggle {
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .pill-toggle.on { background: var(--primary-deep); color: #fff; border-color: var(--primary-deep); }
+
+        .prog-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .prog-track { width: 100%; height: 10px; background: var(--primary-soft); border-radius: 999px; overflow: hidden; }
+        .prog-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--primary-deep)); border-radius: 999px; transition: width 0.35s; }
+
+        /* --- 5 MODE TABS --- */
+        .mode-tabs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .mode-tab {
+            padding: 11px 6px;
+            border-radius: 14px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            font-weight: 700;
             font-size: 0.8rem;
-            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.18s;
+            font-family: inherit;
+            text-align: center;
+        }
+        .mode-tab:hover { border-color: var(--primary); color: var(--dark); }
+        .mode-tab.active { background: var(--primary-deep); color: #fff; border-color: var(--primary-deep); box-shadow: 0 5px 14px rgba(5,150,105,0.22); }
+        .mode-tab.weak-tab { border-color: var(--warn); color: #b45309; }
+        body.dark-mode .mode-tab.weak-tab { color: #fcd34d; }
+        .mode-tab.weak-tab.active { background: var(--warn); color: #fff; border-color: var(--warn); }
+
+        /* --- TOP THEME SELECTOR --- */
+        .theme-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 7px;
+            margin-bottom: 16px;
+        }
+        .theme-btn {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.16s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+        .theme-btn:hover { border-color: var(--primary); }
+        .theme-btn.active {
+            border-color: var(--primary-deep);
+            background: var(--primary-soft);
+        }
+        .theme-label { font-size: 0.76rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
+        .theme-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--primary-deep);
+            background: var(--card);
+            padding: 2px 6px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .theme-btn.done .theme-badge { background: var(--primary-deep); color: #fff; border-color: var(--primary-deep); }
+
+        /* --- MAIN PANEL --- */
+        .panel {
+            display: none;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 24px 20px;
+            box-shadow: var(--shadow);
+        }
+        .panel.active { display: block; animation: fadeIn 0.25s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- QUIZ & SPEED RUN --- */
+        .sub-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .chip-group { display: flex; gap: 6px; flex-wrap: wrap; }
+        .chip {
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .chip.active { background: var(--dark); color: var(--card); border-color: var(--dark); }
+
+        .quiz-stage {
+            max-width: 560px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .quiz-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--muted);
+        }
+        .combo-badge {
+            background: var(--warn-soft);
+            color: #b45309;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-weight: 800;
+        }
+        body.dark-mode .combo-badge { color: #fcd34d; }
+
+        .prompt-box {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 26px 18px;
+            margin-bottom: 16px;
+        }
+        .prompt-kicker { font-size: 0.74rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+        .prompt-main { font-size: 3.1rem; font-weight: 700; color: var(--dark); line-height: 1.25; margin-bottom: 6px; }
+        .prompt-main.en-mode { font-size: 1.7rem; }
+        .prompt-sub { font-size: 0.88rem; color: var(--muted); min-height: 1.3em; }
+        .audio-circle {
+            margin-top: 10px;
+            padding: 7px 16px;
+            border-radius: 999px;
+            border: 1.5px solid var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary-deep);
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            font-family: inherit;
         }
 
-        /* プログレスバー */
-        .progress-fixed {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: #e2e8f0;
-            z-index: 999;
+        .opts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
         }
-        #mainBar { height: 100%; width: 0%; background: var(--done-color); transition: width 0.4s ease; }
-
-        @media (max-width: 600px) {
-            nav { padding: 0 15px; }
-            .logo { font-size: 1rem; }
-            .nav-links { gap: 0.6rem; }
-            .nav-links a { font-size: 0.65rem; }
-        }
-
-        /* --- メインコンテンツ --- */
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding-top: 90px;
+        .opt-btn {
+            padding: 15px 12px;
+            border-radius: 15px;
+            border: 2px solid var(--border);
+            background: var(--card);
+            color: var(--dark);
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.16s;
+            font-family: inherit;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            gap: 2px;
         }
-        .container {
-            width: 95%;
-            max-width: 1000px;
-            margin-top: 20px;
-            position: relative;
-        }
-        .stats-overall {
-            text-align: center;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: var(--primary-color);
+        .opt-btn:hover:not(:disabled) { border-color: var(--primary); transform: translateY(-1px); }
+        .opt-btn .opt-romaji { font-size: 0.72rem; color: var(--muted); font-weight: 600; }
+        .opt-btn.correct { background: var(--primary-soft); border-color: var(--primary); color: var(--primary-deep); }
+        .opt-btn.wrong { background: var(--err-soft); border-color: var(--err); color: var(--err); }
+
+        .quiz-fb {
+            min-height: 28px;
             font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
-        .slide {
-            display: none;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            animation: fadeIn 0.4s;
+        .btn-primary {
+            background: var(--primary-deep);
+            color: #fff;
+            border: none;
+            padding: 13px 30px;
+            border-radius: 50px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 5px 14px rgba(5,150,105,0.25);
         }
-        .slide.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        h1 {
+        .btn-primary:hover { opacity: 0.93; }
+        .btn-outline {
+            background: transparent;
+            color: var(--dark);
+            border: 1.5px solid var(--border);
+            padding: 11px 22px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* --- FLASHCARDS --- */
+        .fc-card {
+            max-width: 440px;
+            margin: 0 auto 16px;
+            min-height: 250px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            color: var(--primary-color);
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 10px;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.15s;
         }
-        
-        .grid {
+        .fc-card:hover { border-color: var(--primary); }
+        .fc-kanji { font-size: 3.6rem; font-weight: 700; color: var(--dark); line-height: 1.2; }
+        .fc-back { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); width: 100%; }
+        .fc-card.flipped .fc-back { display: block; }
+        .fc-reading { font-size: 1.35rem; font-weight: 700; color: var(--primary-deep); }
+        .fc-romaji { font-size: 0.86rem; color: var(--muted); font-style: italic; margin: 2px 0 6px; }
+        .fc-meaning { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+        .fc-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .fc-btn-ok { background: var(--primary-deep); color: #fff; border: none; padding: 12px 22px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+        .fc-btn-weak { background: var(--warn); color: #fff; border: none; padding: 12px 22px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+
+        /* --- STUDY GRID & SEARCH --- */
+        .grid-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 210px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--dark);
+            font-size: 0.9rem;
+            outline: none;
+            font-family: inherit;
+        }
+        .search-input:focus { border-color: var(--primary-deep); }
+
+        .word-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 10px;
         }
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 480px) {
-            .grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        .question-box {
-            border: 2px solid #edf2f7;
-            padding: 12px 6px;
+        .word-card {
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 12px 8px 10px;
+            background: var(--card);
             text-align: center;
-            border-radius: 10px;
-            background: #fff;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: 0.3s;
-        }
-        /* 学習済み（Check済み）のスタイル */
-        .question-box.is-done {
-            border-color: var(--done-color);
-            background-color: #f0fff4;
-        }
-
-        .kanji {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .answer-container {
-            min-height: 2.8em;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 8px;
-        }
-        
-        .reading, .meaning {
-            visibility: hidden;
-        }
-        .reading.show, .meaning.show {
-            visibility: visible;
-        }
-
-        .reading {
-            color: var(--hiragana-color);
-            font-weight: bold;
-            font-size: 1rem;
-            line-height: 1.2;
-        }
-        .meaning {
-            color: #7f8c8d;
-            font-size: 0.75rem;
-            font-weight: normal;
-            margin-top: 4px;
-            line-height: 1.1;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 5px;
-            margin-top: auto;
-        }
-        
-        .btn-check, .btn-en {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            padding: 5px 0;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            color: #777;
-            flex: 1;
-            font-weight: bold;
+            position: relative;
             transition: 0.2s;
         }
-
-        .btn-check.active {
-            background-color: var(--hiragana-color);
-            color: #fff;
-            border-color: var(--hiragana-color);
-        }
-        .btn-en.active {
-            background-color: var(--english-color);
-            color: #fff;
-            border-color: var(--english-color);
-        }
-
-        @media (max-width: 600px) {
-            .btn-group { flex-direction: column; }
-            .btn-check, .btn-en { padding: 8px 0; }
-        }
-        
-        .nav-controls {
-            margin: 30px 0;
+        .word-card.mastered { border-color: var(--primary); background: var(--primary-soft); }
+        .word-card.is-weak { border-color: var(--warn); }
+        .wc-top {
             display: flex;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            max-width: 95%;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
         }
-        .nav-btn {
-            background-color: var(--primary-color);
-            color: white;
+        .wc-icon-btn {
+            background: none;
             border: none;
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.8rem;
             cursor: pointer;
-            transition: 0.2s;
-            min-width: 90px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-size: 0.92rem;
+            padding: 2px 4px;
+            color: var(--muted);
         }
-        .nav-btn small { font-size: 0.65rem; margin-top: 4px; opacity: 0.8; }
-        .nav-btn:hover { background-color: var(--accent-color); }
-        .nav-btn.active-slide {
-            background-color: var(--accent-color);
+        .wc-icon-btn:hover { color: var(--primary-deep); }
+        .wc-kanji { font-size: 1.48rem; font-weight: 700; color: var(--dark); margin: 4px 0; line-height: 1.25; }
+        .wc-ans { min-height: 3.4em; display: flex; flex-direction: column; justify-content: center; margin-bottom: 6px; }
+        .wc-read { color: var(--primary-deep); font-weight: 700; font-size: 0.92rem; visibility: hidden; }
+        .wc-romaji { color: var(--muted); font-size: 0.72rem; visibility: hidden; }
+        .wc-mean { color: var(--text); font-size: 0.76rem; margin-top: 2px; visibility: hidden; line-height: 1.25; }
+        .wc-read.show, .wc-romaji.show, .wc-mean.show { visibility: visible; }
+        .wc-btns { display: flex; gap: 4px; }
+        .wc-btn {
+            flex: 1;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 5px 2px;
+            border-radius: 7px;
+            cursor: pointer;
         }
+        .wc-btn.active { background: var(--dark); color: var(--card); border-color: var(--dark); }
 
-        .support-section {
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #e2e8f0;
-            width: 100%;
-            max-width: 1000px;
+        /* --- SPEED RESULT --- */
+        .rank-circle {
+            width: 68px; height: 68px; border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+            color: #fff; font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
         }
-        .reset-link { color: #999; font-size: 0.8rem; cursor: pointer; margin-top: 20px; display: block; text-decoration: underline; }
-        .bmc-custom-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #FFDD00;
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 380px; margin: 12px auto 16px; }
+        .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 6px; }
+        .stat-box b { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; display: block; color: var(--dark); }
+        .stat-box span { font-size: 0.68rem; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+
+        /* --- FOOTER --- */
+        .support-section { text-align: center; margin: 20px auto 34px; padding: 20px 16px; max-width: 780px; }
+        .support-section p { color: var(--muted); font-size: 0.88rem; margin-bottom: 12px; }
+        .bmc-btn {
+            display: inline-flex; align-items: center; background: #FFDD00; color: #000;
+            border-radius: 12px; padding: 10px 20px; text-decoration: none; font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .bmc-btn img { height: 22px; margin-right: 10px; }
+        .reset-link { color: var(--muted); font-size: 0.78rem; cursor: pointer; margin-top: 14px; display: inline-block; text-decoration: underline; }
+
+        @media (max-width: 820px) {
+            .theme-bar { grid-template-columns: repeat(3, 1fr); }
+            .word-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 600px) {
+            nav { padding: 0 14px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a { font-size: 0.7rem; }
+            .mode-tabs { grid-template-columns: repeat(3, 1fr); }
+            .theme-bar { grid-template-columns: repeat(2, 1fr); }
+            .word-grid { grid-template-columns: repeat(2, 1fr); }
+            .opts-grid { grid-template-columns: 1fr; }
+            .prompt-main { font-size: 2.5rem; }
         }
     </style>
 <style id="ohayo-cta-style">
@@ -325,17 +531,174 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+        <li><a onclick="toggleDarkMode()" title="Toggle Dark Mode"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
     </ul>
 </nav>
 
-<div class="progress-fixed"><div id="mainBar"></div></div>
-
 <div class="container">
-    <div class="stats-overall" id="statsOverall">Progress: 0 / 300 (0%)</div>
-    <div id="slides-container"></div>
-</div>
+    <div class="hero-card">
+        <div class="hero-top">
+            <div>
+                <h1>300 Essential Kanji Master (N5/N4)</h1>
+                <p class="hero-sub">12 everyday themes × 25 unique kanji words — with quizzes, speed runs, flashcards &amp; audio!</p>
+            </div>
+            <div class="hero-toggles">
+                <button type="button" class="pill-toggle" id="romaji-toggle" onclick="toggleRomaji()">ABC Romaji: OFF</button>
+                <button type="button" class="pill-toggle on" id="audio-toggle" onclick="toggleAutoAudio()">🔊 Audio: ON</button>
+            </div>
+        </div>
+        <div class="prog-row">
+            <span id="mastery-text">Mastered: 0 / 300 (0%)</span>
+            <span id="weak-summary" style="color:var(--warn);">🎯 Weak: 0</span>
+        </div>
+        <div class="prog-track"><div class="prog-fill" id="mastery-bar"></div></div>
+    </div>
 
-<div class="nav-controls" id="jump-controls"></div>
+    <div class="mode-tabs" role="tablist">
+        <button type="button" class="mode-tab active" data-tab="quiz" onclick="switchMode('quiz')">🎯 4-Choice Quiz</button>
+        <button type="button" class="mode-tab" data-tab="speed" onclick="switchMode('speed')">⚡ 60s Speed</button>
+        <button type="button" class="mode-tab" data-tab="flash" onclick="switchMode('flash')">🃏 Flashcards</button>
+        <button type="button" class="mode-tab weak-tab" data-tab="weak" id="weak-tab-btn" onclick="switchMode('weak')">🎯 Weak (0)</button>
+        <button type="button" class="mode-tab" data-tab="grid" onclick="switchMode('grid')">📚 All 300 List</button>
+    </div>
+
+    <div class="theme-bar" id="theme-bar"></div>
+
+    <!-- 1. QUIZ PANEL -->
+    <div class="panel active" id="panel-quiz">
+        <div class="sub-controls">
+            <div class="chip-group">
+                <button type="button" class="chip active" data-qtype="reading" onclick="setQuizType('reading')">漢字 → 読み</button>
+                <button type="button" class="chip" data-qtype="meaning" onclick="setQuizType('meaning')">漢字 → English</button>
+                <button type="button" class="chip" data-qtype="kanji" onclick="setQuizType('kanji')">English → 漢字</button>
+                <button type="button" class="chip" data-qtype="audio" onclick="setQuizType('audio')">🔊 Audio → 漢字</button>
+            </div>
+            <div class="chip-group">
+                <button type="button" class="chip active" data-qscope="set" onclick="setQuizScope('set')">Current Set (25)</button>
+                <button type="button" class="chip" data-qscope="all" onclick="setQuizScope('all')">All 300 Mix</button>
+            </div>
+        </div>
+        <div class="quiz-stage">
+            <div class="quiz-status">
+                <span id="quiz-progress">Question 1 / 10</span>
+                <span class="combo-badge" id="quiz-combo">🔥 0 Streak</span>
+                <span id="quiz-score">Score: 0</span>
+            </div>
+            <div class="prompt-box">
+                <div class="prompt-kicker" id="quiz-kicker">CHOOSE THE CORRECT READING</div>
+                <div class="prompt-main" id="quiz-prompt">学校</div>
+                <div class="prompt-sub" id="quiz-sub"></div>
+                <button type="button" class="audio-circle" id="quiz-audio-btn" onclick="playCurrentQuizAudio()">🔊 Listen</button>
+            </div>
+            <div class="opts-grid" id="quiz-opts"></div>
+            <div class="quiz-fb" id="quiz-fb"></div>
+            <button type="button" class="btn-primary" id="quiz-next-btn" style="display:none;" onclick="nextQuizQ()">Next Question →</button>
+        </div>
+    </div>
+
+    <!-- 2. SPEED RUN PANEL -->
+    <div class="panel" id="panel-speed">
+        <div class="quiz-stage" id="speed-start-view">
+            <h2 style="font-family:'Sawarabi Mincho',serif; color:var(--dark); margin-bottom:6px;">⚡ 60-Second Kanji Speed Run</h2>
+            <p style="font-size:0.88rem; color:var(--muted); margin-bottom:12px;">Answer as many Kanji → Reading questions as you can in 60 seconds!</p>
+            <div style="margin-bottom:14px; font-weight:700; color:#b45309;" id="speed-best-txt">🏆 Personal Best: 0</div>
+            <div class="chip-group" style="justify-content:center; margin-bottom:18px;">
+                <button type="button" class="chip active" data-sscope="set" onclick="setSpeedScope('set')">Current Set (25)</button>
+                <button type="button" class="chip" data-sscope="all" onclick="setSpeedScope('all')">All 300 Mix</button>
+            </div>
+            <button type="button" class="btn-primary" onclick="startSpeedRun()">START 60s RUN</button>
+        </div>
+
+        <div class="quiz-stage" id="speed-play-view" style="display:none;">
+            <div class="quiz-status">
+                <span id="sp-timer" style="color:var(--primary-deep); font-family:'Montserrat',sans-serif;">⏱ 60s</span>
+                <span class="combo-badge" id="sp-combo">🔥 0</span>
+                <span id="sp-score" style="font-family:'Montserrat',sans-serif;">SCORE: 0</span>
+            </div>
+            <div class="prompt-box">
+                <div class="prompt-kicker">TAP THE READING FAST!</div>
+                <div class="prompt-main" id="sp-prompt">学校</div>
+                <div class="prompt-sub" id="sp-sub"></div>
+            </div>
+            <div class="opts-grid" id="sp-opts"></div>
+        </div>
+
+        <div class="quiz-stage" id="speed-done-view" style="display:none;">
+            <div class="rank-circle" id="sp-rank">A</div>
+            <h2 style="color:var(--dark); margin-bottom:4px;">Speed Run Complete!</h2>
+            <div id="sp-new-best" style="color:#d97706; font-weight:800; font-size:0.86rem; display:none;">🎉 NEW PERSONAL BEST!</div>
+            <div class="stat-grid">
+                <div class="stat-box"><b id="sp-res-score">0</b><span>Correct</span></div>
+                <div class="stat-box"><b id="sp-res-combo">0</b><span>Max Combo</span></div>
+                <div class="stat-box"><b id="sp-res-acc">100%</b><span>Accuracy</span></div>
+            </div>
+            <button type="button" class="btn-primary" onclick="startSpeedRun()">Play Again ⚡</button>
+        </div>
+    </div>
+
+    <!-- 3. FLASHCARDS PANEL -->
+    <div class="panel" id="panel-flash">
+        <div class="quiz-stage">
+            <div class="quiz-status">
+                <span id="fc-counter">Card 1 / 25</span>
+                <button type="button" class="chip" onclick="shuffleFlashcards()">🔀 Shuffle</button>
+            </div>
+            <div class="fc-card" id="fc-card" onclick="flipFlashcard()">
+                <div class="prompt-kicker">TAP CARD TO FLIP</div>
+                <div class="fc-kanji" id="fc-kanji">学校</div>
+                <div class="fc-back">
+                    <div class="fc-reading" id="fc-reading">がっこう</div>
+                    <div class="fc-romaji" id="fc-romaji">gakkou</div>
+                    <div class="fc-meaning" id="fc-meaning">School</div>
+                </div>
+            </div>
+            <div style="margin-bottom:14px;">
+                <button type="button" class="audio-circle" onclick="playFlashAudio()">🔊 Listen</button>
+            </div>
+            <div class="fc-actions">
+                <button type="button" class="fc-btn-weak" onclick="rateFlashcard(false)">🔁 Still Tricky</button>
+                <button type="button" class="fc-btn-ok" onclick="rateFlashcard(true)">✅ Got It!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. REVIEW WEAK PANEL -->
+    <div class="panel" id="panel-weak">
+        <div class="quiz-stage" id="weak-empty-view" style="display:none;">
+            <div style="font-size:3rem; margin-bottom:8px;">🎉</div>
+            <h2 style="color:var(--dark); margin-bottom:6px;">No Weak Words Yet!</h2>
+            <p style="font-size:0.88rem; color:var(--muted); margin-bottom:16px;">Any word you miss in a quiz or mark "Still Tricky" in Flashcards will appear here for focused review.</p>
+            <button type="button" class="btn-primary" onclick="switchMode('quiz')">Start a Quiz →</button>
+        </div>
+        <div class="quiz-stage" id="weak-play-view">
+            <div class="quiz-status">
+                <span id="wk-count">Weak Queue: 0</span>
+                <span style="color:var(--primary-deep);">Answer right to clear!</span>
+            </div>
+            <div class="prompt-box">
+                <div class="prompt-kicker">WEAK WORD REVIEW</div>
+                <div class="prompt-main" id="wk-prompt">学校</div>
+                <button type="button" class="audio-circle" onclick="playWeakAudio()">🔊 Listen</button>
+            </div>
+            <div class="opts-grid" id="wk-opts"></div>
+            <div class="quiz-fb" id="wk-fb"></div>
+            <button type="button" class="btn-primary" id="wk-next-btn" style="display:none;" onclick="loadWeakQ()">Next Weak Word →</button>
+        </div>
+    </div>
+
+    <!-- 5. ALL 300 LIST PANEL -->
+    <div class="panel" id="panel-grid">
+        <div class="grid-toolbar">
+            <input type="text" class="search-input" id="search-input" placeholder="🔍 Search all 300 words (kanji, hiragana, romaji, English)..." oninput="renderGrid()">
+            <div class="chip-group">
+                <button type="button" class="chip" onclick="revealAllGrid(true)">👀 Show All</button>
+                <button type="button" class="chip" onclick="revealAllGrid(false)">🙈 Hide All</button>
+            </div>
+        </div>
+        <div id="grid-heading" style="font-weight:700; color:var(--dark); margin-bottom:12px; font-size:1rem;"></div>
+        <div class="word-grid" id="word-grid"></div>
+    </div>
+</div>
 
 <!-- OHAYO_NEXT_CTA -->
 <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
@@ -358,126 +721,538 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 
 <div class="support-section">
     <p>If you find these materials helpful, please consider supporting us!</p>
-    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-        ☕️ <span>SUPPORT OHAYO CENTER</span>
-    </a>
-    <span class="reset-link" onclick="resetProgress()">Reset Progress</span>
+    <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+        <span>Support OHAYO CENTER</span>
+    </a><br>
+    <span class="reset-link" onclick="resetProgress()">Reset Saved Progress</span>
 </div>
 
 <script>
-    const allData = {
-        1: { title: "生活 (Daily Life)", words: [['学校','がっこう','School'],['先生','せんせい','Teacher'],['学生','がくせい','Student'],['友達','ともだち','Friend'],['本屋','ほんや','Bookstore'],['名前','なまえ','Name'],['電話','でんわ','Telephone'],['電気','でんき','Electricity'],['車','くるま','Car'],['電車','でんしゃ','Train'],['家族','かぞく','Family'],['父','ちち','Father'],['母','はは','Mother'],['兄','あに','Older brother'],['姉','あね','Older sister'],['弟','おとうと','Younger brother'],['妹','いもうと','Younger sister'],['家','いえ','House'],['部屋','へや','Room'],['机','つくえ','Desk'],['椅子','いす','Chair'],['窓','まど','Window'],['料理','りょうり','Cooking'],['朝ご飯','あさごはん','Breakfast'],['体','からだ','Body']] },
-        2: { title: "数字・時 (Numbers & Time)", words: [['一人','ひとり','One person'],['二日','ふつか','2nd day / 2 days'],['三日','みっか','3rd day / 3 days'],['四日','よっか','4th day / 4 days'],['五日','いつか','5th day / 5 days'],['六日','むいか','6th day / 6 days'],['七日','なのか','7th day / 7 days'],['八日','ようか','8th day / 8 days'],['九日','ここのか','9th day / 9 days'],['十日','とおか','10th day / 10 days'],['今月','こんげつ','This month'],['去年','きょねん','Last year'],['来週','らいしゅう','Next week'],['毎日','まいにち','Every day'],['午前','ごぜん','A.M. / Morning'],['午後','ごご','P.M. / Afternoon'],['今朝','けさ','This morning'],['今晩','こんばん','Tonight'],['一時間','いちじかん','One hour'],['半年','はんねん','Half a year'],['何曜日','なんようび','What day of the week'],['週末','しゅうまつ','Weekend'],['時計','とけい','Clock / Watch'],['正月','しょうがつ','New Year'],['誕生日','たんじょうび','Birthday']] },
-        3: { title: "動詞 1 (Basic Verbs)", words: [['食べる','たべる','Eat'],['飲む','のむ','Drink'],['行く','いく','Go'],['来る','くる','Come'],['帰る','かえる','Return / Go home'],['寝る','ねる','Sleep'],['起きる','おきる','Wake up'],['見る','みる','See / Watch'],['聞く','きく','Listen / Hear'],['書く','かく','Write'],['読む','よむ','Read'],['買う','かう','Buy'],['売る','うる','Sell'],['会う','あう','Meet'],['遊ぶ','あそぶ','Play'],['待つ','まつ','Wait'],['持つ','もつ','Hold / Have'],['知る','しる','Know'],['作る','つくる','Make'],['使う','つかう','Use'],['泳ぐ','およぐ','Swim'],['歩く','あるく','Walk'],['走る','はしる','Run'],['乗る','のる','Ride'],['降る','ふる','Fall (rain/snow)']] },
-        4: { title: "形容詞・方向 (Adjectives & Directions)", words: [['大きい','おおきい','Big'],['小さい','ちいさい','Small'],['新しい','あたらしい','New'],['古い','ふるい','Old'],['高い','たかい','High / Expensive'],['安い','やすい','Cheap'],['長い','ながい','Long'],['短い','みじかい','Short'],['暑い','あつい','Hot (weather)'],['寒い','さむい','Cold (weather)'],['上','うえ','Up / Above'],['下','した','Down / Below'],['左','ひだり','Left'],['右','みぎ','Right'],['中','なか','Inside'],['外','そと','Outside'],['前','まえ','Front / Before'],['後ろ','うしろ','Back / Behind'],['東','ひがし','East'],['西','にし','West'],['南','みなみ','South'],['北','きた','North'],['有名','ゆうめい','Famous'],['親切','しんせつ','Kind'],['便利','べんり','Convenient']] },
-        5: { title: "仕事と動作 (Work & Actions)", words: [['仕事','しごと','Work / Job'],['会社','かいしゃ','Company'],['休む','やすむ','Rest / Be absent'],['働く','はたらく','Work'],['勉強','べんきょう','Study'],['習う','ならう','Learn'],['教える','おしえる','Teach'],['送る','おくる','Send'],['考える','かんがえる','Think'],['思い出す','おもいだす','Remember / Recall'],['終わる','おわる','Finish'],['始まる','はじまる','Begin / Start'],['止まる','とまる','Stop'],['出す','だす','Take out / Submit'],['入れる','いれる','Put in'],['開ける','あける','Open'],['閉める','しめる','Close'],['消す','けす','Erase / Turn off'],['点ける','つける','Turn on'],['忘れる','わすれる','Forget'],['頼む','たのむ','Ask / Request'],['貸す','かす','Lend'],['借りる','かりる','Borrow'],['洗う','あらう','Wash'],['歌う','うたう','Sing']] },
-        6: { title: "感情と状態 (Feelings & States)", words: [['好き','すき','Like'],['嫌い','きらい','Dislike'],['上手','じょうず','Skillful / Good at'],['下手','へた','Unskillful / Bad at'],['大切','たいせつ','Important'],['忙しい','いそがしい','Busy'],['面白い','おもしろい','Interesting / Funny'],['楽しい','たのしい','Fun / Enjoyable'],['嬉しい','うれしい','Happy / Glad'],['悲しい','かなしい','Sad'],['痛い','いたい','Painful / Hurt'],['元気','げんき','Healthy / Energetic'],['病気','びょうき','Illness / Sick'],['安心','あんしん','Relief'],['心配','しんぱい','Worry'],['薬','くすり','Medicine'],['眠い','ねむい','Sleepy'],['悪い','わるい','Bad'],['重い','おもい','Heavy'],['軽い','かるい','Light (weight)'],['広い','ひろい','Wide / Spacious'],['狭い','せまい','Narrow'],['早い','はやい','Early / Fast'],['遅い','おそい','Late / Slow'],['静か','しずか','Quiet']] },
-        7: { title: "街と建物 (Town & Buildings)", words: [['地下鉄','ちかてつ','Subway'],['銀行','ぎんこう','Bank'],['病院','びょういん','Hospital'],['郵便局','ゆうびんきょく','Post Office'],['公園','こうえん','Park'],['動物園','どうぶつえん','Zoo'],['大使館','たいしかん','Embassy'],['映画館','えいがかん','Movie Theater'],['交番','こうばん','Police Box'],['橋','はし','Bridge'],['道','みち','Road / Street'],['門','もん','Gate'],['店','みせ','Shop / Store'],['売店','ばいてん','Kiosk / Stand'],['食堂','しょくどう','Dining Hall'],['喫茶店','きっさてん','Coffee Shop'],['階段','かいだん','Stairs'],['建物','たてもの','Building'],['場所','ばしょ','Place'],['地図','ちず','Map'],['右側','みぎがわ','Right side'],['向こう','むこう','Over there'],['近く','ちかく','Near'],['遠く','とおく','Far'],['隣','となり','Next to']] },
-        8: { title: "自然と食べ物 (Nature & Food)", words: [['山','やま','Mountain'],['川','かわ','River'],['海','うみ','Sea / Ocean'],['空','そら','Sky'],['太陽','たいよう','Sun'],['風','かぜ','Wind'],['雨','あめ','Rain'],['雪','ゆき','Snow'],['電気','でんき','Electricity'],['光','ひかり','Light'],['花','はな','Flower'],['林','はやし','Woods'],['森','もり','Forest'],['米','こめ','Rice'],['牛肉','ぎゅうにく','Beef'],['豚肉','ぶたにく','Pork'],['鶏肉','とりにく','Chicken'],['魚','さかな','Fish'],['野菜','やさい','Vegetable'],['果物','くだもの','Fruit'],['お茶','おちゃ','Tea'],['牛乳','ぎゅうにゅう','Milk'],['砂糖','さとう','Sugar'],['塩','しお','Salt'],['弁当','べんとう','Bento / Box lunch']] },
-        9: { title: "乗り物と移動 (Transport & Movement)", words: [['自転車','じてんしゃ','Bicycle'],['空港','くうこう','Airport'],['飛行機','ひこうき','Airplane'],['船','ふね','Ship / Boat'],['地下鉄','ちかてつ','Subway'],['自動','じどう','Automatic'],['場所','ばしょ','Place'],['通る','とおる','Pass / Go through'],['急ぐ','いそぐ','Hurry'],['運ぶ','はこぶ','Carry / Transport'],['回る','まわる','Turn / Rotate'],['飛ぶ','とぶ','Fly'],['道','みち','Road'],['旅行','りょこう','Travel / Trip'],['地図','ちず','Map'],['港','みなと','Port / Harbor'],['駅','えき','Station'],['荷物','にもつ','Luggage / Baggage'],['切符','きっぷ','Ticket'],['特急','とっきゅう','Limited Express'],['入口','いりぐち','Entrance'],['出口','でぐち','Exit'],['交差点','こうさてん','Intersection'],['信号','しんごう','Traffic Light'],['遠い','とおい','Far']] },
-        10: { title: "季節・天気・体調 (Season, Weather, Health)", words: [['春','はる','Spring'],['夏','なつ','Summer'],['秋','あき','Autumn'],['冬','ふゆ','Winter'],['天気','てんき','Weather'],['晴れ','はれ','Sunny / Clear'],['曇り','くもり','Cloudy'],['台風','たいふう','Typhoon'],['地震','じしん','Earthquake'],['気温','きおん','Temperature'],['入院','にゅういん','Hospitalization'],['退院','たいいん','Discharge'],['頭痛','ずつう','Headache'],['熱','ねつ','Fever / Heat'],['顔','かお','Face'],['目','め','Eye'],['耳','みみ','Ear'],['鼻','はな','Nose'],['口','くち','Mouth'],['手','て','Hand'],['足','あし','Foot / Leg'],['背','せ','Back / Height'],['心','こころ','Heart / Mind'],['力','ちから','Power / Strength'],['声','こえ','Voice']] },
-        11: { title: "産業・材料・道具 (Industry, Tools, Materials)", words: [['工業','こうぎょう','Industry'],['農業','のうぎょう','Agriculture'],['商業','しょうぎょう','Commerce'],['貿易','ぼうえき','Trade'],['材料','ざいりょう','Material'],['道具','どうぐ','Tool'],['鉄','てつ','Iron'],['金','きん / かね','Gold / Money'],['銀','ぎん','Silver'],['石','いし','Stone'],['紙','かみ','Paper'],['竹','たけ','Bamboo'],['糸','いと','Thread'],['服','ふく','Clothes'],['工場','こうじょう','Factory'],['生産','せいさん','Production'],['技術','ぎじゅつ','Technology'],['機械','きかい','Machine'],['発明','はつめい','Invention'],['注意','ちゅうい','Caution / Attention'],['準備','じゅんび','Preparation'],['方法','ほうほう','Method / Way'],['利用','りよう','Utilization / Use'],['計画','けいかく','Plan'],['研究','けんきゅう','Research']] },
-        12: { title: "総復習・抽象概念 (Concepts & Review)", words: [['意味','いみ','Meaning'],['理由','りゆう','Reason'],['意見','いけん','Opinion'],['相談','そうだん','Consultation'],['特別','とくべつ','Special'],['反対','はんたい','Opposition / Opposite'],['賛成','さんせい','Agreement'],['最近','さいきん','Recently'],['最後','さいご','Last / End'],['最初','さいしょ','First / Beginning'],['一生懸命','いっしょうけんめい','With utmost effort'],['自分','じぶん','Oneself'],['他人','たにん','Other people'],['相手','あいて','Partner / Opponent'],['世界','せかい','World'],['社会','しゃかい','Society'],['文化','ぶんか','Culture'],['歴史','れきし','History'],['科学','かがく','Science'],['法律','ほうりつ','Law'],['経済','けいざい','Economy'],['政治','せいじ','Politics'],['平和','へいわ','Peace'],['目的','もくてき','Purpose'],['成功','せいこう','Success']] }
-    };
+    const SETS_META = [{"id": 1, "icon": "🏠", "jp": "生活", "en": "Daily Life"}, {"id": 2, "icon": "📅", "jp": "数字・時", "en": "Numbers & Time"}, {"id": 3, "icon": "🏃", "jp": "動詞 1", "en": "Basic Verbs"}, {"id": 4, "icon": "🧭", "jp": "形容詞・方向", "en": "Adjectives & Directions"}, {"id": 5, "icon": "💼", "jp": "仕事と動作", "en": "Work & Actions"}, {"id": 6, "icon": "💛", "jp": "感情と状態", "en": "Feelings & States"}, {"id": 7, "icon": "🏙️", "jp": "街と建物", "en": "Town & Buildings"}, {"id": 8, "icon": "🌿", "jp": "自然と食べ物", "en": "Nature & Food"}, {"id": 9, "icon": "🚆", "jp": "乗り物と移動", "en": "Transport & Movement"}, {"id": 10, "icon": "🌦️", "jp": "季節・天気・体調", "en": "Season, Weather & Health"}, {"id": 11, "icon": "🛠️", "jp": "産業・材料・道具", "en": "Industry, Tools & Materials"}, {"id": 12, "icon": "🌍", "jp": "総復習・抽象概念", "en": "Concepts & Review"}];
+    const WORDS = [{"id": "k001", "set": 1, "k": "学校", "h": "がっこう", "r": "gakkou", "e": "School"}, {"id": "k002", "set": 1, "k": "先生", "h": "せんせい", "r": "sensei", "e": "Teacher"}, {"id": "k003", "set": 1, "k": "学生", "h": "がくせい", "r": "gakusei", "e": "Student"}, {"id": "k004", "set": 1, "k": "友達", "h": "ともだち", "r": "tomodachi", "e": "Friend"}, {"id": "k005", "set": 1, "k": "本屋", "h": "ほんや", "r": "honya", "e": "Bookstore"}, {"id": "k006", "set": 1, "k": "名前", "h": "なまえ", "r": "namae", "e": "Name"}, {"id": "k007", "set": 1, "k": "電話", "h": "でんわ", "r": "denwa", "e": "Telephone"}, {"id": "k008", "set": 1, "k": "電気", "h": "でんき", "r": "denki", "e": "Electricity"}, {"id": "k009", "set": 1, "k": "車", "h": "くるま", "r": "kuruma", "e": "Car"}, {"id": "k010", "set": 1, "k": "電車", "h": "でんしゃ", "r": "densha", "e": "Train"}, {"id": "k011", "set": 1, "k": "家族", "h": "かぞく", "r": "kazoku", "e": "Family"}, {"id": "k012", "set": 1, "k": "父", "h": "ちち", "r": "chichi", "e": "Father"}, {"id": "k013", "set": 1, "k": "母", "h": "はは", "r": "haha", "e": "Mother"}, {"id": "k014", "set": 1, "k": "兄", "h": "あに", "r": "ani", "e": "Older brother"}, {"id": "k015", "set": 1, "k": "姉", "h": "あね", "r": "ane", "e": "Older sister"}, {"id": "k016", "set": 1, "k": "弟", "h": "おとうと", "r": "otouto", "e": "Younger brother"}, {"id": "k017", "set": 1, "k": "妹", "h": "いもうと", "r": "imouto", "e": "Younger sister"}, {"id": "k018", "set": 1, "k": "家", "h": "いえ", "r": "ie", "e": "House"}, {"id": "k019", "set": 1, "k": "部屋", "h": "へや", "r": "heya", "e": "Room"}, {"id": "k020", "set": 1, "k": "机", "h": "つくえ", "r": "tsukue", "e": "Desk"}, {"id": "k021", "set": 1, "k": "椅子", "h": "いす", "r": "isu", "e": "Chair"}, {"id": "k022", "set": 1, "k": "窓", "h": "まど", "r": "mado", "e": "Window"}, {"id": "k023", "set": 1, "k": "料理", "h": "りょうり", "r": "ryouri", "e": "Cooking"}, {"id": "k024", "set": 1, "k": "朝ご飯", "h": "あさごはん", "r": "asagohan", "e": "Breakfast"}, {"id": "k025", "set": 1, "k": "体", "h": "からだ", "r": "karada", "e": "Body"}, {"id": "k026", "set": 2, "k": "一人", "h": "ひとり", "r": "hitori", "e": "One person"}, {"id": "k027", "set": 2, "k": "二日", "h": "ふつか", "r": "futsuka", "e": "2nd day / 2 days"}, {"id": "k028", "set": 2, "k": "三日", "h": "みっか", "r": "mikka", "e": "3rd day / 3 days"}, {"id": "k029", "set": 2, "k": "四日", "h": "よっか", "r": "yokka", "e": "4th day / 4 days"}, {"id": "k030", "set": 2, "k": "五日", "h": "いつか", "r": "itsuka", "e": "5th day / 5 days"}, {"id": "k031", "set": 2, "k": "六日", "h": "むいか", "r": "muika", "e": "6th day / 6 days"}, {"id": "k032", "set": 2, "k": "七日", "h": "なのか", "r": "nanoka", "e": "7th day / 7 days"}, {"id": "k033", "set": 2, "k": "八日", "h": "ようか", "r": "youka", "e": "8th day / 8 days"}, {"id": "k034", "set": 2, "k": "九日", "h": "ここのか", "r": "kokonoka", "e": "9th day / 9 days"}, {"id": "k035", "set": 2, "k": "十日", "h": "とおか", "r": "tooka", "e": "10th day / 10 days"}, {"id": "k036", "set": 2, "k": "今月", "h": "こんげつ", "r": "kongetsu", "e": "This month"}, {"id": "k037", "set": 2, "k": "去年", "h": "きょねん", "r": "kyonen", "e": "Last year"}, {"id": "k038", "set": 2, "k": "来週", "h": "らいしゅう", "r": "raishuu", "e": "Next week"}, {"id": "k039", "set": 2, "k": "毎日", "h": "まいにち", "r": "mainichi", "e": "Every day"}, {"id": "k040", "set": 2, "k": "午前", "h": "ごぜん", "r": "gozen", "e": "A.M. / Morning"}, {"id": "k041", "set": 2, "k": "午後", "h": "ごご", "r": "gogo", "e": "P.M. / Afternoon"}, {"id": "k042", "set": 2, "k": "今朝", "h": "けさ", "r": "kesa", "e": "This morning"}, {"id": "k043", "set": 2, "k": "今晩", "h": "こんばん", "r": "konban", "e": "Tonight"}, {"id": "k044", "set": 2, "k": "一時間", "h": "いちじかん", "r": "ichijikan", "e": "One hour"}, {"id": "k045", "set": 2, "k": "半年", "h": "はんねん", "r": "hannen", "e": "Half a year"}, {"id": "k046", "set": 2, "k": "何曜日", "h": "なんようび", "r": "nanyoubi", "e": "What day of the week"}, {"id": "k047", "set": 2, "k": "週末", "h": "しゅうまつ", "r": "shuumatsu", "e": "Weekend"}, {"id": "k048", "set": 2, "k": "時計", "h": "とけい", "r": "tokei", "e": "Clock / Watch"}, {"id": "k049", "set": 2, "k": "正月", "h": "しょうがつ", "r": "shougatsu", "e": "New Year"}, {"id": "k050", "set": 2, "k": "誕生日", "h": "たんじょうび", "r": "tanjoubi", "e": "Birthday"}, {"id": "k051", "set": 3, "k": "食べる", "h": "たべる", "r": "taberu", "e": "Eat"}, {"id": "k052", "set": 3, "k": "飲む", "h": "のむ", "r": "nomu", "e": "Drink"}, {"id": "k053", "set": 3, "k": "行く", "h": "いく", "r": "iku", "e": "Go"}, {"id": "k054", "set": 3, "k": "来る", "h": "くる", "r": "kuru", "e": "Come"}, {"id": "k055", "set": 3, "k": "帰る", "h": "かえる", "r": "kaeru", "e": "Return / Go home"}, {"id": "k056", "set": 3, "k": "寝る", "h": "ねる", "r": "neru", "e": "Sleep"}, {"id": "k057", "set": 3, "k": "起きる", "h": "おきる", "r": "okiru", "e": "Wake up"}, {"id": "k058", "set": 3, "k": "見る", "h": "みる", "r": "miru", "e": "See / Watch"}, {"id": "k059", "set": 3, "k": "聞く", "h": "きく", "r": "kiku", "e": "Listen / Hear"}, {"id": "k060", "set": 3, "k": "書く", "h": "かく", "r": "kaku", "e": "Write"}, {"id": "k061", "set": 3, "k": "読む", "h": "よむ", "r": "yomu", "e": "Read"}, {"id": "k062", "set": 3, "k": "買う", "h": "かう", "r": "kau", "e": "Buy"}, {"id": "k063", "set": 3, "k": "売る", "h": "うる", "r": "uru", "e": "Sell"}, {"id": "k064", "set": 3, "k": "会う", "h": "あう", "r": "au", "e": "Meet"}, {"id": "k065", "set": 3, "k": "遊ぶ", "h": "あそぶ", "r": "asobu", "e": "Play"}, {"id": "k066", "set": 3, "k": "待つ", "h": "まつ", "r": "matsu", "e": "Wait"}, {"id": "k067", "set": 3, "k": "持つ", "h": "もつ", "r": "motsu", "e": "Hold / Have"}, {"id": "k068", "set": 3, "k": "知る", "h": "しる", "r": "shiru", "e": "Know"}, {"id": "k069", "set": 3, "k": "作る", "h": "つくる", "r": "tsukuru", "e": "Make"}, {"id": "k070", "set": 3, "k": "使う", "h": "つかう", "r": "tsukau", "e": "Use"}, {"id": "k071", "set": 3, "k": "泳ぐ", "h": "およぐ", "r": "oyogu", "e": "Swim"}, {"id": "k072", "set": 3, "k": "歩く", "h": "あるく", "r": "aruku", "e": "Walk"}, {"id": "k073", "set": 3, "k": "走る", "h": "はしる", "r": "hashiru", "e": "Run"}, {"id": "k074", "set": 3, "k": "乗る", "h": "のる", "r": "noru", "e": "Ride"}, {"id": "k075", "set": 3, "k": "降る", "h": "ふる", "r": "furu", "e": "Fall (rain/snow)"}, {"id": "k076", "set": 4, "k": "大きい", "h": "おおきい", "r": "ookii", "e": "Big"}, {"id": "k077", "set": 4, "k": "小さい", "h": "ちいさい", "r": "chiisai", "e": "Small"}, {"id": "k078", "set": 4, "k": "新しい", "h": "あたらしい", "r": "atarashii", "e": "New"}, {"id": "k079", "set": 4, "k": "古い", "h": "ふるい", "r": "furui", "e": "Old"}, {"id": "k080", "set": 4, "k": "高い", "h": "たかい", "r": "takai", "e": "High / Expensive"}, {"id": "k081", "set": 4, "k": "安い", "h": "やすい", "r": "yasui", "e": "Cheap"}, {"id": "k082", "set": 4, "k": "長い", "h": "ながい", "r": "nagai", "e": "Long"}, {"id": "k083", "set": 4, "k": "短い", "h": "みじかい", "r": "mijikai", "e": "Short"}, {"id": "k084", "set": 4, "k": "暑い", "h": "あつい", "r": "atsui", "e": "Hot (weather)"}, {"id": "k085", "set": 4, "k": "寒い", "h": "さむい", "r": "samui", "e": "Cold (weather)"}, {"id": "k086", "set": 4, "k": "上", "h": "うえ", "r": "ue", "e": "Up / Above"}, {"id": "k087", "set": 4, "k": "下", "h": "した", "r": "shita", "e": "Down / Below"}, {"id": "k088", "set": 4, "k": "左", "h": "ひだり", "r": "hidari", "e": "Left"}, {"id": "k089", "set": 4, "k": "右", "h": "みぎ", "r": "migi", "e": "Right"}, {"id": "k090", "set": 4, "k": "中", "h": "なか", "r": "naka", "e": "Inside"}, {"id": "k091", "set": 4, "k": "外", "h": "そと", "r": "soto", "e": "Outside"}, {"id": "k092", "set": 4, "k": "前", "h": "まえ", "r": "mae", "e": "Front / Before"}, {"id": "k093", "set": 4, "k": "後ろ", "h": "うしろ", "r": "ushiro", "e": "Back / Behind"}, {"id": "k094", "set": 4, "k": "東", "h": "ひがし", "r": "higashi", "e": "East"}, {"id": "k095", "set": 4, "k": "西", "h": "にし", "r": "nishi", "e": "West"}, {"id": "k096", "set": 4, "k": "南", "h": "みなみ", "r": "minami", "e": "South"}, {"id": "k097", "set": 4, "k": "北", "h": "きた", "r": "kita", "e": "North"}, {"id": "k098", "set": 4, "k": "有名", "h": "ゆうめい", "r": "yuumei", "e": "Famous"}, {"id": "k099", "set": 4, "k": "親切", "h": "しんせつ", "r": "shinsetsu", "e": "Kind"}, {"id": "k100", "set": 4, "k": "便利", "h": "べんり", "r": "benri", "e": "Convenient"}, {"id": "k101", "set": 5, "k": "仕事", "h": "しごと", "r": "shigoto", "e": "Work / Job"}, {"id": "k102", "set": 5, "k": "会社", "h": "かいしゃ", "r": "kaisha", "e": "Company"}, {"id": "k103", "set": 5, "k": "休む", "h": "やすむ", "r": "yasumu", "e": "Rest / Be absent"}, {"id": "k104", "set": 5, "k": "働く", "h": "はたらく", "r": "hataraku", "e": "Work"}, {"id": "k105", "set": 5, "k": "勉強", "h": "べんきょう", "r": "benkyou", "e": "Study"}, {"id": "k106", "set": 5, "k": "習う", "h": "ならう", "r": "narau", "e": "Learn"}, {"id": "k107", "set": 5, "k": "教える", "h": "おしえる", "r": "oshieru", "e": "Teach"}, {"id": "k108", "set": 5, "k": "送る", "h": "おくる", "r": "okuru", "e": "Send"}, {"id": "k109", "set": 5, "k": "考える", "h": "かんがえる", "r": "kangaeru", "e": "Think"}, {"id": "k110", "set": 5, "k": "思い出す", "h": "おもいだす", "r": "omoidasu", "e": "Remember / Recall"}, {"id": "k111", "set": 5, "k": "終わる", "h": "おわる", "r": "owaru", "e": "Finish"}, {"id": "k112", "set": 5, "k": "始まる", "h": "はじまる", "r": "hajimaru", "e": "Begin / Start"}, {"id": "k113", "set": 5, "k": "止まる", "h": "とまる", "r": "tomaru", "e": "Stop"}, {"id": "k114", "set": 5, "k": "出す", "h": "だす", "r": "dasu", "e": "Take out / Submit"}, {"id": "k115", "set": 5, "k": "入れる", "h": "いれる", "r": "ireru", "e": "Put in"}, {"id": "k116", "set": 5, "k": "開ける", "h": "あける", "r": "akeru", "e": "Open"}, {"id": "k117", "set": 5, "k": "閉める", "h": "しめる", "r": "shimeru", "e": "Close"}, {"id": "k118", "set": 5, "k": "消す", "h": "けす", "r": "kesu", "e": "Erase / Turn off"}, {"id": "k119", "set": 5, "k": "点ける", "h": "つける", "r": "tsukeru", "e": "Turn on"}, {"id": "k120", "set": 5, "k": "忘れる", "h": "わすれる", "r": "wasureru", "e": "Forget"}, {"id": "k121", "set": 5, "k": "頼む", "h": "たのむ", "r": "tanomu", "e": "Ask / Request"}, {"id": "k122", "set": 5, "k": "貸す", "h": "かす", "r": "kasu", "e": "Lend"}, {"id": "k123", "set": 5, "k": "借りる", "h": "かりる", "r": "kariru", "e": "Borrow"}, {"id": "k124", "set": 5, "k": "洗う", "h": "あらう", "r": "arau", "e": "Wash"}, {"id": "k125", "set": 5, "k": "歌う", "h": "うたう", "r": "utau", "e": "Sing"}, {"id": "k126", "set": 6, "k": "好き", "h": "すき", "r": "suki", "e": "Like"}, {"id": "k127", "set": 6, "k": "嫌い", "h": "きらい", "r": "kirai", "e": "Dislike"}, {"id": "k128", "set": 6, "k": "上手", "h": "じょうず", "r": "jouzu", "e": "Skillful / Good at"}, {"id": "k129", "set": 6, "k": "下手", "h": "へた", "r": "heta", "e": "Unskillful / Bad at"}, {"id": "k130", "set": 6, "k": "大切", "h": "たいせつ", "r": "taisetsu", "e": "Important"}, {"id": "k131", "set": 6, "k": "忙しい", "h": "いそがしい", "r": "isogashii", "e": "Busy"}, {"id": "k132", "set": 6, "k": "面白い", "h": "おもしろい", "r": "omoshiroi", "e": "Interesting / Funny"}, {"id": "k133", "set": 6, "k": "楽しい", "h": "たのしい", "r": "tanoshii", "e": "Fun / Enjoyable"}, {"id": "k134", "set": 6, "k": "嬉しい", "h": "うれしい", "r": "ureshii", "e": "Happy / Glad"}, {"id": "k135", "set": 6, "k": "悲しい", "h": "かなしい", "r": "kanashii", "e": "Sad"}, {"id": "k136", "set": 6, "k": "痛い", "h": "いたい", "r": "itai", "e": "Painful / Hurt"}, {"id": "k137", "set": 6, "k": "元気", "h": "げんき", "r": "genki", "e": "Healthy / Energetic"}, {"id": "k138", "set": 6, "k": "病気", "h": "びょうき", "r": "byouki", "e": "Illness / Sick"}, {"id": "k139", "set": 6, "k": "安心", "h": "あんしん", "r": "anshin", "e": "Relief"}, {"id": "k140", "set": 6, "k": "心配", "h": "しんぱい", "r": "shinpai", "e": "Worry"}, {"id": "k141", "set": 6, "k": "薬", "h": "くすり", "r": "kusuri", "e": "Medicine"}, {"id": "k142", "set": 6, "k": "眠い", "h": "ねむい", "r": "nemui", "e": "Sleepy"}, {"id": "k143", "set": 6, "k": "悪い", "h": "わるい", "r": "warui", "e": "Bad"}, {"id": "k144", "set": 6, "k": "重い", "h": "おもい", "r": "omoi", "e": "Heavy"}, {"id": "k145", "set": 6, "k": "軽い", "h": "かるい", "r": "karui", "e": "Light (weight)"}, {"id": "k146", "set": 6, "k": "広い", "h": "ひろい", "r": "hiroi", "e": "Wide / Spacious"}, {"id": "k147", "set": 6, "k": "狭い", "h": "せまい", "r": "semai", "e": "Narrow"}, {"id": "k148", "set": 6, "k": "早い", "h": "はやい", "r": "hayai", "e": "Early / Fast"}, {"id": "k149", "set": 6, "k": "遅い", "h": "おそい", "r": "osoi", "e": "Late / Slow"}, {"id": "k150", "set": 6, "k": "静か", "h": "しずか", "r": "shizuka", "e": "Quiet"}, {"id": "k151", "set": 7, "k": "地下鉄", "h": "ちかてつ", "r": "chikatetsu", "e": "Subway"}, {"id": "k152", "set": 7, "k": "銀行", "h": "ぎんこう", "r": "ginkou", "e": "Bank"}, {"id": "k153", "set": 7, "k": "病院", "h": "びょういん", "r": "byouin", "e": "Hospital"}, {"id": "k154", "set": 7, "k": "郵便局", "h": "ゆうびんきょく", "r": "yuubinkyoku", "e": "Post Office"}, {"id": "k155", "set": 7, "k": "公園", "h": "こうえん", "r": "kouen", "e": "Park"}, {"id": "k156", "set": 7, "k": "動物園", "h": "どうぶつえん", "r": "doubutsuen", "e": "Zoo"}, {"id": "k157", "set": 7, "k": "大使館", "h": "たいしかん", "r": "taishikan", "e": "Embassy"}, {"id": "k158", "set": 7, "k": "映画館", "h": "えいがかん", "r": "eigakan", "e": "Movie Theater"}, {"id": "k159", "set": 7, "k": "交番", "h": "こうばん", "r": "kouban", "e": "Police Box"}, {"id": "k160", "set": 7, "k": "橋", "h": "はし", "r": "hashi", "e": "Bridge"}, {"id": "k161", "set": 7, "k": "道", "h": "みち", "r": "michi", "e": "Road / Street"}, {"id": "k162", "set": 7, "k": "門", "h": "もん", "r": "mon", "e": "Gate"}, {"id": "k163", "set": 7, "k": "店", "h": "みせ", "r": "mise", "e": "Shop / Store"}, {"id": "k164", "set": 7, "k": "売店", "h": "ばいてん", "r": "baiten", "e": "Kiosk / Stand"}, {"id": "k165", "set": 7, "k": "食堂", "h": "しょくどう", "r": "shokudou", "e": "Dining Hall"}, {"id": "k166", "set": 7, "k": "喫茶店", "h": "きっさてん", "r": "kissaten", "e": "Coffee Shop"}, {"id": "k167", "set": 7, "k": "階段", "h": "かいだん", "r": "kaidan", "e": "Stairs"}, {"id": "k168", "set": 7, "k": "建物", "h": "たてもの", "r": "tatemono", "e": "Building"}, {"id": "k169", "set": 7, "k": "場所", "h": "ばしょ", "r": "basho", "e": "Place"}, {"id": "k170", "set": 7, "k": "地図", "h": "ちず", "r": "chizu", "e": "Map"}, {"id": "k171", "set": 7, "k": "右側", "h": "みぎがわ", "r": "migigawa", "e": "Right side"}, {"id": "k172", "set": 7, "k": "向こう", "h": "むこう", "r": "mukou", "e": "Over there"}, {"id": "k173", "set": 7, "k": "近く", "h": "ちかく", "r": "chikaku", "e": "Near"}, {"id": "k174", "set": 7, "k": "遠く", "h": "とおく", "r": "tooku", "e": "Far"}, {"id": "k175", "set": 7, "k": "隣", "h": "となり", "r": "tonari", "e": "Next to"}, {"id": "k176", "set": 8, "k": "山", "h": "やま", "r": "yama", "e": "Mountain"}, {"id": "k177", "set": 8, "k": "川", "h": "かわ", "r": "kawa", "e": "River"}, {"id": "k178", "set": 8, "k": "海", "h": "うみ", "r": "umi", "e": "Sea / Ocean"}, {"id": "k179", "set": 8, "k": "空", "h": "そら", "r": "sora", "e": "Sky"}, {"id": "k180", "set": 8, "k": "太陽", "h": "たいよう", "r": "taiyou", "e": "Sun"}, {"id": "k181", "set": 8, "k": "風", "h": "かぜ", "r": "kaze", "e": "Wind"}, {"id": "k182", "set": 8, "k": "雨", "h": "あめ", "r": "ame", "e": "Rain"}, {"id": "k183", "set": 8, "k": "雪", "h": "ゆき", "r": "yuki", "e": "Snow"}, {"id": "k184", "set": 8, "k": "星", "h": "ほし", "r": "hoshi", "e": "Star"}, {"id": "k185", "set": 8, "k": "光", "h": "ひかり", "r": "hikari", "e": "Light"}, {"id": "k186", "set": 8, "k": "花", "h": "はな", "r": "hana", "e": "Flower"}, {"id": "k187", "set": 8, "k": "林", "h": "はやし", "r": "hayashi", "e": "Woods"}, {"id": "k188", "set": 8, "k": "森", "h": "もり", "r": "mori", "e": "Forest"}, {"id": "k189", "set": 8, "k": "米", "h": "こめ", "r": "kome", "e": "Rice"}, {"id": "k190", "set": 8, "k": "牛肉", "h": "ぎゅうにく", "r": "gyuuniku", "e": "Beef"}, {"id": "k191", "set": 8, "k": "豚肉", "h": "ぶたにく", "r": "butaniku", "e": "Pork"}, {"id": "k192", "set": 8, "k": "鶏肉", "h": "とりにく", "r": "toriniku", "e": "Chicken"}, {"id": "k193", "set": 8, "k": "魚", "h": "さかな", "r": "sakana", "e": "Fish"}, {"id": "k194", "set": 8, "k": "野菜", "h": "やさい", "r": "yasai", "e": "Vegetable"}, {"id": "k195", "set": 8, "k": "果物", "h": "くだもの", "r": "kudamono", "e": "Fruit"}, {"id": "k196", "set": 8, "k": "お茶", "h": "おちゃ", "r": "ocha", "e": "Tea"}, {"id": "k197", "set": 8, "k": "牛乳", "h": "ぎゅうにゅう", "r": "gyuunyuu", "e": "Milk"}, {"id": "k198", "set": 8, "k": "砂糖", "h": "さとう", "r": "satou", "e": "Sugar"}, {"id": "k199", "set": 8, "k": "塩", "h": "しお", "r": "shio", "e": "Salt"}, {"id": "k200", "set": 8, "k": "弁当", "h": "べんとう", "r": "bentou", "e": "Bento / Box lunch"}, {"id": "k201", "set": 9, "k": "自転車", "h": "じてんしゃ", "r": "jitensha", "e": "Bicycle"}, {"id": "k202", "set": 9, "k": "空港", "h": "くうこう", "r": "kuukou", "e": "Airport"}, {"id": "k203", "set": 9, "k": "飛行機", "h": "ひこうき", "r": "hikouki", "e": "Airplane"}, {"id": "k204", "set": 9, "k": "船", "h": "ふね", "r": "fune", "e": "Ship / Boat"}, {"id": "k205", "set": 9, "k": "新幹線", "h": "しんかんせん", "r": "shinkansen", "e": "Bullet Train (Shinkansen)"}, {"id": "k206", "set": 9, "k": "自動", "h": "じどう", "r": "jidou", "e": "Automatic"}, {"id": "k207", "set": 9, "k": "駐車場", "h": "ちゅうしゃじょう", "r": "chuushajou", "e": "Parking Lot"}, {"id": "k208", "set": 9, "k": "通る", "h": "とおる", "r": "tooru", "e": "Pass / Go through"}, {"id": "k209", "set": 9, "k": "急ぐ", "h": "いそぐ", "r": "isogu", "e": "Hurry"}, {"id": "k210", "set": 9, "k": "運ぶ", "h": "はこぶ", "r": "hakobu", "e": "Carry / Transport"}, {"id": "k211", "set": 9, "k": "回る", "h": "まわる", "r": "mawaru", "e": "Turn / Rotate"}, {"id": "k212", "set": 9, "k": "飛ぶ", "h": "とぶ", "r": "tobu", "e": "Fly"}, {"id": "k213", "set": 9, "k": "出発", "h": "しゅっぱつ", "r": "shuppatsu", "e": "Departure"}, {"id": "k214", "set": 9, "k": "旅行", "h": "りょこう", "r": "ryokou", "e": "Travel / Trip"}, {"id": "k215", "set": 9, "k": "到着", "h": "とうちゃく", "r": "touchaku", "e": "Arrival"}, {"id": "k216", "set": 9, "k": "港", "h": "みなと", "r": "minato", "e": "Port / Harbor"}, {"id": "k217", "set": 9, "k": "駅", "h": "えき", "r": "eki", "e": "Station"}, {"id": "k218", "set": 9, "k": "荷物", "h": "にもつ", "r": "nimotsu", "e": "Luggage / Baggage"}, {"id": "k219", "set": 9, "k": "切符", "h": "きっぷ", "r": "kippu", "e": "Ticket"}, {"id": "k220", "set": 9, "k": "特急", "h": "とっきゅう", "r": "tokkyuu", "e": "Limited Express"}, {"id": "k221", "set": 9, "k": "入口", "h": "いりぐち", "r": "iriguchi", "e": "Entrance"}, {"id": "k222", "set": 9, "k": "出口", "h": "でぐち", "r": "deguchi", "e": "Exit"}, {"id": "k223", "set": 9, "k": "交差点", "h": "こうさてん", "r": "kousaten", "e": "Intersection"}, {"id": "k224", "set": 9, "k": "信号", "h": "しんごう", "r": "shingou", "e": "Traffic Light"}, {"id": "k225", "set": 9, "k": "遠い", "h": "とおい", "r": "tooi", "e": "Far"}, {"id": "k226", "set": 10, "k": "春", "h": "はる", "r": "haru", "e": "Spring"}, {"id": "k227", "set": 10, "k": "夏", "h": "なつ", "r": "natsu", "e": "Summer"}, {"id": "k228", "set": 10, "k": "秋", "h": "あき", "r": "aki", "e": "Autumn"}, {"id": "k229", "set": 10, "k": "冬", "h": "ふゆ", "r": "fuyu", "e": "Winter"}, {"id": "k230", "set": 10, "k": "天気", "h": "てんき", "r": "tenki", "e": "Weather"}, {"id": "k231", "set": 10, "k": "晴れ", "h": "はれ", "r": "hare", "e": "Sunny / Clear"}, {"id": "k232", "set": 10, "k": "曇り", "h": "くもり", "r": "kumori", "e": "Cloudy"}, {"id": "k233", "set": 10, "k": "台風", "h": "たいふう", "r": "taifuu", "e": "Typhoon"}, {"id": "k234", "set": 10, "k": "地震", "h": "じしん", "r": "jishin", "e": "Earthquake"}, {"id": "k235", "set": 10, "k": "気温", "h": "きおん", "r": "kion", "e": "Temperature"}, {"id": "k236", "set": 10, "k": "入院", "h": "にゅういん", "r": "nyuuin", "e": "Hospitalization"}, {"id": "k237", "set": 10, "k": "退院", "h": "たいいん", "r": "taiin", "e": "Discharge"}, {"id": "k238", "set": 10, "k": "頭痛", "h": "ずつう", "r": "zutsuu", "e": "Headache"}, {"id": "k239", "set": 10, "k": "熱", "h": "ねつ", "r": "netsu", "e": "Fever / Heat"}, {"id": "k240", "set": 10, "k": "顔", "h": "かお", "r": "kao", "e": "Face"}, {"id": "k241", "set": 10, "k": "目", "h": "め", "r": "me", "e": "Eye"}, {"id": "k242", "set": 10, "k": "耳", "h": "みみ", "r": "mimi", "e": "Ear"}, {"id": "k243", "set": 10, "k": "鼻", "h": "はな", "r": "hana", "e": "Nose"}, {"id": "k244", "set": 10, "k": "口", "h": "くち", "r": "kuchi", "e": "Mouth"}, {"id": "k245", "set": 10, "k": "手", "h": "て", "r": "te", "e": "Hand"}, {"id": "k246", "set": 10, "k": "足", "h": "あし", "r": "ashi", "e": "Foot / Leg"}, {"id": "k247", "set": 10, "k": "背", "h": "せ", "r": "se", "e": "Back / Height"}, {"id": "k248", "set": 10, "k": "心", "h": "こころ", "r": "kokoro", "e": "Heart / Mind"}, {"id": "k249", "set": 10, "k": "力", "h": "ちから", "r": "chikara", "e": "Power / Strength"}, {"id": "k250", "set": 10, "k": "声", "h": "こえ", "r": "koe", "e": "Voice"}, {"id": "k251", "set": 11, "k": "工業", "h": "こうぎょう", "r": "kougyou", "e": "Industry"}, {"id": "k252", "set": 11, "k": "農業", "h": "のうぎょう", "r": "nougyou", "e": "Agriculture"}, {"id": "k253", "set": 11, "k": "商業", "h": "しょうぎょう", "r": "shougyou", "e": "Commerce"}, {"id": "k254", "set": 11, "k": "貿易", "h": "ぼうえき", "r": "boueki", "e": "Trade"}, {"id": "k255", "set": 11, "k": "材料", "h": "ざいりょう", "r": "zairyou", "e": "Material"}, {"id": "k256", "set": 11, "k": "道具", "h": "どうぐ", "r": "dougu", "e": "Tool"}, {"id": "k257", "set": 11, "k": "鉄", "h": "てつ", "r": "tetsu", "e": "Iron"}, {"id": "k258", "set": 11, "k": "金", "h": "きん / かね", "r": "kin / kane", "e": "Gold / Money"}, {"id": "k259", "set": 11, "k": "銀", "h": "ぎん", "r": "gin", "e": "Silver"}, {"id": "k260", "set": 11, "k": "石", "h": "いし", "r": "ishi", "e": "Stone"}, {"id": "k261", "set": 11, "k": "紙", "h": "かみ", "r": "kami", "e": "Paper"}, {"id": "k262", "set": 11, "k": "竹", "h": "たけ", "r": "take", "e": "Bamboo"}, {"id": "k263", "set": 11, "k": "糸", "h": "いと", "r": "ito", "e": "Thread"}, {"id": "k264", "set": 11, "k": "服", "h": "ふく", "r": "fuku", "e": "Clothes"}, {"id": "k265", "set": 11, "k": "工場", "h": "こうじょう", "r": "koujou", "e": "Factory"}, {"id": "k266", "set": 11, "k": "生産", "h": "せいさん", "r": "seisan", "e": "Production"}, {"id": "k267", "set": 11, "k": "技術", "h": "ぎじゅつ", "r": "gijutsu", "e": "Technology"}, {"id": "k268", "set": 11, "k": "機械", "h": "きかい", "r": "kikai", "e": "Machine"}, {"id": "k269", "set": 11, "k": "発明", "h": "はつめい", "r": "hatsumei", "e": "Invention"}, {"id": "k270", "set": 11, "k": "注意", "h": "ちゅうい", "r": "chuui", "e": "Caution / Attention"}, {"id": "k271", "set": 11, "k": "準備", "h": "じゅんび", "r": "junbi", "e": "Preparation"}, {"id": "k272", "set": 11, "k": "方法", "h": "ほうほう", "r": "houhou", "e": "Method / Way"}, {"id": "k273", "set": 11, "k": "利用", "h": "りよう", "r": "riyou", "e": "Utilization / Use"}, {"id": "k274", "set": 11, "k": "計画", "h": "けいかく", "r": "keikaku", "e": "Plan"}, {"id": "k275", "set": 11, "k": "研究", "h": "けんきゅう", "r": "kenkyuu", "e": "Research"}, {"id": "k276", "set": 12, "k": "意味", "h": "いみ", "r": "imi", "e": "Meaning"}, {"id": "k277", "set": 12, "k": "理由", "h": "りゆう", "r": "riyuu", "e": "Reason"}, {"id": "k278", "set": 12, "k": "意見", "h": "いけん", "r": "iken", "e": "Opinion"}, {"id": "k279", "set": 12, "k": "相談", "h": "そうだん", "r": "soudan", "e": "Consultation"}, {"id": "k280", "set": 12, "k": "特別", "h": "とくべつ", "r": "tokubetsu", "e": "Special"}, {"id": "k281", "set": 12, "k": "反対", "h": "はんたい", "r": "hantai", "e": "Opposition / Opposite"}, {"id": "k282", "set": 12, "k": "賛成", "h": "さんせい", "r": "sansei", "e": "Agreement"}, {"id": "k283", "set": 12, "k": "最近", "h": "さいきん", "r": "saikin", "e": "Recently"}, {"id": "k284", "set": 12, "k": "最後", "h": "さいご", "r": "saigo", "e": "Last / End"}, {"id": "k285", "set": 12, "k": "最初", "h": "さいしょ", "r": "saisho", "e": "First / Beginning"}, {"id": "k286", "set": 12, "k": "一生懸命", "h": "いっしょうけんめい", "r": "isshoukenmei", "e": "With utmost effort"}, {"id": "k287", "set": 12, "k": "自分", "h": "じぶん", "r": "jibun", "e": "Oneself"}, {"id": "k288", "set": 12, "k": "他人", "h": "たにん", "r": "tanin", "e": "Other people"}, {"id": "k289", "set": 12, "k": "相手", "h": "あいて", "r": "aite", "e": "Partner / Opponent"}, {"id": "k290", "set": 12, "k": "世界", "h": "せかい", "r": "sekai", "e": "World"}, {"id": "k291", "set": 12, "k": "社会", "h": "しゃかい", "r": "shakai", "e": "Society"}, {"id": "k292", "set": 12, "k": "文化", "h": "ぶんか", "r": "bunka", "e": "Culture"}, {"id": "k293", "set": 12, "k": "歴史", "h": "れきし", "r": "rekishi", "e": "History"}, {"id": "k294", "set": 12, "k": "科学", "h": "かがく", "r": "kagaku", "e": "Science"}, {"id": "k295", "set": 12, "k": "法律", "h": "ほうりつ", "r": "houritsu", "e": "Law"}, {"id": "k296", "set": 12, "k": "経済", "h": "けいざい", "r": "keizai", "e": "Economy"}, {"id": "k297", "set": 12, "k": "政治", "h": "せいじ", "r": "seiji", "e": "Politics"}, {"id": "k298", "set": 12, "k": "平和", "h": "へいわ", "r": "heiwa", "e": "Peace"}, {"id": "k299", "set": 12, "k": "目的", "h": "もくてき", "r": "mokuteki", "e": "Purpose"}, {"id": "k300", "set": 12, "k": "成功", "h": "せいこう", "r": "seikou", "e": "Success"}];
 
-    let current = 1;
-    let kanjiMasterProgress = JSON.parse(localStorage.getItem('kanji_master_300_v1')) || {};
+    const MASTERY_KEY = 'ohayo_kanji300_mastery_v2';
+    const WEAK_KEY = 'ohayo_kanji300_weak_v2';
+    const BEST_KEY = 'ohayo_kanji300_speed_best_v2';
 
-    function init() {
-        const container = document.getElementById('slides-container');
-        const jumpContainer = document.getElementById('jump-controls');
+    function loadJSON(k, fb) {
+        try { return JSON.parse(localStorage.getItem(k) || 'null') ?? fb; }
+        catch { return fb; }
+    }
+    function saveJSON(k, v) {
+        try { localStorage.setItem(k, JSON.stringify(v)); } catch {}
+    }
 
-        for(let i=1; i<=12; i++){
-            const slideDiv = document.createElement('div');
-            slideDiv.className = `slide ${i===1?'active':''}`;
-            slideDiv.id = `s${i}`;
-            
-            let gridHTML = `<div class="grid">`;
-            allData[i].words.forEach((w, idx) => {
-                const key = `${i}_${idx}`;
-                const isDone = kanjiMasterProgress[key] ? 'is-done' : '';
-                gridHTML += `
-                    <div class="question-box ${isDone}" id="box-${key}">
-                        <span class="kanji">${w[0]}</span>
-                        <div class="answer-container">
-                            <span class="reading" id="read-${key}">${w[1]}</span>
-                            <span class="meaning" id="mean-${key}">${w[2]}</span>
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn-check" id="btn-read-${key}" onclick="toggleReading(this, '${key}')">Check</button>
-                            <button class="btn-en" id="btn-mean-${key}" onclick="toggleMeaning(this, '${key}')">English</button>
-                        </div>
-                    </div>`;
-            });
-            gridHTML += `</div>`;
-            slideDiv.innerHTML = `<h1>Slide ${i}: ${allData[i].title}</h1>${gridHTML}`;
-            container.appendChild(slideDiv);
+    let mastered = loadJSON(MASTERY_KEY, {});
+    let weakMap = loadJSON(WEAK_KEY, {});
+    let speedBest = loadJSON(BEST_KEY, { set: 0, all: 0 });
 
-            const jumpBtn = document.createElement('button');
-            jumpBtn.className = `nav-btn ${i===1?'active-slide':''}`;
-            jumpBtn.id = `jumpBtn${i}`;
-            jumpBtn.innerHTML = `<span>SLIDE ${i}</span><small id="badge-${i}">0/25</small>`;
-            jumpBtn.onclick = () => jumpToSlide(i);
-            jumpContainer.appendChild(jumpBtn);
-        }
+    let currentSet = 1;
+    let currentMode = 'quiz';
+    let showRomaji = false;
+    let autoAudio = true;
+
+    // Quiz state
+    let quizType = 'reading'; // reading | meaning | kanji | audio
+    let quizScope = 'set';    // set | all
+    let quizQueue = [];
+    let quizIdx = 0;
+    let quizScore = 0;
+    let quizStreak = 0;
+    let quizLocked = false;
+
+    // Speed run state
+    let speedScope = 'set';
+    let spTimer = null, spTime = 60, spScore = 0, spCombo = 0, spMaxCombo = 0, spAttempts = 0, spCurrent = null;
+
+    // Flashcard state
+    let fcList = [];
+    let fcIdx = 0;
+
+    // Weak review state
+    let wkCurrent = null;
+    let wkLocked = false;
+
+    /* --- 音声再生 (Nanami MP3) --- */
+    const player = new Audio();
+    player.preload = 'auto';
+    function playWordAudio(id) {
+        if (!id) return;
+        player.pause();
+        player.currentTime = 0;
+        player.src = `kanji300-audio/${id}.mp3`;
+        const p = player.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+
+    /* --- ダークモード・トグル --- */
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        try { localStorage.setItem('ohayo_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch {}
+    }
+    if (localStorage.getItem('ohayo_theme') === 'dark') document.body.classList.add('dark-mode');
+
+    function toggleRomaji() {
+        showRomaji = !showRomaji;
+        const btn = document.getElementById('romaji-toggle');
+        btn.classList.toggle('on', showRomaji);
+        btn.textContent = showRomaji ? 'ABC Romaji: ON' : 'ABC Romaji: OFF';
+        if (currentMode === 'quiz') renderQuizQ();
+        if (currentMode === 'flash') renderFlashcard();
+        if (currentMode === 'grid') renderGrid();
+    }
+    function toggleAutoAudio() {
+        autoAudio = !autoAudio;
+        const btn = document.getElementById('audio-toggle');
+        btn.classList.toggle('on', autoAudio);
+        btn.textContent = autoAudio ? '🔊 Audio: ON' : '🔇 Audio: OFF';
+    }
+
+    /* --- 進捗・テーマバー更新 --- */
+    function setMastered(id, val) {
+        if (val) mastered[id] = true;
+        else delete mastered[id];
+        saveJSON(MASTERY_KEY, mastered);
         updateStats();
     }
-
-    function jumpToSlide(targetNum) {
-        document.getElementById(`s${current}`).classList.remove('active');
-        document.getElementById(`jumpBtn${current}`).classList.remove('active-slide');
-        current = targetNum;
-        document.getElementById(`s${current}`).classList.add('active');
-        document.getElementById(`jumpBtn${current}`).classList.add('active-slide');
-        window.scrollTo(0, 0);
+    function addWeak(id) {
+        weakMap[id] = true;
+        saveJSON(WEAK_KEY, weakMap);
+        updateStats();
     }
-
-    function toggleReading(btn, key) {
-        const box = document.getElementById(`box-${key}`);
-        const reading = document.getElementById(`read-${key}`);
-        reading.classList.toggle('show');
-        btn.classList.toggle('active');
-        
-        // Checkボタンが押されたら「学習済み」として保存
-        if (!kanjiMasterProgress[key]) {
-            kanjiMasterProgress[key] = true;
-            box.classList.add('is-done');
-            localStorage.setItem('kanji_master_300_v1', JSON.stringify(kanjiMasterProgress));
+    function removeWeak(id) {
+        if (weakMap[id]) {
+            delete weakMap[id];
+            saveJSON(WEAK_KEY, weakMap);
             updateStats();
         }
     }
 
-    function toggleMeaning(btn, key) {
-        const meaning = document.getElementById(`mean-${key}`);
-        meaning.classList.toggle('show');
-        btn.classList.toggle('active');
+    function updateStats() {
+        const mCount = Object.keys(mastered).length;
+        const wCount = Object.keys(weakMap).length;
+        const pct = Math.round((mCount / WORDS.length) * 100);
+        document.getElementById('mastery-text').textContent = `Mastered: ${mCount} / ${WORDS.length} (${pct}%)`;
+        document.getElementById('mastery-bar').style.width = pct + '%';
+        document.getElementById('weak-summary').textContent = `🎯 Weak: ${wCount}`;
+        document.getElementById('weak-tab-btn').textContent = `🎯 Weak (${wCount})`;
+        renderThemeBar();
     }
 
-    function updateStats() {
-        const total = 300;
-        const doneCount = Object.keys(kanjiMasterProgress).length;
-        const percent = Math.round((doneCount / total) * 100);
+    function renderThemeBar() {
+        const bar = document.getElementById('theme-bar');
+        bar.innerHTML = '';
+        SETS_META.forEach(s => {
+            const setWords = WORDS.filter(w => w.set === s.id);
+            const done = setWords.filter(w => mastered[w.id]).length;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'theme-btn' + (s.id === currentSet ? ' active' : '') + (done === setWords.length ? ' done' : '');
+            btn.innerHTML = `<span class="theme-label">${s.icon} ${s.id}. ${s.en}</span><span class="theme-badge">${done}/25</span>`;
+            btn.onclick = () => selectSet(s.id);
+            bar.appendChild(btn);
+        });
+    }
 
-        document.getElementById('mainBar').style.width = percent + '%';
-        document.getElementById('statsOverall').innerText = `Progress: ${doneCount} / ${total} (${percent}%)`;
-
-        for (let i = 1; i <= 12; i++) {
-            let sCount = 0;
-            allData[i].words.forEach((_, idx) => {
-                if (kanjiMasterProgress[`${i}_${idx}`]) sCount++;
-            });
-            document.getElementById(`badge-${i}`).innerText = `${sCount}/25`;
+    function selectSet(id) {
+        currentSet = id;
+        renderThemeBar();
+        if (currentMode === 'quiz') startQuizSession();
+        else if (currentMode === 'flash') initFlashcards();
+        else if (currentMode === 'grid') {
+            document.getElementById('search-input').value = '';
+            renderGrid();
         }
+    }
+
+    function switchMode(m) {
+        if (spTimer) { clearInterval(spTimer); spTimer = null; }
+        currentMode = m;
+        document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === m));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('panel-' + m).classList.add('active');
+        document.getElementById('theme-bar').style.display = (m === 'weak') ? 'none' : 'grid';
+
+        if (m === 'quiz') startQuizSession();
+        else if (m === 'speed') showSpeedStart();
+        else if (m === 'flash') initFlashcards();
+        else if (m === 'weak') loadWeakQ();
+        else if (m === 'grid') renderGrid();
+    }
+
+    /* --- 1. 4択クイズ --- */
+    function setQuizType(t) {
+        quizType = t;
+        document.querySelectorAll('[data-qtype]').forEach(b => b.classList.toggle('active', b.dataset.qtype === t));
+        startQuizSession();
+    }
+    function setQuizScope(s) {
+        quizScope = s;
+        document.querySelectorAll('[data-qscope]').forEach(b => b.classList.toggle('active', b.dataset.qscope === s));
+        startQuizSession();
+    }
+    function getPool(scope) {
+        return scope === 'all' ? [...WORDS] : WORDS.filter(w => w.set === currentSet);
+    }
+    function buildDistractors(target, pool) {
+        const others = pool.filter(w => w.id !== target.id && w.h !== target.h && w.e !== target.e);
+        others.sort(() => Math.random() - 0.5);
+        return [target, ...others.slice(0, 3)].sort(() => Math.random() - 0.5);
+    }
+
+    function startQuizSession() {
+        const pool = getPool(quizScope).sort(() => Math.random() - 0.5);
+        quizQueue = pool.slice(0, 10);
+        quizIdx = 0; quizScore = 0; quizStreak = 0;
+        renderQuizQ();
+    }
+
+    function playCurrentQuizAudio() {
+        const item = quizQueue[quizIdx];
+        if (item) playWordAudio(item.id);
+    }
+
+    function renderQuizQ() {
+        quizLocked = false;
+        const item = quizQueue[quizIdx];
+        if (!item) return;
+
+        document.getElementById('quiz-progress').textContent = `Question ${quizIdx + 1} / ${quizQueue.length}`;
+        document.getElementById('quiz-combo').textContent = `🔥 ${quizStreak} Streak`;
+        document.getElementById('quiz-score').textContent = `Score: ${quizScore}`;
+        document.getElementById('quiz-fb').textContent = '';
+        document.getElementById('quiz-next-btn').style.display = 'none';
+
+        const kicker = document.getElementById('quiz-kicker');
+        const prompt = document.getElementById('quiz-prompt');
+        const sub = document.getElementById('quiz-sub');
+        const audioBtn = document.getElementById('quiz-audio-btn');
+        prompt.classList.remove('en-mode');
+
+        if (quizType === 'reading') {
+            kicker.textContent = 'CHOOSE THE CORRECT READING';
+            prompt.textContent = item.k;
+            sub.textContent = `Meaning: ${item.e}`;
+            audioBtn.style.display = 'none'; // Don't spoil reading before answer!
+        } else if (quizType === 'meaning') {
+            kicker.textContent = 'CHOOSE THE ENGLISH MEANING';
+            prompt.textContent = item.k;
+            sub.textContent = showRomaji ? `${item.h} (${item.r})` : item.h;
+            audioBtn.style.display = 'inline-block';
+            if (autoAudio) playWordAudio(item.id);
+        } else if (quizType === 'kanji') {
+            kicker.textContent = 'CHOOSE THE MATCHING KANJI';
+            prompt.textContent = item.e;
+            prompt.classList.add('en-mode');
+            sub.textContent = showRomaji ? `${item.h} (${item.r})` : '';
+            audioBtn.style.display = 'inline-block';
+            if (autoAudio) playWordAudio(item.id);
+        } else {
+            kicker.textContent = 'LISTEN & CHOOSE THE MATCHING KANJI';
+            prompt.textContent = '🔊';
+            sub.textContent = 'Tap Listen to replay';
+            audioBtn.style.display = 'inline-block';
+            playWordAudio(item.id);
+        }
+
+        const opts = buildDistractors(item, getPool(quizScope));
+        const grid = document.getElementById('quiz-opts');
+        grid.innerHTML = '';
+        opts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'opt-btn';
+            if (quizType === 'reading') {
+                btn.innerHTML = `<span>${opt.h}</span>${showRomaji ? `<span class="opt-romaji">${opt.r}</span>` : ''}`;
+            } else if (quizType === 'meaning') {
+                btn.textContent = opt.e;
+            } else {
+                btn.textContent = opt.k;
+            }
+            btn.onclick = () => checkQuizAnswer(opt, btn, item);
+            grid.appendChild(btn);
+        });
+    }
+
+    function checkQuizAnswer(chosen, btnEl, target) {
+        if (quizLocked) return;
+        quizLocked = true;
+        const fb = document.getElementById('quiz-fb');
+        document.getElementById('quiz-audio-btn').style.display = 'inline-block';
+        if (autoAudio) playWordAudio(target.id);
+
+        if (chosen.id === target.id) {
+            btnEl.classList.add('correct');
+            quizScore++; quizStreak++;
+            setMastered(target.id, true);
+            fb.style.color = 'var(--primary-deep)';
+            fb.textContent = `✅ Correct! ${target.k} = ${target.h} (${target.r}) — ${target.e}`;
+        } else {
+            btnEl.classList.add('wrong');
+            quizStreak = 0;
+            addWeak(target.id);
+            fb.style.color = 'var(--err)';
+            fb.textContent = `❌ Answer: ${target.k} = ${target.h} (${target.r}) — ${target.e}`;
+            document.querySelectorAll('#quiz-opts .opt-btn').forEach(b => {
+                if (b.textContent.includes(quizType === 'reading' ? target.h : (quizType === 'meaning' ? target.e : target.k))) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        document.getElementById('quiz-combo').textContent = `🔥 ${quizStreak} Streak`;
+        document.getElementById('quiz-score').textContent = `Score: ${quizScore}`;
+        const nxt = document.getElementById('quiz-next-btn');
+        nxt.textContent = quizIdx >= quizQueue.length - 1 ? `Finish (${quizScore}/10) & New Round →` : 'Next Question →';
+        nxt.style.display = 'inline-block';
+    }
+
+    function nextQuizQ() {
+        quizIdx++;
+        if (quizIdx < quizQueue.length) renderQuizQ();
+        else startQuizSession();
+    }
+
+    /* --- 2. 60秒スピードチャレンジ --- */
+    function setSpeedScope(s) {
+        speedScope = s;
+        document.querySelectorAll('[data-sscope]').forEach(b => b.classList.toggle('active', b.dataset.sscope === s));
+        document.getElementById('speed-best-txt').textContent = `🏆 Personal Best: ${speedBest[s] || 0}`;
+    }
+    function showSpeedStart() {
+        document.getElementById('speed-start-view').style.display = 'block';
+        document.getElementById('speed-play-view').style.display = 'none';
+        document.getElementById('speed-done-view').style.display = 'none';
+        document.getElementById('speed-best-txt').textContent = `🏆 Personal Best: ${speedBest[speedScope] || 0}`;
+    }
+    function startSpeedRun() {
+        spTime = 60; spScore = 0; spCombo = 0; spMaxCombo = 0; spAttempts = 0;
+        document.getElementById('speed-start-view').style.display = 'none';
+        document.getElementById('speed-done-view').style.display = 'none';
+        document.getElementById('speed-play-view').style.display = 'block';
+        document.getElementById('sp-timer').textContent = '⏱ 60s';
+        document.getElementById('sp-score').textContent = 'SCORE: 0';
+        document.getElementById('sp-combo').textContent = '🔥 0';
+        nextSpeedQ();
+        if (spTimer) clearInterval(spTimer);
+        spTimer = setInterval(() => {
+            spTime--;
+            document.getElementById('sp-timer').textContent = `⏱ ${spTime}s`;
+            if (spTime <= 0) endSpeedRun();
+        }, 1000);
+    }
+    function nextSpeedQ() {
+        const pool = getPool(speedScope);
+        spCurrent = pool[Math.floor(Math.random() * pool.length)];
+        document.getElementById('sp-prompt').textContent = spCurrent.k;
+        document.getElementById('sp-sub').textContent = spCurrent.e;
+        const opts = buildDistractors(spCurrent, pool);
+        const grid = document.getElementById('sp-opts');
+        grid.innerHTML = '';
+        opts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'opt-btn';
+            btn.textContent = opt.h;
+            btn.onclick = () => {
+                spAttempts++;
+                if (opt.id === spCurrent.id) {
+                    spScore++; spCombo++;
+                    if (spCombo > spMaxCombo) spMaxCombo = spCombo;
+                    setMastered(spCurrent.id, true);
+                    if (autoAudio) playWordAudio(spCurrent.id);
+                    document.getElementById('sp-score').textContent = `SCORE: ${spScore}`;
+                    document.getElementById('sp-combo').textContent = `🔥 ${spCombo}`;
+                    nextSpeedQ();
+                } else {
+                    spCombo = 0;
+                    addWeak(spCurrent.id);
+                    btn.classList.add('wrong');
+                    document.getElementById('sp-combo').textContent = '🔥 0';
+                }
+            };
+            grid.appendChild(btn);
+        });
+    }
+    function endSpeedRun() {
+        clearInterval(spTimer); spTimer = null;
+        document.getElementById('speed-play-view').style.display = 'none';
+        document.getElementById('speed-done-view').style.display = 'block';
+        const acc = spAttempts > 0 ? Math.round((spScore / spAttempts) * 100) : 100;
+        const rank = spScore >= 28 ? 'S' : (spScore >= 18 ? 'A' : (spScore >= 10 ? 'B' : 'C'));
+        document.getElementById('sp-rank').textContent = rank;
+        document.getElementById('sp-res-score').textContent = spScore;
+        document.getElementById('sp-res-combo').textContent = spMaxCombo;
+        document.getElementById('sp-res-acc').textContent = acc + '%';
+        const nb = document.getElementById('sp-new-best');
+        if (spScore > (speedBest[speedScope] || 0)) {
+            speedBest[speedScope] = spScore;
+            saveJSON(BEST_KEY, speedBest);
+            nb.style.display = 'block';
+        } else {
+            nb.style.display = 'none';
+        }
+    }
+
+    /* --- 3. フラッシュカード --- */
+    function initFlashcards() {
+        fcList = WORDS.filter(w => w.set === currentSet);
+        fcIdx = 0;
+        renderFlashcard();
+    }
+    function shuffleFlashcards() {
+        fcList = [...fcList].sort(() => Math.random() - 0.5);
+        fcIdx = 0;
+        renderFlashcard();
+    }
+    function renderFlashcard() {
+        const item = fcList[fcIdx];
+        if (!item) return;
+        document.getElementById('fc-counter').textContent = `Card ${fcIdx + 1} / ${fcList.length}`;
+        document.getElementById('fc-card').classList.remove('flipped');
+        document.getElementById('fc-kanji').textContent = item.k;
+        document.getElementById('fc-reading').textContent = item.h;
+        document.getElementById('fc-romaji').textContent = item.r;
+        document.getElementById('fc-romaji').style.display = showRomaji ? 'block' : 'none';
+        document.getElementById('fc-meaning').textContent = item.e;
+    }
+    function flipFlashcard() {
+        const card = document.getElementById('fc-card');
+        card.classList.toggle('flipped');
+        if (card.classList.contains('flipped') && autoAudio) playFlashAudio();
+    }
+    function playFlashAudio() {
+        const item = fcList[fcIdx];
+        if (item) playWordAudio(item.id);
+    }
+    function rateFlashcard(gotIt) {
+        const item = fcList[fcIdx];
+        if (item) {
+            if (gotIt) { setMastered(item.id, true); removeWeak(item.id); }
+            else addWeak(item.id);
+        }
+        fcIdx = (fcIdx + 1) % fcList.length;
+        renderFlashcard();
+    }
+
+    /* --- 4. 苦手復習 --- */
+    function loadWeakQ() {
+        wkLocked = false;
+        const weakIds = Object.keys(weakMap);
+        document.getElementById('wk-count').textContent = `Weak Queue: ${weakIds.length}`;
+        if (weakIds.length === 0) {
+            document.getElementById('weak-empty-view').style.display = 'block';
+            document.getElementById('weak-play-view').style.display = 'none';
+            return;
+        }
+        document.getElementById('weak-empty-view').style.display = 'none';
+        document.getElementById('weak-play-view').style.display = 'block';
+        const pickId = weakIds[Math.floor(Math.random() * weakIds.length)];
+        wkCurrent = WORDS.find(w => w.id === pickId);
+        document.getElementById('wk-prompt').textContent = wkCurrent.k;
+        document.getElementById('wk-fb').textContent = '';
+        document.getElementById('wk-next-btn').style.display = 'none';
+
+        const opts = buildDistractors(wkCurrent, WORDS);
+        const grid = document.getElementById('wk-opts');
+        grid.innerHTML = '';
+        opts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'opt-btn';
+            btn.innerHTML = `<span>${opt.h}</span><span class="opt-romaji">${opt.e}</span>`;
+            btn.onclick = () => {
+                if (wkLocked) return;
+                wkLocked = true;
+                if (autoAudio) playWordAudio(wkCurrent.id);
+                const fb = document.getElementById('wk-fb');
+                if (opt.id === wkCurrent.id) {
+                    btn.classList.add('correct');
+                    setMastered(wkCurrent.id, true);
+                    removeWeak(wkCurrent.id);
+                    fb.style.color = 'var(--primary-deep)';
+                    fb.textContent = `✅ Cleared from Weak! ${wkCurrent.k} = ${wkCurrent.h} (${wkCurrent.e})`;
+                } else {
+                    btn.classList.add('wrong');
+                    fb.style.color = 'var(--err)';
+                    fb.textContent = `🔁 Keep practicing: ${wkCurrent.k} = ${wkCurrent.h} (${wkCurrent.e})`;
+                }
+                document.getElementById('wk-next-btn').style.display = 'inline-block';
+            };
+            grid.appendChild(btn);
+        });
+    }
+    function playWeakAudio() {
+        if (wkCurrent) playWordAudio(wkCurrent.id);
+    }
+
+    /* --- 5. 全300語リスト＆検索 --- */
+    function renderGrid() {
+        const q = document.getElementById('search-input').value.trim().toLowerCase();
+        const list = q
+            ? WORDS.filter(w => w.k.includes(q) || w.h.includes(q) || w.r.toLowerCase().includes(q) || w.e.toLowerCase().includes(q))
+            : WORDS.filter(w => w.set === currentSet);
+
+        const meta = SETS_META.find(s => s.id === currentSet);
+        document.getElementById('grid-heading').textContent = q
+            ? `Search Results: ${list.length} / 300 words`
+            : `${meta.icon} Set ${meta.id}: ${meta.jp} (${meta.en})`;
+
+        const grid = document.getElementById('word-grid');
+        grid.innerHTML = '';
+        list.forEach(w => {
+            const isM = !!mastered[w.id];
+            const isW = !!weakMap[w.id];
+            const card = document.createElement('div');
+            card.className = 'word-card' + (isM ? ' mastered' : '') + (isW ? ' is-weak' : '');
+            card.innerHTML = `
+                <div class="wc-top">
+                    <button type="button" class="wc-icon-btn" title="Listen" onclick="playWordAudio('${w.id}')">🔊</button>
+                    <button type="button" class="wc-icon-btn" title="Toggle Mastered" onclick="toggleCardMastery('${w.id}')">${isM ? '✅' : '☐'}</button>
+                </div>
+                <div class="wc-kanji">${w.k}</div>
+                <div class="wc-ans">
+                    <div class="wc-read" id="gr-${w.id}">${w.h}</div>
+                    <div class="wc-romaji" id="gro-${w.id}">${showRomaji ? w.r : ''}</div>
+                    <div class="wc-mean" id="gm-${w.id}">${w.e}</div>
+                </div>
+                <div class="wc-btns">
+                    <button type="button" class="wc-btn" onclick="toggleGridField(this,'gr-${w.id}','gro-${w.id}')">Reading</button>
+                    <button type="button" class="wc-btn" onclick="toggleGridField(this,'gm-${w.id}')">English</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function toggleCardMastery(id) {
+        setMastered(id, !mastered[id]);
+        renderGrid();
+    }
+    function toggleGridField(btn, id1, id2) {
+        btn.classList.toggle('active');
+        document.getElementById(id1).classList.toggle('show');
+        if (id2) document.getElementById(id2).classList.toggle('show');
+    }
+    function revealAllGrid(show) {
+        document.querySelectorAll('#word-grid .wc-read, #word-grid .wc-romaji, #word-grid .wc-mean').forEach(el => el.classList.toggle('show', show));
+        document.querySelectorAll('#word-grid .wc-btn').forEach(b => b.classList.toggle('active', show));
     }
 
     function resetProgress() {
-        if (confirm("学習記録をリセットしますか？")) {
-            localStorage.removeItem('kanji_master_300_v1');
-            location.reload();
-        }
+        if (!confirm('Reset all mastery, weak words, and speed records?')) return;
+        mastered = {}; weakMap = {}; speedBest = { set: 0, all: 0 };
+        try {
+            localStorage.removeItem(MASTERY_KEY);
+            localStorage.removeItem(WEAK_KEY);
+            localStorage.removeItem(BEST_KEY);
+        } catch {}
+        updateStats();
+        switchMode(currentMode);
     }
 
-    init();
+    updateStats();
+    startQuizSession();
 </script>
 </body>
 </html>
