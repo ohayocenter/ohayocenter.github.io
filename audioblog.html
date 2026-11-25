@@ -3,117 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="OHAYO CENTER: Professional online Japanese lessons.">
+    <meta name="description" content="Listen and learn Japanese with the OHAYO CENTER Audio Blog: native audio, hideable scripts, furigana toggle, comprehension quizzes, vocabulary lists, and lesson topics.">
     <title>OHAYO CENTER - Audio Blog</title>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
     <meta property="og:title" content="Audio Blog | OHAYO CENTER">
-    <meta property="og:description" content="Listen and learn with the OHAYO CENTER audio blog: short Japanese monologues with transcripts, English translations and vocabulary lists.">
+    <meta property="og:description" content="Listen and learn with the OHAYO CENTER audio blog: short Japanese monologues with transcripts, English translations, quizzes and vocabulary lists.">
     <meta property="og:url" content="https://ohayocenter.com/audioblog.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Audio Blog | OHAYO CENTER">
-    <meta name="twitter:description" content="Listen and learn with the OHAYO CENTER audio blog: short Japanese monologues with transcripts, English translations and vocabulary lists.">
+    <meta name="twitter:description" content="Listen and learn with the OHAYO CENTER audio blog: short Japanese monologues with transcripts, English translations, quizzes and vocabulary lists.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link rel="icon" href="icon.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="icon.png" sizes="192x192">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
-        :root { --primary: #ff9f43; --primary-light: #fff5eb; --dark: #2c3e50; --text: #444; --shadow: 0 8px 25px rgba(0,0,0,0.06); }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background-color: #f4f6f8; line-height: 1.8; }
-
-        /* ナビゲーション */
-        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
-        .logo a { text-decoration: none; color: inherit; }
-        .nav-links { list-style: none; display: flex; gap: 1.2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
-
-        @media (max-width: 480px) {
-            nav { padding: 0 3%; }
-            .nav-links { gap: 0.7rem; }
-            .logo { font-size: 1.1rem; }
-            .nav-links a { font-size: 0.75rem; letter-spacing: 0.5px; }
-            .script-box { font-size: 1rem; line-height: 2.1; }
+        :root {
+            --primary: #ff9f43;
+            --primary-deep: #e67e22;
+            --primary-light: #fff5eb;
+            --bg: #f4f6f8;
+            --card: #ffffff;
+            --surface: #f8fafc;
+            --dark: #2c3e50;
+            --text: #374151;
+            --muted: #64748b;
+            --border: #e5e7eb;
+            --ok: #10b981;
+            --ok-soft: #ecfdf5;
+            --err: #ef4444;
+            --err-soft: #fef2f2;
+            --shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+        body.dark-mode {
+            --bg: #16181d;
+            --card: #22262e;
+            --surface: #1b1f26;
+            --dark: #f8fafc;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --border: #334155;
+            --primary-light: #33271c;
+            --ok-soft: #064e3b;
+            --err-soft: #450a0a;
         }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 110px 1.2rem 4rem; }
-        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: var(--dark); }
-        h2 i { color: var(--primary); margin-right: 10px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.8;
+            transition: background 0.25s, color 0.25s;
+        }
+        body.has-mini-player { padding-bottom: 84px; }
 
-        /* 一覧：画像なしのコンパクトなカード */
-        .diary-card { background: #fff; border-radius: 16px; margin-bottom: 1.2rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.03); overflow: hidden; }
-        .diary-summary { display: flex; align-items: center; gap: 12px; padding: 1rem 1.2rem; list-style: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+        /* ナビゲーション */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(6px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        body.dark-mode nav { background: rgba(22, 24, 29, 0.95); }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; flex-shrink: 0; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary); }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 3.5%; }
+            .nav-links { gap: 0.75rem; }
+            .logo { font-size: 1rem; }
+            .nav-links a { font-size: 0.72rem; letter-spacing: 0.5px; }
+            .script-box { font-size: 1rem; line-height: 2.15; }
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 100px 1.1rem 2.5rem; }
+        h2.page-title { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.85rem; margin-bottom: 0.4rem; color: var(--dark); }
+        h2.page-title i { color: var(--primary); margin-right: 10px; }
+        .page-sub { text-align: center; font-size: 0.88rem; color: var(--muted); margin-bottom: 1.4rem; }
+
+        /* 進捗＆フィルターカード */
+        .progress-card {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 15px 18px;
+            margin-bottom: 1.3rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .prog-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 9px;
+        }
+        .prog-count { font-weight: 700; color: var(--dark); font-size: 0.94rem; }
+        .filter-pills { display: flex; gap: 6px; }
+        .fpill {
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .fpill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .prog-track { width: 100%; height: 9px; background: var(--primary-light); border-radius: 999px; overflow: hidden; }
+        .prog-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--primary-deep)); border-radius: 999px; transition: width 0.35s ease; }
+
+        /* エピソードカード */
+        .diary-card {
+            background: var(--card);
+            border-radius: 18px;
+            margin-bottom: 1.15rem;
+            box-shadow: var(--shadow);
+            border: 1.5px solid var(--border);
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .diary-card.listened { border-color: #6ee7b7; }
+        .diary-summary {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            list-style: none;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
         .diary-summary::-webkit-details-marker { display: none; }
+        .ep-thumb-wrap {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: var(--primary-light);
+            border: 1px solid rgba(255, 159, 67, 0.3);
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+        .ep-thumb-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
         .summary-text { flex: 1; min-width: 0; }
-        .diary-header { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
-        .vol-badge { background: var(--primary); color: white; padding: 2px 12px; border-radius: 50px; font-size: 0.78rem; font-weight: bold; }
-        .diary-date { color: #999; font-size: 0.82rem; font-family: monospace; font-weight: bold; }
-        .card-title { font-size: 1.05rem; font-weight: bold; color: var(--dark); margin: 0; line-height: 1.5; }
-        .expand-icon { flex-shrink: 0; font-size: 1rem; color: #ccc; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s; }
-        .noscript-box { background: #fff; border-radius: 16px; box-shadow: var(--shadow); padding: 1.5rem; text-align: center; color: var(--dark); }
+        .diary-header { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
+        .vol-badge { background: var(--primary); color: white; padding: 2px 11px; border-radius: 50px; font-size: 0.74rem; font-weight: bold; }
+        .diary-date { color: var(--muted); font-size: 0.78rem; font-family: monospace; font-weight: bold; }
+        .listened-tag {
+            background: var(--ok-soft);
+            color: #047857;
+            padding: 2px 9px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            display: none;
+        }
+        body.dark-mode .listened-tag { color: #6ee7b7; }
+        .diary-card.listened .listened-tag { display: inline-block; }
+        .card-title { font-size: 1.04rem; font-weight: bold; color: var(--dark); margin: 0; line-height: 1.45; }
+        .ep-meta { font-size: 0.74rem; color: var(--muted); margin-top: 2px; }
+        .expand-icon { flex-shrink: 0; font-size: 1rem; color: var(--muted); transition: transform 0.35s ease, color 0.25s; }
         .diary-card[open] .expand-icon { transform: rotate(180deg); color: var(--primary); }
 
-        .diary-content { padding: 0 1.2rem 1.5rem 1.2rem; border-top: 1px dashed #eee; animation: fadeInDown 0.4s ease forwards; }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .diary-content { padding: 0 1.2rem 1.5rem; border-top: 1px dashed var(--border); animation: fadeInDown 0.3s ease forwards; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* レベル切り替え（タップ or 左右スワイプ） */
-        .level-tabs { display: flex; margin: 1.2rem 0 1rem; background: #f0f0f0; border-radius: 12px; padding: 4px; scroll-margin-top: 84px; }
-        .tab-btn { flex: 1; padding: 12px 4px; background: transparent; border: none; border-radius: 10px; font-size: 0.85rem; font-weight: bold; color: #888; cursor: pointer; transition: 0.3s; font-family: inherit; }
-        .tab-btn.active { background: #fff; color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .swipe-hint { display: none; text-align: center; font-size: 0.75rem; color: #bbb; margin: 0 0 1rem; }
+        /* レベルタブ */
+        .level-tabs { display: flex; margin: 1.1rem 0 0.9rem; background: var(--surface); border-radius: 12px; padding: 4px; gap: 4px; scroll-margin-top: 84px; }
+        .tab-btn { flex: 1; padding: 11px 6px; background: transparent; border: none; border-radius: 9px; font-size: 0.84rem; font-weight: bold; color: var(--muted); cursor: pointer; transition: 0.25s; font-family: inherit; }
+        .tab-btn.active { background: var(--card); color: var(--primary-deep); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .swipe-hint { display: none; text-align: center; font-size: 0.74rem; color: var(--muted); margin: 0 0 0.9rem; }
         @media (hover: none) { .swipe-hint { display: block; } }
 
         .tab-panel { display: none; width: 100%; }
         .tab-panel.active { display: block; }
-        .tab-panel.from-right { animation: slideFromRight 0.3s ease; }
-        .tab-panel.from-left { animation: slideFromLeft 0.3s ease; }
-        @keyframes slideFromRight { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideFromLeft { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: translateX(0); } }
+        .tab-panel.from-right { animation: slideFromRight 0.28s ease; }
+        .tab-panel.from-left { animation: slideFromLeft 0.28s ease; }
+        @keyframes slideFromRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideFromLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
 
-        /* 音声プレーヤーとコントロールボタン */
-        .audio-unit { background: var(--primary-light); padding: 1.2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; }
-        .audio-unit p { margin-bottom: 10px; color: #666; font-weight: bold; }
+        /* 音声プレーヤー */
+        .audio-unit {
+            background: var(--primary-light);
+            border: 1.5px solid rgba(255, 159, 67, 0.32);
+            padding: 1.1rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .audio-unit p { margin-bottom: 9px; color: var(--dark); font-weight: 700; font-size: 0.85rem; }
         .audio-unit audio { width: 100%; height: 40px; }
-
-        .audio-controls { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255, 159, 67, 0.3); flex-wrap: wrap; }
-        .seek-group { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-        .speed-group { display: flex; align-items: center; gap: 5px; }
-        .speed-label { font-size: 0.75rem; color: #888; font-weight: bold; margin-right: 2px; }
-        .ctrl-btn { background: #fff; border: 1px solid rgba(255, 159, 67, 0.4); color: var(--dark); padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.2s; font-family: inherit; display: inline-flex; align-items: center; gap: 5px; }
-        .ctrl-btn:hover { background: #fff9f2; border-color: var(--primary); }
-        .ctrl-btn:active { transform: scale(0.96); }
+        .audio-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255, 159, 67, 0.35);
+            flex-wrap: wrap;
+        }
+        .seek-group, .speed-group { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+        .speed-label { font-size: 0.74rem; color: var(--muted); font-weight: bold; margin-right: 2px; }
+        .ctrl-btn {
+            background: var(--card);
+            border: 1px solid rgba(255, 159, 67, 0.45);
+            color: var(--dark);
+            padding: 5px 11px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.18s;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .ctrl-btn:hover { border-color: var(--primary); }
         .ctrl-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-        .script-box { font-size: 1.05rem; line-height: 2.2; color: var(--text); }
-        .script-box p { margin-bottom: 1.5rem; }
+        /* 学習ツールバー（台本隠し・ふりがな・Listened） */
+        .study-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 9px 12px;
+            margin-bottom: 1.1rem;
+        }
+        .tool-group { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tool-btn {
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--dark);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.18s;
+            font-family: inherit;
+        }
+        .tool-btn.on { background: var(--dark); color: var(--card); border-color: var(--dark); }
+        .tool-btn.done-btn { border-color: var(--ok); color: #047857; }
+        body.dark-mode .tool-btn.done-btn { color: #6ee7b7; }
+        .tool-btn.done-btn.on { background: var(--ok); color: #fff; border-color: var(--ok); }
 
-        .quote-box { border-left: 4px solid var(--primary); padding: 15px 20px; background: #fafafa; margin: 25px 0; font-family: 'Sawarabi Mincho', serif; border-radius: 0 10px 10px 0; }
-        .quote-en { display: block; margin-top: 15px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; color: #777; font-style: italic; line-height: 1.6; }
-        ruby rt { color: #999; font-size: 0.6em; }
+        /* 台本エリア＆ぼかしオーバーレイ */
+        .script-wrap { position: relative; margin-bottom: 1.4rem; }
+        .script-box { font-size: 1.04rem; line-height: 2.25; color: var(--text); transition: filter 0.25s; }
+        .script-box p { margin-bottom: 1.25rem; }
+        .script-box.no-furigana ruby rt { display: none; }
+        .script-box.blurred { filter: blur(7px); user-select: none; pointer-events: none; }
+        .blur-banner {
+            display: none;
+            position: absolute;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.28);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+        body.dark-mode .blur-banner { background: rgba(22, 24, 29, 0.45); }
+        .script-wrap.is-hidden .blur-banner { display: flex; }
+        .blur-card {
+            background: var(--card);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow);
+            max-width: 320px;
+        }
 
-        .support-details { margin-top: 1rem; border: 1px solid #eee; border-radius: 12px; background: #fff; }
-        .support-details summary { padding: 12px 15px; background: #fafafa; cursor: pointer; font-size: 0.9rem; font-weight: bold; color: var(--primary); list-style: none; display: flex; align-items: center; gap: 8px; border-radius: 12px; transition: 0.2s; }
-        .support-details summary:hover { background: var(--primary-light); }
+        .quote-box { border-left: 4px solid var(--primary); padding: 15px 20px; background: var(--surface); margin: 22px 0; font-family: 'Sawarabi Mincho', serif; border-radius: 0 10px 10px 0; }
+        .quote-en { display: block; margin-top: 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.88rem; color: var(--muted); font-style: italic; line-height: 1.6; }
+        ruby rt { color: var(--muted); font-size: 0.62em; }
+
+        /* 3問リスニングクイズ */
+        .quiz-box {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 1.4rem 0;
+        }
+        .quiz-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .quiz-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: var(--primary-deep); text-transform: uppercase; }
+        .quiz-score { font-size: 0.76rem; font-weight: 700; color: var(--muted); background: var(--card); padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border); }
+        .q-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
+        .q-item:last-child { margin-bottom: 0; }
+        .q-text { font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.45; }
+        .q-opts { display: flex; flex-wrap: wrap; gap: 7px; }
+        .q-opt {
+            padding: 7px 12px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.16s;
+        }
+        .q-opt:hover { border-color: var(--primary); }
+        .q-opt.correct { background: var(--ok-soft); border-color: var(--ok); color: #047857; }
+        .q-opt.wrong { background: var(--err-soft); border-color: var(--err); color: #b91c1c; }
+        body.dark-mode .q-opt.correct { color: #6ee7b7; }
+        body.dark-mode .q-opt.wrong { color: #fca5a5; }
+        .q-fb { font-size: 0.78rem; font-weight: 600; margin-top: 7px; line-height: 1.45; min-height: 18px; }
+
+        /* レッスン会話トピックカード */
+        .discuss-card {
+            background: var(--primary-light);
+            border: 2px solid rgba(255, 159, 67, 0.45);
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin: 1.2rem 0;
+        }
+        .discuss-kicker { font-size: 0.72rem; font-weight: 700; color: var(--primary-deep); letter-spacing: 0.05em; margin-bottom: 4px; }
+        .discuss-card h4 { font-family: 'Sawarabi Mincho', serif; font-size: 1.05rem; color: var(--dark); margin-bottom: 8px; }
+        .discuss-list { padding-left: 18px; font-size: 0.88rem; color: var(--dark); margin-bottom: 12px; }
+        .discuss-list li { margin-bottom: 6px; }
+        .discuss-en { display: block; font-size: 0.78rem; color: var(--muted); }
+        .lesson-mini-link {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 999px;
+            transition: transform 0.15s;
+        }
+        .lesson-mini-link:hover { transform: translateY(-1px); }
+
+        /* 翻訳＆単語アコーディオン */
+        .support-details { margin-top: 0.9rem; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+        .support-details summary { padding: 12px 15px; background: var(--surface); cursor: pointer; font-size: 0.9rem; font-weight: bold; color: var(--primary-deep); list-style: none; display: flex; align-items: center; gap: 8px; border-radius: 12px; }
         .support-details summary::-webkit-details-marker { display: none; }
-        .support-content { padding: 15px; font-size: 0.9rem; color: #555; border-top: 1px solid #eee; line-height: 1.8; overflow-x: auto; }
-
+        .support-content { padding: 15px; font-size: 0.9rem; color: var(--text); border-top: 1px solid var(--border); line-height: 1.8; overflow-x: auto; }
         .vocab-table { width: 100%; border-collapse: collapse; }
-        .vocab-table th, .vocab-table td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #f0f0f0; word-break: break-word; }
-        .vocab-table th { color: #aaa; font-size: 0.75rem; text-transform: uppercase; background: #fafafa; }
+        .vocab-table th, .vocab-table td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); word-break: break-word; }
+        .vocab-table th { color: var(--muted); font-size: 0.74rem; text-transform: uppercase; background: var(--surface); }
 
-        .bmc-btn { display: inline-flex; align-items: center; padding: 8px 16px; color: #000000; background-color: #FFDD00; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; }
-        .bmc-btn:hover { transform: translateY(-2px); box-shadow: 0px 4px 10px rgba(0,0,0,0.15); }
+        /* 画面下追従ミニプレーヤー */
+        .mini-player {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 24px);
+            max-width: 740px;
+            background: #1e293b;
+            color: #f8fafc;
+            border-radius: 18px;
+            padding: 10px 14px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.32);
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            z-index: 950;
+        }
+        .mini-player.show { display: flex; }
+        .mini-info { min-width: 0; flex: 1; }
+        .mini-title { font-size: 0.8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mini-sub { font-size: 0.7rem; color: #94a3b8; font-family: monospace; }
+        .mini-btns { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+        .mbtn {
+            border: none;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+        }
+        .mbtn.play { background: var(--primary); color: #1e293b; padding: 7px 13px; }
+
+        .noscript-box { background: var(--card); border-radius: 16px; box-shadow: var(--shadow); padding: 1.5rem; text-align: center; color: var(--dark); }
+        .bmc-btn { display: inline-flex; align-items: center; padding: 10px 18px; color: #000000; background-color: #FFDD00; border-radius: 12px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: 0.2s; margin-top: 10px; }
+        .bmc-btn:hover { transform: translateY(-2px); }
         .bmc-btn img { height: 20px; width: auto; margin-right: 8px; }
-
-        footer { padding: 2rem 1.5rem 4rem; text-align: center; font-size: 0.8rem; color: #aaa; }
+        footer { padding: 2rem 1.5rem 4rem; text-align: center; font-size: 0.82rem; color: var(--muted); }
     </style>
 <style id="ohayo-cta-style">
 .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
@@ -152,17 +463,44 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+        <li><a onclick="toggleDarkMode()" title="Toggle Dark Mode"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
     </ul>
 </nav>
 
 <div class="container">
     <section id="audio-blog" class="audio-section">
-        <h2><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
-        
+        <h2 class="page-title"><i class="fa-solid fa-headphones"></i> AUDIO BLOG</h2>
+        <p class="page-sub">Listen naturally, test with quick quizzes, and bring the topic to your next lesson!</p>
+
+        <div class="progress-card">
+            <div class="prog-top">
+                <span class="prog-count" id="prog-count">0 / 7 Listened 🎧</span>
+                <div class="filter-pills">
+                    <button type="button" class="fpill active" id="f-all" onclick="setFilter('all')">All</button>
+                    <button type="button" class="fpill" id="f-un" onclick="setFilter('un')">Unlistened</button>
+                </div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+        </div>
+
         <div id="blog-container"></div>
         <noscript><div class="noscript-box">Audio Blog を表示するには JavaScript を有効にしてください。<br>Please enable JavaScript to view the Audio Blog episodes.</div></noscript>
-        
     </section>
+</div>
+
+<!-- 画面下追従ミニプレーヤー -->
+<div class="mini-player" id="mini-player" aria-label="Mini audio player">
+    <div class="mini-info">
+        <div class="mini-title" id="mini-title">Audio Blog</div>
+        <div class="mini-sub" id="mini-sub">0:00 / 0:00 · 1.0x</div>
+    </div>
+    <div class="mini-btns">
+        <button type="button" class="mbtn" onclick="miniSeek(-5)">-5s</button>
+        <button type="button" class="mbtn play" id="mini-play-btn" onclick="miniTogglePlay()">⏸</button>
+        <button type="button" class="mbtn" onclick="miniSeek(5)">+5s</button>
+        <button type="button" class="mbtn" id="mini-speed-btn" onclick="miniCycleSpeed()">1.0x</button>
+        <button type="button" class="mbtn" onclick="miniClose()" title="Stop & close">✕</button>
+    </div>
 </div>
 
 <!-- OHAYO_NEXT_CTA -->
@@ -208,13 +546,13 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
                     audioSrc: "vol7-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
-                        <p>みなさん、こんにちは！OHAYO CENTERのShinyaです。<br>今日のテーマは、「ブラックフライデー」です。</p>
-                        <p>ブラックフライデーは、アメリカの大きなセールの日です。アメリカでは、11月の第4木曜日が「感謝祭」という休みの日です。その次の金曜日が、ブラックフライデーです。今年は、11月27日です。<br>この日から、クリスマスの買い物が始まります。お店は大きなセールをして、たくさんの人が買い物に行きます。</p>
-                        <p>日本には感謝祭がありません。でも、日本でも、約10年前からブラックフライデーのセールが始まりました。2014年に、おもちゃのお店の「トイザらス」が始めました。そして、2016年に、大きなスーパーの「イオン」も参加しました。そのあと、Amazonや楽天などのネットショップも参加しました。今は、多くの日本人がブラックフライデーを知っています。</p>
-                        <p>日本のセールは、1日だけではありません。何日も続くセールが多いです。<br>それから、日本には、昔からお正月の「初売り」と「福袋」があります。「福袋」は、中が見えない袋です。何が入っているか、買うまで分かりません。日本人は、この「ワクワク」が好きなんですね。</p>
-                        <p>でも、安いからといって、たくさん買うと、お金が足りなくなります。買う前に、本当に必要か、考えましょう。</p>
-                        <p>みなさんの国にも、ブラックフライデーはありますか？ぜひレッスンで教えてくださいね！</p>
-                    `,
+                        <p>みなさん、こんにちは！OHAYO CENTERのShinyaです。<br><ruby>今日<rt>きょう</rt></ruby>のテーマは、「ブラックフライデー」です。</p>
+                        <p>ブラックフライデーは、アメリカの<ruby>大<rt>おお</rt></ruby>きなセールの<ruby>日<rt>ひ</rt></ruby>です。アメリカでは、11<ruby>月<rt>がつ</rt></ruby>の<ruby>第<rt>だい</rt></ruby>4<ruby>木曜日<rt>もくようび</rt></ruby>が「<ruby>感謝祭<rt>かんしゃさい</rt></ruby>」という<ruby>休<rt>やす</rt></ruby>みの<ruby>日<rt>ひ</rt></ruby>です。その<ruby>次<rt>つぎ</rt></ruby>の<ruby>金曜日<rt>きんようび</rt></ruby>が、ブラックフライデーです。<ruby>今年<rt>ことし</rt></ruby>は、11<ruby>月<rt>がつ</rt></ruby>27<ruby>日<rt>にち</rt></ruby>です。<br>この<ruby>日<rt>ひ</rt></ruby>から、クリスマスの<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>が<ruby>始<rt>はじ</rt></ruby>まります。お<ruby>店<rt>みせ</rt></ruby>は<ruby>大<rt>おお</rt></ruby>きなセールをして、たくさんの<ruby>人<rt>ひと</rt></ruby>が<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>に<ruby>行<rt>い</rt></ruby>きます。</p>
+                        <p><ruby>日本<rt>にほん</rt></ruby>には<ruby>感謝祭<rt>かんしゃさい</rt></ruby>がありません。でも、<ruby>日本<rt>にほん</rt></ruby>でも、<ruby>約<rt>やく</rt></ruby>10<ruby>年前<rt>ねんまえ</rt></ruby>からブラックフライデーのセールが<ruby>始<rt>はじ</rt></ruby>まりました。2014<ruby>年<rt>ねん</rt></ruby>に、おもちゃのお<ruby>店<rt>みせ</rt></ruby>の「トイザらス」が<ruby>始<rt>はじ</rt></ruby>めました。そして、2016<ruby>年<rt>ねん</rt></ruby>に、<ruby>大<rt>おお</rt></ruby>きなスーパーの「イオン」も<ruby>参加<rt>さんか</rt></ruby>しました。そのあと、Amazonや<ruby>楽天<rt>らくてん</rt></ruby>などのネットショップも<ruby>参加<rt>さんか</rt></ruby>しました。<ruby>今<rt>いま</rt></ruby>は、<ruby>多<rt>おお</rt></ruby>くの<ruby>日本人<rt>にほんじん</rt></ruby>がブラックフライデーを<ruby>知<rt>し</rt></ruby>っています。</p>
+                        <p><ruby>日本<rt>にほん</rt></ruby>のセールは、1<ruby>日<rt>にち</rt></ruby>だけではありません。<ruby>何日<rt>なんにち</rt></ruby>も<ruby>続<rt>つづ</rt></ruby>くセールが<ruby>多<rt>おお</rt></ruby>いです。<br>それから、<ruby>日本<rt>にほん</rt></ruby>には、<ruby>昔<rt>むかし</rt></ruby>からお<ruby>正月<rt>しょうがつ</rt></ruby>の「<ruby>初売<rt>はつう</rt></ruby>り」と「<ruby>福袋<rt>ふくぶくろ</rt></ruby>」があります。「<ruby>福袋<rt>ふくぶくろ</rt></ruby>」は、<ruby>中<rt>なか</rt></ruby>が<ruby>見<rt>み</rt></ruby>えない<ruby>袋<rt>ふくろ</rt></ruby>です。<ruby>何<rt>なに</rt></ruby>が<ruby>入<rt>はい</rt></ruby>っているか、<ruby>買<rt>か</rt></ruby>うまで<ruby>分<rt>わ</rt></ruby>かりません。<ruby>日本人<rt>にほんじん</rt></ruby>は、この「ワクワク」が<ruby>好<rt>す</rt></ruby>きなんですね。</p>
+                        <p>でも、<ruby>安<rt>やす</rt></ruby>いからといって、たくさん<ruby>買<rt>か</rt></ruby>うと、お<ruby>金<rt>かね</rt></ruby>が<ruby>足<rt>た</rt></ruby>りなくなります。<ruby>買<rt>か</rt></ruby>う<ruby>前<rt>まえ</rt></ruby>に、<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>必要<rt>ひつよう</rt></ruby>か、<ruby>考<rt>かんが</rt></ruby>えましょう。</p>
+                        <p>みなさんの<ruby>国<rt>くに</rt></ruby>にも、ブラックフライデーはありますか？ぜひレッスンで<ruby>教<rt>おし</rt></ruby>えてくださいね！</p>
+`,
                     translations: [
                         {
                             title: "English Translation",
@@ -254,11 +592,11 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
                     audioSrc: "vol6-1.mp3",
                     note: "🎵 少しゆっくり・でも自然に話します😊",
                     script: `
-                        <p>みなさん、こんにちは！OHAYO CENTERのShinyaです。<br>今日は、「僕・俺・私」など、自分のことを言うときの言葉について話します。</p>
-                        <p>アニメ「転生したらスライムだった件」、略して「転スラ」を知っていますか？<br>主人公のリムルは最初「俺」と言います。男の人がよく使う、少しカジュアルな言葉です。<br>「僕」も男の人が使いますが、「俺」より少し丁寧です。子どもや若い人がよく使います。<br>「私」は、男の人も女の人も使えます。フォーマルな場面で使います。</p>
-                        <p>面白いことがあります。私は高校生のとき、体育会系のクラブに入っていました。<br>体育会系というのは、スポーツのクラブなど、厳しいルールがあるグループのことです。<br>そのクラブでは「僕」と言ってはいけませんでした。全員「自分」と言わなければなりません。<br>「自分」は本来「myself」という意味ですが、体育会系では「私」の代わりに使います。</p>
-                        <p>みなさんは、どの言葉を使いますか？ぜひコメントで教えてください！</p>
-                    `,
+                        <p>みなさん、こんにちは！OHAYO CENTERのShinyaです。<br><ruby>今日<rt>きょう</rt></ruby>は、「<ruby>僕<rt>ぼく</rt></ruby>・<ruby>俺<rt>おれ</rt></ruby>・<ruby>私<rt>わたし</rt></ruby>」など、<ruby>自分<rt>じぶん</rt></ruby>のことを<ruby>言<rt>い</rt></ruby>うときの<ruby>言葉<rt>ことば</rt></ruby>について<ruby>話<rt>はな</rt></ruby>します。</p>
+                        <p>アニメ「<ruby>転生<rt>てんせい</rt></ruby>したらスライムだった<ruby>件<rt>けん</rt></ruby>」、<ruby>略<rt>りゃく</rt></ruby>して「<ruby>転<rt>てん</rt></ruby>スラ」を<ruby>知<rt>し</rt></ruby>っていますか？<br><ruby>主人公<rt>しゅじんこう</rt></ruby>のリムルは<ruby>最初<rt>さいしょ</rt></ruby>「<ruby>俺<rt>おれ</rt></ruby>」と<ruby>言<rt>い</rt></ruby>います。<ruby>男<rt>おとこ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>がよく<ruby>使<rt>つか</rt></ruby>う、<ruby>少<rt>すこ</rt></ruby>しカジュアルな<ruby>言葉<rt>ことば</rt></ruby>です。<br>「<ruby>僕<rt>ぼく</rt></ruby>」も<ruby>男<rt>おとこ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>が<ruby>使<rt>つか</rt></ruby>いますが、「<ruby>俺<rt>おれ</rt></ruby>」より<ruby>少<rt>すこ</rt></ruby>し<ruby>丁寧<rt>ていねい</rt></ruby>です。<ruby>子<rt>こ</rt></ruby>どもや<ruby>若<rt>わか</rt></ruby>い<ruby>人<rt>ひと</rt></ruby>がよく<ruby>使<rt>つか</rt></ruby>います。<br>「<ruby>私<rt>わたし</rt></ruby>」は、<ruby>男<rt>おとこ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>も<ruby>女<rt>おんな</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>も<ruby>使<rt>つか</rt></ruby>えます。フォーマルな<ruby>場面<rt>ばめん</rt></ruby>で<ruby>使<rt>つか</rt></ruby>います。</p>
+                        <p><ruby>面白<rt>おもしろ</rt></ruby>いことがあります。<ruby>私<rt>わたし</rt></ruby>は<ruby>高校生<rt>こうこうせい</rt></ruby>のとき、<ruby>体育会系<rt>たいいくかいけい</rt></ruby>のクラブに<ruby>入<rt>はい</rt></ruby>っていました。<br><ruby>体育会系<rt>たいいくかいけい</rt></ruby>というのは、スポーツのクラブなど、<ruby>厳<rt>きび</rt></ruby>しいルールがあるグループのことです。<br>そのクラブでは「<ruby>僕<rt>ぼく</rt></ruby>」と<ruby>言<rt>い</rt></ruby>ってはいけませんでした。<ruby>全員<rt>ぜんいん</rt></ruby>「<ruby>自分<rt>じぶん</rt></ruby>」と<ruby>言<rt>い</rt></ruby>わなければなりません。<br>「<ruby>自分<rt>じぶん</rt></ruby>」は<ruby>本来<rt>ほんらい</rt></ruby>「myself」という<ruby>意味<rt>いみ</rt></ruby>ですが、<ruby>体育会系<rt>たいいくかいけい</rt></ruby>では「<ruby>私<rt>わたし</rt></ruby>」の<ruby>代<rt>か</rt></ruby>わりに<ruby>使<rt>つか</rt></ruby>います。</p>
+                        <p>みなさんは、どの<ruby>言葉<rt>ことば</rt></ruby>を<ruby>使<rt>つか</rt></ruby>いますか？ぜひコメントで<ruby>教<rt>おし</rt></ruby>えてください！</p>
+`,
                     translations: [
                         {
                             title: "English Translation",
@@ -775,29 +1113,147 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         }
     ];
 
+    const EPISODE_EXTRAS = {"7": {"emoji": "🛍️", "quiz": [{"q": "1. Which store started Black Friday sales in Japan in 2014?", "opts": ["Aeon", "Toys R Us", "Amazon"], "ans": 1, "exp": "Toys R Us (トイザらス) started Black Friday in Japan in 2014, followed by Aeon in 2016."}, {"q": "2. What is a 'Fukubukuro' (福袋)?", "opts": ["A 1-day-only online sale", "A New Year's mystery lucky bag", "A Thanksgiving dish"], "ans": 1, "exp": "Fukubukuro is a sealed lucky bag sold at New Year's — you don't know what's inside until you buy it!"}, {"q": "3. What advice does Shinya give at the end?", "opts": ["Think if you really need it before buying", "Buy as many items as possible while cheap", "Only shop online"], "ans": 0, "exp": "Even if things are cheap, buying too much runs out your money — think if you really need it first!"}], "discuss": [{"jp": "あなたの国にもブラックフライデーはありますか？", "en": "Does your country have Black Friday too?"}, {"jp": "日本の「福袋」を買ってみたいですか？", "en": "Would you like to try buying a Japanese lucky bag (fukubukuro)?"}, {"jp": "最近セールで買ってよかったものは何ですか？", "en": "What is something great you bought on sale recently?"}]}, "6": {"emoji": "👀", "quiz": [{"q": "1. Which anime character does Shinya mention who uses 'ore' (俺)?", "opts": ["Naruto", "Rimuru (from TenSura)", "Luffy"], "ans": 1, "exp": "Shinya mentions Rimuru from 'That Time I Got Reincarnated as a Slime' (転スラ)."}, {"q": "2. How does 'boku' (僕) compare to 'ore' (俺)?", "opts": ["More casual and rough", "Slightly more polite and softer", "Used only in formal speeches"], "ans": 1, "exp": "'Boku' is used by boys and men, and feels slightly more polite and softer than 'ore'."}, {"q": "3. What pronoun did everyone have to use in Shinya's high school sports club?", "opts": ["Watashi (私)", "Boku (僕)", "Jibun (自分)"], "ans": 2, "exp": "In strict 'taiiku-kai-kei' sports clubs, 'boku' was banned and everyone had to say 'jibun' (自分)."}], "discuss": [{"jp": "日本語で自分のことを言うとき、どの言葉を使いますか？", "en": "Which first-person pronoun do you use in Japanese (watashi, boku, ore)?"}, {"jp": "あなたの母語にも、場面によって変わる「私」の言い方はありますか？", "en": "Does your native language have different ways to say 'I' depending on the situation?"}]}, "5": {"emoji": "🍔", "quiz": [{"q": "1. What does the Japanese word 'konsento' (コンセント) mean?", "opts": ["Consent / agreement", "Power outlet / socket", "Concert hall"], "ans": 1, "exp": "'Konsento' is Wasei Eigo (Japanese-made English) meaning an electrical outlet or socket."}, {"q": "2. How do people in Japan usually say 'French fries'?", "opts": ["Furaido poteto (フライドポテト)", "Furenchi furai", "Chippusu"], "ans": 0, "exp": "In Japan, French fries are called 'furaido poteto' (fried potato)!"}, {"q": "3. What does 'kuuraa' (クーラー) mean in everyday Japanese?", "opts": ["A cooler box only", "Air conditioner", "Cold drink"], "ans": 1, "exp": "'Kuuraa' refers to an air conditioner (エアコン / クーラー)."}], "discuss": [{"jp": "今まで聞いて驚いた「和製英語」はありますか？", "en": "Is there any Wasei Eigo (Japanese-English) word that surprised you?"}, {"jp": "あなたの国の言葉にも、面白い外来語はありますか？", "en": "Are there interesting loanwords in your native language too?"}]}, "4": {"emoji": "🍂", "quiz": [{"q": "1. What is Shinya's favorite season?", "opts": ["Spring", "Autumn", "Winter"], "ans": 1, "exp": "Shinya's favorite season is autumn (秋) because it's neither too hot nor too cold."}, {"q": "2. What does 'Shokuyoku no Aki' (食欲の秋) mean?", "opts": ["Autumn of Sports", "Autumn of Reading", "Autumn of Appetite (best season for food)"], "ans": 2, "exp": "'Shokuyoku no Aki' means 'Autumn of Appetite' — when foods like grapes, chestnuts, and persimmons taste best."}, {"q": "3. What is one downside Shinya mentions about Japanese autumn fruits?", "opts": ["They are hard to find", "They are a bit expensive", "They are too sour"], "ans": 1, "exp": "Shinya jokes that Japanese fruits are delicious, but a little expensive (財布が痛い!)."}], "discuss": [{"jp": "あなたの一番好きな季節はいつですか？どうしてですか？", "en": "What is your favorite season, and why?"}, {"jp": "その季節に食べる特別な食べ物やイベントはありますか？", "en": "Are there any special foods or events in your favorite season?"}]}, "3": {"emoji": "🏠", "quiz": [{"q": "1. Which is mentioned as a benefit of renting (賃貸)?", "opts": ["You can remodel freely", "The landlord handles repairs & it's easy to move", "It becomes your asset"], "ans": 1, "exp": "Renting makes moving easy, avoids huge loans, and the owner handles repairs."}, {"q": "2. Roughly how much can buy a nice house in Shinya's town?", "opts": ["Around 20 million yen (~$130k)", "Around 200 million yen", "Around 1 million yen"], "ans": 0, "exp": "Shinya mentions you can buy a very nice house in his town for around 20 million yen — and old vacant houses can even be free!"}, {"q": "3. What kind of house is Shinya's dream?", "opts": ["A high-rise city apartment", "A big house with a garden", "A tiny house in the mountains"], "ans": 1, "exp": "Shinya dreams of buying a big house with a garden (庭がある家)."}], "discuss": [{"jp": "あなたは「持ち家」と「賃貸」、どちらがいいと思いますか？", "en": "Do you prefer owning a home or renting?"}, {"jp": "将来、どんな家に住んでみたいですか？", "en": "What kind of house would you like to live in someday?"}]}, "2": {"emoji": "🌸", "quiz": [{"q": "1. What does the cherry blossom quote compare 'waiting for the right time' to?", "opts": ["Waiting passively for luck", "Quietly gathering strength all winter without resting", "Moving to a warmer place"], "ans": 1, "exp": "Just like a cherry tree silently builds strength through winter, consistent daily effort prepares you to bloom."}, {"q": "2. How long has Shinya been studying English?", "opts": ["2 years", "5 years", "Over 20 years"], "ans": 2, "exp": "Shinya has been studying English for over 20 years, often feeling like he wasn't improving."}, {"q": "3. What made Shinya realize his efforts had truly accumulated?", "opts": ["Passing a test", "A student saying 'I chose you because you are good at English'", "Traveling abroad"], "ans": 1, "exp": "An online student told him they chose his lessons because he was good at English!"}], "discuss": [{"jp": "日本語の勉強で「上手になったな」と感じた瞬間はありますか？", "en": "Have you ever had a moment where you realized your Japanese had improved?"}, {"jp": "毎日少しずつ続けている習慣はありますか？", "en": "What small daily habit do you keep up little by little?"}]}, "1": {"emoji": "🎉", "quiz": [{"q": "1. Where is Shinya from (and where is Tokyo Disneyland actually located)?", "opts": ["Shibuya, Tokyo", "Chiba (next to Tokyo)", "Osaka"], "ans": 1, "exp": "Shinya is from Chiba — and Tokyo Disneyland is actually located in Chiba, too!"}, {"q": "2. Which country did Shinya live and teach in for about 3 years?", "opts": ["Thailand", "Vietnam", "Australia"], "ans": 1, "exp": "Shinya went to Vietnam through the 'Nihongo Partners' program and lived there for about 3 years."}, {"q": "3. Why did OHAYO CENTER switch to online lessons?", "opts": ["Because of the COVID-19 pandemic", "Because Shinya moved to Europe", "Because the building closed"], "ans": 0, "exp": "When COVID-19 hit, Shinya switched from in-person classes in Vietnam to online lessons."}], "discuss": [{"jp": "あなたの出身地はどんなところですか？有名なものはありますか？", "en": "What is your hometown like? Is it famous for anything?"}, {"jp": "どうして日本語を勉強しようと思いましたか？", "en": "What inspired you to start learning Japanese?"}]}};
+    const LISTENED_KEY = 'ohayo_audioblog_listened_v1';
+
+    function loadListened() {
+        try { return JSON.parse(localStorage.getItem(LISTENED_KEY) || '{}'); }
+        catch { return {}; }
+    }
+    function saveListened(obj) {
+        try { localStorage.setItem(LISTENED_KEY, JSON.stringify(obj)); } catch {}
+    }
+
+    let listenedMap = loadListened();
+    let currentFilter = 'all';
+    let activeAudio = null;
+    let activeMeta = { title: '', level: '' };
+
+    /* --- ダークモード --- */
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        try { localStorage.setItem('ohayo_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch {}
+    }
+    if (localStorage.getItem('ohayo_theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
     const container = document.getElementById('blog-container');
 
-    // 音声は常に1つだけ再生する（他のカード／レベルが流れ続けないように）
+    function fmtTime(sec) {
+        if (!isFinite(sec) || sec < 0) return '0:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m}:${String(s).padStart(2, '0')}`;
+    }
+
+    function updateProgressUI() {
+        const total = blogPosts.length;
+        const count = blogPosts.filter(p => !!listenedMap[p.vol]).length;
+        document.getElementById('prog-count').textContent = `${count} / ${total} Listened 🎧`;
+        document.getElementById('prog-fill').style.width = `${Math.round((count / total) * 100)}%`;
+        applyFilter();
+    }
+
+    function setFilter(f) {
+        currentFilter = f;
+        document.getElementById('f-all').classList.toggle('active', f === 'all');
+        document.getElementById('f-un').classList.toggle('active', f === 'un');
+        applyFilter();
+    }
+
+    function applyFilter() {
+        document.querySelectorAll('.diary-card').forEach(card => {
+            const vol = Number(card.dataset.vol);
+            const isDone = !!listenedMap[vol];
+            card.classList.toggle('listened', isDone);
+            card.querySelectorAll('.done-btn').forEach(btn => {
+                btn.classList.toggle('on', isDone);
+                btn.textContent = isDone ? '✅ Listened!' : '☐ Mark as Listened';
+            });
+            card.style.display = (currentFilter === 'un' && isDone) ? 'none' : 'block';
+        });
+    }
+
+    function markListened(vol, val) {
+        listenedMap[vol] = val;
+        saveListened(listenedMap);
+        updateProgressUI();
+    }
+
+    /* --- 画面下ミニプレーヤー --- */
+    function updateMiniPlayer() {
+        const bar = document.getElementById('mini-player');
+        if (!activeAudio) {
+            bar.classList.remove('show');
+            document.body.classList.remove('has-mini-player');
+            return;
+        }
+        bar.classList.add('show');
+        document.body.classList.add('has-mini-player');
+        document.getElementById('mini-title').textContent = `${activeMeta.title} (${activeMeta.level})`;
+        document.getElementById('mini-sub').textContent = `${fmtTime(activeAudio.currentTime)} / ${fmtTime(activeAudio.duration)} · ${activeAudio.playbackRate.toFixed(1)}x`;
+        document.getElementById('mini-play-btn').textContent = activeAudio.paused ? '▶' : '⏸';
+        document.getElementById('mini-speed-btn').textContent = `${activeAudio.playbackRate.toFixed(1)}x`;
+    }
+
+    function miniTogglePlay() {
+        if (!activeAudio) return;
+        if (activeAudio.paused) activeAudio.play().catch(() => {});
+        else activeAudio.pause();
+        updateMiniPlayer();
+    }
+    function miniSeek(delta) {
+        if (!activeAudio) return;
+        const dur = isFinite(activeAudio.duration) ? activeAudio.duration : activeAudio.currentTime + Math.abs(delta);
+        activeAudio.currentTime = Math.max(0, Math.min(dur, activeAudio.currentTime + delta));
+        updateMiniPlayer();
+    }
+    function miniCycleSpeed() {
+        if (!activeAudio) return;
+        const speeds = [0.8, 1.0, 1.2];
+        const idx = speeds.findIndex(s => Math.abs(s - activeAudio.playbackRate) < 0.05);
+        const next = speeds[(idx + 1) % speeds.length];
+        activeAudio.playbackRate = next;
+        const unit = activeAudio.closest('.audio-unit');
+        if (unit) {
+            unit.querySelectorAll('.speed-btn').forEach(b => b.classList.toggle('active', Math.abs(parseFloat(b.dataset.speed) - next) < 0.05));
+        }
+        updateMiniPlayer();
+    }
+    function miniClose() {
+        if (activeAudio) {
+            activeAudio.pause();
+            activeAudio = null;
+        }
+        updateMiniPlayer();
+    }
+
     function pauseAllAudio(except) {
-        document.querySelectorAll('audio').forEach(a => { if (a !== except && !a.paused) a.pause(); });
+        document.querySelectorAll('audio').forEach(a => { if (a !== except) a.pause(); });
     }
     function pauseCardAudio(card) {
-        card.querySelectorAll('audio').forEach(a => { if (!a.paused) a.pause(); });
+        card.querySelectorAll('audio').forEach(a => {
+            a.pause();
+            if (a === activeAudio) {
+                activeAudio = null;
+                updateMiniPlayer();
+            }
+        });
     }
-    document.addEventListener('visibilitychange', () => { if (document.hidden) pauseAllAudio(null); });
 
     function renderTranslations(translations) {
         if (!translations || translations.length === 0) return '';
         return translations.map(t => `
             <details class="support-details">
-                <summary><i class="fa-solid ${t.icon}"></i> ${t.title}</summary>
+                <summary><i class="fa-solid ${t.icon || 'fa-language'}"></i> ${t.title}</summary>
                 <div class="support-content">${t.content}</div>
             </details>
         `).join('');
     }
 
     function renderVocab(vocabHTML) {
-        if (!vocabHTML || vocabHTML.trim() === "") return '';
+        if (!vocabHTML || vocabHTML.trim() === '') return '';
         return `
             <details class="support-details">
                 <summary><i class="fa-solid fa-book"></i> Vocabulary List</summary>
@@ -811,11 +1267,46 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         `;
     }
 
-    // レベルを切り替える（dir: 1=右から, -1=左から, 0=アニメなし）
+    function renderQuiz(vol) {
+        const extra = EPISODE_EXTRAS[vol];
+        if (!extra || !extra.quiz || extra.quiz.length === 0) return '';
+        const itemsHTML = extra.quiz.map((item, qIdx) => `
+            <div class="q-item" data-qidx="${qIdx}">
+                <div class="q-text">${item.q}</div>
+                <div class="q-opts">
+                    ${item.opts.map((opt, oIdx) => `<button type="button" class="q-opt" data-oidx="${oIdx}">${opt}</button>`).join('')}
+                </div>
+                <div class="q-fb"></div>
+            </div>
+        `).join('');
+        return `
+            <div class="quiz-box" data-vol="${vol}">
+                <div class="quiz-head">
+                    <span class="quiz-kicker">📝 Quick Listening Check</span>
+                    <span class="quiz-score">0 / ${extra.quiz.length} Correct</span>
+                </div>
+                ${itemsHTML}
+            </div>
+        `;
+    }
+
+    function renderDiscuss(vol) {
+        const extra = EPISODE_EXTRAS[vol];
+        if (!extra || !extra.discuss || extra.discuss.length === 0) return '';
+        const listHTML = extra.discuss.map(d => `<li>${d.jp}<span class="discuss-en">${d.en}</span></li>`).join('');
+        return `
+            <div class="discuss-card">
+                <div class="discuss-kicker">💬 TALK ABOUT THIS IN YOUR LESSON</div>
+                <h4>Let's chat about this topic together!</h4>
+                <ul class="discuss-list">${listHTML}</ul>
+                <a class="lesson-mini-link" href="https://ohayocenter.com/#lessons">🍫 Bring this topic to a Trial Lesson →</a>
+            </div>
+        `;
+    }
+
     function activateLevel(card, index, dir) {
         const btns = card.querySelectorAll('.tab-btn');
         const panels = card.querySelectorAll('.tab-panel');
-        // 切り替え前の再生速度を引き継ぎ、隠れるパネルの音声は止める
         const currentPanel = card.querySelector('.tab-panel.active');
         const currentRate = currentPanel ? (currentPanel.querySelector('audio')?.playbackRate || 1) : 1;
         pauseCardAudio(card);
@@ -832,7 +1323,6 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
                 }
             }
         });
-        // 長い台本を読んでいる途中で切り替えたら、タブが見える位置まで戻す
         const tabs = card.querySelector('.level-tabs');
         if (tabs && typeof tabs.scrollIntoView === 'function' && tabs.getBoundingClientRect().top < 80) {
             tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -840,8 +1330,10 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     }
 
     function buildCard(post, isOpen) {
+        const extra = EPISODE_EXTRAS[post.vol] || { emoji: '🎧' };
         const card = document.createElement('details');
-        card.className = 'diary-card';
+        card.className = 'diary-card' + (listenedMap[post.vol] ? ' listened' : '');
+        card.dataset.vol = post.vol;
         card.open = isOpen;
 
         let tabsHTML = `<div class="level-tabs">`;
@@ -849,17 +1341,18 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 
         post.levels.forEach((level, levelIndex) => {
             const isActive = levelIndex === 0 ? 'active' : '';
+            const hasRuby = level.script.includes('<ruby>');
             tabsHTML += `<button type="button" class="tab-btn ${isActive}" data-level="${levelIndex}" aria-selected="${levelIndex === 0 ? 'true' : 'false'}">${level.label}</button>`;
             panelsHTML += `
-                <div class="tab-panel ${isActive}">
+                <div class="tab-panel ${isActive}" data-level-label="${level.label}">
                     <div class="audio-unit">
-                        <p><small>${level.note}</small></p>
+                        <p>${level.note}</p>
                         <audio controls preload="none" src="${level.audioSrc}"></audio>
                         <div class="audio-controls">
                             <div class="seek-group">
-                                <button type="button" class="ctrl-btn rewind-btn"><i class="fa-solid fa-rotate-left"></i> -10s</button>
+                                <button type="button" class="ctrl-btn seek-btn" data-delta="-5">↺ -5s</button>
                                 <button type="button" class="ctrl-btn stop-btn"><i class="fa-solid fa-stop"></i> Stop</button>
-                                <button type="button" class="ctrl-btn forward-btn">+10s <i class="fa-solid fa-rotate-right"></i></button>
+                                <button type="button" class="ctrl-btn seek-btn" data-delta="5">+5s ↻</button>
                             </div>
                             <div class="speed-group">
                                 <span class="speed-label">Speed:</span>
@@ -869,26 +1362,51 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
                             </div>
                         </div>
                     </div>
-                    <div class="script-box">
-                        ${level.script}
-                        ${renderTranslations(level.translations)}
-                        ${renderVocab(level.vocab)}
+
+                    <div class="study-toolbar">
+                        <div class="tool-group">
+                            <button type="button" class="tool-btn hide-script-btn">🙈 Hide Script</button>
+                            ${hasRuby ? '<button type="button" class="tool-btn on furi-btn">あ Furigana: ON</button>' : ''}
+                        </div>
+                        <button type="button" class="tool-btn done-btn ${listenedMap[post.vol] ? 'on' : ''}">${listenedMap[post.vol] ? '✅ Listened!' : '☐ Mark as Listened'}</button>
                     </div>
+
+                    <div class="script-wrap">
+                        <div class="script-box">${level.script}</div>
+                        <div class="blur-banner">
+                            <div class="blur-card">
+                                <div style="font-size:1.5rem; margin-bottom:4px;">🎧</div>
+                                <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">Listening Mode</div>
+                                <p style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;">Listen first without reading, then reveal the script to check!</p>
+                                <button type="button" class="tool-btn on reveal-btn">👀 Show Script</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    ${renderTranslations(level.translations)}
+                    ${renderVocab(level.vocab)}
                 </div>
             `;
         });
         tabsHTML += `</div>`;
 
         const hint = post.levels.length > 1 ? `<p class="swipe-hint">◀ Swipe left/right to switch level ▶</p>` : '';
+        const levelSummary = post.levels.map(l => l.label).join(' · ') + ' · 📝 3 Quiz Questions';
+        const thumbHTML = post.image
+            ? `<img src="${post.image}" alt="Vol.${post.vol}" loading="lazy" onerror="this.remove(); this.parentElement.textContent='${extra.emoji}';">`
+            : extra.emoji;
 
         card.innerHTML = `
             <summary class="diary-summary">
+                <div class="ep-thumb-wrap">${thumbHTML}</div>
                 <div class="summary-text">
                     <div class="diary-header">
                         <span class="vol-badge">Vol.${post.vol}</span>
                         <span class="diary-date">${post.date}</span>
+                        <span class="listened-tag">✅ Listened</span>
                     </div>
                     <h3 class="card-title">${post.title}</h3>
+                    <div class="ep-meta">${levelSummary}</div>
                 </div>
                 <i class="fa-solid fa-chevron-down expand-icon"></i>
             </summary>
@@ -896,10 +1414,12 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
                 ${tabsHTML}
                 ${hint}
                 <div class="level-panels">${panelsHTML}</div>
+                ${renderQuiz(post.vol)}
+                ${renderDiscuss(post.vol)}
             </div>
         `;
 
-        // タップでレベル切り替え
+        // レベルタブ切替
         card.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -910,48 +1430,120 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
             });
         });
 
-        // カードを閉じたら、そのカードの音声を止める
         card.addEventListener('toggle', () => { if (!card.open) pauseCardAudio(card); });
 
-        // 各パネルの音声コントロール（10秒戻し／送り＆再生速度）
+        // 学習ツールバー（台本隠し・ふりがな・Listened）
+        card.querySelectorAll('.tab-panel').forEach(panel => {
+            const sw = panel.querySelector('.script-wrap');
+            const sb = panel.querySelector('.script-box');
+            const hideBtn = panel.querySelector('.hide-script-btn');
+            const revealBtn = panel.querySelector('.reveal-btn');
+            const furiBtn = panel.querySelector('.furi-btn');
+            const doneBtn = panel.querySelector('.done-btn');
+
+            const toggleScript = () => {
+                const hidden = !sw.classList.contains('is-hidden');
+                sw.classList.toggle('is-hidden', hidden);
+                sb.classList.toggle('blurred', hidden);
+                hideBtn.classList.toggle('on', hidden);
+                hideBtn.textContent = hidden ? '👀 Show Script' : '🙈 Hide Script';
+            };
+            hideBtn.addEventListener('click', toggleScript);
+            revealBtn.addEventListener('click', toggleScript);
+
+            if (furiBtn) {
+                furiBtn.addEventListener('click', () => {
+                    const off = sb.classList.toggle('no-furigana');
+                    furiBtn.classList.toggle('on', !off);
+                    furiBtn.textContent = off ? 'あ Furigana: OFF' : 'あ Furigana: ON';
+                });
+            }
+
+            doneBtn.addEventListener('click', () => {
+                markListened(post.vol, !listenedMap[post.vol]);
+            });
+        });
+
+        // 音声コントロール＆ミニプレーヤー同期
         card.querySelectorAll('.audio-unit').forEach(unit => {
+            const panel = unit.closest('.tab-panel');
             const audio = unit.querySelector('audio');
-            const rewindBtn = unit.querySelector('.rewind-btn');
-            const forwardBtn = unit.querySelector('.forward-btn');
-            const stopBtn = unit.querySelector('.stop-btn');
             const speedBtns = unit.querySelectorAll('.speed-btn');
 
-            // この音声が再生されたら、他の音声はすべて止める
-            audio.addEventListener('play', () => pauseAllAudio(audio));
-
-            rewindBtn.addEventListener('click', () => {
-                audio.currentTime = Math.max(0, audio.currentTime - 10);
+            audio.addEventListener('play', () => {
+                pauseAllAudio(audio);
+                activeAudio = audio;
+                activeMeta = { title: `Vol.${post.vol} ${post.title}`, level: panel.dataset.levelLabel };
+                updateMiniPlayer();
             });
-            stopBtn.addEventListener('click', () => {
+            audio.addEventListener('pause', () => { if (activeAudio === audio) updateMiniPlayer(); });
+            audio.addEventListener('timeupdate', () => { if (activeAudio === audio) updateMiniPlayer(); });
+            audio.addEventListener('ended', () => {
+                markListened(post.vol, true);
+                if (activeAudio === audio) updateMiniPlayer();
+            });
+
+            unit.querySelectorAll('.seek-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const delta = parseFloat(btn.dataset.delta);
+                    const end = isFinite(audio.duration) ? audio.duration : audio.currentTime + Math.abs(delta);
+                    audio.currentTime = Math.max(0, Math.min(end, audio.currentTime + delta));
+                });
+            });
+            unit.querySelector('.stop-btn').addEventListener('click', () => {
                 audio.pause();
                 audio.currentTime = 0;
+                if (activeAudio === audio) {
+                    activeAudio = null;
+                    updateMiniPlayer();
+                }
             });
-            forwardBtn.addEventListener('click', () => {
-                const end = isFinite(audio.duration) ? audio.duration : audio.currentTime + 10;
-                audio.currentTime = Math.min(end, audio.currentTime + 10);
-            });
-
             speedBtns.forEach(sBtn => {
                 sBtn.addEventListener('click', () => {
                     const rate = parseFloat(sBtn.dataset.speed);
                     audio.playbackRate = rate;
                     speedBtns.forEach(b => b.classList.remove('active'));
                     sBtn.classList.add('active');
+                    if (activeAudio === audio) updateMiniPlayer();
                 });
             });
         });
 
-        // 左右スワイプで切り替え（音声プレーヤー・コントロール上は除く）
+        // 3問リスニングクイズのイベント
+        const quizBox = card.querySelector('.quiz-box');
+        if (quizBox) {
+            const quizData = EPISODE_EXTRAS[post.vol].quiz;
+            const solved = new Set();
+            quizBox.querySelectorAll('.q-item').forEach(qEl => {
+                const qIdx = Number(qEl.dataset.qidx);
+                const item = quizData[qIdx];
+                const fb = qEl.querySelector('.q-fb');
+                qEl.querySelectorAll('.q-opt').forEach(optBtn => {
+                    optBtn.addEventListener('click', () => {
+                        const oIdx = Number(optBtn.dataset.oidx);
+                        qEl.querySelectorAll('.q-opt').forEach(b => b.classList.remove('correct', 'wrong'));
+                        if (oIdx === item.ans) {
+                            optBtn.classList.add('correct');
+                            fb.style.color = 'var(--ok)';
+                            fb.textContent = '✅ Correct! ' + item.exp;
+                            solved.add(qIdx);
+                        } else {
+                            optBtn.classList.add('wrong');
+                            fb.style.color = 'var(--err)';
+                            fb.textContent = '👂 Not quite — try listening again!';
+                        }
+                        quizBox.querySelector('.quiz-score').textContent = `${solved.size} / ${quizData.length} Correct`;
+                    });
+                });
+            });
+        }
+
+        // 左右スワイプでレベル切替
         const panelsEl = card.querySelector('.level-panels');
         const levelCount = post.levels.length;
         let startX = 0, startY = 0, tracking = false;
         panelsEl.addEventListener('touchstart', (e) => {
-            if (e.target.closest('audio, .audio-unit, .ctrl-btn')) { tracking = false; return; }
+            if (e.target.closest('audio, .audio-unit, .ctrl-btn, .tool-btn')) { tracking = false; return; }
             const t = e.touches[0];
             startX = t.clientX; startY = t.clientY; tracking = true;
         }, { passive: true });
@@ -971,17 +1563,15 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         return card;
     }
 
-    // 全記事を初期状態で閉じたまま表示（失敗時は真っ白にせず案内を出す）
     try {
         blogPosts.forEach(post => {
             container.appendChild(buildCard(post, false));
         });
+        updateProgressUI();
     } catch (err) {
         container.innerHTML = '<div class="noscript-box">記事を読み込めませんでした。ページを再読み込みしてください。<br>Failed to load the episodes. Please reload the page.</div>';
         console.error(err);
     }
-
 </script>
-
 </body>
 </html>
