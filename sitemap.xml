@@ -5,10 +5,9 @@
   <url><loc>https://ohayocenter.com/onomato.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ohayocenter.com/idioms.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ohayocenter.com/adj.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ohayocenter.com/trip-listen.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://ohayocenter.com/trip-flashcards.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ohayocenter.com/trip-quiz.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ohayocenter.com/trip-quests.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ohayocenter.com/trip-listen.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ohayocenter.com/hiragana-nazori.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ohayocenter.com/hiraganatype.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ohayocenter.com/katakana-nazori.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
