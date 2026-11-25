@@ -3,48 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Katakana Master - OHAYO CENTER</title>
-    <meta name="description" content="Katakana Master - OHAYO CENTER">
+    <title>Katakana Master (Typing Game) - OHAYO CENTER</title>
+    <meta name="description" content="Master reading and typing Katakana! Play 20s/30s Sprint or Relax Mode with combos, real audio, weak-kana review, and loanwords.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
     <meta property="og:title" content="Katakana Typing Game | OHAYO CENTER">
-    <meta property="og:description" content="How many katakana can you read in 20 seconds? A fast romaji typing game with basic, dakuten, combo kana and loanwords.">
+    <meta property="og:description" content="How many katakana can you read and type? Play 20s/30s Sprint or Relax Mode with real audio, combos, weak-kana review, and loanwords.">
     <meta property="og:url" content="https://ohayocenter.com/katakanatype.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Katakana Typing Game | OHAYO CENTER">
-    <meta name="twitter:description" content="How many katakana can you read in 20 seconds? A fast romaji typing game with basic, dakuten, combo kana and loanwords.">
+    <meta name="twitter:description" content="How many katakana can you read and type? Play 20s/30s Sprint or Relax Mode with real audio, combos, weak-kana review, and loanwords.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
 
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png"> 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&family=Klee+One:wght@600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
+    <link rel="icon" href="icon.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="icon.png" sizes="192x192">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Sawarabi+Mincho&family=Klee+One:wght@600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
-            --primary-color: #5D8A82;   
-            --primary-hover: #4a6e68;
-            --secondary-color: #F2F5F4; 
-            --text-color: #3C4745;      
-            --accent-color: #D98880;    
-            --success-color: #74B566;
-            --bmc-color: #FFDD00;
+            --bg: #f7fcff;
+            --card: #ffffff;
+            --surface: #f8fafc;
+            --text: #2c3e50;
+            --muted: #64748b;
+            --primary: #4fc3f7;
+            --primary-deep: #0288d1;
+            --soft: #e1f5fe;
+            --border: #e2e8f0;
+            --ok: #10b981;
+            --ok-soft: #ecfdf5;
+            --warn: #f59e0b;
+            --warn-soft: #fffbeb;
+            --err: #ef4444;
+            --err-soft: #fef2f2;
             --textbook-font: 'Klee One', cursive;
+            --shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+        }
+        body.dark-mode {
+            --bg: #16181d;
+            --card: #22262e;
+            --surface: #1b1f26;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --primary: #4fc3f7;
+            --primary-deep: #29b6f6;
+            --soft: #1f3442;
+            --border: #334155;
+            --ok-soft: #064e3b;
+            --warn-soft: #451a03;
+            --err-soft: #450a0a;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
-        body { 
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; 
-            background-color: var(--secondary-color); 
-            color: var(--text-color); 
-            padding-top: 90px;
-            line-height: 1.6;
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding-top: 86px;
+            line-height: 1.55;
+            transition: background 0.25s, color 0.25s;
         }
 
+        /* --- NAVIGATION --- */
         nav {
-            background: rgba(250, 252, 251, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             padding: 0 5%;
             height: 70px;
@@ -56,290 +81,531 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            font-family: 'Noto Sans JP', sans-serif;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
+        body.dark-mode nav { background: rgba(22, 24, 29, 0.95); }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
-        .logo a { text-decoration: none; color: var(--text-color); }
-        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; opacity: 0.8; }
-        .nav-links a:hover { color: var(--primary-color); opacity: 1; }
+        .logo a { text-decoration: none; color: var(--text); }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.2s; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary-deep); }
 
-        .container { 
-            max-width: 900px; 
-            margin: 0 auto 40px; 
-            background-color: #fff; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
-            padding: 40px 20px;
+        /* --- MAIN CONTAINER --- */
+        .container {
+            max-width: 820px;
+            margin: 0 auto 30px;
+            background: var(--card);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 28px 20px 34px;
             text-align: center;
-            border: 1px solid #E6EBEA;
+            border: 1px solid var(--border);
         }
 
-        h1 { 
-            color: var(--primary-color); 
-            border-bottom: 2px solid #DCE3E2; 
-            padding-bottom: 10px; 
-            margin-bottom: 20px;
-            font-family: 'Noto Sans JP', sans-serif;
+        h1 {
+            color: var(--text);
+            font-family: 'Sawarabi Mincho', serif;
             font-size: 1.8rem;
+            margin-bottom: 6px;
         }
+        .header-sub {
+            font-size: 0.86rem;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .script-switch-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary-deep);
+            background: var(--soft);
+            padding: 6px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            margin-bottom: 18px;
+            transition: transform 0.15s, opacity 0.2s;
+        }
+        .script-switch-link:hover { opacity: 0.88; transform: translateY(-1px); }
 
-        .mode-selector { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
-        .mode-btn { 
-            padding: 10px 18px; 
-            border: 1px solid #D1D9D7; 
-            background: #fff; 
-            color: #7E8C89; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 0.75rem; 
-            transition: all 0.3s ease; 
+        /* --- MODE SELECTOR --- */
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .mode-btn {
+            padding: 9px 14px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.76rem;
+            transition: 0.2s;
             font-family: 'Noto Sans JP', sans-serif;
         }
-        .mode-btn.active { 
-            background: var(--primary-color); 
-            color: white; 
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 10px rgba(93, 138, 130, 0.3); 
+        .mode-btn:hover { border-color: var(--primary); color: var(--text); }
+        .mode-btn.active {
+            background: var(--primary-deep);
+            color: #fff;
+            border-color: var(--primary-deep);
+        }
+        .mode-btn.weak-btn {
+            border-color: var(--warn);
+            color: #b45309;
+        }
+        body.dark-mode .mode-btn.weak-btn { color: #fcd34d; }
+        .mode-btn.weak-btn.active {
+            background: var(--warn);
+            color: #fff;
+            border-color: var(--warn);
         }
 
+        /* --- ROW SELECTOR --- */
         .row-selector {
             display: flex;
             justify-content: center;
             gap: 6px;
-            margin-bottom: 25px;
+            margin-bottom: 18px;
             flex-wrap: wrap;
             padding: 10px;
-            background: #F8FAF9;
-            border-radius: 12px;
-            border: 1px solid #EDF1F0;
+            background: var(--surface);
+            border-radius: 14px;
+            border: 1px solid var(--border);
         }
         .row-btn {
-            padding: 6px 12px;
-            background: #fff;
-            border: 1px solid #D1D9D7;
-            border-radius: 8px;
-            color: #5D8A82;
-            font-size: 0.85rem;
-            font-weight: bold;
+            padding: 6px 11px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 9px;
+            color: var(--text);
+            font-size: 0.84rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: 0.18s;
         }
-        .row-btn:hover { background: #E6EBEA; }
+        .row-btn:hover { border-color: var(--primary); }
         .row-btn.active {
-            background: var(--primary-color);
+            background: var(--primary-deep);
             color: #fff;
-            border-color: var(--primary-color);
+            border-color: var(--primary-deep);
         }
 
-        .game-card { 
-            position: relative; 
-            background: #FAFBFA; 
-            border: 1px solid #EDF1F0;
-            border-radius: 20px; 
-            padding: 40px 20px 60px; 
-            min-height: 400px;
+        /* --- GAME CARD --- */
+        .game-card {
+            position: relative;
+            background: var(--surface);
+            border: 2px solid var(--soft);
+            border-radius: 22px;
+            padding: 20px 18px 28px;
+            min-height: 410px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
-        
-        .progress-container {
-            width: 90%;
-            max-width: 400px;
-            height: 8px;
-            background: #E0E6E4;
-            border-radius: 4px;
-            margin: 0 auto 20px;
-            overflow: hidden;
+
+        .status-bar {
             position: absolute;
-            top: 60px;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.92rem;
+            font-family: 'Montserrat', sans-serif;
+            gap: 8px;
+        }
+        .stat-pill {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 999px;
+            color: var(--text);
+        }
+        .stat-pill.timer-pill { color: var(--primary-deep); }
+        .stat-pill.timer-pill.urgent { color: var(--err); border-color: var(--err); background: var(--err-soft); }
+        .stat-pill.combo-pill {
+            background: var(--warn-soft);
+            border-color: var(--warn);
+            color: #b45309;
+            opacity: 0;
+            transform: scale(0.85);
+            transition: 0.2s;
+        }
+        .stat-pill.combo-pill.show { opacity: 1; transform: scale(1); }
+        body.dark-mode .stat-pill.combo-pill { color: #fcd34d; }
+
+        .progress-container {
+            position: absolute;
+            top: 56px;
+            left: 20px;
+            right: 20px;
+            height: 7px;
+            background: var(--border);
+            border-radius: 999px;
+            overflow: hidden;
         }
         .progress-bar {
             height: 100%;
-            background: var(--accent-color);
+            background: linear-gradient(90deg, var(--primary), var(--primary-deep));
             width: 100%;
-            transition: width 1s linear, background-color 0.3s;
+            transition: width 0.4s linear, background-color 0.3s;
+        }
+        .progress-bar.urgent { background: var(--err); }
+
+        .target-char {
+            font-family: var(--textbook-font);
+            font-size: 7.4rem;
+            color: var(--text);
+            line-height: 1.05;
+            margin: 56px 0 12px;
+            transition: transform 0.12s;
+        }
+        .target-char.long { font-size: 3.1rem; margin: 66px 0 16px; }
+
+        .word-meaning {
+            min-height: 1.5em;
+            margin-bottom: 12px;
+            font-size: 0.96rem;
+            color: var(--muted);
+            font-weight: 700;
         }
 
-        .status-bar { position: absolute; top: 25px; width: 100%; display: flex; justify-content: space-around; font-weight: bold; color: #889694; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; }
-        
-        .target-char { 
-            font-family: var(--textbook-font); 
-            font-size: 8rem; 
-            color: var(--text-color); 
-            line-height: 1; 
-            margin-bottom: 30px;
-            margin-top: 40px;
-            transition: transform 0.1s;
-        }
-        .target-char.long { font-size: 3.5rem; }
-
-        input[type="text"] { 
-            width: 80%; 
-            max-width: 300px; 
-            padding: 15px; 
-            font-size: 24px; 
-            border: 2px solid #E0E6E4; 
-            border-radius: 12px; 
-            text-align: center; 
+        input[type="text"] {
+            width: 100%;
+            max-width: 310px;
+            padding: 14px 16px;
+            font-size: 24px;
+            border: 2.5px solid var(--border);
+            border-radius: 14px;
+            text-align: center;
             outline: none;
-            transition: all 0.3s;
-            background-color: #fff;
-            color: var(--text-color);
+            transition: border-color 0.15s, background-color 0.15s;
+            background-color: var(--card);
+            color: var(--text);
             font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
-        input[type="text"]:focus { border-color: var(--primary-color); box-shadow: 0 0 15px rgba(93, 138, 130, 0.15); }
-        input[type="text"].correct { border-color: var(--success-color); background-color: #F0F8EE; }
+        input[type="text"]:focus { border-color: var(--primary-deep); box-shadow: 0 0 0 4px var(--soft); }
+        input[type="text"].correct { border-color: var(--ok); background-color: var(--ok-soft); }
+        input[type="text"].wrong { border-color: var(--err); background-color: var(--err-soft); animation: shake 0.28s; }
 
-        .word-meaning { min-height: 1.6em; margin-top: 12px; font-size: 1.05rem; color: #889694; font-weight: bold; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
-        .hint-text { min-height: 1.6em; margin-top: 10px; font-size: 1.2rem; color: var(--accent-color); font-weight: bold; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; transition: opacity 0.3s; }
-        .btn-hint { margin-top: 8px; padding: 9px 22px; border: 1px solid #D1D9D7; background: #fff; color: #7E8C89; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.8rem; font-family: 'Noto Sans JP', sans-serif; transition: all 0.3s ease; }
-        .btn-hint:hover:not(:disabled) { background: #E6EBEA; }
-        .btn-hint:disabled { opacity: 0.45; cursor: default; }
-        .result-badge .meaning { font-size: 0.8rem; color: #889694; font-family: 'Montserrat', sans-serif; }
-
-        @keyframes pop {
-            0% { transform: scale(1); color: var(--text-color); }
-            50% { transform: scale(1.2); color: var(--success-color); }
-            100% { transform: scale(1); color: var(--text-color); }
+        .hint-text {
+            min-height: 1.5em;
+            margin-top: 10px;
+            font-size: 1.05rem;
+            color: var(--primary-deep);
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 2px;
         }
-        .animate-pop { animation: pop 0.4s ease-out; }
 
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 20px; }
-        
-        .toggle-wrapper {
+        .control-row {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .ctrl-btn {
+            padding: 8px 15px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.78rem;
+            transition: 0.18s;
+        }
+        .ctrl-btn:hover:not(:disabled) { border-color: var(--primary-deep); color: var(--primary-deep); }
+        .ctrl-btn:disabled { opacity: 0.45; cursor: default; }
+        .ctrl-btn.finish-relax {
+            border-color: var(--ok);
+            color: var(--ok);
+            display: none;
+        }
+
+        /* --- OVERLAYS --- */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 22px 18px;
+            border-radius: 20px;
+            overflow-y: auto;
+        }
+        body.dark-mode .overlay { background: rgba(27, 31, 38, 0.96); }
+
+        .best-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #b45309;
+            background: var(--warn-soft);
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+        }
+        body.dark-mode .best-pill { color: #fcd34d; }
+
+        .pace-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .pace-btn {
+            padding: 9px 15px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: 0.18s;
+        }
+        .pace-btn.active {
+            background: var(--primary-deep);
+            color: #fff;
+            border-color: var(--primary-deep);
+        }
+
+        .btn-start {
+            background: var(--primary-deep);
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.08rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.2s;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-start:hover { opacity: 0.93; }
+        .btn-start:active { transform: scale(0.97); }
+
+        /* Result Screen */
+        .result-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+        .rank-badge {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+            color: #fff;
             font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
-            color: #889694;
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.14);
         }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 32px;
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            width: 100%;
+            max-width: 360px;
+            margin-bottom: 12px;
         }
-        .switch input { 
-            opacity: 0;
-            width: 0;
-            height: 0;
+        .rstat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 6px;
         }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #D1D9D7;
-            transition: .3s;
-            border-radius: 34px;
+        .rstat-val { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text); }
+        .rstat-lbl { font-size: 0.68rem; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+        .new-best-banner {
+            font-size: 0.84rem;
+            font-weight: 800;
+            color: #b45309;
+            background: var(--warn-soft);
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+            display: none;
         }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 24px;
-            width: 24px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .3s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: var(--primary-color);
-        }
-        input:checked + .slider:before {
-            transform: translateX(28px);
-        }
-
-        /* New Styles for Result Badges */
         .result-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
             justify-content: center;
-            max-width: 90%;
-            margin-bottom: 30px;
-            max-height: 180px;
+            gap: 7px;
+            margin: 6px 0 14px;
+            max-width: 100%;
+            max-height: 115px;
             overflow-y: auto;
-            padding: 10px;
+            padding: 4px;
         }
-        .result-badge {
-            background: #fff;
-            border: 2px solid #DCE3E2;
+        .badge {
+            background: var(--card);
+            border: 1.5px solid var(--border);
             border-radius: 10px;
-            padding: 8px 15px;
+            padding: 5px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .badge.weak-item {
+            border-color: var(--warn);
+            background: var(--warn-soft);
+        }
+        .badge .jp { font-family: var(--textbook-font); font-size: 1.25rem; color: var(--text); }
+        .badge .en { font-size: 0.74rem; color: var(--primary-deep); font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; }
+        .badge .meaning { font-size: 0.72rem; color: var(--muted); }
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-weak-run {
+            background: var(--warn);
+            color: #fff;
+            border: none;
+            padding: 13px 22px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* --- COLLECTION MAP --- */
+        .chart-section { margin-top: 34px; }
+        .chart-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto 8px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .lib-title { font-weight: 800; color: var(--text); font-size: 0.88rem; letter-spacing: 1px; font-family: 'Montserrat', sans-serif; }
+        .lib-tip { font-size: 0.76rem; color: var(--muted); }
+        .col-progress-wrap {
+            max-width: 600px;
+            margin: 0 auto 16px;
+            height: 9px;
+            background: var(--soft);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .col-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-deep));
+            transition: width 0.4s;
+        }
+        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; max-width: 600px; margin: 0 auto; }
+        .char-item {
+            background: var(--surface);
+            padding: 13px 4px;
+            border-radius: 13px;
+            opacity: 0.58;
+            transition: transform 0.16s, border-color 0.2s, opacity 0.25s;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+        .char-item:hover { transform: translateY(-2px); opacity: 0.92; border-color: var(--primary); }
+        .char-item.collected {
+            background: var(--card);
+            opacity: 1;
+            border-color: var(--primary-deep);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .char-item.is-weak::after {
+            content: "!";
+            position: absolute;
+            top: 4px;
+            right: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--warn);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            justify-content: center;
         }
-        .result-badge .jp {
-            font-family: var(--textbook-font);
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            font-weight: bold;
+        .char-item .jp { font-family: var(--textbook-font); font-size: 1.8rem; display: block; color: var(--text); line-height: 1.15; }
+        .char-item .en { font-size: 0.7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; font-family: 'Montserrat', sans-serif; }
+        .char-item.collected .en { color: var(--primary-deep); }
+        .char-item.empty { visibility: hidden; pointer-events: none; }
+
+        /* --- FOOTER --- */
+        .support-section { text-align: center; margin: 24px auto 14px; padding: 20px 16px 10px; max-width: 780px; }
+        .support-section p { color: var(--muted); font-size: 0.88rem; margin-bottom: 14px; }
+        .bmc-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #FFDD00;
+            color: #000000;
+            border-radius: 12px;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
-        .result-badge .en {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            color: #889694;
-            text-transform: uppercase;
+        .bmc-btn:hover { transform: translateY(-2px); }
+        .bmc-btn img { height: 22px; margin-right: 10px; }
+        footer { text-align: center; color: var(--muted); padding: 10px 16px 36px; font-size: 0.78rem; }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            45% { transform: scale(1.16); color: var(--ok); }
+            100% { transform: scale(1); }
         }
-
-        .btn-start { 
-            background-color: var(--primary-color); 
-            color: white; 
-            border: none; 
-            padding: 16px 45px; 
-            font-size: 1.2rem; 
-            font-weight: bold; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            transition: 0.2s;
-            box-shadow: 0 4px 0 var(--primary-hover);
-            font-family: 'Montserrat', sans-serif;
-        }
-        .btn-start:active { transform: translateY(4px); box-shadow: 0 0 0 var(--primary-hover); }
-
-        .chart-section { margin-top: 50px; }
-        .lib-title { font-weight: bold; color: #A4B0AE; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
-        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 600px; margin: 0 auto; }
-        .char-item { background: #EBEEED; padding: 18px 5px; border-radius: 12px; opacity: 0.5; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: grayscale(1); border: 2px solid transparent; }
-        .char-item.collected { background: #fff; opacity: 1; filter: grayscale(0); border: 2px solid var(--primary-color); transform: scale(1.02); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .char-item .jp { font-family: var(--textbook-font); font-size: 2rem; display: block; color: var(--text-color); }
-        .char-item .en { font-size: 0.75rem; color: #A4B0AE; font-weight: bold; text-transform: uppercase; font-family: 'Montserrat', sans-serif; }
-        .char-item.collected .en { color: var(--primary-color); }
-        .char-item.empty { visibility: hidden; }
-
-        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
-        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
-        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; font-family: 'Montserrat', sans-serif; }
-        .bmc-custom-btn:hover { transform: translateY(-2px); }
-
-        footer { text-align: center; color: #A4B0AE; padding-bottom: 40px; font-size: 12px; margin-top: 40px;}
+        .animate-pop { animation: pop 0.32s ease-out; }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 
         @media (max-width: 600px) {
-            nav { padding: 0 15px; }
+            nav { padding: 0 14px; }
             .logo { font-size: 1rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.7rem; }
-            .target-char { font-size: 25vw; }
+            .container { padding: 20px 12px 26px; border-radius: 16px; }
+            .target-char { font-size: 5.5rem; }
+            .target-char.long { font-size: 2.3rem; }
             .grid { gap: 6px; }
-            .char-item { padding: 10px 2px; }
-            .char-item .jp { font-size: 1.5rem; }
-            .row-selector { gap: 4px; padding: 5px; }
-            .row-btn { font-size: 0.75rem; padding: 5px 10px; }
-            .result-badges { max-height: 120px; }
+            .char-item { padding: 9px 2px; }
+            .char-item .jp { font-size: 1.45rem; }
+            .status-bar { font-size: 0.78rem; }
         }
     </style>
 <style id="ohayo-cta-style">
@@ -379,86 +645,115 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+        <li><a onclick="toggleDarkMode()" title="Toggle Dark Mode"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
     </ul>
 </nav>
 
 <div class="container">
     <h1>Katakana Master</h1>
-    
+    <p class="header-sub">Type the Romaji as fast as you can — or practice calmly in Relax Mode!</p>
+    <a class="script-switch-link" href="hiraganatype.html">🌸 Switch to Hiragana Typing →</a>
+
     <div class="mode-selector">
-        <button class="mode-btn active" onclick="setMode('basic')">BASIC (ア-ン)</button>
-        <button class="mode-btn" onclick="setMode('dakuon')">DAKUON (ガ-ポ)</button>
-        <button class="mode-btn" onclick="setMode('combo')">COMBOS (キャ-リョ)</button>
-        <button class="mode-btn" onclick="setMode('words')" style="border-color:var(--accent-color); color:var(--accent-color)">LOANWORDS</button>
+        <button class="mode-btn active" data-mode="basic" onclick="setMode('basic')">BASIC (ア-ン)</button>
+        <button class="mode-btn" data-mode="dakuon" onclick="setMode('dakuon')">DAKUON (ガ-ポ)</button>
+        <button class="mode-btn" data-mode="combo" onclick="setMode('combo')">COMBOS (キャ-リョ)</button>
+        <button class="mode-btn" data-mode="words" onclick="setMode('words')">LOANWORDS (51)</button>
+        <button class="mode-btn weak-btn" data-mode="weak" id="weak-mode-btn" onclick="setMode('weak')">🎯 WEAK (0)</button>
         <button class="mode-btn" id="sound-btn" onclick="toggleSound()">🔊 SOUND: ON</button>
     </div>
 
-    <!-- 行選択セレクタ (BASICモード時のみ表示) -->
     <div class="row-selector" id="row-selector">
-        <button class="row-btn active" onclick="setRow('all')">すべて</button>
-        <button class="row-btn" onclick="setRow('a')">ア</button>
-        <button class="row-btn" onclick="setRow('k')">カ</button>
-        <button class="row-btn" onclick="setRow('s')">サ</button>
-        <button class="row-btn" onclick="setRow('t')">タ</button>
-        <button class="row-btn" onclick="setRow('n')">ナ</button>
-        <button class="row-btn" onclick="setRow('h')">ハ</button>
-        <button class="row-btn" onclick="setRow('m')">マ</button>
-        <button class="row-btn" onclick="setRow('y')">ヤ</button>
-        <button class="row-btn" onclick="setRow('r')">ラ</button>
-        <button class="row-btn" onclick="setRow('w')">ワ</button>
+        <button class="row-btn active" data-row="all" onclick="toggleRow('all')">All</button>
+        <button class="row-btn" data-row="a" onclick="toggleRow('a')">ア</button>
+        <button class="row-btn" data-row="k" onclick="toggleRow('k')">カ</button>
+        <button class="row-btn" data-row="s" onclick="toggleRow('s')">サ</button>
+        <button class="row-btn" data-row="t" onclick="toggleRow('t')">タ</button>
+        <button class="row-btn" data-row="n" onclick="toggleRow('n')">ナ</button>
+        <button class="row-btn" data-row="h" onclick="toggleRow('h')">ハ</button>
+        <button class="row-btn" data-row="m" onclick="toggleRow('m')">マ</button>
+        <button class="row-btn" data-row="y" onclick="toggleRow('y')">ヤ</button>
+        <button class="row-btn" data-row="r" onclick="toggleRow('r')">ラ</button>
+        <button class="row-btn" data-row="w" onclick="toggleRow('w')">ワ</button>
     </div>
 
     <div class="game-card">
         <div class="status-bar">
-            <!-- 20s に変更 -->
-            <span id="timer" style="color:var(--accent-color)">TIME: 20s</span>
-            <span id="score">SCORE: 0</span>
+            <span class="stat-pill timer-pill" id="timer">⏱ 20s</span>
+            <span class="stat-pill combo-pill" id="combo-pill">🔥 0 COMBO</span>
+            <span class="stat-pill" id="score">SCORE: 0</span>
         </div>
-        
-        <div class="progress-container">
+
+        <div class="progress-container" id="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
 
         <div class="target-char" id="display-box"><span id="target-text">Ready?</span></div>
         <div class="word-meaning" id="word-meaning" style="display:none;"></div>
-        <input type="text" id="game-input" placeholder="Type reading..." autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="url" disabled>
+        <input type="text" id="game-input" placeholder="Type romaji..." autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="url" disabled>
         <div class="hint-text" id="hint-text"></div>
-        <button class="btn-hint" id="hint-btn" onclick="showHint()" disabled>💡 HINT</button>
 
-        <div id="start-overlay" class="overlay">
-            <h2 id="mode-title" style="margin-bottom:10px; font-family:'Montserrat', sans-serif;">BASIC MODE</h2>
-            <p id="mode-desc" style="color:#888; margin-bottom:20px;">Type the Romaji!</p>
-            
-            <div class="toggle-wrapper" id="time-toggle-wrapper">
-                <span>20s</span>
-                <label class="switch">
-                    <input type="checkbox" id="time-toggle">
-                    <span class="slider"></span>
-                </label>
-                <span>30s</span>
-            </div>
-
-            <button class="btn-start" onclick="startGame()">START RUN</button>
+        <div class="control-row">
+            <button class="ctrl-btn" id="replay-btn" onclick="playTargetSound()" disabled>🔊 Replay</button>
+            <button class="ctrl-btn" id="hint-btn" onclick="showHint()" disabled>💡 Hint</button>
+            <button class="ctrl-btn" id="skip-btn" onclick="skipCurrent()" disabled>⏭ Skip</button>
+            <button class="ctrl-btn finish-relax" id="finish-relax-btn" onclick="endGame()">✅ Finish</button>
         </div>
 
-        <div id="result-overlay" class="overlay" style="display:none;">
-            <h2 style="color:var(--primary-color); font-family:'Montserrat', sans-serif;">FINISH!</h2>
-            <div id="final-score" style="font-size:5rem; font-weight:900; color:var(--accent-color); margin: 10px 0; line-height: 1;">0</div>
-            <p style="color:#888; margin-bottom:15px; font-weight:bold;">Correct Answers</p>
-            
-            <!-- Result Badges Container -->
-            <div id="result-badges" class="result-badges"></div>
+        <!-- START OVERLAY -->
+        <div id="start-overlay" class="overlay">
+            <h2 id="mode-title" style="margin-bottom:4px; font-family:'Montserrat', sans-serif; color:var(--text);">BASIC MODE</h2>
+            <p id="mode-desc" style="color:var(--muted); font-size:0.88rem; margin-bottom:10px;">Practice: All Basic</p>
+            <div class="best-pill" id="best-pill">🏆 Best: 0</div>
 
-            <button class="btn-start" onclick="resetToStart()">TRY AGAIN</button>
+            <div class="pace-selector" role="group" aria-label="Game pace">
+                <button class="pace-btn active" data-pace="20" onclick="setPace(20)">⚡ 20s Sprint</button>
+                <button class="pace-btn" data-pace="30" onclick="setPace(30)">⏱️ 30s Sprint</button>
+                <button class="pace-btn" data-pace="0" onclick="setPace(0)">🧘 Relax (No Timer)</button>
+            </div>
+
+            <button class="btn-start" id="start-btn" onclick="startGame()">START RUN</button>
+        </div>
+
+        <!-- RESULT OVERLAY -->
+        <div id="result-overlay" class="overlay" style="display:none;">
+            <div class="result-header">
+                <div class="rank-badge" id="rank-badge">A</div>
+                <div style="text-align:left;">
+                    <h2 style="color:var(--primary-deep); font-family:'Montserrat', sans-serif; font-size:1.35rem; margin-bottom:2px;">RUN COMPLETE!</h2>
+                    <div id="result-sub" style="font-size:0.82rem; color:var(--muted); font-weight:700;">Great rhythm!</div>
+                </div>
+            </div>
+
+            <div class="new-best-banner" id="new-best-banner">🎉 NEW PERSONAL BEST!</div>
+
+            <div class="result-stats">
+                <div class="rstat"><div class="rstat-val" id="final-score">0</div><div class="rstat-lbl">Typed</div></div>
+                <div class="rstat"><div class="rstat-val" id="final-combo">0</div><div class="rstat-lbl">Max Combo</div></div>
+                <div class="rstat"><div class="rstat-val" id="final-acc">100%</div><div class="rstat-lbl">Accuracy</div></div>
+            </div>
+
+            <p style="color:var(--muted); font-weight:700; font-size:0.78rem;">Tap any badge to hear pronunciation 🔊</p>
+            <div id="typed-badges" class="result-badges"></div>
+
+            <div class="result-actions">
+                <button class="btn-start" onclick="startGame()">PLAY AGAIN</button>
+                <button class="btn-weak-run" id="btn-weak-run" onclick="practiceWeakNow()">🎯 Practice Tricky Ones</button>
+            </div>
         </div>
     </div>
 
     <div class="chart-section" id="chart-area">
-        <p class="lib-title">COLLECTION MAP</p>
+        <div class="chart-head">
+            <span class="lib-title" id="lib-title">COLLECTION MAP (0 / 46)</span>
+            <span class="lib-tip">🔊 Tap any kana to hear it!</span>
+        </div>
+        <div class="col-progress-wrap"><div class="col-progress-fill" id="col-progress-fill"></div></div>
         <div class="grid" id="lib-grid"></div>
     </div>
-    
-    <!-- OHAYO_NEXT_CTA -->
+</div>
+
+<!-- OHAYO_NEXT_CTA -->
 <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
   <div class="ohayo-cta-next">
     <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
@@ -478,19 +773,23 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 </section>
 
 <div class="support-section">
-        <h2>Support OHAYO CENTER</h2>
-        <p>If you find Katakana Master helpful, please consider supporting us!</p>
-        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-            ☕️ <span>SUPPORT OHAYO CENTER</span>
-        </a>
-    </div>
+    <p>If you find Katakana Master helpful, please consider supporting us!</p>
+    <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+        <span>Support OHAYO CENTER</span>
+    </a>
 </div>
 
 <footer>
-    <p>&copy; OHAYO CENTER - Interactive Study Portal</p>
+    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
 </footer>
 
 <script>
+    const COLLECTION_KEY = 'ohayo_katakana_save';
+    const WEAK_KEY = 'ohayo_kata_type_weak_v1';
+    const BEST_KEY = 'ohayo_kata_type_best_v1';
+    const ROW_NAMES = {"all": "All", "a": "ア", "k": "カ", "s": "サ", "t": "タ", "n": "ナ", "h": "ハ", "m": "マ", "y": "ヤ", "r": "ラ", "w": "ワ"};
+
     const dataSet = {
         basic: [
             {j:'ア',e:['a'],r:'a'},{j:'イ',e:['i'],r:'a'},{j:'ウ',e:['u'],r:'a'},{j:'エ',e:['e'],r:'a'},{j:'オ',e:['o'],r:'a'},
@@ -546,12 +845,35 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         ]
     };
 
-    let GAME_TIME = 20; 
+    const KANA_AUDIO = {"ア":"a","イ":"i","ウ":"u","エ":"e","オ":"o","カ":"ka","キ":"ki","ク":"ku","ケ":"ke","コ":"ko","サ":"sa","シ":"shi","ス":"su","セ":"se","ソ":"so","タ":"ta","チ":"chi","ツ":"tsu","テ":"te","ト":"to","ナ":"na","ニ":"ni","ヌ":"nu","ネ":"ne","ノ":"no","ハ":"ha","ヒ":"hi","フ":"fu","ヘ":"he","ホ":"ho","マ":"ma","ミ":"mi","ム":"mu","メ":"me","モ":"mo","ヤ":"ya","ユ":"yu","ヨ":"yo","ラ":"ra","リ":"ri","ル":"ru","レ":"re","ロ":"ro","ワ":"wa","ヲ":"wo","ン":"n","ガ":"ga","ギ":"gi","グ":"gu","ゲ":"ge","ゴ":"go","ザ":"za","ジ":"ji","ズ":"zu","ゼ":"ze","ゾ":"zo","ダ":"da","ヂ":"di","ヅ":"du","デ":"de","ド":"do","バ":"ba","ビ":"bi","ブ":"bu","ベ":"be","ボ":"bo","パ":"pa","ピ":"pi","プ":"pu","ペ":"pe","ポ":"po","キャ":"kya","キュ":"kyu","キョ":"kyo","ギャ":"gya","ギュ":"gyu","ギョ":"gyo","シャ":"sha","シュ":"shu","ショ":"sho","ジャ":"ja","ジュ":"ju","ジョ":"jo","チャ":"cha","チュ":"chu","チョ":"cho","ニャ":"nya","ニュ":"nyu","ニョ":"nyo","ヒャ":"hya","ヒュ":"hyu","ヒョ":"hyo","ビャ":"bya","ビュ":"byu","ビョ":"byo","ピャ":"pya","ピュ":"pyu","ピョ":"pyo","ミャ":"mya","ミュ":"myu","ミョ":"myo","リャ":"rya","リュ":"ryu","リョ":"ryo"};
+    const WORD_AUDIO = {"アメリカ": "word-amerika.mp3", "カメラ": "word-kamera.mp3", "アイス": "word-aisu.mp3", "コーヒー": "word-kohii.mp3", "パン": "word-pan.mp3", "テレビ": "word-terebi.mp3", "パソコン": "word-pasokon.mp3", "トイレ": "word-toire.mp3", "ラーメン": "word-raamen.mp3", "チョコ": "word-choko.mp3", "コーラ": "word-koora.mp3", "サラダ": "word-sarada.mp3", "バナナ": "word-banana.mp3", "ミルク": "word-miruku.mp3", "ビール": "word-biiru.mp3", "ジュース": "word-juusu.mp3", "ピザ": "word-piza.mp3", "ケーキ": "word-keeki.mp3", "カレー": "word-karee.mp3", "パスタ": "word-pasuta.mp3", "ソース": "word-soosu.mp3", "スマホ": "word-sumaho.mp3", "アプリ": "word-apuri.mp3", "マウス": "word-mausu.mp3", "ソフト": "word-sofuto.mp3", "メール": "word-meeru.mp3", "ビル": "word-biru.mp3", "ノート": "word-nooto.mp3", "コップ": "word-koppu.mp3", "ベッド": "word-beddo.mp3", "ドア": "word-doa.mp3", "バス": "word-basu.mp3", "タクシー": "word-takushii.mp3", "スポーツ": "word-supootsu.mp3", "クラス": "word-kurasu.mp3", "ニュース": "word-nyuusu.mp3", "ギター": "word-gitaa.mp3", "ピアノ": "word-piano.mp3", "ラジオ": "word-rajio.mp3", "ホテル": "word-hoteru.mp3", "ロンドン": "word-rondon.mp3", "フランス": "word-furansu.mp3", "イタリア": "word-itaria.mp3", "ドイツ": "word-doitsu.mp3", "スペイン": "word-supein.mp3", "デパート": "word-depaato.mp3", "コンビニ": "word-konbini.mp3", "レストラン": "word-resutoran.mp3", "プール": "word-puuru.mp3", "サウナ": "word-sauna.mp3", "シアター": "word-shiataa.mp3"};
+
+    const ALL_PLAYABLE = [
+        ...dataSet.basic.filter(Boolean),
+        ...dataSet.dakuon.filter(Boolean),
+        ...dataSet.combo.filter(Boolean),
+        ...dataSet.words.filter(Boolean)
+    ];
+
+    let paceSeconds = 20; // 20 | 30 | 0 (Relax)
     let currentMode = 'basic';
-    let selectedRows = new Set(['all']); 
-    let score = 0, time = GAME_TIME, current = null, timerInterval, lastChar = '';
-    let savedCollection = JSON.parse(localStorage.getItem('ohayo_katakana_save')) || [];
-    let currentSessionCorrect = []; // Track correct answers for the current round
+    let selectedRows = ['all'];
+    let score = 0, combo = 0, maxCombo = 0, typos = 0, time = 20;
+    let current = null, timerInterval = null, lastChar = '', running = false;
+    let currentRoundTyped = [];
+    let currentRoundWeak = [];
+
+    function loadJSON(key, fallback) {
+        try { return JSON.parse(localStorage.getItem(key) || 'null') ?? fallback; }
+        catch { return fallback; }
+    }
+    function saveJSON(key, val) {
+        try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+    }
+
+    let savedCollection = loadJSON(COLLECTION_KEY, []);
+    let weakList = loadJSON(WEAK_KEY, []);
+    let bestScores = loadJSON(BEST_KEY, {});
 
     const input = document.getElementById('game-input');
     const display = document.getElementById('target-text');
@@ -560,291 +882,474 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     const rowSelectorDiv = document.getElementById('row-selector');
     const modeDesc = document.getElementById('mode-desc');
 
-    function setMode(m) {
-        currentMode = m;
-        // リセットUI
-        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-        const activeBtn = Array.from(document.querySelectorAll('.mode-btn')).find(b => b.innerText.toLowerCase().includes(m));
-        if(activeBtn) activeBtn.classList.add('active');
-        
-        // 行選択UIの表示制御
-        rowSelectorDiv.style.display = (m === 'basic') ? 'flex' : 'none';
-        
-        document.getElementById('mode-title').innerText = m.toUpperCase() + " MODE";
-        updateModeDescription();
-        
-        resetToStart();
-        document.getElementById('chart-area').style.display = (m === 'words' ? 'none' : 'block');
-        renderChart();
+    /* --- ダークモード --- */
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        try { localStorage.setItem('ohayo_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch {}
+    }
+    if (localStorage.getItem('ohayo_theme') === 'dark') {
+        document.body.classList.add('dark-mode');
     }
 
-    function setRow(r) {
-        if (r === 'all') {
-            selectedRows.clear();
-            selectedRows.add('all');
-        } else {
-            selectedRows.delete('all');
-            if (selectedRows.has(r)) {
-                selectedRows.delete(r);
-            } else {
-                selectedRows.add(r);
-            }
-            if (selectedRows.size === 0) {
-                selectedRows.add('all');
-            }
-        }
-        
-        document.querySelectorAll('.row-btn').forEach(b => {
-            // onclick属性から引数の値(行の名前)を抽出
-            const rowVal = b.getAttribute('onclick').match(/'([^']+)'/)[1];
-            if (selectedRows.has(rowVal)) {
-                b.classList.add('active');
-            } else {
-                b.classList.remove('active');
-            }
-        });
-        updateModeDescription();
-    }
-
-    function updateModeDescription() {
-        if(currentMode === 'basic') {
-            const rowNames = {'all':'All', 'a':'ア', 'k':'カ', 's':'サ', 't':'タ', 'n':'ナ', 'h':'ハ', 'm':'マ', 'y':'ヤ', 'r':'ラ', 'w':'ワ'};
-            let desc = Array.from(selectedRows).map(r => rowNames[r]).join(', ');
-            modeDesc.innerText = `Practice: ${desc}`;
-        } else {
-            modeDesc.innerText = "Type the Romaji as fast as you can!"; 
-        }
-    }
-
-    function resetToStart() {
-        document.getElementById('start-overlay').style.display = 'flex';
-        document.getElementById('result-overlay').style.display = 'none';
-        display.innerText = 'Ready?';
-        input.value = '';
-        input.disabled = true;
-        document.getElementById('hint-btn').disabled = true;
-        document.getElementById('word-meaning').style.display = 'none';
-        document.getElementById('hint-text').innerText = '';
-        progressBar.style.width = '100%';
-        progressBar.style.backgroundColor = 'var(--accent-color)';
-    }
-
-    function renderChart() {
-        const grid = document.getElementById('lib-grid');
-        grid.innerHTML = '';
-        if(currentMode === 'words') return;
-        
-        dataSet[currentMode].forEach(item => {
-            if(item) {
-                const isFound = savedCollection.includes(item.j);
-                grid.innerHTML += `<div class="char-item ${isFound?'collected':''}" id="char-${item.j}">
-                    <span class="jp">${item.j}</span>
-                    <span class="en">${item.e[0]}</span>
-                </div>`;
-            } else {
-                grid.innerHTML += `<div class="char-item empty"></div>`;
-            }
-        });
-    }
-
-    function startGame() {
-        // トグルスイッチの状態から制限時間を設定
-        const is30s = document.getElementById('time-toggle').checked;
-        GAME_TIME = is30s ? 30 : 20;
-
-        score = 0; 
-        time = GAME_TIME;
-        currentSessionCorrect = []; // Reset tracked answers
-        document.getElementById('start-overlay').style.display = 'none';
-        document.getElementById('result-overlay').style.display = 'none';
-        document.getElementById('score').innerText = `SCORE: ${score}`;
-        document.getElementById('timer').innerText = `TIME: ${time}s`;
-        progressBar.style.width = '100%';
-        progressBar.style.backgroundColor = 'var(--accent-color)';
-        
-        input.disabled = false;
-        document.getElementById('hint-btn').disabled = false; 
-        input.value = ''; 
-        input.focus();
-        
-        spawn(); 
-        startTimer();
-    }
-
-    function getActivePool() {
-        let pool = dataSet[currentMode].filter(i => i !== null);
-        if(currentMode === 'basic' && !selectedRows.has('all')) {
-            pool = pool.filter(i => selectedRows.has(i.r));
-        }
-        return pool;
-    }
-
-    function spawn() {
-        const pool = getActivePool();
-        if(pool.length === 0) return; // 安全策
-        
-        let next;
-        // 前回と同じ文字が連続するのを防ぐ
-        do {
-            next = pool[Math.floor(Math.random() * pool.length)];
-        } while (next.j === lastChar && pool.length > 1);
-        
-        current = next;
-        lastChar = current.j;
-        display.innerText = current.j;
-        displayBox.className = current.j.length >= 2 ? "target-char long" : "target-char";
-
-        const meaningEl = document.getElementById('word-meaning');
-        if (currentMode === 'words' && current.en) {
-            meaningEl.innerText = current.en;
-            meaningEl.style.display = 'block';
-        } else {
-            meaningEl.style.display = 'none';
-        }
-        const hintEl = document.getElementById('hint-text');
-        hintEl.innerText = '';
-        hintEl.style.opacity = '1';
-        playTargetSound();
-    }
-
-    function triggerSuccessAnimation() {
-        displayBox.classList.remove('animate-pop');
-        void displayBox.offsetWidth; // リフロー強制
-        displayBox.classList.add('animate-pop');
-
-        input.classList.add('correct');
-        setTimeout(() => input.classList.remove('correct'), 150);
-    }
-
-    input.addEventListener('input', (e) => {
-        const val = e.target.value.toLowerCase().trim();
-        if(current && current.e.includes(val)) {
-            score++;
-            document.getElementById('score').innerText = `SCORE: ${score}`;
-            triggerSuccessAnimation();
-            
-            // Record correct answer for the final screen (only unique ones for visual clarity)
-            if(!currentSessionCorrect.some(item => item.j === current.j)) {
-                currentSessionCorrect.push(current);
-            }
-            
-            // コレクション機能の更新
-            if(currentMode !== 'words' && !savedCollection.includes(current.j)) {
-                savedCollection.push(current.j);
-                localStorage.setItem('ohayo_katakana_save', JSON.stringify(savedCollection));
-                const cell = document.getElementById('char-' + current.j);
-                if(cell) {
-                    cell.classList.add('collected');
-                }
-            }
-            input.value = ''; 
-            spawn();
-        }
-    });
-
-    function startTimer() {
-        if(timerInterval) clearInterval(timerInterval);
-        timerInterval = setInterval(() => {
-            time--;
-            document.getElementById('timer').innerText = `TIME: ${time}s`;
-            
-            // プログレスバーの更新
-            const percentage = (time / GAME_TIME) * 100;
-            progressBar.style.width = percentage + '%';
-            
-            if(time <= 10) {
-                progressBar.style.backgroundColor = '#E74C3C'; // 残り僅かで赤色に
-                document.getElementById('timer').style.color = '#E74C3C';
-            } else {
-                document.getElementById('timer').style.color = 'var(--accent-color)';
-            }
-
-            if(time <= 0) {
-                clearInterval(timerInterval);
-                input.disabled = true;
-                document.getElementById('hint-btn').disabled = true;
-                
-                // Show result badges
-                const badgesContainer = document.getElementById('result-badges');
-                badgesContainer.innerHTML = '';
-                currentSessionCorrect.forEach(item => {
-                    badgesContainer.innerHTML += `
-                        <div class="result-badge">
-                            <span class="jp">${item.j}</span>
-                            <span class="en">${item.e[0]}</span>
-                            ${item.en ? `<span class="meaning">${item.en}</span>` : ''}
-                        </div>
-                    `;
+    /* --- 効果音 (Web Audio 優しいチャイム) --- */
+    let audioCtx = null;
+    function playChime(kind) {
+        if (!soundOn) return;
+        try {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            if (kind === 'hit') {
+                osc.frequency.setValueAtTime(660 + Math.min(combo, 12) * 28, now);
+                gain.gain.setValueAtTime(0.06, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.start(now); osc.stop(now + 0.15);
+            } else if (kind === 'finish') {
+                [523.25, 659.25, 783.99].forEach((f, i) => {
+                    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+                    o.type = 'sine'; o.frequency.setValueAtTime(f, now + i * 0.08);
+                    g.gain.setValueAtTime(0.07, now + i * 0.08);
+                    g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.24);
+                    o.connect(g); g.connect(audioCtx.destination);
+                    o.start(now + i * 0.08); o.stop(now + i * 0.08 + 0.25);
                 });
-                
-                document.getElementById('result-overlay').style.display = 'flex';
-                document.getElementById('final-score').innerText = score;
             }
-        }, 1000);
+        } catch {}
     }
 
-    /* --- 発音オーディオ (録音済みMP3を優先再生し、読み込めない場合はブラウザ内蔵TTSにフォールバック) --- */
-    const KANA_AUDIO = {"ア":"a","イ":"i","ウ":"u","エ":"e","オ":"o","カ":"ka","キ":"ki","ク":"ku","ケ":"ke","コ":"ko","サ":"sa","シ":"shi","ス":"su","セ":"se","ソ":"so","タ":"ta","チ":"chi","ツ":"tsu","テ":"te","ト":"to","ナ":"na","ニ":"ni","ヌ":"nu","ネ":"ne","ノ":"no","ハ":"ha","ヒ":"hi","フ":"fu","ヘ":"he","ホ":"ho","マ":"ma","ミ":"mi","ム":"mu","メ":"me","モ":"mo","ヤ":"ya","ユ":"yu","ヨ":"yo","ラ":"ra","リ":"ri","ル":"ru","レ":"re","ロ":"ro","ワ":"wa","ヲ":"wo","ン":"n","ガ":"ga","ギ":"gi","グ":"gu","ゲ":"ge","ゴ":"go","ザ":"za","ジ":"ji","ズ":"zu","ゼ":"ze","ゾ":"zo","ダ":"da","ヂ":"di","ヅ":"du","デ":"de","ド":"do","バ":"ba","ビ":"bi","ブ":"bu","ベ":"be","ボ":"bo","パ":"pa","ピ":"pi","プ":"pu","ペ":"pe","ポ":"po","キャ":"kya","キュ":"kyu","キョ":"kyo","ギャ":"gya","ギュ":"gyu","ギョ":"gyo","シャ":"sha","シュ":"shu","ショ":"sho","ジャ":"ja","ジュ":"ju","ジョ":"jo","チャ":"cha","チュ":"chu","チョ":"cho","ニャ":"nya","ニュ":"nyu","ニョ":"nyo","ヒャ":"hya","ヒュ":"hyu","ヒョ":"hyo","ビャ":"bya","ビュ":"byu","ビョ":"byo","ピャ":"pya","ピュ":"pyu","ピョ":"pyo","ミャ":"mya","ミュ":"myu","ミョ":"myo","リャ":"rya","リュ":"ryu","リョ":"ryo"};
+    /* --- 音声再生 (録音済みMP3のみ・speechSynthesisなし) --- */
     const typePlayer = new Audio();
     typePlayer.preload = 'auto';
     let soundOn = localStorage.getItem('ohayo_type_sound') !== 'off';
 
     function updateSoundBtn() {
-        document.getElementById('sound-btn').innerText = soundOn ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+        document.getElementById('sound-btn').textContent = soundOn ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
     }
-
     function toggleSound() {
         soundOn = !soundOn;
-        localStorage.setItem('ohayo_type_sound', soundOn ? 'on' : 'off');
-        if (!soundOn) {
-            try { typePlayer.pause(); } catch(e) {}
-            try { speechSynthesis.cancel(); } catch(e) {}
-        }
+        try { localStorage.setItem('ohayo_type_sound', soundOn ? 'on' : 'off'); } catch {}
+        if (!soundOn) { try { typePlayer.pause(); } catch {} }
         updateSoundBtn();
     }
-
-    function speakTargetWithTTS() {
-        try {
-            speechSynthesis.cancel();
-            const u = new SpeechSynthesisUtterance(current.j);
-            u.lang = 'ja-JP'; u.rate = 0.9;
-            speechSynthesis.speak(u);
-        } catch(e) {}
-    }
-
-    // 単語モードの音声ファイル名: 長音の二重母音表記 (kohii 等) があればそれを、なければ e[0] を使う
-    function wordAudioFile(item) {
-        const doubled = item.e.find(v => /(aa|ii|uu|ee|oo)/.test(v));
-        return 'word-' + (doubled || item.e[0]) + '.mp3';
-    }
-
-    function playTargetSound() {
-        if (!soundOn || !current || input.disabled) return;
-        const file = (currentMode === 'words') ? wordAudioFile(current)
-                   : (KANA_AUDIO[current.j] ? KANA_AUDIO[current.j] + '.mp3' : null);
-        if (!file) { speakTargetWithTTS(); return; }
-        typePlayer.onerror = () => { typePlayer.onerror = null; speakTargetWithTTS(); };
+    function playAudioForItem(item) {
+        if (!soundOn || !item) return;
+        const file = WORD_AUDIO[item.j] || (KANA_AUDIO[item.j] ? KANA_AUDIO[item.j] + '.mp3' : null);
+        if (!file) return;
+        typePlayer.pause();
+        typePlayer.currentTime = 0;
         typePlayer.src = 'kana-audio/' + file;
         const p = typePlayer.play();
-        if (p && typeof p.catch === 'function') p.catch(() => speakTargetWithTTS());
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+    function playTargetSound() {
+        if (!running || !current) return;
+        playAudioForItem(current);
     }
 
-    /* --- ヒント表示 (1.2秒だけ読みを表示) --- */
+    /* --- 苦手文字の管理 --- */
+    function markWeak(item) {
+        if (!item) return;
+        if (!weakList.includes(item.j)) {
+            weakList.push(item.j);
+            saveJSON(WEAK_KEY, weakList);
+        }
+        if (!currentRoundWeak.some(x => x.j === item.j)) {
+            currentRoundWeak.push(item);
+        }
+        updateWeakBtn();
+    }
+    function clearWeakIfMastered(item) {
+        if (currentMode === 'weak' && weakList.includes(item.j)) {
+            weakList = weakList.filter(x => x !== item.j);
+            saveJSON(WEAK_KEY, weakList);
+            updateWeakBtn();
+        }
+    }
+    function updateWeakBtn() {
+        document.getElementById('weak-mode-btn').textContent = `🎯 WEAK (${weakList.length})`;
+    }
+
+    /* --- モード・ペース・行選択 --- */
+    function setPace(sec) {
+        paceSeconds = sec;
+        document.querySelectorAll('.pace-btn').forEach(b => {
+            b.classList.toggle('active', Number(b.dataset.pace) === sec);
+        });
+        updateBestPill();
+        document.getElementById('timer').textContent = sec > 0 ? `⏱ ${sec}s` : '🧘 RELAX';
+    }
+
+    function getBestKey() {
+        return `${currentMode}_${paceSeconds}`;
+    }
+    function updateBestPill() {
+        const pill = document.getElementById('best-pill');
+        if (paceSeconds === 0) {
+            pill.textContent = '🧘 No timer — practice at your own pace';
+            return;
+        }
+        const best = bestScores[getBestKey()] || 0;
+        pill.textContent = `🏆 Personal Best (${paceSeconds}s): ${best}`;
+    }
+
+    function setMode(m) {
+        currentMode = m;
+        document.querySelectorAll('.mode-btn[data-mode]').forEach(b => {
+            b.classList.toggle('active', b.dataset.mode === m);
+        });
+        rowSelectorDiv.style.display = (m === 'basic') ? 'flex' : 'none';
+        const titles = { basic: 'BASIC MODE', dakuon: 'DAKUON MODE', combo: 'COMBO MODE', words: 'LOANWORDS MODE', weak: 'WEAK KANA REVIEW' };
+        document.getElementById('mode-title').textContent = titles[m] || m.toUpperCase();
+        updateModeDescription();
+        resetToStart();
+        document.getElementById('chart-area').style.display = (m === 'words' || m === 'weak') ? 'none' : 'block';
+        renderChart();
+    }
+
+    function toggleRow(r) {
+        if (r === 'all') {
+            selectedRows = ['all'];
+        } else {
+            const ai = selectedRows.indexOf('all');
+            if (ai > -1) selectedRows.splice(ai, 1);
+            const ri = selectedRows.indexOf(r);
+            if (ri > -1) selectedRows.splice(ri, 1);
+            else selectedRows.push(r);
+            if (selectedRows.length === 0) selectedRows = ['all'];
+        }
+        document.querySelectorAll('.row-btn').forEach(btn => {
+            btn.classList.toggle('active', selectedRows.includes(btn.dataset.row));
+        });
+        updateModeDescription();
+    }
+
+    function updateModeDescription() {
+        if (currentMode === 'basic') {
+            modeDesc.textContent = selectedRows.includes('all')
+                ? 'Practice: All Basic (46 characters)'
+                : 'Practice rows: ' + selectedRows.map(r => ROW_NAMES[r]).join(', ');
+        } else if (currentMode === 'weak') {
+            modeDesc.textContent = weakList.length > 0
+                ? `Review your ${weakList.length} tricky items! Typing them clears them from Weak.`
+                : 'No weak items yet! Use 💡 Hint or ⏭ Skip during a run to save tricky ones here.';
+        } else if (currentMode === 'words') {
+            modeDesc.textContent = 'Type real Japanese words — English meaning & audio included!';
+        } else {
+            modeDesc.textContent = 'Type the Romaji — audio plays automatically!';
+        }
+        updateBestPill();
+    }
+
+    function resetToStart() {
+        running = false;
+        if (timerInterval) clearInterval(timerInterval);
+        document.getElementById('start-overlay').style.display = 'flex';
+        document.getElementById('result-overlay').style.display = 'none';
+        display.textContent = 'Ready?';
+        displayBox.className = 'target-char';
+        input.value = '';
+        input.disabled = true;
+        input.classList.remove('correct', 'wrong');
+        document.getElementById('replay-btn').disabled = true;
+        document.getElementById('hint-btn').disabled = true;
+        document.getElementById('skip-btn').disabled = true;
+        document.getElementById('finish-relax-btn').style.display = 'none';
+        document.getElementById('word-meaning').style.display = 'none';
+        document.getElementById('hint-text').textContent = '';
+        document.getElementById('combo-pill').classList.remove('show');
+        progressBar.style.width = '100%';
+        progressBar.classList.remove('urgent');
+        document.getElementById('timer').classList.remove('urgent');
+        document.getElementById('timer').textContent = paceSeconds > 0 ? `⏱ ${paceSeconds}s` : '🧘 RELAX';
+        updateBestPill();
+    }
+
+    /* --- コレクションマップ (クリックで音声再生！) --- */
+    function renderChart() {
+        const grid = document.getElementById('lib-grid');
+        grid.innerHTML = '';
+        if (currentMode === 'words' || currentMode === 'weak') return;
+
+        const list = dataSet[currentMode];
+        const valid = list.filter(Boolean);
+        const collectedCount = valid.filter(i => savedCollection.includes(i.j)).length;
+        document.getElementById('lib-title').textContent = `COLLECTION MAP (${collectedCount} / ${valid.length})`;
+        document.getElementById('col-progress-fill').style.width = `${Math.round((collectedCount / valid.length) * 100)}%`;
+
+        list.forEach(item => {
+            const div = document.createElement('div');
+            if (!item) {
+                div.className = 'char-item empty';
+                grid.appendChild(div);
+                return;
+            }
+            const isFound = savedCollection.includes(item.j);
+            const isWeak = weakList.includes(item.j);
+            div.className = 'char-item' + (isFound ? ' collected' : '') + (isWeak ? ' is-weak' : '');
+            div.id = 'char-' + item.j;
+            div.title = `Tap to hear "${item.j}" (${item.e[0]})`;
+            div.innerHTML = `<span class="jp">${item.j}</span><span class="en">${item.e[0]}</span>`;
+            div.onclick = () => playAudioForItem(item);
+            grid.appendChild(div);
+        });
+    }
+
+    function getActivePool() {
+        if (currentMode === 'weak') {
+            const pool = ALL_PLAYABLE.filter(i => weakList.includes(i.j));
+            return pool.length > 0 ? pool : dataSet.basic.filter(Boolean);
+        }
+        let pool = dataSet[currentMode].filter(Boolean);
+        if (currentMode === 'basic' && !selectedRows.includes('all')) {
+            pool = pool.filter(i => selectedRows.includes(i.r));
+        }
+        return pool;
+    }
+
+    /* --- ゲーム開始・進行 --- */
+    function startGame() {
+        const pool = getActivePool();
+        if (currentMode === 'weak' && weakList.length === 0) {
+            setMode('basic');
+            return;
+        }
+        running = true;
+        score = 0; combo = 0; maxCombo = 0; typos = 0;
+        time = paceSeconds;
+        currentRoundTyped = [];
+        currentRoundWeak = [];
+        lastChar = '';
+
+        document.getElementById('start-overlay').style.display = 'none';
+        document.getElementById('result-overlay').style.display = 'none';
+        document.getElementById('score').textContent = 'SCORE: 0';
+        document.getElementById('combo-pill').classList.remove('show');
+
+        const timerEl = document.getElementById('timer');
+        timerEl.classList.remove('urgent');
+        progressBar.classList.remove('urgent');
+        progressBar.style.width = '100%';
+        document.getElementById('progress-container').style.display = paceSeconds > 0 ? 'block' : 'none';
+        timerEl.textContent = paceSeconds > 0 ? `⏱ ${time}s` : '🧘 RELAX';
+
+        input.disabled = false;
+        document.getElementById('replay-btn').disabled = false;
+        document.getElementById('hint-btn').disabled = false;
+        document.getElementById('skip-btn').disabled = false;
+        document.getElementById('finish-relax-btn').style.display = paceSeconds === 0 ? 'inline-block' : 'none';
+        input.value = '';
+        input.focus();
+
+        spawn();
+        if (paceSeconds > 0) startTimer();
+    }
+
+    function spawn() {
+        const pool = getActivePool();
+        if (pool.length === 0) { endGame(); return; }
+        let next;
+        do {
+            next = pool[Math.floor(Math.random() * pool.length)];
+        } while (next.j === lastChar && pool.length > 1);
+
+        current = next;
+        lastChar = current.j;
+        display.textContent = current.j;
+        displayBox.className = current.j.length >= 2 ? 'target-char long' : 'target-char';
+
+        const meaningEl = document.getElementById('word-meaning');
+        if (current.en) {
+            meaningEl.textContent = '📖 ' + current.en;
+            meaningEl.style.display = 'block';
+        } else {
+            meaningEl.style.display = 'none';
+        }
+        document.getElementById('hint-text').textContent = '';
+        input.classList.remove('wrong', 'correct');
+        playTargetSound();
+    }
+
+    function updateComboUI() {
+        const cp = document.getElementById('combo-pill');
+        if (combo >= 2) {
+            cp.textContent = combo >= 8 ? `🔥🔥 ${combo} COMBO!` : `🔥 ${combo} COMBO`;
+            cp.classList.add('show');
+        } else {
+            cp.classList.remove('show');
+        }
+    }
+
+    function triggerSuccessAnimation() {
+        displayBox.classList.remove('animate-pop');
+        void displayBox.offsetWidth;
+        displayBox.classList.add('animate-pop');
+        input.classList.remove('wrong');
+        input.classList.add('correct');
+        setTimeout(() => input.classList.remove('correct'), 160);
+    }
+
+    /* --- 入力判定（リアルタイム誤入力チェック付き） --- */
+    input.addEventListener('input', (e) => {
+        if (!running || !current) return;
+        const val = e.target.value.toLowerCase().trim();
+        if (!val) {
+            input.classList.remove('wrong');
+            return;
+        }
+
+        // Check exact match
+        if (current.e.includes(val)) {
+            score++;
+            combo++;
+            if (combo > maxCombo) maxCombo = combo;
+            document.getElementById('score').textContent = `SCORE: ${score}`;
+            updateComboUI();
+            triggerSuccessAnimation();
+            playChime('hit');
+
+            if (!currentRoundTyped.some(item => item.j === current.j)) {
+                currentRoundTyped.push(current);
+            }
+            clearWeakIfMastered(current);
+
+            if (currentMode !== 'words' && currentMode !== 'weak' && !savedCollection.includes(current.j)) {
+                savedCollection.push(current.j);
+                saveJSON(COLLECTION_KEY, savedCollection);
+                renderChart();
+            }
+            input.value = '';
+            spawn();
+            return;
+        }
+
+        // Check if current input is a valid prefix of any accepted romaji
+        const isPrefix = current.e.some(ans => ans.startsWith(val));
+        if (!isPrefix) {
+            if (!input.classList.contains('wrong')) {
+                typos++;
+                combo = 0;
+                updateComboUI();
+                markWeak(current);
+            }
+            input.classList.add('wrong');
+        } else {
+            input.classList.remove('wrong');
+        }
+    });
+
+    /* --- ヒント・スキップ --- */
     let hintTimer = null;
     function showHint() {
-        if (!current || input.disabled) return;
+        if (!running || !current) return;
+        markWeak(current);
+        combo = 0;
+        updateComboUI();
         const el = document.getElementById('hint-text');
-        el.innerText = current.e.join(' / ');
-        el.style.opacity = '1';
+        el.textContent = '💡 ' + current.e.join(' / ');
         input.focus();
         clearTimeout(hintTimer);
-        hintTimer = setTimeout(() => { el.style.opacity = '0'; el.innerText = ''; }, 1200);
+        hintTimer = setTimeout(() => { el.textContent = ''; }, 1800);
     }
 
-    // 初期化実行
+    function skipCurrent() {
+        if (!running || !current) return;
+        markWeak(current);
+        combo = 0;
+        updateComboUI();
+        const el = document.getElementById('hint-text');
+        el.textContent = `Answer: ${current.j} = ${current.e[0].toUpperCase()}`;
+        input.value = '';
+        input.focus();
+        setTimeout(() => {
+            if (running) spawn();
+        }, 550);
+    }
+
+    /* --- タイマー・終了処理 --- */
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            time--;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = `⏱ ${time}s`;
+            progressBar.style.width = ((time / paceSeconds) * 100) + '%';
+
+            if (time <= 5) {
+                timerEl.classList.add('urgent');
+                progressBar.classList.add('urgent');
+            }
+            if (time <= 0) endGame();
+        }, 1000);
+    }
+
+    function endGame() {
+        if (!running) return;
+        running = false;
+        if (timerInterval) clearInterval(timerInterval);
+        input.disabled = true;
+        document.getElementById('replay-btn').disabled = true;
+        document.getElementById('hint-btn').disabled = true;
+        document.getElementById('skip-btn').disabled = true;
+        document.getElementById('finish-relax-btn').style.display = 'none';
+        playChime('finish');
+
+        // Calculate rank & accuracy
+        const acc = (score + typos) > 0 ? Math.round((score / (score + typos)) * 100) : 100;
+        const rate = paceSeconds > 0 ? (score / paceSeconds) * 20 : score;
+        const rank = rate >= 18 ? 'S' : (rate >= 12 ? 'A' : (rate >= 6 ? 'B' : 'C'));
+        const msgs = { S: 'Master Speed! すごい！', A: 'Super Smooth! じょうず！', B: 'Nice Progress! いいね！', C: 'Great Warm-up! がんばった！' };
+
+        document.getElementById('rank-badge').textContent = rank;
+        document.getElementById('result-sub').textContent = msgs[rank];
+        document.getElementById('final-score').textContent = score;
+        document.getElementById('final-combo').textContent = maxCombo;
+        document.getElementById('final-acc').textContent = acc + '%';
+
+        // Personal Best check
+        const nb = document.getElementById('new-best-banner');
+        if (paceSeconds > 0 && score > (bestScores[getBestKey()] || 0)) {
+            bestScores[getBestKey()] = score;
+            saveJSON(BEST_KEY, bestScores);
+            nb.style.display = 'inline-block';
+        } else {
+            nb.style.display = 'none';
+        }
+
+        // Render badges (weak ones highlighted first!)
+        const badges = document.getElementById('typed-badges');
+        badges.innerHTML = '';
+        const combined = [...currentRoundWeak, ...currentRoundTyped.filter(x => !currentRoundWeak.some(w => w.j === x.j))];
+        if (combined.length === 0) {
+            badges.innerHTML = '<span style="color:var(--muted); font-size:0.85rem;">No items typed yet — try again!</span>';
+        } else {
+            combined.forEach(item => {
+                const isW = currentRoundWeak.some(w => w.j === item.j);
+                const b = document.createElement('button');
+                b.className = 'badge' + (isW ? ' weak-item' : '');
+                b.innerHTML = `${isW ? '<span>⚠️</span>' : ''}<span class="jp">${item.j}</span><span class="en">${item.e[0]}</span>${item.en ? `<span class="meaning">${item.en}</span>` : ''}`;
+                b.onclick = () => playAudioForItem(item);
+                badges.appendChild(b);
+            });
+        }
+
+        document.getElementById('btn-weak-run').style.display = weakList.length > 0 ? 'inline-block' : 'none';
+        document.getElementById('result-overlay').style.display = 'flex';
+        renderChart();
+    }
+
+    function practiceWeakNow() {
+        setMode('weak');
+        setPace(0); // Calm Relax mode for weak review
+        startGame();
+    }
+
     updateSoundBtn();
+    updateWeakBtn();
+    updateBestPill();
     renderChart();
 </script>
-
 </body>
 </html>
