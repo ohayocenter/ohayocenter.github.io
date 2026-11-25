@@ -3,68 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Hiragana Practice - OHAYO CENTER</title>
-    <meta name="description" content="Hiragana Practice - OHAYO CENTER">
+    <title>Hiragana Tracing Practice - OHAYO CENTER</title>
+    <meta name="description" content="Learn to write all 71 hiragana with stroke-order animation, Trace/Faint/Memory modes, real words, audio, and listening quizzes.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
     <meta property="og:title" content="Hiragana Tracing Practice | OHAYO CENTER">
-    <meta property="og:description" content="Learn to write hiragana with stroke-order animation, tracing practice and audio. 71 characters with mnemonics.">
+    <meta property="og:description" content="Learn to write hiragana with stroke-order animation, 3-stage memory tracing, beginner words, audio, and quizzes. 71 characters.">
     <meta property="og:url" content="https://ohayocenter.com/hiragana-nazori.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Hiragana Tracing Practice | OHAYO CENTER">
-    <meta name="twitter:description" content="Learn to write hiragana with stroke-order animation, tracing practice and audio. 71 characters with mnemonics.">
+    <meta name="twitter:description" content="Learn to write hiragana with stroke-order animation, 3-stage memory tracing, beginner words, audio, and quizzes. 71 characters.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    
-    <link rel="icon" href="icon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="icon.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="icon.png" sizes="192x192">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <style>
         :root {
-            --bg: #fffafb; --card: #ffffff; --text: #455a64; --accent: #f06292;
-            --soft: #fce4ec; --guide: #f5f5f5; --btn-txt: #ffffff;
+            --bg: #fffafb;
+            --card: #ffffff;
+            --text: #37474f;
+            --muted: #64748b;
+            --accent: #f48fb1;
+            --accent-deep: #e91e63;
+            --soft: #fce4ec;
+            --guide: #eceff1;
+            --grid-line: rgba(100, 116, 139, 0.22);
+            --btn-txt: #ffffff;
             --dark: #2c3e50;
-            --shadow: 0 10px 30px rgba(240, 98, 146, 0.08);
+            --ok: #10b981;
+            --ok-soft: #ecfdf5;
+            --warn: #f59e0b;
+            --warn-soft: #fffbeb;
+            --err: #ef4444;
+            --err-soft: #fef2f2;
+            --shadow: 0 8px 24px rgba(233, 30, 99, 0.08);
         }
         body.dark-mode {
-            --bg: #1a1a1b; --card: #2d2d2e; --text: #e0e0e0; --accent: #ffb3c1;
-            --soft: #3d3135; --guide: #334155; --dark: #f1f5f9;
+            --bg: #16181d;
+            --card: #22262e;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #f48fb1;
+            --accent-deep: #ec407a;
+            --soft: #3d2730;
+            --guide: #334155;
+            --grid-line: rgba(148, 163, 184, 0.22);
+            --dark: #f8fafc;
+            --ok-soft: #064e3b;
+            --warn-soft: #451a03;
+            --err-soft: #450a0a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
+
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--bg); color: var(--text);
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            overflow-x: hidden; transition: background 0.3s;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
         /* --- NAVIGATION --- */
-        nav { 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(5px); 
-            padding: 0 5%; 
-            height: 70px; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            left: 0; 
-            z-index: 1000; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05); 
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(6px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-        body.dark-mode nav { background: rgba(30, 41, 59, 0.95); }
+        body.dark-mode nav { background: rgba(22, 24, 29, 0.95); }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
         .logo a { text-decoration: none; color: inherit; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.2s; cursor: pointer;}
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.2s; cursor: pointer; }
+        .nav-links a:hover { color: var(--accent-deep); }
 
         @media (max-width: 600px) {
             .nav-links { gap: 0.8rem; }
@@ -72,111 +103,817 @@
             .logo { font-size: 1rem; }
         }
 
-        /* --- MAIN CONTENT --- */
+        /* --- MAIN CONTAINER --- */
         .container {
             flex: 1;
-            width: 100%; max-width: 450px;
-            padding: 110px 20px 40px; 
-            display: flex; flex-direction: column; align-items: center;
+            width: 100%;
+            max-width: 480px;
+            padding: 96px 18px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .screen { display: none; width: 100%; flex-direction: column; align-items: center; }
-        .screen.active { display: flex; animation: fadeIn 0.4s ease-out; }
+        .screen.active { display: flex; animation: fadeIn 0.32s ease-out; }
 
-        h2 { text-align: center; font-size: 1.6rem; margin-bottom: 15px; color: var(--dark); }
+        h2 {
+            text-align: center;
+            font-family: 'Sawarabi Mincho', serif;
+            font-size: 1.65rem;
+            margin-bottom: 6px;
+            color: var(--dark);
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 0.84rem;
+            color: var(--muted);
+            margin-bottom: 10px;
+            line-height: 1.45;
+        }
+        .script-switch-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-deep);
+            background: var(--soft);
+            padding: 6px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            margin-bottom: 14px;
+            transition: transform 0.15s, opacity 0.2s;
+        }
+        .script-switch-link:hover { opacity: 0.88; transform: translateY(-1px); }
 
-        /* Tabs */
-        .tab-area { display: flex; gap: 10px; margin-bottom: 25px; width: 100%; }
+        /* --- MASTERY BANNER (MENU) --- */
+        .mastery-card {
+            width: 100%;
+            background: var(--card);
+            border: 1.5px solid var(--soft);
+            border-radius: 20px;
+            padding: 15px 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+        .mastery-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .mastery-count {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+        .mastery-stars {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #d97706;
+            background: var(--warn-soft);
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+        .progress-track {
+            width: 100%;
+            height: 10px;
+            background: var(--soft);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+            border-radius: 999px;
+            transition: width 0.45s ease;
+        }
+        .mastery-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .quick-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 12px;
+            background: var(--accent-deep);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.2s;
+        }
+        .quick-btn:hover { opacity: 0.92; }
+        .quick-btn:active { transform: scale(0.97); }
+        .reset-mini-btn {
+            padding: 10px 12px;
+            border: 1px solid var(--soft);
+            border-radius: 12px;
+            background: transparent;
+            color: var(--muted);
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .reset-mini-btn:hover { color: var(--err); border-color: var(--err); }
+
+        /* --- TABS --- */
+        .tab-area { display: flex; gap: 10px; margin-bottom: 16px; width: 100%; }
         .tab-btn {
-            flex: 1; padding: 12px; border-radius: 50px; border: 1px solid var(--soft);
-            background: var(--card); color: var(--text); font-weight: bold; cursor: pointer;
-            font-size: 0.8rem; transition: 0.3s; box-shadow: var(--shadow);
+            flex: 1;
+            padding: 11px 10px;
+            border-radius: 50px;
+            border: 1.5px solid var(--soft);
+            background: var(--card);
+            color: var(--text);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.84rem;
+            transition: 0.25s;
+            box-shadow: var(--shadow);
             white-space: nowrap;
         }
-        .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-
-        /* Back Button */
-        .back-btn {
-            align-self: flex-start; margin-bottom: 15px; color: var(--text);
-            font-size: 0.9rem; font-weight: bold; cursor: pointer; display: flex;
-            align-items: center; gap: 5px; opacity: 0.7; transition: 0.2s;
+        .tab-btn.active {
+            background: var(--accent-deep);
+            color: #ffffff;
+            border-color: var(--accent-deep);
         }
-        .back-btn:hover { opacity: 1; color: var(--accent); }
 
-        /* Menu Grid */
-        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+        /* --- MENU GRID --- */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
         .row-card {
-            background: var(--card); padding: 22px; border-radius: 20px; text-align: center;
-            border: 1px solid var(--soft); box-shadow: var(--shadow); cursor: pointer; transition: 0.2s;
+            background: var(--card);
+            padding: 16px 14px;
+            border-radius: 18px;
+            text-align: center;
+            border: 1.5px solid var(--soft);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s, border-color 0.2s;
+            position: relative;
         }
-        .row-card:active { transform: scale(0.96); }
-        .row-name { font-size: 1.2rem; font-weight: bold; color: var(--accent); margin-bottom: 4px; }
+        .row-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .row-card:active { transform: scale(0.97); }
+        .row-card.completed {
+            border-color: var(--ok);
+            background: linear-gradient(180deg, var(--card) 65%, var(--ok-soft) 100%);
+        }
+        .row-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .row-name { font-size: 1.12rem; font-weight: 700; color: var(--accent-deep); }
+        .row-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 999px;
+            background: var(--soft);
+            color: var(--accent-deep);
+        }
+        .row-card.completed .row-badge {
+            background: var(--ok);
+            color: #fff;
+        }
+        .row-chars {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+        .row-char-chip {
+            font-size: 0.92rem;
+            padding: 2px 5px;
+            border-radius: 7px;
+            color: var(--muted);
+            background: rgba(128,128,128,0.08);
+        }
+        .row-char-chip.done {
+            color: var(--dark);
+            font-weight: 700;
+            background: var(--soft);
+        }
 
-        /* Practice Area */
+        /* --- PRACTICE TOP BAR --- */
+        .practice-top {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 8px;
+        }
+        .back-btn {
+            color: var(--text);
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0.8;
+            transition: 0.2s;
+            background: none;
+            border: none;
+            padding: 4px 0;
+        }
+        .back-btn:hover { opacity: 1; color: var(--accent-deep); }
+        .sound-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 5px 11px;
+            border-radius: 999px;
+            border: 1.5px solid var(--soft);
+            background: var(--card);
+            color: var(--text);
+            cursor: pointer;
+        }
+        .sound-toggle.on {
+            border-color: var(--accent);
+            color: var(--accent-deep);
+        }
+
+        /* --- ROW CHARACTER STRIP --- */
+        .char-strip {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .char-pill {
+            min-width: 48px;
+            padding: 7px 10px;
+            border-radius: 14px;
+            border: 1.5px solid var(--soft);
+            background: var(--card);
+            color: var(--text);
+            font-size: 1.08rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            transition: 0.18s;
+            position: relative;
+        }
+        .char-pill.active {
+            background: var(--accent-deep);
+            color: #fff;
+            border-color: var(--accent-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+        }
+        .char-pill.mastered:not(.active) {
+            border-color: var(--ok);
+            background: var(--ok-soft);
+            color: var(--dark);
+        }
+        .char-pill .pill-check {
+            font-size: 0.68rem;
+        }
+
+        /* --- INFO CARD --- */
         .info-card {
-            width: 100%; background: var(--card); padding: 15px; border-radius: 15px;
-            margin-bottom: 20px; border-left: 6px solid var(--accent); box-shadow: var(--shadow);
+            width: 100%;
+            background: var(--card);
+            padding: 13px 15px;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            border-left: 6px solid var(--accent-deep);
+            box-shadow: var(--shadow);
         }
+        .info-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .info-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .kana-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--soft);
+            color: var(--accent-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            font-weight: 700;
+            font-family: "Klee One", serif;
+            flex-shrink: 0;
+        }
+        .romaji-tag {
+            display: inline-block;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: var(--accent-deep);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-right: 6px;
+        }
+        .stroke-tag {
+            font-size: 0.74rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+        .mn-text {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 3px;
+        }
+        .listen-mini {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid var(--soft);
+            background: var(--bg);
+            color: var(--accent-deep);
+            font-size: 1.05rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s;
+        }
+        .listen-mini:active { transform: scale(0.92); }
+        .word-anchor {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--soft);
+            font-size: 0.82rem;
+            color: var(--text);
+            flex-wrap: wrap;
+        }
+        .word-jp {
+            font-weight: 700;
+            font-size: 0.94rem;
+            color: var(--dark);
+        }
+        .word-jp mark {
+            background: var(--soft);
+            color: var(--accent-deep);
+            padding: 0 3px;
+            border-radius: 4px;
+        }
+        .word-romaji { color: var(--muted); font-style: italic; }
+        .word-en { font-weight: 600; color: var(--dark); }
+
+        /* --- 3-STAGE GUIDE SELECTOR --- */
+        .mode-bar {
+            width: 320px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 10px;
+            background: var(--card);
+            padding: 5px;
+            border-radius: 14px;
+            border: 1.5px solid var(--soft);
+        }
+        .mode-pill {
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 7px 4px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .mode-pill.active {
+            background: var(--accent-deep);
+            color: #fff;
+        }
+
+        /* --- CANVAS BOX --- */
         .canvas-box {
-            position: relative; width: 320px; height: 320px;
-            background: var(--card); border-radius: 25px; border: 4px solid var(--soft);
-            box-shadow: var(--shadow); overflow: hidden;
+            position: relative;
+            width: 320px;
+            height: 320px;
+            background: var(--card);
+            border-radius: 26px;
+            border: 4px solid var(--soft);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            user-select: none;
         }
+        /* 4-quadrant calligraphy crosshair grid */
+        .calligraphy-grid {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .calligraphy-grid::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 14px;
+            right: 14px;
+            border-top: 1.5px dashed var(--grid-line);
+        }
+        .calligraphy-grid::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 14px;
+            bottom: 14px;
+            border-left: 1.5px dashed var(--grid-line);
+        }
+        .stroke-counter {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            z-index: 8;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--muted);
+            background: rgba(255,255,255,0.85);
+            padding: 3px 8px;
+            border-radius: 999px;
+            pointer-events: none;
+        }
+        body.dark-mode .stroke-counter { background: rgba(34,38,46,0.85); }
+
         .guide-txt {
-            position: absolute; width: 100%; height: 100%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 260px; color: var(--guide); pointer-events: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 260px;
+            color: var(--guide);
+            pointer-events: none;
+            z-index: 2;
+            transition: opacity 0.25s;
             font-family: "YuKyokasho", "Yu Kyokasho", "UD Digi Kyokasho", "Klee One", "HGKyokashotai", sans-serif;
         }
-        canvas { position: absolute; top: 0; left: 0; z-index: 5; touch-action: none; }
-        
+        .guide-txt.mode-faint { opacity: 0.28; }
+        .guide-txt.mode-memory { opacity: 0; }
+
+        canvas { position: absolute; top: 0; left: 0; z-index: 5; touch-action: none; cursor: crosshair; }
+
+        #hints-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 6;
+            transition: opacity 0.2s;
+        }
+        #hints-layer.hidden { opacity: 0; }
         .num-hint {
-            position: absolute; width: 24px; height: 24px; background: var(--accent);
-            color: white; border-radius: 50%; display: flex; justify-content: center;
-            align-items: center; font-size: 13px; font-weight: bold; z-index: 6;
-            border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transform: translate(-50%, -50%); 
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-deep);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transform: translate(-50%, -50%);
         }
 
+        /* --- FEEDBACK BANNER (NO OS ALERTS!) --- */
+        .feedback-bar {
+            width: 320px;
+            min-height: 36px;
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            background: transparent;
+            color: var(--muted);
+        }
+        .feedback-bar.warn { background: var(--warn-soft); color: #b45309; }
+        .feedback-bar.ok { background: var(--ok-soft); color: #047857; }
+        .feedback-bar.err { background: var(--err-soft); color: #b91c1c; }
+        body.dark-mode .feedback-bar.warn { color: #fcd34d; }
+        body.dark-mode .feedback-bar.ok { color: #6ee7b7; }
+        body.dark-mode .feedback-bar.err { color: #fca5a5; }
+
+        /* --- 4-CHOICE LISTENING QUIZ OVERLAY --- */
         #quiz-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--card); display: none; flex-direction: column;
-            align-items: center; justify-content: center; z-index: 20;
+            position: absolute;
+            inset: 0;
+            background: var(--card);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 20;
+            animation: fadeIn 0.25s ease-out;
+        }
+        .quiz-prompt {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--dark);
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .quiz-audio-btn {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1.5px solid var(--accent);
+            background: var(--soft);
+            color: var(--accent-deep);
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 230px;
         }
         .opt-btn {
-            width: 105px; height: 105px; font-size: 55px; margin: 10px;
-            background: var(--bg); border: 2px solid var(--soft); border-radius: 20px;
-            color: var(--text); font-family: serif; cursor: pointer; transition: 0.2s;
+            height: 84px;
+            font-size: 44px;
+            background: var(--bg);
+            border: 2px solid var(--soft);
+            border-radius: 18px;
+            color: var(--dark);
+            font-family: "Klee One", serif;
+            cursor: pointer;
+            transition: transform 0.14s, border-color 0.2s, background 0.2s;
+        }
+        .opt-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .opt-btn.wrong {
+            border-color: var(--err);
+            background: var(--err-soft);
+            animation: shake 0.3s;
+        }
+        .opt-btn.correct {
+            border-color: var(--ok);
+            background: var(--ok-soft);
+        }
+        .quiz-msg {
+            margin-top: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            min-height: 18px;
+            color: var(--err);
         }
 
-        .btn-area { margin-top: 25px; display: flex; gap: 12px; width: 320px; }
-        .action-btn { flex: 1; padding: 16px; border: none; border-radius: 50px; font-size: 1rem; font-weight: bold; cursor: pointer; box-shadow: var(--shadow); }
-        .btn-main { background: var(--accent); color: var(--btn-txt); }
-        .btn-sub { background: #eee; color: #888; }
+        /* --- ACTION BUTTONS --- */
+        .btn-area {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            width: 320px;
+        }
+        .action-btn {
+            padding: 11px 6px;
+            border: none;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.14s, opacity 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+        .action-btn:active { transform: scale(0.96); }
+        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-sub {
+            background: var(--card);
+            color: var(--text);
+            border: 1.5px solid var(--soft);
+        }
+        .btn-check-wrap {
+            width: 320px;
+            margin-top: 10px;
+        }
+        .btn-main {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.02rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: var(--accent-deep);
+            color: var(--btn-txt);
+            box-shadow: var(--shadow);
+            transition: transform 0.15s, opacity 0.2s;
+        }
+        .btn-main:hover { opacity: 0.94; }
+        .btn-main:active { transform: scale(0.98); }
+
+        /* --- BOSS REVIEW SCREEN --- */
+        .boss-card {
+            width: 100%;
+            background: var(--card);
+            border: 2px solid var(--soft);
+            border-radius: 24px;
+            padding: 22px 18px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .boss-kicker {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--soft);
+            color: var(--accent-deep);
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+        }
+        .boss-progress {
+            font-size: 0.82rem;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .boss-play-big {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            border: none;
+            background: var(--accent-deep);
+            color: #fff;
+            font-size: 1.9rem;
+            cursor: pointer;
+            margin: 6px auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+            transition: transform 0.15s;
+        }
+        .boss-play-big:active { transform: scale(0.93); }
+        .boss-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            max-width: 280px;
+            margin: 0 auto 12px;
+        }
+        .boss-opt {
+            height: 84px;
+            font-size: 42px;
+            font-family: "Klee One", serif;
+            background: var(--bg);
+            border: 2px solid var(--soft);
+            border-radius: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: 0.18s;
+        }
+        .boss-opt:hover { border-color: var(--accent); }
+        .boss-opt.correct { background: var(--ok-soft); border-color: var(--ok); }
+        .boss-opt.wrong { background: var(--err-soft); border-color: var(--err); animation: shake 0.3s; }
+        .boss-feedback {
+            min-height: 24px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .boss-summary-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .btn-outline {
+            width: 100%;
+            padding: 13px;
+            border-radius: 50px;
+            border: 2px solid var(--accent-deep);
+            background: transparent;
+            color: var(--accent-deep);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+        }
+
+        /* --- STAMP OVERLAY --- */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(3px);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+        }
+        .stamp-card {
+            width: 100%;
+            max-width: 340px;
+            background: var(--card);
+            padding: 28px 24px;
+            border-radius: 28px;
+            text-align: center;
+            border: 3px solid var(--accent-deep);
+            animation: popIn 0.28s ease-out;
+        }
+        .stamp-stars {
+            font-size: 1.7rem;
+            letter-spacing: 4px;
+            color: #f59e0b;
+            margin-bottom: 4px;
+        }
+        .stamp-score {
+            font-size: 0.82rem;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .stamp-recap {
+            background: var(--bg);
+            border: 1px solid var(--soft);
+            border-radius: 14px;
+            padding: 10px 12px;
+            font-size: 0.84rem;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
 
         /* --- FOOTER --- */
         footer {
-            width: 100%; padding: 50px 20px 30px; 
-            background: var(--card); border-top: 1px solid var(--soft);
-            text-align: center; color: var(--text); font-size: 0.85rem;
+            width: 100%;
+            padding: 40px 20px 30px;
+            background: var(--card);
+            border-top: 1px solid var(--soft);
+            text-align: center;
+            color: var(--text);
+            font-size: 0.85rem;
         }
         .support-section { margin-bottom: 25px; }
         .bmc-btn {
-            display: inline-flex; align-items: center; background-color: #FFDD00;
-            color: #000000; border-radius: 12px; padding: 10px 20px;
-            text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            background-color: #FFDD00;
+            color: #000000;
+            border-radius: 12px;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: transform 0.2s;
         }
+        .bmc-btn:hover { transform: translateY(-2px); }
         .bmc-btn img { height: 22px; margin-right: 10px; }
 
-        .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); display: none;
-            flex-direction: column; justify-content: center; align-items: center; z-index: 200;
-        }
-        .stamp-card { background: var(--card); padding: 40px; border-radius: 30px; text-align: center; border: 3px solid var(--accent); }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.88); } to { opacity: 1; transform: scale(1); } }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
     </style>
 <style id="ohayo-cta-style">
 .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
@@ -215,47 +952,131 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-        <li><a onclick="toggleDarkMode()"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
+        <li><a onclick="toggleDarkMode()" title="Toggle Dark Mode"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
     </ul>
 </nav>
 
 <div class="container">
+    <!-- MENU SCREEN -->
     <div class="screen active" id="menu">
-        <h2>Hiragana Course</h2>
+        <h2>Hiragana Tracing Course</h2>
+        <p class="subtitle">Trace stroke-by-stroke, test from memory, and collect all 71 🌸 stamps!</p>
+        <a class="script-switch-link" href="katakana-nazori.html">💮 Switch to Katakana Tracing →</a>
+
+        <div class="mastery-card">
+            <div class="mastery-top">
+                <span class="mastery-count" id="mastery-count">0 / 71 Mastered 🌸</span>
+                <span class="mastery-stars" id="mastery-stars">★ 0</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="mastery-actions">
+                <button class="quick-btn" id="quick-practice-btn" onclick="startSmartPractice()">🎯 Practice Next 5 Unmastered</button>
+                <button class="reset-mini-btn" onclick="resetProgress()" title="Reset saved progress">Reset</button>
+            </div>
+        </div>
+
         <div class="tab-area">
-            <button class="tab-btn active" id="tab-basic" onclick="switchTab('basic')">あ〜わ</button>
-            <button class="tab-btn" id="tab-voiced" onclick="switchTab('voiced')">Tenten & Maru</button>
+            <button class="tab-btn active" id="tab-basic" onclick="switchTab('basic')">あ〜わ Basic (46)</button>
+            <button class="tab-btn" id="tab-voiced" onclick="switchTab('voiced')">Tenten &amp; Maru (25)</button>
         </div>
         <div class="menu-grid" id="menu-grid"></div>
     </div>
 
+    <!-- PRACTICE SCREEN -->
     <div class="screen" id="practice">
-        <div class="back-btn" onclick="backToMenu()">
-            <i class="fa-solid fa-chevron-left"></i> Back to Menu
+        <div class="practice-top">
+            <button class="back-btn" onclick="backToMenu()">
+                <i class="fa-solid fa-chevron-left"></i> Back to Menu
+            </button>
+            <button class="sound-toggle on" id="auto-sound-btn" onclick="toggleAutoSound()">
+                🔊 Auto-Sound: ON
+            </button>
         </div>
+
+        <div class="char-strip" id="char-strip"></div>
+
         <div class="info-card">
-            <b id="mn-title" style="color:var(--accent); font-size:1.1rem;"></b><br>
-            <small style="opacity:0.7;">Trace correctly / がんばって！</small>
+            <div class="info-main">
+                <div class="info-left">
+                    <div class="kana-badge" id="info-kana">あ</div>
+                    <div>
+                        <div>
+                            <span class="romaji-tag" id="info-romaji">A</span>
+                            <span class="stroke-tag" id="info-strokes">3 strokes</span>
+                        </div>
+                        <div class="mn-text" id="mn-title">Memory tip</div>
+                    </div>
+                </div>
+                <button class="listen-mini" onclick="playKanaAudio()" title="Listen to pronunciation">🔊</button>
+            </div>
+            <div class="word-anchor" id="word-anchor"></div>
         </div>
+
+        <div class="mode-bar" role="group" aria-label="Guide difficulty">
+            <button class="mode-pill active" id="mode-trace" onclick="setGuideMode('trace')">✏️ Trace</button>
+            <button class="mode-pill" id="mode-faint" onclick="setGuideMode('faint')">👻 Faint</button>
+            <button class="mode-pill" id="mode-memory" onclick="setGuideMode('memory')">🧠 Memory</button>
+        </div>
+
         <div class="canvas-box">
+            <div class="calligraphy-grid"></div>
+            <div class="stroke-counter" id="stroke-counter">Stroke 0 / 3</div>
             <div class="guide-txt" id="guide-char">あ</div>
             <div id="hints-layer"></div>
             <svg id="stroke-svg" viewBox="0 0 109 109" width="320" height="320" style="position:absolute; top:0; left:0; z-index:4; pointer-events:none;"></svg>
             <canvas id="canvas"></canvas>
             <canvas id="h-canvas" style="display:none;"></canvas>
+
             <div id="quiz-overlay">
-                <p style="font-weight:bold; margin-bottom:15px; color:var(--dark);">Which is correct?</p>
-                <div style="display:flex;">
-                    <button class="opt-btn" id="q1" onclick="checkQuiz(0)"></button>
-                    <button class="opt-btn" id="q2" onclick="checkQuiz(1)"></button>
-                </div>
+                <p class="quiz-prompt">👂 Listen &amp; pick the matching kana!</p>
+                <button class="quiz-audio-btn" onclick="playKanaAudio()">🔊 Play Sound Again</button>
+                <div class="quiz-grid" id="quiz-grid"></div>
+                <div class="quiz-msg" id="quiz-msg"></div>
             </div>
         </div>
+
+        <div class="feedback-bar" id="feedback-bar">Follow the numbers 1, 2, 3 and tap Check!</div>
+
         <div class="btn-area">
-            <button class="action-btn btn-sub" onclick="resetCanvas()">Clear</button>
-            <button class="action-btn btn-sub" id="watch-btn" onclick="playStrokeAnimation()">▶ Watch</button>
-            <button class="action-btn btn-sub" onclick="playKanaAudio()">🔊 Sound</button>
-            <button class="action-btn btn-main" onclick="judge()">Check!</button>
+            <button class="action-btn btn-sub" onclick="undoStroke()"><span>↩</span><span>Undo</span></button>
+            <button class="action-btn btn-sub" onclick="resetCanvas()"><span>🧹</span><span>Clear</span></button>
+            <button class="action-btn btn-sub" id="watch-btn" onclick="playStrokeAnimation()"><span>▶</span><span>Watch</span></button>
+            <button class="action-btn btn-sub" onclick="playKanaAudio()"><span>🔊</span><span>Sound</span></button>
+        </div>
+        <div class="btn-check-wrap">
+            <button class="btn-main" onclick="judge()">✨ Check My Writing!</button>
+        </div>
+    </div>
+
+    <!-- ROW BOSS REVIEW SCREEN -->
+    <div class="screen" id="boss">
+        <div class="practice-top">
+            <button class="back-btn" onclick="backToMenu()">
+                <i class="fa-solid fa-chevron-left"></i> Back to Menu
+            </button>
+            <span style="font-size:0.78rem; font-weight:700; color:var(--accent-deep);">🏆 Row Boss Review</span>
+        </div>
+
+        <div class="boss-card" id="boss-quiz-view">
+            <span class="boss-kicker">Listening Challenge</span>
+            <h2 style="font-size:1.3rem; margin-bottom:4px;">Tap the kana you hear!</h2>
+            <div class="boss-progress" id="boss-progress">Question 1 / 5</div>
+            <button class="boss-play-big" onclick="playBossAudio()" title="Play sound">🔊</button>
+            <div class="boss-grid" id="boss-grid"></div>
+            <div class="boss-feedback" id="boss-feedback"></div>
+        </div>
+
+        <div class="boss-card" id="boss-done-view" style="display:none;">
+            <div style="font-size:62px; margin-bottom:8px;">🎉</div>
+            <h2 id="boss-done-title" style="color:var(--accent-deep); margin-bottom:6px;">Row Cleared!</h2>
+            <p id="boss-done-sub" style="font-size:0.9rem; color:var(--muted); margin-bottom:14px;"></p>
+            <div class="boss-summary-actions">
+                <button class="btn-main" id="boss-next-row-btn" onclick="goNextRow()">Next Row →</button>
+                <button class="btn-outline" onclick="retryRowInMemory()">🧠 Retry This Row in Memory Mode</button>
+                <button class="btn-outline" style="border-color:var(--soft); color:var(--text);" onclick="backToMenu()">Back to Menu</button>
+            </div>
         </div>
     </div>
 </div>
@@ -293,14 +1114,20 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 
 <div class="overlay" id="overlay">
     <div class="stamp-card">
-        <div style="font-size: 70px; margin-bottom:15px;">🌸</div>
-        <h2 style="color:var(--accent); margin-bottom:25px; font-size:1.8rem;">Beautiful! / すごい！</h2>
-        <button class="action-btn btn-main" style="width:180px;" onclick="closeOverlay()">Next Letter</button>
+        <div style="font-size: 62px; margin-bottom:6px;">🌸</div>
+        <div class="stamp-stars" id="stamp-stars">★★★</div>
+        <div class="stamp-score" id="stamp-score">Accuracy: 95%</div>
+        <h2 id="stamp-heading" style="color:var(--accent-deep); margin-bottom:12px; font-size:1.55rem;">Beautiful! / すごい！</h2>
+        <div class="stamp-recap" id="stamp-recap"></div>
+        <button class="btn-main" id="stamp-next-btn" onclick="closeOverlay()">Next Letter →</button>
     </div>
 </div>
 
 <script>
-    /* --- 全ひらがなデータベース：座標を元の正確な位置に復元 ＆ 覚え方テキスト更新 --- */
+    const STORAGE_KEY = 'ohayo_hiragana_mastery_v1';
+    const STAMP_EMOJI = '🌸';
+
+    /* --- かなデータベース (書き順・座標・覚え方) --- */
     const dbBasic = {
         'あ (A)': [
             { c: 'あ', m: 'Capital A', d: 'め', h: [{x:110,y:110,n:1},{x:160,y:60,n:2},{x:203,y:130,n:3}] },
@@ -370,7 +1197,6 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         ]
     };
 
-    /* --- 濁音・半濁音（Tenten & Maru）: 基礎座標に正確な濁点・半濁点を追加 --- */
     const dbVoiced = {
         'が (Ga)': [
             { c: 'が', m: 'GA', d: 'か', h: [{x:100,y:110,n:1},{x:160,y:60,n:2},{x:230,y:90,n:3},{x:245,y:45,n:4},{x:275,y:45,n:5}] },
@@ -409,17 +1235,122 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         ]
     };
 
+    /* --- 初心者向け 単語アンカー (全71文字) --- */
+    const KANA_WORDS = {"あ": {"w": "あめ", "r": "ame", "e": "rain / candy"}, "い": {"w": "いぬ", "r": "inu", "e": "dog"}, "う": {"w": "うみ", "r": "umi", "e": "sea / ocean"}, "え": {"w": "えき", "r": "eki", "e": "train station"}, "お": {"w": "おちゃ", "r": "ocha", "e": "green tea"}, "か": {"w": "かさ", "r": "kasa", "e": "umbrella"}, "き": {"w": "きもの", "r": "kimono", "e": "kimono"}, "く": {"w": "くも", "r": "kumo", "e": "cloud"}, "け": {"w": "けさ", "r": "kesa", "e": "this morning"}, "こ": {"w": "こえ", "r": "koe", "e": "voice"}, "さ": {"w": "さくら", "r": "sakura", "e": "cherry blossom"}, "し": {"w": "しろ", "r": "shiro", "e": "white / castle"}, "す": {"w": "すし", "r": "sushi", "e": "sushi"}, "せ": {"w": "せかい", "r": "sekai", "e": "world"}, "そ": {"w": "そら", "r": "sora", "e": "sky"}, "た": {"w": "たまご", "r": "tamago", "e": "egg"}, "ち": {"w": "ちず", "r": "chizu", "e": "map"}, "つ": {"w": "つき", "r": "tsuki", "e": "moon"}, "て": {"w": "てがみ", "r": "tegami", "e": "letter"}, "と": {"w": "とり", "r": "tori", "e": "bird"}, "な": {"w": "なつ", "r": "natsu", "e": "summer"}, "に": {"w": "にほん", "r": "nihon", "e": "Japan"}, "ぬ": {"w": "いぬ", "r": "inu", "e": "dog"}, "ね": {"w": "ねこ", "r": "neko", "e": "cat"}, "の": {"w": "のみもの", "r": "nomimono", "e": "drink"}, "は": {"w": "はな", "r": "hana", "e": "flower"}, "ひ": {"w": "ひと", "r": "hito", "e": "person"}, "ふ": {"w": "ふゆ", "r": "fuyu", "e": "winter"}, "へ": {"w": "へや", "r": "heya", "e": "room"}, "ほ": {"w": "ほし", "r": "hoshi", "e": "star"}, "ま": {"w": "まち", "r": "machi", "e": "town"}, "み": {"w": "みず", "r": "mizu", "e": "water"}, "む": {"w": "むし", "r": "mushi", "e": "insect"}, "め": {"w": "めがね", "r": "megane", "e": "glasses"}, "も": {"w": "もり", "r": "mori", "e": "forest"}, "や": {"w": "やま", "r": "yama", "e": "mountain"}, "ゆ": {"w": "ゆき", "r": "yuki", "e": "snow"}, "よ": {"w": "よる", "r": "yoru", "e": "night"}, "ら": {"w": "らく", "r": "raku", "e": "easy / comfortable"}, "り": {"w": "りんご", "r": "ringo", "e": "apple"}, "る": {"w": "くるま", "r": "kuruma", "e": "car"}, "れ": {"w": "れきし", "r": "rekishi", "e": "history"}, "ろ": {"w": "くろ", "r": "kuro", "e": "black"}, "わ": {"w": "わたし", "r": "watashi", "e": "I / me"}, "を": {"w": "みずをのむ", "r": "mizu o nomu", "e": "drink water (object particle)"}, "ん": {"w": "ほん", "r": "hon", "e": "book"}, "が": {"w": "がっこう", "r": "gakkou", "e": "school"}, "ぎ": {"w": "ぎんこう", "r": "ginkou", "e": "bank"}, "ぐ": {"w": "すぐ", "r": "sugu", "e": "right away"}, "げ": {"w": "げんき", "r": "genki", "e": "energetic / well"}, "ご": {"w": "ごはん", "r": "gohan", "e": "rice / meal"}, "ざ": {"w": "ざっし", "r": "zasshi", "e": "magazine"}, "じ": {"w": "じかん", "r": "jikan", "e": "time"}, "ず": {"w": "みず", "r": "mizu", "e": "water"}, "ぜ": {"w": "かぜ", "r": "kaze", "e": "wind / cold"}, "ぞ": {"w": "かぞく", "r": "kazoku", "e": "family"}, "だ": {"w": "ともだち", "r": "tomodachi", "e": "friend"}, "ぢ": {"w": "はなぢ", "r": "hanaji", "e": "nosebleed (rare)"}, "づ": {"w": "つづく", "r": "tsuzuku", "e": "to continue"}, "で": {"w": "でんしゃ", "r": "densha", "e": "train"}, "ど": {"w": "まど", "r": "mado", "e": "window"}, "ば": {"w": "かばん", "r": "kaban", "e": "bag"}, "び": {"w": "えび", "r": "ebi", "e": "shrimp"}, "ぶ": {"w": "ぶた", "r": "buta", "e": "pig"}, "べ": {"w": "たべる", "r": "taberu", "e": "to eat"}, "ぼ": {"w": "ぼうし", "r": "boushi", "e": "hat"}, "ぱ": {"w": "ぱっと", "r": "patto", "e": "suddenly / in a flash"}, "ぴ": {"w": "ぴかぴか", "r": "pikapika", "e": "shiny / sparkling"}, "ぷ": {"w": "てんぷら", "r": "tenpura", "e": "tempura"}, "ぺ": {"w": "ぺらぺら", "r": "perapera", "e": "fluent"}, "ぽ": {"w": "さんぽ", "r": "sanpo", "e": "a walk / stroll"}};
+
+    /* --- 書き順データ (KanjiVG, CC BY-SA 3.0) --- */
+    const STROKE_PATHS = {"あ": ["M31.01,33c0.88,0.88,2.75,1.82,5.25,1.75c8.62-0.25,20-2.12,29.5-4.25c1.51-0.34,4.62-0.88,6.62-0.5", "M49.76,17.62c0.88,1,1.82,3.26,1.38,5.25c-3.75,16.75-6.25,38.13-5.13,53.63c0.41,5.7,1.88,10.88,3.38,13.62", "M65.63,44.12c0.75,1.12,1.16,4.39,0.5,6.12c-4.62,12.26-11.24,23.76-25.37,35.76c-6.86,5.83-15.88,3.75-16.25-8.38c-0.34-10.87,13.38-23.12,32.38-26.74c12.42-2.37,27,1.38,30.5,12.75c4.05,13.18-3.76,26.37-20.88,30.49"], "い": ["M21.5,29.66c2.01,2.17,2.61,4.68,2.17,7.43c-3.09,19.16-1.03,32.01,7.93,41.45c6.12,6.45,6.26,3.14,7.04-5.21", "M72.96,36.51c9.44,8.05,17.79,18.82,18.41,33.83"], "う": ["M42,15.5c5.62,2.12,9.62,3,12.88,3c8.27,0,8,1.12-0.38,5.5", "M33,42.38c2.12,1.12,4.12,2.88,8.5,1.38c4.38-1.5,12.75-7.12,18.5-7c5.75,0.12,10.25,5,10.25,18c0,15.49-8.25,30.24-24.37,41.24"], "え": ["M40.52,13.25c5.62,2.12,10,3,14.12,3c8.27,0,8,1.12-0.38,5.5", "M32.52,45.12c1.88,1.25,4.5,1.75,7.38,0.62c3.29-1.29,17-7.88,21.25-9.88c4.25-2,8.32,0.04,4.38,4.62c-12.26,14.27-27.26,31.52-39.51,44.4c-3.26,3.42-0.58,3.54,1.5,1.37c13.5-14.12,18.12-20.12,23.62-20.12c7.13,0,3.5,16.75,6.75,22.38c3.25,5.63,19.12,3.75,26.12,2.12"], "お": ["M22.88,35.12c1.38,1,3.62,2.38,6,2.12c2.38-0.26,19.62-5.12,21.12-5.74c1.5-0.62,4-1.25,5.88-2", "M41.5,16.12c2.25,1,3.59,4.39,3.12,7.38c-2.5,16.12-3.37,45.53-2.25,58.38c0.75,8.62-0.64,10.45-7.12,7.12c-5.13-2.62-13.75-8-13.75-12.38c0-7.5,24.38-23.62,44.75-23.62c17.25,0,25,8.25,25,17.25c0,8.25-9.38,18.88-26.75,21", "M73,22.12c5.38,2.62,8.88,5.88,10.62,8.25c2.27,3.08,0.38,4.5-1.12,5"], "か": ["M24.62,38.62c1.88,1.62,4.65,2.33,8.62,1c25.5-8.5,29.5-4.13,29.5,7.62c0,9.38-1.24,17.46-4.25,25.25c-7.62,19.76-10.87,17.39-16.12,10.89", "M48.5,17.5c1,1.38,1.29,4.7,0.5,7.12c-5,15.25-18.02,40.93-19.62,43.88c-3.12,5.75-6.38,11.88-9.38,16.25", "M77.37,31.62c7.5,6.88,13.25,15.75,15,24.88"], "き": ["M30.5,30.25c1.88,0.75,4.64,1.06,5.88,0.88c6.75-1,22.25-4.5,26.5-6c2.17-0.76,3.5-1.25,4.88-2.12", "M36.25,48.7c2.01,0.85,4.97,1.2,6.29,0.99c7.23-1.13,23.82-5.09,28.37-6.79c2.32-0.86,3.75-1.41,5.22-2.4", "M42,14.12c1.5,0.88,3.13,2.94,4,5.12c5.5,13.76,16,29.26,26.37,40.76c7.64,8.47,9.12,9.38-6,3.88", "M33.75,83.25c10.62,9.75,27.25,8.62,38.12,5"], "く": ["M60.66,15c0.5,1.62,0.35,5.44-1,7.38c-6.75,9.62-14.3,19.08-18.62,24.5c-4,5-3.79,7.03-0.88,11c5.5,7.5,12.75,18.75,17.62,27.25c1.48,2.59,2.75,4.75,4.5,8.62"], "け": ["M24.67,19.75c1.25,1.5,2.62,3.75,2.12,6.38c-3,15.88-6.5,29.5-4.88,44.62c2.02,18.84,2.25,4.75,6.75-3.5", "M53.67,38.62c2.12,1.38,4.28,1.89,6.88,1.5c8.25-1.25,15.39-2.57,20.62-4c2.76-0.74,5.26-1.12,6.88-1.12", "M71.67,14.38c2.13,1.37,2.88,3.35,2.88,5.12c0,11.62,0.12,20.38,0.12,30.12c0,20.75-0.62,30.88-12.5,42.25"], "こ": ["M34.75,26.75c1.12,0.88,2.91,2.01,6,1.5c7.62-1.25,14.11-2.56,22.38-2.62c15.5-0.12,5.88,5-5.75,9", "M30,68.12c2.25,14.5,15.26,17.96,31,16.75c6.5-0.5,11.88-1.25,17.62-2.88"], "さ": ["M27,38.9c2.42,1.33,5.38,1.47,8.32,1.06c8.79-1.24,28.67-7.76,34.15-10.43c2.79-1.36,3.78-1.91,6.28-3.53", "M41.5,13.88c1.5,0.88,3.63,2.94,4.5,5.12c5.5,13.75,15.25,27.62,26.87,39.5c7.98,8.15,6.38,10-6,3.12", "M35.25,80.5c4.5,11.75,20.88,12.5,38.38,7.5"], "し": ["M39.12,17.5c1.25,3.12,0.93,6.74,0.38,10.25c-2.12,13.5-3,26.5-3,39.12c0,27.38,19.88,30.12,45.5,17.25"], "す": ["M15.5,37.12c2.88,2.12,6.94,1.51,12.75,0.25c16.12-3.5,36.14-5.38,46.62-6.5c7-0.75,11.88-0.62,17.75,0.12", "M57.62,13.38c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,35.12,0,40.75c0,14.62-15.62,16.38-15.62,1.75c0-14.25,18-14.12,18,6.38c0,13.25-7.75,21.5-16,28.38"], "せ": ["M16.5,49.93c2.88,2.42,6.86,1.57,12.75,0.53c19-3.34,33-5.72,47.12-7.64c6.99-0.95,11.88-1.21,17.75-0.36", "M69.74,17.75c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,17.88,0,23.5c0,25.62-5.75,23.25-11.88,19", "M35.62,26.25c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,28.38,0,34c0,14.5,6.38,19.55,20.14,19.55c10.24,0,13.74,0.07,22.61-1.68"], "そ": ["M38.4,22c1.88,1.25,4.98,1.05,7.5,0.38c6.5-1.75,13.25-3.75,19.38-5.38c4.63-1.23,7.18,2.06,3.62,5.25c-12.12,10.87-31.14,24.4-40,30.25c-6.25,4.12-5.88,5.75,1.38,3.88c17.08-4.42,35.96-8.68,50.12-10.38c9.38-1.12,9.62,0.12,0.5,1.38c-15.82,2.17-34.38,14.25-34.38,26.5c0,12.88,11.62,20.38,31.5,16.62"], "た": ["M24.38,35.38c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,16.25-2.88,24.88-4.75c2.64-0.57,5.38-1.5,7.62-2.38", "M45,16.88c0.75,1.25,0.87,3.62,0.38,5.25c-6.35,20.94-12.75,36.37-18.88,52.37c-1.36,3.56-4.75,11.75-6,14.62", "M56.38,53.25c12.38-2.75,18.25-3.7,23.62-3.12c15.12,1.62-1.12,2.25-4.25,4.88", "M54.13,82.25c4.38,7,14.25,8.12,34.5,5.62"], "ち": ["M24.5,32.62c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,18.25-4.12,26.88-6c2.64-0.57,5.38-1.5,7.62-2.38", "M45.62,15.62c0.75,1.25,0.71,3.58,0.38,5.25c-3,15-4.25,22.59-8.38,38.62c-3.25,12.62-5.38,11.12,3.62,4.38c8.29-6.21,19.75-9.5,28.5-9.5c8.62,0,14.58,5.88,14.5,14.5c-0.12,13.5-16.5,20.62-29.88,23.25"], "つ": ["M14,44.75c1.88,1.62,4.68,2.09,8.12,0.62c17.88-7.62,30-11.12,44.88-10.88c12.56,0.21,22.98,7.17,22.87,19.17c-0.18,18.77-24.75,28.71-45.01,32.08"], "て": ["M20.5,26.38c1.87,1.62,4.42,1.97,8.12,1.37c21.75-3.5,33-5.12,50.12-8.38c12.34-2.34,13-0.88,0.38,1.38c-17.89,3.19-33.78,19.12-33.78,37.62c0,20.5,17.91,30.25,35.16,30.25"], "と": ["M35.5,18.38c1.74,0.74,3.62,2.62,4.12,5.37c0.5,2.75,4.75,25,5.38,28.12", "M78.12,25.5c0.25,1.88,0.04,4.09-2.25,5.75c-6.37,4.63-13.22,8.49-22.75,15.25c-12.88,9.12-21.62,18.38-21.62,27.5c0,10.12,8.5,13.88,26.88,13.88c6.25,0,14.75-0.12,21.62-1.25"], "な": ["M22.88,28.96c1.18,0.58,3.3,1.1,5.47,1.05c5.53-0.13,10.9-0.98,16.52-2.42c4.82-1.23,9.13-3.12,11.38-4.22", "M42.99,14c0.63,0.89,0.56,2.52,0.31,3.72c-2.96,14.16-7.95,26.56-14.25,37.87c-2.05,3.69-4.25,7.24-6.55,10.65", "M72.26,23.25c6.88,2.5,12.62,5.62,14.75,9.5c4.06,7.41-0.25,3.38-3.5,3.88", "M68.88,44.62c-1,1.88-2.14,5.24-1.88,8.25c0.62,7,1.5,13.12,1.5,20.62c0,20-27.88,19.75-27.88,9.38c0-5.62,8.25-8.25,13.88-8.25c8.75,0,21.5,3.25,29.75,11.5"], "に": ["M24.53,22.75c1.25,1.5,1.62,3.75,1.12,6.38c-3,15.88-9,32.5-7.38,47.62c2.02,18.84,4.5,5.75,8.5-3.5", "M53.2,30.64c0.96,0.79,2.44,1.58,5.1,1.35c6.98-0.61,15.01-3.3,22.04-3.36c13.19-0.11,1.5,3.75-8.39,7.35", "M52.53,68c1.76,12.92,11.92,16.01,24.23,14.93c5.08-0.45,8.9-0.8,14.27-2.06"], "ぬ": ["M25.38,28.5c2,1.38,2.97,3.23,3.38,5.88c1.87,12.18,4.12,23.92,8.54,34.67c1.79,4.36,3.96,8.33,6.84,12.46", "M57.12,19.25c0.88,2.12,1.06,3.79,0.62,5.88c-3.12,15-13.14,39.81-18.12,48.62c-11.87,21-20.62,1.25-20.62-4.5c0-22.63,43.75-44.25,62.36-29.59c7.66,6.03,9.8,14.58,9.14,23.34c-2,26.75-32.88,28.38-32.88,16.88c0-9.38,17.38-7.12,27.12-1.12c3.1,1.91,7.25,5.25,9.5,7.5"], "ね": ["M33.29,14.5c1.62,1.62,2.1,3.21,1.88,5.88c-1.03,11.93-2.06,31.66-2.53,53.12c-0.1,4.62-0.18,9.31-0.22,14", "M17.16,37.88c1.62,0.88,3.25,1.38,5.62,0.75c2.14-0.56,7.8-2.31,12.37-4.03c6.26-2.35,6.88-1.47,3.12,3.63c-5.56,7.53-13.02,17.38-18.48,26.77c-5.6,9.62-3.45,8.3,2,3c19.12-18.62,38.5-39.12,54.12-39.12c11.38,0,12.88,11.25,12.88,32.5c0,28.62-30.18,24.88-30.18,16.26c0-9.63,18.73-7.82,28.06-1.88c2.75,1.75,5.88,4.88,7.5,6.75"], "の": ["M53.82,28.62c1,1.5,1.34,4.12,0.88,6.62c-1.75,9.5-6.89,25-10.75,33.12c-9.63,20.26-16.55,14.74-24.38-1.98c-9.13-19.5,23.5-48.88,50.63-40.38c32.38,10.15,28,54.62-4.75,60.88"], "は": ["M24.51,18c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.62-6.98,36.4-4,54.88c2.5,15.5,1.12,2,5.62-6.25", "M49.64,37.89c2.41,1.57,4.85,2.16,7.8,1.71c9.36-1.43,17.46-2.94,23.4-4.57c3.12-0.86,5.96-1.29,7.8-1.29", "M69.77,16.5c2.25,2.12,2.88,4.12,2.88,6.5c0,2.38,1.5,38.62,1.5,48c0,22.5-30.62,19.62-30.62,10.5c0-9.75,23.88-5.62,29.5-2.88c5.62,2.74,11.98,8.26,13.36,9.38"], "ひ": ["M20,25.12c1.25,0.88,3.75,2.25,6.5,1.38c2.75-0.87,7.31-2.38,11.38-4.5c6-3.12,8.42-1.01,4.25,4c-27.13,32.62-23.76,58.5-1.52,62.88c18.07,3.56,37.63-16.38,35.63-56.51c-0.72-14.5-0.17-14.78,4.12-1.75c3.76,11.38,10.26,20.76,16.14,26.5"], "ふ": ["M42.63,15.62c3.62,3.38,7.5,5.38,12.74,6.13c9.59,1.37,3.5,3.38-1.88,6.12", "M43.63,46.88c1.88,4.62,7.5,9.41,14.25,17.5c10.62,12.74,0.49,30-19.13,21.62", "M16.5,73.38c0.75,4,1.88,8.12,5,10.12c1.16,0.74,0.12-3.38,13.25-9.12", "M80.13,61.88c5.12,3.38,10.28,7.49,11.38,8.88c6.75,8.5-0.25,4.62-4.62,7.12"], "へ": ["M15,48.75c2.25,1.62,4.67,1.96,7-0.38c3.62-3.62,7.46-6.54,11.25-10.5c5.5-5.75,8.48-4.75,13.12-0.88c12.12,10.12,30.38,25.12,33.38,27.38c3,2.26,12.37,10.38,13.87,11.63"], "ほ": ["M24.51,18.75c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.63-6.98,37.4-4,55.88c2.5,15.5,1.12,2,5.62-6.25", "M53.08,21.13c1.9,1.28,3.82,1.76,6.14,1.4c7.36-1.17,13.73-2.4,18.41-3.73c2.46-0.7,4.69-1.05,6.13-1.05", "M53.83,44.3c2.21,1.44,4.46,1.98,7.16,1.57c8.59-1.31,15.78-2.44,21.23-3.94c2.87-0.79,5.72-1.18,7.41-1.18", "M72.51,23c1.38,1.62,1.62,4.12,1.62,6.5c0,2.38,2,35.12,2,44.5c0,17.5-29.88,17.12-29.88,8c0-9.75,21.38-7.88,29.5-2.88c5.33,3.28,12,8.25,13.38,9.38"], "ま": ["M29.83,32.28c2.2,1.15,4.43,1.5,7.14,1.26c11.54-1.04,25.94-3.12,34.66-4.85c2.87-0.57,5.45-0.44,7.13-0.44", "M33.83,51.84c2.45,1.61,4.94,1.72,7.94,1.26c9.52-1.46,17.87-3.1,27.03-5.16c3.22-0.72,6.34-1.32,8.21-1.32", "M55.81,14c1.52,1.8,1.8,4.57,1.8,7.19c0,2.63,0.46,43.88,0.46,54.25c0,21.3-30.07,19.96-30.07,9.86c0-10.79,25.88-9.93,38.57-3.18c6.12,3.25,11.55,6.38,14.8,9.13"], "み": ["M32.5,26c1.88,1.75,4.06,1.7,6.88,1.25c3.88-0.62,7.62-1.75,11.88-3.12c4.26-1.37,6.25-0.12,4.5,5.12c-1.75,5.24-6.66,17.39-12,30.12c-13.63,32.51-29.26,29.26-29.26,18.63c0-14.25,20.48-15.36,33-13.5c18.5,2.75,30,6.62,44.38,14.25", "M79.38,54.75c0.75,2.38,0.49,4.37,0,6.25c-2.12,8.12-7.5,25-22.12,33.75"], "む": ["M19.59,31.65c2.1,1.55,4.24,1.66,6.81,1.21c8.17-1.41,15.33-2.98,23.19-4.96c2.76-0.69,5.44-1.27,7.05-1.27", "M37.02,15.5c1.62,1.25,2.31,2.88,2.12,5.25c-0.88,11.12-1.5,20.75-4,34.88c-3.61,20.44-19.25,16.99-18.62,7.37c0.5-7.74,6.25-12.86,12.62-13.5c5-0.5,14.28,1.93,5.88,15c-12.62,19.62-11.42,24.51,5.11,25.54c10.98,0.68,19.26,0.72,28.49-0.92c14.15-2.5,7.4-2.63,7.4-11.13", "M78.52,36.25c6.88,3.12,11.71,5.95,14.88,10.12c6.25,8.25-1.38,3.62-4.5,4.5"], "め": ["M27.48,31.75c1.75,1,2.41,3.09,2.5,5.25c0.5,11.62,2.75,23.5,7.25,31.38c1.39,2.44,5.38,8.5,7.25,10.38", "M59.6,19.38c1,1.5,1.35,4.12,0.88,6.62c-2.75,14.62-13.62,37.75-20.1,47.24c-12.28,17.14-16.78,13.14-22.28,0.64c-5.38-15.38,26.4-42.18,53.42-35.28c29.08,8.27,23.96,46.02-7.98,50.15"], "も": ["M49.17,14.75c1.88,1.88,1.86,4.52,1.12,8c-3,14.25-5,26.62-7,42.12c-2.55,19.73-0.75,29.88,17,29.86c20.25-0.02,28.63-13.11,20.01-35.73", "M26.54,34.62c1.12,0.88,2.87,2.21,6,2c11.12-0.75,20-2.12,27.74-3.46c3.88-0.67,5.88-1.17,8.88-1.04", "M26.42,53.38c-1.5,4,1,6.75,7.75,6.75c8.75,0,17.62-1,22.88-1.88c2.01-0.33,5.38-1,7.5-1.75"], "や": ["M18,49.38c1.88,1.62,5.25,2.5,8.62,0.88c18.51-8.88,35.76-19.38,50.83-19.26c9.02,0.14,16.01,4.13,15.93,12.29c0,8.33-10.88,16.58-24.5,17.83", "M47.13,15.88c5.12,0.88,10.41,4.05,11.5,6.62c2.12,5-1,2.38-2.88,2.62", "M30,24.38c2.38,1.88,3.28,2.87,3.88,5.25c2.62,10.5,11.12,41.12,14.75,52.5c0.65,2.04,1.88,6.25,2.88,9.38"], "ゆ": ["M21.05,25.38c1.38,1.5,2.02,4.13,1.5,6.25c-2.88,11.75-4,22.25-2.12,35c2.77,18.85,1.12,3.88,3.25-1.5c9-22.75,27.24-34.5,44.38-34.5c16.88,0,21.88,11.38,21.88,20.25c0,27.38-30.88,29.62-43,16.75", "M58.42,16.75c2.62,1.75,3.17,3.13,3.5,7.12c0.88,10.5,1.4,18.72,1.62,29.38c0.5,24-6.25,32-12.38,39.25"], "よ": ["M58.24,35.38c7.5-1.28,13.74-2.63,18.5-4.1c2.5-0.77,4.77-1.15,6.25-1.15", "M54.62,13.88c2.25,2.12,2.98,4.13,2.88,6.5c-0.75,17-0.12,34.88,1.39,53.5c1.88,23.07-34.89,20.88-34.89,11.5c0-12,26.25-8,35.98-4.12c8.1,3.23,11.52,4.88,18.52,10.38"], "ら": ["M35.33,15c3.75,3,9.22,4.41,16.5,4.25c11.12-0.25-0.25,2.38-1.25,3.5", "M35.83,35.75c-2.14,4.34-2.79,8.67-3.11,13.24c-0.42,5.84-0.31,12.05-2.14,19.13c-3.16,12.27,1.49,4.77,3,3.5c11.88-10,21.7-12.67,32.61-12.49c9.21,0.15,16.85,5.19,16.76,13.88c-0.12,13.6-14.24,21.49-32.49,22.49"], "り": ["M38.75,25.25c1.25,1.5,2.24,4.03,1.62,6.62c-2.88,12.13-6.29,29.65-4.25,42.38c2,12.5,1.75-0.75,5.62-6.25", "M69.37,18.75c2.25,2.12,2.88,4.12,2.88,6.5c0,2.38,0,26.38,0,35.75c0,16.5-5,25.75-12.62,33.12"], "る": ["M34.31,20.38c1.75,1.25,4.62,2.62,8.5,1.5c3.88-1.12,9.62-2.5,15.62-4.62c6-2.12,7.5-0.12,4.38,4.25c-3.12,4.37-18.89,24.62-27.75,34c-8.5,9-13.09,11.89,0.75,3.25c15.62-9.75,43-10.88,43,13.38c0,22.5-40.88,24.5-40.88,12.62c0-11.25,18.12-8.75,24.38-0.38"], "れ": ["M34.48,13c1.5,1.38,2.83,3.74,2.5,6.38c-0.5,4-2.75,44.5-2.75,52.88c0,8.38,0.12,16.62,0.12,19.5", "M16.98,40.75c2.12,1.38,3.74,1.46,7.5,0c4.5-1.75,6.55-2.66,13-5.5c4.25-1.88,4.4,0.24,2.5,3.5c-5.25,9-10.5,16.75-18.88,27.62c-7.55,9.81-6.93,12.85,3.25,3.12c14-13.38,20.34-19.76,33.88-32.5c6.38-6,19.39-12.09,18.14,0.88c-1.02,10.63-1.89,22.13-2.29,30.75c-1.02,21.71,11.53,18,20.15,8.63"], "ろ": ["M36.95,21.88c1.5,2,4.62,3.62,8.5,2.5c3.88-1.12,8.12-2.25,14.12-4.38c6-2.13,6.53-0.1,3.38,4.25c-7.88,10.88-18,22.75-27.5,35.25c-7.49,9.86-10.68,11.32,2.88,2.25c17.38-11.62,46.62-14,46.62,8.12c0,15.62-16,22.5-32.12,25.12"], "わ": ["M38.53,14.75c1.5,1.38,2.22,3.73,2,6.38c-1,11.87-2.75,44.49-2.75,52.87c0,8.38-0.62,16.62-0.62,19.5", "M17.53,40.75c2.12,1.38,3.68,1.3,7.5,0c5.88-2,9.8-3.16,16.25-6c4.25-1.88,6.12,0,2.75,4c-6.72,7.96-13,16.5-22.12,27.88c-7.75,9.66-7.54,12.21,3,2.88c21.88-19.38,49.75-35.62,63.5-21c14.36,15.27,1.62,36.62-23.38,42.62"], "を": ["M28.56,27.87c1.62,1.13,3.17,1.64,6.01,1.12c10.86-1.99,16.74-3.37,24.71-4.72c3.64-0.62,5.65-0.93,8.4-0.75", "M49.93,14.38c0.75,1,1.48,3.22,0.38,5.62c-4.62,10.12-10,20.75-17.12,30.25c-9.25,12.33-9.25,11.19,2.12,2.5c9-6.88,23.75-12.12,22.88,19.88", "M83.06,39.88c0.62,1.75,0,4-3,5.75c-3,1.75-49.62,24.16-44.75,38.25c3.28,9.48,17.93,9.12,29.98,7.75c4.48-0.51,9.15-1.12,12.4-1.75"], "ん": ["M56.35,16.5c0.75,1.75,1.13,5.83-0.38,8.25c-7,11.25-27.22,43.47-33.88,54.37c-9,14.75-7.62,16.25,1.5,1.25c17.86-29.36,32-23.76,32-6.75c0,25,19,26.5,34.25-5"], "が": ["M24.62,38.62c1.88,1.62,4.65,2.33,8.62,1c25.5-8.5,29.5-4.13,29.5,7.62c0,9.38-1.24,17.46-4.25,25.25c-7.62,19.76-10.87,17.39-16.12,10.89", "M48.5,17.5c1,1.38,1.29,4.7,0.5,7.12c-5,15.25-18.02,40.93-19.62,43.88c-3.12,5.75-6.38,11.88-9.38,16.25", "M77.37,31.62c7.5,6.88,13.25,15.75,15,24.88", "M80.5,18.25c2.75,1.75,6,5.38,7.75,8.5", "M86.87,13.38c3.06,1.57,6.68,4.82,8.62,7.62"], "ぎ": ["M30.5,30.5c1.88,0.75,4.64,1.06,5.88,0.88c6.75-1,22.25-4.5,26.5-6c2.17-0.76,3.5-1.25,4.88-2.12", "M36.25,48.95c2.01,0.85,4.97,1.2,6.29,0.99c7.23-1.13,23.82-5.09,28.37-6.79c2.32-0.86,3.75-1.41,5.22-2.4", "M42,14.38c1.5,0.88,3.13,2.94,4,5.12c5.5,13.75,16,29.25,26.38,40.75c7.64,8.47,9.12,9.38-6,3.88", "M33.75,83.5c10.62,9.75,27.25,8.62,38.12,5", "M77.37,19c2.75,1.75,6,5.38,7.75,8.5", "M83.75,14.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ぐ": ["M60.66,15c0.5,2.12,0.75,5-1,7.38c-6.97,9.46-14.29,19.09-18.62,24.5c-4,5-3.79,7.03-0.88,11c5.5,7.5,12.75,18.75,17.62,27.25c1.48,2.59,2.75,4.75,4.5,8.62", "M73.54,30c2.75,1.75,6,5.38,7.75,8.5", "M79.91,25.12c3.06,1.57,6.68,4.82,8.62,7.62"], "げ": ["M24.91,20.25c1.25,1.5,2.37,3.75,1.88,6.38c-3,15.88-6.5,29.5-4.88,44.62c2.02,18.84,2.25,4.75,6.75-3.5", "M53.67,39.12c2.12,1.38,4.28,1.89,6.88,1.5c8.25-1.25,15.39-2.57,20.62-4c2.75-0.75,5.25-1.12,6.88-1.12", "M71.67,14.62c2.12,1.38,2.87,3.61,2.87,5.38c0,11.62,0.12,20.38,0.12,30.12c0,20.75-0.62,30.88-12.5,42.25", "M86.17,13c2.75,1.75,6,5.38,7.75,8.5", "M92.54,8.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ご": ["M34.75,27c1.12,0.88,2.91,2.01,6,1.5c7.62-1.25,14.11-2.56,22.38-2.62c15.5-0.12,5.88,5-5.75,9", "M30,68.38c2.25,14.5,15.26,17.96,31,16.75c6.5-0.5,11.88-1.25,17.62-2.88", "M80.37,16.25c2.75,1.75,6,5.38,7.75,8.5", "M86.75,11.38c3.06,1.57,6.68,4.82,8.62,7.62"], "ざ": ["M27,39.15c2.42,1.33,5.38,1.47,8.32,1.06c8.79-1.24,28.67-8.01,34.15-10.68c2.79-1.36,3.78-1.91,6.28-3.53", "M41.5,14.12c1.5,0.88,3.63,2.95,4.5,5.13c5.5,13.75,15.25,27.63,26.88,39.5c7.98,8.15,6.38,10-6,3.12", "M35.25,80.75c4.5,11.75,20.88,12.5,38.38,7.5", "M79.88,14.25c2.75,1.75,6,5.38,7.75,8.5", "M86.25,9.38c3.06,1.57,6.68,4.82,8.62,7.62"], "じ": ["M39.12,17.25c1.25,3.12,0.93,6.74,0.38,10.25c-2.12,13.5-3,26.5-3,39.12c0,27.38,19.88,30.12,45.5,17.25", "M64.24,27c2.75,1.75,6,5.38,7.75,8.5", "M70.62,22.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ず": ["M15.5,37.12c2.88,2.12,6.94,1.51,12.75,0.25c16.12-3.5,36.14-5.38,46.62-6.5c7-0.75,11.88-0.62,17.75,0.12", "M57.62,13.38c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,35.12,0,40.75c0,14.62-15.62,16.38-15.62,1.75c0-14.25,18-14.12,18,6.38c0,13.25-7.75,21.5-16,28.38", "M77,13c2.75,1.75,6,5.38,7.75,8.5", "M83.37,8.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ぜ": ["M16.5,49.93c2.88,2.42,6.86,1.57,12.75,0.53c19-3.34,32.5-5.34,47.12-7.64c6.97-1.1,11.88-1.21,17.75-0.36", "M69.74,17.75c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,17.88,0,23.5c0,25.62-5.75,23.25-11.88,19", "M35.62,26.25c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,28.38,0,34c0,14.5,6.38,19.55,20.14,19.55c10.24,0,13.74,0.07,22.61-1.68", "M84.5,17.25c2.75,1.75,6,5.38,7.75,8.5", "M90.87,12.38c3.06,1.57,6.68,4.82,8.62,7.62"], "ぞ": ["M38.4,22c1.88,1.25,4.98,1.05,7.5,0.38c6.5-1.75,13.25-3.75,19.38-5.38c4.63-1.23,7.18,2.06,3.62,5.25c-12.12,10.87-31.14,24.4-40,30.25c-6.25,4.12-5.88,5.75,1.38,3.88c17.08-4.42,35.96-8.68,50.12-10.38c9.38-1.12,9.62,0.12,0.5,1.38c-15.82,2.17-34.38,14.25-34.38,26.5c0,12.88,11.62,20.38,31.5,16.62", "M81.78,26.75c2.75,1.75,6,5.38,7.75,8.5", "M88.15,21.88c3.06,1.57,6.68,4.82,8.62,7.62"], "だ": ["M24.38,35.38c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,16.25-2.88,24.88-4.75c2.64-0.57,5.38-1.5,7.62-2.38", "M45,16.88c0.75,1.25,0.87,3.62,0.38,5.25c-6.35,20.94-12.75,36.37-18.88,52.37c-1.36,3.56-4.75,11.75-6,14.62", "M56.38,53.25c12.38-2.75,18.25-3.7,23.62-3.12c15.12,1.62-1.12,2.25-4.25,4.88", "M54.13,82.25c4.38,7,14.25,8.12,34.5,5.62", "M76,22.5c2.75,1.75,6,5.38,7.75,8.5", "M82.38,17.62c3.06,1.57,6.68,4.82,8.62,7.62"], "ぢ": ["M24.5,32.88c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,18.25-4.12,26.88-6c2.64-0.57,5.38-1.5,7.62-2.38", "M45.63,15.88c0.75,1.25,0.71,3.58,0.38,5.25c-3,15-4.25,22.59-8.38,38.62c-3.26,12.63-5.38,11.13,3.62,4.37c8.29-6.21,19.75-9.5,28.5-9.5c8.62,0,14.58,5.88,14.5,14.5c-0.12,13.5-16.5,20.62-29.88,23.25", "M74.63,21.75c2.75,1.75,6,5.38,7.75,8.5", "M81,16.88c3.06,1.57,6.68,4.82,8.62,7.62"], "づ": ["M14,44.75c1.88,1.62,4.68,2.09,8.12,0.62c17.88-7.62,30-11.12,44.88-10.88c12.56,0.21,22.98,7.17,22.87,19.17c-0.18,18.77-24.75,28.71-45.01,32.08", "M81,18c2.75,1.75,6,5.38,7.75,8.5", "M87.38,13.12c3.06,1.57,6.68,4.82,8.62,7.62"], "で": ["M20.5,26.38c1.87,1.62,4.42,1.97,8.12,1.37c21.75-3.5,33-5.12,50.12-8.38c12.34-2.34,13-0.88,0.38,1.38c-17.89,3.19-33.78,19.12-33.78,37.62c0,20.5,17.91,30.25,35.16,30.25", "M75,41.75c2.75,1.75,6,5.38,7.75,8.5", "M81.37,36.88c3.06,1.57,6.68,4.82,8.62,7.62"], "ど": ["M35.5,18.38c1.74,0.74,3.62,2.62,4.12,5.37c0.5,2.75,4.75,25,5.38,28.12", "M78.12,25.5c0.25,1.88,0.04,4.09-2.25,5.75c-6.37,4.63-13.21,8.49-22.75,15.25c-12.88,9.12-21.62,18.38-21.62,27.5c0,10.12,8.5,13.88,26.88,13.88c6.25,0,14.75-0.12,21.62-1.25", "M84.24,14.5c2.75,1.75,6,5.38,7.75,8.5", "M90.62,9.62c3.06,1.57,6.68,4.82,8.62,7.62"], "ば": ["M24.75,17.75c1.25,1.5,1.9,4.25,1.38,6.88c-3.5,17.62-6.98,36.4-4,54.88c2.5,15.5,1.12,2,5.62-6.25", "M49.88,37.89c2.41,1.57,4.85,2.41,7.8,1.96c9.36-1.43,17.21-3.19,23.15-4.82c3.12-0.86,5.96-1.29,7.8-1.29", "M69.75,16.5c2.26,2.12,2.88,4.12,2.88,6.5c0,2.38,1.5,38.62,1.5,48c0,22.5-30.62,19.62-30.62,10.5c0-9.75,23.88-5.62,29.5-2.88c5.62,2.74,12,8.25,13.38,9.38", "M84.75,15.25c2.75,1.75,6,5.38,7.75,8.5", "M91.13,10.38c3.06,1.57,6.68,4.82,8.62,7.62"], "び": ["M20,25.12c1.25,0.88,3.75,2.25,6.5,1.38c2.75-0.87,7.31-2.38,11.38-4.5c6-3.12,8.42-1.01,4.25,4c-27.13,32.62-23.76,58.5-1.52,62.88c18.07,3.56,37.63-16.38,35.63-56.51c-0.72-14.5-0.17-14.78,4.12-1.75c3.76,11.38,10.26,20.76,16.14,26.5", "M86.5,13.5c2.75,1.75,6,5.38,7.75,8.5", "M92.87,8.62c3.06,1.57,6.68,4.82,8.62,7.62"], "ぶ": ["M42.12,15.62c3.62,3.38,7.5,5.38,12.75,6.12c9.59,1.37,3.5,3.38-1.88,6.12", "M43.12,46.88c1.88,4.62,7.5,9.41,14.25,17.5c10.62,12.75,0.5,30-19.12,21.62", "M16.5,73.88c0.75,4,1.88,8.12,5,10.12c1.16,0.74,0.12-3.38,13.25-9.12", "M79.62,61.88c5.5,3.38,10.28,7.49,11.38,8.88c6.75,8.5-0.25,4.62-4.62,7.12", "M73.62,16.25c2.75,1.75,6,5.38,7.75,8.5", "M80,11.38c3.06,1.57,6.68,4.82,8.62,7.62"], "べ": ["M15,48.75c2.25,1.62,5,1.38,7.62-1c3.89-3.52,6.12-5.75,10.62-9.88c5.88-5.37,8.49-4.75,13.14-0.87c12.12,10.12,30.38,25.12,33.38,27.38c3,2.26,12.37,10.37,13.87,11.62", "M66.76,26.75c2.75,1.75,6,5.38,7.75,8.5", "M73.13,21.88c3.06,1.57,6.68,4.82,8.62,7.62"], "ぼ": ["M24.51,18.75c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.63-6.98,37.4-4,55.88c2.5,15.5,1.12,2,5.62-6.25", "M53.08,21.13c1.9,1.28,3.82,1.76,6.14,1.4c7.36-1.17,13.73-2.4,18.41-3.73c2.46-0.7,4.69-1.05,6.13-1.05", "M53.83,44.3c2.21,1.44,4.46,1.98,7.16,1.57c8.59-1.31,15.78-2.44,21.23-3.94c2.87-0.79,5.72-1.18,7.41-1.18", "M72.51,23c1.38,1.62,1.62,4.12,1.62,6.5c0,2.38,2,35.12,2,44.5c0,17.5-29.88,17.12-29.88,8c0-9.75,21.38-7.88,29.5-2.88c5.33,3.28,12,8.25,13.38,9.38", "M87.51,26c2.75,1.75,6,5.38,7.75,8.5", "M93.88,21.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ぱ": ["M24.51,18c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.62-6.98,36.4-4,54.88c2.5,15.5,1.12,2,5.62-6.25", "M49.64,37.89c2.41,1.57,4.85,2.16,7.8,1.71c9.36-1.43,17.46-2.94,23.4-4.57c3.12-0.86,5.96-1.29,7.8-1.29", "M69.77,16.5c2.25,2.12,2.88,4.12,2.88,6.5c0,2.38,1.5,38.62,1.5,48c0,22.5-30.62,19.62-30.62,10.5c0-9.75,23.88-5.62,29.5-2.88c5.62,2.74,11.98,8.26,13.36,9.38", "M91.01,24.38c-9.62,0-9.25-14.25,0-14.25c9.76-0.01,9.5,14.25,0,14.25"], "ぴ": ["M20,25.12c1.25,0.88,3.75,2.25,6.5,1.38c2.75-0.87,7.31-2.38,11.38-4.5c6-3.12,8.42-1.01,4.25,4c-27.13,32.62-23.76,58.5-1.52,62.88c18.07,3.56,37.63-16.38,35.63-56.51c-0.72-14.5-0.17-14.78,4.12-1.75c3.76,11.38,10.26,20.76,16.14,26.5", "M93.87,22.12c-9.62,0-9.25-14.25,0-14.25c9.75,0.01,9.5,14.25,0,14.25"], "ぷ": ["M42.13,15.62c3.62,3.38,7.5,5.38,12.74,6.13c9.59,1.37,3.5,3.38-1.88,6.12", "M43.13,46.88c1.88,4.62,7.5,9.41,14.25,17.5c10.62,12.74,0.49,30-19.13,21.62", "M16.5,73.88c0.75,4,1.88,8.12,5,10.12c1.16,0.74,0.12-3.38,13.25-9.12", "M79.63,61.88c5.5,3.38,10.28,7.49,11.38,8.88c6.75,8.5-0.25,4.62-4.62,7.12", "M80.87,26.62c-9.62,0-9.25-14.25,0-14.25c9.76,0.01,9.5,14.25,0,14.25"], "ぺ": ["M15,48.75c2.25,1.62,4.67,1.96,7-0.38c3.62-3.62,7.46-6.54,11.25-10.5c5.5-5.75,8.48-4.75,13.12-0.88c12.12,10.12,30.38,25.12,33.38,27.38c3,2.26,12.38,10.38,13.88,11.63", "M73.63,36.75c-9.62,0-9.25-14.25,0-14.25c9.75,0,9.5,14.25,0,14.25"], "ぽ": ["M24.51,19c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.62-6.98,37.4-4,55.88c2.5,15.5,1.12,2,5.62-6.25", "M53.08,21.38c1.9,1.28,3.82,1.76,6.14,1.4c7.36-1.17,13.73-2.4,18.41-3.73c2.46-0.7,4.69-1.05,6.13-1.05", "M53.83,44.55c2.21,1.44,4.46,1.98,7.16,1.57c8.59-1.31,15.78-2.44,21.23-3.94c2.87-0.79,5.72-1.18,7.41-1.18", "M72.51,23.25c1.38,1.62,1.62,4.12,1.62,6.5c0,2.38,2,35.12,2,44.5c0,17.5-29.88,17.12-29.88,8c0-9.75,21.38-7.88,29.5-2.88c5.33,3.28,12,8.25,13.38,9.38", "M95.13,34.5c-9.62,0-9.25-14.25,0-14.25c9.75,0,9.5,14.25,0,14.25"]};
+
+    /* --- かな発音データ (録音済みMP3ファイル名マップ) --- */
+    const KANA_AUDIO = {"あ": "a", "い": "i", "う": "u", "え": "e", "お": "o", "か": "ka", "き": "ki", "く": "ku", "け": "ke", "こ": "ko", "さ": "sa", "し": "shi", "す": "su", "せ": "se", "そ": "so", "た": "ta", "ち": "chi", "つ": "tsu", "て": "te", "と": "to", "な": "na", "に": "ni", "ぬ": "nu", "ね": "ne", "の": "no", "は": "ha", "ひ": "hi", "ふ": "fu", "へ": "he", "ほ": "ho", "ま": "ma", "み": "mi", "む": "mu", "め": "me", "も": "mo", "や": "ya", "ゆ": "yu", "よ": "yo", "ら": "ra", "り": "ri", "る": "ru", "れ": "re", "ろ": "ro", "わ": "wa", "を": "wo", "ん": "n", "が": "ga", "ぎ": "gi", "ぐ": "gu", "げ": "ge", "ご": "go", "ざ": "za", "じ": "ji", "ず": "zu", "ぜ": "ze", "ぞ": "zo", "だ": "da", "ぢ": "di", "づ": "du", "で": "de", "ど": "do", "ば": "ba", "び": "bi", "ぶ": "bu", "べ": "be", "ぼ": "bo", "ぱ": "pa", "ぴ": "pi", "ぷ": "pu", "ぺ": "pe", "ぽ": "po"};
+
+    const ALL_ROWS = [
+        ...Object.keys(dbBasic).map(name => ({ name, type: 'basic', items: dbBasic[name] })),
+        ...Object.keys(dbVoiced).map(name => ({ name, type: 'voiced', items: dbVoiced[name] }))
+    ];
+    const ALL_ITEMS = ALL_ROWS.flatMap(r => r.items);
+
+    let currentTab = 'basic';
     let currentDB = dbBasic;
-    let activeRow = []; let charIdx = 0; let drawing = false; let correctIdx = 0;
-    const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    const hCanvas = document.getElementById('h-canvas'); const hCtx = hCanvas.getContext('2d', { willReadFrequently: true });
+    let activeRowName = '';
+    let activeRow = [];
+    let charIdx = 0;
+    let drawing = false;
+    let guideMode = 'trace'; // 'trace' | 'faint' | 'memory'
+    let autoSound = true;
+    let strokes = []; // array of strokes, each stroke is array of {x, y}
+    let currentStroke = [];
+    let lastStars = 3;
+    let lastScorePct = 95;
+    let quizAnswerChar = '';
+
+    // Boss review state
+    let bossQueue = [];
+    let bossIdx = 0;
+    let bossCorrectCount = 0;
+    let bossLocked = false;
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const hCanvas = document.getElementById('h-canvas');
+    const hCtx = hCanvas.getContext('2d', { willReadFrequently: true });
+
+    /* --- 進捗データ (localStorage) --- */
+    function loadProgress() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        } catch {
+            return {};
+        }
+    }
+    function saveMastery(char, stars, usedMemory) {
+        const data = loadProgress();
+        const prev = data[char] || { stars: 0, memory: false };
+        data[char] = {
+            stars: Math.max(prev.stars || 0, stars),
+            memory: prev.memory || !!usedMemory
+        };
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+    }
+    function resetProgress() {
+        if (!confirm('Reset all saved mastery stamps for this page?')) return;
+        try { localStorage.removeItem(STORAGE_KEY); } catch {}
+        renderMenu();
+    }
+
+    /* --- 効果音 (Web Audio API 優しいチャイム) --- */
+    let audioCtx = null;
+    function playChime(type) {
+        if (!autoSound) return;
+        try {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const now = audioCtx.currentTime;
+            const notes = type === 'win' ? [523.25, 659.25, 783.99] : [659.25, 880];
+            notes.forEach((freq, i) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now + i * 0.08);
+                gain.gain.setValueAtTime(0.001, now + i * 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.09, now + i * 0.08 + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.28);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + i * 0.08);
+                osc.stop(now + i * 0.08 + 0.3);
+            });
+        } catch {}
+    }
 
     /* --- ダークモードの保存・復元 --- */
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('ohayo_theme', isDark ? 'dark' : 'light');
-        resetCanvas();
+        try { localStorage.setItem('ohayo_theme', isDark ? 'dark' : 'light'); } catch {}
+        redrawStrokes();
+    }
+
+    function toggleAutoSound() {
+        autoSound = !autoSound;
+        const btn = document.getElementById('auto-sound-btn');
+        btn.classList.toggle('on', autoSound);
+        btn.textContent = autoSound ? '🔊 Auto-Sound: ON' : '🔇 Auto-Sound: OFF';
+    }
+
+    /* --- Retinaディスプレイ(高解像度)対応 --- */
+    function setupHighDPICanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = 320 * dpr;
+        canvas.height = 320 * dpr;
+        canvas.style.width = '320px';
+        canvas.style.height = '320px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        hCanvas.width = 320 * dpr;
+        hCanvas.height = 320 * dpr;
+        hCanvas.style.width = '320px';
+        hCanvas.style.height = '320px';
+        hCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     window.onload = () => {
@@ -431,20 +1362,9 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         resetCanvas();
     };
 
-    /* --- Retinaディスプレイ(高解像度)対応 --- */
-    function setupHighDPICanvas() {
-        const dpr = window.devicePixelRatio || 1;
-        
-        canvas.width = 320 * dpr; canvas.height = 320 * dpr;
-        canvas.style.width = "320px"; canvas.style.height = "320px";
-        ctx.scale(dpr, dpr);
-        
-        hCanvas.width = 320 * dpr; hCanvas.height = 320 * dpr;
-        hCanvas.style.width = "320px"; hCanvas.style.height = "320px";
-        hCtx.scale(dpr, dpr);
-    }
-
+    /* --- メニュー描画 --- */
     function switchTab(type) {
+        currentTab = type;
         currentDB = (type === 'basic') ? dbBasic : dbVoiced;
         document.getElementById('tab-basic').classList.toggle('active', type === 'basic');
         document.getElementById('tab-voiced').classList.toggle('active', type === 'voiced');
@@ -452,104 +1372,467 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     }
 
     function renderMenu() {
+        const prog = loadProgress();
+        const masteredKeys = Object.keys(prog);
+        const totalChars = ALL_ITEMS.length;
+        const totalStars = masteredKeys.reduce((sum, k) => sum + (prog[k].stars || 0), 0);
+
+        document.getElementById('mastery-count').textContent = `${masteredKeys.length} / ${totalChars} Mastered ${STAMP_EMOJI}`;
+        document.getElementById('mastery-stars').textContent = `★ ${totalStars} / ${totalChars * 3}`;
+        document.getElementById('progress-fill').style.width = `${Math.round((masteredKeys.length / totalChars) * 100)}%`;
+
+        const quickBtn = document.getElementById('quick-practice-btn');
+        const unmasteredCount = ALL_ITEMS.filter(it => !prog[it.c]).length;
+        quickBtn.textContent = unmasteredCount > 0
+            ? `🎯 Practice Next ${Math.min(5, unmasteredCount)} Unmastered`
+            : '🎲 Random 5-Letter Review';
+
         const grid = document.getElementById('menu-grid');
         grid.innerHTML = '';
-        Object.keys(currentDB).forEach(row => {
+        Object.keys(currentDB).forEach(rowName => {
+            const items = currentDB[rowName];
+            const doneCount = items.filter(i => !!prog[i.c]).length;
+            const isComplete = doneCount === items.length;
             const card = document.createElement('div');
-            card.className = 'row-card';
-            card.innerHTML = `<div class="row-name">${row}</div><div style="font-size:0.8rem; opacity:0.6;">${currentDB[row].map(i => i.c).join('')}</div>`;
-            card.onclick = () => startPractice(row);
+            card.className = 'row-card' + (isComplete ? ' completed' : '');
+            const chips = items.map(i => `<span class="row-char-chip ${prog[i.c] ? 'done' : ''}">${i.c}</span>`).join('');
+            card.innerHTML = `
+                <div class="row-head">
+                    <span class="row-name">${rowName}</span>
+                    <span class="row-badge">${isComplete ? '✓ ' : ''}${doneCount}/${items.length}</span>
+                </div>
+                <div class="row-chars">${chips}</div>
+            `;
+            card.onclick = () => startPractice(rowName, items);
             grid.appendChild(card);
         });
     }
 
-    function startPractice(rowName) {
-        activeRow = currentDB[rowName];
+    function startSmartPractice() {
+        const prog = loadProgress();
+        let pool = ALL_ITEMS.filter(it => !prog[it.c]);
+        let title = 'Smart Practice';
+        if (pool.length === 0) {
+            pool = [...ALL_ITEMS].sort(() => Math.random() - 0.5).slice(0, 5);
+            title = 'Random Review';
+        } else {
+            pool = pool.slice(0, 5);
+        }
+        startPractice(title, pool);
+    }
+
+    function showScreen(id) {
+        ['menu', 'practice', 'boss'].forEach(s => {
+            document.getElementById(s).classList.toggle('active', s === id);
+        });
+        window.scrollTo(0, 0);
+    }
+
+    function startPractice(rowName, items) {
+        activeRowName = rowName;
+        activeRow = items;
         charIdx = 0;
-        document.getElementById('menu').classList.remove('active');
-        document.getElementById('practice').classList.add('active');
-        window.scrollTo(0,0);
+        showScreen('practice');
         loadChar();
     }
 
     function backToMenu() {
         clearTimeout(autoPlayTimer);
+        clearStrokeSvg();
         resetCanvas();
-        document.getElementById('practice').classList.remove('active');
-        document.getElementById('menu').classList.add('active');
         document.getElementById('quiz-overlay').style.display = 'none';
+        renderMenu();
+        showScreen('menu');
+    }
+
+    /* --- 3段階ガイドモード --- */
+    function setGuideMode(mode) {
+        guideMode = mode;
+        ['trace', 'faint', 'memory'].forEach(m => {
+            document.getElementById('mode-' + m).classList.toggle('active', m === mode);
+        });
+        applyGuideVisuals();
+        if (mode === 'memory') {
+            setFeedback('🧠 Memory Mode: Write from memory! Tap ▶ Watch if you need a peek.', '');
+        } else if (mode === 'faint') {
+            setFeedback('👻 Faint Mode: Light guide to train muscle memory!', '');
+        } else {
+            setFeedback('✏️ Trace Mode: Follow the numbers 1, 2, 3 and tap Check!', '');
+        }
+    }
+
+    function applyGuideVisuals() {
+        const guideEl = document.getElementById('guide-char');
+        const hintsEl = document.getElementById('hints-layer');
+        guideEl.classList.remove('mode-faint', 'mode-memory');
+        if (guideMode === 'faint') guideEl.classList.add('mode-faint');
+        if (guideMode === 'memory') guideEl.classList.add('mode-memory');
+        hintsEl.classList.toggle('hidden', guideMode === 'memory');
+    }
+
+    function renderCharStrip() {
+        const prog = loadProgress();
+        const strip = document.getElementById('char-strip');
+        strip.innerHTML = '';
+        activeRow.forEach((it, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'char-pill' + (idx === charIdx ? ' active' : '') + (prog[it.c] ? ' mastered' : '');
+            btn.innerHTML = `${it.c}${prog[it.c] ? '<span class="pill-check">✓</span>' : ''}`;
+            btn.onclick = () => {
+                charIdx = idx;
+                loadChar();
+            };
+            strip.appendChild(btn);
+        });
+    }
+
+    function setFeedback(msg, tone) {
+        const bar = document.getElementById('feedback-bar');
+        bar.textContent = msg;
+        bar.className = 'feedback-bar' + (tone ? ' ' + tone : '');
+    }
+
+    function updateStrokeCounter() {
+        const item = activeRow[charIdx];
+        if (!item) return;
+        const target = (STROKE_PATHS[item.c] || item.h).length;
+        document.getElementById('stroke-counter').textContent = `Stroke ${strokes.length} / ${target}`;
     }
 
     function loadChar() {
         const item = activeRow[charIdx];
+        const romaji = (KANA_AUDIO[item.c] || '').toUpperCase();
+        const strokeCount = (STROKE_PATHS[item.c] || item.h).length;
+
+        renderCharStrip();
+
         document.getElementById('guide-char').innerText = item.c;
-        document.getElementById('mn-title').innerText = `"${item.c}" for ${item.m}`;
+        document.getElementById('info-kana').innerText = item.c;
+        document.getElementById('info-romaji').innerText = romaji;
+        document.getElementById('info-strokes').innerText = `${strokeCount} ${strokeCount === 1 ? 'stroke' : 'strokes'}`;
+        document.getElementById('mn-title').innerText = `💡 ${item.m}`;
         document.getElementById('quiz-overlay').style.display = 'none';
-        
+
+        // Word anchor with highlighted target kana
+        const w = KANA_WORDS[item.c];
+        const anchorEl = document.getElementById('word-anchor');
+        if (w) {
+            const highlighted = w.w.replace(item.c, `<mark>${item.c}</mark>`);
+            anchorEl.innerHTML = `<span>📖 Word:</span> <span class="word-jp">${highlighted}</span> <span class="word-romaji">(${w.r})</span> <span>=</span> <span class="word-en">${w.e}</span>`;
+        } else {
+            anchorEl.innerHTML = '';
+        }
+
         const layer = document.getElementById('hints-layer');
         layer.innerHTML = '';
         item.h.forEach(p => {
             const d = document.createElement('div');
-            d.className = 'num-hint'; d.style.left = p.x+'px'; d.style.top = p.y+'px';
-            d.innerText = p.n; layer.appendChild(d);
+            d.className = 'num-hint';
+            d.style.left = p.x + 'px';
+            d.style.top = p.y + 'px';
+            d.innerText = p.n;
+            layer.appendChild(d);
         });
 
-        hCtx.clearRect(0,0,320,320); hCtx.fillStyle="black"; 
-        hCtx.font="260px 'YuKyokasho', 'Yu Kyokasho', 'UD Digi Kyokasho', 'Klee One', sans-serif";
-        hCtx.textAlign="center"; hCtx.textBaseline="middle"; hCtx.shadowBlur = 20; hCtx.shadowColor = "black";
-        hCtx.fillText(item.c, 160, 160); hCtx.shadowBlur = 0;
+        applyGuideVisuals();
+
+        // Render hidden reference character for pixel accuracy check
+        hCtx.clearRect(0, 0, 320, 320);
+        hCtx.fillStyle = 'black';
+        hCtx.font = "260px 'YuKyokasho', 'Yu Kyokasho', 'UD Digi Kyokasho', 'Klee One', sans-serif";
+        hCtx.textAlign = 'center';
+        hCtx.textBaseline = 'middle';
+        hCtx.shadowBlur = 20;
+        hCtx.shadowColor = 'black';
+        hCtx.fillText(item.c, 160, 160);
+        hCtx.shadowBlur = 0;
+
         resetCanvas();
+        if (guideMode === 'memory') {
+            setFeedback('🧠 Write "' + romaji + '" from memory, then tap Check!', '');
+        } else {
+            setFeedback('Follow the numbers 1, 2, 3 and tap Check!', '');
+        }
+
         clearTimeout(autoPlayTimer);
-        autoPlayTimer = setTimeout(() => playStrokeAnimation(), 400);
+        if (autoSound) playKanaAudio();
+        if (guideMode !== 'memory') {
+            autoPlayTimer = setTimeout(() => playStrokeAnimation(), 380);
+        }
     }
 
+    /* --- 判定＆星評価 (alert()完全廃止) --- */
     function judge() {
-        // 判定のしきい値（調整可能）: COVERAGE_MIN = ガイドをなぞれた割合の下限 / OFF_MAX = ガイド外へのはみ出し割合の上限
-        const COVERAGE_MIN = 0.25;
-        const OFF_MAX = 0.60;
-        // 解像度対応のため、canvasの物理ピクセル全体をチェック
+        const COVERAGE_MIN = guideMode === 'memory' ? 0.16 : 0.25;
+        const OFF_MAX = guideMode === 'memory' ? 0.72 : 0.60;
+
         const user = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         const guide = hCtx.getImageData(0, 0, hCanvas.width, hCanvas.height).data;
         let hits = 0, total = 0, userPixels = 0;
-        
+
         for (let i = 3; i < guide.length; i += 4) {
             if (user[i] > 20) userPixels++;
-            if (guide[i] > 20) { total++; if (user[i] > 20) hits++; }
+            if (guide[i] > 20) {
+                total++;
+                if (user[i] > 20) hits++;
+            }
         }
-        if (userPixels === 0) { alert("Trace a bit more! / もうすこしなぞってね！"); return; }
+
+        if (userPixels < 120) {
+            setFeedback('✏️ Draw the character on the box first!', 'warn');
+            return;
+        }
         const coverage = hits / total;
         const offRatio = (userPixels - hits) / userPixels;
-        if (coverage < COVERAGE_MIN) alert("Trace a bit more! / もうすこしなぞってね！");
-        else if (offRatio > OFF_MAX) alert("Stay on the gray letter! / もじの うえを なぞってね！");
-        else showQuiz();
+
+        if (coverage < COVERAGE_MIN) {
+            setFeedback('✏️ Trace a bit more of the letter! (Tap ▶ Watch if unsure)', 'warn');
+            return;
+        }
+        if (offRatio > OFF_MAX) {
+            setFeedback('🎯 Try to stay closer to the center guide!', 'warn');
+            return;
+        }
+
+        // Calculate friendly accuracy % and 1-3 star rating
+        const precision = 1 - offRatio;
+        const rawScore = Math.min(1, (coverage * 0.55 + precision * 0.65));
+        lastScorePct = Math.min(100, Math.max(70, Math.round(rawScore * 100)));
+        if (lastScorePct >= 90 || (guideMode === 'memory' && lastScorePct >= 82)) lastStars = 3;
+        else if (lastScorePct >= 80) lastStars = 2;
+        else lastStars = 1;
+
+        playChime('ok');
+        setFeedback(`✨ Nice writing! (${lastScorePct}%) Now pass the quick listening check!`, 'ok');
+        showQuiz();
+    }
+
+    /* --- 4択リスニング＆そっくり文字クイズ --- */
+    function buildChoices(targetItem) {
+        const pool = [targetItem.c];
+        if (targetItem.d && !pool.includes(targetItem.d)) pool.push(targetItem.d);
+
+        // Prefer other characters in the same row first, then all characters
+        const rowOthers = activeRow.map(i => i.c).filter(c => !pool.includes(c));
+        rowOthers.sort(() => Math.random() - 0.5);
+        for (const c of rowOthers) {
+            if (pool.length >= 4) break;
+            pool.push(c);
+        }
+        const allOthers = ALL_ITEMS.map(i => i.c).filter(c => !pool.includes(c));
+        allOthers.sort(() => Math.random() - 0.5);
+        for (const c of allOthers) {
+            if (pool.length >= 4) break;
+            pool.push(c);
+        }
+        return pool.sort(() => Math.random() - 0.5);
     }
 
     function showQuiz() {
         const item = activeRow[charIdx];
+        quizAnswerChar = item.c;
+        const choices = buildChoices(item);
+        const grid = document.getElementById('quiz-grid');
+        document.getElementById('quiz-msg').textContent = '';
+        grid.innerHTML = '';
+
+        choices.forEach(ch => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.textContent = ch;
+            btn.onclick = () => checkQuiz(ch, btn);
+            grid.appendChild(btn);
+        });
+
         document.getElementById('quiz-overlay').style.display = 'flex';
-        correctIdx = Math.floor(Math.random() * 2);
-        const opts = [document.getElementById('q1'), document.getElementById('q2')];
-        opts[correctIdx].innerText = item.c;
-        opts[1-correctIdx].innerText = item.d;
+        playKanaAudio();
     }
 
-    function checkQuiz(choice) {
-        if (choice === correctIdx) document.getElementById('overlay').style.display = 'flex';
-        else alert("Look closely! / よく見て選んでね！");
+    function checkQuiz(choiceChar, btnEl) {
+        const item = activeRow[charIdx];
+        if (choiceChar === quizAnswerChar) {
+            btnEl.classList.add('correct');
+            saveMastery(item.c, lastStars, guideMode === 'memory');
+            renderCharStrip();
+            playChime('win');
+            setTimeout(() => showStampOverlay(item), 220);
+        } else {
+            btnEl.classList.add('wrong');
+            document.getElementById('quiz-msg').textContent = 'Look closely & listen again! 👀';
+            playKanaAudio();
+            setTimeout(() => btnEl.classList.remove('wrong'), 450);
+        }
+    }
+
+    function showStampOverlay(item) {
+        const starsStr = '★'.repeat(lastStars) + '☆'.repeat(3 - lastStars);
+        document.getElementById('stamp-stars').textContent = starsStr;
+        const memTag = guideMode === 'memory' ? ' · 🧠 Memory Clear!' : '';
+        document.getElementById('stamp-score').textContent = `Accuracy: ${lastScorePct}%${memTag}`;
+        document.getElementById('stamp-heading').textContent =
+            lastStars === 3 ? 'Beautiful! / すごい！' : (lastStars === 2 ? 'Great Job! / じょうず！' : 'Good Start! / いいね！');
+
+        const w = KANA_WORDS[item.c];
+        const romaji = (KANA_AUDIO[item.c] || '').toUpperCase();
+        document.getElementById('stamp-recap').innerHTML = w
+            ? `<b>${item.c} (${romaji})</b> — ${item.m}<br><small>📖 ${w.w} (${w.r}) = ${w.e}</small>`
+            : `<b>${item.c} (${romaji})</b> — ${item.m}`;
+
+        const isLast = charIdx >= activeRow.length - 1;
+        document.getElementById('stamp-next-btn').textContent = isLast ? '🏆 Start Row Boss Review!' : 'Next Letter →';
+        document.getElementById('overlay').style.display = 'flex';
     }
 
     function closeOverlay() {
         document.getElementById('overlay').style.display = 'none';
         charIdx++;
-        if (charIdx < activeRow.length) loadChar();
-        else { alert("Congratulations! Row Completed."); location.reload(); }
+        if (charIdx < activeRow.length) {
+            loadChar();
+        } else {
+            startBossReview();
+        }
+    }
+
+    /* --- 行クリア ボス復習ミニゲーム --- */
+    function startBossReview() {
+        bossQueue = [...activeRow].sort(() => Math.random() - 0.5);
+        bossIdx = 0;
+        bossCorrectCount = 0;
+        bossLocked = false;
+        document.getElementById('boss-quiz-view').style.display = 'block';
+        document.getElementById('boss-done-view').style.display = 'none';
+        showScreen('boss');
+        renderBossQuestion();
+    }
+
+    function renderBossQuestion() {
+        bossLocked = false;
+        const target = bossQueue[bossIdx];
+        document.getElementById('boss-progress').textContent = `Question ${bossIdx + 1} / ${bossQueue.length}`;
+        document.getElementById('boss-feedback').textContent = '';
+
+        const choices = buildChoices(target);
+        const grid = document.getElementById('boss-grid');
+        grid.innerHTML = '';
+        choices.forEach(ch => {
+            const btn = document.createElement('button');
+            btn.className = 'boss-opt';
+            btn.textContent = ch;
+            btn.onclick = () => checkBossAnswer(ch, btn);
+            grid.appendChild(btn);
+        });
+        playBossAudio();
+    }
+
+    function playBossAudio() {
+        const target = bossQueue[bossIdx];
+        if (!target) return;
+        playAudioForChar(target.c);
+    }
+
+    function checkBossAnswer(choiceChar, btnEl) {
+        if (bossLocked) return;
+        const target = bossQueue[bossIdx];
+        const romaji = (KANA_AUDIO[target.c] || '').toUpperCase();
+        const fb = document.getElementById('boss-feedback');
+
+        if (choiceChar === target.c) {
+            bossLocked = true;
+            bossCorrectCount++;
+            btnEl.classList.add('correct');
+            playChime('ok');
+            fb.style.color = 'var(--ok)';
+            fb.textContent = `✅ Correct! "${target.c}" is "${romaji}"!`;
+            setTimeout(() => {
+                bossIdx++;
+                if (bossIdx < bossQueue.length) renderBossQuestion();
+                else showBossDone();
+            }, 850);
+        } else {
+            btnEl.classList.add('wrong');
+            fb.style.color = 'var(--err)';
+            fb.textContent = '👂 Almost! Listen again and try another one.';
+            playBossAudio();
+            setTimeout(() => btnEl.classList.remove('wrong'), 450);
+        }
+    }
+
+    function showBossDone() {
+        playChime('win');
+        document.getElementById('boss-quiz-view').style.display = 'none';
+        document.getElementById('boss-done-view').style.display = 'block';
+        document.getElementById('boss-done-title').textContent = `${activeRowName} Cleared! ${STAMP_EMOJI}`;
+        document.getElementById('boss-done-sub').textContent =
+            `You practiced all ${activeRow.length} characters and passed the listening boss review!`;
+
+        const nextRow = getNextRowObj();
+        const nextBtn = document.getElementById('boss-next-row-btn');
+        if (nextRow) {
+            nextBtn.style.display = 'block';
+            nextBtn.textContent = `Next Row: ${nextRow.name} →`;
+        } else {
+            nextBtn.style.display = 'none';
+        }
+    }
+
+    function getNextRowObj() {
+        const idx = ALL_ROWS.findIndex(r => r.name === activeRowName);
+        if (idx >= 0 && idx < ALL_ROWS.length - 1) return ALL_ROWS[idx + 1];
+        return null;
+    }
+
+    function goNextRow() {
+        const nextRow = getNextRowObj();
+        if (!nextRow) { backToMenu(); return; }
+        switchTab(nextRow.type);
+        startPractice(nextRow.name, nextRow.items);
+    }
+
+    function retryRowInMemory() {
+        setGuideMode('memory');
+        startPractice(activeRowName, activeRow);
+    }
+
+    /* --- キャンバス描画 ＆ 1画戻す (Undo) --- */
+    function applyPenStyle() {
+        ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--text').trim();
+        ctx.lineWidth = 17;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+    }
+
+    function redrawStrokes() {
+        ctx.clearRect(0, 0, 320, 320);
+        applyPenStyle();
+        for (const st of strokes) {
+            if (st.length === 0) continue;
+            ctx.beginPath();
+            ctx.moveTo(st[0].x, st[0].y);
+            if (st.length === 1) {
+                ctx.lineTo(st[0].x + 0.1, st[0].y + 0.1);
+            } else {
+                for (let i = 1; i < st.length; i++) {
+                    ctx.lineTo(st[i].x, st[i].y);
+                }
+            }
+            ctx.stroke();
+        }
+        updateStrokeCounter();
+    }
+
+    function undoStroke() {
+        if (strokes.length === 0) return;
+        strokes.pop();
+        redrawStrokes();
     }
 
     function resetCanvas() {
         clearStrokeSvg();
-        ctx.clearRect(0,0,320,320);
-        ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--text');
-        ctx.lineWidth = 18; ctx.lineCap = 'round';
+        strokes = [];
+        currentStroke = [];
+        ctx.clearRect(0, 0, 320, 320);
+        applyPenStyle();
+        updateStrokeCounter();
     }
 
     const getP = (e) => {
@@ -558,20 +1841,48 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         return { x: ev.clientX - r.left, y: ev.clientY - r.top };
     };
 
-    canvas.addEventListener('touchstart', (e) => { e.preventDefault(); drawing = true; ctx.beginPath(); const p = getP(e); ctx.moveTo(p.x, p.y); }, {passive:false});
-    canvas.addEventListener('touchmove', (e) => { e.preventDefault(); if(!drawing) return; const p = getP(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }, {passive:false});
-    canvas.addEventListener('touchend', () => drawing = false);
-    canvas.addEventListener('mousedown', (e) => { drawing = true; ctx.beginPath(); const p = getP(e); ctx.moveTo(p.x, p.y); });
-    canvas.addEventListener('mousemove', (e) => { if(!drawing) return; const p = getP(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
-    window.addEventListener('mouseup', () => drawing = false);
+    function startDraw(e) {
+        if (e.cancelable) e.preventDefault();
+        clearTimeout(autoPlayTimer);
+        clearStrokeSvg();
+        drawing = true;
+        applyPenStyle();
+        const p = getP(e);
+        currentStroke = [p];
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + 0.1, p.y + 0.1);
+        ctx.stroke();
+    }
 
-    /* --- 書き順データ (KanjiVG, CC BY-SA 3.0) --- */
-    const STROKE_PATHS = {"あ": ["M31.01,33c0.88,0.88,2.75,1.82,5.25,1.75c8.62-0.25,20-2.12,29.5-4.25c1.51-0.34,4.62-0.88,6.62-0.5", "M49.76,17.62c0.88,1,1.82,3.26,1.38,5.25c-3.75,16.75-6.25,38.13-5.13,53.63c0.41,5.7,1.88,10.88,3.38,13.62", "M65.63,44.12c0.75,1.12,1.16,4.39,0.5,6.12c-4.62,12.26-11.24,23.76-25.37,35.76c-6.86,5.83-15.88,3.75-16.25-8.38c-0.34-10.87,13.38-23.12,32.38-26.74c12.42-2.37,27,1.38,30.5,12.75c4.05,13.18-3.76,26.37-20.88,30.49"], "い": ["M21.5,29.66c2.01,2.17,2.61,4.68,2.17,7.43c-3.09,19.16-1.03,32.01,7.93,41.45c6.12,6.45,6.26,3.14,7.04-5.21", "M72.96,36.51c9.44,8.05,17.79,18.82,18.41,33.83"], "う": ["M42,15.5c5.62,2.12,9.62,3,12.88,3c8.27,0,8,1.12-0.38,5.5", "M33,42.38c2.12,1.12,4.12,2.88,8.5,1.38c4.38-1.5,12.75-7.12,18.5-7c5.75,0.12,10.25,5,10.25,18c0,15.49-8.25,30.24-24.37,41.24"], "え": ["M40.52,13.25c5.62,2.12,10,3,14.12,3c8.27,0,8,1.12-0.38,5.5", "M32.52,45.12c1.88,1.25,4.5,1.75,7.38,0.62c3.29-1.29,17-7.88,21.25-9.88c4.25-2,8.32,0.04,4.38,4.62c-12.26,14.27-27.26,31.52-39.51,44.4c-3.26,3.42-0.58,3.54,1.5,1.37c13.5-14.12,18.12-20.12,23.62-20.12c7.13,0,3.5,16.75,6.75,22.38c3.25,5.63,19.12,3.75,26.12,2.12"], "お": ["M22.88,35.12c1.38,1,3.62,2.38,6,2.12c2.38-0.26,19.62-5.12,21.12-5.74c1.5-0.62,4-1.25,5.88-2", "M41.5,16.12c2.25,1,3.59,4.39,3.12,7.38c-2.5,16.12-3.37,45.53-2.25,58.38c0.75,8.62-0.64,10.45-7.12,7.12c-5.13-2.62-13.75-8-13.75-12.38c0-7.5,24.38-23.62,44.75-23.62c17.25,0,25,8.25,25,17.25c0,8.25-9.38,18.88-26.75,21", "M73,22.12c5.38,2.62,8.88,5.88,10.62,8.25c2.27,3.08,0.38,4.5-1.12,5"], "か": ["M24.62,38.62c1.88,1.62,4.65,2.33,8.62,1c25.5-8.5,29.5-4.13,29.5,7.62c0,9.38-1.24,17.46-4.25,25.25c-7.62,19.76-10.87,17.39-16.12,10.89", "M48.5,17.5c1,1.38,1.29,4.7,0.5,7.12c-5,15.25-18.02,40.93-19.62,43.88c-3.12,5.75-6.38,11.88-9.38,16.25", "M77.37,31.62c7.5,6.88,13.25,15.75,15,24.88"], "き": ["M30.5,30.25c1.88,0.75,4.64,1.06,5.88,0.88c6.75-1,22.25-4.5,26.5-6c2.17-0.76,3.5-1.25,4.88-2.12", "M36.25,48.7c2.01,0.85,4.97,1.2,6.29,0.99c7.23-1.13,23.82-5.09,28.37-6.79c2.32-0.86,3.75-1.41,5.22-2.4", "M42,14.12c1.5,0.88,3.13,2.94,4,5.12c5.5,13.76,16,29.26,26.37,40.76c7.64,8.47,9.12,9.38-6,3.88", "M33.75,83.25c10.62,9.75,27.25,8.62,38.12,5"], "く": ["M60.66,15c0.5,1.62,0.35,5.44-1,7.38c-6.75,9.62-14.3,19.08-18.62,24.5c-4,5-3.79,7.03-0.88,11c5.5,7.5,12.75,18.75,17.62,27.25c1.48,2.59,2.75,4.75,4.5,8.62"], "け": ["M24.67,19.75c1.25,1.5,2.62,3.75,2.12,6.38c-3,15.88-6.5,29.5-4.88,44.62c2.02,18.84,2.25,4.75,6.75-3.5", "M53.67,38.62c2.12,1.38,4.28,1.89,6.88,1.5c8.25-1.25,15.39-2.57,20.62-4c2.76-0.74,5.26-1.12,6.88-1.12", "M71.67,14.38c2.13,1.37,2.88,3.35,2.88,5.12c0,11.62,0.12,20.38,0.12,30.12c0,20.75-0.62,30.88-12.5,42.25"], "こ": ["M34.75,26.75c1.12,0.88,2.91,2.01,6,1.5c7.62-1.25,14.11-2.56,22.38-2.62c15.5-0.12,5.88,5-5.75,9", "M30,68.12c2.25,14.5,15.26,17.96,31,16.75c6.5-0.5,11.88-1.25,17.62-2.88"], "さ": ["M27,38.9c2.42,1.33,5.38,1.47,8.32,1.06c8.79-1.24,28.67-7.76,34.15-10.43c2.79-1.36,3.78-1.91,6.28-3.53", "M41.5,13.88c1.5,0.88,3.63,2.94,4.5,5.12c5.5,13.75,15.25,27.62,26.87,39.5c7.98,8.15,6.38,10-6,3.12", "M35.25,80.5c4.5,11.75,20.88,12.5,38.38,7.5"], "し": ["M39.12,17.5c1.25,3.12,0.93,6.74,0.38,10.25c-2.12,13.5-3,26.5-3,39.12c0,27.38,19.88,30.12,45.5,17.25"], "す": ["M15.5,37.12c2.88,2.12,6.94,1.51,12.75,0.25c16.12-3.5,36.14-5.38,46.62-6.5c7-0.75,11.88-0.62,17.75,0.12", "M57.62,13.38c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,35.12,0,40.75c0,14.62-15.62,16.38-15.62,1.75c0-14.25,18-14.12,18,6.38c0,13.25-7.75,21.5-16,28.38"], "せ": ["M16.5,49.93c2.88,2.42,6.86,1.57,12.75,0.53c19-3.34,33-5.72,47.12-7.64c6.99-0.95,11.88-1.21,17.75-0.36", "M69.74,17.75c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,17.88,0,23.5c0,25.62-5.75,23.25-11.88,19", "M35.62,26.25c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,28.38,0,34c0,14.5,6.38,19.55,20.14,19.55c10.24,0,13.74,0.07,22.61-1.68"], "そ": ["M38.4,22c1.88,1.25,4.98,1.05,7.5,0.38c6.5-1.75,13.25-3.75,19.38-5.38c4.63-1.23,7.18,2.06,3.62,5.25c-12.12,10.87-31.14,24.4-40,30.25c-6.25,4.12-5.88,5.75,1.38,3.88c17.08-4.42,35.96-8.68,50.12-10.38c9.38-1.12,9.62,0.12,0.5,1.38c-15.82,2.17-34.38,14.25-34.38,26.5c0,12.88,11.62,20.38,31.5,16.62"], "た": ["M24.38,35.38c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,16.25-2.88,24.88-4.75c2.64-0.57,5.38-1.5,7.62-2.38", "M45,16.88c0.75,1.25,0.87,3.62,0.38,5.25c-6.35,20.94-12.75,36.37-18.88,52.37c-1.36,3.56-4.75,11.75-6,14.62", "M56.38,53.25c12.38-2.75,18.25-3.7,23.62-3.12c15.12,1.62-1.12,2.25-4.25,4.88", "M54.13,82.25c4.38,7,14.25,8.12,34.5,5.62"], "ち": ["M24.5,32.62c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,18.25-4.12,26.88-6c2.64-0.57,5.38-1.5,7.62-2.38", "M45.62,15.62c0.75,1.25,0.71,3.58,0.38,5.25c-3,15-4.25,22.59-8.38,38.62c-3.25,12.62-5.38,11.12,3.62,4.38c8.29-6.21,19.75-9.5,28.5-9.5c8.62,0,14.58,5.88,14.5,14.5c-0.12,13.5-16.5,20.62-29.88,23.25"], "つ": ["M14,44.75c1.88,1.62,4.68,2.09,8.12,0.62c17.88-7.62,30-11.12,44.88-10.88c12.56,0.21,22.98,7.17,22.87,19.17c-0.18,18.77-24.75,28.71-45.01,32.08"], "て": ["M20.5,26.38c1.87,1.62,4.42,1.97,8.12,1.37c21.75-3.5,33-5.12,50.12-8.38c12.34-2.34,13-0.88,0.38,1.38c-17.89,3.19-33.78,19.12-33.78,37.62c0,20.5,17.91,30.25,35.16,30.25"], "と": ["M35.5,18.38c1.74,0.74,3.62,2.62,4.12,5.37c0.5,2.75,4.75,25,5.38,28.12", "M78.12,25.5c0.25,1.88,0.04,4.09-2.25,5.75c-6.37,4.63-13.22,8.49-22.75,15.25c-12.88,9.12-21.62,18.38-21.62,27.5c0,10.12,8.5,13.88,26.88,13.88c6.25,0,14.75-0.12,21.62-1.25"], "な": ["M22.88,28.96c1.18,0.58,3.3,1.1,5.47,1.05c5.53-0.13,10.9-0.98,16.52-2.42c4.82-1.23,9.13-3.12,11.38-4.22", "M42.99,14c0.63,0.89,0.56,2.52,0.31,3.72c-2.96,14.16-7.95,26.56-14.25,37.87c-2.05,3.69-4.25,7.24-6.55,10.65", "M72.26,23.25c6.88,2.5,12.62,5.62,14.75,9.5c4.06,7.41-0.25,3.38-3.5,3.88", "M68.88,44.62c-1,1.88-2.14,5.24-1.88,8.25c0.62,7,1.5,13.12,1.5,20.62c0,20-27.88,19.75-27.88,9.38c0-5.62,8.25-8.25,13.88-8.25c8.75,0,21.5,3.25,29.75,11.5"], "に": ["M24.53,22.75c1.25,1.5,1.62,3.75,1.12,6.38c-3,15.88-9,32.5-7.38,47.62c2.02,18.84,4.5,5.75,8.5-3.5", "M53.2,30.64c0.96,0.79,2.44,1.58,5.1,1.35c6.98-0.61,15.01-3.3,22.04-3.36c13.19-0.11,1.5,3.75-8.39,7.35", "M52.53,68c1.76,12.92,11.92,16.01,24.23,14.93c5.08-0.45,8.9-0.8,14.27-2.06"], "ぬ": ["M25.38,28.5c2,1.38,2.97,3.23,3.38,5.88c1.87,12.18,4.12,23.92,8.54,34.67c1.79,4.36,3.96,8.33,6.84,12.46", "M57.12,19.25c0.88,2.12,1.06,3.79,0.62,5.88c-3.12,15-13.14,39.81-18.12,48.62c-11.87,21-20.62,1.25-20.62-4.5c0-22.63,43.75-44.25,62.36-29.59c7.66,6.03,9.8,14.58,9.14,23.34c-2,26.75-32.88,28.38-32.88,16.88c0-9.38,17.38-7.12,27.12-1.12c3.1,1.91,7.25,5.25,9.5,7.5"], "ね": ["M33.29,14.5c1.62,1.62,2.1,3.21,1.88,5.88c-1.03,11.93-2.06,31.66-2.53,53.12c-0.1,4.62-0.18,9.31-0.22,14", "M17.16,37.88c1.62,0.88,3.25,1.38,5.62,0.75c2.14-0.56,7.8-2.31,12.37-4.03c6.26-2.35,6.88-1.47,3.12,3.63c-5.56,7.53-13.02,17.38-18.48,26.77c-5.6,9.62-3.45,8.3,2,3c19.12-18.62,38.5-39.12,54.12-39.12c11.38,0,12.88,11.25,12.88,32.5c0,28.62-30.18,24.88-30.18,16.26c0-9.63,18.73-7.82,28.06-1.88c2.75,1.75,5.88,4.88,7.5,6.75"], "の": ["M53.82,28.62c1,1.5,1.34,4.12,0.88,6.62c-1.75,9.5-6.89,25-10.75,33.12c-9.63,20.26-16.55,14.74-24.38-1.98c-9.13-19.5,23.5-48.88,50.63-40.38c32.38,10.15,28,54.62-4.75,60.88"], "は": ["M24.51,18c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.62-6.98,36.4-4,54.88c2.5,15.5,1.12,2,5.62-6.25", "M49.64,37.89c2.41,1.57,4.85,2.16,7.8,1.71c9.36-1.43,17.46-2.94,23.4-4.57c3.12-0.86,5.96-1.29,7.8-1.29", "M69.77,16.5c2.25,2.12,2.88,4.12,2.88,6.5c0,2.38,1.5,38.62,1.5,48c0,22.5-30.62,19.62-30.62,10.5c0-9.75,23.88-5.62,29.5-2.88c5.62,2.74,11.98,8.26,13.36,9.38"], "ひ": ["M20,25.12c1.25,0.88,3.75,2.25,6.5,1.38c2.75-0.87,7.31-2.38,11.38-4.5c6-3.12,8.42-1.01,4.25,4c-27.13,32.62-23.76,58.5-1.52,62.88c18.07,3.56,37.63-16.38,35.63-56.51c-0.72-14.5-0.17-14.78,4.12-1.75c3.76,11.38,10.26,20.76,16.14,26.5"], "ふ": ["M42.63,15.62c3.62,3.38,7.5,5.38,12.74,6.13c9.59,1.37,3.5,3.38-1.88,6.12", "M43.63,46.88c1.88,4.62,7.5,9.41,14.25,17.5c10.62,12.74,0.49,30-19.13,21.62", "M16.5,73.38c0.75,4,1.88,8.12,5,10.12c1.16,0.74,0.12-3.38,13.25-9.12", "M80.13,61.88c5.12,3.38,10.28,7.49,11.38,8.88c6.75,8.5-0.25,4.62-4.62,7.12"], "へ": ["M15,48.75c2.25,1.62,4.67,1.96,7-0.38c3.62-3.62,7.46-6.54,11.25-10.5c5.5-5.75,8.48-4.75,13.12-0.88c12.12,10.12,30.38,25.12,33.38,27.38c3,2.26,12.37,10.38,13.87,11.63"], "ほ": ["M24.51,18.75c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.63-6.98,37.4-4,55.88c2.5,15.5,1.12,2,5.62-6.25", "M53.08,21.13c1.9,1.28,3.82,1.76,6.14,1.4c7.36-1.17,13.73-2.4,18.41-3.73c2.46-0.7,4.69-1.05,6.13-1.05", "M53.83,44.3c2.21,1.44,4.46,1.98,7.16,1.57c8.59-1.31,15.78-2.44,21.23-3.94c2.87-0.79,5.72-1.18,7.41-1.18", "M72.51,23c1.38,1.62,1.62,4.12,1.62,6.5c0,2.38,2,35.12,2,44.5c0,17.5-29.88,17.12-29.88,8c0-9.75,21.38-7.88,29.5-2.88c5.33,3.28,12,8.25,13.38,9.38"], "ま": ["M29.83,32.28c2.2,1.15,4.43,1.5,7.14,1.26c11.54-1.04,25.94-3.12,34.66-4.85c2.87-0.57,5.45-0.44,7.13-0.44", "M33.83,51.84c2.45,1.61,4.94,1.72,7.94,1.26c9.52-1.46,17.87-3.1,27.03-5.16c3.22-0.72,6.34-1.32,8.21-1.32", "M55.81,14c1.52,1.8,1.8,4.57,1.8,7.19c0,2.63,0.46,43.88,0.46,54.25c0,21.3-30.07,19.96-30.07,9.86c0-10.79,25.88-9.93,38.57-3.18c6.12,3.25,11.55,6.38,14.8,9.13"], "み": ["M32.5,26c1.88,1.75,4.06,1.7,6.88,1.25c3.88-0.62,7.62-1.75,11.88-3.12c4.26-1.37,6.25-0.12,4.5,5.12c-1.75,5.24-6.66,17.39-12,30.12c-13.63,32.51-29.26,29.26-29.26,18.63c0-14.25,20.48-15.36,33-13.5c18.5,2.75,30,6.62,44.38,14.25", "M79.38,54.75c0.75,2.38,0.49,4.37,0,6.25c-2.12,8.12-7.5,25-22.12,33.75"], "む": ["M19.59,31.65c2.1,1.55,4.24,1.66,6.81,1.21c8.17-1.41,15.33-2.98,23.19-4.96c2.76-0.69,5.44-1.27,7.05-1.27", "M37.02,15.5c1.62,1.25,2.31,2.88,2.12,5.25c-0.88,11.12-1.5,20.75-4,34.88c-3.61,20.44-19.25,16.99-18.62,7.37c0.5-7.74,6.25-12.86,12.62-13.5c5-0.5,14.28,1.93,5.88,15c-12.62,19.62-11.42,24.51,5.11,25.54c10.98,0.68,19.26,0.72,28.49-0.92c14.15-2.5,7.4-2.63,7.4-11.13", "M78.52,36.25c6.88,3.12,11.71,5.95,14.88,10.12c6.25,8.25-1.38,3.62-4.5,4.5"], "め": ["M27.48,31.75c1.75,1,2.41,3.09,2.5,5.25c0.5,11.62,2.75,23.5,7.25,31.38c1.39,2.44,5.38,8.5,7.25,10.38", "M59.6,19.38c1,1.5,1.35,4.12,0.88,6.62c-2.75,14.62-13.62,37.75-20.1,47.24c-12.28,17.14-16.78,13.14-22.28,0.64c-5.38-15.38,26.4-42.18,53.42-35.28c29.08,8.27,23.96,46.02-7.98,50.15"], "も": ["M49.17,14.75c1.88,1.88,1.86,4.52,1.12,8c-3,14.25-5,26.62-7,42.12c-2.55,19.73-0.75,29.88,17,29.86c20.25-0.02,28.63-13.11,20.01-35.73", "M26.54,34.62c1.12,0.88,2.87,2.21,6,2c11.12-0.75,20-2.12,27.74-3.46c3.88-0.67,5.88-1.17,8.88-1.04", "M26.42,53.38c-1.5,4,1,6.75,7.75,6.75c8.75,0,17.62-1,22.88-1.88c2.01-0.33,5.38-1,7.5-1.75"], "や": ["M18,49.38c1.88,1.62,5.25,2.5,8.62,0.88c18.51-8.88,35.76-19.38,50.83-19.26c9.02,0.14,16.01,4.13,15.93,12.29c0,8.33-10.88,16.58-24.5,17.83", "M47.13,15.88c5.12,0.88,10.41,4.05,11.5,6.62c2.12,5-1,2.38-2.88,2.62", "M30,24.38c2.38,1.88,3.28,2.87,3.88,5.25c2.62,10.5,11.12,41.12,14.75,52.5c0.65,2.04,1.88,6.25,2.88,9.38"], "ゆ": ["M21.05,25.38c1.38,1.5,2.02,4.13,1.5,6.25c-2.88,11.75-4,22.25-2.12,35c2.77,18.85,1.12,3.88,3.25-1.5c9-22.75,27.24-34.5,44.38-34.5c16.88,0,21.88,11.38,21.88,20.25c0,27.38-30.88,29.62-43,16.75", "M58.42,16.75c2.62,1.75,3.17,3.13,3.5,7.12c0.88,10.5,1.4,18.72,1.62,29.38c0.5,24-6.25,32-12.38,39.25"], "よ": ["M58.24,35.38c7.5-1.28,13.74-2.63,18.5-4.1c2.5-0.77,4.77-1.15,6.25-1.15", "M54.62,13.88c2.25,2.12,2.98,4.13,2.88,6.5c-0.75,17-0.12,34.88,1.39,53.5c1.88,23.07-34.89,20.88-34.89,11.5c0-12,26.25-8,35.98-4.12c8.1,3.23,11.52,4.88,18.52,10.38"], "ら": ["M35.33,15c3.75,3,9.22,4.41,16.5,4.25c11.12-0.25-0.25,2.38-1.25,3.5", "M35.83,35.75c-2.14,4.34-2.79,8.67-3.11,13.24c-0.42,5.84-0.31,12.05-2.14,19.13c-3.16,12.27,1.49,4.77,3,3.5c11.88-10,21.7-12.67,32.61-12.49c9.21,0.15,16.85,5.19,16.76,13.88c-0.12,13.6-14.24,21.49-32.49,22.49"], "り": ["M38.75,25.25c1.25,1.5,2.24,4.03,1.62,6.62c-2.88,12.13-6.29,29.65-4.25,42.38c2,12.5,1.75-0.75,5.62-6.25", "M69.37,18.75c2.25,2.12,2.88,4.12,2.88,6.5c0,2.38,0,26.38,0,35.75c0,16.5-5,25.75-12.62,33.12"], "る": ["M34.31,20.38c1.75,1.25,4.62,2.62,8.5,1.5c3.88-1.12,9.62-2.5,15.62-4.62c6-2.12,7.5-0.12,4.38,4.25c-3.12,4.37-18.89,24.62-27.75,34c-8.5,9-13.09,11.89,0.75,3.25c15.62-9.75,43-10.88,43,13.38c0,22.5-40.88,24.5-40.88,12.62c0-11.25,18.12-8.75,24.38-0.38"], "れ": ["M34.48,13c1.5,1.38,2.83,3.74,2.5,6.38c-0.5,4-2.75,44.5-2.75,52.88c0,8.38,0.12,16.62,0.12,19.5", "M16.98,40.75c2.12,1.38,3.74,1.46,7.5,0c4.5-1.75,6.55-2.66,13-5.5c4.25-1.88,4.4,0.24,2.5,3.5c-5.25,9-10.5,16.75-18.88,27.62c-7.55,9.81-6.93,12.85,3.25,3.12c14-13.38,20.34-19.76,33.88-32.5c6.38-6,19.39-12.09,18.14,0.88c-1.02,10.63-1.89,22.13-2.29,30.75c-1.02,21.71,11.53,18,20.15,8.63"], "ろ": ["M36.95,21.88c1.5,2,4.62,3.62,8.5,2.5c3.88-1.12,8.12-2.25,14.12-4.38c6-2.13,6.53-0.1,3.38,4.25c-7.88,10.88-18,22.75-27.5,35.25c-7.49,9.86-10.68,11.32,2.88,2.25c17.38-11.62,46.62-14,46.62,8.12c0,15.62-16,22.5-32.12,25.12"], "わ": ["M38.53,14.75c1.5,1.38,2.22,3.73,2,6.38c-1,11.87-2.75,44.49-2.75,52.87c0,8.38-0.62,16.62-0.62,19.5", "M17.53,40.75c2.12,1.38,3.68,1.3,7.5,0c5.88-2,9.8-3.16,16.25-6c4.25-1.88,6.12,0,2.75,4c-6.72,7.96-13,16.5-22.12,27.88c-7.75,9.66-7.54,12.21,3,2.88c21.88-19.38,49.75-35.62,63.5-21c14.36,15.27,1.62,36.62-23.38,42.62"], "を": ["M28.56,27.87c1.62,1.13,3.17,1.64,6.01,1.12c10.86-1.99,16.74-3.37,24.71-4.72c3.64-0.62,5.65-0.93,8.4-0.75", "M49.93,14.38c0.75,1,1.48,3.22,0.38,5.62c-4.62,10.12-10,20.75-17.12,30.25c-9.25,12.33-9.25,11.19,2.12,2.5c9-6.88,23.75-12.12,22.88,19.88", "M83.06,39.88c0.62,1.75,0,4-3,5.75c-3,1.75-49.62,24.16-44.75,38.25c3.28,9.48,17.93,9.12,29.98,7.75c4.48-0.51,9.15-1.12,12.4-1.75"], "ん": ["M56.35,16.5c0.75,1.75,1.13,5.83-0.38,8.25c-7,11.25-27.22,43.47-33.88,54.37c-9,14.75-7.62,16.25,1.5,1.25c17.86-29.36,32-23.76,32-6.75c0,25,19,26.5,34.25-5"], "が": ["M24.62,38.62c1.88,1.62,4.65,2.33,8.62,1c25.5-8.5,29.5-4.13,29.5,7.62c0,9.38-1.24,17.46-4.25,25.25c-7.62,19.76-10.87,17.39-16.12,10.89", "M48.5,17.5c1,1.38,1.29,4.7,0.5,7.12c-5,15.25-18.02,40.93-19.62,43.88c-3.12,5.75-6.38,11.88-9.38,16.25", "M77.37,31.62c7.5,6.88,13.25,15.75,15,24.88", "M80.5,18.25c2.75,1.75,6,5.38,7.75,8.5", "M86.87,13.38c3.06,1.57,6.68,4.82,8.62,7.62"], "ぎ": ["M30.5,30.5c1.88,0.75,4.64,1.06,5.88,0.88c6.75-1,22.25-4.5,26.5-6c2.17-0.76,3.5-1.25,4.88-2.12", "M36.25,48.95c2.01,0.85,4.97,1.2,6.29,0.99c7.23-1.13,23.82-5.09,28.37-6.79c2.32-0.86,3.75-1.41,5.22-2.4", "M42,14.38c1.5,0.88,3.13,2.94,4,5.12c5.5,13.75,16,29.25,26.38,40.75c7.64,8.47,9.12,9.38-6,3.88", "M33.75,83.5c10.62,9.75,27.25,8.62,38.12,5", "M77.37,19c2.75,1.75,6,5.38,7.75,8.5", "M83.75,14.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ぐ": ["M60.66,15c0.5,2.12,0.75,5-1,7.38c-6.97,9.46-14.29,19.09-18.62,24.5c-4,5-3.79,7.03-0.88,11c5.5,7.5,12.75,18.75,17.62,27.25c1.48,2.59,2.75,4.75,4.5,8.62", "M73.54,30c2.75,1.75,6,5.38,7.75,8.5", "M79.91,25.12c3.06,1.57,6.68,4.82,8.62,7.62"], "げ": ["M24.91,20.25c1.25,1.5,2.37,3.75,1.88,6.38c-3,15.88-6.5,29.5-4.88,44.62c2.02,18.84,2.25,4.75,6.75-3.5", "M53.67,39.12c2.12,1.38,4.28,1.89,6.88,1.5c8.25-1.25,15.39-2.57,20.62-4c2.75-0.75,5.25-1.12,6.88-1.12", "M71.67,14.62c2.12,1.38,2.87,3.61,2.87,5.38c0,11.62,0.12,20.38,0.12,30.12c0,20.75-0.62,30.88-12.5,42.25", "M86.17,13c2.75,1.75,6,5.38,7.75,8.5", "M92.54,8.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ご": ["M34.75,27c1.12,0.88,2.91,2.01,6,1.5c7.62-1.25,14.11-2.56,22.38-2.62c15.5-0.12,5.88,5-5.75,9", "M30,68.38c2.25,14.5,15.26,17.96,31,16.75c6.5-0.5,11.88-1.25,17.62-2.88", "M80.37,16.25c2.75,1.75,6,5.38,7.75,8.5", "M86.75,11.38c3.06,1.57,6.68,4.82,8.62,7.62"], "ざ": ["M27,39.15c2.42,1.33,5.38,1.47,8.32,1.06c8.79-1.24,28.67-8.01,34.15-10.68c2.79-1.36,3.78-1.91,6.28-3.53", "M41.5,14.12c1.5,0.88,3.63,2.95,4.5,5.13c5.5,13.75,15.25,27.63,26.88,39.5c7.98,8.15,6.38,10-6,3.12", "M35.25,80.75c4.5,11.75,20.88,12.5,38.38,7.5", "M79.88,14.25c2.75,1.75,6,5.38,7.75,8.5", "M86.25,9.38c3.06,1.57,6.68,4.82,8.62,7.62"], "じ": ["M39.12,17.25c1.25,3.12,0.93,6.74,0.38,10.25c-2.12,13.5-3,26.5-3,39.12c0,27.38,19.88,30.12,45.5,17.25", "M64.24,27c2.75,1.75,6,5.38,7.75,8.5", "M70.62,22.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ず": ["M15.5,37.12c2.88,2.12,6.94,1.51,12.75,0.25c16.12-3.5,36.14-5.38,46.62-6.5c7-0.75,11.88-0.62,17.75,0.12", "M57.62,13.38c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,35.12,0,40.75c0,14.62-15.62,16.38-15.62,1.75c0-14.25,18-14.12,18,6.38c0,13.25-7.75,21.5-16,28.38", "M77,13c2.75,1.75,6,5.38,7.75,8.5", "M83.37,8.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ぜ": ["M16.5,49.93c2.88,2.42,6.86,1.57,12.75,0.53c19-3.34,32.5-5.34,47.12-7.64c6.97-1.1,11.88-1.21,17.75-0.36", "M69.74,17.75c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,17.88,0,23.5c0,25.62-5.75,23.25-11.88,19", "M35.62,26.25c2,1.5,2.75,3.25,2.75,5.88c0,10.38,0,28.38,0,34c0,14.5,6.38,19.55,20.14,19.55c10.24,0,13.74,0.07,22.61-1.68", "M84.5,17.25c2.75,1.75,6,5.38,7.75,8.5", "M90.87,12.38c3.06,1.57,6.68,4.82,8.62,7.62"], "ぞ": ["M38.4,22c1.88,1.25,4.98,1.05,7.5,0.38c6.5-1.75,13.25-3.75,19.38-5.38c4.63-1.23,7.18,2.06,3.62,5.25c-12.12,10.87-31.14,24.4-40,30.25c-6.25,4.12-5.88,5.75,1.38,3.88c17.08-4.42,35.96-8.68,50.12-10.38c9.38-1.12,9.62,0.12,0.5,1.38c-15.82,2.17-34.38,14.25-34.38,26.5c0,12.88,11.62,20.38,31.5,16.62", "M81.78,26.75c2.75,1.75,6,5.38,7.75,8.5", "M88.15,21.88c3.06,1.57,6.68,4.82,8.62,7.62"], "だ": ["M24.38,35.38c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,16.25-2.88,24.88-4.75c2.64-0.57,5.38-1.5,7.62-2.38", "M45,16.88c0.75,1.25,0.87,3.62,0.38,5.25c-6.35,20.94-12.75,36.37-18.88,52.37c-1.36,3.56-4.75,11.75-6,14.62", "M56.38,53.25c12.38-2.75,18.25-3.7,23.62-3.12c15.12,1.62-1.12,2.25-4.25,4.88", "M54.13,82.25c4.38,7,14.25,8.12,34.5,5.62", "M76,22.5c2.75,1.75,6,5.38,7.75,8.5", "M82.38,17.62c3.06,1.57,6.68,4.82,8.62,7.62"], "ぢ": ["M24.5,32.88c1.38,0.62,3.88,1.51,6.38,1.12c6.5-1,18.25-4.12,26.88-6c2.64-0.57,5.38-1.5,7.62-2.38", "M45.63,15.88c0.75,1.25,0.71,3.58,0.38,5.25c-3,15-4.25,22.59-8.38,38.62c-3.26,12.63-5.38,11.13,3.62,4.37c8.29-6.21,19.75-9.5,28.5-9.5c8.62,0,14.58,5.88,14.5,14.5c-0.12,13.5-16.5,20.62-29.88,23.25", "M74.63,21.75c2.75,1.75,6,5.38,7.75,8.5", "M81,16.88c3.06,1.57,6.68,4.82,8.62,7.62"], "づ": ["M14,44.75c1.88,1.62,4.68,2.09,8.12,0.62c17.88-7.62,30-11.12,44.88-10.88c12.56,0.21,22.98,7.17,22.87,19.17c-0.18,18.77-24.75,28.71-45.01,32.08", "M81,18c2.75,1.75,6,5.38,7.75,8.5", "M87.38,13.12c3.06,1.57,6.68,4.82,8.62,7.62"], "で": ["M20.5,26.38c1.87,1.62,4.42,1.97,8.12,1.37c21.75-3.5,33-5.12,50.12-8.38c12.34-2.34,13-0.88,0.38,1.38c-17.89,3.19-33.78,19.12-33.78,37.62c0,20.5,17.91,30.25,35.16,30.25", "M75,41.75c2.75,1.75,6,5.38,7.75,8.5", "M81.37,36.88c3.06,1.57,6.68,4.82,8.62,7.62"], "ど": ["M35.5,18.38c1.74,0.74,3.62,2.62,4.12,5.37c0.5,2.75,4.75,25,5.38,28.12", "M78.12,25.5c0.25,1.88,0.04,4.09-2.25,5.75c-6.37,4.63-13.21,8.49-22.75,15.25c-12.88,9.12-21.62,18.38-21.62,27.5c0,10.12,8.5,13.88,26.88,13.88c6.25,0,14.75-0.12,21.62-1.25", "M84.24,14.5c2.75,1.75,6,5.38,7.75,8.5", "M90.62,9.62c3.06,1.57,6.68,4.82,8.62,7.62"], "ば": ["M24.75,17.75c1.25,1.5,1.9,4.25,1.38,6.88c-3.5,17.62-6.98,36.4-4,54.88c2.5,15.5,1.12,2,5.62-6.25", "M49.88,37.89c2.41,1.57,4.85,2.41,7.8,1.96c9.36-1.43,17.21-3.19,23.15-4.82c3.12-0.86,5.96-1.29,7.8-1.29", "M69.75,16.5c2.26,2.12,2.88,4.12,2.88,6.5c0,2.38,1.5,38.62,1.5,48c0,22.5-30.62,19.62-30.62,10.5c0-9.75,23.88-5.62,29.5-2.88c5.62,2.74,12,8.25,13.38,9.38", "M84.75,15.25c2.75,1.75,6,5.38,7.75,8.5", "M91.13,10.38c3.06,1.57,6.68,4.82,8.62,7.62"], "び": ["M20,25.12c1.25,0.88,3.75,2.25,6.5,1.38c2.75-0.87,7.31-2.38,11.38-4.5c6-3.12,8.42-1.01,4.25,4c-27.13,32.62-23.76,58.5-1.52,62.88c18.07,3.56,37.63-16.38,35.63-56.51c-0.72-14.5-0.17-14.78,4.12-1.75c3.76,11.38,10.26,20.76,16.14,26.5", "M86.5,13.5c2.75,1.75,6,5.38,7.75,8.5", "M92.87,8.62c3.06,1.57,6.68,4.82,8.62,7.62"], "ぶ": ["M42.12,15.62c3.62,3.38,7.5,5.38,12.75,6.12c9.59,1.37,3.5,3.38-1.88,6.12", "M43.12,46.88c1.88,4.62,7.5,9.41,14.25,17.5c10.62,12.75,0.5,30-19.12,21.62", "M16.5,73.88c0.75,4,1.88,8.12,5,10.12c1.16,0.74,0.12-3.38,13.25-9.12", "M79.62,61.88c5.5,3.38,10.28,7.49,11.38,8.88c6.75,8.5-0.25,4.62-4.62,7.12", "M73.62,16.25c2.75,1.75,6,5.38,7.75,8.5", "M80,11.38c3.06,1.57,6.68,4.82,8.62,7.62"], "べ": ["M15,48.75c2.25,1.62,5,1.38,7.62-1c3.89-3.52,6.12-5.75,10.62-9.88c5.88-5.37,8.49-4.75,13.14-0.87c12.12,10.12,30.38,25.12,33.38,27.38c3,2.26,12.37,10.37,13.87,11.62", "M66.76,26.75c2.75,1.75,6,5.38,7.75,8.5", "M73.13,21.88c3.06,1.57,6.68,4.82,8.62,7.62"], "ぼ": ["M24.51,18.75c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.63-6.98,37.4-4,55.88c2.5,15.5,1.12,2,5.62-6.25", "M53.08,21.13c1.9,1.28,3.82,1.76,6.14,1.4c7.36-1.17,13.73-2.4,18.41-3.73c2.46-0.7,4.69-1.05,6.13-1.05", "M53.83,44.3c2.21,1.44,4.46,1.98,7.16,1.57c8.59-1.31,15.78-2.44,21.23-3.94c2.87-0.79,5.72-1.18,7.41-1.18", "M72.51,23c1.38,1.62,1.62,4.12,1.62,6.5c0,2.38,2,35.12,2,44.5c0,17.5-29.88,17.12-29.88,8c0-9.75,21.38-7.88,29.5-2.88c5.33,3.28,12,8.25,13.38,9.38", "M87.51,26c2.75,1.75,6,5.38,7.75,8.5", "M93.88,21.12c3.06,1.57,6.68,4.82,8.62,7.62"], "ぱ": ["M24.51,18c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.62-6.98,36.4-4,54.88c2.5,15.5,1.12,2,5.62-6.25", "M49.64,37.89c2.41,1.57,4.85,2.16,7.8,1.71c9.36-1.43,17.46-2.94,23.4-4.57c3.12-0.86,5.96-1.29,7.8-1.29", "M69.77,16.5c2.25,2.12,2.88,4.12,2.88,6.5c0,2.38,1.5,38.62,1.5,48c0,22.5-30.62,19.62-30.62,10.5c0-9.75,23.88-5.62,29.5-2.88c5.62,2.74,11.98,8.26,13.36,9.38", "M91.01,24.38c-9.62,0-9.25-14.25,0-14.25c9.76-0.01,9.5,14.25,0,14.25"], "ぴ": ["M20,25.12c1.25,0.88,3.75,2.25,6.5,1.38c2.75-0.87,7.31-2.38,11.38-4.5c6-3.12,8.42-1.01,4.25,4c-27.13,32.62-23.76,58.5-1.52,62.88c18.07,3.56,37.63-16.38,35.63-56.51c-0.72-14.5-0.17-14.78,4.12-1.75c3.76,11.38,10.26,20.76,16.14,26.5", "M93.87,22.12c-9.62,0-9.25-14.25,0-14.25c9.75,0.01,9.5,14.25,0,14.25"], "ぷ": ["M42.13,15.62c3.62,3.38,7.5,5.38,12.74,6.13c9.59,1.37,3.5,3.38-1.88,6.12", "M43.13,46.88c1.88,4.62,7.5,9.41,14.25,17.5c10.62,12.74,0.49,30-19.13,21.62", "M16.5,73.88c0.75,4,1.88,8.12,5,10.12c1.16,0.74,0.12-3.38,13.25-9.12", "M79.63,61.88c5.5,3.38,10.28,7.49,11.38,8.88c6.75,8.5-0.25,4.62-4.62,7.12", "M80.87,26.62c-9.62,0-9.25-14.25,0-14.25c9.76,0.01,9.5,14.25,0,14.25"], "ぺ": ["M15,48.75c2.25,1.62,4.67,1.96,7-0.38c3.62-3.62,7.46-6.54,11.25-10.5c5.5-5.75,8.48-4.75,13.12-0.88c12.12,10.12,30.38,25.12,33.38,27.38c3,2.26,12.38,10.38,13.88,11.63", "M73.63,36.75c-9.62,0-9.25-14.25,0-14.25c9.75,0,9.5,14.25,0,14.25"], "ぽ": ["M24.51,19c1.25,1.5,2.15,4,1.62,6.62c-3.5,17.62-6.98,37.4-4,55.88c2.5,15.5,1.12,2,5.62-6.25", "M53.08,21.38c1.9,1.28,3.82,1.76,6.14,1.4c7.36-1.17,13.73-2.4,18.41-3.73c2.46-0.7,4.69-1.05,6.13-1.05", "M53.83,44.55c2.21,1.44,4.46,1.98,7.16,1.57c8.59-1.31,15.78-2.44,21.23-3.94c2.87-0.79,5.72-1.18,7.41-1.18", "M72.51,23.25c1.38,1.62,1.62,4.12,1.62,6.5c0,2.38,2,35.12,2,44.5c0,17.5-29.88,17.12-29.88,8c0-9.75,21.38-7.88,29.5-2.88c5.33,3.28,12,8.25,13.38,9.38", "M95.13,34.5c-9.62,0-9.25-14.25,0-14.25c9.75,0,9.5,14.25,0,14.25"]};
+    function moveDraw(e) {
+        if (e.cancelable) e.preventDefault();
+        if (!drawing) return;
+        const p = getP(e);
+        currentStroke.push(p);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+    }
 
-    /* --- かな発音データ (ファイル名マップ) --- */
-    const KANA_AUDIO = {"あ": "a", "い": "i", "う": "u", "え": "e", "お": "o", "か": "ka", "き": "ki", "く": "ku", "け": "ke", "こ": "ko", "さ": "sa", "し": "shi", "す": "su", "せ": "se", "そ": "so", "た": "ta", "ち": "chi", "つ": "tsu", "て": "te", "と": "to", "な": "na", "に": "ni", "ぬ": "nu", "ね": "ne", "の": "no", "は": "ha", "ひ": "hi", "ふ": "fu", "へ": "he", "ほ": "ho", "ま": "ma", "み": "mi", "む": "mu", "め": "me", "も": "mo", "や": "ya", "ゆ": "yu", "よ": "yo", "ら": "ra", "り": "ri", "る": "ru", "れ": "re", "ろ": "ro", "わ": "wa", "を": "wo", "ん": "n", "が": "ga", "ぎ": "gi", "ぐ": "gu", "げ": "ge", "ご": "go", "ざ": "za", "じ": "ji", "ず": "zu", "ぜ": "ze", "ぞ": "zo", "だ": "da", "ぢ": "di", "づ": "du", "で": "de", "ど": "do", "ば": "ba", "び": "bi", "ぶ": "bu", "べ": "be", "ぼ": "bo", "ぱ": "pa", "ぴ": "pi", "ぷ": "pu", "ぺ": "pe", "ぽ": "po"};
+    function endDraw() {
+        if (!drawing) return;
+        drawing = false;
+        if (currentStroke.length > 0) {
+            strokes.push(currentStroke);
+            currentStroke = [];
+            updateStrokeCounter();
+        }
+    }
 
-    /* --- 書き順アニメーション --- */
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', moveDraw, { passive: false });
+    canvas.addEventListener('touchend', endDraw);
+    canvas.addEventListener('touchcancel', endDraw);
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', moveDraw);
+    window.addEventListener('mouseup', endDraw);
+
+    /* --- 書き順アニメーション (KanjiVG) --- */
     const strokeSvg = document.getElementById('stroke-svg');
     let strokeAnimId = null;
     let autoPlayTimer = null;
@@ -585,6 +1896,7 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 
     function playStrokeAnimation() {
         const item = activeRow[charIdx];
+        if (!item) return;
         const paths = STROKE_PATHS[item.c];
         if (!paths) return;
         clearStrokeSvg();
@@ -598,7 +1910,7 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
             const p = document.createElementNS(SVGNS, 'path');
             p.setAttribute('d', paths[idx]);
             p.setAttribute('fill', 'none');
-            p.style.stroke = 'var(--accent)';
+            p.style.stroke = 'var(--accent-deep)';
             p.setAttribute('stroke-width', '6');
             p.setAttribute('stroke-linecap', 'round');
             p.setAttribute('stroke-linejoin', 'round');
@@ -607,14 +1919,16 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
             p.setAttribute('stroke-dashoffset', '1');
             p.style.opacity = '0.9';
             strokeSvg.appendChild(p);
+
             const marker = document.createElementNS(SVGNS, 'circle');
             marker.setAttribute('r', '5');
-            marker.style.fill = 'var(--accent)';
+            marker.style.fill = 'var(--accent-deep)';
             marker.setAttribute('stroke', '#ffffff');
             marker.setAttribute('stroke-width', '1.5');
             strokeSvg.appendChild(marker);
+
             const total = p.getTotalLength();
-            const DURATION = 600;
+            const DURATION = 560;
             let start = null;
             function step(ts) {
                 if (start === null) start = ts;
@@ -623,9 +1937,10 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
                 const pt = p.getPointAtLength(total * t);
                 marker.setAttribute('cx', pt.x);
                 marker.setAttribute('cy', pt.y);
-                if (t < 1) { strokeAnimId = requestAnimationFrame(step); }
-                else {
-                    p.style.opacity = '0.55';
+                if (t < 1) {
+                    strokeAnimId = requestAnimationFrame(step);
+                } else {
+                    p.style.opacity = '0.45';
                     marker.remove();
                     idx++;
                     strokeAnimId = requestAnimationFrame(playNext);
@@ -636,40 +1951,25 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         playNext();
     }
 
-    // 書き始めたらアニメーション表示を消す
-    canvas.addEventListener('pointerdown', () => { clearTimeout(autoPlayTimer); clearStrokeSvg(); });
-
-    /* --- かな発音オーディオ (録音済みMP3を優先再生し、読み込めない場合はブラウザ内蔵TTSにフォールバック) --- */
+    /* --- かな発音オーディオ (録音済みMP3のみ使用・ブラウザTTSなし) --- */
     const kanaPlayer = new Audio();
     kanaPlayer.preload = 'auto';
 
+    function playAudioForChar(ch) {
+        const file = KANA_AUDIO[ch];
+        if (!file) return;
+        kanaPlayer.pause();
+        kanaPlayer.currentTime = 0;
+        kanaPlayer.src = `kana-audio/${file}.mp3`;
+        const p = kanaPlayer.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+
     function playKanaAudio() {
         const item = activeRow[charIdx];
-        const file = KANA_AUDIO[item.c];
-        if (!file) { speakKanaWithTTS(); return; }
-        let fellBack = false;
-        const fallback = () => {
-            if (fellBack) return;
-            fellBack = true;
-            speakKanaWithTTS();
-        };
-        kanaPlayer.onerror = fallback;
-        kanaPlayer.src = `kana-audio/${file}.mp3`;
-        const playPromise = kanaPlayer.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(fallback);
-        }
+        if (!item) return;
+        playAudioForChar(item.c);
     }
-
-    // フォールバック用: ブラウザ内蔵TTS読み上げ
-    function speakKanaWithTTS() {
-        const item = activeRow[charIdx];
-        const utterance = new SpeechSynthesisUtterance(item.c);
-        utterance.lang = 'ja-JP';
-        utterance.rate = 0.9; // 少しゆっくりめに
-        window.speechSynthesis.speak(utterance);
-    }
-
 </script>
 </body>
 </html>
