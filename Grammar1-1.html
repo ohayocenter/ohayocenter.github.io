@@ -1,36 +1,58 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第1回 N5 Grammar Practice - OHAYO CENTER</title>
+    <title>N5 Grammar Sentence Builder 1-1 | OHAYO CENTER</title>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="N5 Grammar Practice Part 1 | OHAYO CENTER">
-    <meta property="og:description" content="JLPT N5 grammar practice, part 1: work through slide-based exercises on beginner grammar points.">
+    <meta property="og:title" content="N5 Grammar Sentence Builder 1-1 | OHAYO CENTER">
+    <meta property="og:description" content="Interactive JLPT N5 sentence-ordering trainer (Part 1) with ★ exam mode, beginner-friendly English grammar tips, furigana toggle, and natural Japanese audio.">
     <meta property="og:url" content="https://ohayocenter.com/Grammar1-1.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="N5 Grammar Practice Part 1 | OHAYO CENTER">
-    <meta name="twitter:description" content="JLPT N5 grammar practice, part 1: work through slide-based exercises on beginner grammar points.">
+    <meta name="twitter:title" content="N5 Grammar Sentence Builder 1-1 | OHAYO CENTER">
+    <meta name="twitter:description" content="Interactive JLPT N5 sentence-ordering trainer (Part 1) with ★ exam mode, beginner-friendly English grammar tips, furigana toggle, and natural Japanese audio.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #F5F7FA;
-            --text-color: #333;
-            --accent-color: #E74C3C;
+            --primary: #ff9f43;
+            --primary-dark: #e67e22;
+            --primary-light: #fff5eb;
+            --dark: #2c3e50;
+            --text: #374151;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --green: #16a34a;
+            --green-bg: #dcfce7;
+            --red: #dc2626;
+            --red-bg: #fee2e2;
+            --blue: #2563eb;
+            --blue-bg: #eff6ff;
+            --star: #f59e0b;
+            --star-bg: #fef3c7;
             --bmc-color: #FFDD00;
         }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
 
-        /* --- ナビゲーションバー --- */
+        /* --- Navigation --- */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
             padding: 0 5%;
             height: 70px;
             position: fixed;
@@ -42,59 +64,634 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            font-family: 'Noto Sans JP', sans-serif;
-            box-sizing: border-box;
         }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
         .logo a { text-decoration: none; color: #2c3e50; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
+        .nav-links a:hover { color: var(--primary); }
 
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 90px 20px 20px; }
-        .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
-        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px;}
-        
-        /* クイズエリア */
-        .slide { display: none; }
-        .slide.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
-        .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
-        .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
-        .sentence-builder { font-size: 1.2em; line-height: 2.5em; margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; }
-        .text-part { margin: 0 5px; }
-        .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; margin: 0 5px; }
-        .drop-slot:hover { background-color: #eef; }
-        
-        .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
-        .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
-        .word-btn:hover { background-color: var(--primary-color); color: #fff; }
-        
-        .action-area { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; font-weight: bold;}
-        .check-btn { background-color: var(--primary-color); }
-        .reset-btn { background-color: #95a5a6; }
-        .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 15px; border-left: 4px solid var(--primary-color); font-size: 0.95em; line-height: 1.5; border-radius: 0 5px 5px 0; }
-        
-        /* --- ページネーション（SLIDE 1, 2...）のスタイル --- */
-        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid #eee; }
-        .page-btn { padding: 10px 15px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--primary-color); transition: 0.2s; font-size: 1rem; }
-        .page-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
-        .page-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 22px 16px 40px;
+        }
 
-        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
-        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
-        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        /* --- Header Card --- */
+        .hero {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+            margin-bottom: 16px;
+        }
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .level-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 999px;
+            letter-spacing: 0.03em;
+            margin-bottom: 8px;
+        }
+        .hero h1 {
+            margin: 0;
+            font-family: 'Sawarabi Mincho', 'Noto Sans JP', serif;
+            font-size: 1.5rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        .hero-sub {
+            margin: 5px 0 0;
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+        .hero-toggles {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .toggle-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1.5px solid var(--border);
+            background: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .toggle-pill.on {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .stat-box {
+            background: #f9fafb;
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .stat-val {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        .stat-val.green { color: var(--green); }
+        .stat-val.red { color: var(--red); }
+        .stat-val.orange { color: var(--primary-dark); }
+        .stat-lbl {
+            font-size: 0.7rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .mastery-bar {
+            height: 8px;
+            background: #eef2f7;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+        .mastery-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #fbbf24);
+            border-radius: 999px;
+            transition: width 0.35s ease;
+        }
+
+        /* --- Mode Tabs --- */
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .tab-btn {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 11px 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.18s;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 0.84rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-family: inherit;
+        }
+        .tab-btn .tab-sub {
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+        .tab-btn:hover { border-color: #fed7aa; background: #fffaf5; }
+        .tab-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.18);
+        }
+        .tab-btn.active .tab-sub { color: #b45309; }
+        .tab-badge {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.66rem;
+            padding: 1px 6px;
+            border-radius: 999px;
+            margin-left: 3px;
+        }
+
+        /* --- Main Card --- */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px 22px;
+            box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+        }
+        .q-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .q-num {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--muted);
+        }
+        .grammar-tag {
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--blue-bg);
+            color: var(--blue);
+        }
+        .timer-pill {
+            font-size: 0.84rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .sentence-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px 18px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 2.35;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+        .sentence-box.correct-border { border-color: var(--green); background: #f0fdf4; }
+        .sentence-box.wrong-border { border-color: var(--red); background: #fef2f2; }
+
+        .slot {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 72px;
+            min-height: 44px;
+            padding: 4px 12px;
+            border-radius: 10px;
+            border: 2px dashed #cbd5e1;
+            background: #fff;
+            color: var(--muted);
+            font-size: 1.06rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            position: relative;
+        }
+        .slot.filled {
+            border-style: solid;
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--dark);
+        }
+        .slot.star-slot {
+            border-color: var(--star);
+            background: var(--star-bg);
+            color: #b45309;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+        }
+        .slot.star-slot.filled {
+            border-style: solid;
+            border-color: #d97706;
+            background: #fde68a;
+            color: #78350f;
+        }
+        .slot-badge {
+            position: absolute;
+            top: -10px;
+            right: -6px;
+            font-size: 11px;
+            background: var(--star);
+            color: #fff;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .hint-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .hint-btn {
+            border: 1.5px solid #e5e7eb;
+            background: #fff;
+            color: var(--dark);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+        }
+        .hint-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+        .hint-text {
+            font-size: 0.88rem;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 7px 12px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .bank-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .word-bank {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .chunk-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 15px;
+            border-radius: 14px;
+            border: 2px solid #e2e8f0;
+            background: #fff;
+            color: var(--dark);
+            font-size: 1.06rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+            font-family: inherit;
+        }
+        .chunk-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+        .chunk-btn:disabled {
+            opacity: 0.32;
+            cursor: default;
+            transform: none;
+        }
+        .chunk-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .chunk-btn.star-pick:hover:not(:disabled) {
+            border-color: var(--star);
+            background: #fffbeb;
+        }
+        .chunk-btn.chosen-correct {
+            border-color: var(--green);
+            background: var(--green-bg);
+            color: #14532d;
+            opacity: 1 !important;
+        }
+        .chunk-btn.chosen-wrong {
+            border-color: var(--red);
+            background: var(--red-bg);
+            color: #7f1d1d;
+            opacity: 1 !important;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 22px;
+            font-size: 0.94rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35);
+            transition: 0.15s;
+            font-family: inherit;
+        }
+        .btn-primary:hover:not(:disabled) { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+        .btn-ghost {
+            background: #f3f4f6;
+            color: var(--dark);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-ghost:hover { background: #e5e7eb; }
+
+        .feedback {
+            margin-top: 18px;
+            border-radius: 16px;
+            padding: 18px;
+            border: 2px solid var(--border);
+            animation: fadeUp 0.2s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback.ok { background: #f0fdf4; border-color: #86efac; }
+        .feedback.ng { background: #fef2f2; border-color: #fca5a5; }
+        .fb-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .fb-title { font-size: 1rem; font-weight: 800; }
+        .fb-title.ok { color: var(--green); }
+        .fb-title.ng { color: var(--red); }
+
+        .audio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+        }
+        .audio-btn:hover, .audio-btn.playing { background: var(--primary); color: #fff; }
+
+        .correct-sentence {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 6px 0 4px;
+            line-height: 2;
+        }
+        .correct-en {
+            font-size: 0.86rem;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+        .structure-box {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 13px 15px;
+            font-size: 0.86rem;
+        }
+        .structure-chain {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .chip {
+            background: #fff5eb;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 3px 9px;
+            border-radius: 8px;
+        }
+        .chip.star {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #92400e;
+        }
+        .arrow { color: #9ca3af; font-weight: 800; }
+        .tip-en { color: #1f2937; margin: 0 0 8px; line-height: 1.55; }
+        .trick-en {
+            color: #1d4ed8;
+            background: #eff6ff;
+            padding: 8px 11px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        .alt-note {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin: 8px 0 0;
+        }
+
+        .exam-instruction {
+            background: #fffbeb;
+            border: 1.5px solid #fde68a;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.82rem;
+            color: #92400e;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .scratch-toggle {
+            background: #fff;
+            border: 1px solid #f59e0b;
+            color: #b45309;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .list-item {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+        .list-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .status-dot {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+        .st-mastered { background: var(--green-bg); color: var(--green); }
+        .st-weak { background: var(--red-bg); color: var(--red); }
+        .st-unseen { background: #f3f4f6; color: var(--muted); }
+
+        .reset-progress-row {
+            text-align: right;
+            margin-top: 14px;
+        }
+        .reset-link {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 0.75rem;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        ruby rt {
+            font-size: 0.56em;
+            color: #64748b;
+            font-weight: 500;
+        }
+        body.hide-furi ruby rt { display: none; }
+
+        /* --- Support Section (Secondary below Trial CTA) --- */
+        .support-section {
+            text-align: center;
+            margin: 26px auto 0;
+            padding: 24px 16px 10px;
+            border-top: 1px solid #e5e7eb;
+            max-width: 780px;
+        }
+        .support-section h2 { color: var(--dark); font-size: 1rem; margin: 0 0 6px; }
+        .support-section p { color: #666; font-size: 0.86rem; margin: 0 0 14px; }
+        .bmc-custom-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--bmc-color);
+            color: #000;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.14); }
 
         @media (max-width: 600px) {
-            nav { padding: 0 15px; }
+            nav { padding: 0 14px; }
             .logo { font-size: 1rem; }
-            .nav-links { gap: 0.8rem; }
+            .nav-links { gap: 0.75rem; }
             .nav-links a { font-size: 0.7rem; }
-            .page-btn { padding: 8px 12px; font-size: 0.85rem; }
+            .hero { padding: 18px 16px; }
+            .hero h1 { font-size: 1.25rem; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .tabs { grid-template-columns: repeat(2, 1fr); }
+            .card { padding: 18px 14px; }
+            .word-bank { grid-template-columns: 1fr; }
+            .sentence-box { font-size: 1.06rem; padding: 16px 12px; }
+            .slot { min-width: 58px; font-size: 0.96rem; min-height: 38px; }
         }
     </style>
 <style id="ohayo-cta-style">
@@ -113,12 +710,6 @@
 .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
 .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
 .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 @media (max-width: 600px) {
   .ohayo-cta-grid { grid-template-columns: 1fr; }
   .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
@@ -137,18 +728,68 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     </ul>
 </nav>
 
-<div class="container">
-    <h1 id="main-title">第1回 N5 Grammar (Slide 1)</h1>
-    <p style="text-align: center; color: #666; margin-bottom: 20px;">
-        Click the words below to build the correct sentence.<br>
-        <span style="font-size: 0.9em;">(Click a blank to return the word.)</span>
-    </p>
+<div class="wrap">
+    <div class="hero">
+        <div class="hero-top">
+            <div>
+                <div class="level-pill">📘 JLPT N5 · Sentence Ordering (★ Question)</div>
+                <h1>N5 Sentence Builder Trainer 1-1</h1>
+                <p class="hero-sub">Master N5 word order, particles, and real JLPT ★ questions (25 sentences)</p>
+            </div>
+            <div class="hero-toggles">
+                <button id="btn-furi" class="toggle-pill on" onclick="toggleFurigana()">あ Furigana: ON</button>
+                <button id="btn-autoaudio" class="toggle-pill on" onclick="toggleAutoAudio()">🔊 Auto-Audio: ON</button>
+            </div>
+        </div>
 
-    <div id="quiz-container"></div>
-    
-    <div class="pagination" id="pagination"></div>
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-val green" id="st-mastered">0 / 25</div>
+                <div class="stat-lbl">Mastered ✅</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val red" id="st-weak">0</div>
+                <div class="stat-lbl">Weak 🔴</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val orange" id="st-streak">🔥 0</div>
+                <div class="stat-lbl">Streak</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="st-best">--</div>
+                <div class="stat-lbl">★ Test Best</div>
+            </div>
+        </div>
+        <div class="mastery-bar"><div class="mastery-fill" id="mastery-fill" style="width: 0%"></div></div>
+    </div>
 
-    <!-- OHAYO_NEXT_CTA -->
+    <div class="tabs">
+        <button class="tab-btn active" id="tab-build" onclick="setMode('build')">
+            <span>🧩 Build Mode</span>
+            <span class="tab-sub">Step-by-step practice</span>
+        </button>
+        <button class="tab-btn" id="tab-star" onclick="setMode('star')">
+            <span>⭐ JLPT ★ Test</span>
+            <span class="tab-sub">10-Q timed exam</span>
+        </button>
+        <button class="tab-btn" id="tab-weak" onclick="setMode('weak')">
+            <span>🔴 Review Weak <span id="weak-badge" class="tab-badge" style="display:none">0</span></span>
+            <span class="tab-sub">Retry mistakes</span>
+        </button>
+        <button class="tab-btn" id="tab-list" onclick="setMode('list')">
+            <span>📋 All 25 List</span>
+            <span class="tab-sub">Tips &amp; audio review</span>
+        </button>
+    </div>
+
+    <div id="app" class="card"></div>
+
+    <div class="reset-progress-row">
+        <button class="reset-link" onclick="resetSavedProgress()">Reset saved progress on this page</button>
+    </div>
+</div>
+
+<!-- OHAYO_NEXT_CTA -->
 <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
   <div class="ohayo-cta-next">
     <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
@@ -168,207 +809,697 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 </section>
 
 <div class="support-section">
-        <h2>Support OHAYO CENTER</h2>
-        <p>If you find these materials helpful, please consider supporting us!</p>
-        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-            ☕️ <span>SUPPORT OHAYO CENTER</span>
-        </a>
-    </div>
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these free JLPT materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
 </div>
 
 <script>
-    const quizData = [
-        // Slide 1
-        [
-            { prefix: "ここに", suffix: "ください。", en: "Please write your name here.", choices: ["を", "名前", "書いて", "あなたの"], ansOrder: [3, 1, 0, 2], ansText: "あなたの 名前 を 書いて" },
-            { prefix: "きのう", suffix: "読みました。", en: "I read the book I borrowed at the library yesterday.", choices: ["としょかん", "で", "借りた", "本を"], ansOrder: [0, 1, 2, 3], ansText: "としょかん で 借りた 本を" },
-            { prefix: "つくえの", suffix: "あります。", en: "There is a bag on the desk.", choices: ["上", "かばん", "が", "に"], ansOrder: [0, 3, 1, 2], ansText: "上 に かばん が" },
-            { prefix: "これは", suffix: "です。", en: "This is my friend's camera.", choices: ["の", "友だち", "カメラ", "わたしの"], ansOrder: [3, 1, 0, 2], ansText: "わたしの 友だち の カメラ" },
-            { prefix: "まいあさ", suffix: "しています。", en: "I take a walk in the nearby park every morning.", choices: ["公園", "を", "散歩", "近くの"], ansOrder: [3, 0, 1, 2], ansText: "近くの 公園 を 散歩" }
-        ],
-        // Slide 2
-        [
-            { prefix: "山田さんは", suffix: "人ですか。", en: "Is Mr. Yamada that person with long hair?", choices: ["髪", "長い", "が", "あの"], ansOrder: [3, 0, 2, 1], ansText: "あの 髪 が 長い" },
-            { prefix: "かばんの", suffix: "ください。", en: "Please put the wallet in the bag.", choices: ["に", "中", "さいふを", "いれて"], ansOrder: [1, 0, 2, 3], ansText: "中 に さいふを いれて" },
-            { prefix: "きのうの", suffix: "でした。", en: "Yesterday's test was very difficult.", choices: ["とても", "は", "テスト", "むずかしかった"], ansOrder: [2, 1, 0, 3], ansText: "テスト は とても むずかしかった" },
-            { prefix: "東京から", suffix: "かかりますか。", en: "How long does it take from Tokyo to Kyoto by bullet train?", choices: ["新幹線", "どのくらい", "京都まで", "で"], ansOrder: [[2, 0, 3, 1], [0, 3, 2, 1], [2, 1, 0, 3], [0, 3, 1, 2]], ansText: "京都まで 新幹線 で どのくらい" },
-            { prefix: "この", suffix: "わかりますか。", en: "Do you know how to read this kanji?", choices: ["漢字", "読み方", "の", "が"], ansOrder: [0, 2, 1, 3], ansText: "漢字 の 読み方 が" }
-        ],
-        // Slide 3
-        [
-            { prefix: "日本語の", suffix: "です。", en: "Japanese study is very fun.", choices: ["べんきょう", "は", "おもしろい", "とても"], ansOrder: [0, 1, 3, 2], ansText: "べんきょう は とても おもしろい" },
-            { prefix: "この", suffix: "おいしいです。", en: "This shop's cake is delicious.", choices: ["店", "ケーキ", "の", "は"], ansOrder: [0, 2, 1, 3], ansText: "店 の ケーキ は" },
-            { prefix: "日本人は", suffix: "食べます。", en: "Japanese people eat meals holding a rice bowl.", choices: ["お茶わん", "持って", "を", "ごはんを"], ansOrder: [0, 2, 1, 3], ansText: "お茶わん を 持って ごはんを" },
-            { prefix: "田中さんは", suffix: "着ています。", en: "Mr. Tanaka is wearing an anime shirt.", choices: ["の", "シャツ", "アニメ", "を"], ansOrder: [2, 0, 1, 3], ansText: "アニメ の シャツ を" },
-            { prefix: "わたしは", suffix: "が好きです。", en: "I like listening to music.", choices: ["音楽", "聞く", "の", "を"], ansOrder: [0, 3, 1, 2], ansText: "音楽 を 聞く の" }
-        ],
-        // Slide 4
-        [
-            { prefix: "びょういんの", suffix: "ください。", en: "Please do not run inside the hospital.", choices: ["で", "走らないで", "中", "は"], ansOrder: [2, 0, 3, 1], ansText: "中 で は 走らないで" },
-            { prefix: "富士山は", suffix: "山です。", en: "Mt. Fuji is the highest mountain in Japan.", choices: ["日本", "一番", "で", "高い"], ansOrder: [[0, 2, 1, 3], [1, 0, 2, 3]], ansText: "日本 で 一番 高い" },
-            { prefix: "家族", suffix: "だれですか。", en: "Who is the tallest in your family?", choices: ["の", "なか", "で", "一番背が高いのは"], ansOrder: [0, 1, 2, 3], ansText: "の なか で 一番背が高いのは" },
-            { prefix: "ケーキと", suffix: "好きですか。", en: "Which do you like better, cake or ice cream?", choices: ["どちら", "と", "が", "アイスクリーム"], ansOrder: [3, 1, 0, 2], ansText: "アイスクリーム と どちら が" },
-            { prefix: "部屋が", suffix: "つけましょう。", en: "The room has gotten dark, so let's turn on the light.", choices: ["暗く", "から", "なった", "電気を"], ansOrder: [0, 2, 1, 3], ansText: "暗く なった から 電気を" }
-        ],
-        // Slide 5
-        [
-            { prefix: "あした", suffix: "行きませんか。", en: "Won't you go shopping at the department store tomorrow?", choices: ["デパート", "買い物", "へ", "に"], ansOrder: [[0, 2, 1, 3], [1, 3, 0, 2]], ansText: "デパート へ 買い物 に" },
-            { prefix: "わたしは", suffix: "できます。", en: "I can play the guitar.", choices: ["を", "弾く", "ギター", "ことが"], ansOrder: [2, 0, 1, 3], ansText: "ギター を 弾く ことが" },
-            { prefix: "", suffix: "前に、手を洗います。", en: "I wash my hands before eating breakfast.", choices: ["ごはん", "食べる", "を", "朝"], ansOrder: [3, 0, 2, 1], ansText: "朝 ごはん を 食べる" },
-            { prefix: "", suffix: "ことがありますか。", en: "Have you ever eaten Japanese sushi?", choices: ["食べた", "すし", "を", "日本の"], ansOrder: [3, 1, 2, 0], ansText: "日本の すし を 食べた" },
-            { prefix: "この", suffix: "いいですか。", en: "May I borrow this dictionary?", choices: ["借りて", "辞書", "も", "を"], ansOrder: [1, 3, 0, 2], ansText: "辞書 を 借りて も" }
-        ]
-    ];
+const STORAGE_KEY = 'ohayo_sb_v1_grammar1_1';
+const AUDIO_DIR = 'grammar1-1-audio';
+const QUESTIONS = [{"id": 1, "tag": "〜てください (Polite Request)", "prefix": "ここに", "prefixRuby": "ここに", "suffix": "ください。", "suffixRuby": "ください。", "en": "Please write your name here.", "chunks": ["あなたの", "名前", "を", "書いて"], "chunksRuby": ["あなたの", "<ruby>名前<rt>なまえ</rt></ruby>", "を", "<ruby>書<rt>か</rt></ruby>いて"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "Put the owner before the noun (あなたの + 名前 = your name), mark the object with を, then use the て-form (書いて) before ください.", "trickEn": "Spot ください at the end → a て-form verb (書いて) MUST go right before it!"}, {"id": 2, "tag": "Verb + Noun (Relative Clause)", "prefix": "きのう", "prefixRuby": "きのう", "suffix": "読みました。", "suffixRuby": "<ruby>読<rt>よ</rt></ruby>みました。", "en": "I read the book I borrowed at the library yesterday.", "chunks": ["としょかん", "で", "借りた", "本を"], "chunksRuby": ["としょかん", "で", "<ruby>借<rt>か</rt></ruby>りた", "<ruby>本<rt>ほん</rt></ruby>を"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "In Japanese, descriptions go BEFORE the noun: [としょかんで借りた] ('borrowed at the library') describes [本] ('book').", "trickEn": "Place + で (としょかんで) stays together, and plain past 借りた links right to 本を!"}, {"id": 3, "tag": "Location に + Thing が + あります", "prefix": "つくえの", "prefixRuby": "つくえの", "suffix": "あります。", "suffixRuby": "あります。", "en": "There is a bag on the desk.", "chunks": ["上", "に", "かばん", "が"], "chunksRuby": ["<ruby>上<rt>うえ</rt></ruby>", "に", "かばん", "が"], "altOrders": [], "starIdx": 1, "starEligible": true, "tipEn": "Finish the location phrase first (つくえの上 + に = on the desk), then mark what exists with が (かばんが + あります).", "trickEn": "After つくえの, a position noun (上) must come first, and が sits right before あります!"}, {"id": 4, "tag": "A の B の C (Possession)", "prefix": "これは", "prefixRuby": "これは", "suffix": "です。", "suffixRuby": "です。", "en": "This is my friend's camera.", "chunks": ["わたしの", "友だち", "の", "カメラ"], "chunksRuby": ["わたしの", "<ruby>友<rt>とも</rt></ruby>だち", "の", "カメラ"], "altOrders": [], "starIdx": 1, "starEligible": true, "tipEn": "Chain possession from owner to item: わたしの (my) → 友だちの (friend's) → カメラ (camera).", "trickEn": "The main object (カメラ) always comes last right before です!"}, {"id": 5, "tag": "Location を + Movement Verb", "prefix": "まいあさ", "prefixRuby": "まいあさ", "suffix": "しています。", "suffixRuby": "しています。", "en": "I take a walk in the nearby park every morning.", "chunks": ["近くの", "公園", "を", "散歩"], "chunksRuby": ["<ruby>近<rt>ちか</rt></ruby>くの", "<ruby>公園<rt>こうえん</rt></ruby>", "を", "<ruby>散歩<rt>さんぽ</rt></ruby>"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "近くの modifies 公園 ('nearby park'). Use を for the place you walk through, then 散歩 + しています ('take a walk').", "trickEn": "散歩 + しています is one set verb ('to walk'), so 散歩 MUST go right before しています!"}, {"id": 6, "tag": "Noun Modifier (髪が長い + 人)", "prefix": "山田さんは", "prefixRuby": "<ruby>山田<rt>やまだ</rt></ruby>さんは", "suffix": "人ですか。", "suffixRuby": "<ruby>人<rt>ひと</rt></ruby>ですか。", "en": "Is Mr. Yamada that person with long hair?", "chunks": ["あの", "髪", "が", "長い"], "chunksRuby": ["あの", "<ruby>髪<rt>かみ</rt></ruby>", "が", "<ruby>長<rt>なが</rt></ruby>い"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "あの ('that') starts the noun phrase, and [髪が長い] ('has long hair') directly describes 人 ('person').", "trickEn": "An い-adjective (長い) connects directly to a noun (人), so 長い goes in slot 4!"}, {"id": 7, "tag": "Location に + Object を + 入れる", "prefix": "かばんの", "prefixRuby": "かばんの", "suffix": "ください。", "suffixRuby": "ください。", "en": "Please put the wallet in the bag.", "chunks": ["中", "に", "さいふを", "いれて"], "chunksRuby": ["<ruby>中<rt>なか</rt></ruby>", "に", "さいふを", "いれて"], "altOrders": [], "starIdx": 1, "starEligible": true, "tipEn": "Finish the location (かばんの中 + に = into the bag), then the object (さいふを), then て-form (いれて) + ください.", "trickEn": "Lock both ends: かばんの → 中 at slot 1, and いれて → ください at slot 4!"}, {"id": 8, "tag": "Topic は + Adverb + Adjective", "prefix": "きのうの", "prefixRuby": "きのうの", "suffix": "でした。", "suffixRuby": "でした。", "en": "Yesterday's test was very difficult.", "chunks": ["テスト", "は", "とても", "むずかしかった"], "chunksRuby": ["テスト", "は", "とても", "むずかしかった"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "きのうの + テスト ('yesterday's test') is the topic marked by は. Put とても ('very') right before the adjective むずかしかった.", "trickEn": "きのうの needs a noun (テスト) right after it, and とても always goes right before the adjective!"}, {"id": 9, "tag": "から〜まで + Means で + どのくらい", "prefix": "東京から", "prefixRuby": "<ruby>東京<rt>とうきょう</rt></ruby>から", "suffix": "かかりますか。", "suffixRuby": "かかりますか。", "en": "How long does it take from Tokyo to Kyoto by bullet train?", "chunks": ["京都まで", "新幹線", "で", "どのくらい"], "chunksRuby": ["<ruby>京都<rt>きょうと</rt></ruby>まで", "<ruby>新幹線<rt>しんかんせん</rt></ruby>", "で", "どのくらい"], "altOrders": [[1, 2, 0, 3], [0, 3, 1, 2], [1, 2, 3, 0]], "starIdx": 2, "starEligible": false, "tipEn": "Pair 東京から with 京都まで ('from Tokyo to Kyoto'), mark transport with で (新幹線で), and ask 'how long' with どのくらい.", "trickEn": "Remember the fixed pair 新幹線 + で ('by Shinkansen') — those two blocks always stay together!"}, {"id": 10, "tag": "Noun の 読み方 (How to read)", "prefix": "この", "prefixRuby": "この", "suffix": "わかりますか。", "suffixRuby": "わかりますか。", "en": "Do you know how to read this kanji?", "chunks": ["漢字", "の", "読み方", "が"], "chunksRuby": ["<ruby>漢字<rt>かんじ</rt></ruby>", "の", "<ruby>読<rt>よ</rt></ruby>み<ruby>方<rt>かた</rt></ruby>", "が"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "この + 漢字 ('this kanji') links to 読み方 ('how to read') with の. The verb わかります takes the particle が (not を)!", "trickEn": "JLPT N5 classic: わかります ALWAYS takes が, so が must go in slot 4!"}, {"id": 11, "tag": "Noun の Noun + は + とても + Adj", "prefix": "日本語の", "prefixRuby": "<ruby>日本語<rt>にほんご</rt></ruby>の", "suffix": "です。", "suffixRuby": "です。", "en": "Japanese study is very fun.", "chunks": ["べんきょう", "は", "とても", "おもしろい"], "chunksRuby": ["べんきょう", "は", "とても", "おもしろい"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "日本語の + べんきょう ('Japanese study') is the topic (は). Then とても ('very') directly boosts おもしろい ('interesting/fun').", "trickEn": "Adverbs like とても always stand right before the adjective they modify (とても + おもしろい)."}, {"id": 12, "tag": "この + Noun の Noun + は", "prefix": "この", "prefixRuby": "この", "suffix": "おいしいです。", "suffixRuby": "おいしいです。", "en": "This shop's cake is delicious.", "chunks": ["店", "の", "ケーキ", "は"], "chunksRuby": ["<ruby>店<rt>みせ</rt></ruby>", "の", "ケーキ", "は"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "この + 店 ('this shop') + の + ケーキ ('cake') = 'this shop's cake', followed by topic particle は.", "trickEn": "You can't say ケーキの店はおいしい (a shop isn't delicious!) — put the food (ケーキ) right before は."}, {"id": 13, "tag": "〜て-form (Doing action A while doing B)", "prefix": "日本人は", "prefixRuby": "<ruby>日本人<rt>にほんじん</rt></ruby>は", "suffix": "食べます。", "suffixRuby": "<ruby>食<rt>た</rt></ruby>べます。", "en": "Japanese people eat meals holding a rice bowl.", "chunks": ["お茶わん", "を", "持って", "ごはんを"], "chunksRuby": ["お<ruby>茶<rt>ちゃ</rt></ruby>わん", "を", "<ruby>持<rt>も</rt></ruby>って", "ごはんを"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "First complete 'holding a rice bowl' (お茶わんを持って), then put the object of 食べます (ごはんを) right before 食べます.", "trickEn": "Match each noun to its verb: お茶わん → 持って ('hold'), and ごはんを → 食べます ('eat')!"}, {"id": 14, "tag": "Noun の Noun + を + 着ています", "prefix": "田中さんは", "prefixRuby": "<ruby>田中<rt>たなか</rt></ruby>さんは", "suffix": "着ています。", "suffixRuby": "<ruby>着<rt>き</rt></ruby>ています。", "en": "Mr. Tanaka is wearing an anime shirt.", "chunks": ["アニメ", "の", "シャツ", "を"], "chunksRuby": ["アニメ", "の", "シャツ", "を"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "Describe the type of shirt with の (アニメのシャツ = anime shirt), then add object particle を before 着ています.", "trickEn": "着ています ('is wearing') needs the clothing item + を right before it → シャツ を!"}, {"id": 15, "tag": "Verb + の が好きです (Like doing)", "prefix": "わたしは", "prefixRuby": "わたしは", "suffix": "が好きです。", "suffixRuby": "が<ruby>好<rt>す</rt></ruby>きです。", "en": "I like listening to music.", "chunks": ["音楽", "を", "聞く", "の"], "chunksRuby": ["<ruby>音楽<rt>おんがく</rt></ruby>", "を", "<ruby>聞<rt>き</rt></ruby>く", "の"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "Turn a verb phrase (音楽を聞く = listen to music) into a noun by adding の, then connect to が好きです.", "trickEn": "You cannot put a verb directly before が好きです — の MUST sit in slot 4!"}, {"id": 16, "tag": "〜ないでください (Please don't)", "prefix": "びょういんの", "prefixRuby": "びょういんの", "suffix": "ください。", "suffixRuby": "ください。", "en": "Please do not run inside the hospital.", "chunks": ["中", "で", "は", "走らないで"], "chunksRuby": ["<ruby>中<rt>なか</rt></ruby>", "で", "は", "<ruby>走<rt>はし</rt></ruby>らないで"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "びょういんの中 + では means 'inside the hospital (as a rule)', followed by 走らないで + ください ('please don't run').", "trickEn": "Lock both ends: びょういんの → 中 (slot 1), and 走らないで → ください (slot 4)!"}, {"id": 17, "tag": "Category で 一番 + Adj (Superlative)", "prefix": "富士山は", "prefixRuby": "<ruby>富士山<rt>ふじさん</rt></ruby>は", "suffix": "山です。", "suffixRuby": "<ruby>山<rt>やま</rt></ruby>です。", "en": "Mt. Fuji is the highest mountain in Japan.", "chunks": ["日本", "で", "一番", "高い"], "chunksRuby": ["<ruby>日本<rt>にほん</rt></ruby>", "で", "<ruby>一番<rt>いちばん</rt></ruby>", "<ruby>高<rt>たか</rt></ruby>い"], "altOrders": [[2, 0, 1, 3]], "starIdx": 3, "starEligible": true, "tipEn": "Superlative pattern: [Category + で] + 一番 ('number one / most') + adjective (高い) + noun (山です).", "trickEn": "The adjective describing 山 ('mountain') MUST go right before 山です → 高い is slot 4!"}, {"id": 18, "tag": "Noun の中で 一番〜 (Among...)", "prefix": "家族", "prefixRuby": "<ruby>家族<rt>かぞく</rt></ruby>", "suffix": "だれですか。", "suffixRuby": "だれですか。", "en": "Who is the tallest in your family?", "chunks": ["の", "なか", "で", "一番背が高いのは"], "chunksRuby": ["の", "なか", "で", "<ruby>一番<rt>いちばん</rt></ruby><ruby>背<rt>せ</rt></ruby>が<ruby>高<rt>たか</rt></ruby>いのは"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "Use [Group + のなかで] ('among / in the family'), then the topic [一番背が高いのは] ('the tallest one is') + だれですか.", "trickEn": "Memorize the fixed 3-block combo: の → なか → で ('within / among')!"}, {"id": 19, "tag": "A と B と どちらが (Comparing two)", "prefix": "ケーキと", "prefixRuby": "ケーキと", "suffix": "好きですか。", "suffixRuby": "<ruby>好<rt>す</rt></ruby>きですか。", "en": "Which do you like better, cake or ice cream?", "chunks": ["アイスクリーム", "と", "どちら", "が"], "chunksRuby": ["アイスクリーム", "と", "どちら", "が"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "When comparing two items, use [A と B と どちら が] + adjective. Don't forget the second と after B!", "trickEn": "JLPT N5 classic: 「どちら が」 is always a pair right before 好きですか!"}, {"id": 20, "tag": "〜く なった から (Because it became...)", "prefix": "部屋が", "prefixRuby": "<ruby>部屋<rt>へや</rt></ruby>が", "suffix": "つけましょう。", "suffixRuby": "つけましょう。", "en": "The room has gotten dark, so let's turn on the light.", "chunks": ["暗く", "なった", "から", "電気を"], "chunksRuby": ["<ruby>暗<rt>くら</rt></ruby>く", "なった", "から", "<ruby>電気<rt>でんき</rt></ruby>を"], "altOrders": [], "starIdx": 1, "starEligible": true, "tipEn": "Change an い-adjective to く + なった ('became dark'), add から ('so / because'), then the object 電気を before つけましょう.", "trickEn": "電気を pairs with つけましょう ('turn on the light'), so 電気を goes last in slot 4!"}, {"id": 21, "tag": "Place へ + Purpose に + 行く", "prefix": "あした", "prefixRuby": "あした", "suffix": "行きませんか。", "suffixRuby": "<ruby>行<rt>い</rt></ruby>きませんか。", "en": "Won't you go shopping at the department store tomorrow?", "chunks": ["デパート", "へ", "買い物", "に"], "chunksRuby": ["デパート", "へ", "<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>", "に"], "altOrders": [[2, 3, 0, 1]], "starIdx": 2, "starEligible": false, "tipEn": "Use へ for the destination (デパートへ = to the department store) and に for the purpose (買い物に = to shop).", "trickEn": "Keep the two pairs glued together: [デパート + へ] and [買い物 + に]!"}, {"id": 22, "tag": "Verb + ことが できます (Can do)", "prefix": "わたしは", "prefixRuby": "わたしは", "suffix": "できます。", "suffixRuby": "できます。", "en": "I can play the guitar.", "chunks": ["ギター", "を", "弾く", "ことが"], "chunksRuby": ["ギター", "を", "<ruby>弾<rt>ひ</rt></ruby>く", "ことが"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "To say 'can do', use [Dictionary-form verb + ことができます]: ギターを弾く + ことが + できます.", "trickEn": "Look at できます at the end → ことが MUST sit right before it in slot 4!"}, {"id": 23, "tag": "Verb (Dict.) + 前に (Before doing)", "prefix": "", "prefixRuby": "", "suffix": "前に、手を洗います。", "suffixRuby": "<ruby>前<rt>まえ</rt></ruby>に、<ruby>手<rt>て</rt></ruby>を<ruby>洗<rt>あら</rt></ruby>います。", "en": "I wash my hands before eating breakfast.", "chunks": ["朝", "ごはん", "を", "食べる"], "chunksRuby": ["<ruby>朝<rt>あさ</rt></ruby>", "ごはん", "を", "<ruby>食<rt>た</rt></ruby>べる"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "朝 + ごはん ('breakfast') + を + dictionary-form verb 食べる connects directly to 前に ('before eating').", "trickEn": "前に ('before') always follows a dictionary-form verb (食べる), so 食べる is slot 4!"}, {"id": 24, "tag": "Verb (た-form) + ことがありますか (Have you ever)", "prefix": "", "prefixRuby": "", "suffix": "ことがありますか。", "suffixRuby": "ことがありますか。", "en": "Have you ever eaten Japanese sushi?", "chunks": ["日本の", "すし", "を", "食べた"], "chunksRuby": ["<ruby>日本<rt>にほん</rt></ruby>の", "すし", "を", "<ruby>食<rt>た</rt></ruby>べた"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "日本の + すし ('Japanese sushi') + を + た-form verb (食べた) + ことがありますか ('Have you ever eaten...?').", "trickEn": "〜たことがありますか needs a た-form verb right before ことがありますか → 食べた is slot 4!"}, {"id": 25, "tag": "〜てもいいですか (May I...?)", "prefix": "この", "prefixRuby": "この", "suffix": "いいですか。", "suffixRuby": "いいですか。", "en": "May I borrow this dictionary?", "chunks": ["辞書", "を", "借りて", "も"], "chunksRuby": ["<ruby>辞書<rt>じしょ</rt></ruby>", "を", "<ruby>借<rt>か</rt></ruby>りて", "も"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "この ('this') must be followed by a noun (辞書). Then object を + て-form (借りて) + も + いいですか.", "trickEn": "Lock both ends: この → 辞書 (slot 1), and 借りて + も → いいですか (slots 3 & 4)!"}];
 
-    let currentSlide = 0;
+let state = {
+    status: {},
+    bestStar: null,
+    streak: 0,
+    showFuri: true,
+    autoAudio: true
+};
 
-    function renderQuiz() {
-        const container = document.getElementById('quiz-container');
-        container.innerHTML = '';
+function loadState() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            state = Object.assign(state, parsed);
+        }
+    } catch (e) {}
+    document.body.classList.toggle('hide-furi', !state.showFuri);
+    syncToggleUI();
+}
 
-        quizData.forEach((slideData, slideIndex) => {
-            const slideDiv = document.createElement('div');
-            slideDiv.className = `slide ${slideIndex === 0 ? 'active' : ''}`;
-            slideDiv.id = `slide-${slideIndex}`;
+function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+}
 
-            slideData.forEach((qData, qIndex) => {
-                const qId = `s${slideIndex}_q${qIndex}`;
-                const questionBlock = document.createElement('div');
-                questionBlock.className = 'question-block';
+function resetSavedProgress() {
+    if (!confirm('Reset your saved mastery and ★ Test score for this set?')) return;
+    state.status = {};
+    state.bestStar = null;
+    state.streak = 0;
+    saveState();
+    updateStats();
+    setMode(mode);
+}
 
-                let choicesHTML = '';
-                qData.choices.forEach((choice, idx) => {
-                    choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
-                });
+// Audio player (natural Nanami mp3 only)
+let currentAudio = null;
+function playAudio(qId, btnEl) {
+    const pad = String(qId).padStart(2, '0');
+    const src = `${AUDIO_DIR}/q${pad}.mp3`;
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    document.querySelectorAll('.audio-btn.playing').forEach(b => b.classList.remove('playing'));
+    const a = new Audio(src);
+    currentAudio = a;
+    if (btnEl) btnEl.classList.add('playing');
+    a.onended = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.onerror = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.play().catch(() => { if (btnEl) btnEl.classList.remove('playing'); });
+}
 
-                questionBlock.innerHTML = `
-                    <div class="question-header">Q${(slideIndex * 5) + qIndex + 1}.</div>
-                    <div class="english-translation">${qData.en}</div>
-                    <div class="sentence-builder">
-                        ${qData.prefix ? `<span class="text-part">${qData.prefix}</span>` : ''}
-                        <span class="drop-slot" id="slot-${qId}-0" onclick="returnWord('${qId}', 0)"></span>
-                        <span class="drop-slot" id="slot-${qId}-1" onclick="returnWord('${qId}', 1)"></span>
-                        <span class="drop-slot" id="slot-${qId}-2" onclick="returnWord('${qId}', 2)"></span>
-                        <span class="drop-slot" id="slot-${qId}-3" onclick="returnWord('${qId}', 3)"></span>
-                        ${qData.suffix ? `<span class="text-part">${qData.suffix}</span>` : ''}
-                    </div>
-                    <div class="word-bank" id="bank-${qId}">${choicesHTML}</div>
-                    <div class="action-area">
-                        <button class="check-btn" onclick="checkAnswer('${qId}')">Check Answer</button>
-                        <button class="reset-btn" onclick="resetQuestion('${qId}')">Reset</button>
-                        <span id="result-${qId}" class="result-display" style="font-weight:bold; margin-left:10px;"></span>
-                    </div>
-                    <div id="explanation-${qId}" class="explanation">
-                        <strong>Correct Sentence:</strong><br>
-                        ${qData.prefix} <span style="color:var(--primary-color)">${qData.ansText}</span> ${qData.suffix}
-                    </div>
-                `;
-                slideDiv.appendChild(questionBlock);
-            });
-            container.appendChild(slideDiv);
-        });
+function syncToggleUI() {
+    const fBtn = document.getElementById('btn-furi');
+    fBtn.classList.toggle('on', state.showFuri);
+    fBtn.textContent = state.showFuri ? 'あ Furigana: ON' : 'あ Furigana: OFF';
+
+    const aBtn = document.getElementById('btn-autoaudio');
+    aBtn.classList.toggle('on', state.autoAudio);
+    aBtn.textContent = state.autoAudio ? '🔊 Auto-Audio: ON' : '🔇 Auto-Audio: OFF';
+}
+
+function toggleFurigana() {
+    state.showFuri = !state.showFuri;
+    document.body.classList.toggle('hide-furi', !state.showFuri);
+    syncToggleUI();
+    saveState();
+}
+
+function toggleAutoAudio() {
+    state.autoAudio = !state.autoAudio;
+    syncToggleUI();
+    saveState();
+}
+
+function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function isOrderValid(q, orderArr) {
+    const valid = [[0, 1, 2, 3]].concat(q.altOrders || []);
+    const s = orderArr.join(',');
+    return valid.some(v => v.join(',') === s);
+}
+
+function makeShuffledChoices(q) {
+    const items = q.chunks.map((t, i) => ({ origIdx: i, text: t, ruby: q.chunksRuby[i] }));
+    let out = shuffle(items);
+    let tries = 0;
+    while (isOrderValid(q, out.map(x => x.origIdx)) && tries < 10) {
+        out = shuffle(items);
+        tries++;
+    }
+    if (isOrderValid(q, out.map(x => x.origIdx))) {
+        [out[0], out[2]] = [out[2], out[0]];
+    }
+    return out;
+}
+
+function stripCommaForExam(htmlStr) {
+    return htmlStr.replace(/、$/g, '');
+}
+
+let mode = 'build';
+let listFilter = 'all';
+
+// Build / Weak session
+let queue = [];
+let qIdx = 0;
+let shuffled = [];
+let slots = [null, null, null, null];
+let hintOpen = false;
+let checked = false;
+let lastCorrect = false;
+let roundDone = false;
+
+// Star Exam session
+let starQueue = [];
+let starQIdx = 0;
+let starShuffled = [];
+let starAnswered = false;
+let starPickedShufIdx = null;
+let starScore = 0;
+let starResults = [];
+let starScratchOpen = false;
+let starScratch = [null, null, null, null];
+let starTimerSec = 300;
+let starTimerId = null;
+let starFinished = false;
+
+function updateStats() {
+    const mastered = Object.values(state.status).filter(v => v === 'mastered').length;
+    const weak = Object.values(state.status).filter(v => v === 'weak').length;
+    document.getElementById('st-mastered').textContent = `${mastered} / ${QUESTIONS.length}`;
+    document.getElementById('st-weak').textContent = weak;
+    document.getElementById('st-streak').textContent = `🔥 ${state.streak}`;
+    document.getElementById('st-best').textContent = state.bestStar !== null ? `${state.bestStar}%` : '--';
+    document.getElementById('mastery-fill').style.width = `${Math.round((mastered / QUESTIONS.length) * 100)}%`;
+    const badge = document.getElementById('weak-badge');
+    badge.style.display = weak > 0 ? 'inline-block' : 'none';
+    badge.textContent = weak;
+}
+
+function stopTimer() {
+    if (starTimerId) {
+        clearInterval(starTimerId);
+        starTimerId = null;
+    }
+}
+
+function setMode(newMode) {
+    stopTimer();
+    mode = newMode;
+    ['build', 'star', 'weak', 'list'].forEach(m => {
+        document.getElementById('tab-' + m).classList.toggle('active', m === mode);
+    });
+
+    if (mode === 'build') {
+        const unseenOrWeak = QUESTIONS.filter(q => state.status[q.id] !== 'mastered');
+        queue = unseenOrWeak.length > 0 ? unseenOrWeak : QUESTIONS.slice();
+        qIdx = 0;
+        roundDone = false;
+        loadBuildQuestion();
+    } else if (mode === 'weak') {
+        queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+        qIdx = 0;
+        roundDone = false;
+        if (queue.length > 0) loadBuildQuestion();
+    } else if (mode === 'star') {
+        startStarExam();
+    }
+    render();
+}
+
+function loadBuildQuestion() {
+    const q = queue[qIdx];
+    shuffled = makeShuffledChoices(q);
+    slots = [null, null, null, null];
+    hintOpen = false;
+    checked = false;
+    lastCorrect = false;
+}
+
+function pickChunk(shufIdx) {
+    if (checked || slots.includes(shufIdx)) return;
+    const emptyPos = slots.indexOf(null);
+    if (emptyPos === -1) return;
+    slots[emptyPos] = shufIdx;
+    render();
+}
+
+function removeSlot(pos) {
+    if (checked || slots[pos] === null) return;
+    slots[pos] = null;
+    render();
+}
+
+function resetBuildSlots() {
+    if (checked) return;
+    slots = [null, null, null, null];
+    render();
+}
+
+function checkBuild() {
+    if (slots.includes(null) || checked) return;
+    const q = queue[qIdx];
+    const userOrder = slots.map(si => shuffled[si].origIdx);
+    lastCorrect = isOrderValid(q, userOrder);
+    checked = true;
+    if (lastCorrect) {
+        state.status[q.id] = 'mastered';
+        state.streak++;
+    } else {
+        state.status[q.id] = 'weak';
+        state.streak = 0;
+    }
+    saveState();
+    updateStats();
+    render();
+    if (state.autoAudio) {
+        setTimeout(() => playAudio(q.id, document.querySelector('.feedback .audio-btn')), 180);
+    }
+}
+
+function nextBuild() {
+    if (qIdx + 1 < queue.length) {
+        qIdx++;
+        loadBuildQuestion();
+    } else {
+        if (mode === 'weak') {
+            queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+            qIdx = 0;
+            if (queue.length > 0) loadBuildQuestion();
+        } else {
+            roundDone = true;
+        }
+    }
+    render();
+}
+
+function startFullShuffleBuild() {
+    queue = shuffle(QUESTIONS);
+    qIdx = 0;
+    roundDone = false;
+    loadBuildQuestion();
+    render();
+}
+
+// --- JLPT STAR EXAM ---
+function startStarExam() {
+    stopTimer();
+    const eligible = QUESTIONS.filter(q => q.starEligible);
+    starQueue = shuffle(eligible).slice(0, Math.min(10, eligible.length));
+    starQIdx = 0;
+    starScore = 0;
+    starResults = [];
+    starFinished = false;
+    starTimerSec = 300; // 5:00 for 10 questions
+    loadStarQuestion();
+    starTimerId = setInterval(() => {
+        if (starFinished) { stopTimer(); return; }
+        starTimerSec--;
+        if (starTimerSec <= 0) {
+            starTimerSec = 0;
+            finishStarExam();
+        } else {
+            const el = document.getElementById('star-timer');
+            if (el) el.textContent = '⏱ ' + formatTime(starTimerSec);
+        }
+    }, 1000);
+}
+
+function loadStarQuestion() {
+    const q = starQueue[starQIdx];
+    starShuffled = makeShuffledChoices(q);
+    starAnswered = false;
+    starPickedShufIdx = null;
+    starScratchOpen = false;
+    starScratch = [null, null, null, null];
+}
+
+function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return `${m}:${r < 10 ? '0' : ''}${r}`;
+}
+
+function toggleScratch() {
+    starScratchOpen = !starScratchOpen;
+    render();
+}
+
+function scratchTap(shufIdx) {
+    if (starAnswered) return;
+    const pos = starScratch.indexOf(shufIdx);
+    if (pos !== -1) {
+        starScratch[pos] = null;
+    } else {
+        const empty = starScratch.indexOf(null);
+        if (empty !== -1) starScratch[empty] = shufIdx;
+    }
+    render();
+}
+
+function scratchRemove(pos) {
+    if (starAnswered) return;
+    starScratch[pos] = null;
+    render();
+}
+
+function answerStar(shufIdx) {
+    if (starAnswered) return;
+    const q = starQueue[starQIdx];
+    starAnswered = true;
+    starPickedShufIdx = shufIdx;
+    const pickedOrig = starShuffled[shufIdx].origIdx;
+    const isOk = pickedOrig === q.starIdx;
+    if (isOk) {
+        starScore++;
+        state.status[q.id] = 'mastered';
+        state.streak++;
+    } else {
+        state.status[q.id] = 'weak';
+        state.streak = 0;
+    }
+    starResults.push({ q, isOk, pickedText: starShuffled[shufIdx].text });
+    saveState();
+    updateStats();
+    render();
+    if (state.autoAudio) {
+        setTimeout(() => playAudio(q.id, document.querySelector('.feedback .audio-btn')), 180);
+    }
+}
+
+function nextStar() {
+    if (starQIdx + 1 < starQueue.length) {
+        starQIdx++;
+        loadStarQuestion();
+        render();
+    } else {
+        finishStarExam();
+    }
+}
+
+function finishStarExam() {
+    stopTimer();
+    starFinished = true;
+    const pct = Math.round((starScore / starQueue.length) * 100);
+    if (state.bestStar === null || pct > state.bestStar) state.bestStar = pct;
+    saveState();
+    updateStats();
+    render();
+}
+
+function renderExplanation(q, isOk, extraMsg) {
+    const fullRuby = `${q.prefixRuby}${q.prefixRuby ? ' ' : ''}${q.chunksRuby.join(' ')}${q.suffixRuby ? ' ' : ''}${q.suffixRuby}`;
+    const chainHTML = q.chunks.map((c, idx) =>
+        `<span class="chip ${q.starEligible && idx === q.starIdx ? 'star' : ''}">${q.starEligible && idx === q.starIdx ? '★ ' : ''}${c}</span>`
+    ).join('<span class="arrow">→</span>');
+
+    let altHTML = '';
+    if (q.altOrders && q.altOrders.length > 0) {
+        const alts = q.altOrders.map(ord => ord.map(i => q.chunks[i]).join(' ')).join(' / ');
+        altHTML = `<p class="alt-note">✅ Also natural in Build Mode: ${alts}</p>`;
     }
 
-    // 単語選択
-    window.selectWord = function(qId, choiceIdx, text) {
-        for(let i=0; i<4; i++) {
-            const slot = document.getElementById(`slot-${qId}-${i}`);
-            if(!slot.hasAttribute('data-choice')) {
-                slot.innerText = text;
-                slot.setAttribute('data-choice', choiceIdx);
-                document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none';
-                break;
+    return `
+        <div class="feedback ${isOk ? 'ok' : 'ng'}">
+            <div class="fb-head">
+                <div class="fb-title ${isOk ? 'ok' : 'ng'}">${isOk ? '⭕️ Correct! Great job!' : '❌ Not quite — Saved to Review Weak 🔴'} ${extraMsg || ''}</div>
+                <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen (Nanami)</button>
+            </div>
+            <div class="correct-sentence">${fullRuby}</div>
+            <div class="correct-en">${q.en}</div>
+            <div class="structure-box">
+                <div class="structure-chain">${chainHTML}</div>
+                <p class="tip-en">💡 <strong>Why this order?</strong> ${q.tipEn}</p>
+                <p class="trick-en">🎯 <strong>JLPT Trick:</strong> ${q.trickEn}</p>
+                ${altHTML}
+            </div>
+        </div>
+    `;
+}
+
+function renderBuild() {
+    if (mode === 'weak' && queue.length === 0) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:46px; margin-bottom:8px;">🎉</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">No Weak Sentences!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">
+                    Awesome work! Any sentence you miss in Build Mode or ⭐ JLPT ★ Test will appear here for focused review.
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('star')">⭐ Take JLPT ★ Test</button>
+                    <button class="btn-ghost" onclick="setMode('build')">🧩 Back to Build Mode</button>
+                </div>
+            </div>
+        `;
+    }
+
+    if (roundDone) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:48px; margin-bottom:8px;">🏆</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">Build Session Complete!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">
+                    Ready to test your instincts under exam conditions? Try the 10-question timed ⭐ JLPT ★ Test!
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('star')">⭐ Start JLPT ★ Test</button>
+                    <button class="btn-ghost" onclick="startFullShuffleBuild()">🔀 Practice All 25 Shuffled</button>
+                </div>
+            </div>
+        `;
+    }
+
+    const q = queue[qIdx];
+    const slotsHTML = slots.map((shufIdx, pos) => {
+        const isStar = q.starEligible && pos === q.starIdx;
+        const content = shufIdx !== null ? shuffled[shufIdx].ruby : (isStar ? '★' : `${pos + 1}`);
+        return `
+            <span class="slot ${shufIdx !== null ? 'filled' : ''} ${isStar ? 'star-slot' : ''}" onclick="removeSlot(${pos})" title="Tap to remove">
+                ${isStar && shufIdx !== null ? '<span class="slot-badge">★</span>' : ''}
+                ${content}
+            </span>
+        `;
+    }).join('');
+
+    const bankHTML = shuffled.map((item, sIdx) => {
+        const used = slots.includes(sIdx);
+        return `
+            <button class="chunk-btn" ${used || checked ? 'disabled' : ''} onclick="pickChunk(${sIdx})">
+                <span class="chunk-num">${sIdx + 1}</span>
+                <span>${item.ruby}</span>
+            </button>
+        `;
+    }).join('');
+
+    return `
+        <div class="q-meta">
+            <span class="q-num">${mode === 'weak' ? '🔴 Weak Review' : '🧩 Build'} · Q${qIdx + 1} / ${queue.length} <span style="opacity:0.65;">(#${q.id})</span></span>
+            <span class="grammar-tag">${q.tag}</span>
+        </div>
+
+        <div class="sentence-box ${checked ? (lastCorrect ? 'correct-border' : 'wrong-border') : ''}">
+            ${q.prefixRuby ? `<span>${q.prefixRuby}</span>` : ''}
+            ${slotsHTML}
+            ${q.suffixRuby ? `<span>${q.suffixRuby}</span>` : ''}
+        </div>
+
+        <div class="hint-row">
+            <button class="hint-btn" onclick="hintOpen = !hintOpen; render();">
+                ${hintOpen ? '🙈 Hide English Hint' : '💡 Show English Hint'}
+            </button>
+            ${hintOpen ? `<div class="hint-text">🇺🇸 ${q.en}</div>` : '<span style="font-size:0.78rem; color:var(--muted);">Try solving without English first — just like the real JLPT!</span>'}
+        </div>
+
+        <div class="bank-label">Tap the 4 blocks in the right order (or press keys 1–4; tap a blank to undo):</div>
+        <div class="word-bank">${bankHTML}</div>
+
+        <div class="actions">
+            ${!checked ? `
+                <button class="btn-primary" ${slots.includes(null) ? 'disabled' : ''} onclick="checkBuild()">Check Answer ✓</button>
+                <button class="btn-ghost" onclick="resetBuildSlots()">Reset</button>
+            ` : `
+                <button class="btn-primary" onclick="nextBuild()">${qIdx + 1 < queue.length ? 'Next Question →' : 'Finish Session →'}</button>
+            `}
+        </div>
+
+        ${checked ? renderExplanation(q, lastCorrect) : ''}
+    `;
+}
+
+function renderStar() {
+    if (starFinished) {
+        const pct = Math.round((starScore / starQueue.length) * 100);
+        const pass = pct >= 80;
+        const rows = starResults.map((r, i) => `
+            <div class="list-item" style="border-left: 4px solid ${r.isOk ? 'var(--green)' : 'var(--red)'};">
+                <div class="list-top">
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <strong>Q${i + 1}. ${r.isOk ? '⭕️ Correct' : '❌ Missed'}</strong>
+                        <span class="grammar-tag">${r.q.tag}</span>
+                    </div>
+                    <button class="audio-btn" onclick="playAudio(${r.q.id}, this)">🔊 Listen</button>
+                </div>
+                <div style="font-weight:700; color:var(--dark); margin-bottom:3px; line-height:1.9;">
+                    ${r.q.prefixRuby}${r.q.prefixRuby ? ' ' : ''}${r.q.chunksRuby.map((c, idx) => idx === r.q.starIdx ? `<mark style="background:#fef08a;padding:1px 6px;border-radius:5px;">★ ${c}</mark>` : c).join(' ')}${r.q.suffixRuby ? ' ' : ''}${r.q.suffixRuby}
+                </div>
+                <div style="font-size:0.82rem; color:#4b5563; margin-bottom:4px;">${r.q.en}</div>
+                <div style="font-size:0.8rem; color:#1f2937;">💡 ${r.q.tipEn}</div>
+            </div>
+        `).join('');
+
+        return `
+            <div style="text-align:center; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 16px;">
+                <div style="font-size:48px;">${pass ? '🏆' : '💪'}</div>
+                <h2 style="margin:6px 0 4px; color:var(--dark);">${pass ? 'JLPT ★ Test PASSED!' : 'Keep Practicing!'}</h2>
+                <div style="font-size:1.8rem; font-weight:900; color:${pass ? 'var(--green)' : 'var(--primary-dark)'};">${starScore} / ${starQueue.length} (${pct}%)</div>
+                <p style="font-size:0.86rem; color:var(--muted); margin:6px 0 16px;">
+                    ${pass ? 'You cleared the 80% target! Your JLPT sentence-ordering skills are getting solid.' : 'Pass target: 80%+. Missed sentences were automatically saved to 🔴 Review Weak.'}
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="startStarExam(); render();">🔄 Try New 10-Q ★ Test</button>
+                    <button class="btn-ghost" onclick="setMode('weak')">🔴 Review Weak</button>
+                </div>
+            </div>
+            ${rows}
+        `;
+    }
+
+    const q = starQueue[starQIdx];
+    const slotsHTML = [0, 1, 2, 3].map(pos => {
+        const isStar = pos === q.starIdx;
+        let label = isStar ? '★' : '＿＿';
+        let filled = false;
+        if (starAnswered) {
+            label = q.chunksRuby[pos];
+            filled = true;
+        } else if (starScratchOpen && starScratch[pos] !== null) {
+            label = stripCommaForExam(starShuffled[starScratch[pos]].ruby);
+            filled = true;
+        }
+        return `
+            <span class="slot ${filled ? 'filled' : ''} ${isStar ? 'star-slot' : ''}" onclick="${starScratchOpen && !starAnswered ? `scratchRemove(${pos})` : ''}">
+                ${isStar && filled ? '<span class="slot-badge">★</span>' : ''}
+                ${label}
+            </span>
+        `;
+    }).join('');
+
+    const choicesHTML = starShuffled.map((item, sIdx) => {
+        let cls = 'chunk-btn star-pick';
+        if (starAnswered) {
+            if (item.origIdx === q.starIdx) cls += ' chosen-correct';
+            else if (sIdx === starPickedShufIdx) cls += ' chosen-wrong';
+        }
+        const displayRuby = starAnswered ? item.ruby : stripCommaForExam(item.ruby);
+        return `
+            <button class="${cls}" ${starAnswered ? 'disabled' : ''} onclick="answerStar(${sIdx})">
+                <span class="chunk-num">${sIdx + 1}</span>
+                <span>${displayRuby}</span>
+            </button>
+        `;
+    }).join('');
+
+    const scratchPadHTML = starScratchOpen && !starAnswered ? `
+        <div style="background:#fffbeb; border:1px dashed #f59e0b; border-radius:12px; padding:10px 12px; margin-bottom:14px;">
+            <div style="font-size:0.75rem; font-weight:700; color:#b45309; margin-bottom:6px;">📝 Scratchpad: Tap blocks to test the order above (does not submit your answer).</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                ${starShuffled.map((it, sIdx) => `
+                    <button class="hint-btn" style="${starScratch.includes(sIdx) ? 'opacity:0.4' : ''}" onclick="scratchTap(${sIdx})">${sIdx + 1}. ${stripCommaForExam(it.text)}</button>
+                `).join('')}
+                <button class="hint-btn" onclick="starScratch=[null,null,null,null]; render();">Clear</button>
+            </div>
+        </div>
+    ` : '';
+
+    const isOk = starAnswered && starShuffled[starPickedShufIdx].origIdx === q.starIdx;
+
+    return `
+        <div class="q-meta">
+            <span class="q-num">⭐ JLPT ★ Test · Q${starQIdx + 1} / ${starQueue.length}</span>
+            <span class="timer-pill" id="star-timer">⏱ ${formatTime(starTimerSec)}</span>
+        </div>
+
+        <div class="exam-instruction">
+            <span>Choose the best word (1–4) for the ★ blank. (No English hint — real JLPT style!)</span>
+            ${!starAnswered ? `<button class="scratch-toggle" onclick="toggleScratch()">${starScratchOpen ? '✕ Close Scratchpad' : '📝 Scratchpad'}</button>` : ''}
+        </div>
+
+        <div class="sentence-box ${starAnswered ? (isOk ? 'correct-border' : 'wrong-border') : ''}">
+            ${q.prefixRuby ? `<span>${q.prefixRuby}</span>` : ''}
+            ${slotsHTML}
+            ${q.suffixRuby ? `<span>${q.suffixRuby}</span>` : ''}
+        </div>
+
+        ${scratchPadHTML}
+
+        <div class="bank-label">Which word goes in ★ ? (Click or press 1–4)</div>
+        <div class="word-bank">${choicesHTML}</div>
+
+        ${starAnswered ? `
+            <div class="actions">
+                <button class="btn-primary" onclick="nextStar()">${starQIdx + 1 < starQueue.length ? 'Next ★ Question →' : 'See Exam Result 🏆'}</button>
+            </div>
+            ${renderExplanation(q, isOk, `(★ = ${stripCommaForExam(q.chunks[q.starIdx])})`)}
+        ` : ''}
+    `;
+}
+
+function renderList() {
+    const filtered = QUESTIONS.filter(q => {
+        const st = state.status[q.id] || 'unseen';
+        if (listFilter === 'weak') return st === 'weak';
+        if (listFilter === 'mastered') return st === 'mastered';
+        return true;
+    });
+
+    return `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+            <div>
+                <strong style="font-size:1.02rem; color:var(--dark);">📋 All ${QUESTIONS.length} Sentences &amp; Grammar Points</strong>
+                <div style="font-size:0.78rem; color:var(--muted);">Great for pre-exam review and natural audio shadowing practice</div>
+            </div>
+        </div>
+        <div class="filter-row">
+            <button class="toggle-pill ${listFilter === 'all' ? 'on' : ''}" onclick="listFilter='all'; render();">All (${QUESTIONS.length})</button>
+            <button class="toggle-pill ${listFilter === 'weak' ? 'on' : ''}" onclick="listFilter='weak'; render();">🔴 Weak (${Object.values(state.status).filter(v=>v==='weak').length})</button>
+            <button class="toggle-pill ${listFilter === 'mastered' ? 'on' : ''}" onclick="listFilter='mastered'; render();">✅ Mastered (${Object.values(state.status).filter(v=>v==='mastered').length})</button>
+        </div>
+        ${filtered.length === 0 ? `<p style="color:var(--muted); text-align:center; padding:24px 0;">No sentences match this filter yet.</p>` : filtered.map(q => {
+            const st = state.status[q.id] || 'unseen';
+            const stLabel = st === 'mastered' ? 'Mastered ✅' : st === 'weak' ? 'Weak 🔴' : 'Unseen ⚪';
+            const stCls = st === 'mastered' ? 'st-mastered' : st === 'weak' ? 'st-weak' : 'st-unseen';
+            return `
+                <div class="list-item">
+                    <div class="list-top">
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <strong>Q${q.id}.</strong>
+                            <span class="grammar-tag">${q.tag}</span>
+                            <span class="status-dot ${stCls}">${stLabel}</span>
+                        </div>
+                        <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen</button>
+                    </div>
+                    <div style="font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:3px; line-height:1.95;">
+                        ${q.prefixRuby}${q.prefixRuby ? ' ' : ''}${q.chunksRuby.join(' ')}${q.suffixRuby ? ' ' : ''}${q.suffixRuby}
+                    </div>
+                    <div style="font-size:0.84rem; color:#4b5563; margin-bottom:6px;">${q.en}</div>
+                    <div style="font-size:0.8rem; color:#374151; background:#f8fafc; padding:9px 11px; border-radius:9px; line-height:1.55;">
+                        💡 <strong>Why:</strong> ${q.tipEn}<br>
+                        🎯 <strong>JLPT Trick:</strong> ${q.trickEn}
+                    </div>
+                </div>
+            `;
+        }).join('')}
+    `;
+}
+
+function render() {
+    const app = document.getElementById('app');
+    if (mode === 'build' || mode === 'weak') app.innerHTML = renderBuild();
+    else if (mode === 'star') app.innerHTML = renderStar();
+    else app.innerHTML = renderList();
+}
+
+// Keyboard shortcuts (1-4 to pick, Enter to check/next, Backspace to undo)
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (mode === 'build' || mode === 'weak') {
+        if (roundDone || (mode === 'weak' && queue.length === 0)) return;
+        if (['1','2','3','4'].includes(e.key) && !checked) {
+            pickChunk(parseInt(e.key, 10) - 1);
+        } else if (e.key === 'Backspace' && !checked) {
+            for (let i = 3; i >= 0; i--) {
+                if (slots[i] !== null) { removeSlot(i); break; }
             }
+        } else if (e.key === 'Enter') {
+            if (!checked && !slots.includes(null)) checkBuild();
+            else if (checked) nextBuild();
         }
-    };
-
-    // 単語を戻す
-    window.returnWord = function(qId, slotIdx) {
-        const slot = document.getElementById(`slot-${qId}-${slotIdx}`);
-        if(slot.hasAttribute('data-choice')) {
-            const choiceIdx = slot.getAttribute('data-choice');
-            document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block';
-            slot.innerText = '';
-            slot.removeAttribute('data-choice');
+    } else if (mode === 'star' && !starFinished) {
+        if (['1','2','3','4'].includes(e.key) && !starAnswered) {
+            answerStar(parseInt(e.key, 10) - 1);
+        } else if (e.key === 'Enter' && starAnswered) {
+            nextStar();
         }
-    };
-
-    // 正解チェック
-    window.checkAnswer = function(qId) {
-        const parts = qId.replace('s', '').split('_q');
-        const sIdx = parseInt(parts[0]);
-        const qIdx = parseInt(parts[1]);
-        const qData = quizData[sIdx][qIdx];
-
-        let userArr = [];
-        let isComplete = true;
-        for(let i=0; i<4; i++) {
-            const slot = document.getElementById(`slot-${qId}-${i}`);
-            if(slot.hasAttribute('data-choice')) userArr.push(parseInt(slot.getAttribute('data-choice')));
-            else isComplete = false;
-        }
-
-        const resultSpan = document.getElementById(`result-${qId}`);
-        const expDiv = document.getElementById(`explanation-${qId}`);
-
-        if(!isComplete) {
-            resultSpan.textContent = "Please place all words.";
-            resultSpan.style.color = "var(--accent-color)";
-            return;
-        }
-
-        const validOrders = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder : [qData.ansOrder];
-        const userStr = userArr.join(',');
-        let isCorrect = validOrders.some(order => order.join(',') === userStr);
-
-        resultSpan.textContent = isCorrect ? "⭕️ Correct!" : "❌ Incorrect";
-        resultSpan.style.color = isCorrect ? "#2ecc71" : "var(--accent-color)";
-        expDiv.style.display = "block";
-    };
-
-    window.resetQuestion = function(qId) {
-        for(let i=0; i<4; i++) returnWord(qId, i);
-        document.getElementById(`result-${qId}`).textContent = '';
-        document.getElementById(`explanation-${qId}`).style.display = 'none';
-    };
-
-    // --- スライド切り替えとページネーション ---
-    function createPagination() {
-        const pagination = document.getElementById('pagination');
-        pagination.innerHTML = '';
-        quizData.forEach((_, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'page-btn' + (index === 0 ? ' active' : '');
-            btn.textContent = `Slide ${index + 1}`;
-            btn.onclick = () => changeSlide(index);
-            pagination.appendChild(btn);
-        });
     }
+});
 
-    function changeSlide(slideIndex) {
-        const slides = document.querySelectorAll('.slide');
-        slides[currentSlide].classList.remove('active');
-        
-        currentSlide = slideIndex;
-        slides[currentSlide].classList.add('active');
-        
-        // ボタンの見た目更新
-        const btns = document.getElementById('pagination').children;
-        for (let i = 0; i < btns.length; i++) btns[i].classList.remove('active');
-        btns[currentSlide].classList.add('active');
-
-        // タイトル更新
-        document.getElementById('main-title').textContent = `第1回 N5 Grammar (Slide ${currentSlide + 1})`;
-        
-        // 上部へスクロール
-        window.scrollTo({ top: document.querySelector('.container').offsetTop - 90, behavior: 'smooth' });
-    }
-
-    window.onload = () => {
-        renderQuiz();
-        createPagination();
-    };
+loadState();
+updateStats();
+setMode('build');
 </script>
-
 </body>
 </html>

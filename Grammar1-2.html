@@ -1,36 +1,58 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第2回 N5 Grammar Practice - OHAYO CENTER</title>
+    <title>N5 Grammar Sentence Builder 1-2 | OHAYO CENTER</title>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="N5 Grammar Practice Part 2 | OHAYO CENTER">
-    <meta property="og:description" content="JLPT N5 grammar practice, part 2: build sentences and check your understanding with slide-based exercises.">
+    <meta property="og:title" content="N5 Grammar Sentence Builder 1-2 | OHAYO CENTER">
+    <meta property="og:description" content="Interactive JLPT N5 sentence-ordering trainer (Part 2) with ★ exam mode, beginner-friendly English grammar explanations, furigana toggle, and natural Japanese audio.">
     <meta property="og:url" content="https://ohayocenter.com/Grammar1-2.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="N5 Grammar Practice Part 2 | OHAYO CENTER">
-    <meta name="twitter:description" content="JLPT N5 grammar practice, part 2: build sentences and check your understanding with slide-based exercises.">
+    <meta name="twitter:title" content="N5 Grammar Sentence Builder 1-2 | OHAYO CENTER">
+    <meta name="twitter:description" content="Interactive JLPT N5 sentence-ordering trainer (Part 2) with ★ exam mode, beginner-friendly English grammar explanations, furigana toggle, and natural Japanese audio.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #F5F7FA;
-            --text-color: #333;
-            --accent-color: #E74C3C;
+            --primary: #ff9f43;
+            --primary-dark: #e67e22;
+            --primary-light: #fff5eb;
+            --dark: #2c3e50;
+            --text: #374151;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --green: #16a34a;
+            --green-bg: #dcfce7;
+            --red: #dc2626;
+            --red-bg: #fee2e2;
+            --blue: #2563eb;
+            --blue-bg: #eff6ff;
+            --star: #f59e0b;
+            --star-bg: #fef3c7;
             --bmc-color: #FFDD00;
         }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
 
-        /* --- ナビゲーションバー --- */
+        /* --- Navigation --- */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
             padding: 0 5%;
             height: 70px;
             position: fixed;
@@ -42,65 +64,635 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            font-family: 'Noto Sans JP', sans-serif;
-            box-sizing: border-box; 
         }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
         .logo a { text-decoration: none; color: #2c3e50; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
+        .nav-links a:hover { color: var(--primary); }
 
-        @media (max-width: 600px) {
-            nav { padding: 0 15px; }
-            .logo { font-size: 1rem; }
-            .nav-links { gap: 0.8rem; }
-            .nav-links a { font-size: 0.7rem; }
+        .wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 22px 16px 40px;
         }
 
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: var(--secondary-color); color: var(--text-color); margin: 0; padding: 90px 20px 20px; }
-        
-        .container { max-width: 800px; margin: 0 auto; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; }
-        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
-        .slide { display: none; }
-        .slide.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .question-block { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px dashed #ccc; }
-        .question-header { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
-        .english-translation { color: #666; font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
-        .sentence-builder { font-size: 1.2em; line-height: 2.5em; margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; }
-        .text-part { margin: 0 5px; }
-        .drop-slot-wrapper { display: inline-flex; flex-direction: column; align-items: center; margin: 0 5px; }
-        .drop-slot { display: inline-block; min-width: 70px; height: 35px; border-bottom: 2px solid #888; text-align: center; line-height: 35px; cursor: pointer; color: var(--primary-color); font-weight: bold; background-color: #f9f9f9; border-radius: 4px 4px 0 0; transition: background-color 0.2s; padding: 0 10px; }
-        .drop-slot:hover { background-color: #eef; }
-        
-        .word-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; min-height: 45px; }
-        .word-btn { background-color: #fff; color: var(--text-color); border: 2px solid var(--primary-color); padding: 8px 15px; border-radius: 20px; font-size: 1em; cursor: pointer; font-weight: bold; transition: all 0.2s; }
-        .word-btn:hover { background-color: var(--primary-color); color: #fff; }
-        
-        .action-area { display: flex; align-items: center; gap: 15px; }
-        .check-btn, .reset-btn { padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 1em; border: none; color: white; }
-        .check-btn { background-color: var(--primary-color); }
-        .reset-btn { background-color: #95a5a6; }
-        .result-display { font-weight: bold; font-size: 1.1em; }
-        .correct { color: #2ecc71; }
-        .incorrect { color: var(--accent-color); }
-        .explanation { display: none; margin-top: 15px; background-color: #f8f9fa; padding: 10px; border-left: 4px solid var(--primary-color); font-size: 0.95em; line-height: 1.5; }
-        
-        /* スライド切り替えボタンのデザイン */
-        .slide-controls { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .slide-jump-container { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-        .jump-btn { background-color: #fff; border: 2px solid #333; color: #333; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.3s; }
-        .jump-btn:hover { background-color: #333; color: #fff; }
-        .jump-btn.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3); }
+        /* --- Header Card --- */
+        .hero {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+            margin-bottom: 16px;
+        }
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .level-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 999px;
+            letter-spacing: 0.03em;
+            margin-bottom: 8px;
+        }
+        .hero h1 {
+            margin: 0;
+            font-family: 'Sawarabi Mincho', 'Noto Sans JP', serif;
+            font-size: 1.5rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        .hero-sub {
+            margin: 5px 0 0;
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+        .hero-toggles {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .toggle-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1.5px solid var(--border);
+            background: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .toggle-pill.on {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
 
-        .progress { text-align: center; font-size: 1em; font-weight: bold; color: #666; }
-        
-        .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee; }
-        .support-section h2 { color: var(--primary-color); font-size: 1.2em; margin-bottom: 10px; }
-        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--bmc-color); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .stat-box {
+            background: #f9fafb;
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .stat-val {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        .stat-val.green { color: var(--green); }
+        .stat-val.red { color: var(--red); }
+        .stat-val.orange { color: var(--primary-dark); }
+        .stat-lbl {
+            font-size: 0.7rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .mastery-bar {
+            height: 8px;
+            background: #eef2f7;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+        .mastery-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #fbbf24);
+            border-radius: 999px;
+            transition: width 0.35s ease;
+        }
+
+        /* --- Mode Tabs --- */
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .tab-btn {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 11px 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.18s;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 0.84rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-family: inherit;
+        }
+        .tab-btn .tab-sub {
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+        .tab-btn:hover { border-color: #fed7aa; background: #fffaf5; }
+        .tab-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.18);
+        }
+        .tab-btn.active .tab-sub { color: #b45309; }
+        .tab-badge {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.66rem;
+            padding: 1px 6px;
+            border-radius: 999px;
+            margin-left: 3px;
+        }
+
+        /* --- Main Card --- */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px 22px;
+            box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+        }
+        .q-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .q-num {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--muted);
+        }
+        .grammar-tag {
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--blue-bg);
+            color: var(--blue);
+        }
+        .timer-pill {
+            font-size: 0.84rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .sentence-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px 18px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 2.35;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+        .sentence-box.correct-border { border-color: var(--green); background: #f0fdf4; }
+        .sentence-box.wrong-border { border-color: var(--red); background: #fef2f2; }
+
+        .slot {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 72px;
+            min-height: 44px;
+            padding: 4px 12px;
+            border-radius: 10px;
+            border: 2px dashed #cbd5e1;
+            background: #fff;
+            color: var(--muted);
+            font-size: 1.06rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            position: relative;
+        }
+        .slot.filled {
+            border-style: solid;
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--dark);
+        }
+        .slot.star-slot {
+            border-color: var(--star);
+            background: var(--star-bg);
+            color: #b45309;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+        }
+        .slot.star-slot.filled {
+            border-style: solid;
+            border-color: #d97706;
+            background: #fde68a;
+            color: #78350f;
+        }
+        .slot-badge {
+            position: absolute;
+            top: -10px;
+            right: -6px;
+            font-size: 11px;
+            background: var(--star);
+            color: #fff;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .hint-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .hint-btn {
+            border: 1.5px solid #e5e7eb;
+            background: #fff;
+            color: var(--dark);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+        }
+        .hint-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+        .hint-text {
+            font-size: 0.88rem;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 7px 12px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .bank-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .word-bank {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .chunk-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 15px;
+            border-radius: 14px;
+            border: 2px solid #e2e8f0;
+            background: #fff;
+            color: var(--dark);
+            font-size: 1.06rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+            font-family: inherit;
+        }
+        .chunk-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+        .chunk-btn:disabled {
+            opacity: 0.32;
+            cursor: default;
+            transform: none;
+        }
+        .chunk-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .chunk-btn.star-pick:hover:not(:disabled) {
+            border-color: var(--star);
+            background: #fffbeb;
+        }
+        .chunk-btn.chosen-correct {
+            border-color: var(--green);
+            background: var(--green-bg);
+            color: #14532d;
+            opacity: 1 !important;
+        }
+        .chunk-btn.chosen-wrong {
+            border-color: var(--red);
+            background: var(--red-bg);
+            color: #7f1d1d;
+            opacity: 1 !important;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 22px;
+            font-size: 0.94rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35);
+            transition: 0.15s;
+            font-family: inherit;
+        }
+        .btn-primary:hover:not(:disabled) { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+        .btn-ghost {
+            background: #f3f4f6;
+            color: var(--dark);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-ghost:hover { background: #e5e7eb; }
+
+        .feedback {
+            margin-top: 18px;
+            border-radius: 16px;
+            padding: 18px;
+            border: 2px solid var(--border);
+            animation: fadeUp 0.2s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback.ok { background: #f0fdf4; border-color: #86efac; }
+        .feedback.ng { background: #fef2f2; border-color: #fca5a5; }
+        .fb-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .fb-title { font-size: 1rem; font-weight: 800; }
+        .fb-title.ok { color: var(--green); }
+        .fb-title.ng { color: var(--red); }
+
+        .audio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+        }
+        .audio-btn:hover, .audio-btn.playing { background: var(--primary); color: #fff; }
+
+        .correct-sentence {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 6px 0 4px;
+            line-height: 2;
+        }
+        .correct-en {
+            font-size: 0.86rem;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+        .structure-box {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 13px 15px;
+            font-size: 0.86rem;
+        }
+        .structure-chain {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .chip {
+            background: #fff5eb;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 3px 9px;
+            border-radius: 8px;
+        }
+        .chip.star {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #92400e;
+        }
+        .arrow { color: #9ca3af; font-weight: 800; }
+        .tip-en { color: #1f2937; margin: 0 0 8px; line-height: 1.55; }
+        .trick-en {
+            color: #1d4ed8;
+            background: #eff6ff;
+            padding: 8px 11px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        .alt-note {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin: 8px 0 0;
+        }
+
+        .exam-instruction {
+            background: #fffbeb;
+            border: 1.5px solid #fde68a;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.82rem;
+            color: #92400e;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .scratch-toggle {
+            background: #fff;
+            border: 1px solid #f59e0b;
+            color: #b45309;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .list-item {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+        .list-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .status-dot {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+        .st-mastered { background: var(--green-bg); color: var(--green); }
+        .st-weak { background: var(--red-bg); color: var(--red); }
+        .st-unseen { background: #f3f4f6; color: var(--muted); }
+
+        .reset-progress-row {
+            text-align: right;
+            margin-top: 14px;
+        }
+        .reset-link {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 0.75rem;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        ruby rt {
+            font-size: 0.56em;
+            color: #64748b;
+            font-weight: 500;
+        }
+        body.hide-furi ruby rt { display: none; }
+
+        /* --- Support Section (Secondary below Trial CTA) --- */
+        .support-section {
+            text-align: center;
+            margin: 26px auto 0;
+            padding: 24px 16px 10px;
+            border-top: 1px solid #e5e7eb;
+            max-width: 780px;
+        }
+        .support-section h2 { color: var(--dark); font-size: 1rem; margin: 0 0 6px; }
+        .support-section p { color: #666; font-size: 0.86rem; margin: 0 0 14px; }
+        .bmc-custom-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--bmc-color);
+            color: #000;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.14); }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 14px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a { font-size: 0.7rem; }
+            .hero { padding: 18px 16px; }
+            .hero h1 { font-size: 1.25rem; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .tabs { grid-template-columns: repeat(2, 1fr); }
+            .card { padding: 18px 14px; }
+            .word-bank { grid-template-columns: 1fr; }
+            .sentence-box { font-size: 1.06rem; padding: 16px 12px; }
+            .slot { min-width: 58px; font-size: 0.96rem; min-height: 38px; }
+        }
     </style>
 <style id="ohayo-cta-style">
 .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
@@ -118,12 +710,6 @@
 .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
 .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
 .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 @media (max-width: 600px) {
   .ohayo-cta-grid { grid-template-columns: 1fr; }
   .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
@@ -142,27 +728,68 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     </ul>
 </nav>
 
-<div class="container">
-    <h1>第2回 N5 Grammar Practice (Sentence Builder)</h1>
-    <p style="text-align: center; color: #666; margin-bottom: 20px;">
-        Click the words below to build the correct sentence.<br>
-        <span style="font-size: 0.9em;">(Words will move into the blanks. Click a blank to return the word.)</span>
-    </p>
-    
-    <div id="quiz-container"></div>
-
-    <div class="slide-controls">
-        <span class="progress" id="progress-text">SELECT SLIDE</span>
-        <div class="slide-jump-container">
-            <button class="jump-btn" id="jbtn-0" onclick="jumpToSlide(0)">SLIDE 1</button>
-            <button class="jump-btn" id="jbtn-1" onclick="jumpToSlide(1)">SLIDE 2</button>
-            <button class="jump-btn" id="jbtn-2" onclick="jumpToSlide(2)">SLIDE 3</button>
-            <button class="jump-btn" id="jbtn-3" onclick="jumpToSlide(3)">SLIDE 4</button>
-            <button class="jump-btn" id="jbtn-4" onclick="jumpToSlide(4)">SLIDE 5</button>
+<div class="wrap">
+    <div class="hero">
+        <div class="hero-top">
+            <div>
+                <div class="level-pill">📘 JLPT N5 · Sentence Ordering (★ Question)</div>
+                <h1>N5 Sentence Builder Trainer 1-2</h1>
+                <p class="hero-sub">Step-up N5 grammar patterns, modifiers, and JLPT ★ exam drills (25 sentences)</p>
+            </div>
+            <div class="hero-toggles">
+                <button id="btn-furi" class="toggle-pill on" onclick="toggleFurigana()">あ Furigana: ON</button>
+                <button id="btn-autoaudio" class="toggle-pill on" onclick="toggleAutoAudio()">🔊 Auto-Audio: ON</button>
+            </div>
         </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-val green" id="st-mastered">0 / 25</div>
+                <div class="stat-lbl">Mastered ✅</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val red" id="st-weak">0</div>
+                <div class="stat-lbl">Weak 🔴</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val orange" id="st-streak">🔥 0</div>
+                <div class="stat-lbl">Streak</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="st-best">--</div>
+                <div class="stat-lbl">★ Test Best</div>
+            </div>
+        </div>
+        <div class="mastery-bar"><div class="mastery-fill" id="mastery-fill" style="width: 0%"></div></div>
     </div>
 
-    <!-- OHAYO_NEXT_CTA -->
+    <div class="tabs">
+        <button class="tab-btn active" id="tab-build" onclick="setMode('build')">
+            <span>🧩 Build Mode</span>
+            <span class="tab-sub">Step-by-step practice</span>
+        </button>
+        <button class="tab-btn" id="tab-star" onclick="setMode('star')">
+            <span>⭐ JLPT ★ Test</span>
+            <span class="tab-sub">10-Q timed exam</span>
+        </button>
+        <button class="tab-btn" id="tab-weak" onclick="setMode('weak')">
+            <span>🔴 Review Weak <span id="weak-badge" class="tab-badge" style="display:none">0</span></span>
+            <span class="tab-sub">Retry mistakes</span>
+        </button>
+        <button class="tab-btn" id="tab-list" onclick="setMode('list')">
+            <span>📋 All 25 List</span>
+            <span class="tab-sub">Tips &amp; audio review</span>
+        </button>
+    </div>
+
+    <div id="app" class="card"></div>
+
+    <div class="reset-progress-row">
+        <button class="reset-link" onclick="resetSavedProgress()">Reset saved progress on this page</button>
+    </div>
+</div>
+
+<!-- OHAYO_NEXT_CTA -->
 <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
   <div class="ohayo-cta-next">
     <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
@@ -182,177 +809,697 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 </section>
 
 <div class="support-section">
-        <h2>Support OHAYO CENTER</h2>
-        <p>If you find these materials helpful, please consider supporting us!</p>
-        <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-            ☕️ <span>SUPPORT OHAYO CENTER</span>
-        </a>
-    </div>
+    <h2>Support OHAYO CENTER</h2>
+    <p>If you find these free JLPT materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
 </div>
 
 <script>
-    const quizData = [
-        // Slide 1 - 5 (Data remains same)
-        [
-            { prefix: "これは", suffix: "です。", en: "This is a book I bought yesterday.", choices: ["買った", "きのう", "本", "私が"], ansOrder: [[3, 1, 0, 2], [1, 3, 0, 2]], ansText: "私が きのう 買った 本 <br><span style='font-size: 0.9em; color: #666;'>(または: きのう 私が 買った 本)</span>" },
-            { prefix: "図書館で", suffix: "はいけません。", en: "You must not talk in a loud voice in the library.", choices: ["声で", "絶対に", "話して", "大きな"], ansOrder: [[1, 3, 0, 2], [3, 0, 1, 2]], ansText: "絶対に 大きな 声で 話して <br><span style='font-size: 0.9em; color: #666;'>(または: 大きな 声で 絶対に 話して)</span>" },
-            { prefix: "スーパーへ", suffix: "に行きます。", en: "I am going to the supermarket to buy today's meat and vegetables.", choices: ["野菜を", "買い", "今日の", "肉や"], ansOrder: [2, 3, 0, 1], ansText: "今日の 肉や 野菜を 買い" },
-            { prefix: "山田さんは", suffix: "います。", en: "Mr. Yamada is reading a book sitting over there.", choices: ["本を", "座って", "読んで", "あそこで"], ansOrder: [[3, 1, 0, 2], [3, 0, 1, 2], [0, 3, 1, 2]], ansText: "あそこで 座って 本を 読んで <br><span style='font-size: 0.9em; color: #666;'>(または: あそこで 本を 座って 読んで / 本を あそこで 座って 読んで)</span>" },
-            { prefix: "この", suffix: "ください。", en: "Please read the documents on the desk.", choices: ["上にある", "机の", "読んで", "資料を"], ansOrder: [1, 0, 3, 2], ansText: "机の 上にある 資料を 読んで" }
-        ],
-        [
-            { prefix: "日本で", suffix: "ですか。", en: "Which is the most famous mountain in Japan?", choices: ["有名な", "一番", "どれ", "山は"], ansOrder: [1, 0, 3, 2], ansText: "一番 有名な 山は どれ" },
-            { prefix: "私は", suffix: "ありません。", en: "I have never eaten Japanese sushi before.", choices: ["ことが", "お寿司を", "日本の", "食べた"], ansOrder: [2, 1, 3, 0], ansText: "日本の お寿司を 食べた ことが" },
-            { prefix: "新幹線と", suffix: "速いです。", en: "Compared to airplanes, airplanes are overwhelmingly faster.", choices: ["ほうが", "圧倒的に", "飛行機では", "飛行機の"], ansOrder: [[2, 3, 0, 1], [2, 1, 3, 0]], ansText: "飛行機では 飛行機の ほうが 圧倒的に <br><span style='font-size: 0.9em; color: #666;'>(または: 飛行機では 圧倒的に 飛行機の ほうが)</span>" },
-            { prefix: "毎日", suffix: "上手になりました。", en: "Thanks to practicing every day, I became very good at swimming.", choices: ["泳ぐのが", "練習した", "とても", "おかげで"], ansOrder: [[1, 3, 0, 2], [0, 1, 3, 2], [1, 3, 2, 0]], ansText: "練習した おかげで 泳ぐのが とても <br><span style='font-size: 0.9em; color: #666;'>(または: 泳ぐのが 練習した おかげで とても)</span>" },
-            { prefix: "部屋が", suffix: "開けてもいいですか。", en: "Since the room is small and a bit hot, may I open the window?", choices: ["少し", "窓を", "狭くて", "暑いので"], ansOrder: [[2, 0, 3, 1], [0, 2, 3, 1], [2, 3, 0, 1]], ansText: "狭くて 少し 暑いので 窓を <br><span style='font-size: 0.9em; color: #666;'>(または: 少し 狭くて 暑いので 窓を)</span>" }
-        ],
-        [
-            { prefix: "誕生日に", suffix: "大切にしています。", en: "I always cherish the watch my friend gave me.", choices: ["時計を", "いつも", "友達が", "くれた"], ansOrder: [[2, 3, 0, 1], [1, 2, 3, 0]], ansText: "友達が くれた 時計を いつも <br><span style='font-size: 0.9em; color: #666;'>(または: いつも 友達が くれた 時計を)</span>" },
-            { prefix: "この", suffix: "美味しいです。", en: "The cake my mother made is really delicious.", choices: ["作った", "本当に", "ケーキは", "母が"], ansOrder: [3, 0, 2, 1], ansText: "母が 作った ケーキは 本当に" },
-            { prefix: "旅行の", suffix: "おいてください。", en: "Before the trip, please book the hotel we will stay at.", choices: ["ホテルを", "前に", "予約して", "泊まる"], ansOrder: [[1, 3, 0, 2], [3, 0, 1, 2]], ansText: "前に 泊まる ホテルを 予約して <br><span style='font-size: 0.9em; color: #666;'>(または: 泊まる ホテルを 前に 予約して)</span>" },
-            { prefix: "先生に", suffix: "分かりません。", en: "Even if I ask the teacher, I don't understand the meaning of this word.", choices: ["言葉の", "意味が", "この", "聞いても"], ansOrder: [3, 2, 0, 1], ansText: "聞いても この 言葉の 意味が" },
-            { prefix: "雨が", suffix: "出かけましょう。", en: "Let's go out to the nearby park after the rain stops.", choices: ["近くの", "やんで", "公園へ", "から"], ansOrder: [1, 3, 0, 2], ansText: "やんで から 近くの 公園へ" }
-        ],
-        [
-            { prefix: "もし", suffix: "教えてください。", en: "If you don't know the way to the station, please let me know.", choices: ["なかったら", "わから", "駅までの", "道が"], ansOrder: [2, 3, 1, 0], ansText: "駅までの 道が わから なかったら" },
-            { prefix: "将来は", suffix: "と思っています。", en: "In the future, I intend to become a doctor and cure sick people.", choices: ["なって", "人を治そう", "病気の", "医者に"], ansOrder: [3, 0, 2, 1], ansText: "医者に なって 病気の 人を治そう" },
-            { prefix: "窓の", suffix: "あります。", en: "Beautiful flowers are displayed near the window.", choices: ["花が", "飾って", "近くに", "きれいな"], ansOrder: [2, 3, 0, 1], ansText: "近くに きれいな 花が 飾って" },
-            { prefix: "昨日", suffix: "眠いです。", en: "I am sleepy because I studied until late yesterday.", choices: ["した", "勉強", "ので", "遅くまで"], ansOrder: [3, 1, 0, 2], ansText: "遅くまで 勉強 した ので" },
-            { prefix: "道を", suffix: "しまいました。", en: "I accidentally dropped my wallet while walking on the road.", choices: ["落として", "財布を", "歩いている", "ときに"], ansOrder: [2, 3, 1, 0], ansText: "歩いている ときに 財布を 落として" }
-        ],
-        [
-            { prefix: "あの", suffix: "そうです。", en: "I heard that the new restaurant is very delicious.", choices: ["とても", "美味しい", "レストランは", "新しい"], ansOrder: [3, 2, 0, 1], ansText: "新しい レストランは とても 美味しい" },
-            { prefix: "熱が", suffix: "ほうがいいですよ。", en: "Since you have a fever, you had better take medicine and sleep early.", choices: ["飲んで", "あるんだから", "早く寝た", "薬を"], ansOrder: [1, 3, 0, 2], ansText: "あるんだから 薬を 飲んで 早く寝た" },
-            { prefix: "子供の", suffix: "できました。", en: "When I was a child, I was able to play the piano.", choices: ["弾く", "ころは", "ことが", "ピアノを"], ansOrder: [1, 3, 0, 2], ansText: "ころは ピアノを 弾く ことが" },
-            { prefix: "どんなに", suffix: "あきらめません。", en: "No matter how difficult the problem is, I will never give up.", choices: ["私は", "問題", "でも", "難しい"], ansOrder: [3, 1, 2, 0], ansText: "難しい 問題 でも 私は" },
-            { prefix: "会議が", suffix: "帰ってもいいですか。", en: "Since the meeting is already over, may I go home right now?", choices: ["ので", "今すぐ", "終わった", "もう"], ansOrder: [3, 2, 0, 1], ansText: "もう 終わった ので 今すぐ" }
-        ]
-    ];
+const STORAGE_KEY = 'ohayo_sb_v1_grammar1_2';
+const AUDIO_DIR = 'grammar1-2-audio';
+const QUESTIONS = [{"id": 1, "tag": "Noun Modifier (私が買った + 本)", "prefix": "これは", "prefixRuby": "これは", "suffix": "です。", "suffixRuby": "です。", "en": "This is a book I bought yesterday.", "chunks": ["私が", "きのう", "買った", "本"], "chunksRuby": ["<ruby>私<rt>わたし</rt></ruby>が", "きのう", "<ruby>買<rt>か</rt></ruby>った", "<ruby>本<rt>ほん</rt></ruby>"], "altOrders": [[1, 0, 2, 3]], "starIdx": 2, "starEligible": true, "tipEn": "Inside a modifying clause, the subject takes が (私が) instead of は. [私がきのう買った] describes 本 ('the book I bought yesterday').", "trickEn": "Verb 買った must sit right before the noun 本 → slots 3 & 4 are always 買った → 本!"}, {"id": 2, "tag": "〜てはいけません (Must not)", "prefix": "図書館で", "prefixRuby": "<ruby>図書館<rt>としょかん</rt></ruby>で", "suffix": "はいけません。", "suffixRuby": "はいけません。", "en": "You must not talk in a loud voice in the library.", "chunks": ["絶対に", "大きな", "声で", "話して"], "chunksRuby": ["<ruby>絶対<rt>ぜったい</rt></ruby>に", "<ruby>大<rt>おお</rt></ruby>きな", "<ruby>声<rt>こえ</rt></ruby>で", "<ruby>話<rt>はな</rt></ruby>して"], "altOrders": [[1, 2, 0, 3]], "starIdx": 3, "starEligible": true, "tipEn": "大きな + 声で ('in a loud voice') stays together. 絶対に ('definitely / never') emphasizes the prohibition 話して + はいけません.", "trickEn": "〜てはいけません needs a て-form verb right before はいけません → 話して MUST be slot 4!"}, {"id": 3, "tag": "Verb-stem + に行きます (Go to do)", "prefix": "スーパーへ", "prefixRuby": "スーパーへ", "suffix": "に行きます。", "suffixRuby": "に<ruby>行<rt>い</rt></ruby>きます。", "en": "I am going to the supermarket to buy today's meat and vegetables.", "chunks": ["今日の", "肉や", "野菜を", "買い"], "chunksRuby": ["<ruby>今日<rt>きょう</rt></ruby>の", "<ruby>肉<rt>にく</rt></ruby>や", "<ruby>野菜<rt>やさい</rt></ruby>を", "<ruby>買<rt>か</rt></ruby>い"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "今日の modifies 肉や野菜 ('today's meat and vegetables'). Before に行きます ('go to...'), use the verb stem 買い (from 買います).", "trickEn": "Look at に行きます at the end → verb stem 買い MUST go right before it in slot 4!"}, {"id": 4, "tag": "〜て います (Action + posture)", "prefix": "山田さんは", "prefixRuby": "<ruby>山田<rt>やまだ</rt></ruby>さんは", "suffix": "います。", "suffixRuby": "います。", "en": "Mr. Yamada is reading a book sitting over there.", "chunks": ["あそこで", "座って", "本を", "読んで"], "chunksRuby": ["あそこで", "<ruby>座<rt>すわ</rt></ruby>って", "<ruby>本<rt>ほん</rt></ruby>を", "<ruby>読<rt>よ</rt></ruby>んで"], "altOrders": [[0, 2, 1, 3], [2, 0, 1, 3]], "starIdx": 3, "starEligible": true, "tipEn": "First set where and how (あそこで座って = sitting over there), then the main ongoing action (本を読んで + います = reading a book).", "trickEn": "読んで + います ('is reading') ends the sentence, so 読んで is always slot 4!"}, {"id": 5, "tag": "Location にある + Noun", "prefix": "この", "prefixRuby": "この", "suffix": "ください。", "suffixRuby": "ください。", "en": "Please read the documents on this desk.", "chunks": ["机の", "上にある", "資料を", "読んで"], "chunksRuby": ["<ruby>机<rt>つくえ</rt></ruby>の", "<ruby>上<rt>うえ</rt></ruby>にある", "<ruby>資料<rt>しりょう</rt></ruby>を", "<ruby>読<rt>よ</rt></ruby>んで"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "[この机の上にある] ('that are on this desk') describes [資料を] ('documents'), followed by 読んで + ください.", "trickEn": "Lock both ends: この → 机の (slot 1), and 読んで → ください (slot 4)!"}, {"id": 6, "tag": "Category で 一番 + Adj + Noun は どれ", "prefix": "日本で", "prefixRuby": "<ruby>日本<rt>にほん</rt></ruby>で", "suffix": "ですか。", "suffixRuby": "ですか。", "en": "Which is the most famous mountain in Japan?", "chunks": ["一番", "有名な", "山は", "どれ"], "chunksRuby": ["<ruby>一番<rt>いちばん</rt></ruby>", "<ruby>有名<rt>ゆうめい</rt></ruby>な", "<ruby>山<rt>やま</rt></ruby>は", "どれ"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "Build the superlative subject first: 日本で + 一番有名な山は ('the most famous mountain in Japan'), then ask どれですか ('which one is it?').", "trickEn": "Question word どれ ('which') always goes right before ですか → slot 4!"}, {"id": 7, "tag": "〜たことがありません (Have never)", "prefix": "私は", "prefixRuby": "<ruby>私<rt>わたし</rt></ruby>は", "suffix": "ありません。", "suffixRuby": "ありません。", "en": "I have never eaten Japanese sushi before.", "chunks": ["日本の", "お寿司を", "食べた", "ことが"], "chunksRuby": ["<ruby>日本<rt>にほん</rt></ruby>の", "お<ruby>寿司<rt>すし</rt></ruby>を", "<ruby>食<rt>た</rt></ruby>べた", "ことが"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "日本の + お寿司を ('Japanese sushi') + た-form (食べた) + ことが + ありません ('have never eaten').", "trickEn": "Spot ありません at the end → 食べた + ことが ALWAYS sits right before it!"}, {"id": 8, "tag": "A と B では、B のほうが (Comparing two)", "prefix": "新幹線と", "prefixRuby": "<ruby>新幹線<rt>しんかんせん</rt></ruby>と", "suffix": "速いです。", "suffixRuby": "<ruby>速<rt>はや</rt></ruby>いです。", "en": "Between the bullet train and an airplane, the airplane is overwhelmingly faster.", "chunks": ["飛行機では", "飛行機の", "ほうが", "圧倒的に"], "chunksRuby": ["<ruby>飛行機<rt>ひこうき</rt></ruby>では", "<ruby>飛行機<rt>ひこうき</rt></ruby>の", "ほうが", "<ruby>圧倒的<rt>あっとうてき</rt></ruby>に"], "altOrders": [[0, 3, 1, 2]], "starIdx": 0, "starEligible": true, "tipEn": "Pattern: [A と B では] ('Between A and B'), [B のほうが] ('B is more...') + 圧倒的に ('overwhelmingly') + 速いです.", "trickEn": "After 新幹線と, you must complete the pair with 飛行機では in slot 1!"}, {"id": 9, "tag": "〜たおかげで (Thanks to...)", "prefix": "毎日", "prefixRuby": "<ruby>毎日<rt>まいにち</rt></ruby>", "suffix": "上手になりました。", "suffixRuby": "<ruby>上手<rt>じょうず</rt></ruby>になりました。", "en": "Thanks to practicing every day, I became very good at swimming.", "chunks": ["練習した", "おかげで", "泳ぐのが", "とても"], "chunksRuby": ["<ruby>練習<rt>れんしゅう</rt></ruby>した", "おかげで", "<ruby>泳<rt>およ</rt></ruby>ぐのが", "とても"], "altOrders": [[2, 0, 1, 3]], "starIdx": 3, "starEligible": true, "tipEn": "[毎日練習したおかげで] means 'thanks to practicing every day'. Then [泳ぐのが + とても + 上手になりました] ('became very good at swimming').", "trickEn": "とても ('very') directly boosts 上手になりました, so とても MUST go in slot 4!"}, {"id": 10, "tag": "〜くて + 〜ので (Multiple reasons)", "prefix": "部屋が", "prefixRuby": "<ruby>部屋<rt>へや</rt></ruby>が", "suffix": "開けてもいいですか。", "suffixRuby": "<ruby>開<rt>あ</rt></ruby>けてもいいですか。", "en": "Since the room is small and a bit hot, may I open the window?", "chunks": ["狭くて", "少し", "暑いので", "窓を"], "chunksRuby": ["<ruby>狭<rt>せま</rt></ruby>くて", "<ruby>少<rt>すこ</rt></ruby>し", "<ruby>暑<rt>あつ</rt></ruby>いので", "<ruby>窓<rt>まど</rt></ruby>を"], "altOrders": [[1, 0, 2, 3], [0, 2, 1, 3]], "starIdx": 3, "starEligible": true, "tipEn": "Connect two い-adjectives with 〜くて (狭くて暑い = small and hot), add ので ('because'), then put 窓を right before 開けてもいいですか.", "trickEn": "What are you opening? 窓を ('window') MUST sit right before 開けてもいいですか in slot 4!"}, {"id": 11, "tag": "Noun Modifier (友達がくれた + 時計)", "prefix": "誕生日に", "prefixRuby": "<ruby>誕生日<rt>たんじょうび</rt></ruby>に", "suffix": "大切にしています。", "suffixRuby": "<ruby>大切<rt>たいせつ</rt></ruby>にしています。", "en": "I always cherish the watch my friend gave me on my birthday.", "chunks": ["友達が", "くれた", "時計を", "いつも"], "chunksRuby": ["<ruby>友達<rt>ともだち</rt></ruby>が", "くれた", "<ruby>時計<rt>とけい</rt></ruby>を", "いつも"], "altOrders": [[3, 0, 1, 2]], "starIdx": 1, "starEligible": false, "tipEn": "[友達がくれた] ('that my friend gave me') comes right before [時計を] ('watch'). いつも ('always') goes either before the clause or before 大切にしています.", "trickEn": "Keep the 3-block relative clause intact: 友達が → くれた → 時計を!"}, {"id": 12, "tag": "Noun Modifier (母が作った + ケーキ)", "prefix": "この", "prefixRuby": "この", "suffix": "美味しいです。", "suffixRuby": "<ruby>美味<rt>おい</rt></ruby>しいです。", "en": "This cake my mother made is really delicious.", "chunks": ["母が", "作った", "ケーキは", "本当に"], "chunksRuby": ["<ruby>母<rt>はは</rt></ruby>が", "<ruby>作<rt>つく</rt></ruby>った", "ケーキは", "<ruby>本当<rt>ほんとう</rt></ruby>に"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "[母が作った] ('that my mother made') describes [ケーキは] ('cake'). Then 本当に ('really') directly boosts 美味しいです.", "trickEn": "本当に ('really') goes right before the adjective 美味しいです → slot 4!"}, {"id": 13, "tag": "〜前に + 〜ておいてください (In advance)", "prefix": "旅行の", "prefixRuby": "<ruby>旅行<rt>りょこう</rt></ruby>の", "suffix": "おいてください。", "suffixRuby": "おいてください。", "en": "Before the trip, please book the hotel we will stay at in advance.", "chunks": ["前に", "泊まる", "ホテルを", "予約して"], "chunksRuby": ["<ruby>前<rt>まえ</rt></ruby>に", "<ruby>泊<rt>と</rt></ruby>まる", "ホテルを", "<ruby>予約<rt>よやく</rt></ruby>して"], "altOrders": [[1, 2, 0, 3]], "starIdx": 3, "starEligible": true, "tipEn": "旅行の前に ('before the trip') + [泊まるホテルを] ('the hotel to stay at') + 予約しておいてください ('please reserve in advance').", "trickEn": "〜ておく ('do in advance') needs a て-form verb right before おいてください → 予約して is slot 4!"}, {"id": 14, "tag": "〜ても (Even if)", "prefix": "先生に", "prefixRuby": "<ruby>先生<rt>せんせい</rt></ruby>に", "suffix": "分かりません。", "suffixRuby": "<ruby>分<rt>わ</rt></ruby>かりません。", "en": "Even if I ask the teacher, I don't understand the meaning of this word.", "chunks": ["聞いても", "この", "言葉の", "意味が"], "chunksRuby": ["<ruby>聞<rt>き</rt></ruby>いても", "この", "<ruby>言葉<rt>ことば</rt></ruby>の", "<ruby>意味<rt>いみ</rt></ruby>が"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "先生に聞いても ('even if I ask the teacher') finishes clause 1. Then この + 言葉の + 意味が ('the meaning of this word') + 分かりません.", "trickEn": "分かりません takes が, so 意味が goes in slot 4, and 先生に pairs with 聞いても in slot 1!"}, {"id": 15, "tag": "〜てから (After doing)", "prefix": "雨が", "prefixRuby": "<ruby>雨<rt>あめ</rt></ruby>が", "suffix": "出かけましょう。", "suffixRuby": "<ruby>出<rt>で</rt></ruby>かけましょう。", "en": "Let's go out to the nearby park after the rain stops.", "chunks": ["やんで", "から", "近くの", "公園へ"], "chunksRuby": ["やんで", "から", "<ruby>近<rt>ちか</rt></ruby>くの", "<ruby>公園<rt>こうえん</rt></ruby>へ"], "altOrders": [], "starIdx": 1, "starEligible": true, "tipEn": "雨がやんで + から ('after the rain stops') comes first, followed by destination 近くの + 公園へ ('to the nearby park') + 出かけましょう.", "trickEn": "Remember the set pattern [て-form + から] = 'after doing' → やんで + から in slots 1 & 2!"}, {"id": 16, "tag": "もし〜なかったら (If you don't...)", "prefix": "もし", "prefixRuby": "もし", "suffix": "教えてください。", "suffixRuby": "<ruby>教<rt>おし</rt></ruby>えてください。", "en": "If you don't know the way to the station, please let me know.", "chunks": ["駅までの", "道が", "わから", "なかったら"], "chunksRuby": ["<ruby>駅<rt>えき</rt></ruby>までの", "<ruby>道<rt>みち</rt></ruby>が", "わから", "なかったら"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "駅までの modifies 道 ('the way to the station'). Then split negative conditional: わから + なかったら ('if you don't know').", "trickEn": "もし ('if') always pairs with a conditional ending like 〜なかったら at the end of the clause (slot 4)!"}, {"id": 17, "tag": "〜ようと思っています (Intend to)", "prefix": "将来は", "prefixRuby": "<ruby>将来<rt>しょうらい</rt></ruby>は", "suffix": "と思っています。", "suffixRuby": "と<ruby>思<rt>おも</rt></ruby>っています。", "en": "In the future, I intend to become a doctor and cure sick people.", "chunks": ["医者に", "なって", "病気の", "人を治そう"], "chunksRuby": ["<ruby>医者<rt>いしゃ</rt></ruby>に", "なって", "<ruby>病気<rt>びょうき</rt></ruby>の", "<ruby>人<rt>ひと</rt></ruby>を<ruby>治<rt>なお</rt></ruby>そう"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "Step 1: 医者になって ('become a doctor and...'). Step 2: 病気の人を治そう ('intend to cure sick people') + と思っています.", "trickEn": "Volitional 〜おう (治そう) connects directly to と思っています → 人を治そう is slot 4!"}, {"id": 18, "tag": "〜てあります (Resulting state)", "prefix": "窓の", "prefixRuby": "<ruby>窓<rt>まど</rt></ruby>の", "suffix": "あります。", "suffixRuby": "あります。", "en": "Beautiful flowers are displayed near the window.", "chunks": ["近くに", "きれいな", "花が", "飾って"], "chunksRuby": ["<ruby>近<rt>ちか</rt></ruby>くに", "きれいな", "<ruby>花<rt>はな</rt></ruby>が", "<ruby>飾<rt>かざ</rt></ruby>って"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "窓の近くに ('near the window') + きれいな花が ('beautiful flowers') + 飾ってあります ('are placed on display').", "trickEn": "Lock both ends: 窓の → 近くに (slot 1), and て-form 飾って → あります (slot 4)!"}, {"id": 19, "tag": "〜ので (Because — polite/soft reason)", "prefix": "昨日", "prefixRuby": "<ruby>昨日<rt>きのう</rt></ruby>", "suffix": "眠いです。", "suffixRuby": "<ruby>眠<rt>ねむ</rt></ruby>いです。", "en": "I am sleepy because I studied until late yesterday.", "chunks": ["遅くまで", "勉強", "した", "ので"], "chunksRuby": ["<ruby>遅<rt>おそ</rt></ruby>くまで", "<ruby>勉強<rt>べんきょう</rt></ruby>", "した", "ので"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "Time limit 遅くまで ('until late') comes before the verb 勉強した ('studied'), then ので ('because') links to the result 眠いです.", "trickEn": "Reason connector ので always goes at the end of the reason clause (slot 4)!"}, {"id": 20, "tag": "〜ているときに + 〜てしまいました", "prefix": "道を", "prefixRuby": "<ruby>道<rt>みち</rt></ruby>を", "suffix": "しまいました。", "suffixRuby": "しまいました。", "en": "I accidentally dropped my wallet while walking on the road.", "chunks": ["歩いている", "ときに", "財布を", "落として"], "chunksRuby": ["<ruby>歩<rt>ある</rt></ruby>いている", "ときに", "<ruby>財布<rt>さいふ</rt></ruby>を", "<ruby>落<rt>お</rt></ruby>として"], "altOrders": [], "starIdx": 1, "starEligible": true, "tipEn": "道を歩いている + ときに ('while walking on the road') sets the scene, then 財布を落として + しまいました ('accidentally dropped my wallet').", "trickEn": "道を pairs with 歩いている (slot 1), and 〜てしまいました needs 落として right before it (slot 4)!"}, {"id": 21, "tag": "Plain Form + そうです (Hearsay: I heard)", "prefix": "あの", "prefixRuby": "あの", "suffix": "そうです。", "suffixRuby": "そうです。", "en": "I heard that the new restaurant is very delicious.", "chunks": ["新しい", "レストランは", "とても", "美味しい"], "chunksRuby": ["<ruby>新<rt>あたら</rt></ruby>しい", "レストランは", "とても", "<ruby>美味<rt>おい</rt></ruby>しい"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "あの + 新しい + レストランは ('that new restaurant') is the topic, followed by とても美味しい + そうです ('I heard it is very delicious').", "trickEn": "Plain い-adjective 美味しい + そうです = hearsay ('I heard it's delicious') → 美味しい is slot 4!"}, {"id": 22, "tag": "〜たほうがいいですよ (You had better)", "prefix": "熱が", "prefixRuby": "<ruby>熱<rt>ねつ</rt></ruby>が", "suffix": "ほうがいいですよ。", "suffixRuby": "ほうがいいですよ。", "en": "Since you have a fever, you had better take medicine and sleep early.", "chunks": ["あるんだから", "薬を", "飲んで", "早く寝た"], "chunksRuby": ["あるんだから", "<ruby>薬<rt>くすり</rt></ruby>を", "<ruby>飲<rt>の</rt></ruby>んで", "<ruby>早<rt>はや</rt></ruby>く<ruby>寝<rt>ね</rt></ruby>た"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "熱があるんだから ('since you have a fever') gives the reason, then 薬を飲んで早く寝た + ほうがいいですよ ('take medicine and sleep early').", "trickEn": "Advice pattern 〜たほうがいい needs a た-form verb right before ほうがいい → 早く寝た is slot 4!"}, {"id": 23, "tag": "〜のころは + 〜ことができた", "prefix": "子供の", "prefixRuby": "<ruby>子供<rt>こども</rt></ruby>の", "suffix": "できました。", "suffixRuby": "できました。", "en": "When I was a child, I was able to play the piano.", "chunks": ["ころは", "ピアノを", "弾く", "ことが"], "chunksRuby": ["ころは", "ピアノを", "<ruby>弾<rt>ひ</rt></ruby>く", "ことが"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "子供の + ころは ('when I was a child') sets the past time, then ピアノを弾く + ことが + できました ('was able to play the piano').", "trickEn": "Lock both ends: 子供の → ころは (slot 1), and 弾く + ことが → できました (slots 3 & 4)!"}, {"id": 24, "tag": "どんなに〜でも (No matter how...)", "prefix": "どんなに", "prefixRuby": "どんなに", "suffix": "あきらめません。", "suffixRuby": "あきらめません。", "en": "No matter how difficult the problem is, I will never give up.", "chunks": ["難しい", "問題", "でも", "私は"], "chunksRuby": ["<ruby>難<rt>むずか</rt></ruby>しい", "<ruby>問題<rt>もんだい</rt></ruby>", "でも", "<ruby>私<rt>わたし</rt></ruby>は"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "どんなに ('no matter how') modifies 難しい問題 ('difficult problem') + でも ('even if it is'), then 私は + あきらめません.", "trickEn": "どんなに ALWAYS pairs with 〜ても/でも! And 私は is the subject of あきらめません (slot 4)."}, {"id": 25, "tag": "もう〜たので (Since it already...)", "prefix": "会議が", "prefixRuby": "<ruby>会議<rt>かいぎ</rt></ruby>が", "suffix": "帰ってもいいですか。", "suffixRuby": "<ruby>帰<rt>かえ</rt></ruby>ってもいいですか。", "en": "Since the meeting is already over, may I go home right now?", "chunks": ["もう", "終わった", "ので", "今すぐ"], "chunksRuby": ["もう", "<ruby>終<rt>お</rt></ruby>わった", "ので", "<ruby>今<rt>いま</rt></ruby>すぐ"], "altOrders": [], "starIdx": 2, "starEligible": true, "tipEn": "会議がもう終わった + ので ('since the meeting is already over') gives the reason, then 今すぐ ('right now') modifies 帰ってもいいですか.", "trickEn": "もう ('already') goes right before past verb 終わった, and 今すぐ ('right now') goes before the action 帰ってもいいですか!"}];
 
-    let currentSlide = 0;
-    
-    function renderQuiz() {
-        const container = document.getElementById('quiz-container');
-        container.innerHTML = '';
-        quizData.forEach((slideData, slideIndex) => {
-            const slideDiv = document.createElement('div');
-            slideDiv.className = `slide ${slideIndex === 0 ? 'active' : ''}`;
-            slideDiv.id = `slide-${slideIndex}`;
-            slideData.forEach((qData, qIndex) => {
-                const qId = `s${slideIndex}_q${qIndex}`;
-                const questionBlock = document.createElement('div');
-                questionBlock.className = 'question-block';
-                let choicesHTML = '';
-                qData.choices.forEach((choice, idx) => {
-                    choicesHTML += `<button class="word-btn" id="btn-${qId}-${idx}" onclick="selectWord('${qId}', ${idx}, '${choice}')">${choice}</button>`;
-                });
-                questionBlock.innerHTML = `
-                    <div class="question-header">Q${(slideIndex * 5) + qIndex + 1}.</div>
-                    <div class="english-translation">${qData.en}</div>
-                    <div class="sentence-builder" id="builder-${qId}">
-                        ${qData.prefix ? `<span class="text-part">${qData.prefix}</span>` : ''}
-                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-0" onclick="returnWord('${qId}', 0)"></span></div>
-                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-1" onclick="returnWord('${qId}', 1)"></span></div>
-                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-2" onclick="returnWord('${qId}', 2)"></span></div>
-                        <div class="drop-slot-wrapper"><span class="drop-slot" id="slot-${qId}-3" onclick="returnWord('${qId}', 3)"></span></div>
-                        ${qData.suffix ? `<span class="text-part">${qData.suffix}</span>` : ''}
-                    </div>
-                    <div class="word-bank" id="bank-${qId}">${choicesHTML}</div>
-                    <div class="action-area">
-                        <button class="check-btn" onclick="checkAnswer('${qId}')">Check Answer</button>
-                        <button class="reset-btn" onclick="resetQuestion('${qId}')">Reset</button>
-                        <span id="result-${qId}" class="result-display"></span>
-                    </div>
-                    <div id="explanation-${qId}" class="explanation">
-                        <strong>Correct Sentence:</strong><br>
-                        ${qData.prefix} <span style="color:var(--primary-color)">${qData.ansText}</span> ${qData.suffix}
-                    </div>
-                `;
-                slideDiv.appendChild(questionBlock);
-            });
-            container.appendChild(slideDiv);
-        });
-        updateStatus();
+let state = {
+    status: {},
+    bestStar: null,
+    streak: 0,
+    showFuri: true,
+    autoAudio: true
+};
+
+function loadState() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            state = Object.assign(state, parsed);
+        }
+    } catch (e) {}
+    document.body.classList.toggle('hide-furi', !state.showFuri);
+    syncToggleUI();
+}
+
+function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+function resetSavedProgress() {
+    if (!confirm('Reset your saved mastery and ★ Test score for this set?')) return;
+    state.status = {};
+    state.bestStar = null;
+    state.streak = 0;
+    saveState();
+    updateStats();
+    setMode(mode);
+}
+
+// Audio player (natural Nanami mp3 only)
+let currentAudio = null;
+function playAudio(qId, btnEl) {
+    const pad = String(qId).padStart(2, '0');
+    const src = `${AUDIO_DIR}/q${pad}.mp3`;
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    document.querySelectorAll('.audio-btn.playing').forEach(b => b.classList.remove('playing'));
+    const a = new Audio(src);
+    currentAudio = a;
+    if (btnEl) btnEl.classList.add('playing');
+    a.onended = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.onerror = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.play().catch(() => { if (btnEl) btnEl.classList.remove('playing'); });
+}
+
+function syncToggleUI() {
+    const fBtn = document.getElementById('btn-furi');
+    fBtn.classList.toggle('on', state.showFuri);
+    fBtn.textContent = state.showFuri ? 'あ Furigana: ON' : 'あ Furigana: OFF';
+
+    const aBtn = document.getElementById('btn-autoaudio');
+    aBtn.classList.toggle('on', state.autoAudio);
+    aBtn.textContent = state.autoAudio ? '🔊 Auto-Audio: ON' : '🔇 Auto-Audio: OFF';
+}
+
+function toggleFurigana() {
+    state.showFuri = !state.showFuri;
+    document.body.classList.toggle('hide-furi', !state.showFuri);
+    syncToggleUI();
+    saveState();
+}
+
+function toggleAutoAudio() {
+    state.autoAudio = !state.autoAudio;
+    syncToggleUI();
+    saveState();
+}
+
+function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function isOrderValid(q, orderArr) {
+    const valid = [[0, 1, 2, 3]].concat(q.altOrders || []);
+    const s = orderArr.join(',');
+    return valid.some(v => v.join(',') === s);
+}
+
+function makeShuffledChoices(q) {
+    const items = q.chunks.map((t, i) => ({ origIdx: i, text: t, ruby: q.chunksRuby[i] }));
+    let out = shuffle(items);
+    let tries = 0;
+    while (isOrderValid(q, out.map(x => x.origIdx)) && tries < 10) {
+        out = shuffle(items);
+        tries++;
+    }
+    if (isOrderValid(q, out.map(x => x.origIdx))) {
+        [out[0], out[2]] = [out[2], out[0]];
+    }
+    return out;
+}
+
+function stripCommaForExam(htmlStr) {
+    return htmlStr.replace(/、$/g, '');
+}
+
+let mode = 'build';
+let listFilter = 'all';
+
+// Build / Weak session
+let queue = [];
+let qIdx = 0;
+let shuffled = [];
+let slots = [null, null, null, null];
+let hintOpen = false;
+let checked = false;
+let lastCorrect = false;
+let roundDone = false;
+
+// Star Exam session
+let starQueue = [];
+let starQIdx = 0;
+let starShuffled = [];
+let starAnswered = false;
+let starPickedShufIdx = null;
+let starScore = 0;
+let starResults = [];
+let starScratchOpen = false;
+let starScratch = [null, null, null, null];
+let starTimerSec = 300;
+let starTimerId = null;
+let starFinished = false;
+
+function updateStats() {
+    const mastered = Object.values(state.status).filter(v => v === 'mastered').length;
+    const weak = Object.values(state.status).filter(v => v === 'weak').length;
+    document.getElementById('st-mastered').textContent = `${mastered} / ${QUESTIONS.length}`;
+    document.getElementById('st-weak').textContent = weak;
+    document.getElementById('st-streak').textContent = `🔥 ${state.streak}`;
+    document.getElementById('st-best').textContent = state.bestStar !== null ? `${state.bestStar}%` : '--';
+    document.getElementById('mastery-fill').style.width = `${Math.round((mastered / QUESTIONS.length) * 100)}%`;
+    const badge = document.getElementById('weak-badge');
+    badge.style.display = weak > 0 ? 'inline-block' : 'none';
+    badge.textContent = weak;
+}
+
+function stopTimer() {
+    if (starTimerId) {
+        clearInterval(starTimerId);
+        starTimerId = null;
+    }
+}
+
+function setMode(newMode) {
+    stopTimer();
+    mode = newMode;
+    ['build', 'star', 'weak', 'list'].forEach(m => {
+        document.getElementById('tab-' + m).classList.toggle('active', m === mode);
+    });
+
+    if (mode === 'build') {
+        const unseenOrWeak = QUESTIONS.filter(q => state.status[q.id] !== 'mastered');
+        queue = unseenOrWeak.length > 0 ? unseenOrWeak : QUESTIONS.slice();
+        qIdx = 0;
+        roundDone = false;
+        loadBuildQuestion();
+    } else if (mode === 'weak') {
+        queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+        qIdx = 0;
+        roundDone = false;
+        if (queue.length > 0) loadBuildQuestion();
+    } else if (mode === 'star') {
+        startStarExam();
+    }
+    render();
+}
+
+function loadBuildQuestion() {
+    const q = queue[qIdx];
+    shuffled = makeShuffledChoices(q);
+    slots = [null, null, null, null];
+    hintOpen = false;
+    checked = false;
+    lastCorrect = false;
+}
+
+function pickChunk(shufIdx) {
+    if (checked || slots.includes(shufIdx)) return;
+    const emptyPos = slots.indexOf(null);
+    if (emptyPos === -1) return;
+    slots[emptyPos] = shufIdx;
+    render();
+}
+
+function removeSlot(pos) {
+    if (checked || slots[pos] === null) return;
+    slots[pos] = null;
+    render();
+}
+
+function resetBuildSlots() {
+    if (checked) return;
+    slots = [null, null, null, null];
+    render();
+}
+
+function checkBuild() {
+    if (slots.includes(null) || checked) return;
+    const q = queue[qIdx];
+    const userOrder = slots.map(si => shuffled[si].origIdx);
+    lastCorrect = isOrderValid(q, userOrder);
+    checked = true;
+    if (lastCorrect) {
+        state.status[q.id] = 'mastered';
+        state.streak++;
+    } else {
+        state.status[q.id] = 'weak';
+        state.streak = 0;
+    }
+    saveState();
+    updateStats();
+    render();
+    if (state.autoAudio) {
+        setTimeout(() => playAudio(q.id, document.querySelector('.feedback .audio-btn')), 180);
+    }
+}
+
+function nextBuild() {
+    if (qIdx + 1 < queue.length) {
+        qIdx++;
+        loadBuildQuestion();
+    } else {
+        if (mode === 'weak') {
+            queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+            qIdx = 0;
+            if (queue.length > 0) loadBuildQuestion();
+        } else {
+            roundDone = true;
+        }
+    }
+    render();
+}
+
+function startFullShuffleBuild() {
+    queue = shuffle(QUESTIONS);
+    qIdx = 0;
+    roundDone = false;
+    loadBuildQuestion();
+    render();
+}
+
+// --- JLPT STAR EXAM ---
+function startStarExam() {
+    stopTimer();
+    const eligible = QUESTIONS.filter(q => q.starEligible);
+    starQueue = shuffle(eligible).slice(0, Math.min(10, eligible.length));
+    starQIdx = 0;
+    starScore = 0;
+    starResults = [];
+    starFinished = false;
+    starTimerSec = 300; // 5:00 for 10 questions
+    loadStarQuestion();
+    starTimerId = setInterval(() => {
+        if (starFinished) { stopTimer(); return; }
+        starTimerSec--;
+        if (starTimerSec <= 0) {
+            starTimerSec = 0;
+            finishStarExam();
+        } else {
+            const el = document.getElementById('star-timer');
+            if (el) el.textContent = '⏱ ' + formatTime(starTimerSec);
+        }
+    }, 1000);
+}
+
+function loadStarQuestion() {
+    const q = starQueue[starQIdx];
+    starShuffled = makeShuffledChoices(q);
+    starAnswered = false;
+    starPickedShufIdx = null;
+    starScratchOpen = false;
+    starScratch = [null, null, null, null];
+}
+
+function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return `${m}:${r < 10 ? '0' : ''}${r}`;
+}
+
+function toggleScratch() {
+    starScratchOpen = !starScratchOpen;
+    render();
+}
+
+function scratchTap(shufIdx) {
+    if (starAnswered) return;
+    const pos = starScratch.indexOf(shufIdx);
+    if (pos !== -1) {
+        starScratch[pos] = null;
+    } else {
+        const empty = starScratch.indexOf(null);
+        if (empty !== -1) starScratch[empty] = shufIdx;
+    }
+    render();
+}
+
+function scratchRemove(pos) {
+    if (starAnswered) return;
+    starScratch[pos] = null;
+    render();
+}
+
+function answerStar(shufIdx) {
+    if (starAnswered) return;
+    const q = starQueue[starQIdx];
+    starAnswered = true;
+    starPickedShufIdx = shufIdx;
+    const pickedOrig = starShuffled[shufIdx].origIdx;
+    const isOk = pickedOrig === q.starIdx;
+    if (isOk) {
+        starScore++;
+        state.status[q.id] = 'mastered';
+        state.streak++;
+    } else {
+        state.status[q.id] = 'weak';
+        state.streak = 0;
+    }
+    starResults.push({ q, isOk, pickedText: starShuffled[shufIdx].text });
+    saveState();
+    updateStats();
+    render();
+    if (state.autoAudio) {
+        setTimeout(() => playAudio(q.id, document.querySelector('.feedback .audio-btn')), 180);
+    }
+}
+
+function nextStar() {
+    if (starQIdx + 1 < starQueue.length) {
+        starQIdx++;
+        loadStarQuestion();
+        render();
+    } else {
+        finishStarExam();
+    }
+}
+
+function finishStarExam() {
+    stopTimer();
+    starFinished = true;
+    const pct = Math.round((starScore / starQueue.length) * 100);
+    if (state.bestStar === null || pct > state.bestStar) state.bestStar = pct;
+    saveState();
+    updateStats();
+    render();
+}
+
+function renderExplanation(q, isOk, extraMsg) {
+    const fullRuby = `${q.prefixRuby}${q.prefixRuby ? ' ' : ''}${q.chunksRuby.join(' ')}${q.suffixRuby ? ' ' : ''}${q.suffixRuby}`;
+    const chainHTML = q.chunks.map((c, idx) =>
+        `<span class="chip ${q.starEligible && idx === q.starIdx ? 'star' : ''}">${q.starEligible && idx === q.starIdx ? '★ ' : ''}${c}</span>`
+    ).join('<span class="arrow">→</span>');
+
+    let altHTML = '';
+    if (q.altOrders && q.altOrders.length > 0) {
+        const alts = q.altOrders.map(ord => ord.map(i => q.chunks[i]).join(' ')).join(' / ');
+        altHTML = `<p class="alt-note">✅ Also natural in Build Mode: ${alts}</p>`;
     }
 
-    window.selectWord = function(qId, choiceIdx, text) { 
-        for(let i=0; i<4; i++) { 
-            const slot = document.getElementById(`slot-${qId}-${i}`); 
-            if(!slot.hasAttribute('data-choice')) { 
-                slot.innerText = text; 
-                slot.setAttribute('data-choice', choiceIdx); 
-                document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'none'; 
-                break; 
-            } 
-        } 
-    };
+    return `
+        <div class="feedback ${isOk ? 'ok' : 'ng'}">
+            <div class="fb-head">
+                <div class="fb-title ${isOk ? 'ok' : 'ng'}">${isOk ? '⭕️ Correct! Great job!' : '❌ Not quite — Saved to Review Weak 🔴'} ${extraMsg || ''}</div>
+                <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen (Nanami)</button>
+            </div>
+            <div class="correct-sentence">${fullRuby}</div>
+            <div class="correct-en">${q.en}</div>
+            <div class="structure-box">
+                <div class="structure-chain">${chainHTML}</div>
+                <p class="tip-en">💡 <strong>Why this order?</strong> ${q.tipEn}</p>
+                <p class="trick-en">🎯 <strong>JLPT Trick:</strong> ${q.trickEn}</p>
+                ${altHTML}
+            </div>
+        </div>
+    `;
+}
 
-    window.returnWord = function(qId, slotIdx) { 
-        const slot = document.getElementById(`slot-${qId}-${slotIdx}`); 
-        if(slot.hasAttribute('data-choice')) { 
-            const choiceIdx = slot.getAttribute('data-choice'); 
-            document.getElementById(`btn-${qId}-${choiceIdx}`).style.display = 'inline-block'; 
-            slot.innerText = ''; 
-            slot.removeAttribute('data-choice'); 
-        } 
-    };
-
-    window.resetQuestion = function(qId) { 
-        for(let i=0; i<4; i++) { returnWord(qId, i); } 
-        document.getElementById(`result-${qId}`).textContent = ''; 
-        document.getElementById(`explanation-${qId}`).style.display = 'none'; 
-    };
-
-    window.checkAnswer = function(qId) { 
-        const parts = qId.replace('s', '').split('_q');
-        const sIdx = parseInt(parts[0]);
-        const qIdx = parseInt(parts[1]);
-        const qData = quizData[sIdx][qIdx];
-        let userArr = []; 
-        let isComplete = true; 
-        for(let i=0; i<4; i++) { 
-            const slot = document.getElementById(`slot-${qId}-${i}`); 
-            if(slot.hasAttribute('data-choice')) { userArr.push(parseInt(slot.getAttribute('data-choice'))); } 
-            else { isComplete = false; } 
-        } 
-        const resultSpan = document.getElementById(`result-${qId}`); 
-        const expDiv = document.getElementById(`explanation-${qId}`); 
-        if(!isComplete) { 
-            resultSpan.textContent = "Please place all words."; 
-            resultSpan.className = "result-display incorrect"; 
-            return; 
-        } 
-        const validOrders = Array.isArray(qData.ansOrder[0]) ? qData.ansOrder : [qData.ansOrder];
-        const userStr = userArr.join(',');
-        let isCorrect = false;
-        for(let order of validOrders) { if (userStr === order.join(',')) { isCorrect = true; break; } }
-        if(isCorrect) { resultSpan.textContent = "⭕️ Correct!"; resultSpan.className = "result-display correct"; } 
-        else { resultSpan.textContent = "❌ Incorrect"; resultSpan.className = "result-display incorrect"; } 
-        expDiv.style.display = "block"; 
-    };
-
-    // 直接ジャンプ用関数
-    window.jumpToSlide = function(slideIndex) {
-        const slides = document.querySelectorAll('.slide'); 
-        slides[currentSlide].classList.remove('active'); 
-        currentSlide = slideIndex;
-        slides[currentSlide].classList.add('active'); 
-        window.scrollTo(0,0);
-        updateStatus();
-    };
-
-    function updateStatus() { 
-        const progressText = document.getElementById('progress-text'); 
-        const jumpButtons = document.querySelectorAll('.jump-btn');
-        progressText.textContent = `Slide ${currentSlide + 1} / 5`; 
-        jumpButtons.forEach((btn, idx) => {
-            if(idx === currentSlide) { btn.classList.add('active'); } 
-            else { btn.classList.remove('active'); }
-        });
+function renderBuild() {
+    if (mode === 'weak' && queue.length === 0) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:46px; margin-bottom:8px;">🎉</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">No Weak Sentences!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">
+                    Awesome work! Any sentence you miss in Build Mode or ⭐ JLPT ★ Test will appear here for focused review.
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('star')">⭐ Take JLPT ★ Test</button>
+                    <button class="btn-ghost" onclick="setMode('build')">🧩 Back to Build Mode</button>
+                </div>
+            </div>
+        `;
     }
-    
-    window.onload = renderQuiz;
+
+    if (roundDone) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:48px; margin-bottom:8px;">🏆</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">Build Session Complete!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">
+                    Ready to test your instincts under exam conditions? Try the 10-question timed ⭐ JLPT ★ Test!
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('star')">⭐ Start JLPT ★ Test</button>
+                    <button class="btn-ghost" onclick="startFullShuffleBuild()">🔀 Practice All 25 Shuffled</button>
+                </div>
+            </div>
+        `;
+    }
+
+    const q = queue[qIdx];
+    const slotsHTML = slots.map((shufIdx, pos) => {
+        const isStar = q.starEligible && pos === q.starIdx;
+        const content = shufIdx !== null ? shuffled[shufIdx].ruby : (isStar ? '★' : `${pos + 1}`);
+        return `
+            <span class="slot ${shufIdx !== null ? 'filled' : ''} ${isStar ? 'star-slot' : ''}" onclick="removeSlot(${pos})" title="Tap to remove">
+                ${isStar && shufIdx !== null ? '<span class="slot-badge">★</span>' : ''}
+                ${content}
+            </span>
+        `;
+    }).join('');
+
+    const bankHTML = shuffled.map((item, sIdx) => {
+        const used = slots.includes(sIdx);
+        return `
+            <button class="chunk-btn" ${used || checked ? 'disabled' : ''} onclick="pickChunk(${sIdx})">
+                <span class="chunk-num">${sIdx + 1}</span>
+                <span>${item.ruby}</span>
+            </button>
+        `;
+    }).join('');
+
+    return `
+        <div class="q-meta">
+            <span class="q-num">${mode === 'weak' ? '🔴 Weak Review' : '🧩 Build'} · Q${qIdx + 1} / ${queue.length} <span style="opacity:0.65;">(#${q.id})</span></span>
+            <span class="grammar-tag">${q.tag}</span>
+        </div>
+
+        <div class="sentence-box ${checked ? (lastCorrect ? 'correct-border' : 'wrong-border') : ''}">
+            ${q.prefixRuby ? `<span>${q.prefixRuby}</span>` : ''}
+            ${slotsHTML}
+            ${q.suffixRuby ? `<span>${q.suffixRuby}</span>` : ''}
+        </div>
+
+        <div class="hint-row">
+            <button class="hint-btn" onclick="hintOpen = !hintOpen; render();">
+                ${hintOpen ? '🙈 Hide English Hint' : '💡 Show English Hint'}
+            </button>
+            ${hintOpen ? `<div class="hint-text">🇺🇸 ${q.en}</div>` : '<span style="font-size:0.78rem; color:var(--muted);">Try solving without English first — just like the real JLPT!</span>'}
+        </div>
+
+        <div class="bank-label">Tap the 4 blocks in the right order (or press keys 1–4; tap a blank to undo):</div>
+        <div class="word-bank">${bankHTML}</div>
+
+        <div class="actions">
+            ${!checked ? `
+                <button class="btn-primary" ${slots.includes(null) ? 'disabled' : ''} onclick="checkBuild()">Check Answer ✓</button>
+                <button class="btn-ghost" onclick="resetBuildSlots()">Reset</button>
+            ` : `
+                <button class="btn-primary" onclick="nextBuild()">${qIdx + 1 < queue.length ? 'Next Question →' : 'Finish Session →'}</button>
+            `}
+        </div>
+
+        ${checked ? renderExplanation(q, lastCorrect) : ''}
+    `;
+}
+
+function renderStar() {
+    if (starFinished) {
+        const pct = Math.round((starScore / starQueue.length) * 100);
+        const pass = pct >= 80;
+        const rows = starResults.map((r, i) => `
+            <div class="list-item" style="border-left: 4px solid ${r.isOk ? 'var(--green)' : 'var(--red)'};">
+                <div class="list-top">
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <strong>Q${i + 1}. ${r.isOk ? '⭕️ Correct' : '❌ Missed'}</strong>
+                        <span class="grammar-tag">${r.q.tag}</span>
+                    </div>
+                    <button class="audio-btn" onclick="playAudio(${r.q.id}, this)">🔊 Listen</button>
+                </div>
+                <div style="font-weight:700; color:var(--dark); margin-bottom:3px; line-height:1.9;">
+                    ${r.q.prefixRuby}${r.q.prefixRuby ? ' ' : ''}${r.q.chunksRuby.map((c, idx) => idx === r.q.starIdx ? `<mark style="background:#fef08a;padding:1px 6px;border-radius:5px;">★ ${c}</mark>` : c).join(' ')}${r.q.suffixRuby ? ' ' : ''}${r.q.suffixRuby}
+                </div>
+                <div style="font-size:0.82rem; color:#4b5563; margin-bottom:4px;">${r.q.en}</div>
+                <div style="font-size:0.8rem; color:#1f2937;">💡 ${r.q.tipEn}</div>
+            </div>
+        `).join('');
+
+        return `
+            <div style="text-align:center; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 16px;">
+                <div style="font-size:48px;">${pass ? '🏆' : '💪'}</div>
+                <h2 style="margin:6px 0 4px; color:var(--dark);">${pass ? 'JLPT ★ Test PASSED!' : 'Keep Practicing!'}</h2>
+                <div style="font-size:1.8rem; font-weight:900; color:${pass ? 'var(--green)' : 'var(--primary-dark)'};">${starScore} / ${starQueue.length} (${pct}%)</div>
+                <p style="font-size:0.86rem; color:var(--muted); margin:6px 0 16px;">
+                    ${pass ? 'You cleared the 80% target! Your JLPT sentence-ordering skills are getting solid.' : 'Pass target: 80%+. Missed sentences were automatically saved to 🔴 Review Weak.'}
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="startStarExam(); render();">🔄 Try New 10-Q ★ Test</button>
+                    <button class="btn-ghost" onclick="setMode('weak')">🔴 Review Weak</button>
+                </div>
+            </div>
+            ${rows}
+        `;
+    }
+
+    const q = starQueue[starQIdx];
+    const slotsHTML = [0, 1, 2, 3].map(pos => {
+        const isStar = pos === q.starIdx;
+        let label = isStar ? '★' : '＿＿';
+        let filled = false;
+        if (starAnswered) {
+            label = q.chunksRuby[pos];
+            filled = true;
+        } else if (starScratchOpen && starScratch[pos] !== null) {
+            label = stripCommaForExam(starShuffled[starScratch[pos]].ruby);
+            filled = true;
+        }
+        return `
+            <span class="slot ${filled ? 'filled' : ''} ${isStar ? 'star-slot' : ''}" onclick="${starScratchOpen && !starAnswered ? `scratchRemove(${pos})` : ''}">
+                ${isStar && filled ? '<span class="slot-badge">★</span>' : ''}
+                ${label}
+            </span>
+        `;
+    }).join('');
+
+    const choicesHTML = starShuffled.map((item, sIdx) => {
+        let cls = 'chunk-btn star-pick';
+        if (starAnswered) {
+            if (item.origIdx === q.starIdx) cls += ' chosen-correct';
+            else if (sIdx === starPickedShufIdx) cls += ' chosen-wrong';
+        }
+        const displayRuby = starAnswered ? item.ruby : stripCommaForExam(item.ruby);
+        return `
+            <button class="${cls}" ${starAnswered ? 'disabled' : ''} onclick="answerStar(${sIdx})">
+                <span class="chunk-num">${sIdx + 1}</span>
+                <span>${displayRuby}</span>
+            </button>
+        `;
+    }).join('');
+
+    const scratchPadHTML = starScratchOpen && !starAnswered ? `
+        <div style="background:#fffbeb; border:1px dashed #f59e0b; border-radius:12px; padding:10px 12px; margin-bottom:14px;">
+            <div style="font-size:0.75rem; font-weight:700; color:#b45309; margin-bottom:6px;">📝 Scratchpad: Tap blocks to test the order above (does not submit your answer).</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                ${starShuffled.map((it, sIdx) => `
+                    <button class="hint-btn" style="${starScratch.includes(sIdx) ? 'opacity:0.4' : ''}" onclick="scratchTap(${sIdx})">${sIdx + 1}. ${stripCommaForExam(it.text)}</button>
+                `).join('')}
+                <button class="hint-btn" onclick="starScratch=[null,null,null,null]; render();">Clear</button>
+            </div>
+        </div>
+    ` : '';
+
+    const isOk = starAnswered && starShuffled[starPickedShufIdx].origIdx === q.starIdx;
+
+    return `
+        <div class="q-meta">
+            <span class="q-num">⭐ JLPT ★ Test · Q${starQIdx + 1} / ${starQueue.length}</span>
+            <span class="timer-pill" id="star-timer">⏱ ${formatTime(starTimerSec)}</span>
+        </div>
+
+        <div class="exam-instruction">
+            <span>Choose the best word (1–4) for the ★ blank. (No English hint — real JLPT style!)</span>
+            ${!starAnswered ? `<button class="scratch-toggle" onclick="toggleScratch()">${starScratchOpen ? '✕ Close Scratchpad' : '📝 Scratchpad'}</button>` : ''}
+        </div>
+
+        <div class="sentence-box ${starAnswered ? (isOk ? 'correct-border' : 'wrong-border') : ''}">
+            ${q.prefixRuby ? `<span>${q.prefixRuby}</span>` : ''}
+            ${slotsHTML}
+            ${q.suffixRuby ? `<span>${q.suffixRuby}</span>` : ''}
+        </div>
+
+        ${scratchPadHTML}
+
+        <div class="bank-label">Which word goes in ★ ? (Click or press 1–4)</div>
+        <div class="word-bank">${choicesHTML}</div>
+
+        ${starAnswered ? `
+            <div class="actions">
+                <button class="btn-primary" onclick="nextStar()">${starQIdx + 1 < starQueue.length ? 'Next ★ Question →' : 'See Exam Result 🏆'}</button>
+            </div>
+            ${renderExplanation(q, isOk, `(★ = ${stripCommaForExam(q.chunks[q.starIdx])})`)}
+        ` : ''}
+    `;
+}
+
+function renderList() {
+    const filtered = QUESTIONS.filter(q => {
+        const st = state.status[q.id] || 'unseen';
+        if (listFilter === 'weak') return st === 'weak';
+        if (listFilter === 'mastered') return st === 'mastered';
+        return true;
+    });
+
+    return `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+            <div>
+                <strong style="font-size:1.02rem; color:var(--dark);">📋 All ${QUESTIONS.length} Sentences &amp; Grammar Points</strong>
+                <div style="font-size:0.78rem; color:var(--muted);">Great for pre-exam review and natural audio shadowing practice</div>
+            </div>
+        </div>
+        <div class="filter-row">
+            <button class="toggle-pill ${listFilter === 'all' ? 'on' : ''}" onclick="listFilter='all'; render();">All (${QUESTIONS.length})</button>
+            <button class="toggle-pill ${listFilter === 'weak' ? 'on' : ''}" onclick="listFilter='weak'; render();">🔴 Weak (${Object.values(state.status).filter(v=>v==='weak').length})</button>
+            <button class="toggle-pill ${listFilter === 'mastered' ? 'on' : ''}" onclick="listFilter='mastered'; render();">✅ Mastered (${Object.values(state.status).filter(v=>v==='mastered').length})</button>
+        </div>
+        ${filtered.length === 0 ? `<p style="color:var(--muted); text-align:center; padding:24px 0;">No sentences match this filter yet.</p>` : filtered.map(q => {
+            const st = state.status[q.id] || 'unseen';
+            const stLabel = st === 'mastered' ? 'Mastered ✅' : st === 'weak' ? 'Weak 🔴' : 'Unseen ⚪';
+            const stCls = st === 'mastered' ? 'st-mastered' : st === 'weak' ? 'st-weak' : 'st-unseen';
+            return `
+                <div class="list-item">
+                    <div class="list-top">
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <strong>Q${q.id}.</strong>
+                            <span class="grammar-tag">${q.tag}</span>
+                            <span class="status-dot ${stCls}">${stLabel}</span>
+                        </div>
+                        <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen</button>
+                    </div>
+                    <div style="font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:3px; line-height:1.95;">
+                        ${q.prefixRuby}${q.prefixRuby ? ' ' : ''}${q.chunksRuby.join(' ')}${q.suffixRuby ? ' ' : ''}${q.suffixRuby}
+                    </div>
+                    <div style="font-size:0.84rem; color:#4b5563; margin-bottom:6px;">${q.en}</div>
+                    <div style="font-size:0.8rem; color:#374151; background:#f8fafc; padding:9px 11px; border-radius:9px; line-height:1.55;">
+                        💡 <strong>Why:</strong> ${q.tipEn}<br>
+                        🎯 <strong>JLPT Trick:</strong> ${q.trickEn}
+                    </div>
+                </div>
+            `;
+        }).join('')}
+    `;
+}
+
+function render() {
+    const app = document.getElementById('app');
+    if (mode === 'build' || mode === 'weak') app.innerHTML = renderBuild();
+    else if (mode === 'star') app.innerHTML = renderStar();
+    else app.innerHTML = renderList();
+}
+
+// Keyboard shortcuts (1-4 to pick, Enter to check/next, Backspace to undo)
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (mode === 'build' || mode === 'weak') {
+        if (roundDone || (mode === 'weak' && queue.length === 0)) return;
+        if (['1','2','3','4'].includes(e.key) && !checked) {
+            pickChunk(parseInt(e.key, 10) - 1);
+        } else if (e.key === 'Backspace' && !checked) {
+            for (let i = 3; i >= 0; i--) {
+                if (slots[i] !== null) { removeSlot(i); break; }
+            }
+        } else if (e.key === 'Enter') {
+            if (!checked && !slots.includes(null)) checkBuild();
+            else if (checked) nextBuild();
+        }
+    } else if (mode === 'star' && !starFinished) {
+        if (['1','2','3','4'].includes(e.key) && !starAnswered) {
+            answerStar(parseInt(e.key, 10) - 1);
+        } else if (e.key === 'Enter' && starAnswered) {
+            nextStar();
+        }
+    }
+});
+
+loadState();
+updateStats();
+setMode('build');
 </script>
 </body>
 </html>
