@@ -1,93 +1,240 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N3 JLPT Grammar Practice | OHAYO CENTER</title>
+    <title>JLPT N3 Grammar Trainer 1-1 | OHAYO CENTER</title>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="N3 JLPT Grammar Practice | OHAYO CENTER">
-    <meta property="og:description" content="JLPT N3 grammar practice, part 1: slide-based exercises on N3 grammar points.">
+    <meta property="og:title" content="JLPT N3 Grammar Trainer 1-1 | OHAYO CENTER">
+    <meta property="og:description" content="Interactive JLPT N3 grammar fill-in-the-blank trainer with clear English explanations, distractor traps, timed mock test, weak review, and natural Japanese audio.">
     <meta property="og:url" content="https://ohayocenter.com/Grammar3-1.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="N3 JLPT Grammar Practice | OHAYO CENTER">
-    <meta name="twitter:description" content="JLPT N3 grammar practice, part 1: slide-based exercises on N3 grammar points.">
+    <meta name="twitter:title" content="JLPT N3 Grammar Trainer 1-1 | OHAYO CENTER">
+    <meta name="twitter:description" content="Interactive JLPT N3 grammar fill-in-the-blank trainer with clear English explanations, distractor traps, timed mock test, weak review, and natural Japanese audio.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f0f2f5; --card-bg: #ffffff; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 90px 20px 80px; }
-        
-        /* トップページと完全に揃えたヘッダーCSS */
-        nav { 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(5px); 
-            padding: 0 5%; 
-            height: 70px; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
+        :root {
+            --primary: #ff9f43;
+            --primary-dark: #e67e22;
+            --primary-light: #fff5eb;
+            --dark: #2c3e50;
+            --text: #374151;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --green: #16a34a;
+            --green-bg: #dcfce7;
+            --red: #dc2626;
+            --red-bg: #fee2e2;
+            --blue: #2563eb;
+            --blue-bg: #eff6ff;
+            --purple: #7c3aed;
+            --purple-bg: #f5f3ff;
+            --bmc-color: #FFDD00;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            padding: 0 5%;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
             left: 0;
-            z-index: 1000; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: #2c3e50; font-size: 1.2rem; white-space: nowrap; }
-        .logo a { text-decoration: none; color: inherit; }
+        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
+        .logo a { text-decoration: none; color: #2c3e50; }
         .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; white-space: nowrap; }
+        .nav-links a:hover { color: var(--primary); }
 
-        .container { width: 100%; max-width: 800px; background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 30px;}
-        h1 { text-align: center; color: var(--primary-color); font-size: 1.6rem; margin-bottom: 20px; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
-        .question-list { display: flex; flex-direction: column; gap: 20px; }
-        .slide { display: none; flex-direction: column; gap: 20px; animation: fadeIn 0.4s; }
-        .slide.active { display: flex; }
-        .question-box { border: 2px solid #edf2f7; padding: 20px; border-radius: 10px; background: #fff; text-align: left; }
-        .question-text { font-size: 1.2rem; font-weight: bold; color: #333; margin-bottom: 15px; }
-        .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .choice-item { background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 1rem; color: #555; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
-        .choice-item:hover { background: #e2e8f0; }
-        .choice-item.selected { border-color: var(--accent-color); background: #ebf5fb; }
-        .choice-item.correct { background: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
-        .choice-item.incorrect { background: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
-        .answer-area { display: none; background: #eef2f5; padding: 15px; border-radius: 5px; margin-top: 10px; border-left: 4px solid var(--accent-color); }
-        .answer-area.show { display: block; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        .correct-ans { font-weight: bold; color: #2ecc71; font-size: 1.1rem; margin-bottom: 5px; }
-        .en-translation { color: #666; font-size: 0.9rem; }
-        .btn-ans { background-color: var(--primary-color); border: none; padding: 10px 16px; border-radius: 5px; cursor: pointer; font-size: 1rem; color: white; font-weight: bold; transition: 0.2s; width: 100%; margin-top: 5px; }
-        .btn-ans:hover { background-color: #1a252f; }
-        .btn-ans:disabled { background-color: #95a5a6; cursor: not-allowed; }
-        
-        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
-        .page-btn { padding: 10px 15px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--primary-color); transition: 0.2s; font-size: 1rem; }
-        .page-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
-        .page-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+        .wrap { max-width: 800px; margin: 0 auto; padding: 22px 16px 40px; }
 
-        .support-section { text-align: center; margin-top: 20px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 800px; }
-        .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
-        .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-        .bmc-custom-btn span { margin-left: 8px; }
-        
-        /* トップページと完全に揃えたスマホ用CSS */
+        .hero {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+            margin-bottom: 16px;
+        }
+        .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+        .level-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--primary-light); color: var(--primary-dark);
+            font-size: 12px; font-weight: 700; padding: 4px 12px;
+            border-radius: 999px; letter-spacing: 0.03em; margin-bottom: 8px;
+        }
+        .hero h1 { margin: 0; font-family: 'Sawarabi Mincho', 'Noto Sans JP', serif; font-size: 1.5rem; color: var(--dark); line-height: 1.3; }
+        .hero-sub { margin: 5px 0 0; font-size: 0.86rem; color: var(--muted); }
+        .hero-toggles { display: flex; gap: 8px; flex-wrap: wrap; }
+        .toggle-pill {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 6px 12px; border-radius: 999px;
+            border: 1.5px solid var(--border); background: #fff;
+            font-size: 12px; font-weight: 700; color: var(--dark);
+            cursor: pointer; transition: all 0.15s; font-family: inherit;
+        }
+        .toggle-pill.on { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); }
+
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+        .stat-box { background: #f9fafb; border: 1px solid #eef0f3; border-radius: 12px; padding: 10px 8px; text-align: center; }
+        .stat-val { font-size: 1.1rem; font-weight: 800; color: var(--dark); line-height: 1.2; }
+        .stat-val.green { color: var(--green); }
+        .stat-val.red { color: var(--red); }
+        .stat-val.orange { color: var(--primary-dark); }
+        .stat-lbl { font-size: 0.7rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+        .mastery-bar { height: 8px; background: #eef2f7; border-radius: 999px; overflow: hidden; margin-top: 12px; }
+        .mastery-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #fbbf24); border-radius: 999px; transition: width 0.35s ease; }
+
+        .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+        .tab-btn {
+            background: var(--card); border: 2px solid var(--border); border-radius: 14px;
+            padding: 11px 8px; cursor: pointer; text-align: center; transition: all 0.18s;
+            color: var(--dark); font-weight: 700; font-size: 0.84rem;
+            display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit;
+        }
+        .tab-btn .tab-sub { font-size: 0.68rem; font-weight: 500; color: var(--muted); }
+        .tab-btn:hover { border-color: #fed7aa; background: #fffaf5; }
+        .tab-btn.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); box-shadow: 0 4px 12px rgba(255, 159, 67, 0.18); }
+        .tab-btn.active .tab-sub { color: #b45309; }
+        .tab-badge { display: inline-block; background: var(--red); color: #fff; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; margin-left: 3px; }
+
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05); }
+        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 8px; flex-wrap: wrap; }
+        .q-num { font-size: 0.82rem; font-weight: 700; color: var(--muted); }
+        .grammar-tag { font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--blue-bg); color: var(--blue); }
+        .timer-pill { font-size: 0.84rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; background: #fef3c7; color: #b45309; }
+
+        .sentence-box {
+            background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px;
+            padding: 22px 18px; margin-bottom: 16px; font-size: 1.26rem; font-weight: 700;
+            color: var(--dark); line-height: 2.2;
+        }
+        .sentence-box.correct-border { border-color: var(--green); background: #f0fdf4; }
+        .sentence-box.wrong-border { border-color: var(--red); background: #fef2f2; }
+        .blank-pill {
+            display: inline-block; min-width: 90px; text-align: center;
+            padding: 2px 12px; margin: 0 4px; border-radius: 10px;
+            border: 2px dashed var(--primary); background: var(--primary-light); color: var(--primary-dark);
+            font-weight: 800;
+        }
+        .blank-pill.filled-ok { border-style: solid; border-color: var(--green); background: var(--green-bg); color: #14532d; }
+        .blank-pill.filled-ng { border-style: solid; border-color: var(--red); background: var(--red-bg); color: #7f1d1d; }
+
+        .hint-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+        .hint-btn {
+            border: 1.5px solid #e5e7eb; background: #fff; color: var(--dark);
+            font-size: 0.78rem; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+            cursor: pointer; transition: 0.15s; font-family: inherit;
+        }
+        .hint-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+        .hint-text { font-size: 0.88rem; color: #374151; background: #f3f4f6; padding: 7px 12px; border-radius: 10px; flex: 1; min-width: 200px; }
+
+        .choices-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+        .choice-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 14px 16px; border-radius: 14px; border: 2px solid #e2e8f0;
+            background: #fff; color: var(--dark); font-size: 1.05rem; font-weight: 700;
+            cursor: pointer; transition: all 0.15s; text-align: left; font-family: inherit;
+        }
+        .choice-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); transform: translateY(-1px); }
+        .choice-btn:disabled { cursor: default; opacity: 0.55; }
+        .choice-btn.is-correct { border-color: var(--green); background: var(--green-bg); color: #14532d; opacity: 1 !important; }
+        .choice-btn.is-wrong { border-color: var(--red); background: var(--red-bg); color: #7f1d1d; opacity: 1 !important; }
+        .choice-num {
+            width: 26px; height: 26px; border-radius: 50%; background: #f1f5f9;
+            color: var(--muted); font-size: 0.8rem; font-weight: 800;
+            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+
+        .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .btn-primary {
+            background: var(--primary); color: #fff; border: none; border-radius: 12px;
+            padding: 12px 22px; font-size: 0.94rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35); transition: 0.15s; font-family: inherit;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-ghost { background: #f3f4f6; color: var(--dark); border: none; border-radius: 12px; padding: 12px 16px; font-size: 0.88rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+        .btn-ghost:hover { background: #e5e7eb; }
+
+        .feedback { margin-top: 18px; border-radius: 16px; padding: 18px; border: 2px solid var(--border); animation: fadeUp 0.2s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .feedback.ok { background: #f0fdf4; border-color: #86efac; }
+        .feedback.ng { background: #fef2f2; border-color: #fca5a5; }
+        .fb-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+        .fb-title { font-size: 1rem; font-weight: 800; }
+        .fb-title.ok { color: var(--green); }
+        .fb-title.ng { color: var(--red); }
+
+        .audio-btn {
+            display: inline-flex; align-items: center; gap: 6px; background: #fff;
+            border: 2px solid var(--primary); color: var(--primary-dark);
+            padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700;
+            cursor: pointer; transition: 0.15s; font-family: inherit;
+        }
+        .audio-btn:hover, .audio-btn.playing { background: var(--primary); color: #fff; }
+
+        .correct-sentence { font-size: 1.12rem; font-weight: 800; color: var(--dark); margin: 6px 0 4px; line-height: 2; }
+        .correct-en { font-size: 0.86rem; color: #4b5563; margin-bottom: 12px; }
+        .explain-box { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 13px 15px; font-size: 0.86rem; }
+        .form-pill { display: inline-block; background: var(--purple-bg); color: var(--purple); font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: 8px; margin-bottom: 8px; }
+        .tip-en { color: #1f2937; margin: 0 0 8px; line-height: 1.55; }
+        .trap-en { color: #1d4ed8; background: #eff6ff; padding: 8px 11px; border-radius: 8px; font-size: 0.82rem; margin: 0; font-weight: 600; line-height: 1.5; }
+
+        .filter-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+        .list-item { border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; background: #fff; }
+        .list-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+        .status-dot { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+        .st-mastered { background: var(--green-bg); color: var(--green); }
+        .st-weak { background: var(--red-bg); color: var(--red); }
+        .st-unseen { background: #f3f4f6; color: var(--muted); }
+
+        .reset-progress-row { text-align: right; margin-top: 14px; }
+        .reset-link { background: none; border: none; color: var(--muted); font-size: 0.75rem; text-decoration: underline; cursor: pointer; font-family: inherit; }
+
+        ruby rt { font-size: 0.56em; color: #64748b; font-weight: 500; }
+        body.hide-furi ruby rt { display: none; }
+
+        .support-section { text-align: center; margin: 26px auto 0; padding: 24px 16px 10px; border-top: 1px solid #e5e7eb; max-width: 780px; }
+        .support-section h2 { color: var(--dark); font-size: 1rem; margin: 0 0 6px; }
+        .support-section p { color: #666; font-size: 0.86rem; margin: 0 0 14px; }
+        .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--bmc-color); color: #000; padding: 10px 22px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.08); transition: transform 0.2s; }
+        .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.14); }
+
         @media (max-width: 600px) {
-            nav { padding: 0 15px; }
+            nav { padding: 0 14px; }
             .logo { font-size: 1rem; }
-            .nav-links { gap: 0.8rem; }
+            .nav-links { gap: 0.75rem; }
             .nav-links a { font-size: 0.7rem; }
-            
-            /* マテリアル固有のスマホ設定 */
-            .choices { grid-template-columns: 1fr; }
-            .page-btn { padding: 8px 12px; font-size: 0.9rem; }
+            .hero { padding: 18px 16px; }
+            .hero h1 { font-size: 1.25rem; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .tabs { grid-template-columns: repeat(2, 1fr); }
+            .card { padding: 18px 14px; }
+            .choices-grid { grid-template-columns: 1fr; }
+            .sentence-box { font-size: 1.08rem; padding: 16px 14px; }
         }
     </style>
 <style id="ohayo-cta-style">
@@ -106,12 +253,6 @@
 .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
 .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
 .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 @media (max-width: 600px) {
   .ohayo-cta-grid { grid-template-columns: 1fr; }
   .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
@@ -130,10 +271,65 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     </ul>
 </nav>
 
-<div class="container" id="slides-container">
-    <h1 id="page-title">第1回 N3文法</h1>
-    <div class="question-list" id="q-list"></div>
-    <div class="pagination" id="pagination"></div>
+<div class="wrap">
+    <div class="hero">
+        <div class="hero-top">
+            <div>
+                <div class="level-pill">📕 JLPT N3 · Grammar Selection (Mondai 1)</div>
+                <h1>N3 JLPT Grammar Trainer 1-1</h1>
+                <p class="hero-sub">Master 25 must-know N3 grammar patterns with trap comparisons, mock tests &amp; natural audio</p>
+            </div>
+            <div class="hero-toggles">
+                <button id="btn-furi" class="toggle-pill on" onclick="toggleFurigana()">あ Furigana: ON</button>
+                <button id="btn-autoaudio" class="toggle-pill on" onclick="toggleAutoAudio()">🔊 Auto-Audio: ON</button>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-val green" id="st-mastered">0 / 25</div>
+                <div class="stat-lbl">Mastered ✅</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val red" id="st-weak">0</div>
+                <div class="stat-lbl">Weak 🔴</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val orange" id="st-streak">🔥 0</div>
+                <div class="stat-lbl">Streak</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="st-best">--</div>
+                <div class="stat-lbl">Mock Test Best</div>
+            </div>
+        </div>
+        <div class="mastery-bar"><div class="mastery-fill" id="mastery-fill" style="width: 0%"></div></div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" id="tab-focus" onclick="setMode('focus')">
+            <span>🎯 Focus Quiz</span>
+            <span class="tab-sub">Step-by-step drill</span>
+        </button>
+        <button class="tab-btn" id="tab-exam" onclick="setMode('exam')">
+            <span>⏱️ JLPT Test</span>
+            <span class="tab-sub">10-Q timed mock</span>
+        </button>
+        <button class="tab-btn" id="tab-weak" onclick="setMode('weak')">
+            <span>🔴 Review Weak <span id="weak-badge" class="tab-badge" style="display:none">0</span></span>
+            <span class="tab-sub">Retry mistakes</span>
+        </button>
+        <button class="tab-btn" id="tab-list" onclick="setMode('list')">
+            <span>📋 All 25 List</span>
+            <span class="tab-sub">Notes &amp; audio</span>
+        </button>
+    </div>
+
+    <div id="app" class="card"></div>
+
+    <div class="reset-progress-row">
+        <button class="reset-link" onclick="resetSavedProgress()">Reset saved progress on this page</button>
+    </div>
 </div>
 
 <!-- OHAYO_NEXT_CTA -->
@@ -157,145 +353,351 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 
 <div class="support-section">
     <h2>Support OHAYO CENTER</h2>
-    <p>If you find these materials helpful, please consider supporting us via Buy Me a Coffee or Stripe!</p>
-    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+    <p>If you find these free JLPT materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
         ☕️ <span>SUPPORT OHAYO CENTER</span>
     </a>
 </div>
 
 <script>
-    const allData = [
-        { q: "先生が教えてくれた＿＿＿、試験に合格することができました。", choices: ["おかげで", "せいで", "ついでに", "かわりに"], ans: 1, en: "Thanks to the teacher's instruction, I was able to pass the exam." },
-        { q: "昨日は飲みすぎた＿＿＿、今日は一日中頭が痛いです。", choices: ["おかげで", "せいで", "ついでに", "わけで"], ans: 2, en: "Because I drank too much yesterday, my head hurts all day today." },
-        { q: "この写真を見る＿＿＿、楽しかった子供のころを思い出します。", choices: ["うちに", "最中に", "たびに", "とたんに"], ans: 3, en: "Every time I look at this photo, I remember my fun childhood." },
-        { q: "犬の散歩の＿＿＿、郵便局で手紙を出してきました。", choices: ["あいまに", "ついでに", "とおりに", "おかげで"], ans: 2, en: "While walking the dog, I dropped off a letter at the post office." },
-        { q: "大事な会議の＿＿＿、携帯電話が鳴ってしまった。", choices: ["あとで", "前に", "最中に", "次第に"], ans: 3, en: "My cell phone rang right in the middle of an important meeting." },
-        
-        { q: "窓を開け＿＿＿、冷たい風が入ってきた。", choices: ["たとたん", "たまま", "たきり", "たところ"], ans: 1, en: "The moment I opened the window, a cold wind blew in." },
-        { q: "泣きたい＿＿＿痛かったが、最後まで我慢した。", choices: ["ぐらい", "みたい", "らしい", "っぽい"], ans: 1, en: "It hurt so much I wanted to cry, but I endured it until the end." },
-        { q: "こんな難しい問題、私にわかる＿＿＿。", choices: ["わけがありません", "ことはありません", "ものがありません", "どころではありません"], ans: 1, en: "There is no way I can understand such a difficult problem." },
-        { q: "終電に乗り遅れてしまったので、歩いて帰る＿＿＿。", choices: ["しかない", "わけがない", "はずがない", "べきではない"], ans: 1, en: "Since I missed the last train, I have no choice but to walk home." },
-        { q: "彼は留学生＿＿＿日本にやって来た。", choices: ["にとって", "にたいして", "として", "にしては"], ans: 3, en: "He came to Japan as an international student." },
-        
-        { q: "漢字を覚えることは、外国人の学生＿＿＿とても大変です。", choices: ["について", "にとって", "にたいして", "として"], ans: 2, en: "Memorizing kanji is very difficult for foreign students." },
-        { q: "兄がスポーツが得意なの＿＿＿、弟は勉強が得意だ。", choices: ["にたいして", "について", "にとって", "によって"], ans: 1, en: "In contrast to the older brother who is good at sports, the younger brother is good at studying." },
-        { q: "あんなに練習したのだから、明日の試合は勝つ＿＿＿。", choices: ["にきまっている", "にかわっている", "にすぎない", "にきめている"], ans: 1, en: "Because they practiced so much, they will definitely win tomorrow's game." },
-        { q: "明日の会議は、何時からでした＿＿＿。", choices: ["っけ", "かな", "もの", "こと"], ans: 1, en: "What time was tomorrow's meeting again?" },
-        { q: "彼女はまるで本当の家族＿＿＿私に優しくしてくれた。", choices: ["らしい", "みたいに", "っぽく", "ぐらい"], ans: 2, en: "She was kind to me as if we were real family." },
-        
-        { q: "今日は春＿＿＿、とても暖かくていい天気ですね。", choices: ["みたい", "らしい", "っぽくて", "のような"], ans: 2, en: "It's a very warm and nice day today, typical of spring." },
-        { q: "彼はまだ若いのに、言うことが少し年寄り＿＿＿。", choices: ["らしい", "そうだ", "っぽい", "くらいだ"], ans: 3, en: "Even though he is still young, the things he says sound a bit old." },
-        { q: "私は子供のころ、体が弱くてよく病気をし＿＿＿でした。", choices: ["がち", "気味", "だらけ", "かけ"], ans: 1, en: "When I was a child, my body was weak and I tended to get sick often." },
-        { q: "最近ずっと忙しくて、少し風邪＿＿＿です。", choices: ["がち", "気味", "だらけ", "になった"], ans: 2, en: "I've been busy lately, so I feel a slight cold coming on." },
-        { q: "一生懸命書いたのに、彼の作文は間違い＿＿＿だった。", choices: ["だらけ", "ぐらい", "がち", "気味"], ans: 1, en: "Even though he wrote it with all his effort, his essay was full of mistakes." },
-        
-        { q: "テーブルの上に、飲み＿＿＿のコーヒーが置いてある。", choices: ["かけ", "きり", "がち", "ぬき"], ans: 1, en: "There is a half-finished cup of coffee on the table." },
-        { q: "彼女とは10年前に会った＿＿＿、一度も連絡を取っていない。", choices: ["まま", "きり", "以来", "ほど"], ans: 2, en: "I haven't contacted her even once since we met 10 years ago." },
-        { q: "彼は私の話を聞いていないのに、聞いている＿＿＿をした。", choices: ["つもり", "ふり", "わけ", "はず"], ans: 2, en: "Even though he wasn't listening to me, he pretended to listen." },
-        { q: "英語を教えてもらう＿＿＿、彼に日本語を教えている。", choices: ["ついでに", "かわりに", "くせに", "おかげで"], ans: 2, en: "In exchange for him teaching me English, I am teaching him Japanese." },
-        { q: "一人暮らしは寂しくて、家族に会いたくて＿＿＿。", choices: ["しかたがない", "わけがない", "べきではない", "ことはない"], ans: 1, en: "Living alone is lonely, and I miss my family so much I can't stand it." }
-    ];
+const STORAGE_KEY = 'ohayo_n3g_v1_3_1';
+const AUDIO_DIR = 'grammar3-1-audio';
+const QUESTIONS = [{"id": 1, "tag": "〜おかげで (Thanks to)", "form": "Plain form / Noun の + おかげで", "before": "先生が教えてくれた", "beforeRuby": "<ruby>先生<rt>せんせい</rt></ruby>が<ruby>教<rt>おし</rt></ruby>えてくれた", "after": "、試験に合格することができました。", "afterRuby": "、<ruby>試験<rt>しけん</rt></ruby>に<ruby>合格<rt>ごうかく</rt></ruby>することができました。", "choices": ["おかげで", "せいで", "ついでに", "かわりに"], "ansIdx": 0, "en": "Thanks to the teacher's instruction, I was able to pass the exam.", "tipEn": "Use 〜おかげで ('thanks to') when the cause leads to a POSITIVE result (passing the exam).", "trapEn": "せいで is only for negative/bad results. ついでに means 'while doing X, also do Y', and かわりに means 'instead of / in exchange for'."}, {"id": 2, "tag": "〜せいで (Because of — negative)", "form": "Plain form / Noun の + せいで", "before": "昨日は飲みすぎた", "beforeRuby": "<ruby>昨日<rt>きのう</rt></ruby>は<ruby>飲<rt>の</rt></ruby>みすぎた", "after": "、今日は一日中頭が痛いです。", "afterRuby": "、<ruby>今日<rt>きょう</rt></ruby>は<ruby>一日中<rt>いちにちじゅう</rt></ruby><ruby>頭<rt>あたま</rt></ruby>が<ruby>痛<rt>いた</rt></ruby>いです。", "choices": ["おかげで", "せいで", "ついでに", "わけで"], "ansIdx": 1, "en": "Because I drank too much yesterday, my head hurts all day today.", "tipEn": "Use 〜せいで ('because of / fault of') when the cause leads to a NEGATIVE result (having a headache).", "trapEn": "おかげで is for grateful/positive outcomes — never pair it with a headache unless being sarcastic!"}, {"id": 3, "tag": "〜たびに (Every time)", "form": "Verb (Dict.) / Noun の + たびに", "before": "この写真を見る", "beforeRuby": "この<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>見<rt>み</rt></ruby>る", "after": "、楽しかった子供のころを思い出します。", "afterRuby": "、<ruby>楽<rt>たの</rt></ruby>しかった<ruby>子供<rt>こども</rt></ruby>のころを<ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>だ</rt></ruby>します。", "choices": ["うちに", "最中に", "たびに", "とたんに"], "ansIdx": 2, "en": "Every time I look at this photo, I remember my fun childhood.", "tipEn": "〜たびに means 'every single time X happens, Y happens too' — perfect for repeated memories or habits.", "trapEn": "とたんに needs past た-form (見たとたんに) for a one-time instant reaction. うちに means 'while / before it changes'."}, {"id": 4, "tag": "〜ついでに (While doing X, also do Y)", "form": "Noun の / Verb (Dict./た) + ついでに", "before": "犬の散歩の", "beforeRuby": "<ruby>犬<rt>いぬ</rt></ruby>の<ruby>散歩<rt>さんぽ</rt></ruby>の", "after": "、郵便局で手紙を出してきました。", "afterRuby": "、<ruby>郵便局<rt>ゆうびんきょく</rt></ruby>で<ruby>手紙<rt>てがみ</rt></ruby>を<ruby>出<rt>だ</rt></ruby>してきました。", "choices": ["あいまに", "ついでに", "とおりに", "おかげで"], "ansIdx": 1, "en": "While walking the dog, I also dropped off a letter at the post office.", "tipEn": "〜ついでに means doing a small extra errand conveniently on the way while doing a main activity.", "trapEn": "とおりに means 'just as / according to', and あいまに means 'in the spare gap between busy tasks'."}, {"id": 5, "tag": "〜最中に (Right in the middle of)", "form": "Noun の / Verb ている + 最中に", "before": "大事な会議の", "beforeRuby": "<ruby>大事<rt>だいじ</rt></ruby>な<ruby>会議<rt>かいぎ</rt></ruby>の", "after": "、携帯電話が鳴ってしまった。", "afterRuby": "、<ruby>携帯電話<rt>けいたいでんわ</rt></ruby>が<ruby>鳴<rt>な</rt></ruby>ってしまった。", "choices": ["あとで", "前に", "最中に", "次第に"], "ansIdx": 2, "en": "My cell phone rang right in the middle of an important meeting.", "tipEn": "〜最中に (さいちゅうに) means 'right at the peak/middle of X', often followed by an unexpected interruption (〜てしまった).", "trapEn": "JLPT N3 clue: unexpected interruptions like 鳴ってしまった ('rang accidentally') strongly pair with 最中に!"}, {"id": 6, "tag": "〜たとたん (The moment...)", "form": "Verb (た-form) + とたん(に)", "before": "窓を開け", "beforeRuby": "<ruby>窓<rt>まど</rt></ruby>を<ruby>開<rt>あ</rt></ruby>け", "after": "、冷たい風が入ってきた。", "afterRuby": "、<ruby>冷<rt>つめ</rt></ruby>たい<ruby>風<rt>かぜ</rt></ruby>が<ruby>入<rt>はい</rt></ruby>ってきた。", "choices": ["たとたん", "たまま", "たきり", "たところ"], "ansIdx": 0, "en": "The moment I opened the window, a cold wind blew in.", "tipEn": "〜たとたん(に) expresses an immediate, surprising event happening the very instant action A occurs.", "trapEn": "たまま means 'leaving it open', たきり means 'since then nothing else happened', and たところ means 'just finished / when I tried'."}, {"id": 7, "tag": "〜ぐらい (To the extent that...)", "form": "Plain form + ぐらい / くらい", "before": "泣きたい", "beforeRuby": "<ruby>泣<rt>な</rt></ruby>きたい", "after": "痛かったが、最後まで我慢した。", "afterRuby": "<ruby>痛<rt>いた</rt></ruby>かったが、<ruby>最後<rt>さいご</rt></ruby>まで<ruby>我慢<rt>がまん</rt></ruby>した。", "choices": ["ぐらい", "みたい", "らしい", "っぽい"], "ansIdx": 0, "en": "It hurt so much I wanted to cry, but I endured it until the end.", "tipEn": "〜ぐらい shows an extreme degree or extent ('so painful that I wanted to cry').", "trapEn": "みたい / らしい / っぽい describe appearance or similarity ('looks like'), NOT degree before an adjective like 痛かった."}, {"id": 8, "tag": "〜わけがありません (There is no way...)", "form": "Plain form + わけがない / わけがありません", "before": "こんな難しい問題、私にわかる", "beforeRuby": "こんな<ruby>難<rt>むずか</rt></ruby>しい<ruby>問題<rt>もんだい</rt></ruby>、<ruby>私<rt>わたし</rt></ruby>にわかる", "after": "。", "afterRuby": "。", "choices": ["わけがありません", "ことはありません", "ものがありません", "どころではありません"], "ansIdx": 0, "en": "There is no way I can understand such a difficult problem.", "tipEn": "〜わけがありません strongly denies a possibility ('there is no way / it is impossible that...').", "trapEn": "ことはありません means 'there is no need to' (when after dict. verb), and どころではありません means 'far from / no time for'."}, {"id": 9, "tag": "〜しかない (Have no choice but to)", "form": "Verb (Dict.) + しかない", "before": "終電に乗り遅れてしまったので、歩いて帰る", "beforeRuby": "<ruby>終電<rt>しゅうでん</rt></ruby>に<ruby>乗<rt>の</rt></ruby>り<ruby>遅<rt>おく</rt></ruby>れてしまったので、<ruby>歩<rt>ある</rt></ruby>いて<ruby>帰<rt>かえ</rt></ruby>る", "after": "。", "afterRuby": "。", "choices": ["しかない", "わけがない", "はずがない", "べきではない"], "ansIdx": 0, "en": "Since I missed the last train, I have no choice but to walk home.", "tipEn": "〜しかない means 'there is no other option / have no choice but to do X'.", "trapEn": "わけがない / はずがない both mean 'there's no way', and べきではない means 'should not' — the opposite meaning here!"}, {"id": 10, "tag": "〜として (As / in the role of)", "form": "Noun + として", "before": "彼は留学生", "beforeRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>留学生<rt>りゅうがくせい</rt></ruby>", "after": "日本にやって来た。", "afterRuby": "<ruby>日本<rt>にほん</rt></ruby>にやって<ruby>来<rt>き</rt></ruby>た。", "choices": ["にとって", "にたいして", "として", "にしては"], "ansIdx": 2, "en": "He came to Japan as an international student.", "tipEn": "〜として states a person's role, status, or capacity ('as an international student').", "trapEn": "にとって means 'for (someone's viewpoint)', にたいして means 'toward / in contrast to', and にしては means 'for a... (surprisingly)'."}, {"id": 11, "tag": "〜にとって (For / from the standpoint of)", "form": "Noun + にとって", "before": "漢字を覚えることは、外国人の学生", "beforeRuby": "<ruby>漢字<rt>かんじ</rt></ruby>を<ruby>覚<rt>おぼ</rt></ruby>えることは、<ruby>外国人<rt>がいこくじん</rt></ruby>の<ruby>学生<rt>がくせい</rt></ruby>", "after": "とても大変です。", "afterRuby": "とても<ruby>大変<rt>たいへん</rt></ruby>です。", "choices": ["について", "にとって", "にたいして", "として"], "ansIdx": 1, "en": "Memorizing kanji is very difficult for foreign students.", "tipEn": "〜にとって ('for / to') introduces whose perspective an evaluation (大変です, 大切です, 難しいです) applies to.", "trapEn": "JLPT N3 tip: when the sentence ends with an evaluation adjective like 大変 / 重要 / 難しい, check 〜にとって first!"}, {"id": 12, "tag": "〜に対して (In contrast to / whereas)", "form": "Plain form + のに対して", "before": "兄がスポーツが得意なの", "beforeRuby": "<ruby>兄<rt>あに</rt></ruby>がスポーツが<ruby>得意<rt>とくい</rt></ruby>なの", "after": "、弟は勉強が得意だ。", "afterRuby": "、<ruby>弟<rt>おとうと</rt></ruby>は<ruby>勉強<rt>べんきょう</rt></ruby>が<ruby>得意<rt>とくい</rt></ruby>だ。", "choices": ["にたいして", "について", "にとって", "によって"], "ansIdx": 0, "en": "In contrast to the older brother who is good at sports, the younger brother is good at studying.", "tipEn": "〜のに対して contrasts two opposite situations (older brother = sports vs. younger brother = studying).", "trapEn": "について means 'about', にとって means 'for (perspective)', and によって means 'depending on / by means of'."}, {"id": 13, "tag": "〜に決まっている (Definitely / bound to)", "form": "Plain form + に決まっている", "before": "あんなに練習したのだから、明日の試合は勝つ", "beforeRuby": "あんなに<ruby>練習<rt>れんしゅう</rt></ruby>したのだから、<ruby>明日<rt>あした</rt></ruby>の<ruby>試合<rt>しあい</rt></ruby>は<ruby>勝<rt>か</rt></ruby>つ", "after": "。", "afterRuby": "。", "choices": ["にきまっている", "にかわっている", "にすぎない", "にきめている"], "ansIdx": 0, "en": "Because they practiced so much, they will definitely win tomorrow's game.", "tipEn": "〜にきまっている expresses the speaker's strong conviction ('is bound to / will definitely win').", "trapEn": "Watch the look-alike trap! にきめている means 'I have decided as a personal rule', NOT 'is definitely going to'."}, {"id": 14, "tag": "〜っけ (Checking a memory: ...again?)", "form": "Past form (た / でした) + っけ", "before": "明日の会議は、何時からでした", "beforeRuby": "<ruby>明日<rt>あした</rt></ruby>の<ruby>会議<rt>かいぎ</rt></ruby>は、<ruby>何時<rt>なんじ</rt></ruby>からでした", "after": "。", "afterRuby": "。", "choices": ["っけ", "かな", "もの", "こと"], "ansIdx": 0, "en": "What time was tomorrow's meeting again?", "tipEn": "Sentence-ending particle 〜っけ is used when trying to recall or confirm something you forgot ('...was it again?').", "trapEn": "かな follows plain form (何時からかな), NOT polite past でした!"}, {"id": 15, "tag": "まるで〜みたいに (Just like / as if)", "form": "まるで + Noun + みたいに + Verb/Adj", "before": "彼女はまるで本当の家族", "beforeRuby": "<ruby>彼女<rt>かのじょ</rt></ruby>はまるで<ruby>本当<rt>ほんとう</rt></ruby>の<ruby>家族<rt>かぞく</rt></ruby>", "after": "私に優しくしてくれた。", "afterRuby": "<ruby>私<rt>わたし</rt></ruby>に<ruby>優<rt>やさ</rt></ruby>しくしてくれた。", "choices": ["らしい", "みたいに", "っぽく", "ぐらい"], "ansIdx": 1, "en": "She was kind to me as if we were real family.", "tipEn": "まるで ('just as if') strongly pairs with みたいに / のように to describe a simile ('treated me kindly like real family').", "trapEn": "JLPT N3 rule: whenever you spot まるで, look immediately for みたい(に/な) or よう(に/な)!"}, {"id": 16, "tag": "〜らしい (Typical of / fitting of)", "form": "Noun + らしい", "before": "今日は春", "beforeRuby": "<ruby>今日<rt>きょう</rt></ruby>は<ruby>春<rt>はる</rt></ruby>", "after": "、とても暖かくていい天気ですね。", "afterRuby": "、とても<ruby>暖<rt>あたた</rt></ruby>かくていい<ruby>天気<rt>てんき</rt></ruby>ですね。", "choices": ["みたい", "らしい", "っぽくて", "のような"], "ansIdx": 1, "en": "It's a very warm and nice day today, truly typical of spring.", "tipEn": "Noun + らしい means 'having the ideal, typical qualities of X' (spring weather feeling genuinely like spring!).", "trapEn": "っぽい often feels casual or slightly negative ('sort of like'), whereas らしい praises typical/ideal qualities."}, {"id": 17, "tag": "〜っぽい (-ish / seems somewhat like)", "form": "Noun / Verb-stem / い-Adj stem + っぽい", "before": "彼はまだ若いのに、言うことが少し年寄り", "beforeRuby": "<ruby>彼<rt>かれ</rt></ruby>はまだ<ruby>若<rt>わか</rt></ruby>いのに、<ruby>言<rt>い</rt></ruby>うことが<ruby>少<rt>すこ</rt></ruby>し<ruby>年寄<rt>としよ</rt></ruby>り", "after": "。", "afterRuby": "。", "choices": ["らしい", "そうだ", "っぽい", "くらいだ"], "ansIdx": 2, "en": "Even though he is still young, the things he says sound a bit like an old person.", "tipEn": "〜っぽい ('-ish / like an old person') is used when something doesn't actually belong to that group, often with a slightly critical nuance.", "trapEn": "年寄りらしい would describe someone who actually IS elderly acting their age — here he is young (若いのに)!"}, {"id": 18, "tag": "〜がち (Tend to — usually undesirable)", "form": "Verb-stem / Noun + がち", "before": "私は子供のころ、体が弱くてよく病気をし", "beforeRuby": "<ruby>私<rt>わたし</rt></ruby>は<ruby>子供<rt>こども</rt></ruby>のころ、<ruby>体<rt>からだ</rt></ruby>が<ruby>弱<rt>よわ</rt></ruby>くてよく<ruby>病気<rt>びょうき</rt></ruby>をし", "after": "でした。", "afterRuby": "でした。", "choices": ["がち", "気味", "だらけ", "かけ"], "ansIdx": 0, "en": "When I was a child, my body was weak and I tended to get sick often.", "tipEn": "Verb-stem + がち means 'prone to / frequently tend to do (something negative)', like getting sick often (よく病気しがち).", "trapEn": "気味 (ぎみ) means 'a slight feeling right now', NOT a repeated habit (よく)!"}, {"id": 19, "tag": "〜気味 (A touch of / feeling slightly)", "form": "Noun / Verb-stem + 気味 (ぎみ)", "before": "最近ずっと忙しくて、少し風邪", "beforeRuby": "<ruby>最近<rt>さいきん</rt></ruby>ずっと<ruby>忙<rt>いそが</rt></ruby>しくて、<ruby>少<rt>すこ</rt></ruby>し<ruby>風邪<rt>かぜ</rt></ruby>", "after": "です。", "afterRuby": "です。", "choices": ["がち", "気味", "だらけ", "になった"], "ansIdx": 1, "en": "I've been busy lately, so I feel a slight cold coming on.", "tipEn": "〜気味 (ぎみ) expresses a slight tendency or early symptom you feel right now (風邪気味 = slightly coming down with a cold).", "trapEn": "JLPT N3 clue: 少し ('a little') + 風邪 / 疲れ / 太り strongly pairs with 気味!"}, {"id": 20, "tag": "〜だらけ (Covered in / full of — negative)", "form": "Noun + だらけ", "before": "一生懸命書いたのに、彼の作文は間違い", "beforeRuby": "<ruby>一生懸命<rt>いっしょうけんめい</rt></ruby><ruby>書<rt>か</rt></ruby>いたのに、<ruby>彼<rt>かれ</rt></ruby>の<ruby>作文<rt>さくぶん</rt></ruby>は<ruby>間違<rt>まちが</rt></ruby>い", "after": "だった。", "afterRuby": "だった。", "choices": ["だらけ", "ぐらい", "がち", "気味"], "ansIdx": 0, "en": "Even though he wrote it with all his effort, his essay was full of mistakes.", "tipEn": "Noun + だらけ means 'full of / covered with (something messy or undesirable)', such as 間違いだらけ (full of mistakes) or 泥だらけ (covered in mud).", "trapEn": "がち is for repeated tendencies (verbs/nouns like 病気), while だらけ describes a high amount of messy things."}, {"id": 21, "tag": "〜かけ (Halfway through / unfinished)", "form": "Verb-stem + かけ(の + Noun)", "before": "テーブルの上に、飲み", "beforeRuby": "テーブルの<ruby>上<rt>うえ</rt></ruby>に、<ruby>飲<rt>の</rt></ruby>み", "after": "のコーヒーが置いてある。", "afterRuby": "のコーヒーが<ruby>置<rt>お</rt></ruby>いてある。", "choices": ["かけ", "きり", "がち", "ぬき"], "ansIdx": 0, "en": "There is a half-finished cup of coffee on the table.", "tipEn": "Verb-stem + かけの + Noun means 'started but left unfinished' (飲みかけのコーヒー = half-drunk coffee, 読みかけの本 = half-read book).", "trapEn": "きり follows た-form (会ったきり), and ぬき ('without') follows nouns (わさびぬき)."}, {"id": 22, "tag": "〜たきり (Ever since..., never again)", "form": "Verb (た-form) + きり + Negative", "before": "彼女とは10年前に会った", "beforeRuby": "<ruby>彼女<rt>かのじょ</rt></ruby>とは10<ruby>年前<rt>ねんまえ</rt></ruby>に<ruby>会<rt>あ</rt></ruby>った", "after": "、一度も連絡を取っていない。", "afterRuby": "、<ruby>一度<rt>いちど</rt></ruby>も<ruby>連絡<rt>れんらく</rt></ruby>を<ruby>取<rt>と</rt></ruby>っていない。", "choices": ["まま", "きり", "以来", "ほど"], "ansIdx": 1, "en": "I haven't contacted her even once since we met 10 years ago.", "tipEn": "〜たきり means 'that was the last time, and nothing has happened since' — almost always paired with a negative ending (一度も〜ない).", "trapEn": "以来 (いらい) requires て-form (会って以来), NOT た-form (会った)!"}, {"id": 23, "tag": "〜ふりをする (Pretend to...)", "form": "Plain form (Verb ている / Noun の) + ふりをする", "before": "彼は私の話を聞いていないのに、聞いている", "beforeRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>私<rt>わたし</rt></ruby>の<ruby>話<rt>はなし</rt></ruby>を<ruby>聞<rt>き</rt></ruby>いていないのに、<ruby>聞<rt>き</rt></ruby>いている", "after": "をした。", "afterRuby": "をした。", "choices": ["つもり", "ふり", "わけ", "はず"], "ansIdx": 1, "en": "Even though he wasn't listening to me, he pretended to listen.", "tipEn": "〜ふりをする means 'to pretend to do X' (聞いているふりをした = pretended to be listening).", "trapEn": "Look at をした at the end — つもり / わけ / はず take です/だ, while ふり takes をする!"}, {"id": 24, "tag": "〜かわりに (In exchange for / in return)", "form": "Verb (Dict.) / Noun の + かわりに", "before": "英語を教えてもらう", "beforeRuby": "<ruby>英語<rt>えいご</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてもらう", "after": "、彼に日本語を教えている。", "afterRuby": "、<ruby>彼<rt>かれ</rt></ruby>に<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えている。", "choices": ["ついでに", "かわりに", "くせに", "おかげで"], "ansIdx": 1, "en": "In exchange for him teaching me English, I am teaching him Japanese.", "tipEn": "〜かわりに can mean 'instead of' OR 'in return / in exchange for' (language exchange: English in return for Japanese).", "trapEn": "くせに means 'even though (with blame/annoyance)', and ついでに means 'conveniently while doing X'."}, {"id": 25, "tag": "〜てしかたがない (Cannot help / unbearably)", "form": "Adj/Verb て-form + しかたがない", "before": "一人暮らしは寂しくて、家族に会いたくて", "beforeRuby": "<ruby>一人暮<rt>ひとりぐ</rt></ruby>らしは<ruby>寂<rt>さび</rt></ruby>しくて、<ruby>家族<rt>かぞく</rt></ruby>に<ruby>会<rt>あ</rt></ruby>いたくて", "after": "。", "afterRuby": "。", "choices": ["しかたがない", "わけがない", "べきではない", "ことはない"], "ansIdx": 0, "en": "Living alone is lonely, and I miss my family so much I can't stand it.", "tipEn": "〜てしかたがない expresses an uncontrollable strong feeling ('so much I can't help it': 会いたくてしかたがない).", "trapEn": "Only しかたがない attaches after the て-form (会いたくて)! The other three all require plain/dictionary form."}];
 
-    const questionsPerPage = 5;
-    const totalPages = Math.ceil(allData.length / questionsPerPage);
+let state = { status: {}, bestExam: null, streak: 0, showFuri: true, autoAudio: true };
 
-    function init() {
-        const list = document.getElementById('q-list');
-        const pagination = document.getElementById('pagination');
-        
-        for (let p = 1; p <= totalPages; p++) {
-            const slide = document.createElement('div');
-            slide.className = 'slide' + (p === 1 ? ' active' : '');
-            slide.id = `slide-${p}`;
-            
-            const start = (p - 1) * questionsPerPage;
-            const end = start + questionsPerPage;
-            const pageData = allData.slice(start, end);
+function loadState() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) state = Object.assign(state, JSON.parse(raw));
+    } catch (e) {}
+    document.body.classList.toggle('hide-furi', !state.showFuri);
+    syncToggleUI();
+}
+function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {} }
+function resetSavedProgress() {
+    if (!confirm('Reset your saved mastery and JLPT Test score for this set?')) return;
+    state.status = {}; state.bestExam = null; state.streak = 0;
+    saveState(); updateStats(); setMode(mode);
+}
 
-            pageData.forEach((q, i) => {
-                const absoluteIndex = start + i;
-                const box = document.createElement('div');
-                box.className = 'question-box';
-                box.innerHTML = `
-                    <div class="question-text">Q${absoluteIndex + 1}. ${q.q}</div>
-                    <div class="choices" id="choices-${absoluteIndex}">
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 1)">1. ${q.choices[0]}</div>
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 2)">2. ${q.choices[1]}</div>
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 3)">3. ${q.choices[2]}</div>
-                        <div class="choice-item" onclick="selectChoice(this, ${absoluteIndex}, 4)">4. ${q.choices[3]}</div>
+let currentAudio = null;
+function playAudio(qId, btnEl) {
+    const src = `${AUDIO_DIR}/q${String(qId).padStart(2, '0')}.mp3`;
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+    document.querySelectorAll('.audio-btn.playing').forEach(b => b.classList.remove('playing'));
+    const a = new Audio(src);
+    currentAudio = a;
+    if (btnEl) btnEl.classList.add('playing');
+    a.onended = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.onerror = () => { if (btnEl) btnEl.classList.remove('playing'); };
+    a.play().catch(() => { if (btnEl) btnEl.classList.remove('playing'); });
+}
+
+function syncToggleUI() {
+    const fBtn = document.getElementById('btn-furi');
+    fBtn.classList.toggle('on', state.showFuri);
+    fBtn.textContent = state.showFuri ? 'あ Furigana: ON' : 'あ Furigana: OFF';
+    const aBtn = document.getElementById('btn-autoaudio');
+    aBtn.classList.toggle('on', state.autoAudio);
+    aBtn.textContent = state.autoAudio ? '🔊 Auto-Audio: ON' : '🔇 Auto-Audio: OFF';
+}
+function toggleFurigana() { state.showFuri = !state.showFuri; document.body.classList.toggle('hide-furi', !state.showFuri); syncToggleUI(); saveState(); }
+function toggleAutoAudio() { state.autoAudio = !state.autoAudio; syncToggleUI(); saveState(); }
+
+function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+let mode = 'focus', listFilter = 'all';
+let queue = [], qIdx = 0, shuffledChoices = [], answered = false, pickedIdx = null, hintOpen = false, roundDone = false;
+let examScore = 0, examResults = [], examTimerSec = 300, examTimerId = null, examFinished = false;
+
+function stopTimer() { if (examTimerId) { clearInterval(examTimerId); examTimerId = null; } }
+function formatTime(s) { return `${Math.floor(s/60)}:${s%60 < 10 ? '0' : ''}${s%60}`; }
+
+function updateStats() {
+    const mastered = Object.values(state.status).filter(v => v === 'mastered').length;
+    const weak = Object.values(state.status).filter(v => v === 'weak').length;
+    document.getElementById('st-mastered').textContent = `${mastered} / ${QUESTIONS.length}`;
+    document.getElementById('st-weak').textContent = weak;
+    document.getElementById('st-streak').textContent = `🔥 ${state.streak}`;
+    document.getElementById('st-best').textContent = state.bestExam !== null ? `${state.bestExam}%` : '--';
+    document.getElementById('mastery-fill').style.width = `${Math.round((mastered / QUESTIONS.length) * 100)}%`;
+    const badge = document.getElementById('weak-badge');
+    badge.style.display = weak > 0 ? 'inline-block' : 'none';
+    badge.textContent = weak;
+}
+
+function setMode(newMode) {
+    stopTimer();
+    mode = newMode;
+    ['focus', 'exam', 'weak', 'list'].forEach(m => document.getElementById('tab-' + m).classList.toggle('active', m === mode));
+    roundDone = false; examFinished = false;
+
+    if (mode === 'focus') {
+        const rem = QUESTIONS.filter(q => state.status[q.id] !== 'mastered');
+        queue = rem.length > 0 ? rem : QUESTIONS.slice();
+        qIdx = 0; loadQuestion();
+    } else if (mode === 'weak') {
+        queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+        qIdx = 0; if (queue.length > 0) loadQuestion();
+    } else if (mode === 'exam') {
+        startExam();
+    }
+    render();
+}
+
+function loadQuestion() {
+    const q = queue[qIdx];
+    shuffledChoices = shuffle(q.choices.map((text, origIdx) => ({ text, origIdx })));
+    answered = false; pickedIdx = null; hintOpen = false;
+}
+
+function startExam() {
+    stopTimer();
+    queue = shuffle(QUESTIONS).slice(0, 10);
+    qIdx = 0; examScore = 0; examResults = []; examFinished = false; examTimerSec = 300;
+    loadQuestion();
+    examTimerId = setInterval(() => {
+        if (examFinished) { stopTimer(); return; }
+        examTimerSec--;
+        if (examTimerSec <= 0) { examTimerSec = 0; finishExam(); }
+        else { const el = document.getElementById('exam-timer'); if (el) el.textContent = '⏱ ' + formatTime(examTimerSec); }
+    }, 1000);
+}
+
+function answerChoice(shufIdx) {
+    if (answered) return;
+    const q = queue[qIdx];
+    answered = true; pickedIdx = shufIdx;
+    const isOk = shuffledChoices[shufIdx].origIdx === q.ansIdx;
+    if (isOk) {
+        state.status[q.id] = 'mastered';
+        state.streak++;
+        if (mode === 'exam') examScore++;
+    } else {
+        state.status[q.id] = 'weak';
+        state.streak = 0;
+    }
+    if (mode === 'exam') examResults.push({ q, isOk, picked: shuffledChoices[shufIdx].text });
+    saveState(); updateStats(); render();
+    if (state.autoAudio) {
+        setTimeout(() => playAudio(q.id, document.querySelector('.feedback .audio-btn')), 180);
+    }
+}
+
+function nextQuestion() {
+    if (qIdx + 1 < queue.length) {
+        qIdx++; loadQuestion(); render();
+    } else {
+        if (mode === 'exam') finishExam();
+        else if (mode === 'weak') {
+            queue = QUESTIONS.filter(q => state.status[q.id] === 'weak');
+            qIdx = 0; if (queue.length > 0) loadQuestion(); render();
+        } else { roundDone = true; render(); }
+    }
+}
+
+function finishExam() {
+    stopTimer(); examFinished = true;
+    const pct = Math.round((examScore / queue.length) * 100);
+    if (state.bestExam === null || pct > state.bestExam) state.bestExam = pct;
+    saveState(); updateStats(); render();
+}
+
+function startFullShuffle() { queue = shuffle(QUESTIONS); qIdx = 0; roundDone = false; loadQuestion(); render(); }
+
+function renderFeedback(q, isOk) {
+    const ansWord = q.choices[q.ansIdx];
+    return `
+        <div class="feedback ${isOk ? 'ok' : 'ng'}">
+            <div class="fb-head">
+                <div class="fb-title ${isOk ? 'ok' : 'ng'}">${isOk ? '⭕️ Correct! Nice N3 instinct!' : `❌ Answer: ${ansWord} — Saved to Review Weak 🔴`}</div>
+                <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen (Nanami)</button>
+            </div>
+            <div class="correct-sentence">${q.beforeRuby}<mark style="background:#fef08a;padding:1px 6px;border-radius:6px;">${ansWord}</mark>${q.afterRuby}</div>
+            <div class="correct-en">${q.en}</div>
+            <div class="explain-box">
+                <div class="form-pill">📐 Form: ${q.form}</div>
+                <p class="tip-en">💡 <strong>Why this answer?</strong> ${q.tipEn}</p>
+                <p class="trap-en">⚖️ <strong>Watch the traps:</strong> ${q.trapEn}</p>
+            </div>
+        </div>
+    `;
+}
+
+function renderQuiz() {
+    if (mode === 'weak' && queue.length === 0) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:46px; margin-bottom:8px;">🎉</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">No Weak Grammar Points!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">Any question you miss in Focus Quiz or JLPT Test appears here automatically.</p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('exam')">⏱️ Take 10-Q JLPT Test</button>
+                    <button class="btn-ghost" onclick="setMode('focus')">🎯 Focus Quiz</button>
+                </div>
+            </div>
+        `;
+    }
+    if (roundDone) {
+        return `
+            <div style="text-align:center; padding: 28px 10px;">
+                <div style="font-size:48px; margin-bottom:8px;">🏆</div>
+                <h2 style="margin:0 0 8px; color:var(--dark);">Focus Session Complete!</h2>
+                <p style="color:var(--muted); font-size:0.9rem; margin:0 0 18px;">Try the 10-question timed JLPT N3 Mock Test next!</p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="setMode('exam')">⏱️ Start JLPT Test</button>
+                    <button class="btn-ghost" onclick="startFullShuffle()">🔀 Practice All 25 Shuffled</button>
+                </div>
+            </div>
+        `;
+    }
+    if (mode === 'exam' && examFinished) {
+        const pct = Math.round((examScore / queue.length) * 100);
+        const pass = pct >= 80;
+        const rows = examResults.map((r, i) => `
+            <div class="list-item" style="border-left: 4px solid ${r.isOk ? 'var(--green)' : 'var(--red)'};">
+                <div class="list-top">
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <strong>Q${i + 1}. ${r.isOk ? '⭕️ Correct' : '❌ Missed'}</strong>
+                        <span class="grammar-tag">${r.q.tag}</span>
                     </div>
-                    <button class="btn-ans" onclick="checkAnswer(this, ${absoluteIndex})">Check Answer</button>
-                    <div class="answer-area" id="ans-area-${absoluteIndex}">
-                        <div class="correct-ans">Correct Answer: ${q.ans} (${q.choices[q.ans - 1]})</div>
-                        <div class="en-translation">${q.en}</div>
+                    <button class="audio-btn" onclick="playAudio(${r.q.id}, this)">🔊 Listen</button>
+                </div>
+                <div style="font-weight:700; color:var(--dark); margin-bottom:3px; line-height:1.9;">
+                    ${r.q.beforeRuby}<mark style="background:#fef08a;padding:1px 5px;border-radius:5px;">${r.q.choices[r.q.ansIdx]}</mark>${r.q.afterRuby}
+                </div>
+                <div style="font-size:0.82rem; color:#4b5563; margin-bottom:4px;">${r.q.en}</div>
+                <div style="font-size:0.8rem; color:#1f2937;">💡 ${r.q.tipEn}</div>
+            </div>
+        `).join('');
+        return `
+            <div style="text-align:center; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 16px;">
+                <div style="font-size:48px;">${pass ? '🏆' : '💪'}</div>
+                <h2 style="margin:6px 0 4px; color:var(--dark);">${pass ? 'JLPT N3 Mock Test PASSED!' : 'Keep Practicing!'}</h2>
+                <div style="font-size:1.8rem; font-weight:900; color:${pass ? 'var(--green)' : 'var(--primary-dark)'};">${examScore} / ${queue.length} (${pct}%)</div>
+                <p style="font-size:0.86rem; color:var(--muted); margin:6px 0 16px;">
+                    ${pass ? '80%+ cleared! Your N3 grammar accuracy is looking exam-ready.' : 'Goal: 80%+. Missed items were saved to 🔴 Review Weak.'}
+                </p>
+                <div class="actions" style="justify-content:center;">
+                    <button class="btn-primary" onclick="startExam(); render();">🔄 Try New 10-Q Test</button>
+                    <button class="btn-ghost" onclick="setMode('weak')">🔴 Review Weak</button>
+                </div>
+            </div>
+            ${rows}
+        `;
+    }
+
+    const q = queue[qIdx];
+    const isOk = answered && shuffledChoices[pickedIdx].origIdx === q.ansIdx;
+    const blankContent = answered ? q.choices[q.ansIdx] : '＿＿＿';
+    const blankCls = answered ? (isOk ? 'blank-pill filled-ok' : 'blank-pill filled-ng') : 'blank-pill';
+
+    return `
+        <div class="q-meta">
+            <span class="q-num">${mode === 'exam' ? '⏱️ JLPT Test' : mode === 'weak' ? '🔴 Weak Review' : '🎯 Focus'} · Q${qIdx + 1} / ${queue.length}</span>
+            ${mode === 'exam' ? `<span class="timer-pill" id="exam-timer">⏱ ${formatTime(examTimerSec)}</span>` : (answered ? `<span class="grammar-tag">${q.tag}</span>` : `<span class="grammar-tag">JLPT N3 Grammar</span>`)}
+        </div>
+
+        <div class="sentence-box ${answered ? (isOk ? 'correct-border' : 'wrong-border') : ''}">
+            ${q.beforeRuby}<span class="${blankCls}">${blankContent}</span>${q.afterRuby}
+        </div>
+
+        ${mode !== 'exam' ? `
+            <div class="hint-row">
+                <button class="hint-btn" onclick="hintOpen = !hintOpen; render();">${hintOpen ? '🙈 Hide English Hint' : '💡 Show English Hint'}</button>
+                ${hintOpen ? `<div class="hint-text">🇺🇸 ${q.en}</div>` : '<span style="font-size:0.78rem; color:var(--muted);">Try choosing from the Japanese context first!</span>'}
+            </div>
+        ` : `<div style="font-size:0.78rem; color:var(--muted); margin-bottom:12px;">Choose the best option (1–4) for the blank. No English hint in Mock Test mode.</div>`}
+
+        <div class="choices-grid">
+            ${shuffledChoices.map((c, sIdx) => {
+                let cls = 'choice-btn';
+                if (answered) {
+                    if (c.origIdx === q.ansIdx) cls += ' is-correct';
+                    else if (sIdx === pickedIdx) cls += ' is-wrong';
+                }
+                return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerChoice(${sIdx})"><span class="choice-num">${sIdx + 1}</span><span>${c.text}</span></button>`;
+            }).join('')}
+        </div>
+
+        ${answered ? `
+            <div class="actions">
+                <button class="btn-primary" onclick="nextQuestion()">${qIdx + 1 < queue.length ? 'Next Question →' : (mode === 'exam' ? 'See Test Result 🏆' : 'Finish Session →')}</button>
+            </div>
+            ${renderFeedback(q, isOk)}
+        ` : ''}
+    `;
+}
+
+function renderList() {
+    const filtered = QUESTIONS.filter(q => {
+        const st = state.status[q.id] || 'unseen';
+        if (listFilter === 'weak') return st === 'weak';
+        if (listFilter === 'mastered') return st === 'mastered';
+        return true;
+    });
+    return `
+        <div style="margin-bottom:12px;">
+            <strong style="font-size:1.02rem; color:var(--dark);">📋 All ${QUESTIONS.length} N3 Grammar Points</strong>
+            <div style="font-size:0.78rem; color:var(--muted);">Review connection forms, distractor traps, and listen to natural Nanami audio</div>
+        </div>
+        <div class="filter-row">
+            <button class="toggle-pill ${listFilter === 'all' ? 'on' : ''}" onclick="listFilter='all'; render();">All (${QUESTIONS.length})</button>
+            <button class="toggle-pill ${listFilter === 'weak' ? 'on' : ''}" onclick="listFilter='weak'; render();">🔴 Weak (${Object.values(state.status).filter(v=>v==='weak').length})</button>
+            <button class="toggle-pill ${listFilter === 'mastered' ? 'on' : ''}" onclick="listFilter='mastered'; render();">✅ Mastered (${Object.values(state.status).filter(v=>v==='mastered').length})</button>
+        </div>
+        ${filtered.length === 0 ? `<p style="color:var(--muted); text-align:center; padding:24px 0;">No items match this filter yet.</p>` : filtered.map(q => {
+            const st = state.status[q.id] || 'unseen';
+            const stLabel = st === 'mastered' ? 'Mastered ✅' : st === 'weak' ? 'Weak 🔴' : 'Unseen ⚪';
+            const stCls = st === 'mastered' ? 'st-mastered' : st === 'weak' ? 'st-weak' : 'st-unseen';
+            return `
+                <div class="list-item">
+                    <div class="list-top">
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <strong>Q${q.id}.</strong>
+                            <span class="grammar-tag">${q.tag}</span>
+                            <span class="status-dot ${stCls}">${stLabel}</span>
+                        </div>
+                        <button class="audio-btn" onclick="playAudio(${q.id}, this)">🔊 Listen</button>
                     </div>
-                `;
-                slide.appendChild(box);
-            });
-            list.appendChild(slide);
+                    <div style="font-size:1.04rem; font-weight:800; color:var(--dark); margin-bottom:3px; line-height:1.95;">
+                        ${q.beforeRuby}<mark style="background:#fef08a;padding:1px 5px;border-radius:5px;">${q.choices[q.ansIdx]}</mark>${q.afterRuby}
+                    </div>
+                    <div style="font-size:0.84rem; color:#4b5563; margin-bottom:6px;">${q.en}</div>
+                    <div style="font-size:0.8rem; color:#374151; background:#f8fafc; padding:9px 11px; border-radius:9px; line-height:1.55;">
+                        📐 <strong>Form:</strong> ${q.form}<br>
+                        💡 <strong>Why:</strong> ${q.tipEn}<br>
+                        ⚖️ <strong>Traps:</strong> ${q.trapEn}
+                    </div>
+                </div>
+            `;
+        }).join('')}
+    `;
+}
 
-            const btn = document.createElement('button');
-            btn.className = 'page-btn' + (p === 1 ? ' active' : '');
-            btn.textContent = `Slide ${p}`;
-            btn.onclick = () => changePage(p);
-            pagination.appendChild(btn);
-        }
-    }
+function render() {
+    const app = document.getElementById('app');
+    app.innerHTML = mode === 'list' ? renderList() : renderQuiz();
+}
 
-    function changePage(pageNum) {
-        for (let i = 1; i <= totalPages; i++) {
-            document.getElementById(`slide-${i}`).classList.remove('active');
-        }
-        document.getElementById(`slide-${pageNum}`).classList.add('active');
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (mode === 'list' || roundDone || examFinished || (mode === 'weak' && queue.length === 0)) return;
+    if (['1','2','3','4'].includes(e.key) && !answered) answerChoice(parseInt(e.key, 10) - 1);
+    else if (e.key === 'Enter' && answered) nextQuestion();
+});
 
-        const btns = document.getElementById('pagination').children;
-        for (let i = 0; i < btns.length; i++) {
-            btns[i].classList.remove('active');
-        }
-        btns[pageNum - 1].classList.add('active');
-        
-        document.getElementById('page-title').textContent = `第1回　N3文法 (Slide ${pageNum})`;
-        window.scrollTo({ top: document.getElementById('slides-container').offsetTop - 90, behavior: 'smooth' });
-    }
-
-    function selectChoice(elem, qIndex, choiceNum) {
-        const choicesContainer = document.getElementById('choices-' + qIndex);
-        if (choicesContainer.dataset.answered === "true") return;
-
-        const choices = choicesContainer.children;
-        for(let i=0; i<choices.length; i++) {
-            choices[i].classList.remove('selected');
-        }
-        elem.classList.add('selected');
-        choicesContainer.dataset.selected = choiceNum;
-    }
-
-    function checkAnswer(btn, qIndex) {
-        const choicesContainer = document.getElementById('choices-' + qIndex);
-        const selected = choicesContainer.dataset.selected;
-        const ansArea = document.getElementById('ans-area-' + qIndex);
-        const correctAnswer = allData[qIndex].ans;
-        const choices = choicesContainer.children;
-
-        if (!selected) {
-            return;
-        }
-
-        choicesContainer.dataset.answered = "true";
-
-        if (parseInt(selected) === correctAnswer) {
-            choices[parseInt(selected) - 1].classList.add('correct');
-        } else {
-            choices[parseInt(selected) - 1].classList.add('incorrect');
-            choices[correctAnswer - 1].classList.add('correct');
-        }
-
-        ansArea.classList.add('show');
-        btn.textContent = 'Checked';
-        btn.disabled = true;
-    }
-
-    init();
+loadState();
+updateStats();
+setMode('focus');
 </script>
 </body>
 </html>
