@@ -1,272 +1,1384 @@
 <!doctype html>
-<html lang="ja" class="h-full">
- <head>
+<html lang="ja">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ひらがな・カタカナ マッチング - OHAYO CENTER</title>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OHAYO CENTER">
   <meta property="og:title" content="ひらがな・カタカナ マッチング | OHAYO CENTER">
-  <meta property="og:description" content="A hiragana and katakana matching game: pair the cards with the same sound, pick your level, and study all 46 kana.">
+  <meta property="og:description" content="A hiragana and katakana matching game: learn step by step by row, master look-alike katakana traps, play a 60-second speed quiz, and study all 71 kana with native audio.">
   <meta property="og:url" content="https://ohayocenter.com/matching.html">
   <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ひらがな・カタカナ マッチング | OHAYO CENTER">
-  <meta name="twitter:description" content="A hiragana and katakana matching game: pair the cards with the same sound, pick your level, and study all 46 kana.">
+  <meta name="twitter:description" content="A hiragana and katakana matching game: learn step by step by row, master look-alike katakana traps, play a 60-second speed quiz, and study all 71 kana with native audio.">
   <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-   <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" sizes="192x192" href="icon.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=M+PLUS+Rounded+1c:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Noto+Sans+JP:wght@400;700;800&family=Sawarabi+Mincho&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+
   <style>
-    /* --- ナビゲーションバー --- */
-    nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 65px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'M PLUS Rounded 1c', sans-serif; box-sizing: border-box; }
-    .logo { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.4rem; white-space: nowrap; letter-spacing: 0.5px; }
-    .logo a { text-decoration: none; color: #5d4e37; }
-    .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-    .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.5px; }
-    
-    @media (max-width: 600px) { 
-      nav { padding: 0 15px; height: 60px; }
-      .logo { font-size: 1.1rem; }
-      .nav-links { gap: 0.8rem; }
-      .nav-links a { font-size: 0.7rem; }
-      #app { padding-top: 85px !important; } /* スマホの余白をさらに調整 */
+    :root {
+      --primary: #ff9f43;
+      --primary-dark: #ee8a2e;
+      --primary-light: #fff5eb;
+      --hira: #ff7e85;
+      --hira-soft: #fff0f1;
+      --kata: #2fb8b0;
+      --kata-soft: #ecfbfa;
+      --dark: #2c3e50;
+      --text: #444;
+      --brown: #5d4e37;
+      --muted: #7c6f5b;
+      --bg1: #fef5e7;
+      --bg2: #fce8d8;
+      --card: #ffffff;
+      --border: #f0e4d7;
+      --shadow: 0 8px 22px rgba(93, 78, 55, 0.08);
+      --good: #22c55e;
+      --bad: #ef4444;
+      --hint: #f59e0b;
+    }
+    body.dark-mode {
+      --dark: #f8fafc;
+      --text: #e2e8f0;
+      --brown: #f1f5f9;
+      --muted: #94a3b8;
+      --bg1: #0f172a;
+      --bg2: #1e293b;
+      --card: #1e293b;
+      --border: #334155;
+      --hira-soft: rgba(255, 126, 133, 0.14);
+      --kata-soft: rgba(47, 184, 176, 0.14);
+      --primary-light: rgba(255, 159, 67, 0.16);
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+      color: var(--brown);
+      padding-top: 70px;
+      transition: background 0.25s, color 0.25s;
     }
 
-    /* タイトルを少し上に配置するための余白調整 */
-    #app { padding-top: 110px !important; }
+    /* --- Fixed Top Navigation (70px) --- */
+    nav {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 70px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      box-sizing: border-box;
+    }
+    body.dark-mode nav {
+      background: rgba(15, 23, 42, 0.94);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Sawarabi Mincho', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+    }
+    .logo a { text-decoration: none; color: var(--dark); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      border-radius: 999px;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 12px; }
+      .logo { font-size: 1rem; }
+      .nav-right { gap: 0.55rem; }
+      .nav-links { gap: 0.65rem; }
+      .nav-links a { font-size: 0.68rem; }
+      .theme-btn { width: 32px; height: 32px; font-size: 0.85rem; }
+    }
+
+    /* --- Main Layout --- */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 18px 14px 40px; }
+
+    .top-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .top-header h1 {
+      margin: 0;
+      font-size: clamp(1.22rem, 3vw, 1.65rem);
+      color: var(--dark);
+      font-weight: 900;
+    }
+    .mode-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mode-tab {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--brown);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: 0.16s;
+      font-family: inherit;
+    }
+    .mode-tab:hover { border-color: var(--primary); }
+    .mode-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255, 159, 67, 0.34);
+    }
+
+    /* --- Live Step Guide Bar --- */
+    .guide-bar {
+      background: var(--card);
+      border: 2px solid var(--primary);
+      border-radius: 16px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+    .guide-text {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .guide-pill {
+      background: var(--primary-light);
+      color: #c8640b;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    body.dark-mode .guide-pill { color: #ffbe76; }
+    .mini-stats {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--brown);
+      flex-wrap: wrap;
+    }
+    .mini-btn {
+      border: 1.5px solid var(--border);
+      background: var(--bg1);
+      color: var(--brown);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.14s;
+    }
+    .mini-btn:hover { border-color: var(--primary); }
+    .mini-btn.hint { border-color: #fbbf24; background: #fffbeb; color: #b45309; }
+    body.dark-mode .mini-btn.hint { background: rgba(245, 158, 11, 0.18); color: #fcd34d; }
+    .mini-btn.on { border-color: var(--kata); background: var(--kata-soft); color: #1d7f79; }
+    body.dark-mode .mini-btn.on { color: #5eead4; }
+
+    .progress-track {
+      height: 7px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--hira), var(--primary), var(--kata));
+      transition: width 0.35s ease;
+    }
+
+    /* --- Look-Alike Quick Tips --- */
+    .tips-box {
+      background: linear-gradient(135deg, #fff8eb, #fff1f2);
+      border: 1.5px solid #fed7aa;
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    body.dark-mode .tips-box {
+      background: rgba(255, 159, 67, 0.1);
+      border-color: rgba(255, 159, 67, 0.35);
+    }
+    .tips-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 900;
+      color: #c2410c;
+      cursor: pointer;
+    }
+    body.dark-mode .tips-head { color: #fdba74; }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+      margin-top: 8px;
+    }
+    .tip-item {
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 9px;
+      padding: 6px 9px;
+    }
+    body.dark-mode .tip-item { background: rgba(15, 23, 42, 0.55); }
+
+    /* --- Match Board (Side-by-side even on mobile!) --- */
+    .board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+    .col-head {
+      text-align: center;
+      font-weight: 900;
+      padding: 9px 6px;
+      border-radius: 13px;
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+    }
+    .col-head.hira { background: var(--hira); color: #fff; box-shadow: 0 4px 12px rgba(255, 126, 133, 0.28); }
+    .col-head.kata { background: var(--kata); color: #fff; box-shadow: 0 4px 12px rgba(47, 184, 176, 0.28); }
+
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .card-grid.compact-1col { grid-template-columns: repeat(2, 1fr); }
+
+    .k-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-bottom: 4px solid var(--border);
+      border-radius: 15px;
+      min-height: 78px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.14s, border-color 0.14s, box-shadow 0.14s, opacity 0.25s;
+    }
+    .k-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+    .k-card .ch { font-size: 2.2rem; font-weight: 700; line-height: 1.1; color: var(--dark); }
+    .k-card .rm { font-size: 0.7rem; font-weight: 700; color: var(--muted); margin-top: 2px; }
+    .k-card.selected.hira-c { border-color: var(--hira); box-shadow: 0 0 0 4px rgba(255, 126, 133, 0.28); transform: scale(1.04); }
+    .k-card.selected.kata-c { border-color: var(--kata); box-shadow: 0 0 0 4px rgba(47, 184, 176, 0.28); transform: scale(1.04); }
+    .k-card.matched { opacity: 0.24; transform: scale(0.92); pointer-events: none; border-color: var(--good); }
+    .k-card.wrong { animation: shake 0.36s ease; border-color: var(--bad) !important; background: rgba(239, 68, 68, 0.08); }
+    .k-card.hint-glow {
+      border-color: var(--hint) !important;
+      box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.38);
+      animation: pulseHint 0.9s ease-in-out infinite;
+    }
+    @keyframes pulseHint { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+    /* --- Settings Panel Below the Board --- */
+    .settings-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+    .settings-title {
+      margin: 0 0 10px;
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pack-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+    .pill {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--brown);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.14s;
+    }
+    .pill:hover { border-color: var(--primary); }
+    .pill.active { background: var(--primary-light); border-color: var(--primary); color: #c8640b; }
+    body.dark-mode .pill.active { color: #ffbe76; }
+    .pill.trap.active { background: #fff1f2; border-color: #fb7185; color: #be123c; }
+    body.dark-mode .pill.trap.active { background: rgba(251, 113, 133, 0.18); color: #fda4af; }
+    .pill.weak.active { background: #fef3c7; border-color: #f59e0b; color: #b45309; }
+    body.dark-mode .pill.weak.active { background: rgba(245, 158, 11, 0.18); color: #fcd34d; }
+
+    .row-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .row-chip {
+      border: 1.5px solid var(--border);
+      background: var(--bg1);
+      color: var(--brown);
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .row-chip:hover { border-color: var(--primary); }
+    .row-chip.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .row-chip.done::after { content: ' ✓'; }
+
+    .size-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+    }
+    .size-btn {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--brown);
+      padding: 4px 10px;
+      border-radius: 9px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .size-btn.active { background: var(--dark); color: var(--bg1); border-color: var(--dark); }
+    body.dark-mode .size-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    /* --- Speed Quiz --- */
+    .blitz-wrap { max-width: 500px; margin: 0 auto 22px; text-align: center; }
+    .blitz-target {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 22px;
+      padding: 22px 18px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+    }
+    .blitz-badge { display: inline-block; font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; margin-bottom: 8px; }
+    .blitz-badge.h { background: var(--hira-soft); color: #d64550; }
+    .blitz-badge.k { background: var(--kata-soft); color: #1b8a83; }
+    .blitz-char { font-size: 4.8rem; font-weight: 900; line-height: 1.05; color: var(--dark); }
+    .blitz-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .blitz-opt {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-bottom: 4px solid var(--border);
+      border-radius: 16px;
+      padding: 15px;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.14s;
+    }
+    .blitz-opt:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .blitz-opt.ok { background: #dcfce7; border-color: var(--good); color: #166534; }
+    .blitz-opt.ng { background: #fee2e2; border-color: var(--bad); color: #991b1b; }
+
+    /* --- Kana Chart --- */
+    .chart-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 12px; margin-bottom: 24px; }
+    .chart-cell {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 13px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.14s;
+    }
+    .chart-cell:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .chart-cell.is-weak { border-color: #f59e0b; background: rgba(245, 158, 11, 0.08); }
+    .chart-cell .pair { display: flex; justify-content: center; gap: 6px; }
+    .chart-cell .ch-h { font-size: 1.4rem; font-weight: 900; color: var(--hira); }
+    .chart-cell .ch-k { font-size: 1.4rem; font-weight: 900; color: var(--kata); }
+    .chart-cell .ch-r { font-size: 0.72rem; font-weight: 700; color: var(--muted); margin-top: 2px; }
+
+    /* --- Toast & Result Modal --- */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--dark);
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s;
+      z-index: 2000;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 2100;
+    }
+    .modal-bg.open { display: flex; }
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px 20px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+    }
+    .rank-badge {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ff9f43, #ff6b6b);
+      color: #fff;
+    }
+    .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+    .res-item { background: var(--bg1); border-radius: 12px; padding: 8px; }
+    .res-item small { display: block; font-size: 0.66rem; color: var(--muted); font-weight: 700; }
+    .res-item strong { font-size: 1rem; color: var(--dark); }
+    .btn-primary {
+      width: 100%;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.94rem;
+      padding: 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35);
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-next-row {
+      width: 100%;
+      border: none;
+      margin-bottom: 8px;
+      background: var(--kata);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.94rem;
+      padding: 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 12px rgba(47, 184, 176, 0.35);
+    }
+    .btn-ghost {
+      width: 100%;
+      margin-top: 8px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
     /* --- Support Section --- */
-    .support-section { text-align: center; margin-top: 50px; padding: 40px 15px; border-top: 2px solid #e2e8f0; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .support-section h2 { color: #5d4e37; font-size: 1.2em; margin-bottom: 10px; font-weight: bold; }
-    .support-section p { color: #8b7355; font-size: 0.9em; margin-bottom: 20px; }
-    .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 10px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; font-family: 'Fredoka', sans-serif; }
-    .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+    .support-section {
+      text-align: center;
+      margin: 28px auto 20px;
+      padding: 32px 15px;
+      border-top: 2px solid var(--border);
+      width: 100%;
+      max-width: 600px;
+    }
+    .support-section p { color: var(--muted); font-size: 0.9rem; margin: 0 0 16px; }
+    .bmc-custom-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #FFDD00;
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.05rem;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      font-family: 'Fredoka', sans-serif;
+    }
+    .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
 
-    /* --- ゲーム本体 --- */
-    * { font-family: 'Zen Maru Gothic', sans-serif; }
-    .card { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; min-height: 85px; display: flex; align-items: center; justify-content: center; }
-    .card.selected { transform: scale(1.05); box-shadow: 0 0 0 4px #ff9a9e; }
-    .card.matched { opacity: 0.5; transform: scale(0.92); pointer-events: none; }
-    .card.wrong { animation: shake 0.4s ease-in-out; }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-    .fade-in { animation: fadeIn 0.5s ease-out forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .hidden { display: none !important; }
+
+    @media (max-width: 680px) {
+      .board { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .col-head { font-size: 0.82rem; padding: 7px 4px; margin-bottom: 8px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .card-grid.compact-1col { grid-template-columns: 1fr; gap: 7px; }
+      .k-card { min-height: 58px; border-radius: 12px; }
+      .k-card .ch { font-size: 1.75rem; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .chart-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    }
   </style>
- <style id="ohayo-cta-style">
-.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
-.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
-.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
-.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
-.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
-.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
-.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
-.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
-.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
-.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
-.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
-.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
-.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
-@media (max-width: 600px) {
-  .ohayo-cta-grid { grid-template-columns: 1fr; }
-  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
-  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
-}
-</style>
+
+  <style id="ohayo-cta-style">
+    .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 32px auto 20px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
+    .ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+    .ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
+    .ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
+    .ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
+    .ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
+    .ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
+    .ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
+    .ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
+    .ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
+    .ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
+    .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
+    .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
+    .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
+    body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
+    body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
+    body.dark-mode .ohayo-cta-name { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
+    body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
+    @media (max-width: 600px) {
+      .ohayo-cta-grid { grid-template-columns: 1fr; }
+      .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+      .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
+    }
+  </style>
 </head>
- <body class="h-full overflow-auto" style="background: linear-gradient(135deg, #fef3e2 0%, #fce7d6 100%);">
-  
+<body>
   <nav>
     <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
+    <div class="nav-right">
+      <ul class="nav-links">
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-    </ul>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+    </div>
   </nav>
 
-  <div id="app" class="w-full min-h-full p-4 md:p-8">
-   <header class="text-center mb-6 opacity-0 fade-in">
-    <h1 id="game-title" class="text-2xl md:text-3xl font-bold mb-2 text-[#5d4e37]">ひらがな・カタカナ マッチング</h1>
-    <p class="text-sm md:text-lg text-[#8b7355]">同じ音のカードをみつけよう！ / Match the Hiragana &amp; Katakana pairs!</p>
-   </header>
+  <main class="wrap">
+    <!-- Compact Title + 3 Simple Modes -->
+    <header class="top-header">
+      <h1>ひらがな・カタカナ マッチング</h1>
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="board">🎮 Match</button>
+        <button class="mode-tab" data-mode="blitz">⚡ Speed Quiz</button>
+        <button class="mode-tab" data-mode="study">📚 Kana Chart</button>
+      </div>
+    </header>
 
-   <div class="max-w-2xl mx-auto mb-6 opacity-0 fade-in">
-    <div class="bg-white/90 backdrop-blur rounded-3xl p-5 shadow-lg">
-     <div class="flex justify-between items-center mb-3">
-      <div class="text-base font-bold text-[#5d4e37]">⭐ <span id="score">0</span> pts</div>
-      <div class="text-base font-bold text-[#5d4e37]">🎯 <span id="matches">0</span> / <span id="total-pairs">6</span></div>
-     </div>
-     <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden">
-      <div id="progress-bar" class="h-full bg-gradient-to-r from-[#ff9a9e] to-[#fecfef] transition-all duration-500" style="width: 0%;"></div>
-     </div>
+    <!-- MATCH BOARD VIEW (Immediately playable at top!) -->
+    <section id="boardView">
+      <div class="guide-bar">
+        <div class="guide-text">
+          <span class="guide-pill" id="activePackBadge">あ〜お</span>
+          <span id="liveGuide">👆 Step 1: Tap any ひらがな (pink) or カタカナ (teal) card!</span>
+        </div>
+        <div class="mini-stats">
+          <span>🎯 <b id="hudMatched">0/5</b></span>
+          <span>🔥 <b id="hudCombo">0</b></span>
+          <span>⏱ <b id="hudTime">0:00</b></span>
+          <span>🏆 <b id="hudBest">--</b></span>
+          <button class="mini-btn hint" id="hintBtn">💡 Hint</button>
+        </div>
+      </div>
+
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+      <!-- Look-Alike Quick Memory Tips -->
+      <div id="tipsBox" class="tips-box hidden">
+        <div class="tips-head" id="tipsToggle">
+          <span>💡 Quick Memory Tricks (シ/ツ · ソ/ン · ク/ケ/ワ/ウ · ヌ/ス/メ)</span>
+          <span id="tipsArrow">▲ Hide</span>
+        </div>
+        <div class="tips-grid" id="tipsGrid">
+          <div class="tip-item"><b>シ (shi) vs ツ (tsu)</b>: シ sweeps <b>UP ↗</b> (<b>shi</b>ning) · ツ drops <b>DOWN ↘</b> (<b>tsu</b>nami)</div>
+          <div class="tip-item"><b>ソ (so) vs ン (n)</b>: ソ drops <b>DOWN ↘</b> (like ツ) · ン sweeps <b>UP ↗</b> (like シ)</div>
+          <div class="tip-item"><b>ク・ケ・ワ・ウ</b>: ケ = <b>K</b> · ワ = open box · ウ = ワ + <b>hat</b></div>
+          <div class="tip-item"><b>ヌ・ス・メ</b>: ヌ = crossed <b>noo</b>dles · メ = <b>X</b> · ス = ski slope</div>
+        </div>
+      </div>
+
+      <div class="board">
+        <div>
+          <h2 class="col-head hira">ひらがな Hiragana</h2>
+          <div id="hiraGrid" class="card-grid"></div>
+        </div>
+        <div>
+          <h2 class="col-head kata">カタカナ Katakana</h2>
+          <div id="kataGrid" class="card-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 60S SPEED QUIZ VIEW -->
+    <section id="blitzView" class="hidden">
+      <div class="guide-bar">
+        <div class="guide-text">
+          <span class="guide-pill">⚡ 60s</span>
+          <span>Tap the matching kana as fast as you can!</span>
+        </div>
+        <div class="mini-stats">
+          <span>⏱ <b id="blitzTimer">60s</b></span>
+          <span>⭐ <b id="blitzScore">0</b></span>
+          <span>🔥 <b id="blitzCombo">0</b></span>
+        </div>
+      </div>
+      <div class="blitz-wrap">
+        <div id="blitzStartBox" class="blitz-target">
+          <div style="font-size:2.5rem; margin-bottom:6px;">⚡</div>
+          <h3 style="margin:0 0 6px;">60-Second Speed Quiz</h3>
+          <p style="margin:0 0 14px; color:var(--muted); font-size:0.86rem;">4-choice rapid fire using your selected pack below!</p>
+          <div style="display:flex; justify-content:center; gap:6px; margin-bottom:16px; flex-wrap:wrap;">
+            <button class="size-btn active" data-dir="mix">🔀 Mix</button>
+            <button class="size-btn" data-dir="h2k">あ → ア</button>
+            <button class="size-btn" data-dir="k2h">ア → あ</button>
+          </div>
+          <button class="btn-primary" id="startBlitzBtn" style="max-width:220px;">Start 60s Quiz ▶</button>
+        </div>
+        <div id="blitzPlayBox" class="hidden">
+          <div class="blitz-target">
+            <span class="blitz-badge h" id="blitzBadge">Hiragana → Pick Katakana</span>
+            <div class="blitz-char" id="blitzChar">し</div>
+            <div id="blitzHint" style="font-size:0.84rem; color:var(--muted); min-height:1.2em;"></div>
+          </div>
+          <div class="blitz-choices" id="blitzChoices"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KANA CHART VIEW (All 71 with Native Audio) -->
+    <section id="studyView" class="hidden">
+      <div class="settings-card">
+        <div class="pack-row" style="margin-bottom:6px;">
+          <button class="pill active" data-study="basic">🌸 Basic 46</button>
+          <button class="pill trap" data-study="traps">🔥 Look-Alike Traps</button>
+          <button class="pill" data-study="tenten">✨ Tenten &amp; Maru (25)</button>
+        </div>
+        <p style="margin:0; font-size:0.8rem; color:var(--muted);">🔊 Tap any card to hear native pronunciation! Orange border = your Weak Pairs.</p>
+      </div>
+      <div id="chartGrid" class="chart-grid"></div>
+    </section>
+
+    <!-- PACK & LEVEL SETTINGS (Neatly below the board) -->
+    <section id="settingsCard" class="settings-card">
+      <div class="settings-title">
+        <span>⚙️ Change Level / Practice Pack</span>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="mini-btn on" id="soundToggle">🔊 Sound ON</button>
+          <button class="mini-btn" id="romajiToggle">Aa Romaji Hint</button>
+          <button class="mini-btn" id="shuffleBtn">🔄 Shuffle</button>
+        </div>
+      </div>
+
+      <div class="pack-row">
+        <button class="pill active" data-pack="rows">🪜 Step-by-Step Rows</button>
+        <button class="pill" data-pack="random">🎲 Random Mix</button>
+        <button class="pill trap" data-pack="traps">🔥 Look-Alike Traps</button>
+        <button class="pill" data-pack="tenten">✨ Tenten &amp; Maru</button>
+        <button class="pill weak" data-pack="weak">🎯 Weak (<span id="weakCount">0</span>)</button>
+      </div>
+
+      <div id="rowChips" class="row-chips"></div>
+
+      <div id="sizeBar" class="size-bar hidden">
+        <span style="font-size:0.76rem; font-weight:700; color:var(--muted);">Cards:</span>
+        <button class="size-btn active" data-size="6">6 pairs</button>
+        <button class="size-btn" data-size="10">10 pairs</button>
+        <button class="size-btn" data-size="15">15 pairs</button>
+        <button class="size-btn" data-size="25">25 pairs</button>
+        <button class="size-btn" data-size="99">All</button>
+      </div>
+    </section>
+
+    <!-- OHAYO_NEXT_CTA -->
+    <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+      <div class="ohayo-cta-next">
+        <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+        <div class="ohayo-cta-grid">
+          <a class="ohayo-cta-link" href="hiraganatype.html"><div><span class="ohayo-cta-tag">GAME</span><span class="ohayo-cta-name">Hiragana Master (Typing Game)</span></div><span class="ohayo-cta-arrow">→</span></a>
+          <a class="ohayo-cta-link" href="katakanatype.html"><div><span class="ohayo-cta-tag">GAME</span><span class="ohayo-cta-name">Katakana Master (Typing Game)</span></div><span class="ohayo-cta-arrow">→</span></a>
+        </div>
+      </div>
+      <div class="ohayo-cta-lesson">
+        <div>
+          <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
+          <h3>Want to use what you just practiced with a native teacher?</h3>
+          <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+        </div>
+        <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+      </div>
+    </section>
+
+    <div class="support-section">
+      <p>If you like the material please support us！</p>
+      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+      </a>
     </div>
-    <button id="learn-btn" class="w-full mt-4 py-3 rounded-full text-white font-bold text-lg bg-gradient-to-r from-[#4ecdc4] to-[#44a5a5] shadow-lg active:scale-95 transition">📚 べんきょう する / Study Kana ▶</button>
-   </div>
+  </main>
 
-   <div class="max-w-5xl mx-auto opacity-0 fade-in">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-     <section>
-      <h2 class="text-center font-bold mb-3 py-2 rounded-2xl bg-[#ff9a9e] text-white shadow-sm">ひらがな</h2>
-      <div id="hiragana-cards" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-     </section>
-     <section>
-      <h2 class="text-center font-bold mb-3 py-2 rounded-2xl bg-[#a8edea] text-[#2d7d7d] shadow-sm">カタカナ</h2>
-      <div id="katakana-cards" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-     </section>
-    </div>
-   </div>
+  <div class="toast" id="toast">🔊 あ ↔ ア (a)</div>
 
-   <div class="max-w-2xl mx-auto mt-10 mb-10 opacity-0 fade-in">
-    <div class="bg-white/80 rounded-3xl p-5 shadow-md text-center border border-white/50">
-     <p class="text-sm font-bold text-[#5d4e37] mb-3">レベルをえらぼう</p>
-     <div class="flex flex-wrap justify-center gap-2">
-      <button data-level="easy" class="level-btn px-4 py-2 rounded-full font-bold bg-[#a8edea] text-[#2d7d7d]">🌸 かんたん</button>
-      <button data-level="beginner" class="level-btn px-4 py-2 rounded-full font-bold bg-[#ffd3a5] text-[#996633]">⭐ すこし かんたん</button>
-      <button data-level="medium" class="level-btn px-4 py-2 rounded-full font-bold bg-[#ffb3ba] text-[#993333]">🌻 ふつう</button>
-      <button data-level="hard" class="level-btn px-4 py-2 rounded-full font-bold bg-[#ff9a9e] text-[#993333]">🔥 むずかしい</button>
-      <button data-level="veryhard" class="level-btn px-4 py-2 rounded-full font-bold bg-[#b088cc] text-white">⚡ ぜんぶ</button>
-     </div>
-    </div>
-   </div>
-
-   <!-- OHAYO_NEXT_CTA -->
-<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
-  <div class="ohayo-cta-next">
-    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
-    <div class="ohayo-cta-grid">
-      <a class="ohayo-cta-link" href="hiraganatype.html"><div><span class="ohayo-cta-tag">GAME</span><span class="ohayo-cta-name">Hiragana Master (Typing Game)</span></div><span class="ohayo-cta-arrow">→</span></a>
-      <a class="ohayo-cta-link" href="katakanatype.html"><div><span class="ohayo-cta-tag">GAME</span><span class="ohayo-cta-name">Katakana Master (Typing Game)</span></div><span class="ohayo-cta-arrow">→</span></a>
-    </div>
-  </div>
-  <div class="ohayo-cta-lesson">
-    <div>
-      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
-      <h3>Want to use what you just practiced with a native teacher?</h3>
-      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
-    </div>
-    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
-  </div>
-</section>
-
-<div class="support-section">
-     <p>If you like the material please support us！</p>
-     <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-       ☕️ <span>SUPPORT OHAYO CENTER</span>
-     </a>
-   </div>
-  </div>
-
-  <div id="success-modal" class="hidden fixed inset-0 flex items-center justify-center z-[2000] p-4 bg-black/40 backdrop-blur-sm">
-    <div class="bg-white rounded-3xl p-10 text-center shadow-2xl max-w-xs w-full">
-     <div class="text-6xl mb-4">🎉</div>
-     <h2 class="text-xl font-bold mb-2 text-[#5d4e37]">すごい！かんぺき！</h2>
-     <p class="text-2xl font-bold text-[#ff6b6b] mb-8">スコア: <span id="final-score">0</span></p>
-     <button id="restart-btn" class="w-full py-3 rounded-full text-white font-bold bg-[#ff9a9e]">もういちど あそぶ</button>
-    </div>
-  </div>
-
-  <div id="study-modal" class="hidden fixed inset-0 flex items-center justify-center z-[2000] p-4 bg-black/60 backdrop-blur-sm">
-    <div class="bg-white rounded-[2.5rem] p-8 shadow-2xl max-w-sm w-full relative">
-     <button id="close-study" class="absolute top-5 right-6 text-2xl text-gray-400">✕</button>
-     <h2 class="text-xl font-bold mb-6 text-center text-[#5d4e37]">📚 べんきょう モード</h2>
-     <div class="flex flex-col items-center gap-6 py-6 bg-gray-50 rounded-3xl mb-6">
-       <div class="text-7xl font-bold text-[#ff9a9e]" id="study-hiragana">あ</div>
-       <div class="text-3xl font-bold text-[#5d4e37]" id="study-romaji">a</div>
-       <div class="text-7xl font-bold text-[#4ecdc4]" id="study-katakana">ア</div>
-     </div>
-     <div class="flex justify-between gap-3">
-       <button id="study-prev" class="flex-1 py-3 bg-gray-100 rounded-2xl font-bold text-gray-600">◀ まえ</button> 
-       <button id="study-next" class="flex-1 py-3 rounded-2xl text-white font-bold bg-[#ff9a9e]">つぎ ▶</button>
-     </div>
-     <p class="text-center text-xs mt-4 text-gray-300" id="study-counter">1 / 46</p>
+  <!-- Result Modal -->
+  <div class="modal-bg" id="resultModal">
+    <div class="modal">
+      <div class="rank-badge" id="resRank">S</div>
+      <h2 id="resTitle" style="margin:0 0 4px;">Cleared! 🎉</h2>
+      <p id="resSub" style="margin:0; font-size:0.84rem; color:var(--muted);"></p>
+      <div class="res-grid">
+        <div class="res-item"><small>Time / Score</small><strong id="resMain">0:11</strong></div>
+        <div class="res-item"><small>Accuracy</small><strong id="resAcc">100%</strong></div>
+        <div class="res-item"><small>Max Combo</small><strong id="resCombo">🔥 5</strong></div>
+      </div>
+      <button class="btn-next-row hidden" id="nextRowBtn">➡️ Next Row!</button>
+      <button class="btn-primary" id="playAgainBtn">🔄 Play Again</button>
+      <button class="btn-ghost hidden" id="reviewWeakBtn">🎯 Practice Weak Pairs</button>
     </div>
   </div>
 
   <script>
-    const allCharacters = [
-      { hiragana: 'あ', katakana: 'ア', romaji: 'a' }, { hiragana: 'い', katakana: 'イ', romaji: 'i' }, { hiragana: 'う', katakana: 'ウ', romaji: 'u' }, { hiragana: 'え', katakana: 'エ', romaji: 'e' }, { hiragana: 'お', katakana: 'オ', romaji: 'o' },
-      { hiragana: 'か', katakana: 'カ', romaji: 'ka' }, { hiragana: 'き', katakana: 'キ', romaji: 'ki' }, { hiragana: 'く', katakana: 'ク', romaji: 'ku' }, { hiragana: 'け', katakana: 'ケ', romaji: 'ke' }, { hiragana: 'こ', katakana: 'コ', romaji: 'ko' },
-      { hiragana: 'さ', katakana: 'サ', romaji: 'sa' }, { hiragana: 'し', katakana: 'シ', romaji: 'shi' }, { hiragana: 'す', katakana: 'ス', romaji: 'su' }, { hiragana: 'せ', katakana: 'セ', romaji: 'se' }, { hiragana: 'そ', katakana: 'ソ', romaji: 'so' },
-      { hiragana: 'た', katakana: 'タ', romaji: 'ta' }, { hiragana: 'ち', katakana: 'チ', romaji: 'chi' }, { hiragana: 'つ', katakana: 'ツ', romaji: 'tsu' }, { hiragana: 'て', katakana: 'テ', romaji: 'te' }, { hiragana: 'と', katakana: 'ト', romaji: 'to' },
-      { hiragana: 'な', katakana: 'ナ', romaji: 'na' }, { hiragana: 'に', katakana: 'ニ', romaji: 'ni' }, { hiragana: 'ぬ', katakana: 'ヌ', romaji: 'nu' }, { hiragana: 'ね', katakana: 'ネ', romaji: 'ne' }, { hiragana: 'の', katakana: 'ノ', romaji: 'no' },
-      { hiragana: 'は', katakana: 'ハ', romaji: 'ha' }, { hiragana: 'ひ', katakana: 'ヒ', romaji: 'hi' }, { hiragana: 'ふ', katakana: 'フ', romaji: 'fu' }, { hiragana: 'へ', katakana: 'ヘ', romaji: 'he' }, { hiragana: 'ほ', katakana: 'ホ', romaji: 'ho' },
-      { hiragana: 'ま', katakana: 'マ', romaji: 'ma' }, { hiragana: 'み', katakana: 'ミ', romaji: 'mi' }, { hiragana: 'む', katakana: 'ム', romaji: 'mu' }, { hiragana: 'め', katakana: 'メ', romaji: 'me' }, { hiragana: 'も', katakana: 'モ', romaji: 'mo' },
-      { hiragana: 'や', katakana: 'ヤ', romaji: 'ya' }, { hiragana: 'ゆ', katakana: 'ユ', romaji: 'yu' }, { hiragana: 'よ', katakana: 'ヨ', romaji: 'yo' },
-      { hiragana: 'ら', katakana: 'ラ', romaji: 'ra' }, { hiragana: 'り', katakana: 'リ', romaji: 'ri' }, { hiragana: 'る', katakana: 'ル', romaji: 'ru' }, { hiragana: 'れ', katakana: 'レ', romaji: 're' }, { hiragana: 'ろ', katakana: 'ロ', romaji: 'ro' },
-      { hiragana: 'わ', katakana: 'ワ', romaji: 'wa' }, { hiragana: 'を', katakana: 'ヲ', romaji: 'wo' }, { hiragana: 'ん', katakana: 'ン', romaji: 'n' }
+    const ROWS = [
+      { key: 'a',  label: 'あ〜お', items: [['あ','ア','a'],['い','イ','i'],['う','ウ','u'],['え','エ','e'],['お','オ','o']] },
+      { key: 'ka', label: 'か〜こ', items: [['か','カ','ka'],['き','キ','ki'],['く','ク','ku'],['け','ケ','ke'],['こ','コ','ko']] },
+      { key: 'sa', label: 'さ〜そ', items: [['さ','サ','sa'],['し','シ','shi'],['す','ス','su'],['せ','セ','se'],['そ','ソ','so']] },
+      { key: 'ta', label: 'た〜と', items: [['た','タ','ta'],['ち','チ','chi'],['つ','ツ','tsu'],['て','テ','te'],['と','ト','to']] },
+      { key: 'na', label: 'な〜の', items: [['な','ナ','na'],['に','ニ','ni'],['ぬ','ヌ','nu'],['ね','ネ','ne'],['の','ノ','no']] },
+      { key: 'ha', label: 'は〜ほ', items: [['は','ハ','ha'],['ひ','ヒ','hi'],['ふ','フ','fu'],['へ','ヘ','he'],['ほ','ホ','ho']] },
+      { key: 'ma', label: 'ま〜も', items: [['ま','マ','ma'],['み','ミ','mi'],['む','ム','mu'],['め','メ','me'],['も','モ','mo']] },
+      { key: 'ya', label: 'や〜よ', items: [['や','ヤ','ya'],['ゆ','ユ','yu'],['よ','ヨ','yo']] },
+      { key: 'ra', label: 'ら〜ろ', items: [['ら','ラ','ra'],['り','リ','ri'],['る','ル','ru'],['れ','レ','re'],['ろ','ロ','ro']] },
+      { key: 'wa', label: 'わ〜ん', items: [['わ','ワ','wa'],['を','ヲ','wo'],['ん','ン','n']] }
     ];
-    const characterSets = { easy: allCharacters.slice(0, 5), beginner: allCharacters.slice(0, 10), medium: allCharacters.slice(0, 15), hard: allCharacters.slice(0, 25), veryhard: allCharacters };
-    let currentLevel = 'easy', selectedCard = null, score = 0, matchedPairs = 0, currentPairs = [], studyIndex = 0;
-    function shuffle(array) { const arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-    function createCard(char, type, index) {
-      const card = document.createElement('div');
-      card.className = 'card bg-white rounded-2xl shadow-md cursor-pointer border-b-4 border-gray-100 active:border-b-0 active:translate-y-1';
-      card.innerHTML = `<span class="text-3xl md:text-5xl font-bold text-[#5d4e37]">${char}</span>`;
-      card.onclick = () => handleCardClick(card, type, index);
-      return card;
+
+    const BASIC = ROWS.flatMap(r => r.items.map(([h, k, rm]) => ({ id: rm, h, k, r: rm, audio: rm, row: r.key })));
+    const TENTEN = [
+      ['が','ガ','ga','ga'],['ぎ','ギ','gi','gi'],['ぐ','グ','gu','gu'],['げ','ゲ','ge','ge'],['ご','ゴ','go','go'],
+      ['ざ','ザ','za','za'],['じ','ジ','ji','ji'],['ず','ズ','zu','zu'],['ぜ','ゼ','ze','ze'],['ぞ','ゾ','zo','zo'],
+      ['だ','ダ','da','da'],['ぢ','ヂ','ji (di)','di'],['づ','ヅ','zu (du)','du'],['で','デ','de','de'],['ど','ド','do','do'],
+      ['ば','バ','ba','ba'],['び','ビ','bi','bi'],['ぶ','ブ','bu','bu'],['べ','ベ','be','be'],['ぼ','ボ','bo','bo'],
+      ['ぱ','パ','pa','pa'],['ぴ','ピ','pi','pi'],['ぷ','プ','pu','pu'],['ぺ','ペ','pe','pe'],['ぽ','ポ','po','po']
+    ].map(([h, k, r, a]) => ({ id: a, h, k, r, audio: a }));
+
+    const TRAP_IDS = ['shi','tsu','so','n','ku','ke','wa','u','nu','su','me','na','ko','yu','yo','ru','re','ri','a','ma','mu','chi','te','ra','fu','ro'];
+    const ALL_KANA = [...BASIC, ...TENTEN];
+    const TRAPS = TRAP_IDS.map(id => ALL_KANA.find(x => x.id === id)).filter(Boolean);
+
+    // Persistent progress in localStorage
+    const LS_WEAK = 'ohayo_match_weak_v1';
+    const LS_ROWS = 'ohayo_match_cleared_rows_v1';
+    function loadSet(key) {
+      try { return new Set(JSON.parse(localStorage.getItem(key) || '[]')); } catch (e) { return new Set(); }
     }
-    function handleCardClick(card, type, index) {
-      if (card.classList.contains('matched') || card.classList.contains('selected')) return;
-      if (!selectedCard) { selectedCard = { card, type, index }; card.classList.add('selected'); } else {
-        if (selectedCard.type === type) { selectedCard.card.classList.remove('selected'); selectedCard = { card, type, index }; card.classList.add('selected'); return; }
-        if (selectedCard.index === index) {
-          selectedCard.card.classList.replace('selected', 'matched');
-          card.classList.add('matched');
-          score += 100; matchedPairs++; updateScore();
-          if (matchedPairs === currentPairs.length) setTimeout(showSuccess, 500);
-        } else {
-          card.classList.add('wrong'); selectedCard.card.classList.add('wrong'); score = Math.max(0, score - 10); updateScore();
-          const prev = selectedCard.card; setTimeout(() => { prev.classList.remove('selected', 'wrong'); card.classList.remove('wrong'); }, 400);
-        }
-        selectedCard = null;
+    function saveSet(key, set) {
+      try { localStorage.setItem(key, JSON.stringify([...set])); } catch (e) {}
+    }
+
+    let mode = 'board';
+    let pack = 'rows';
+    let selectedRows = new Set(['a']);
+    let clearedRows = loadSet(LS_ROWS);
+    let weakSet = loadSet(LS_WEAK);
+    let weakClearStreak = {};
+    let pairSize = 6;
+    let blitzDir = 'mix';
+    let soundOn = true;
+    let showRomaji = false;
+
+    // Board state
+    let boardPairs = [], selected = null, matchedCount = 0;
+    let combo = 0, maxCombo = 0, mistakes = 0, consecutiveMiss = 0;
+    let timerSec = 0, timerInt = null, started = false;
+
+    // Speed quiz state
+    let blitzInt = null, blitzLeft = 60, blitzScore = 0, blitzCombo = 0, blitzMaxCombo = 0, blitzMiss = 0, blitzLocked = false;
+
+    // Native audio player (100% kana-audio/*.mp3)
+    let activeAudio = null;
+    function playKanaAudio(audioName) {
+      if (!soundOn || !audioName) return;
+      try {
+        if (activeAudio) { activeAudio.pause(); activeAudio.currentTime = 0; }
+        activeAudio = new Audio(`kana-audio/${audioName}.mp3`);
+        activeAudio.play().catch(() => {});
+      } catch (e) {}
+    }
+
+    // Soft wrong-answer feedback tone (Web Audio)
+    let audioCtx = null;
+    function playMissTone() {
+      if (!soundOn) return;
+      try {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator(), g = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(210, audioCtx.currentTime);
+        g.gain.setValueAtTime(0.06, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.14);
+        osc.connect(g); g.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.15);
+      } catch (e) {}
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 1600);
+    }
+
+    function shuffle(a) {
+      const arr = [...a];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+    function fmtTime(s) { return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
+
+    function addWeak(id) {
+      weakSet.add(id);
+      weakClearStreak[id] = 0;
+      saveSet(LS_WEAK, weakSet);
+      document.getElementById('weakCount').textContent = weakSet.size;
+    }
+    function recordCleanHit(id) {
+      if (!weakSet.has(id)) return;
+      weakClearStreak[id] = (weakClearStreak[id] || 0) + 1;
+      if (weakClearStreak[id] >= 2) {
+        weakSet.delete(id);
+        saveSet(LS_WEAK, weakSet);
+        document.getElementById('weakCount').textContent = weakSet.size;
       }
     }
-    function updateScore() {
-      document.getElementById('score').textContent = score;
-      document.getElementById('matches').textContent = matchedPairs;
-      document.getElementById('progress-bar').style.width = `${(matchedPairs/currentPairs.length)*100}%`;
+
+    function getPool() {
+      if (pack === 'rows') return BASIC.filter(x => selectedRows.has(x.row));
+      if (pack === 'traps') return TRAPS;
+      if (pack === 'tenten') return TENTEN;
+      if (pack === 'weak') {
+        const w = ALL_KANA.filter(x => weakSet.has(x.id));
+        return w.length ? w : TRAPS.slice(0, 6);
+      }
+      return BASIC;
     }
-    function showSuccess() { document.getElementById('final-score').textContent = score; document.getElementById('success-modal').classList.remove('hidden'); }
-    function startGame(level) {
-      currentLevel = level; currentPairs = shuffle(characterSets[level]);
-      selectedCard = null; score = 0; matchedPairs = 0;
-      document.getElementById('total-pairs').textContent = currentPairs.length; updateScore();
-      document.getElementById('success-modal').classList.add('hidden');
-      const hContainer = document.getElementById('hiragana-cards'), kContainer = document.getElementById('katakana-cards');
-      hContainer.innerHTML = ''; kContainer.innerHTML = '';
-      shuffle(currentPairs.map((p, i) => ({ char: p.hiragana, index: i }))).forEach(item => hContainer.appendChild(createCard(item.char, 'h', item.index)));
-      shuffle(currentPairs.map((p, i) => ({ char: p.katakana, index: i }))).forEach(item => kContainer.appendChild(createCard(item.char, 'k', item.index)));
+
+    function getPackLabel() {
+      if (pack === 'rows') {
+        const labels = ROWS.filter(r => selectedRows.has(r.key)).map(r => r.label);
+        return labels.length <= 2 ? labels.join(' + ') : `${labels.length} Rows`;
+      }
+      if (pack === 'traps') return '🔥 Look-Alikes';
+      if (pack === 'tenten') return '✨ Tenten';
+      if (pack === 'weak') return '🎯 Weak';
+      return '🎲 Random';
     }
-    function updateStudyDisplay() {
-      const char = allCharacters[studyIndex];
-      document.getElementById('study-hiragana').textContent = char.hiragana;
-      document.getElementById('study-katakana').textContent = char.katakana;
-      document.getElementById('study-romaji').textContent = char.romaji;
-      document.getElementById('study-counter').textContent = `${studyIndex + 1} / ${allCharacters.length}`;
+
+    function getBestKey(count) {
+      return `ohayo_match_best_${pack}_${pack === 'rows' ? [...selectedRows].sort().join('-') : count}`;
     }
-    document.getElementById('learn-btn').onclick = () => { studyIndex = 0; updateStudyDisplay(); document.getElementById('study-modal').classList.remove('hidden'); };
-    document.getElementById('close-study').onclick = () => document.getElementById('study-modal').classList.add('hidden');
-    document.getElementById('study-next').onclick = () => { if(studyIndex < 45) { studyIndex++; updateStudyDisplay(); } };
-    document.getElementById('study-prev').onclick = () => { if(studyIndex > 0) { studyIndex--; updateStudyDisplay(); } };
-    document.getElementById('restart-btn').onclick = () => startGame(currentLevel);
-    document.querySelectorAll('.level-btn').forEach(btn => btn.onclick = () => startGame(btn.dataset.level));
-    startGame('easy');
+
+    function setLiveGuide(text) {
+      document.getElementById('liveGuide').textContent = text;
+    }
+
+    function renderRowChips() {
+      const box = document.getElementById('rowChips');
+      box.innerHTML = '';
+      ROWS.forEach(r => {
+        const btn = document.createElement('button');
+        btn.className = 'row-chip' + (selectedRows.has(r.key) ? ' active' : '') + (clearedRows.has(r.key) ? ' done' : '');
+        btn.textContent = r.label;
+        btn.onclick = () => {
+          if (selectedRows.has(r.key) && selectedRows.size > 1) selectedRows.delete(r.key);
+          else selectedRows.add(r.key);
+          renderRowChips();
+          if (mode === 'board') startBoard();
+        };
+        box.appendChild(btn);
+      });
+    }
+
+    function clearHints() {
+      document.querySelectorAll('.hint-glow').forEach(el => el.classList.remove('hint-glow'));
+    }
+
+    function triggerHint(targetItem = null) {
+      clearHints();
+      let item = targetItem || (selected ? selected.item : null);
+      if (!item) {
+        const u = document.querySelector('#hiraGrid .k-card:not(.matched)');
+        if (!u) return;
+        item = boardPairs.find(x => x.id === u.dataset.id);
+      }
+      if (!item) return;
+      const h = document.querySelector(`#hiraGrid .k-card[data-id="${item.id}"]`);
+      const k = document.querySelector(`#kataGrid .k-card[data-id="${item.id}"]`);
+      if (h && !h.classList.contains('matched')) h.classList.add('hint-glow');
+      if (k && !k.classList.contains('matched')) k.classList.add('hint-glow');
+      playKanaAudio(item.audio);
+      showToast(`💡 Hint: ${item.h} (${item.r}) ↔ ${item.k}`);
+    }
+
+    function startBoard() {
+      clearInterval(timerInt);
+      clearHints();
+      started = false;
+      timerSec = 0;
+      selected = null;
+      matchedCount = 0;
+      combo = 0;
+      maxCombo = 0;
+      mistakes = 0;
+      consecutiveMiss = 0;
+
+      const pool = getPool();
+      const count = pack === 'rows' ? pool.length : Math.min(pairSize, pool.length);
+      boardPairs = shuffle(pool).slice(0, count);
+
+      document.getElementById('activePackBadge').textContent = getPackLabel();
+      setLiveGuide('👆 Step 1: Tap any ひらがな (pink) or カタカナ (teal) card!');
+      document.getElementById('hudMatched').textContent = `0/${count}`;
+      document.getElementById('hudCombo').textContent = '0';
+      document.getElementById('hudTime').textContent = '0:00';
+      const best = localStorage.getItem(getBestKey(count));
+      document.getElementById('hudBest').textContent = best ? fmtTime(Number(best)) : '--';
+      document.getElementById('progressFill').style.width = '0%';
+
+      const hGrid = document.getElementById('hiraGrid');
+      const kGrid = document.getElementById('kataGrid');
+      hGrid.innerHTML = '';
+      kGrid.innerHTML = '';
+      const compact = count <= 6;
+      hGrid.classList.toggle('compact-1col', compact);
+      kGrid.classList.toggle('compact-1col', compact);
+
+      shuffle(boardPairs).forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'k-card hira-c';
+        el.dataset.id = item.id;
+        el.innerHTML = `<span class="ch">${item.h}</span>${showRomaji ? `<span class="rm">${item.r}</span>` : ''}`;
+        el.onclick = () => onCardClick(el, 'h', item);
+        hGrid.appendChild(el);
+      });
+      shuffle(boardPairs).forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'k-card kata-c';
+        el.dataset.id = item.id;
+        el.innerHTML = `<span class="ch">${item.k}</span>`;
+        el.onclick = () => onCardClick(el, 'k', item);
+        kGrid.appendChild(el);
+      });
+    }
+
+    function onCardClick(el, side, item) {
+      if (el.classList.contains('matched') || el.classList.contains('selected')) return;
+      if (!started) {
+        started = true;
+        timerInt = setInterval(() => {
+          timerSec++;
+          document.getElementById('hudTime').textContent = fmtTime(timerSec);
+        }, 1000);
+      }
+      if (!selected) {
+        selected = { el, side, item };
+        el.classList.add('selected');
+        setLiveGuide(side === 'h'
+          ? `👉 Step 2: Now tap the matching カタカナ for 「${item.h}」!`
+          : `👉 Step 2: Now tap the matching ひらがな for 「${item.k}」!`);
+        return;
+      }
+      if (selected.side === side) {
+        selected.el.classList.remove('selected');
+        selected = { el, side, item };
+        el.classList.add('selected');
+        setLiveGuide(side === 'h'
+          ? `👉 Step 2: Now tap the matching カタカナ for 「${item.h}」!`
+          : `👉 Step 2: Now tap the matching ひらがな for 「${item.k}」!`);
+        return;
+      }
+      if (selected.item.id === item.id) {
+        clearHints();
+        consecutiveMiss = 0;
+        selected.el.classList.remove('selected');
+        selected.el.classList.add('matched');
+        el.classList.add('matched');
+        matchedCount++;
+        combo++;
+        if (combo > maxCombo) maxCombo = combo;
+        recordCleanHit(item.id);
+        playKanaAudio(item.audio);
+        showToast(`🔊 ${item.h} ↔ ${item.k} (${item.r})`);
+        setLiveGuide(`✅ Nice! ${item.h} = ${item.k} (${item.r}) — pick the next card!`);
+        document.getElementById('hudMatched').textContent = `${matchedCount}/${boardPairs.length}`;
+        document.getElementById('hudCombo').textContent = combo;
+        document.getElementById('progressFill').style.width = `${(matchedCount / boardPairs.length) * 100}%`;
+        if (matchedCount === boardPairs.length) {
+          clearInterval(timerInt);
+          setTimeout(finishBoard, 320);
+        }
+      } else {
+        mistakes++;
+        consecutiveMiss++;
+        combo = 0;
+        document.getElementById('hudCombo').textContent = '0';
+        addWeak(selected.item.id);
+        addWeak(item.id);
+        playMissTone();
+        setLiveGuide('❌ Not a match — try again! (2 misses = free hint 💡)');
+        const prev = selected.el;
+        const firstItem = selected.item;
+        prev.classList.add('wrong');
+        el.classList.add('wrong');
+        setTimeout(() => {
+          prev.classList.remove('selected', 'wrong');
+          el.classList.remove('wrong');
+          if (consecutiveMiss >= 2) triggerHint(firstItem);
+        }, 360);
+      }
+      selected = null;
+    }
+
+    function getNextRow() {
+      if (pack !== 'rows' || selectedRows.size !== 1) return null;
+      const idx = ROWS.findIndex(r => r.key === [...selectedRows][0]);
+      return idx >= 0 && idx < ROWS.length - 1 ? ROWS[idx + 1] : null;
+    }
+
+    function finishBoard() {
+      const acc = Math.round((boardPairs.length / (boardPairs.length + mistakes)) * 100);
+      const rank = acc === 100 ? 'S' : acc >= 85 ? 'A' : acc >= 70 ? 'B' : 'C';
+      if (pack === 'rows') {
+        selectedRows.forEach(k => clearedRows.add(k));
+        saveSet(LS_ROWS, clearedRows);
+        renderRowChips();
+      }
+      const bKey = getBestKey(boardPairs.length);
+      const prevBest = localStorage.getItem(bKey);
+      let isNewBest = false;
+      if (!prevBest || timerSec < Number(prevBest)) {
+        localStorage.setItem(bKey, String(timerSec));
+        isNewBest = true;
+      }
+      document.getElementById('resRank').textContent = rank;
+      document.getElementById('resTitle').textContent = isNewBest ? '🏆 New Personal Best!' : (mistakes === 0 ? 'Perfect Clear! 🎉' : 'Board Cleared! 👏');
+      document.getElementById('resSub').textContent = mistakes === 0 ? 'Zero mistakes — awesome job!' : `${mistakes} miss(es) saved to Weak Pairs for review.`;
+      document.getElementById('resMain').textContent = fmtTime(timerSec);
+      document.getElementById('resAcc').textContent = `${acc}%`;
+      document.getElementById('resCombo').textContent = `🔥 ${maxCombo}`;
+
+      const nr = getNextRow();
+      const nb = document.getElementById('nextRowBtn');
+      if (nr) {
+        nb.textContent = `➡️ Next Row: ${nr.label}`;
+        nb.classList.remove('hidden');
+        nb.onclick = () => {
+          selectedRows = new Set([nr.key]);
+          renderRowChips();
+          document.getElementById('resultModal').classList.remove('open');
+          startBoard();
+        };
+      } else {
+        nb.classList.add('hidden');
+      }
+      document.getElementById('reviewWeakBtn').classList.toggle('hidden', weakSet.size === 0);
+      document.getElementById('resultModal').classList.add('open');
+    }
+
+    // 60s Speed Quiz
+    function startBlitz() {
+      clearInterval(blitzInt);
+      blitzLeft = 60;
+      blitzScore = 0;
+      blitzCombo = 0;
+      blitzMaxCombo = 0;
+      blitzMiss = 0;
+      document.getElementById('blitzTimer').textContent = '60s';
+      document.getElementById('blitzScore').textContent = '0';
+      document.getElementById('blitzCombo').textContent = '0';
+      document.getElementById('blitzStartBox').classList.add('hidden');
+      document.getElementById('blitzPlayBox').classList.remove('hidden');
+      nextBlitzQ();
+      blitzInt = setInterval(() => {
+        blitzLeft--;
+        document.getElementById('blitzTimer').textContent = `${blitzLeft}s`;
+        if (blitzLeft <= 0) { clearInterval(blitzInt); finishBlitz(); }
+      }, 1000);
+    }
+
+    function nextBlitzQ() {
+      const pool = getPool().length >= 4 ? getPool() : BASIC;
+      const target = pool[Math.floor(Math.random() * pool.length)];
+      const opts = shuffle([target, ...shuffle(pool.filter(x => x.id !== target.id)).slice(0, 3)]);
+      const h2k = blitzDir === 'h2k' ? true : blitzDir === 'k2h' ? false : Math.random() < 0.5;
+      blitzLocked = false;
+
+      const b = document.getElementById('blitzBadge');
+      b.textContent = h2k ? 'Hiragana → Pick Katakana' : 'Katakana → Pick Hiragana';
+      b.className = 'blitz-badge ' + (h2k ? 'h' : 'k');
+      document.getElementById('blitzChar').textContent = h2k ? target.h : target.k;
+      document.getElementById('blitzHint').textContent = showRomaji ? `(${target.r})` : '';
+
+      const box = document.getElementById('blitzChoices');
+      box.innerHTML = '';
+      opts.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'blitz-opt';
+        btn.textContent = h2k ? opt.k : opt.h;
+        btn.onclick = () => {
+          if (blitzLocked) return;
+          blitzLocked = true;
+          if (opt.id === target.id) {
+            btn.classList.add('ok');
+            blitzScore++;
+            blitzCombo++;
+            if (blitzCombo > blitzMaxCombo) blitzMaxCombo = blitzCombo;
+            recordCleanHit(target.id);
+            playKanaAudio(target.audio);
+          } else {
+            btn.classList.add('ng');
+            blitzMiss++;
+            blitzCombo = 0;
+            addWeak(target.id);
+            playMissTone();
+            [...box.children].forEach((c, i) => {
+              if (opts[i].id === target.id) c.classList.add('ok');
+            });
+          }
+          document.getElementById('blitzScore').textContent = blitzScore;
+          document.getElementById('blitzCombo').textContent = blitzCombo;
+          setTimeout(nextBlitzQ, opt.id === target.id ? 240 : 680);
+        };
+        box.appendChild(btn);
+      });
+    }
+
+    function finishBlitz() {
+      const acc = blitzScore + blitzMiss ? Math.round((blitzScore / (blitzScore + blitzMiss)) * 100) : 0;
+      document.getElementById('resRank').textContent = blitzScore >= 30 ? 'S' : blitzScore >= 20 ? 'A' : blitzScore >= 12 ? 'B' : 'C';
+      document.getElementById('resTitle').textContent = '⚡ Speed Quiz Done!';
+      document.getElementById('resSub').textContent = `You matched ${blitzScore} pairs in 60 seconds!`;
+      document.getElementById('resMain').textContent = `${blitzScore} pts`;
+      document.getElementById('resAcc').textContent = `${acc}%`;
+      document.getElementById('resCombo').textContent = `🔥 ${blitzMaxCombo}`;
+      document.getElementById('nextRowBtn').classList.add('hidden');
+      document.getElementById('reviewWeakBtn').classList.toggle('hidden', weakSet.size === 0);
+      document.getElementById('resultModal').classList.add('open');
+      document.getElementById('blitzStartBox').classList.remove('hidden');
+      document.getElementById('blitzPlayBox').classList.add('hidden');
+    }
+
+    // Kana Chart
+    function renderChart(filter = 'basic') {
+      const list = filter === 'traps' ? TRAPS : filter === 'tenten' ? TENTEN : BASIC;
+      const grid = document.getElementById('chartGrid');
+      grid.innerHTML = '';
+      list.forEach(item => {
+        const c = document.createElement('div');
+        c.className = 'chart-cell' + (weakSet.has(item.id) ? ' is-weak' : '');
+        c.innerHTML = `<div class="pair"><span class="ch-h">${item.h}</span><span class="ch-k">${item.k}</span></div><div class="ch-r">${item.r}</div>`;
+        c.onclick = () => {
+          playKanaAudio(item.audio);
+          showToast(`🔊 ${item.h} / ${item.k} — "${item.r}"`);
+        };
+        grid.appendChild(c);
+      });
+    }
+
+    function syncUI() {
+      document.getElementById('rowChips').classList.toggle('hidden', pack !== 'rows');
+      document.getElementById('sizeBar').classList.toggle('hidden', pack === 'rows' || mode !== 'board');
+      document.getElementById('tipsBox').classList.toggle('hidden', pack !== 'traps');
+      document.getElementById('settingsCard').classList.toggle('hidden', mode === 'study');
+    }
+
+    // Wire events
+    document.querySelectorAll('.mode-tab').forEach(btn => btn.onclick = () => {
+      document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      mode = btn.dataset.mode;
+      clearInterval(timerInt);
+      clearInterval(blitzInt);
+      document.getElementById('boardView').classList.toggle('hidden', mode !== 'board');
+      document.getElementById('blitzView').classList.toggle('hidden', mode !== 'blitz');
+      document.getElementById('studyView').classList.toggle('hidden', mode !== 'study');
+      syncUI();
+      if (mode === 'board') startBoard();
+      if (mode === 'study') renderChart('basic');
+    });
+
+    document.querySelectorAll('[data-pack]').forEach(btn => btn.onclick = () => {
+      document.querySelectorAll('[data-pack]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      pack = btn.dataset.pack;
+      syncUI();
+      if (mode === 'board') {
+        startBoard();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    document.querySelectorAll('[data-size]').forEach(btn => btn.onclick = () => {
+      document.querySelectorAll('[data-size]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      pairSize = Number(btn.dataset.size);
+      startBoard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('[data-dir]').forEach(btn => btn.onclick = () => {
+      document.querySelectorAll('[data-dir]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      blitzDir = btn.dataset.dir;
+    });
+
+    document.querySelectorAll('[data-study]').forEach(btn => btn.onclick = () => {
+      document.querySelectorAll('[data-study]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderChart(btn.dataset.study);
+    });
+
+    document.getElementById('tipsToggle').onclick = () => {
+      const h = document.getElementById('tipsGrid').classList.toggle('hidden');
+      document.getElementById('tipsArrow').textContent = h ? '▼ Show' : '▲ Hide';
+    };
+    document.getElementById('hintBtn').onclick = () => triggerHint();
+    document.getElementById('soundToggle').onclick = e => {
+      soundOn = !soundOn;
+      e.target.classList.toggle('on', soundOn);
+      e.target.textContent = soundOn ? '🔊 Sound ON' : '🔇 Muted';
+    };
+    document.getElementById('romajiToggle').onclick = e => {
+      showRomaji = !showRomaji;
+      e.target.classList.toggle('on', showRomaji);
+      if (mode === 'board') startBoard();
+    };
+    document.getElementById('shuffleBtn').onclick = () => { if (mode === 'board') startBoard(); else startBlitz(); };
+    document.getElementById('startBlitzBtn').onclick = startBlitz;
+    document.getElementById('playAgainBtn').onclick = () => {
+      document.getElementById('resultModal').classList.remove('open');
+      if (mode === 'board') startBoard(); else startBlitz();
+    };
+    document.getElementById('reviewWeakBtn').onclick = () => {
+      document.getElementById('resultModal').classList.remove('open');
+      document.querySelectorAll('[data-pack]').forEach(b => b.classList.toggle('active', b.dataset.pack === 'weak'));
+      pack = 'weak';
+      syncUI();
+      if (mode === 'board') startBoard(); else startBlitz();
+    };
+
+    // Dark mode sync with ohayo_theme
+    const themeBtn = document.getElementById('themeBtn');
+    if (localStorage.getItem('ohayo_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeBtn.textContent = '☀️';
+    }
+    themeBtn.onclick = () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('ohayo_theme', isDark ? 'dark' : 'light');
+    };
+
+    // Init
+    document.getElementById('weakCount').textContent = weakSet.size;
+    renderRowChips();
+    syncUI();
+    startBoard();
   </script>
- </body>
+</body>
 </html>
