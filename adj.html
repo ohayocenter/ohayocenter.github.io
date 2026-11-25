@@ -1,940 +1,2566 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Adjectives Practice & Quiz - Ohayo Center</title>
-    <meta name="description" content="Japanese Adjectives Study Material - OHAYO CENTER">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="Japanese Adjectives | OHAYO CENTER">
-    <meta property="og:description" content="Learn 200 Japanese adjectives (100 i-adjectives + 100 na-adjectives) with audio flashcards and a quiz.">
-    <meta property="og:url" content="https://ohayocenter.com/adj.html">
-    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Japanese Adjectives | OHAYO CENTER">
-    <meta name="twitter:description" content="Learn 200 Japanese adjectives (100 i-adjectives + 100 na-adjectives) with audio flashcards and a quiz.">
-    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adjectives 200 Master Trainer (i-adj &amp; na-adj) | OHAYO CENTER</title>
+  <meta name="description" content="Master 200 Japanese adjectives (100 i-adjectives + 100 na-adjectives, JLPT N5-N1) with 3D flashcards, 4-form conjugation drills, listening quizzes, weak review, slow audio, and a searchable dictionary.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OHAYO CENTER">
+  <meta property="og:title" content="Adjectives 200 Master Trainer | OHAYO CENTER">
+  <meta property="og:description" content="Master 200 Japanese i-adjectives and na-adjectives with 3D flashcards, conjugation drills, listening quiz, weak review, and native audio.">
+  <meta property="og:url" content="https://ohayocenter.com/adj.html">
+  <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adjectives 200 Master Trainer | OHAYO CENTER">
+  <meta name="twitter:description" content="Master 200 Japanese i-adjectives and na-adjectives with 3D flashcards, conjugation drills, listening quiz, weak review, and native audio.">
+  <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
 
-    <!-- ▼ indexと同じファビコン ▼ -->
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" sizes="192x192" href="icon.png">
 
-    <!-- ▼ indexと同じフォント ▼ -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #ff6b6b;   /* い形容詞 (I-adjectives) */
-            --secondary-color: #4ecdc4; /* な形容詞 (Na-adjectives) */
-            --quiz-color: #9b59b6;      /* クイズ (Quiz) */
-            --correct-color: #2ecc71;   /* 正解 (Correct) */
-            --wrong-color: #e74c3c;     /* 不正解 (Wrong) */
-            --memorized-color: #f1c40f; /* 覚えた (Memorized) */
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            /* ナビゲーション用の色を変数に追加 */
-            --primary: #ff9f43; 
-            --dark: #2c3e50;
-        }
-        
-        * { box-sizing: border-box; }
-        
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            /* フォントをindexと揃えつつ、フォールバックを残す */
-            font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 
-        /* ====== indexと同じナビゲーションバーのスタイル ====== */
-        nav { 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(5px); 
-            padding: 0 5%; 
-            height: 70px; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            left: 0;
-            z-index: 2000; /* アプリUIの上に表示されるように高く設定 */
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-        .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: var(--dark); font-size: 1.2rem; white-space: nowrap; }
-        .logo a { text-decoration: none; color: inherit; }
-        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-        
-        .nav-links a { 
-            text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; 
-            letter-spacing: 1px; position: relative; padding-bottom: 5px;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
-            background-color: var(--primary); transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
+  <style>
+    :root {
+      --primary: #ff9f43;
+      --primary-dark: #ee8a2e;
+      --primary-light: #fff5eb;
+      --accent: #244c78;
+      --accent-soft: #eef5fc;
+      --dark: #2c3e50;
+      --text: #444444;
+      --muted: #64748b;
+      --bg: #fdfaf6;
+      --card: #ffffff;
+      --border: #e9e2d8;
+      --shadow: 0 10px 28px rgba(44, 62, 80, 0.08);
+      --i-bg: #fff1f2;
+      --i-tx: #e11d48;
+      --i-bd: #fda4af;
+      --na-bg: #f0fdfa;
+      --na-tx: #0f766e;
+      --na-bd: #5eead4;
+      --purple-bg: #f5f3ff;
+      --purple-tx: #6d28d9;
+      --purple-bd: #ddd6fe;
+      --warn-bg: #fef3c7;
+      --warn-tx: #92400e;
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --good-text: #14532d;
+      --bad: #dc2626;
+      --bad-soft: #fee2e2;
+      --bad-text: #7f1d1d;
+    }
 
-        @media (max-width: 600px) {
-            nav { padding: 0 15px; }
-            .logo { font-size: 1rem; }
-            .nav-links { gap: 0.8rem; }
-            .nav-links a { font-size: 0.75rem; }
-        }
-        /* =================================================== */
+    body.dark-mode {
+      --dark: #f8fafc;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary-light: rgba(255, 159, 67, 0.16);
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.15);
+      --i-bg: rgba(225, 29, 72, 0.2);
+      --i-tx: #fda4af;
+      --i-bd: #be123c;
+      --na-bg: rgba(13, 148, 136, 0.22);
+      --na-tx: #5eead4;
+      --na-bd: #0f766e;
+      --purple-bg: rgba(124, 58, 237, 0.22);
+      --purple-tx: #ddd6fe;
+      --purple-bd: #6d28d9;
+      --warn-bg: rgba(245, 158, 11, 0.22);
+      --warn-tx: #fde68a;
+      --good-soft: rgba(22, 163, 74, 0.22);
+      --good-text: #bbf7d0;
+      --bad-soft: rgba(220, 38, 38, 0.22);
+      --bad-text: #fecaca;
+      --shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    }
 
-        /* アプリ風のレイアウトにするためのラッパー */
-        .app-container {
-            display: flex;
-            flex-direction: column;
-            /* ナビゲーションバー(70px)の分だけ高さを引き、上に余白を作る */
-            height: calc(100vh - 70px);
-            margin-top: 70px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
-        
-        /* Header (コンパクト化) */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s;
-            flex-shrink: 0;
-        }
-        header.na-mode { background-color: var(--secondary-color); }
-        header.quiz-mode { background-color: var(--quiz-color); }
-        
-        .header-titles { text-align: center; }
-        .header-titles h1 { margin: 0; font-size: 1.2rem; letter-spacing: 1px; font-family: 'Sawarabi Mincho', serif; }
-        .header-titles h2 { margin: 2px 0 0 0; font-size: 0.8rem; font-weight: normal; opacity: 0.9; }
-        
-        /* Tabs (押しやすいサイズに) */
-        .tabs {
-            display: flex;
-            background: #fff;
-            border-bottom: 2px solid #eee;
-            flex-shrink: 0;
-        }
-        .tab-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 12px 2px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: #aaa;
-            cursor: pointer;
-            transition: 0.3s;
-            position: relative;
-        }
-        .tab-btn.active.i-adj-btn { color: var(--primary-color); }
-        .tab-btn.active.na-adj-btn { color: var(--secondary-color); }
-        .tab-btn.active.quiz-btn { color: var(--quiz-color); }
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; left: 0; width: 100%; height: 3px;
-        }
-        .tab-btn.active.i-adj-btn::after { background-color: var(--primary-color); }
-        .tab-btn.active.na-adj-btn::after { background-color: var(--secondary-color); }
-        .tab-btn.active.quiz-btn::after { background-color: var(--quiz-color); }
-        
-        /* Main Content Area */
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            overflow-y: auto;
-        }
+    * { box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      transition: background 0.25s, color 0.25s;
+      overflow-x: hidden;
+    }
 
-        /* --- フラッシュカード (1枚表示UI) --- */
-        #study-view {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-        .study-tools {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .study-stats {
-            display: flex;
-            gap: 10px;
-        }
-        .study-progress, .memorized-count {
-            font-weight: bold;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        .study-progress {
-            color: #777;
-            background: #f0f0f0;
-        }
-        .memorized-count {
-            color: #856404;
-            background: #fff3cd;
-        }
-        .tool-btn {
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #555;
-            transition: 0.2s;
-        }
-        .tool-btn:active { background: #e0e0e0; }
+    /* --- Fixed Top Navigation (70px) --- */
+    .site-nav {
+      background: rgba(255, 255, 255, 0.96);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 70px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+    body.dark-mode .site-nav {
+      background: rgba(15, 23, 42, 0.94);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-logo a {
+      font-family: 'Sawarabi Mincho', serif;
+      font-weight: bold;
+      color: var(--dark);
+      font-size: 1.2rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .site-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav-links a {
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-nav-links a:hover { color: var(--primary); }
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.92rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .site-nav { padding: 0 12px; }
+      .site-logo a { font-size: 1rem; }
+      .nav-right { gap: 0.55rem; }
+      .site-nav-links { gap: 0.65rem; }
+      .site-nav-links a { font-size: 0.68rem; }
+      .theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+    }
 
-        /* カードくるりんアニメーション & 崩れ防止レイアウト */
-        .card-container {
-            flex-grow: 1;
-            perspective: 1000px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            min-height: 250px;
-        }
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-        .card-container.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-        .card-front, .card-back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden; /* Safari Fix */
-            display: flex;
-            flex-direction: column;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            padding: 20px;
-            border-top: 6px solid var(--primary-color);
-            box-sizing: border-box; /* Prevent padding from altering size */
-        }
-        .na-mode .card-front, .na-mode .card-back {
-            border-top-color: var(--secondary-color);
-        }
-        .card-back {
-            transform: rotateY(180deg);
-            background: #fafafa;
-        }
-        
-        .memorized-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--memorized-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        .memorized-badge.show {
-            opacity: 1;
-        }
+    /* --- Main Layout --- */
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 20px 14px 44px;
+    }
 
-        .card-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .word-jp { 
-            font-size: 2.2rem; 
-            font-weight: bold; 
-            margin-bottom: 10px; 
-            word-break: keep-all; 
-            line-height: 1.3;
-        }
-        .word-romaji { 
-            font-size: 1.2rem; 
-            color: #7f8c8d; 
-            word-break: break-word;
-        }
-        .word-en { 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: var(--primary-color); 
-            word-break: break-word; 
-            line-height: 1.3; 
-            text-align: center;
-        }
-        .na-mode .word-en { color: var(--secondary-color); }
-        
-        .tap-hint { 
-            font-size: 0.8rem; 
-            color: #bbb; 
-            margin-top: auto; /* Push to the bottom */
-            padding-top: 10px;
-            text-align: center;
-            width: 100%;
-        }
+    /* --- Hero Card --- */
+    .hero-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #c8640b;
+      background: var(--primary-light);
+      padding: 4px 11px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    body.dark-mode .eyebrow { color: #ffbe76; }
+    .hero-card h1 {
+      margin: 0;
+      font-family: 'Sawarabi Mincho', serif;
+      font-size: clamp(1.3rem, 3.6vw, 1.7rem);
+      color: var(--dark);
+      line-height: 1.25;
+    }
+    .hero-sub {
+      margin: 5px 0 0;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .hero-toggles {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .pill-toggle {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .pill-toggle:hover { border-color: var(--primary); }
+    .pill-toggle.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: #c8640b;
+    }
+    body.dark-mode .pill-toggle.active { color: #ffbe76; }
 
-        /* ナビゲーションボタン */
-        .card-nav {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .nav-btn {
-            flex: 1;
-            padding: 15px 10px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            background-color: var(--primary-color);
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        .na-mode .nav-btn { background-color: var(--secondary-color); }
-        .nav-btn:active { opacity: 0.7; transform: scale(0.98); }
-        
-        .memorize-btn {
-            background-color: #f1c40f;
-            color: #fff;
-            text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
-        }
-        .memorize-btn.is-memorized {
-            background-color: #bdc3c7;
-        }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .stat-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 6px;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+    .stat-val.green { color: var(--good); }
+    .stat-val.orange { color: var(--primary); }
+    .stat-val.red { color: var(--bad); }
+    .stat-lbl {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .prog-track {
+      height: 8px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .prog-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), #22c55e);
+      transition: width 0.3s ease;
+    }
 
-        /* --- クイズ --- */
-        #quiz-view {
-            display: none;
-            height: 100%;
-            flex-direction: column;
-        }
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            color: #888;
-            margin-bottom: 15px;
-            background: #f0f0f0;
-            padding: 10px 15px;
-            border-radius: 10px;
-        }
-        .quiz-question-box {
-            text-align: center;
-            margin-bottom: 20px;
-            flex-grow: 0.3;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .quiz-question-box p { margin: 0 0 5px 0; color: #777; font-size: 0.9rem; }
-        .quiz-question-box h3 { margin: 0; font-size: 2rem; color: var(--quiz-color); }
-        
-        .quiz-choices-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            flex-grow: 1;
-        }
-        .quiz-choice-btn {
-            background-color: white;
-            border: 2px solid #eee;
-            border-radius: 12px;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #333;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .quiz-choice-romaji { font-size: 0.85rem; color: #888; margin-top: 5px; font-weight: normal; }
-        .quiz-choice-btn:active:not(:disabled) { background-color: #f8f9fa; transform: scale(0.98); }
-        
-        .quiz-choice-btn.correct { background-color: var(--correct-color); border-color: var(--correct-color); color: white; }
-        .quiz-choice-btn.correct .quiz-choice-romaji { color: #e0f7fa; }
-        .quiz-choice-btn.wrong { background-color: var(--wrong-color); border-color: var(--wrong-color); color: white; }
-        .quiz-choice-btn.wrong .quiz-choice-romaji { color: #ffebee; }
-        .quiz-choice-btn:disabled { cursor: not-allowed; opacity: 0.9; }
-        
-        #quiz-explanation {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            border-radius: 10px;
-            color: #856404;
-        }
-        #quiz-explanation h4 { margin: 0 0 10px 0; color: #d32f2f; }
-        #quiz-explanation p { margin: 5px 0; font-size: 1.1rem; text-align: center;}
-        
-        .quiz-next-btn {
-            margin-top: 15px;
-            background-color: var(--quiz-color);
-            color: white;
-            border: none;
-            padding: 10px 30px;
-            font-size: 1.1rem;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .quiz-next-btn:active { transform: scale(0.98); }
+    /* --- 5 Mode Tabs --- */
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .mode-btn {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--dark);
+      font-family: inherit;
+      transition: 0.15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .mode-btn:hover { border-color: var(--primary); }
+    .mode-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: #c8640b;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.2);
+    }
+    body.dark-mode .mode-btn.active { color: #ffbe76; }
+    .mode-title { font-size: 0.78rem; font-weight: 800; line-height: 1.25; }
+    .mode-sub { font-size: 0.65rem; color: var(--muted); font-weight: 600; }
+    .mode-badge {
+      display: inline-block;
+      background: var(--bad);
+      color: #fff;
+      font-size: 0.64rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 999px;
+      margin-left: 2px;
+    }
 
-        #quiz-result-view {
-            display: none;
-            text-align: center;
-            padding: 30px 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        #quiz-result-view h2 { font-size: 2.2rem; color: var(--quiz-color); margin-bottom: 5px; }
-        #quiz-result-view p { font-size: 1.2rem; color: #555; margin-bottom: 30px; }
-        .play-again-btn {
-            background-color: var(--quiz-color);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border-radius: 30px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
-            width: 100%;
-            max-width: 300px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .play-again-btn:active {
-            transform: scale(0.98);
-        }
-    </style>
-<style id="ohayo-cta-style">
-.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
-.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
-.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
-.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
-.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
-.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
-.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
-.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
-.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
-.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
-.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
-.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
-.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
-@media (max-width: 600px) {
-  .ohayo-cta-grid { grid-template-columns: 1fr; }
-  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
-  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
-}
-</style>
+    /* --- Filter Bar --- */
+    .filter-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 10px;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.73rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .chip:hover { border-color: var(--primary); color: var(--dark); }
+    .chip.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .chip.level-active {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: var(--bg);
+    }
+
+    /* --- Type / Level / Tricky Badges --- */
+    .badge-i {
+      background: var(--i-bg);
+      color: var(--i-tx);
+      border: 1px solid var(--i-bd);
+    }
+    .badge-na {
+      background: var(--na-bg);
+      color: var(--na-tx);
+      border: 1px solid var(--na-bd);
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .badge-lvl {
+      background: var(--bg);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-warn {
+      background: var(--warn-bg);
+      color: var(--warn-tx);
+    }
+
+    /* --- Audio & Action Buttons --- */
+    .audio-pill {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: 0.15s;
+    }
+    .audio-pill:hover { border-color: var(--primary); background: var(--primary-light); }
+    .audio-pill.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255, 159, 67, 0.34);
+    }
+    .audio-pill.primary:hover { background: var(--primary-dark); }
+
+    .btn-main {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      padding: 11px 18px;
+      border-radius: 13px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.34);
+      transition: 0.15s;
+    }
+    .btn-main:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-sub {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 10px 16px;
+      border-radius: 13px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .btn-sub:hover { border-color: var(--primary); }
+    .btn-mem {
+      border: none;
+      background: #f59e0b;
+      color: #fff;
+      padding: 11px 14px;
+      border-radius: 13px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .btn-mem.done { background: var(--good); }
+
+    /* --- 1. Flashcards View --- */
+    .fc-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .flip-stage {
+      perspective: 1100px;
+      min-height: 320px;
+      cursor: pointer;
+      margin-bottom: 14px;
+    }
+    .flip-inner {
+      position: relative;
+      min-height: 320px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    .flip-stage.flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-face {
+      position: absolute;
+      inset: 0;
+      min-height: 320px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .flip-face.back { transform: rotateY(180deg); }
+    .fc-top-left {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .fc-top-right {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      display: flex;
+      gap: 6px;
+      z-index: 3;
+    }
+    .fc-jp {
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 26px;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+    .fc-romaji {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .fc-hint {
+      font-size: 0.76rem;
+      color: var(--muted);
+      opacity: 0.75;
+      margin-top: 24px;
+    }
+    .fc-en {
+      font-size: clamp(1.35rem, 4vw, 1.8rem);
+      font-weight: 800;
+      color: var(--primary);
+      margin: 4px 0 14px;
+      line-height: 1.3;
+    }
+    .conj-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: 100%;
+      max-width: 470px;
+      text-align: left;
+    }
+    .conj-cell {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px 10px;
+    }
+    .conj-cell-lbl {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .conj-cell-jp {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 1px;
+    }
+    .conj-cell-ro {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .fc-nav-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 10px;
+    }
+
+    /* --- Shared Panel Card for Drills & Quiz --- */
+    .panel-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 22px 20px;
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.2s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .panel-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .prompt-box {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .prompt-big {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .prompt-sub {
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .target-pill {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 15px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: var(--purple-bg);
+      color: var(--purple-tx);
+      border: 1.5px solid var(--purple-bd);
+    }
+    .choices-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--card);
+      border: 2px solid var(--border);
+      color: var(--dark);
+      border-radius: 16px;
+      padding: 13px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+    .choice-btn:disabled { cursor: default; }
+    .choice-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.74rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .choice-main { font-size: 0.96rem; font-weight: 800; line-height: 1.35; overflow-wrap: anywhere; }
+    .choice-sub { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+    .choice-btn.is-correct {
+      background: var(--good-soft);
+      border-color: var(--good);
+      color: var(--good-text);
+    }
+    .choice-btn.is-correct .choice-num { background: var(--good); color: #fff; }
+    .choice-btn.is-correct .choice-sub { color: var(--good-text); opacity: 0.88; }
+    .choice-btn.is-wrong {
+      background: var(--bad-soft);
+      border-color: var(--bad);
+      color: var(--bad-text);
+    }
+    .choice-btn.is-wrong .choice-num { background: var(--bad); color: #fff; }
+    .choice-btn.is-wrong .choice-sub { color: var(--bad-text); opacity: 0.88; }
+
+    .feedback-box {
+      display: none;
+      margin-top: 16px;
+      border-radius: 18px;
+      padding: 15px 16px;
+      border: 2px solid var(--border);
+      animation: fadeUp 0.2s ease;
+    }
+    .feedback-box.show { display: block; }
+    .feedback-box.good { background: var(--good-soft); border-color: var(--good); }
+    .feedback-box.bad { background: var(--bad-soft); border-color: var(--bad); }
+    .fb-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .fb-title { font-size: 0.94rem; font-weight: 800; }
+    .feedback-box.good .fb-title { color: var(--good-text); }
+    .feedback-box.bad .fb-title { color: var(--bad-text); }
+    .fb-rule { font-size: 0.82rem; line-height: 1.55; color: var(--text); margin-bottom: 10px; }
+    .mini-table-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .mini-cell {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px 4px;
+      text-align: center;
+    }
+    .mini-cell-lbl { font-size: 0.62rem; font-weight: 700; color: var(--muted); }
+    .mini-cell-val { font-size: 0.78rem; font-weight: 800; color: var(--dark); margin-top: 1px; }
+    .fb-footer { text-align: right; }
+
+    .summary-box {
+      text-align: center;
+      padding: 24px 16px;
+    }
+    .summary-emoji { font-size: 2.5rem; margin-bottom: 6px; }
+    .summary-score { font-size: 1.9rem; font-weight: 800; color: var(--dark); margin: 4px 0; }
+    .summary-msg { font-size: 0.9rem; color: var(--text); margin: 0 0 16px; }
+    .summary-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+    /* --- Weak & Dictionary Lists --- */
+    .search-box {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .search-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--dark);
+      font-size: 0.88rem;
+      font-family: inherit;
+    }
+    .list-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .dict-item {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 13px 15px;
+      box-shadow: 0 3px 10px rgba(44, 62, 80, 0.04);
+    }
+    .dict-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .dict-main { flex: 1; min-width: 200px; cursor: pointer; }
+    .dict-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 3px; }
+    .dict-jp { font-size: 1rem; font-weight: 800; color: var(--dark); }
+    .dict-ro { font-size: 0.8rem; color: var(--muted); }
+    .dict-en { font-size: 0.84rem; font-weight: 600; color: var(--text); }
+    .dict-exp-hint { font-size: 0.72rem; color: var(--muted); margin-left: 6px; }
+    .dict-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .dict-forms {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .utility-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+    .reset-link {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.76rem;
+      font-family: inherit;
+    }
+    .reset-link:hover { color: var(--bad); }
+
+    .hidden { display: none !important; }
+
+    /* --- Bottom CTA (Recommended Next + Trial Lesson Hero + BMC Support) --- */
+    .ohayo-cta-wrap {
+      max-width: 820px;
+      width: 100%;
+      margin: 34px auto 22px;
+      text-align: left;
+    }
+    .ohayo-cta-next {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    }
+    .ohayo-cta-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+    .ohayo-cta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .ohayo-cta-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 15px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--dark);
+      background: var(--bg);
+      transition: 0.2s;
+    }
+    .ohayo-cta-link:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    .ohayo-cta-tag {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+    .ohayo-cta-name {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+    .ohayo-cta-arrow {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .ohayo-cta-lesson {
+      background: var(--primary-light);
+      border: 2px solid #ffd8b3;
+      border-radius: 18px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 6px 20px rgba(255, 159, 67, 0.12);
+    }
+    body.dark-mode .ohayo-cta-lesson { border-color: var(--primary); }
+    .ohayo-cta-lesson-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #e67e22;
+      letter-spacing: 0.05em;
+      margin: 0 0 4px;
+    }
+    .ohayo-cta-lesson h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      color: var(--dark);
+      line-height: 1.4;
+      font-family: 'Sawarabi Mincho', serif;
+    }
+    .ohayo-cta-lesson p {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .ohayo-cta-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff !important;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 12px 22px;
+      border-radius: 50px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35);
+      transition: 0.2s;
+    }
+    .ohayo-cta-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .support-section {
+      text-align: center;
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px dashed var(--border);
+    }
+    .support-section p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin: 0 0 12px;
+    }
+    .bmc-custom-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #FFDD00;
+      color: #000000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .bmc-custom-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+    }
+    .bmc-custom-btn span { margin-left: 7px; letter-spacing: 0.4px; }
+
+    @media (max-width: 680px) {
+      .mode-grid { grid-template-columns: repeat(2, 1fr); }
+      .mode-grid .mode-btn:last-child { grid-column: span 2; }
+      .choices-grid { grid-template-columns: 1fr; }
+      .mini-table-4, .dict-forms { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 14px 10px 36px; }
+      .hero-card, .panel-card { padding: 16px 14px; border-radius: 20px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .ohayo-cta-grid { grid-template-columns: 1fr; }
+      .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+      .ohayo-cta-btn { width: 100%; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ▼ 共通ナビゲーションヘッダー ▼ -->
-<nav>
-    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
-        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
-        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
-        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+<nav class="site-nav">
+  <div class="site-logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+  <div class="nav-right">
+    <ul class="site-nav-links">
+      <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+      <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+      <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
     </ul>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+  </div>
 </nav>
 
-<!-- アプリコンテンツ (上に70pxの余白を設けています) -->
-<div class="app-container">
-    <header id="main-header">
-        <div class="header-titles">
-            <h1>Adjectives 200</h1>
-            <h2>Ohayo Center Study Material</h2>
-        </div>
-    </header>
-
-    <div class="tabs">
-        <button id="btn-i-adj" class="tab-btn i-adj-btn active" onclick="switchTab('i-adj')">I-Adjectives 100</button>
-        <button id="btn-na-adj" class="tab-btn na-adj-btn" onclick="switchTab('na-adj')">Na-Adjectives 100</button>
-        <button id="btn-quiz" class="tab-btn quiz-btn" onclick="startQuiz()">Quiz</button>
+<main class="wrap">
+  <!-- HERO & STATS -->
+  <section class="hero-card">
+    <div class="hero-top">
+      <div>
+        <span class="eyebrow">✨ JLPT N5–N1 · 100 い-ADJ + 100 な-ADJ</span>
+        <h1>Adjectives 200 Master Trainer</h1>
+        <p class="hero-sub">3D flashcards with 4 conjugation forms, tricky i/na conjugation drills, audio quiz &amp; searchable dictionary.</p>
+      </div>
+      <div class="hero-toggles">
+        <button type="button" class="pill-toggle active" data-script="both">JP + Romaji</button>
+        <button type="button" class="pill-toggle" data-script="jp">JP Only</button>
+        <button type="button" class="pill-toggle active" id="autoAudioBtn">🔊 Auto Audio</button>
+      </div>
     </div>
 
-    <div class="main-content" id="main-content">
-        
-        <!-- 学習ビュー (フラッシュカード) -->
-        <div id="study-view">
-            <div class="study-tools">
-                <div class="study-stats">
-                    <div class="study-progress" id="study-progress">1 / 100</div>
-                    <div class="memorized-count" id="memorized-count">⭐ 0 Memorized</div>
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <button class="tool-btn" onclick="shuffleCurrentList()">🔀 Shuffle</button>
-                    <button class="tool-btn" onclick="playAudio()">🔊 Audio</button>
-                </div>
-            </div>
-
-            <div class="card-container" id="flashcard" onclick="toggleFlip()">
-                <div class="card-inner">
-                    <!-- 表面 (日本語) -->
-                    <div class="card-front">
-                        <div class="memorized-badge" id="badge-front">⭐ Memorized</div>
-                        <div class="card-content">
-                            <div class="word-jp" id="card-jp">大きい</div>
-                            <div class="word-romaji" id="card-romaji">ookii</div>
-                        </div>
-                        <div class="tap-hint">Tap to flip</div>
-                    </div>
-                    <!-- 裏面 (英語) -->
-                    <div class="card-back">
-                        <div class="memorized-badge" id="badge-back">⭐ Memorized</div>
-                        <div class="card-content">
-                            <div class="word-en" id="card-en">Big / Large</div>
-                        </div>
-                        <div class="tap-hint">Tap to flip</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-nav">
-                <button class="nav-btn" onclick="prevCard()">◀ Prev</button>
-                <button class="nav-btn memorize-btn" id="btn-memorize" onclick="toggleMemorized()">⭐ Memorize</button>
-                <button class="nav-btn" onclick="nextCard()">Next ▶</button>
-            </div>
-        </div>
-
-        <!-- クイズビュー -->
-        <div id="quiz-view">
-            <div id="quiz-play-area" style="display:flex; flex-direction:column; height:100%;">
-                <div class="quiz-header">
-                    <span id="quiz-progress-text">Q 1 / 10</span>
-                    <span id="quiz-score">Score: 0</span>
-                </div>
-                <div class="quiz-question-box">
-                    <p>Which Japanese adjective means:</p>
-                    <h3 id="quiz-en-prompt">Loading...</h3>
-                </div>
-                <div id="quiz-choices" class="quiz-choices-grid">
-                    <!-- ボタン生成 -->
-                </div>
-                
-                <div id="quiz-explanation">
-                    <h4>Incorrect!</h4>
-                    <p>You chose: <strong id="exp-wrong-jp"></strong> (<span id="exp-wrong-romaji"></span>)<br>
-                    Meaning: <span id="exp-wrong-en" style="color: var(--wrong-color); font-weight: bold;"></span></p>
-                    <p style="margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 10px; width: 100%;">The correct answer was:</p>
-                    <p><strong id="exp-jp"></strong> (<span id="exp-romaji"></span>) <button class="tool-btn" onclick="playQuizAnswerAudio()">🔊 Listen</button></p>
-                    <button class="quiz-next-btn" onclick="nextQuizQuestion()">Next Question</button>
-                </div>
-            </div>
-            
-            <div id="quiz-result-view" style="display: none;">
-                <h2>Quiz Complete!</h2>
-                <p>You scored <strong id="final-score">0</strong> / 10.</p>
-                <button class="play-again-btn" onclick="startQuiz()">Play Again</button>
-            </div>
-        </div>
-
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-val green" id="statMemorized">0 / 200</div>
+        <div class="stat-lbl">Memorized</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val orange" id="statStreak">0 🔥</div>
+        <div class="stat-lbl">Streak</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val red" id="statWeak">0</div>
+        <div class="stat-lbl">Weak Words</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="statPool">200</div>
+        <div class="stat-lbl">In Filter</div>
+      </div>
     </div>
-</div>
+    <div class="prog-track">
+      <div class="prog-fill" id="masteryFill"></div>
+    </div>
+  </section>
 
+  <!-- 5 MODE TABS -->
+  <div class="mode-grid" role="tablist">
+    <button type="button" class="mode-btn active" data-mode="cards">
+      <span class="mode-title">🃏 Flashcards</span>
+      <span class="mode-sub">Flip + 4 Forms</span>
+    </button>
+    <button type="button" class="mode-btn" data-mode="conj">
+      <span class="mode-title">🧩 Conjugation</span>
+      <span class="mode-sub">Neg / Past Traps</span>
+    </button>
+    <button type="button" class="mode-btn" data-mode="quiz">
+      <span class="mode-title">⚡ Quiz / Listen</span>
+      <span class="mode-sub">Meaning &amp; Audio</span>
+    </button>
+    <button type="button" class="mode-btn" data-mode="weak">
+      <span class="mode-title">🔁 Weak <span class="mode-badge hidden" id="weakBadge">0</span></span>
+      <span class="mode-sub">Review Missed</span>
+    </button>
+    <button type="button" class="mode-btn" data-mode="list">
+      <span class="mode-title">📋 All 200</span>
+      <span class="mode-sub">Search &amp; Table</span>
+    </button>
+  </div>
 
-<!-- OHAYO_NEXT_CTA -->
-<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
-  <div class="ohayo-cta-next">
-    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
-    <div class="ohayo-cta-grid">
-      <a class="ohayo-cta-link" href="plainform.html"><div><span class="ohayo-cta-tag">GRAMMAR</span><span class="ohayo-cta-name">Plain Form Verb Practice</span></div><span class="ohayo-cta-arrow">→</span></a>
-      <a class="ohayo-cta-link" href="Grammar1-1.html"><div><span class="ohayo-cta-tag">GRAMMAR</span><span class="ohayo-cta-name">N5 Grammar 1-1</span></div><span class="ohayo-cta-arrow">→</span></a>
+  <!-- FILTERS -->
+  <div class="filter-bar">
+    <div class="filter-group" id="typeFilterGroup">
+      <button type="button" class="chip active" data-type="all">All (200)</button>
+      <button type="button" class="chip" data-type="i">🔴 い-Adj (100)</button>
+      <button type="button" class="chip" data-type="na">🟢 な-Adj (100)</button>
+      <button type="button" class="chip" data-type="tricky">⚠️ Tricky &amp; Exceptions</button>
+      <button type="button" class="chip" id="unmemChip">⭐ Unmemorized</button>
+    </div>
+    <div class="filter-group" id="levelFilterGroup">
+      <button type="button" class="chip level-active" data-level="all">All Levels</button>
+      <button type="button" class="chip" data-level="basic">N5–N4</button>
+      <button type="button" class="chip" data-level="mid">N3</button>
+      <button type="button" class="chip" data-level="adv">N2–N1</button>
     </div>
   </div>
-  <div class="ohayo-cta-lesson">
-    <div>
-      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
-      <h3>Want to use what you just practiced with a native teacher?</h3>
-      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+
+  <!-- 1. FLASHCARDS VIEW -->
+  <section id="view-cards">
+    <div class="fc-bar">
+      <span id="fcCounter">Card 1 / 200</span>
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <button type="button" class="audio-pill" id="fcShuffleBtn">🔀 Shuffle</button>
+      </div>
     </div>
-    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+
+    <div class="flip-stage" id="flipStage">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <div class="fc-top-left">
+            <span class="badge-pill badge-i" id="fcTypeBadge">い-Adjective</span>
+            <span class="badge-pill badge-lvl" id="fcLevelBadge">N5–N4</span>
+            <span class="badge-pill badge-warn hidden" id="fcTrickyBadge">⚠️ Tricky!</span>
+          </div>
+          <div class="fc-top-right">
+            <button type="button" class="audio-pill primary" id="fcAudioNormal">🔊 1.0x</button>
+            <button type="button" class="audio-pill" id="fcAudioSlow">🐢 0.75x</button>
+          </div>
+          <div class="fc-jp" id="fcJp">大きい</div>
+          <div class="fc-romaji" id="fcRomaji">ookii</div>
+          <div class="fc-hint">Tap card to see Meaning &amp; 4 Conjugation Forms ↻</div>
+        </div>
+
+        <div class="flip-face back">
+          <div class="fc-top-left">
+            <span class="badge-pill badge-lvl" id="fcBackTag">Meaning &amp; Conjugations</span>
+          </div>
+          <div class="fc-top-right">
+            <button type="button" class="audio-pill" id="fcBackAudio">🔊 Audio</button>
+          </div>
+          <div class="fc-en" id="fcEn">Big / Large</div>
+          <div class="conj-grid-4" id="fcConjGrid"></div>
+          <div class="fc-hint" style="margin-top:14px;">Tap to flip back ↻</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fc-nav-grid">
+      <button type="button" class="btn-sub" id="fcPrevBtn">← Prev</button>
+      <button type="button" class="btn-mem" id="fcMemBtn">⭐ Memorize</button>
+      <button type="button" class="btn-main" id="fcNextBtn">Next →</button>
+    </div>
+  </section>
+
+  <!-- 2. CONJUGATION DRILL VIEW -->
+  <section id="view-conj" class="hidden">
+    <div class="panel-card" id="conjPlayCard">
+      <div class="panel-meta">
+        <span style="font-size:0.82rem; font-weight:800; color:var(--muted);" id="conjProgress">Drill 1 / 10</span>
+        <div class="filter-group">
+          <button type="button" class="chip active" data-ct="all">All Forms</button>
+          <button type="button" class="chip" data-ct="neg">Negative</button>
+          <button type="button" class="chip" data-ct="past">Past</button>
+          <button type="button" class="chip" data-ct="pastNeg">Past Neg</button>
+        </div>
+      </div>
+
+      <div class="prompt-box">
+        <div style="display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:8px;">
+          <span class="badge-pill badge-i" id="conjTypePill">い-Adjective</span>
+          <span class="badge-pill badge-lvl" id="conjLevelPill">N5–N4</span>
+          <span class="badge-pill badge-warn hidden" id="conjTrickyPill">⚠️ Tricky!</span>
+        </div>
+        <div class="prompt-big" id="conjBaseJp">大きい</div>
+        <div class="prompt-sub" id="conjBaseSub">ookii — Big / Large</div>
+        <div><span class="target-pill" id="conjTargetBadge">Change to: ❌ Plain Negative</span></div>
+      </div>
+
+      <div class="choices-grid" id="conjChoices"></div>
+
+      <div class="feedback-box" id="conjFeedback">
+        <div class="fb-head">
+          <div class="fb-title" id="conjFbTitle"></div>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="audio-pill" id="conjAudio1">🔊 1.0x</button>
+            <button type="button" class="audio-pill" id="conjAudioSlow">🐢 0.75x</button>
+          </div>
+        </div>
+        <div class="fb-rule" id="conjFbRule"></div>
+        <div class="mini-table-4" id="conjMiniTable"></div>
+        <div class="fb-footer">
+          <button type="button" class="btn-main" id="conjNextBtn">Next Drill →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-card summary-box hidden" id="conjSummary">
+      <div class="summary-emoji" id="conjSumEmoji">🎉</div>
+      <div class="summary-score" id="conjSumScore">0 / 10</div>
+      <p class="summary-msg" id="conjSumMsg"></p>
+      <div class="summary-btns">
+        <button type="button" class="btn-main" id="conjRetryBtn">↺ New 10-Q Drill</button>
+        <button type="button" class="btn-sub hidden" id="conjGoWeakBtn">🔁 Review Weak Words</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MEANING & LISTENING QUIZ VIEW -->
+  <section id="view-quiz" class="hidden">
+    <div class="panel-card" id="quizPlayCard">
+      <div class="panel-meta">
+        <div class="filter-group">
+          <button type="button" class="chip active" data-qsub="en2jp">EN → JP</button>
+          <button type="button" class="chip" data-qsub="jp2en">JP → EN</button>
+          <button type="button" class="chip" data-qsub="listen">🎧 Audio → Meaning</button>
+        </div>
+        <span style="font-size:0.82rem; font-weight:800; color:var(--muted);" id="quizProgress">Q 1 / 10 · Score: 0</span>
+      </div>
+
+      <div class="prompt-box">
+        <div style="font-size:0.82rem; font-weight:700; color:var(--muted); margin-bottom:8px;" id="quizPromptLabel">Which Japanese adjective means:</div>
+        <div class="prompt-big" id="quizPromptMain" style="color:var(--primary);">Big / Large</div>
+        <div class="prompt-sub hidden" id="quizPromptSub"></div>
+        <div id="quizListenControls" class="hidden" style="display:flex; justify-content:center; gap:8px; margin-top:12px; flex-wrap:wrap;">
+          <button type="button" class="audio-pill primary" id="quizListen1">🔊 Play Audio (1.0x)</button>
+          <button type="button" class="audio-pill" id="quizListenSlow">🐢 Slow (0.75x)</button>
+        </div>
+      </div>
+
+      <div class="choices-grid" id="quizChoices"></div>
+
+      <div class="feedback-box" id="quizFeedback">
+        <div class="fb-head">
+          <div class="fb-title" id="quizFbTitle"></div>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="audio-pill" id="quizFbAudio1">🔊 1.0x</button>
+            <button type="button" class="audio-pill" id="quizFbAudioSlow">🐢 0.75x</button>
+          </div>
+        </div>
+        <div class="fb-rule" id="quizFbDetail"></div>
+        <div class="fb-footer">
+          <button type="button" class="btn-main" id="quizNextBtn">Next Question →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-card summary-box hidden" id="quizSummary">
+      <div class="summary-emoji" id="quizSumEmoji">🎉</div>
+      <div class="summary-score" id="quizSumScore">0 / 10</div>
+      <p class="summary-msg" id="quizSumMsg"></p>
+      <div class="summary-btns">
+        <button type="button" class="btn-main" id="quizRetryBtn">↺ Play 10 More</button>
+        <button type="button" class="btn-sub hidden" id="quizGoWeakBtn">🔁 Review Weak Words</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WEAK REVIEW VIEW -->
+  <section id="view-weak" class="hidden">
+    <div class="panel-card summary-box" id="weakEmpty">
+      <div class="summary-emoji">✨</div>
+      <div style="font-size:1.1rem; font-weight:800; color:var(--dark); margin-bottom:6px;">No weak adjectives right now!</div>
+      <p class="summary-msg">Any adjective you miss in Conjugation Drill or Quiz is automatically saved here so you can focus on your weak spots.</p>
+      <div class="summary-btns">
+        <button type="button" class="btn-main" id="weakStartConj">🧩 Start Conjugation Drill</button>
+        <button type="button" class="btn-sub" id="weakStartQuiz">⚡ Start Quiz</button>
+      </div>
+    </div>
+    <div id="weakHasItems" class="hidden">
+      <div class="fc-bar">
+        <span id="weakCountTitle">Weak words to review</span>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="audio-pill primary" id="weakDrillBtn">🧩 Drill Weak Words</button>
+          <button type="button" class="audio-pill" id="weakQuizBtn">⚡ Quiz Weak Words</button>
+        </div>
+      </div>
+      <div class="list-stack" id="weakList"></div>
+    </div>
+  </section>
+
+  <!-- 5. ALL 200 DICTIONARY VIEW -->
+  <section id="view-list" class="hidden">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="dictSearch" placeholder="Search Japanese, romaji, or English (e.g. kirei, big, nostalgic)...">
+    </div>
+    <div class="fc-bar">
+      <span id="dictCountLabel">Showing 200 adjectives</span>
+      <span style="font-size:0.74rem;">Tap any word to open 4 conjugation forms</span>
+    </div>
+    <div class="list-stack" id="dictList"></div>
+  </section>
+
+  <div class="utility-bar">
+    <span id="bestBar">🏆 Best 10-Q: Conjugation — · Quiz —</span>
+    <button type="button" class="reset-link" id="resetBtn">↺ Reset saved progress</button>
   </div>
-</section>
+
+  <!-- OHAYO_NEXT_CTA -->
+  <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+    <div class="ohayo-cta-next">
+      <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+      <div class="ohayo-cta-grid">
+        <a class="ohayo-cta-link" href="plainform.html">
+          <div>
+            <span class="ohayo-cta-tag">GRAMMAR</span>
+            <span class="ohayo-cta-name">Plain Form Verb Practice (300 Verbs)</span>
+          </div>
+          <span class="ohayo-cta-arrow">→</span>
+        </a>
+        <a class="ohayo-cta-link" href="Grammar1-1.html">
+          <div>
+            <span class="ohayo-cta-tag">GRAMMAR</span>
+            <span class="ohayo-cta-name">N5 Grammar 1-1 Sentence Builder</span>
+          </div>
+          <span class="ohayo-cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="ohayo-cta-lesson">
+      <div>
+        <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
+        <h3>Want to use what you just practiced with a native teacher?</h3>
+        <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+      </div>
+      <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+    </div>
+  </section>
+
+  <div class="support-section">
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+      ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+  </div>
+</main>
 
 <script>
-    // --- データ群 ---
-    const vocabulary = {
-        'i-adj': [
-            { id: 'i1', jp: '大きい', romaji: 'ookii', en: 'Big / Large' }, { id: 'i2', jp: '小さい', romaji: 'chiisai', en: 'Small' }, { id: 'i3', jp: '高い', romaji: 'takai', en: 'High / Expensive' }, { id: 'i4', jp: '安い', romaji: 'yasui', en: 'Cheap' }, { id: 'i5', jp: '新しい', romaji: 'atarashii', en: 'New' }, { id: 'i6', jp: '古い', romaji: 'furui', en: 'Old' }, { id: 'i7', jp: '良い・いい', romaji: 'yoi / ii', en: 'Good' }, { id: 'i8', jp: '悪い', romaji: 'warui', en: 'Bad' }, { id: 'i9', jp: '暑い', romaji: 'atsui', en: 'Hot (weather)' }, { id: 'i10', jp: '寒い', romaji: 'samui', en: 'Cold (weather)' }, { id: 'i11', jp: '温かい', romaji: 'atatakai', en: 'Warm' }, { id: 'i12', jp: '涼しい', romaji: 'suzushii', en: 'Cool' }, { id: 'i13', jp: '面白い', romaji: 'omoshiroi', en: 'Interesting / Funny' }, { id: 'i14', jp: 'つまらない', romaji: 'tsumaranai', en: 'Boring' }, { id: 'i15', jp: '難しい', romaji: 'muzukashii', en: 'Difficult' }, { id: 'i16', jp: '易しい', romaji: 'yasashii', en: 'Easy' }, { id: 'i17', jp: '忙しい', romaji: 'isogashii', en: 'Busy' }, { id: 'i18', jp: '楽しい', romaji: 'tanoshii', en: 'Fun / Enjoyable' }, { id: 'i19', jp: '美味しい', romaji: 'oishii', en: 'Delicious' }, { id: 'i20', jp: '早い', romaji: 'hayai', en: 'Fast / Early' }, { id: 'i21', jp: '遅い', romaji: 'osoi', en: 'Slow / Late' }, { id: 'i22', jp: '近い', romaji: 'chikai', en: 'Close / Near' }, { id: 'i23', jp: '遠い', romaji: 'tooi', en: 'Far' }, { id: 'i24', jp: '強い', romaji: 'tsuyoi', en: 'Strong' }, { id: 'i25', jp: '弱い', romaji: 'yowai', en: 'Weak' }, { id: 'i26', jp: '甘い', romaji: 'amai', en: 'Sweet' }, { id: 'i27', jp: '辛い', romaji: 'karai', en: 'Spicy / Salty' }, { id: 'i28', jp: '苦い', romaji: 'nigai', en: 'Bitter' }, { id: 'i29', jp: '酸っぱい', romaji: 'suppai', en: 'Sour' }, { id: 'i30', jp: '重い', romaji: 'omoi', en: 'Heavy' }, { id: 'i31', jp: '軽い', romaji: 'karui', en: 'Light' }, { id: 'i32', jp: '広い', romaji: 'hiroi', en: 'Wide / Spacious' }, { id: 'i33', jp: '狭い', romaji: 'semai', en: 'Narrow / Cramped' }, { id: 'i34', jp: '太い', romaji: 'futoi', en: 'Thick / Fat' }, { id: 'i35', jp: '細い', romaji: 'hosoi', en: 'Thin / Slender' }, { id: 'i36', jp: '若い', romaji: 'wakai', en: 'Young' }, { id: 'i37', jp: '明るい', romaji: 'akarui', en: 'Bright' }, { id: 'i38', jp: '暗い', romaji: 'kurai', en: 'Dark' }, { id: 'i39', jp: '痛い', romaji: 'itai', en: 'Painful' }, { id: 'i40', jp: '眠い', romaji: 'nemui', en: 'Sleepy' }, { id: 'i41', jp: '怖い', romaji: 'kowai', en: 'Scary' }, { id: 'i42', jp: '恥ずかしい', romaji: 'hazukashii', en: 'Embarrassing / Shy' }, { id: 'i43', jp: '素晴らしい', romaji: 'subarashii', en: 'Wonderful' }, { id: 'i44', jp: '珍しい', romaji: 'mezurashii', en: 'Rare / Unusual' }, { id: 'i45', jp: '悲しい', romaji: 'kanashii', en: 'Sad' }, { id: 'i46', jp: '嬉しい', romaji: 'ureshii', en: 'Glad / Happy' }, { id: 'i47', jp: '寂しい', romaji: 'sabishii', en: 'Lonely' }, { id: 'i48', jp: '厳しい', romaji: 'kibishii', en: 'Strict / Severe' }, { id: 'i49', jp: '優しい', romaji: 'yasashii', en: 'Kind / Gentle' }, { id: 'i50', jp: '汚い', romaji: 'kitanai', en: 'Dirty' }, { id: 'i51', jp: '美しい', romaji: 'utsukushii', en: 'Beautiful' }, { id: 'i52', jp: '可愛い', romaji: 'kawaii', en: 'Cute' }, { id: 'i53', jp: 'かっこいい', romaji: 'kakkoii', en: 'Cool / Handsome' }, { id: 'i54', jp: '賢い', romaji: 'kashikoi', en: 'Smart' }, { id: 'i55', jp: '偉い', romaji: 'erai', en: 'Great / Admirable' }, { id: 'i56', jp: 'ぬるい', romaji: 'nurui', en: 'Lukewarm' }, { id: 'i57', jp: 'まずい', romaji: 'mazui', en: 'Bad tasting' }, { id: 'i58', jp: 'しょっぱい', romaji: 'shoppai', en: 'Salty' }, { id: 'i59', jp: '臭い', romaji: 'kusai', en: 'Smelly' }, { id: 'i60', jp: 'かゆい', romaji: 'kayui', en: 'Itchy' }, { id: 'i61', jp: 'だるい', romaji: 'darui', en: 'Sluggish / Heavy' }, { id: 'i62', jp: '苦しい', romaji: 'kurushii', en: 'Painful / Agonizing' }, { id: 'i63', jp: '恐ろしい', romaji: 'osoroshii', en: 'Terrifying' }, { id: 'i64', jp: '怪しい', romaji: 'ayashii', en: 'Suspicious' }, { id: 'i65', jp: '悔しい', romaji: 'kuyashii', en: 'Frustrating / Regrettable' }, { id: 'i66', jp: '懐かしい', romaji: 'natsukashii', en: 'Nostalgic' }, { id: 'i67', jp: '羨ましい', romaji: 'urayamashii', en: 'Envious' }, { id: 'i68', jp: '惜しい', romaji: 'oshii', en: 'Close / A pity' }, { id: 'i69', jp: '詳しい', romaji: 'kuwashii', en: 'Detailed' }, { id: 'i70', jp: '激しい', romaji: 'hageshii', en: 'Violent / Intense' }, { id: 'i71', jp: '親しい', romaji: 'shitashii', en: 'Intimate / Familiar' }, { id: 'i72', jp: '険しい', romaji: 'kewashii', en: 'Steep / Grim' }, { id: 'i73', jp: '乏しい', romaji: 'toboshii', en: 'Scarce' }, { id: 'i74', jp: '貧しい', romaji: 'mazushii', en: 'Poor' }, { id: 'i75', jp: '卑しい', romaji: 'iyashii', en: 'Greedy / Vulgar' }, { id: 'i76', jp: '恋しい', romaji: 'koishii', en: 'Longed for' }, { id: 'i77', jp: '頼もしい', romaji: 'tanomoshii', en: 'Reliable' }, { id: 'i78', jp: '煩わしい', romaji: 'wazurawashii', en: 'Troublesome' }, { id: 'i79', jp: '騒がしい', romaji: 'sawagashii', en: 'Noisy / Boisterous' }, { id: 'i80', jp: '慌ただしい', romaji: 'awatadashii', en: 'Hurried / Busy' }, { id: 'i81', jp: '勇ましい', romaji: 'isamashii', en: 'Brave' }, { id: 'i82', jp: '醜い', romaji: 'minikui', en: 'Ugly' }, { id: 'i83', jp: '憎らしい', romaji: 'nikurashii', en: 'Hateful' }, { id: 'i84', jp: '鈍い', romaji: 'nibui', en: 'Dull / Slow' }, { id: 'i85', jp: '鋭い', romaji: 'surudoi', en: 'Sharp' }, { id: 'i86', jp: 'ダサい', romaji: 'dasai', en: 'Uncool / Tacky' }, { id: 'i87', jp: '柔らかい', romaji: 'yawarakai', en: 'Soft' }, { id: 'i88', jp: '固い', romaji: 'katai', en: 'Hard' }, { id: 'i89', jp: '深い', romaji: 'fukai', en: 'Deep' }, { id: 'i90', jp: '浅い', romaji: 'asai', en: 'Shallow' }, { id: 'i91', jp: '丸い', romaji: 'marui', en: 'Round' }, { id: 'i92', jp: '四角い', romaji: 'shikakui', en: 'Square' }, { id: 'i93', jp: '厚い', romaji: 'atsui', en: 'Thick (objects)' }, { id: 'i94', jp: '薄い', romaji: 'usui', en: 'Thin' }, { id: 'i95', jp: 'うるさい', romaji: 'urusai', en: 'Noisy / Annoying' }, { id: 'i96', jp: 'おとなしい', romaji: 'otonashii', en: 'Quiet / Docile' }, { id: 'i97', jp: '甘酸っぱい', romaji: 'amazuppai', en: 'Sweet and sour' }, { id: 'i98', jp: '危ない', romaji: 'abunai', en: 'Dangerous' }, { id: 'i99', jp: '緩い', romaji: 'yurui', en: 'Loose' }, { id: 'i100', jp: 'しつこい', romaji: 'shitsukoi', en: 'Persistent' }
-        ],
-        'na-adj': [
-            { id: 'na1', jp: '有名 [な]', romaji: 'yuumei [na]', en: 'Famous' }, { id: 'na2', jp: '静か [な]', romaji: 'shizuka [na]', en: 'Quiet' }, { id: 'na3', jp: '賑やか [な]', romaji: 'nigiyaka [na]', en: 'Lively / Bustling' }, { id: 'na4', jp: '親切 [な]', romaji: 'shinsetsu [na]', en: 'Kind' }, { id: 'na5', jp: '元気 [な]', romaji: 'genki [na]', en: 'Healthy / Energetic' }, { id: 'na6', jp: '綺麗 [な]', romaji: 'kirei [na]', en: 'Beautiful / Clean' }, { id: 'na7', jp: '便利 [な]', romaji: 'benri [na]', en: 'Convenient' }, { id: 'na8', jp: '不便 [な]', romaji: 'fuben [na]', en: 'Inconvenient' }, { id: 'na9', jp: '好き [な]', romaji: 'suki [na]', en: 'Liked / Favorite' }, { id: 'na10', jp: '嫌い [な]', romaji: 'kirai [na]', en: 'Disliked' }, { id: 'na11', jp: '上手 [な]', romaji: 'jouzu [na]', en: 'Good at' }, { id: 'na12', jp: '下手 [な]', romaji: 'heta [na]', en: 'Bad at' }, { id: 'na13', jp: '暇 [な]', romaji: 'hima [na]', en: 'Free (time)' }, { id: 'na14', jp: '大切 [な]', romaji: 'taisetsu [na]', en: 'Important' }, { id: 'na15', jp: '簡単 [な]', romaji: 'kantan [na]', en: 'Simple / Easy' }, { id: 'na16', jp: '複雑 [な]', romaji: 'fukuzatsu [na]', en: 'Complicated' }, { id: 'na17', jp: '安全 [な]', romaji: 'anzen [na]', en: 'Safe' }, { id: 'na18', jp: '危険 [な]', romaji: 'kiken [na]', en: 'Dangerous' }, { id: 'na19', jp: '真面目 [な]', romaji: 'majime [na]', en: 'Serious / Earnest' }, { id: 'na20', jp: '素敵 [な]', romaji: 'suteki [na]', en: 'Lovely / Wonderful' }, { id: 'na21', jp: '丈夫 [な]', romaji: 'joubu [na]', en: 'Sturdy / Strong' }, { id: 'na22', jp: '大変 [な]', romaji: 'taihen [na]', en: 'Tough / Awful' }, { id: 'na23', jp: '楽 [な]', romaji: 'raku [na]', en: 'Comfortable / Easy' }, { id: 'na24', jp: 'いや [な]', romaji: 'iya [na]', en: 'Unpleasant' }, { id: 'na25', jp: '大丈夫 [な]', romaji: 'daijoubu [na]', en: 'Okay / Fine' }, { id: 'na26', jp: '残念 [な]', romaji: 'zannen [na]', en: 'Regrettable' }, { id: 'na27', jp: '丁寧 [な]', romaji: 'teinei [na]', en: 'Polite' }, { id: 'na28', jp: '立派 [な]', romaji: 'rippa [na]', en: 'Splendid' }, { id: 'na29', jp: '変 [な]', romaji: 'hen [na]', en: 'Strange / Weird' }, { id: 'na30', jp: '特別 [な]', romaji: 'tokubetsu [na]', en: 'Special' }, { id: 'na31', jp: '急 [な]', romaji: 'kyuu [na]', en: 'Sudden / Urgent' }, { id: 'na32', jp: '無理 [な]', romaji: 'muri [na]', en: 'Impossible' }, { id: 'na33', jp: '自由 [な]', romaji: 'jiyuu [na]', en: 'Free' }, { id: 'na34', jp: '熱心 [な]', romaji: 'nesshin [na]', en: 'Enthusiastic' }, { id: 'na35', jp: '盛ん [な]', romaji: 'sakan [na]', en: 'Thriving / Popular' }, { id: 'na36', jp: '十分 [な]', romaji: 'juubun [na]', en: 'Sufficient / Enough' }, { id: 'na37', jp: '幸せ [な]', romaji: 'shiawase [na]', en: 'Happy' }, { id: 'na38', jp: '必要 [な]', romaji: 'hitsuyou [na]', en: 'Necessary' }, { id: 'na39', jp: '邪魔 [な]', romaji: 'jama [na]', en: 'Hindering' }, { id: 'na40', jp: '確か [な]', romaji: 'tashika [na]', en: 'Certain / Sure' }, { id: 'na41', jp: '正確 [な]', romaji: 'seikaku [na]', en: 'Accurate' }, { id: 'na42', jp: '新鮮 [な]', romaji: 'shinsen [na]', en: 'Fresh' }, { id: 'na43', jp: '退屈 [な]', romaji: 'taikutsu [na]', en: 'Boring / Tedious' }, { id: 'na44', jp: '貧乏 [な]', romaji: 'binbou [na]', en: 'Poor' }, { id: 'na45', jp: '平和 [な]', romaji: 'heiwa [na]', en: 'Peaceful' }, { id: 'na46', jp: '満足 [な]', romaji: 'manzoku [na]', en: 'Satisfied' }, { id: 'na47', jp: '完璧 [な]', romaji: 'kanpeki [na]', en: 'Perfect' }, { id: 'na48', jp: '得意 [な]', romaji: 'tokui [na]', en: 'Good at / Proud' }, { id: 'na49', jp: '苦手 [な]', romaji: 'nigate [na]', en: 'Bad at' }, { id: 'na50', jp: '派手 [な]', romaji: 'hade [na]', en: 'Flashy / Showy' }, { id: 'na51', jp: '地味 [な]', romaji: 'jimi [na]', en: 'Plain / Subdued' }, { id: 'na52', jp: 'おしゃれ [な]', romaji: 'oshare [na]', en: 'Stylish / Fashionable' }, { id: 'na53', jp: '豊か [な]', romaji: 'yutaka [na]', en: 'Rich / Abundant' }, { id: 'na54', jp: '穏やか [な]', romaji: 'odayaka [na]', en: 'Calm / Gentle' }, { id: 'na55', jp: '爽やか [な]', romaji: 'sawayaka [na]', en: 'Refreshing' }, { id: 'na56', jp: '華やか [な]', romaji: 'hanayaka [na]', en: 'Gorgeous' }, { id: 'na57', jp: '鮮やか [な]', romaji: 'azayaka [na]', en: 'Vivid / Bright' }, { id: 'na58', jp: 'なだらか [な]', romaji: 'nadaraka [na]', en: 'Gentle slope' }, { id: 'na59', jp: '緩やか [な]', romaji: 'yuruyaka [na]', en: 'Loose / Gentle' }, { id: 'na60', jp: '健やか [な]', romaji: 'sukoyaka [na]', en: 'Healthy / Sound' }, { id: 'na61', jp: '速やか [な]', romaji: 'sumiyaka [na]', en: 'Prompt / Speedy' }, { id: 'na62', jp: '密か [な]', romaji: 'hisoka [na]', en: 'Secret / Private' }, { id: 'na63', jp: '遥か [な]', romaji: 'haruka [na]', en: 'Far away' }, { id: 'na64', jp: '愚か [な]', romaji: 'oroka [na]', en: 'Foolish / Stupid' }, { id: 'na65', jp: '厳か [な]', romaji: 'ogosoka [na]', en: 'Solemn / Majestic' }, { id: 'na66', jp: '朗らか [な]', romaji: 'hogaraka [na]', en: 'Cheerful' }, { id: 'na67', jp: '滑らか [な]', romaji: 'nameraka [na]', en: 'Smooth' }, { id: 'na68', jp: '柔らか [な]', romaji: 'yawaraka [na]', en: 'Soft / Tender' }, { id: 'na69', jp: '明らか [な]', romaji: 'akiraka [na]', en: 'Clear / Obvious' }, { id: 'na70', jp: '微か [な]', romaji: 'kasuka [na]', en: 'Faint / Slight' }, { id: 'na71', jp: '僅か [な]', romaji: 'wazuka [na]', en: 'Scant / Few' }, { id: 'na72', jp: '不安 [な]', romaji: 'fuan [na]', en: 'Anxious / Uneasy' }, { id: 'na73', jp: '不満 [な]', romaji: 'fuman [na]', en: 'Dissatisfied' }, { id: 'na74', jp: '不思議 [な]', romaji: 'fushigi [na]', en: 'Mysterious' }, { id: 'na75', jp: '不規則 [な]', romaji: 'fukisoku [na]', en: 'Irregular' }, { id: 'na76', jp: '不自然 [な]', romaji: 'fushizen [na]', en: 'Unnatural' }, { id: 'na77', jp: '不幸 [な]', romaji: 'fukou [na]', en: 'Unhappy' }, { id: 'na78', jp: '有能 [な]', romaji: 'yuunou [na]', en: 'Capable' }, { id: 'na79', jp: '無能 [な]', romaji: 'munou [na]', en: 'Incompetent' }, { id: 'na80', jp: '有効 [な]', romaji: 'yuukou [na]', en: 'Valid' }, { id: 'na81', jp: '無効 [な]', romaji: 'mukou [na]', en: 'Invalid' }, { id: 'na82', jp: '夢中 [な]', romaji: 'muchuu [na]', en: 'Absorbed' }, { id: 'na83', jp: '曖昧 [な]', romaji: 'aimai [na]', en: 'Vague / Ambiguous' }, { id: 'na84', jp: '厄介 [な]', romaji: 'yakkai [na]', en: 'Troublesome' }, { id: 'na85', jp: '豪華 [な]', romaji: 'gouka [na]', en: 'Luxurious' }, { id: 'na86', jp: '贅沢 [な]', romaji: 'zeitaku [na]', en: 'Extravagant' }, { id: 'na87', jp: '豊富 [な]', romaji: 'houfu [na]', en: 'Abundant' }, { id: 'na88', jp: '多様 [な]', romaji: 'tayou [na]', en: 'Diverse' }, { id: 'na89', jp: '同様 [な]', romaji: 'douyou [na]', en: 'Similar / Same' }, { id: 'na90', jp: '独特 [な]', romaji: 'dokutoku [na]', en: 'Unique' }, { id: 'na91', jp: '特殊 [な]', romaji: 'tokushu [na]', en: 'Special / Peculiar' }, { id: 'na92', jp: '奇妙 [な]', romaji: 'kimyou [na]', en: 'Strange / Bizarre' }, { id: 'na93', jp: '妙 [な]', romaji: 'myou [na]', en: 'Strange / Odd' }, { id: 'na94', jp: '適当 [な]', romaji: 'tekitou [na]', en: 'Appropriate / Careless' }, { id: 'na95', jp: '適切 [な]', romaji: 'tekisetsu [na]', en: 'Appropriate / Fitting' }, { id: 'na96', jp: '快適 [な]', romaji: 'kaiteki [na]', en: 'Comfortable' }, { id: 'na97', jp: '憂鬱 [な]', romaji: 'yuuutsu [na]', en: 'Depressed / Gloomy' }, { id: 'na98', jp: '悲惨 [な]', romaji: 'hisan [na]', en: 'Miserable' }, { id: 'na99', jp: '残酷 [な]', romaji: 'zankoku [na]', en: 'Cruel' }, { id: 'na100', jp: '頑固 [な]', romaji: 'ganko [na]', en: 'Stubborn' }
-        ]
+(function () {
+  'use strict';
+
+  var MEM_KEY = 'memorizedAdjectives';
+  var TRAINER_KEY = 'ohayo_adj_trainer_v2';
+
+  var RAW_I = [
+    { id: 'i1', jp: '大きい', romaji: 'ookii', en: 'Big / Large' },
+    { id: 'i2', jp: '小さい', romaji: 'chiisai', en: 'Small' },
+    { id: 'i3', jp: '高い', romaji: 'takai', en: 'High / Expensive' },
+    { id: 'i4', jp: '安い', romaji: 'yasui', en: 'Cheap' },
+    { id: 'i5', jp: '新しい', romaji: 'atarashii', en: 'New' },
+    { id: 'i6', jp: '古い', romaji: 'furui', en: 'Old' },
+    { id: 'i7', jp: '良い・いい', romaji: 'yoi / ii', en: 'Good', irregular: 'yoi' },
+    { id: 'i8', jp: '悪い', romaji: 'warui', en: 'Bad' },
+    { id: 'i9', jp: '暑い', romaji: 'atsui', en: 'Hot (weather)' },
+    { id: 'i10', jp: '寒い', romaji: 'samui', en: 'Cold (weather)' },
+    { id: 'i11', jp: '温かい', romaji: 'atatakai', en: 'Warm' },
+    { id: 'i12', jp: '涼しい', romaji: 'suzushii', en: 'Cool' },
+    { id: 'i13', jp: '面白い', romaji: 'omoshiroi', en: 'Interesting / Funny' },
+    { id: 'i14', jp: 'つまらない', romaji: 'tsumaranai', en: 'Boring' },
+    { id: 'i15', jp: '難しい', romaji: 'muzukashii', en: 'Difficult' },
+    { id: 'i16', jp: '易しい', romaji: 'yasashii', en: 'Easy' },
+    { id: 'i17', jp: '忙しい', romaji: 'isogashii', en: 'Busy' },
+    { id: 'i18', jp: '楽しい', romaji: 'tanoshii', en: 'Fun / Enjoyable' },
+    { id: 'i19', jp: '美味しい', romaji: 'oishii', en: 'Delicious' },
+    { id: 'i20', jp: '早い', romaji: 'hayai', en: 'Fast / Early' },
+    { id: 'i21', jp: '遅い', romaji: 'osoi', en: 'Slow / Late' },
+    { id: 'i22', jp: '近い', romaji: 'chikai', en: 'Close / Near' },
+    { id: 'i23', jp: '遠い', romaji: 'tooi', en: 'Far' },
+    { id: 'i24', jp: '強い', romaji: 'tsuyoi', en: 'Strong' },
+    { id: 'i25', jp: '弱い', romaji: 'yowai', en: 'Weak' },
+    { id: 'i26', jp: '甘い', romaji: 'amai', en: 'Sweet' },
+    { id: 'i27', jp: '辛い', romaji: 'karai', en: 'Spicy / Salty' },
+    { id: 'i28', jp: '苦い', romaji: 'nigai', en: 'Bitter' },
+    { id: 'i29', jp: '酸っぱい', romaji: 'suppai', en: 'Sour' },
+    { id: 'i30', jp: '重い', romaji: 'omoi', en: 'Heavy' },
+    { id: 'i31', jp: '軽い', romaji: 'karui', en: 'Light' },
+    { id: 'i32', jp: '広い', romaji: 'hiroi', en: 'Wide / Spacious' },
+    { id: 'i33', jp: '狭い', romaji: 'semai', en: 'Narrow / Cramped' },
+    { id: 'i34', jp: '太い', romaji: 'futoi', en: 'Thick / Fat' },
+    { id: 'i35', jp: '細い', romaji: 'hosoi', en: 'Thin / Slender' },
+    { id: 'i36', jp: '若い', romaji: 'wakai', en: 'Young' },
+    { id: 'i37', jp: '明るい', romaji: 'akarui', en: 'Bright' },
+    { id: 'i38', jp: '暗い', romaji: 'kurai', en: 'Dark' },
+    { id: 'i39', jp: '痛い', romaji: 'itai', en: 'Painful' },
+    { id: 'i40', jp: '眠い', romaji: 'nemui', en: 'Sleepy' },
+    { id: 'i41', jp: '怖い', romaji: 'kowai', en: 'Scary' },
+    { id: 'i42', jp: '恥ずかしい', romaji: 'hazukashii', en: 'Embarrassing / Shy' },
+    { id: 'i43', jp: '素晴らしい', romaji: 'subarashii', en: 'Wonderful' },
+    { id: 'i44', jp: '珍しい', romaji: 'mezurashii', en: 'Rare / Unusual' },
+    { id: 'i45', jp: '悲しい', romaji: 'kanashii', en: 'Sad' },
+    { id: 'i46', jp: '嬉しい', romaji: 'ureshii', en: 'Glad / Happy' },
+    { id: 'i47', jp: '寂しい', romaji: 'sabishii', en: 'Lonely' },
+    { id: 'i48', jp: '厳しい', romaji: 'kibishii', en: 'Strict / Severe' },
+    { id: 'i49', jp: '優しい', romaji: 'yasashii', en: 'Kind / Gentle' },
+    { id: 'i50', jp: '汚い', romaji: 'kitanai', en: 'Dirty' },
+    { id: 'i51', jp: '美しい', romaji: 'utsukushii', en: 'Beautiful' },
+    { id: 'i52', jp: '可愛い', romaji: 'kawaii', en: 'Cute' },
+    { id: 'i53', jp: 'かっこいい', romaji: 'kakkoii', en: 'Cool / Handsome', irregular: 'kakkoyoi' },
+    { id: 'i54', jp: '賢い', romaji: 'kashikoi', en: 'Smart' },
+    { id: 'i55', jp: '偉い', romaji: 'erai', en: 'Great / Admirable' },
+    { id: 'i56', jp: 'ぬるい', romaji: 'nurui', en: 'Lukewarm' },
+    { id: 'i57', jp: 'まずい', romaji: 'mazui', en: 'Bad tasting' },
+    { id: 'i58', jp: 'しょっぱい', romaji: 'shoppai', en: 'Salty' },
+    { id: 'i59', jp: '臭い', romaji: 'kusai', en: 'Smelly' },
+    { id: 'i60', jp: 'かゆい', romaji: 'kayui', en: 'Itchy' },
+    { id: 'i61', jp: 'だるい', romaji: 'darui', en: 'Sluggish / Heavy' },
+    { id: 'i62', jp: '苦しい', romaji: 'kurushii', en: 'Painful / Agonizing' },
+    { id: 'i63', jp: '恐ろしい', romaji: 'osoroshii', en: 'Terrifying' },
+    { id: 'i64', jp: '怪しい', romaji: 'ayashii', en: 'Suspicious' },
+    { id: 'i65', jp: '悔しい', romaji: 'kuyashii', en: 'Frustrating / Regrettable' },
+    { id: 'i66', jp: '懐かしい', romaji: 'natsukashii', en: 'Nostalgic' },
+    { id: 'i67', jp: '羨ましい', romaji: 'urayamashii', en: 'Envious' },
+    { id: 'i68', jp: '惜しい', romaji: 'oshii', en: 'Close / A pity' },
+    { id: 'i69', jp: '詳しい', romaji: 'kuwashii', en: 'Detailed' },
+    { id: 'i70', jp: '激しい', romaji: 'hageshii', en: 'Violent / Intense' },
+    { id: 'i71', jp: '親しい', romaji: 'shitashii', en: 'Intimate / Familiar' },
+    { id: 'i72', jp: '険しい', romaji: 'kewashii', en: 'Steep / Grim' },
+    { id: 'i73', jp: '乏しい', romaji: 'toboshii', en: 'Scarce' },
+    { id: 'i74', jp: '貧しい', romaji: 'mazushii', en: 'Poor' },
+    { id: 'i75', jp: '卑しい', romaji: 'iyashii', en: 'Greedy / Vulgar' },
+    { id: 'i76', jp: '恋しい', romaji: 'koishii', en: 'Longed for' },
+    { id: 'i77', jp: '頼もしい', romaji: 'tanomoshii', en: 'Reliable' },
+    { id: 'i78', jp: '煩わしい', romaji: 'wazurawashii', en: 'Troublesome' },
+    { id: 'i79', jp: '騒がしい', romaji: 'sawagashii', en: 'Noisy / Boisterous' },
+    { id: 'i80', jp: '慌ただしい', romaji: 'awatadashii', en: 'Hurried / Busy' },
+    { id: 'i81', jp: '勇ましい', romaji: 'isamashii', en: 'Brave' },
+    { id: 'i82', jp: '醜い', romaji: 'minikui', en: 'Ugly' },
+    { id: 'i83', jp: '憎らしい', romaji: 'nikurashii', en: 'Hateful' },
+    { id: 'i84', jp: '鈍い', romaji: 'nibui', en: 'Dull / Slow' },
+    { id: 'i85', jp: '鋭い', romaji: 'surudoi', en: 'Sharp' },
+    { id: 'i86', jp: 'ダサい', romaji: 'dasai', en: 'Uncool / Tacky' },
+    { id: 'i87', jp: '柔らかい', romaji: 'yawarakai', en: 'Soft' },
+    { id: 'i88', jp: '固い', romaji: 'katai', en: 'Hard' },
+    { id: 'i89', jp: '深い', romaji: 'fukai', en: 'Deep' },
+    { id: 'i90', jp: '浅い', romaji: 'asai', en: 'Shallow' },
+    { id: 'i91', jp: '丸い', romaji: 'marui', en: 'Round' },
+    { id: 'i92', jp: '四角い', romaji: 'shikakui', en: 'Square' },
+    { id: 'i93', jp: '厚い', romaji: 'atsui', en: 'Thick (objects)' },
+    { id: 'i94', jp: '薄い', romaji: 'usui', en: 'Thin' },
+    { id: 'i95', jp: 'うるさい', romaji: 'urusai', en: 'Noisy / Annoying' },
+    { id: 'i96', jp: 'おとなしい', romaji: 'otonashii', en: 'Quiet / Docile' },
+    { id: 'i97', jp: '甘酸っぱい', romaji: 'amazuppai', en: 'Sweet and sour' },
+    { id: 'i98', jp: '危ない', romaji: 'abunai', en: 'Dangerous' },
+    { id: 'i99', jp: '緩い', romaji: 'yurui', en: 'Loose' },
+    { id: 'i100', jp: 'しつこい', romaji: 'shitsukoi', en: 'Persistent' }
+  ];
+
+  var RAW_NA = [
+    { id: 'na1', jp: '有名 [な]', romaji: 'yuumei [na]', en: 'Famous' },
+    { id: 'na2', jp: '静か [な]', romaji: 'shizuka [na]', en: 'Quiet' },
+    { id: 'na3', jp: '賑やか [な]', romaji: 'nigiyaka [na]', en: 'Lively / Bustling' },
+    { id: 'na4', jp: '親切 [な]', romaji: 'shinsetsu [na]', en: 'Kind' },
+    { id: 'na5', jp: '元気 [な]', romaji: 'genki [na]', en: 'Healthy / Energetic' },
+    { id: 'na6', jp: '綺麗 [な]', romaji: 'kirei [na]', en: 'Beautiful / Clean' },
+    { id: 'na7', jp: '便利 [な]', romaji: 'benri [na]', en: 'Convenient' },
+    { id: 'na8', jp: '不便 [な]', romaji: 'fuben [na]', en: 'Inconvenient' },
+    { id: 'na9', jp: '好き [な]', romaji: 'suki [na]', en: 'Liked / Favorite' },
+    { id: 'na10', jp: '嫌い [な]', romaji: 'kirai [na]', en: 'Disliked' },
+    { id: 'na11', jp: '上手 [な]', romaji: 'jouzu [na]', en: 'Good at' },
+    { id: 'na12', jp: '下手 [な]', romaji: 'heta [na]', en: 'Bad at' },
+    { id: 'na13', jp: '暇 [な]', romaji: 'hima [na]', en: 'Free (time)' },
+    { id: 'na14', jp: '大切 [な]', romaji: 'taisetsu [na]', en: 'Important' },
+    { id: 'na15', jp: '簡単 [な]', romaji: 'kantan [na]', en: 'Simple / Easy' },
+    { id: 'na16', jp: '複雑 [な]', romaji: 'fukuzatsu [na]', en: 'Complicated' },
+    { id: 'na17', jp: '安全 [な]', romaji: 'anzen [na]', en: 'Safe' },
+    { id: 'na18', jp: '危険 [な]', romaji: 'kiken [na]', en: 'Dangerous' },
+    { id: 'na19', jp: '真面目 [な]', romaji: 'majime [na]', en: 'Serious / Earnest' },
+    { id: 'na20', jp: '素敵 [な]', romaji: 'suteki [na]', en: 'Lovely / Wonderful' },
+    { id: 'na21', jp: '丈夫 [な]', romaji: 'joubu [na]', en: 'Sturdy / Strong' },
+    { id: 'na22', jp: '大変 [な]', romaji: 'taihen [na]', en: 'Tough / Awful' },
+    { id: 'na23', jp: '楽 [な]', romaji: 'raku [na]', en: 'Comfortable / Easy' },
+    { id: 'na24', jp: 'いや [な]', romaji: 'iya [na]', en: 'Unpleasant' },
+    { id: 'na25', jp: '大丈夫 [な]', romaji: 'daijoubu [na]', en: 'Okay / Fine' },
+    { id: 'na26', jp: '残念 [な]', romaji: 'zannen [na]', en: 'Regrettable' },
+    { id: 'na27', jp: '丁寧 [な]', romaji: 'teinei [na]', en: 'Polite' },
+    { id: 'na28', jp: '立派 [な]', romaji: 'rippa [na]', en: 'Splendid' },
+    { id: 'na29', jp: '変 [な]', romaji: 'hen [na]', en: 'Strange / Weird' },
+    { id: 'na30', jp: '特別 [な]', romaji: 'tokubetsu [na]', en: 'Special' },
+    { id: 'na31', jp: '急 [な]', romaji: 'kyuu [na]', en: 'Sudden / Urgent' },
+    { id: 'na32', jp: '無理 [な]', romaji: 'muri [na]', en: 'Impossible' },
+    { id: 'na33', jp: '自由 [な]', romaji: 'jiyuu [na]', en: 'Free' },
+    { id: 'na34', jp: '熱心 [な]', romaji: 'nesshin [na]', en: 'Enthusiastic' },
+    { id: 'na35', jp: '盛ん [な]', romaji: 'sakan [na]', en: 'Thriving / Popular' },
+    { id: 'na36', jp: '十分 [な]', romaji: 'juubun [na]', en: 'Sufficient / Enough' },
+    { id: 'na37', jp: '幸せ [な]', romaji: 'shiawase [na]', en: 'Happy' },
+    { id: 'na38', jp: '必要 [な]', romaji: 'hitsuyou [na]', en: 'Necessary' },
+    { id: 'na39', jp: '邪魔 [な]', romaji: 'jama [na]', en: 'Hindering' },
+    { id: 'na40', jp: '確か [な]', romaji: 'tashika [na]', en: 'Certain / Sure' },
+    { id: 'na41', jp: '正確 [な]', romaji: 'seikaku [na]', en: 'Accurate' },
+    { id: 'na42', jp: '新鮮 [な]', romaji: 'shinsen [na]', en: 'Fresh' },
+    { id: 'na43', jp: '退屈 [な]', romaji: 'taikutsu [na]', en: 'Boring / Tedious' },
+    { id: 'na44', jp: '貧乏 [な]', romaji: 'binbou [na]', en: 'Poor' },
+    { id: 'na45', jp: '平和 [な]', romaji: 'heiwa [na]', en: 'Peaceful' },
+    { id: 'na46', jp: '満足 [な]', romaji: 'manzoku [na]', en: 'Satisfied' },
+    { id: 'na47', jp: '完璧 [な]', romaji: 'kanpeki [na]', en: 'Perfect' },
+    { id: 'na48', jp: '得意 [な]', romaji: 'tokui [na]', en: 'Good at / Proud' },
+    { id: 'na49', jp: '苦手 [な]', romaji: 'nigate [na]', en: 'Bad at' },
+    { id: 'na50', jp: '派手 [な]', romaji: 'hade [na]', en: 'Flashy / Showy' },
+    { id: 'na51', jp: '地味 [な]', romaji: 'jimi [na]', en: 'Plain / Subdued' },
+    { id: 'na52', jp: 'おしゃれ [な]', romaji: 'oshare [na]', en: 'Stylish / Fashionable' },
+    { id: 'na53', jp: '豊か [な]', romaji: 'yutaka [na]', en: 'Rich / Abundant' },
+    { id: 'na54', jp: '穏やか [な]', romaji: 'odayaka [na]', en: 'Calm / Gentle' },
+    { id: 'na55', jp: '爽やか [な]', romaji: 'sawayaka [na]', en: 'Refreshing' },
+    { id: 'na56', jp: '華やか [な]', romaji: 'hanayaka [na]', en: 'Gorgeous' },
+    { id: 'na57', jp: '鮮やか [な]', romaji: 'azayaka [na]', en: 'Vivid / Bright' },
+    { id: 'na58', jp: 'なだらか [な]', romaji: 'nadaraka [na]', en: 'Gentle slope' },
+    { id: 'na59', jp: '緩やか [な]', romaji: 'yuruyaka [na]', en: 'Loose / Gentle' },
+    { id: 'na60', jp: '健やか [な]', romaji: 'sukoyaka [na]', en: 'Healthy / Sound' },
+    { id: 'na61', jp: '速やか [な]', romaji: 'sumiyaka [na]', en: 'Prompt / Speedy' },
+    { id: 'na62', jp: '密か [な]', romaji: 'hisoka [na]', en: 'Secret / Private' },
+    { id: 'na63', jp: '遥か [な]', romaji: 'haruka [na]', en: 'Far away' },
+    { id: 'na64', jp: '愚か [な]', romaji: 'oroka [na]', en: 'Foolish / Stupid' },
+    { id: 'na65', jp: '厳か [な]', romaji: 'ogosoka [na]', en: 'Solemn / Majestic' },
+    { id: 'na66', jp: '朗らか [な]', romaji: 'hogaraka [na]', en: 'Cheerful' },
+    { id: 'na67', jp: '滑らか [な]', romaji: 'nameraka [na]', en: 'Smooth' },
+    { id: 'na68', jp: '柔らか [な]', romaji: 'yawaraka [na]', en: 'Soft / Tender' },
+    { id: 'na69', jp: '明らか [な]', romaji: 'akiraka [na]', en: 'Clear / Obvious' },
+    { id: 'na70', jp: '微か [な]', romaji: 'kasuka [na]', en: 'Faint / Slight' },
+    { id: 'na71', jp: '僅か [な]', romaji: 'wazuka [na]', en: 'Scant / Few' },
+    { id: 'na72', jp: '不安 [な]', romaji: 'fuan [na]', en: 'Anxious / Uneasy' },
+    { id: 'na73', jp: '不満 [な]', romaji: 'fuman [na]', en: 'Dissatisfied' },
+    { id: 'na74', jp: '不思議 [な]', romaji: 'fushigi [na]', en: 'Mysterious' },
+    { id: 'na75', jp: '不規則 [な]', romaji: 'fukisoku [na]', en: 'Irregular' },
+    { id: 'na76', jp: '不自然 [な]', romaji: 'fushizen [na]', en: 'Unnatural' },
+    { id: 'na77', jp: '不幸 [な]', romaji: 'fukou [na]', en: 'Unhappy' },
+    { id: 'na78', jp: '有能 [な]', romaji: 'yuunou [na]', en: 'Capable' },
+    { id: 'na79', jp: '無能 [な]', romaji: 'munou [na]', en: 'Incompetent' },
+    { id: 'na80', jp: '有効 [な]', romaji: 'yuukou [na]', en: 'Valid' },
+    { id: 'na81', jp: '無効 [な]', romaji: 'mukou [na]', en: 'Invalid' },
+    { id: 'na82', jp: '夢中 [な]', romaji: 'muchuu [na]', en: 'Absorbed' },
+    { id: 'na83', jp: '曖昧 [な]', romaji: 'aimai [na]', en: 'Vague / Ambiguous' },
+    { id: 'na84', jp: '厄介 [な]', romaji: 'yakkai [na]', en: 'Troublesome' },
+    { id: 'na85', jp: '豪華 [な]', romaji: 'gouka [na]', en: 'Luxurious' },
+    { id: 'na86', jp: '贅沢 [な]', romaji: 'zeitaku [na]', en: 'Extravagant' },
+    { id: 'na87', jp: '豊富 [な]', romaji: 'houfu [na]', en: 'Abundant' },
+    { id: 'na88', jp: '多様 [な]', romaji: 'tayou [na]', en: 'Diverse' },
+    { id: 'na89', jp: '同様 [な]', romaji: 'douyou [na]', en: 'Similar / Same' },
+    { id: 'na90', jp: '独特 [な]', romaji: 'dokutoku [na]', en: 'Unique' },
+    { id: 'na91', jp: '特殊 [な]', romaji: 'tokushu [na]', en: 'Special / Peculiar' },
+    { id: 'na92', jp: '奇妙 [な]', romaji: 'kimyou [na]', en: 'Strange / Bizarre' },
+    { id: 'na93', jp: '妙 [な]', romaji: 'myou [na]', en: 'Strange / Odd' },
+    { id: 'na94', jp: '適当 [な]', romaji: 'tekitou [na]', en: 'Appropriate / Careless' },
+    { id: 'na95', jp: '適切 [な]', romaji: 'tekisetsu [na]', en: 'Appropriate / Fitting' },
+    { id: 'na96', jp: '快適 [な]', romaji: 'kaiteki [na]', en: 'Comfortable' },
+    { id: 'na97', jp: '憂鬱 [な]', romaji: 'yuuutsu [na]', en: 'Depressed / Gloomy' },
+    { id: 'na98', jp: '悲惨 [な]', romaji: 'hisan [na]', en: 'Miserable' },
+    { id: 'na99', jp: '残酷 [な]', romaji: 'zankoku [na]', en: 'Cruel' },
+    { id: 'na100', jp: '頑固 [な]', romaji: 'ganko [na]', en: 'Stubborn' }
+  ];
+
+  // Build unified 200-word list with level & tricky tags
+  var WORDS = [];
+  RAW_I.forEach(function (w, idx) {
+    var num = idx + 1;
+    var level = num <= 55 ? 'basic' : (num <= 70 || num >= 86) ? 'mid' : 'adv';
+    WORDS.push({
+      id: w.id,
+      type: 'i',
+      level: level,
+      jp: w.jp,
+      romaji: w.romaji,
+      en: w.en,
+      irregular: w.irregular || null,
+      tricky: !!w.irregular
+    });
+  });
+
+  RAW_NA.forEach(function (w, idx) {
+    var num = idx + 1;
+    var level = num <= 40 ? 'basic' : ((num <= 57) || (num >= 72 && num <= 77) || (num >= 82 && num <= 87) || num === 96) ? 'mid' : 'adv';
+    var cleanRo = w.romaji.replace(/\s*\[na\]/g, '').trim();
+    var isTricky = /(ai|ei|ui|oi)$/.test(cleanRo);
+    WORDS.push({
+      id: w.id,
+      type: 'na',
+      level: level,
+      jp: w.jp,
+      romaji: w.romaji,
+      en: w.en,
+      irregular: null,
+      tricky: isTricky
+    });
+  });
+
+  var WORD_MAP = {};
+  WORDS.forEach(function (w) { WORD_MAP[w.id] = w; });
+
+  function levelLabel(lvl) {
+    if (lvl === 'basic') return 'N5–N4';
+    if (lvl === 'mid') return 'N3';
+    return 'N2–N1';
+  }
+
+  function conjugate(w) {
+    if (w.type === 'i') {
+      var stemJp, stemRo, baseDispJp, baseDispRo;
+      if (w.irregular === 'yoi') {
+        stemJp = 'よ';
+        stemRo = 'yo';
+        baseDispJp = 'いい (良い)';
+        baseDispRo = 'ii / yoi';
+      } else if (w.irregular === 'kakkoyoi') {
+        stemJp = 'かっこよ';
+        stemRo = 'kakkoyo';
+        baseDispJp = 'かっこいい';
+        baseDispRo = 'kakkoii';
+      } else {
+        stemJp = w.jp.slice(0, -1);
+        stemRo = w.romaji.slice(0, -1);
+        baseDispJp = w.jp;
+        baseDispRo = w.romaji;
+      }
+      return {
+        present: { jp: baseDispJp, ro: baseDispRo },
+        neg: { jp: stemJp + 'くない', ro: stemRo + 'kunai' },
+        past: { jp: stemJp + 'かった', ro: stemRo + 'katta' },
+        pastNeg: { jp: stemJp + 'くなかった', ro: stemRo + 'kunakatta' },
+        trapNeg: { jp: (w.irregular === 'yoi' ? 'いい' : w.jp) + 'じゃない', ro: (w.irregular === 'yoi' ? 'ii' : w.romaji) + ' janai' },
+        trapPast: { jp: (w.irregular === 'yoi' ? 'いい' : w.jp) + 'だった', ro: (w.irregular === 'yoi' ? 'ii' : w.romaji) + ' datta' },
+        trapPastNeg: { jp: (w.irregular === 'yoi' ? 'いい' : w.jp) + 'じゃなかった', ro: (w.irregular === 'yoi' ? 'ii' : w.romaji) + ' janakatta' },
+        extraTrapNeg: w.irregular ? { jp: (w.irregular === 'yoi' ? 'い' : 'かっこい') + 'くない', ro: (w.irregular === 'yoi' ? 'i' : 'kakkoi') + 'kunai' } : null,
+        extraTrapPast: w.irregular ? { jp: (w.irregular === 'yoi' ? 'い' : 'かっこい') + 'かった', ro: (w.irregular === 'yoi' ? 'i' : 'kakkoi') + 'katta' } : null,
+        rule: w.irregular
+          ? '⚠️ Exception! "' + baseDispJp + '" conjugates from the "' + stemJp + '-" stem → ' + stemJp + 'くない / ' + stemJp + 'かった / ' + stemJp + 'くなかった.'
+          : 'い-Adjective rule: drop final い → add くない (Negative), かった (Past), くなかった (Past Negative).'
+      };
+    }
+
+    var stemJpNa = w.jp.replace(/\s*\[な\]/g, '').trim();
+    var stemRoNa = w.romaji.replace(/\s*\[na\]/g, '').trim();
+    var fakeStemJp = stemJpNa.slice(-1) === 'い' ? stemJpNa.slice(0, -1) : stemJpNa;
+    var fakeStemRo = stemRoNa.slice(-1) === 'i' ? stemRoNa.slice(0, -1) : stemRoNa;
+    return {
+      present: { jp: stemJpNa + 'だ', ro: stemRoNa + ' da' },
+      neg: { jp: stemJpNa + 'じゃない', ro: stemRoNa + ' janai' },
+      past: { jp: stemJpNa + 'だった', ro: stemRoNa + ' datta' },
+      pastNeg: { jp: stemJpNa + 'じゃなかった', ro: stemRoNa + ' janakatta' },
+      trapNeg: { jp: fakeStemJp + 'くない', ro: fakeStemRo + 'kunai' },
+      trapPast: { jp: fakeStemJp + 'かった', ro: fakeStemRo + 'katta' },
+      trapPastNeg: { jp: fakeStemJp + 'くなかった', ro: fakeStemRo + 'kunakatta' },
+      extraTrapNeg: { jp: stemJpNa + 'なくない', ro: stemRoNa + ' nakunai' },
+      extraTrapPast: { jp: stemJpNa + 'なだった', ro: stemRoNa + ' na datta' },
+      rule: w.tricky
+        ? '⚠️ Classic Trap! Even though "' + stemJpNa + '" ends in an "-i" sound, it is a な-Adjective → ' + stemJpNa + 'じゃない / ' + stemJpNa + 'だった (NOT くない!).'
+        : 'な-Adjective rule: keep the stem "' + stemJpNa + '" → add じゃない (Negative), だった (Past), じゃなかった (Past Negative).'
     };
+  }
 
-    // --- フラッシュカード用ステート ---
-    let currentCategory = 'i-adj';
-    let currentWordList = [...vocabulary['i-adj']];
-    let currentIndex = 0;
-    
-    // 覚えた単語のIDを保存するセット (Set)
-    let memorizedWords = new Set(JSON.parse(localStorage.getItem('memorizedAdjectives')) || []);
-
-    const studyView = document.getElementById('study-view');
-    const quizView = document.getElementById('quiz-view');
-    const header = document.getElementById('main-header');
-    const flashcard = document.getElementById('flashcard');
-
-    // タブ切り替え
-    function switchTab(category) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        
-        studyView.style.display = 'flex';
-        quizView.style.display = 'none';
-        
-        currentCategory = category;
-        currentWordList = [...vocabulary[category]];
-        currentIndex = 0;
-        
-        if (category === 'i-adj') {
-            document.getElementById('btn-i-adj').classList.add('active');
-            header.className = '';
-            document.getElementById('main-content').className = 'main-content';
-        } else {
-            document.getElementById('btn-na-adj').classList.add('active');
-            header.className = 'na-mode';
-            document.getElementById('main-content').className = 'main-content na-mode';
-        }
-        
-        updateCardUI();
-        updateMemorizedCount();
-    }
-
-    // カードUI更新
-    function updateCardUI() {
-        // カードを一度表に戻す
-        flashcard.classList.remove('flipped');
-        
-        const word = currentWordList[currentIndex];
-        document.getElementById('card-jp').innerText = word.jp;
-        document.getElementById('card-romaji').innerText = word.romaji;
-        document.getElementById('card-en').innerText = word.en;
-        
-        document.getElementById('study-progress').innerText = `${currentIndex + 1} / ${currentWordList.length}`;
-        
-        // 覚えたボタンの状態を更新
-        const memorizeBtn = document.getElementById('btn-memorize');
-        const badgeFront = document.getElementById('badge-front');
-        const badgeBack = document.getElementById('badge-back');
-        
-        if (memorizedWords.has(word.id)) {
-            memorizeBtn.innerHTML = '✅ Memorized';
-            memorizeBtn.classList.add('is-memorized');
-            badgeFront.classList.add('show');
-            badgeBack.classList.add('show');
-        } else {
-            memorizeBtn.innerHTML = '⭐ Memorize';
-            memorizeBtn.classList.remove('is-memorized');
-            badgeFront.classList.remove('show');
-            badgeBack.classList.remove('show');
-        }
-    }
-    
-    // 覚えた数の更新
-    function updateMemorizedCount() {
-        let count = 0;
-        currentWordList.forEach(word => {
-            if (memorizedWords.has(word.id)) {
-                count++;
-            }
-        });
-        document.getElementById('memorized-count').innerText = `⭐ ${count} Memorized`;
-    }
-
-    // 「覚えた」トグル機能
-    function toggleMemorized() {
-        const wordId = currentWordList[currentIndex].id;
-        if (memorizedWords.has(wordId)) {
-            memorizedWords.delete(wordId);
-        } else {
-            memorizedWords.add(wordId);
-        }
-        
-        // ローカルストレージに保存
-        localStorage.setItem('memorizedAdjectives', JSON.stringify(Array.from(memorizedWords)));
-        
-        updateCardUI();
-        updateMemorizedCount();
-    }
-
-    // 次のカード
-    function nextCard() {
-        if (currentIndex < currentWordList.length - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; // ループ
-        }
-        updateCardUI();
-    }
-
-    // 前のカード
-    function prevCard() {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = currentWordList.length - 1; // ループ
-        }
-        updateCardUI();
-    }
-
-    // カード裏返し
-    function toggleFlip() {
-        flashcard.classList.toggle('flipped');
-    }
-
-    // シャッフル機能
-    function shuffleCurrentList() {
-        for (let i = currentWordList.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [currentWordList[i], currentWordList[j]] = [currentWordList[j], currentWordList[i]];
-        }
-        currentIndex = 0;
-        updateCardUI();
-    }
-
-    // 音声再生機能 (録音済みMP3を優先再生し、読み込めない場合はブラウザ内蔵TTSにフォールバック)
-    const adjPlayer = new Audio();
-    adjPlayer.preload = 'auto';
-
-    function playAudio() {
-        // イベントの伝播を止めてカードが裏返るのを防ぐ (ボタンクリック時)
-        if(event) event.stopPropagation();
-
-        let fellBack = false;
-        const fallback = () => {
-            if (fellBack) return;
-            fellBack = true;
-            speakWithBrowserTTS();
-        };
-        adjPlayer.onerror = fallback;
-        adjPlayer.src = `adj-audio/${currentWordList[currentIndex].id}.mp3`;
-        const playPromise = adjPlayer.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(fallback);
-        }
-    }
-
-    // フォールバック用: 従来のブラウザ内蔵TTS読み上げ (元の実装そのまま)
-    function speakWithBrowserTTS() {
-        const word = currentWordList[currentIndex].jp.replace(/\[な\]/g, ""); // [な]を除外して発音
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'ja-JP';
-        utterance.rate = 0.9; // 少しゆっくりめに
-        window.speechSynthesis.speak(utterance);
-    }
-
-    // クイズ解説用: 正解の単語を再生 (MP3優先、失敗時はブラウザTTS)
-    function playQuizAnswerAudio() {
-        if (!currentQuizAnswer) return;
-        if (event) event.stopPropagation();
-
-        let fellBack = false;
-        const fallback = () => {
-            if (fellBack) return;
-            fellBack = true;
-            speakQuizAnswerWithTTS();
-        };
-        adjPlayer.onerror = fallback;
-        adjPlayer.src = `adj-audio/${currentQuizAnswer.id}.mp3`;
-        const playPromise = adjPlayer.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(fallback);
-        }
-    }
-
-    // クイズ解説用フォールバック: ブラウザ内蔵TTSで正解を読み上げ
-    function speakQuizAnswerWithTTS() {
-        if (!currentQuizAnswer) return;
-        const word = currentQuizAnswer.jp.replace(/\[な\]/g, ""); // [な]を除外して発音
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'ja-JP';
-        utterance.rate = 0.9; // 少しゆっくりめに
-        window.speechSynthesis.speak(utterance);
-    }
-    // --- クイズロジック ---
-    let quizQuestions = [];
-    let currentQuizIndex = 0;
-    let quizScore = 0;
-    let currentQuizAnswer = null;
-
-    function startQuiz() {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('btn-quiz').classList.add('active');
-        
-        header.className = 'quiz-mode';
-        document.getElementById('main-content').className = 'main-content';
-        studyView.style.display = 'none';
-        quizView.style.display = 'flex';
-        document.getElementById('quiz-play-area').style.display = 'flex';
-        document.getElementById('quiz-result-view').style.display = 'none';
-        document.getElementById('quiz-explanation').style.display = 'none';
-
-        const allWords = [...vocabulary['i-adj'], ...vocabulary['na-adj']];
-        const shuffledWords = [...allWords].sort(() => 0.5 - Math.random());
-        const selectedTargets = shuffledWords.slice(0, 10);
-        
-        quizQuestions = selectedTargets.map(target => {
-            const others = allWords.filter(w => w.jp !== target.jp);
-            const distractors = others.sort(() => 0.5 - Math.random()).slice(0, 3);
-            const choices = [target, ...distractors].sort(() => 0.5 - Math.random());
-            return { target, choices };
-        });
-
-        currentQuizIndex = 0;
-        quizScore = 0;
-        renderQuizQuestion();
-    }
-
-    function renderQuizQuestion() {
-        if (currentQuizIndex >= 10) {
-            showQuizResults();
-            return;
-        }
-
-        document.getElementById('quiz-explanation').style.display = 'none';
-        const q = quizQuestions[currentQuizIndex];
-        document.getElementById('quiz-progress-text').innerText = `Q ${currentQuizIndex + 1} / 10`;
-        document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
-        document.getElementById('quiz-en-prompt').innerText = q.target.en;
-
-        const choicesContainer = document.getElementById('quiz-choices');
-        choicesContainer.innerHTML = '';
-
-        q.choices.forEach(choice => {
-            const btn = document.createElement('button');
-            btn.className = 'quiz-choice-btn';
-            btn.innerHTML = `
-                ${choice.jp}
-                <div class="quiz-choice-romaji">${choice.romaji}</div>
-            `;
-            // パラメータにchoiceオブジェクト全体を渡すように変更
-            btn.onclick = () => handleAnswer(btn, choice, q.target);
-            choicesContainer.appendChild(btn);
-        });
-    }
-
-    function handleAnswer(selectedBtn, selectedChoice, targetWord) {
-        const isCorrect = selectedChoice.jp === targetWord.jp;
-        const allBtns = document.querySelectorAll('.quiz-choice-btn');
-        allBtns.forEach(btn => btn.disabled = true);
-
-        if (isCorrect) {
-            selectedBtn.classList.add('correct');
-            quizScore++;
-            document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
-            
-            // 正解の場合は自動で次へ
-            setTimeout(() => {
-                currentQuizIndex++;
-                renderQuizQuestion();
-            }, 1000);
-        } else {
-            selectedBtn.classList.add('wrong');
-            
-            allBtns.forEach(btn => {
-                if (btn.innerText.includes(targetWord.jp)) {
-                    btn.classList.add('correct');
-                }
-            });
-            
-            // 不正解の場合は説明を表示し、次へボタンを待つ
-            // ユーザーが選んだ間違った選択肢の情報
-            document.getElementById('exp-wrong-jp').innerText = selectedChoice.jp;
-            document.getElementById('exp-wrong-romaji').innerText = selectedChoice.romaji;
-            document.getElementById('exp-wrong-en').innerText = selectedChoice.en;
-
-            // 正解の情報
-            document.getElementById('exp-jp').innerText = targetWord.jp;
-            document.getElementById('exp-romaji').innerText = targetWord.romaji;
-            currentQuizAnswer = targetWord;
-            document.getElementById('quiz-explanation').style.display = 'flex';
-        }
-    }
-    
-    // 次の問題へ進むボタン (不正解時)
-    function nextQuizQuestion() {
-        currentQuizIndex++;
-        renderQuizQuestion();
-    }
-
-    function showQuizResults() {
-        document.getElementById('quiz-play-area').style.display = 'none';
-        document.getElementById('quiz-result-view').style.display = 'flex';
-        document.getElementById('final-score').innerText = quizScore;
-    }
-
-    // 初期起動
-    window.onload = () => {
-        switchTab('i-adj');
+  // --- Persistence (preserves existing memorizedAdjectives!) ---
+  function loadState() {
+    var mem = [];
+    var extra = {
+      script: 'both',
+      dark: false,
+      autoAudio: true,
+      weak: [],
+      bestConj: null,
+      bestQuiz: null
     };
+    try {
+      var rawMem = window.localStorage.getItem(MEM_KEY);
+      if (rawMem) {
+        var parsedMem = JSON.parse(rawMem);
+        if (Array.isArray(parsedMem)) mem = parsedMem;
+      }
+    } catch (e) {}
+    try {
+      var rawEx = window.localStorage.getItem(TRAINER_KEY);
+      if (rawEx) {
+        var p = JSON.parse(rawEx);
+        if (p) {
+          if (p.script === 'both' || p.script === 'jp') extra.script = p.script;
+          extra.dark = !!p.dark;
+          extra.autoAudio = p.autoAudio !== false;
+          if (Array.isArray(p.weak)) extra.weak = p.weak;
+          if (typeof p.bestConj === 'number') extra.bestConj = p.bestConj;
+          if (typeof p.bestQuiz === 'number') extra.bestQuiz = p.bestQuiz;
+        }
+      }
+    } catch (e) {}
+    return { mem: mem, extra: extra };
+  }
 
+  var initData = loadState();
+  var state = {
+    mode: 'cards',
+    typeFilter: 'all',
+    levelFilter: 'all',
+    unmemOnly: false,
+    script: initData.extra.script,
+    dark: initData.extra.dark,
+    autoAudio: initData.extra.autoAudio,
+    memorized: new Set(initData.mem),
+    weak: new Set(initData.extra.weak),
+    bestConj: initData.extra.bestConj,
+    bestQuiz: initData.extra.bestQuiz,
+    streak: 0,
+    // Flashcards
+    fcDeck: [],
+    fcIdx: 0,
+    // Conjugation drill
+    conjTarget: 'all',
+    conjDeck: [],
+    conjIdx: 0,
+    conjScore: 0,
+    conjCurrent: null,
+    conjAnswered: false,
+    conjPicked: -1,
+    conjDone: false,
+    // Quiz
+    quizSub: 'en2jp',
+    quizDeck: [],
+    quizIdx: 0,
+    quizScore: 0,
+    quizCurrent: null,
+    quizAnswered: false,
+    quizPicked: -1,
+    quizDone: false,
+    // Dictionary
+    expanded: new Set()
+  };
+
+  function persist() {
+    try {
+      window.localStorage.setItem(MEM_KEY, JSON.stringify(Array.from(state.memorized)));
+      window.localStorage.setItem(TRAINER_KEY, JSON.stringify({
+        script: state.script,
+        dark: state.dark,
+        autoAudio: state.autoAudio,
+        weak: Array.from(state.weak),
+        bestConj: state.bestConj,
+        bestQuiz: state.bestQuiz
+      }));
+    } catch (e) {}
+  }
+
+  // --- Audio (MP3 in adj-audio/ with TTS fallback & speed support) ---
+  var adjPlayer = new Audio();
+  adjPlayer.preload = 'auto';
+
+  function speakTTS(wordObj, rate) {
+    if (!wordObj || !('speechSynthesis' in window)) return;
+    try {
+      var clean = wordObj.jp.replace(/\s*\[な\]/g, '').replace('良い・', '');
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(clean);
+      u.lang = 'ja-JP';
+      u.rate = rate || 0.95;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  function playWordAudio(wordObj, rate) {
+    if (!wordObj) return;
+    var speed = rate || 1.0;
+    var fellBack = false;
+    var fallback = function () {
+      if (fellBack) return;
+      fellBack = true;
+      speakTTS(wordObj, speed);
+    };
+    try {
+      adjPlayer.pause();
+      adjPlayer.onerror = fallback;
+      adjPlayer.src = 'adj-audio/' + wordObj.id + '.mp3';
+      adjPlayer.currentTime = 0;
+      adjPlayer.playbackRate = speed;
+      var p = adjPlayer.play();
+      if (p && p.catch) {
+        p.catch(function (err) {
+          if (err && err.name !== 'AbortError') fallback();
+        });
+      }
+    } catch (e) {
+      fallback();
+    }
+  }
+
+  function shuffleArr(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i];
+      a[i] = a[j];
+      a[j] = tmp;
+    }
+    return a;
+  }
+
+  function getFilteredPool() {
+    return WORDS.filter(function (w) {
+      if (state.typeFilter === 'i' && w.type !== 'i') return false;
+      if (state.typeFilter === 'na' && w.type !== 'na') return false;
+      if (state.typeFilter === 'tricky' && !w.tricky) return false;
+      if (state.levelFilter !== 'all' && w.level !== state.levelFilter) return false;
+      if (state.unmemOnly && state.memorized.has(w.id)) return false;
+      return true;
+    });
+  }
+
+  function refreshFcDeck(doShuffle) {
+    var pool = getFilteredPool();
+    state.fcDeck = doShuffle ? shuffleArr(pool) : pool;
+    state.fcIdx = 0;
+  }
+
+  // --- Conjugation Drill Logic ---
+  function startConjSession(customPool) {
+    var pool = customPool && customPool.length ? customPool : getFilteredPool();
+    if (!pool.length) pool = WORDS.slice();
+    var count = Math.min(10, pool.length);
+    state.conjDeck = shuffleArr(pool).slice(0, count);
+    state.conjIdx = 0;
+    state.conjScore = 0;
+    state.conjDone = false;
+    buildConjQuestion();
+  }
+
+  function buildConjQuestion() {
+    if (state.conjIdx >= state.conjDeck.length) {
+      state.conjDone = true;
+      if (state.conjDeck.length === 10) {
+        if (state.bestConj === null || state.conjScore > state.bestConj) {
+          state.bestConj = state.conjScore;
+          persist();
+        }
+      }
+      return;
+    }
+    var w = state.conjDeck[state.conjIdx];
+    var targets = state.conjTarget === 'all' ? ['neg', 'past', 'pastNeg'] : [state.conjTarget];
+    var form = targets[Math.floor(Math.random() * targets.length)];
+    var c = conjugate(w);
+    var correctAns = c[form];
+
+    var pool = [];
+    if (form === 'neg') {
+      pool = [c.trapNeg, c.past, c.extraTrapNeg || c.pastNeg, c.pastNeg];
+    } else if (form === 'past') {
+      pool = [c.trapPast, c.neg, c.extraTrapPast || c.pastNeg, c.pastNeg];
+    } else {
+      pool = [c.trapPastNeg, c.neg, c.past, c.trapNeg];
+    }
+
+    var unique = [correctAns];
+    pool.forEach(function (item) {
+      if (item && unique.length < 4 && !unique.some(function (u) { return u.jp === item.jp; })) {
+        unique.push(item);
+      }
+    });
+    state.conjCurrent = {
+      w: w,
+      form: form,
+      c: c,
+      correctAns: correctAns,
+      choices: shuffleArr(unique)
+    };
+    state.conjAnswered = false;
+    state.conjPicked = -1;
+  }
+
+  // --- Meaning & Listening Quiz Logic ---
+  function startQuizSession(customPool) {
+    var pool = customPool && customPool.length ? customPool : getFilteredPool();
+    if (!pool.length) pool = WORDS.slice();
+    var count = Math.min(10, pool.length);
+    state.quizDeck = shuffleArr(pool).slice(0, count);
+    state.quizIdx = 0;
+    state.quizScore = 0;
+    state.quizDone = false;
+    buildQuizQuestion();
+  }
+
+  function buildQuizQuestion() {
+    if (state.quizIdx >= state.quizDeck.length) {
+      state.quizDone = true;
+      if (state.quizDeck.length === 10) {
+        if (state.bestQuiz === null || state.quizScore > state.bestQuiz) {
+          state.bestQuiz = state.quizScore;
+          persist();
+        }
+      }
+      return;
+    }
+    var target = state.quizDeck[state.quizIdx];
+    var samePool = WORDS.filter(function (x) { return x.id !== target.id && x.jp !== target.jp && x.en !== target.en; });
+    var distractors = shuffleArr(samePool).slice(0, 3);
+    state.quizCurrent = {
+      target: target,
+      choices: shuffleArr([target].concat(distractors))
+    };
+    state.quizAnswered = false;
+    state.quizPicked = -1;
+  }
+
+  // --- Render Functions ---
+  function applyTheme() {
+    document.body.classList.toggle('dark-mode', state.dark);
+    document.getElementById('themeBtn').textContent = state.dark ? '☀️' : '🌙';
+  }
+
+  function renderHeaderAndStats() {
+    var pool = getFilteredPool();
+    document.getElementById('statMemorized').textContent = state.memorized.size + ' / ' + WORDS.length;
+    document.getElementById('statStreak').textContent = state.streak + ' 🔥';
+    document.getElementById('statWeak').textContent = String(state.weak.size);
+    document.getElementById('statPool').textContent = String(pool.length);
+    document.getElementById('masteryFill').style.width = Math.round((state.memorized.size / WORDS.length) * 100) + '%';
+
+    var wb = document.getElementById('weakBadge');
+    wb.textContent = String(state.weak.size);
+    wb.classList.toggle('hidden', state.weak.size === 0);
+
+    document.querySelectorAll('[data-script]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.script === state.script);
+    });
+    document.getElementById('autoAudioBtn').classList.toggle('active', state.autoAudio);
+
+    document.querySelectorAll('.mode-btn').forEach(function (b) {
+      var active = b.dataset.mode === state.mode;
+      b.classList.toggle('active', active);
+      document.getElementById('view-' + b.dataset.mode).classList.toggle('hidden', !active);
+    });
+
+    document.querySelectorAll('#typeFilterGroup [data-type]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.type === state.typeFilter);
+    });
+    document.getElementById('unmemChip').classList.toggle('active', state.unmemOnly);
+
+    document.querySelectorAll('#levelFilterGroup [data-level]').forEach(function (b) {
+      b.classList.toggle('level-active', b.dataset.level === state.levelFilter);
+    });
+
+    var bc = state.bestConj !== null ? (state.bestConj + '/10') : '—';
+    var bq = state.bestQuiz !== null ? (state.bestQuiz + '/10') : '—';
+    document.getElementById('bestBar').textContent = '🏆 Best 10-Q: Conjugation ' + bc + ' · Quiz ' + bq;
+  }
+
+  function renderFlashcard() {
+    var stage = document.getElementById('flipStage');
+    stage.classList.remove('flipped');
+
+    if (!state.fcDeck.length) {
+      document.getElementById('fcCounter').textContent = '0 / 0';
+      document.getElementById('fcJp').textContent = 'No words in this filter';
+      document.getElementById('fcRomaji').textContent = 'Try clearing "Unmemorized" or changing filters.';
+      document.getElementById('fcEn').textContent = '—';
+      document.getElementById('fcConjGrid').innerHTML = '';
+      return;
+    }
+
+    if (state.fcIdx >= state.fcDeck.length) state.fcIdx = 0;
+    var w = state.fcDeck[state.fcIdx];
+    var c = conjugate(w);
+
+    document.getElementById('fcCounter').textContent = 'Card ' + (state.fcIdx + 1) + ' / ' + state.fcDeck.length;
+
+    var tb = document.getElementById('fcTypeBadge');
+    tb.textContent = w.type === 'i' ? 'い-Adjective' : 'な-Adjective';
+    tb.className = 'badge-pill ' + (w.type === 'i' ? 'badge-i' : 'badge-na');
+
+    document.getElementById('fcLevelBadge').textContent = levelLabel(w.level);
+
+    var trk = document.getElementById('fcTrickyBadge');
+    trk.classList.toggle('hidden', !w.tricky);
+    trk.textContent = w.irregular ? '⚠️ Exception!' : '⚠️ Ends in い!';
+
+    document.getElementById('fcJp').textContent = w.jp;
+    document.getElementById('fcRomaji').textContent = state.script === 'both' ? w.romaji : '';
+    document.getElementById('fcEn').textContent = w.en;
+
+    var forms = [
+      { lbl: 'Present', v: c.present },
+      { lbl: 'Negative', v: c.neg },
+      { lbl: 'Past', v: c.past },
+      { lbl: 'Past Negative', v: c.pastNeg }
+    ];
+    document.getElementById('fcConjGrid').innerHTML = forms.map(function (f) {
+      return '<div class="conj-cell">' +
+        '<div class="conj-cell-lbl">' + f.lbl + '</div>' +
+        '<div class="conj-cell-jp">' + f.v.jp + '</div>' +
+        (state.script === 'both' ? '<div class="conj-cell-ro">' + f.v.ro + '</div>' : '') +
+      '</div>';
+    }).join('');
+
+    var done = state.memorized.has(w.id);
+    var mb = document.getElementById('fcMemBtn');
+    mb.textContent = done ? '✅ Memorized' : '⭐ Memorize';
+    mb.classList.toggle('done', done);
+  }
+
+  function renderConj() {
+    document.querySelectorAll('[data-ct]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.ct === state.conjTarget);
+    });
+
+    document.getElementById('conjPlayCard').classList.toggle('hidden', state.conjDone);
+    document.getElementById('conjSummary').classList.toggle('hidden', !state.conjDone);
+
+    if (state.conjDone) {
+      var total = state.conjDeck.length || 1;
+      var pct = Math.round((state.conjScore / total) * 100);
+      document.getElementById('conjSumEmoji').textContent = pct === 100 ? '🏆' : pct >= 80 ? '🎉' : pct >= 60 ? '👏' : '💪';
+      document.getElementById('conjSumScore').textContent = state.conjScore + ' / ' + total + ' (' + pct + '%)';
+      document.getElementById('conjSumMsg').textContent =
+        pct === 100 ? 'Flawless adjective conjugations!' :
+        pct >= 80 ? 'Great accuracy — you avoided most i/na traps!' :
+        'Keep drilling those negative and past forms — they will click fast!';
+      document.getElementById('conjGoWeakBtn').classList.toggle('hidden', state.weak.size === 0);
+      return;
+    }
+
+    if (!state.conjCurrent) buildConjQuestion();
+    var q = state.conjCurrent;
+    var w = q.w;
+    var c = q.c;
+
+    document.getElementById('conjProgress').textContent = 'Drill ' + (state.conjIdx + 1) + ' / ' + state.conjDeck.length + ' · Score: ' + state.conjScore;
+
+    var tp = document.getElementById('conjTypePill');
+    tp.textContent = w.type === 'i' ? 'い-Adjective' : 'な-Adjective';
+    tp.className = 'badge-pill ' + (w.type === 'i' ? 'badge-i' : 'badge-na');
+    document.getElementById('conjLevelPill').textContent = levelLabel(w.level);
+    var tr = document.getElementById('conjTrickyPill');
+    tr.classList.toggle('hidden', !w.tricky);
+    tr.textContent = w.irregular ? '⚠️ Exception!' : '⚠️ Tricky な-Adj!';
+
+    document.getElementById('conjBaseJp').textContent = w.jp;
+    document.getElementById('conjBaseSub').textContent = (state.script === 'both' ? w.romaji + ' — ' : '') + w.en;
+
+    var targetLabels = {
+      neg: 'Change to: ❌ Plain Negative (not ...)',
+      past: 'Change to: ⏪ Plain Past (was ...)',
+      pastNeg: 'Change to: ⏪❌ Plain Past Negative (was not ...)'
+    };
+    document.getElementById('conjTargetBadge').textContent = targetLabels[q.form];
+
+    var grid = document.getElementById('conjChoices');
+    grid.innerHTML = '';
+    q.choices.forEach(function (ch, idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'choice-btn';
+      if (state.conjAnswered) {
+        btn.disabled = true;
+        if (ch.jp === q.correctAns.jp) btn.className += ' is-correct';
+        else if (idx === state.conjPicked) btn.className += ' is-wrong';
+      }
+      btn.innerHTML =
+        '<span class="choice-num">' + (idx + 1) + '</span>' +
+        '<div><div class="choice-main">' + ch.jp + '</div>' +
+        (state.script === 'both' ? '<div class="choice-sub">' + ch.ro + '</div>' : '') + '</div>';
+      btn.onclick = function () { handleConjAnswer(idx); };
+      grid.appendChild(btn);
+    });
+
+    var fb = document.getElementById('conjFeedback');
+    if (state.conjAnswered) {
+      var ok = q.choices[state.conjPicked] && q.choices[state.conjPicked].jp === q.correctAns.jp;
+      fb.className = 'feedback-box show ' + (ok ? 'good' : 'bad');
+      document.getElementById('conjFbTitle').textContent = ok
+        ? '✅ Correct! ' + q.correctAns.jp
+        : '❌ Correct answer: ' + q.correctAns.jp + ' (' + q.correctAns.ro + ')';
+      document.getElementById('conjFbRule').textContent = c.rule;
+      document.getElementById('conjMiniTable').innerHTML = [
+        ['Present', c.present.jp],
+        ['Negative', c.neg.jp],
+        ['Past', c.past.jp],
+        ['Past Neg', c.pastNeg.jp]
+      ].map(function (pair) {
+        return '<div class="mini-cell"><div class="mini-cell-lbl">' + pair[0] + '</div><div class="mini-cell-val">' + pair[1] + '</div></div>';
+      }).join('');
+      document.getElementById('conjNextBtn').textContent = (state.conjIdx === state.conjDeck.length - 1) ? 'See Results ✓' : 'Next Drill →';
+    } else {
+      fb.className = 'feedback-box';
+    }
+  }
+
+  function handleConjAnswer(idx) {
+    if (state.conjAnswered) return;
+    var q = state.conjCurrent;
+    var ok = q.choices[idx].jp === q.correctAns.jp;
+    state.conjAnswered = true;
+    state.conjPicked = idx;
+
+    if (ok) {
+      state.conjScore += 1;
+      state.streak += 1;
+      state.weak.delete(q.w.id);
+    } else {
+      state.streak = 0;
+      state.weak.add(q.w.id);
+    }
+    persist();
+    renderHeaderAndStats();
+    renderConj();
+    if (state.autoAudio) playWordAudio(q.w, 1.0);
+  }
+
+  function renderQuiz() {
+    document.querySelectorAll('[data-qsub]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.qsub === state.quizSub);
+    });
+
+    document.getElementById('quizPlayCard').classList.toggle('hidden', state.quizDone);
+    document.getElementById('quizSummary').classList.toggle('hidden', !state.quizDone);
+
+    if (state.quizDone) {
+      var total = state.quizDeck.length || 1;
+      var pct = Math.round((state.quizScore / total) * 100);
+      document.getElementById('quizSumEmoji').textContent = pct === 100 ? '🏆' : pct >= 80 ? '🎉' : pct >= 60 ? '👏' : '💪';
+      document.getElementById('quizSumScore').textContent = state.quizScore + ' / ' + total + ' (' + pct + '%)';
+      document.getElementById('quizSumMsg').textContent =
+        pct === 100 ? 'Perfect score! Your adjective vocabulary is super sharp!' :
+        pct >= 80 ? 'Awesome job! Try JP Only or Audio mode for an extra challenge!' :
+        'Great practice! Missed adjectives were added to Weak Review.';
+      document.getElementById('quizGoWeakBtn').classList.toggle('hidden', state.weak.size === 0);
+      return;
+    }
+
+    if (!state.quizCurrent) buildQuizQuestion();
+    var q = state.quizCurrent;
+    var t = q.target;
+
+    document.getElementById('quizProgress').textContent = 'Q ' + (state.quizIdx + 1) + ' / ' + state.quizDeck.length + ' · Score: ' + state.quizScore;
+
+    var promptLbl = document.getElementById('quizPromptLabel');
+    var promptMain = document.getElementById('quizPromptMain');
+    var promptSub = document.getElementById('quizPromptSub');
+    var listenCtrls = document.getElementById('quizListenControls');
+
+    if (state.quizSub === 'en2jp') {
+      promptLbl.textContent = 'Which Japanese adjective means:';
+      promptMain.classList.remove('hidden');
+      promptMain.textContent = t.en;
+      promptSub.classList.add('hidden');
+      listenCtrls.classList.add('hidden');
+    } else if (state.quizSub === 'jp2en') {
+      promptLbl.textContent = 'What does this adjective mean?';
+      promptMain.classList.remove('hidden');
+      promptMain.textContent = t.jp;
+      promptSub.textContent = state.script === 'both' ? t.romaji : '';
+      promptSub.classList.toggle('hidden', state.script !== 'both');
+      listenCtrls.classList.remove('hidden');
+    } else {
+      promptLbl.textContent = '🎧 Listen to the native audio and pick its English meaning:';
+      promptMain.classList.add('hidden');
+      promptSub.classList.add('hidden');
+      listenCtrls.classList.remove('hidden');
+    }
+
+    var grid = document.getElementById('quizChoices');
+    grid.innerHTML = '';
+    q.choices.forEach(function (ch, idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'choice-btn';
+      if (state.quizAnswered) {
+        btn.disabled = true;
+        if (ch.id === t.id) btn.className += ' is-correct';
+        else if (idx === state.quizPicked) btn.className += ' is-wrong';
+      }
+      var innerHtml;
+      if (state.quizSub === 'en2jp') {
+        innerHtml = '<div><div class="choice-main">' + ch.jp + '</div>' +
+          (state.script === 'both' ? '<div class="choice-sub">' + ch.romaji + '</div>' : '') + '</div>';
+      } else {
+        innerHtml = '<div><div class="choice-main">' + ch.en + '</div></div>';
+      }
+      btn.innerHTML = '<span class="choice-num">' + (idx + 1) + '</span>' + innerHtml;
+      btn.onclick = function () { handleQuizAnswer(idx); };
+      grid.appendChild(btn);
+    });
+
+    var fb = document.getElementById('quizFeedback');
+    if (state.quizAnswered) {
+      var ok = q.choices[state.quizPicked] && q.choices[state.quizPicked].id === t.id;
+      var c = conjugate(t);
+      fb.className = 'feedback-box show ' + (ok ? 'good' : 'bad');
+      document.getElementById('quizFbTitle').textContent = ok ? '✅ Correct!' : '❌ Added to Weak Review';
+      document.getElementById('quizFbDetail').textContent =
+        t.jp + ' (' + t.romaji + ') = ' + t.en + '  |  Neg: ' + c.neg.jp + ' · Past: ' + c.past.jp;
+      document.getElementById('quizNextBtn').textContent = (state.quizIdx === state.quizDeck.length - 1) ? 'See Results ✓' : 'Next Question →';
+    } else {
+      fb.className = 'feedback-box';
+    }
+  }
+
+  function handleQuizAnswer(idx) {
+    if (state.quizAnswered) return;
+    var q = state.quizCurrent;
+    var ok = q.choices[idx].id === q.target.id;
+    state.quizAnswered = true;
+    state.quizPicked = idx;
+
+    if (ok) {
+      state.quizScore += 1;
+      state.streak += 1;
+      state.weak.delete(q.target.id);
+    } else {
+      state.streak = 0;
+      state.weak.add(q.target.id);
+    }
+    persist();
+    renderHeaderAndStats();
+    renderQuiz();
+    if (state.autoAudio) playWordAudio(q.target, 1.0);
+  }
+
+  function renderWeak() {
+    var weakWords = WORDS.filter(function (w) { return state.weak.has(w.id); });
+    document.getElementById('weakEmpty').classList.toggle('hidden', weakWords.length > 0);
+    document.getElementById('weakHasItems').classList.toggle('hidden', weakWords.length === 0);
+    if (!weakWords.length) return;
+
+    document.getElementById('weakCountTitle').textContent = weakWords.length + ' weak adjective' + (weakWords.length > 1 ? 's' : '') + ' to review';
+    var list = document.getElementById('weakList');
+    list.innerHTML = '';
+
+    weakWords.forEach(function (w) {
+      var c = conjugate(w);
+      var card = document.createElement('div');
+      card.className = 'dict-item';
+      card.innerHTML =
+        '<div class="dict-row">' +
+          '<div class="dict-main">' +
+            '<div class="dict-head">' +
+              '<span class="badge-pill ' + (w.type === 'i' ? 'badge-i' : 'badge-na') + '">' + (w.type === 'i' ? 'い-Adj' : 'な-Adj') + '</span>' +
+              '<span class="dict-jp">' + w.jp + '</span>' +
+              (state.script === 'both' ? '<span class="dict-ro">(' + w.romaji + ')</span>' : '') +
+            '</div>' +
+            '<div class="dict-en">' + w.en + '</div>' +
+            '<div style="font-size:0.74rem; color:var(--muted); margin-top:3px;">Neg: ' + c.neg.jp + ' · Past: ' + c.past.jp + ' · Past Neg: ' + c.pastNeg.jp + '</div>' +
+          '</div>' +
+          '<div class="dict-actions">' +
+            '<button type="button" class="audio-pill" data-act="a1">🔊 1.0x</button>' +
+            '<button type="button" class="audio-pill" data-act="aSlow">🐢 0.75x</button>' +
+            '<button type="button" class="audio-pill primary" data-act="clear">✓ Got it!</button>' +
+          '</div>' +
+        '</div>';
+      card.querySelector('[data-act="a1"]').onclick = function () { playWordAudio(w, 1.0); };
+      card.querySelector('[data-act="aSlow"]').onclick = function () { playWordAudio(w, 0.75); };
+      card.querySelector('[data-act="clear"]').onclick = function () {
+        state.weak.delete(w.id);
+        state.memorized.add(w.id);
+        persist();
+        renderAll();
+      };
+      list.appendChild(card);
+    });
+  }
+
+  function renderDict() {
+    var query = (document.getElementById('dictSearch').value || '').trim().toLowerCase();
+    var pool = getFilteredPool().filter(function (w) {
+      if (!query) return true;
+      return (w.jp + ' ' + w.romaji + ' ' + w.en).toLowerCase().indexOf(query) !== -1;
+    });
+    document.getElementById('dictCountLabel').textContent = 'Showing ' + pool.length + ' adjectives';
+    var list = document.getElementById('dictList');
+    list.innerHTML = '';
+
+    if (!pool.length) {
+      var empty = document.createElement('div');
+      empty.className = 'panel-card';
+      empty.style.textAlign = 'center';
+      empty.style.color = 'var(--muted)';
+      empty.textContent = 'No matching adjectives found.';
+      list.appendChild(empty);
+      return;
+    }
+
+    pool.forEach(function (w) {
+      var exp = state.expanded.has(w.id);
+      var done = state.memorized.has(w.id);
+      var c = exp ? conjugate(w) : null;
+      var card = document.createElement('div');
+      card.className = 'dict-item';
+
+      var formsHtml = '';
+      if (exp && c) {
+        formsHtml =
+          '<div class="dict-forms">' +
+            '<div class="mini-cell"><div class="mini-cell-lbl">Present</div><div class="mini-cell-val">' + c.present.jp + '</div></div>' +
+            '<div class="mini-cell"><div class="mini-cell-lbl">Negative</div><div class="mini-cell-val">' + c.neg.jp + '</div></div>' +
+            '<div class="mini-cell"><div class="mini-cell-lbl">Past</div><div class="mini-cell-val">' + c.past.jp + '</div></div>' +
+            '<div class="mini-cell"><div class="mini-cell-lbl">Past Neg</div><div class="mini-cell-val">' + c.pastNeg.jp + '</div></div>' +
+          '</div>';
+      }
+
+      card.innerHTML =
+        '<div class="dict-row">' +
+          '<div class="dict-main" data-act="expand">' +
+            '<div class="dict-head">' +
+              '<span class="badge-pill ' + (w.type === 'i' ? 'badge-i' : 'badge-na') + '">' + (w.type === 'i' ? 'い-Adj' : 'な-Adj') + '</span>' +
+              '<span class="badge-pill badge-lvl">' + levelLabel(w.level) + '</span>' +
+              (w.tricky ? '<span class="badge-pill badge-warn">⚠️</span>' : '') +
+              '<span class="dict-jp">' + w.jp + '</span>' +
+              (state.script === 'both' ? '<span class="dict-ro">(' + w.romaji + ')</span>' : '') +
+            '</div>' +
+            '<div class="dict-en">' + w.en + '<span class="dict-exp-hint">' + (exp ? '▲ Hide forms' : '▼ 4 forms') + '</span></div>' +
+          '</div>' +
+          '<div class="dict-actions">' +
+            '<button type="button" class="audio-pill" data-act="a1">🔊</button>' +
+            '<button type="button" class="audio-pill" data-act="aSlow">🐢</button>' +
+            '<button type="button" class="audio-pill' + (done ? ' primary' : '') + '" data-act="mem">' + (done ? '✅' : '⭐') + '</button>' +
+          '</div>' +
+        '</div>' + formsHtml;
+
+      card.querySelector('[data-act="expand"]').onclick = function () {
+        if (state.expanded.has(w.id)) state.expanded.delete(w.id);
+        else state.expanded.add(w.id);
+        renderDict();
+      };
+      card.querySelector('[data-act="a1"]').onclick = function () { playWordAudio(w, 1.0); };
+      card.querySelector('[data-act="aSlow"]').onclick = function () { playWordAudio(w, 0.75); };
+      card.querySelector('[data-act="mem"]').onclick = function () {
+        if (state.memorized.has(w.id)) state.memorized.delete(w.id);
+        else { state.memorized.add(w.id); state.weak.delete(w.id); }
+        persist();
+        renderHeaderAndStats();
+        renderDict();
+      };
+      list.appendChild(card);
+    });
+  }
+
+  function renderAll() {
+    applyTheme();
+    renderHeaderAndStats();
+    if (state.mode === 'cards') renderFlashcard();
+    else if (state.mode === 'conj') renderConj();
+    else if (state.mode === 'quiz') renderQuiz();
+    else if (state.mode === 'weak') renderWeak();
+    else if (state.mode === 'list') renderDict();
+  }
+
+  // --- Event Binding ---
+  document.getElementById('themeBtn').onclick = function () {
+    state.dark = !state.dark;
+    persist();
+    applyTheme();
+  };
+
+  document.querySelectorAll('[data-script]').forEach(function (b) {
+    b.onclick = function () {
+      state.script = b.dataset.script;
+      persist();
+      renderAll();
+    };
+  });
+
+  document.getElementById('autoAudioBtn').onclick = function () {
+    state.autoAudio = !state.autoAudio;
+    persist();
+    renderHeaderAndStats();
+  };
+
+  document.querySelectorAll('.mode-btn').forEach(function (b) {
+    b.onclick = function () {
+      var m = b.dataset.mode;
+      state.mode = m;
+      if (m === 'conj' && (!state.conjDeck.length || state.conjDone)) startConjSession();
+      if (m === 'quiz' && (!state.quizDeck.length || state.quizDone)) startQuizSession();
+      renderAll();
+      if (m === 'quiz' && state.quizSub === 'listen' && state.quizCurrent && !state.quizDone && state.autoAudio) {
+        playWordAudio(state.quizCurrent.target, 1.0);
+      }
+    };
+  });
+
+  document.querySelectorAll('#typeFilterGroup [data-type]').forEach(function (b) {
+    b.onclick = function () {
+      state.typeFilter = b.dataset.type;
+      refreshFcDeck(false);
+      if (state.mode === 'conj') startConjSession();
+      if (state.mode === 'quiz') startQuizSession();
+      renderAll();
+    };
+  });
+
+  document.getElementById('unmemChip').onclick = function () {
+    state.unmemOnly = !state.unmemOnly;
+    refreshFcDeck(false);
+    if (state.mode === 'conj') startConjSession();
+    if (state.mode === 'quiz') startQuizSession();
+    renderAll();
+  };
+
+  document.querySelectorAll('#levelFilterGroup [data-level]').forEach(function (b) {
+    b.onclick = function () {
+      state.levelFilter = b.dataset.level;
+      refreshFcDeck(false);
+      if (state.mode === 'conj') startConjSession();
+      if (state.mode === 'quiz') startQuizSession();
+      renderAll();
+    };
+  });
+
+  // Flashcards controls
+  document.getElementById('flipStage').onclick = function () {
+    if (!state.fcDeck.length) return;
+    this.classList.toggle('flipped');
+  };
+  document.getElementById('fcAudioNormal').onclick = function (e) {
+    e.stopPropagation();
+    if (state.fcDeck.length) playWordAudio(state.fcDeck[state.fcIdx], 1.0);
+  };
+  document.getElementById('fcAudioSlow').onclick = function (e) {
+    e.stopPropagation();
+    if (state.fcDeck.length) playWordAudio(state.fcDeck[state.fcIdx], 0.75);
+  };
+  document.getElementById('fcBackAudio').onclick = function (e) {
+    e.stopPropagation();
+    if (state.fcDeck.length) playWordAudio(state.fcDeck[state.fcIdx], 1.0);
+  };
+  document.getElementById('fcShuffleBtn').onclick = function () {
+    refreshFcDeck(true);
+    renderFlashcard();
+  };
+  document.getElementById('fcPrevBtn').onclick = function () {
+    if (!state.fcDeck.length) return;
+    state.fcIdx = (state.fcIdx - 1 + state.fcDeck.length) % state.fcDeck.length;
+    renderFlashcard();
+  };
+  document.getElementById('fcNextBtn').onclick = function () {
+    if (!state.fcDeck.length) return;
+    state.fcIdx = (state.fcIdx + 1) % state.fcDeck.length;
+    renderFlashcard();
+  };
+  document.getElementById('fcMemBtn').onclick = function () {
+    if (!state.fcDeck.length) return;
+    var w = state.fcDeck[state.fcIdx];
+    if (state.memorized.has(w.id)) state.memorized.delete(w.id);
+    else { state.memorized.add(w.id); state.weak.delete(w.id); }
+    persist();
+    if (state.unmemOnly) refreshFcDeck(false);
+    renderAll();
+  };
+
+  // Conjugation controls
+  document.querySelectorAll('[data-ct]').forEach(function (b) {
+    b.onclick = function () {
+      state.conjTarget = b.dataset.ct;
+      startConjSession();
+      renderAll();
+    };
+  });
+  document.getElementById('conjAudio1').onclick = function () {
+    if (state.conjCurrent) playWordAudio(state.conjCurrent.w, 1.0);
+  };
+  document.getElementById('conjAudioSlow').onclick = function () {
+    if (state.conjCurrent) playWordAudio(state.conjCurrent.w, 0.75);
+  };
+  document.getElementById('conjNextBtn').onclick = function () {
+    state.conjIdx += 1;
+    buildConjQuestion();
+    renderAll();
+  };
+  document.getElementById('conjRetryBtn').onclick = function () {
+    startConjSession();
+    renderAll();
+  };
+  document.getElementById('conjGoWeakBtn').onclick = function () {
+    state.mode = 'weak';
+    renderAll();
+  };
+
+  // Quiz controls
+  document.querySelectorAll('[data-qsub]').forEach(function (b) {
+    b.onclick = function () {
+      state.quizSub = b.dataset.qsub;
+      startQuizSession();
+      renderAll();
+      if (state.quizSub === 'listen' && state.quizCurrent && state.autoAudio) {
+        playWordAudio(state.quizCurrent.target, 1.0);
+      }
+    };
+  });
+  document.getElementById('quizListen1').onclick = function () {
+    if (state.quizCurrent) playWordAudio(state.quizCurrent.target, 1.0);
+  };
+  document.getElementById('quizListenSlow').onclick = function () {
+    if (state.quizCurrent) playWordAudio(state.quizCurrent.target, 0.75);
+  };
+  document.getElementById('quizFbAudio1').onclick = function () {
+    if (state.quizCurrent) playWordAudio(state.quizCurrent.target, 1.0);
+  };
+  document.getElementById('quizFbAudioSlow').onclick = function () {
+    if (state.quizCurrent) playWordAudio(state.quizCurrent.target, 0.75);
+  };
+  document.getElementById('quizNextBtn').onclick = function () {
+    state.quizIdx += 1;
+    buildQuizQuestion();
+    renderAll();
+    if (state.quizSub === 'listen' && state.quizCurrent && !state.quizDone && state.autoAudio) {
+      playWordAudio(state.quizCurrent.target, 1.0);
+    }
+  };
+  document.getElementById('quizRetryBtn').onclick = function () {
+    startQuizSession();
+    renderAll();
+  };
+  document.getElementById('quizGoWeakBtn').onclick = function () {
+    state.mode = 'weak';
+    renderAll();
+  };
+
+  // Weak review controls
+  document.getElementById('weakStartConj').onclick = function () {
+    state.mode = 'conj';
+    startConjSession();
+    renderAll();
+  };
+  document.getElementById('weakStartQuiz').onclick = function () {
+    state.mode = 'quiz';
+    startQuizSession();
+    renderAll();
+  };
+  document.getElementById('weakDrillBtn').onclick = function () {
+    var weakPool = WORDS.filter(function (w) { return state.weak.has(w.id); });
+    if (!weakPool.length) return;
+    state.mode = 'conj';
+    startConjSession(weakPool);
+    renderAll();
+  };
+  document.getElementById('weakQuizBtn').onclick = function () {
+    var weakPool = WORDS.filter(function (w) { return state.weak.has(w.id); });
+    if (!weakPool.length) return;
+    state.mode = 'quiz';
+    startQuizSession(weakPool);
+    renderAll();
+  };
+
+  // Dictionary search & Reset
+  document.getElementById('dictSearch').addEventListener('input', renderDict);
+
+  document.getElementById('resetBtn').onclick = function () {
+    if (!confirm('Reset all memorized adjectives, weak words, and best scores on this device?')) return;
+    state.memorized = new Set();
+    state.weak = new Set();
+    state.bestConj = null;
+    state.bestQuiz = null;
+    state.streak = 0;
+    state.unmemOnly = false;
+    try {
+      window.localStorage.removeItem(MEM_KEY);
+      window.localStorage.removeItem(TRAINER_KEY);
+    } catch (e) {}
+    refreshFcDeck(false);
+    renderAll();
+  };
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function (e) {
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (state.mode === 'cards') {
+      if (e.key === 'ArrowRight') document.getElementById('fcNextBtn').click();
+      else if (e.key === 'ArrowLeft') document.getElementById('fcPrevBtn').click();
+      else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); document.getElementById('flipStage').click(); }
+      else if (e.key === 'r' || e.key === 'R') { if (state.fcDeck.length) playWordAudio(state.fcDeck[state.fcIdx], 1.0); }
+      else if (e.key === 'm' || e.key === 'M') document.getElementById('fcMemBtn').click();
+    } else if (state.mode === 'conj' && !state.conjDone) {
+      if (e.key >= '1' && e.key <= '4' && !state.conjAnswered) {
+        var cBtns = document.querySelectorAll('#conjChoices .choice-btn');
+        var ci = parseInt(e.key, 10) - 1;
+        if (cBtns[ci]) cBtns[ci].click();
+      } else if ((e.key === 'Enter' || e.key === 'ArrowRight') && state.conjAnswered) {
+        document.getElementById('conjNextBtn').click();
+      }
+    } else if (state.mode === 'quiz' && !state.quizDone) {
+      if (e.key >= '1' && e.key <= '4' && !state.quizAnswered) {
+        var qBtns = document.querySelectorAll('#quizChoices .choice-btn');
+        var qi = parseInt(e.key, 10) - 1;
+        if (qBtns[qi]) qBtns[qi].click();
+      } else if ((e.key === 'Enter' || e.key === 'ArrowRight') && state.quizAnswered) {
+        document.getElementById('quizNextBtn').click();
+      } else if (e.key === 'r' || e.key === 'R') {
+        if (state.quizCurrent) playWordAudio(state.quizCurrent.target, 1.0);
+      }
+    }
+  });
+
+  // Init
+  refreshFcDeck(false);
+  renderAll();
+})();
 </script>
-
 </body>
 </html>
