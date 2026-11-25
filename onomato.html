@@ -120,8 +120,10 @@
         .japanese { font-size: 28px; font-weight: 900; color: var(--dark); margin-bottom: 4px; }
         .romaji { font-family: 'Manrope', sans-serif; font-size: 14px; color: var(--text-muted); }
 
-        .illustration-container { width: 100%; height: 180px; margin-bottom: 20px; border-radius: 12px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; padding: 16px; }
+        .illustration-container { width: 100%; height: 180px; margin-bottom: 20px; border-radius: 12px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; padding: 16px; overflow: hidden; }
         .illustration-container img { width: 100%; height: 100%; object-fit: contain; }
+        .illustration-container.scene-cut { height: auto; aspect-ratio: 16 / 9; padding: 0; background-color: #f1f5f9; border-radius: 14px; }
+        .illustration-container.scene-cut img { object-fit: cover; display: block; }
 
         .meaning { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 20px; padding: 12px; background: rgba(230, 57, 70, 0.05); border-radius: 8px; border-left: 3px solid var(--primary); }
         .example { padding: 16px; background: var(--light-bg); border-radius: 10px; border-left: 3px solid var(--accent); margin-bottom: 12px; }
@@ -185,6 +187,95 @@
                 letter-spacing: 0;
             }
         }
+        /* ====== クイズモード専用スタイル ====== */
+        .ono-quiz-bar {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+            gap: 12px; padding: 0 28px 18px; margin-bottom: 18px; border-bottom: 1px solid #eef0f3;
+        }
+        .ono-stats { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .ono-stat-pill {
+            font-size: 12.5px; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+            background: #f8fafc; border: 1px solid #e5e7eb; color: var(--dark);
+        }
+        .ono-stat-pill.green { color: #16a34a; background: #f0fdf4; border-color: #bbf7d0; }
+        .ono-stat-pill.red { color: #dc2626; background: #fef2f2; border-color: #fecaca; }
+        .ono-stat-pill.orange { color: #e67e22; background: #fff5eb; border-color: #fed7aa; }
+        .ono-romaji-btn {
+            border: 1.5px solid var(--border); background: #fff; color: var(--dark);
+            padding: 6px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 700;
+            cursor: pointer; transition: 0.15s; font-family: inherit;
+        }
+        .ono-romaji-btn.on { border-color: #ff9f43; background: #fff5eb; color: #e67e22; }
+        .view-toggle { flex-wrap: wrap; gap: 4px; }
+        .view-btn .weak-dot {
+            display: inline-block; background: #dc2626; color: #fff; font-size: 10.5px;
+            padding: 1px 6px; border-radius: 999px; margin-left: 3px;
+        }
+        .ono-quiz-panel {
+            max-width: 780px; margin: 0 auto 60px; background: #fff;
+            border: 1px solid var(--border); border-radius: 20px; padding: 26px 24px;
+            box-shadow: var(--shadow-md);
+        }
+        .oq-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+        .oq-num { font-size: 13px; font-weight: 700; color: var(--text-muted); }
+        .oq-cat { font-size: 11.5px; font-weight: 800; padding: 4px 11px; border-radius: 999px; background: #e6f7f5; color: var(--accent); text-transform: uppercase; }
+        .oq-prompt {
+            background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px;
+            padding: 24px 18px; text-align: center; margin-bottom: 16px;
+        }
+        .oq-prompt.ok { border-color: #16a34a; background: #f0fdf4; }
+        .oq-prompt.ng { border-color: #dc2626; background: #fef2f2; }
+        .oq-icon { font-size: 40px; margin-bottom: 8px; }
+        .oq-ja { font-size: 22px; font-weight: 800; color: var(--dark); line-height: 1.85; }
+        .oq-blank {
+            display: inline-block; min-width: 96px; padding: 2px 12px; margin: 0 4px;
+            border-radius: 10px; border: 2px dashed #ff9f43; background: #fff5eb;
+            color: #e67e22; font-weight: 900;
+        }
+        .oq-blank.ok { border-style: solid; border-color: #16a34a; background: #dcfce7; color: #14532d; }
+        .oq-blank.ng { border-style: solid; border-color: #dc2626; background: #fee2e2; color: #7f1d1d; }
+        .oq-meaning { font-size: 20px; font-weight: 800; color: var(--dark); }
+        .oq-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+        .oq-hint-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+        .oq-hint-btn {
+            border: 1.5px solid var(--border); background: #fff; color: var(--dark);
+            font-size: 12.5px; font-weight: 700; padding: 6px 13px; border-radius: 999px; cursor: pointer; font-family: inherit;
+        }
+        .oq-hint-text { font-size: 13.5px; color: #374151; background: #f3f4f6; padding: 6px 12px; border-radius: 10px; flex: 1; }
+        .oq-choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+        .oq-choice {
+            display: flex; align-items: center; gap: 10px; padding: 14px 16px;
+            border-radius: 14px; border: 2px solid #e2e8f0; background: #fff;
+            color: var(--dark); font-size: 18px; font-weight: 800; cursor: pointer; text-align: left;
+            transition: 0.15s; font-family: inherit;
+        }
+        .oq-choice:hover:not(:disabled) { border-color: #ff9f43; background: #fff5eb; transform: translateY(-1px); }
+        .oq-choice:disabled { opacity: 0.5; cursor: default; }
+        .oq-choice.ok { border-color: #16a34a; background: #dcfce7; color: #14532d; opacity: 1 !important; }
+        .oq-choice.ng { border-color: #dc2626; background: #fee2e2; color: #7f1d1d; opacity: 1 !important; }
+        .oq-cnum {
+            width: 26px; height: 26px; border-radius: 50%; background: #f1f5f9; color: var(--text-muted);
+            font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .oq-rom { display: block; font-size: 11.5px; font-weight: 600; color: var(--text-muted); }
+        .oq-next-btn {
+            background: #ff9f43; color: #fff; border: none; border-radius: 12px;
+            padding: 12px 24px; font-size: 15px; font-weight: 800; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35); font-family: inherit;
+        }
+        .oq-next-btn:hover { background: #e67e22; }
+        .oq-fb { margin-top: 16px; border-radius: 16px; padding: 16px 18px; border: 2px solid var(--border); }
+        .oq-fb.ok { background: #f0fdf4; border-color: #86efac; }
+        .oq-fb.ng { background: #fef2f2; border-color: #fca5a5; }
+        .oq-fb-head { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+        .oq-fb-img { width: 120px; height: 68px; object-fit: cover; border-radius: 10px; border: 1px solid #e5e7eb; flex-shrink: 0; background: #fff; }
+        .oq-nuance { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 11px 14px; margin-top: 10px; font-size: 13.5px; color: #374151; }
+        @media (max-width: 768px) {
+            .ono-quiz-bar { padding: 0 16px 14px; }
+            .view-controls { padding: 0 16px 16px; justify-content: center; }
+            .oq-choices { grid-template-columns: 1fr; }
+            .ono-quiz-panel { padding: 18px 14px; }
+        }
     </style>
 <style id="ohayo-cta-style">
 .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
@@ -236,10 +327,22 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
 
         <div class="container">
             <div class="filter-section">
+                <div class="ono-quiz-bar">
+                    <div class="ono-stats">
+                        <span class="ono-stat-pill green" id="oq-st-m">Mastered ✅ 0 / 42</span>
+                        <span class="ono-stat-pill red" id="oq-st-w">Weak 🔴 0</span>
+                        <span class="ono-stat-pill orange" id="oq-st-s">🔥 0</span>
+                    </div>
+                    <button class="ono-romaji-btn on" id="oq-romaji-btn" onclick="toggleOnoRomaji()">🔤 Romaji: ON</button>
+                </div>
+
                 <div class="view-controls">
                     <div class="view-toggle">
-                        <button class="view-btn active" data-view="grid"><i class="fa-solid fa-border-all"></i> カード</button>
-                        <button class="view-btn" data-view="list"><i class="fa-solid fa-list"></i> リスト</button>
+                        <button class="view-btn active" data-view="grid"><i class="fa-solid fa-border-all"></i> Cards</button>
+                        <button class="view-btn" data-view="list"><i class="fa-solid fa-list"></i> List</button>
+                        <button class="view-btn" data-view="context">📝 Context Quiz</button>
+                        <button class="view-btn" data-view="meaning">💡 Meaning Quiz</button>
+                        <button class="view-btn" data-view="weak">🔴 Weak <span class="weak-dot" id="oq-weak-dot" style="display:none">0</span></button>
                     </div>
                 </div>
 
@@ -251,6 +354,8 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
                     <button class="filter-tab" data-category="weather">天気 (Weather)</button>
                 </div>
             </div>
+
+            <div id="quiz-panel" class="ono-quiz-panel hidden"></div>
 
             <div class="onomatopoeia-grid" id="grid">
                 
@@ -873,43 +978,309 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     </footer>
 
     <script>
-        // フィルタ機能
+        const ONO_STORAGE_KEY = 'ohayo_onomato_quiz_v1';
+        const NUANCE_TIPS = {
+            'ピンポン': 'Used for both a doorbell chime ("ding-dong") and the "correct answer!" quiz buzzer sound in Japan.',
+            'ぽたぽた': 'Slow, soft individual drops falling one by one (water, sweat, sauce). Much gentler than ざあざあ.',
+            'ばたばた': 'Clattering footsteps or flapping — also super common in daily Japanese to mean "hectic / super busy"!',
+            'ごくごく': 'Big, refreshing gulps when drinking something cold and thirst-quenching.',
+            'ぺらぺら': 'Speaking a foreign language smoothly without pausing (also means thin/flimsy paper!).',
+            'わんわん': 'A dog barking loudly — also used playfully for someone crying loudly (わんわん泣く).',
+            'にゃあにゃあ': 'The standard Japanese sound for a cat meowing.',
+            'どんどん': 'Steady, energetic knocking OR rapidly progressing / improving (日本語がどんどん上手になる!).',
+            'がちゃん': 'A single sudden crash of breaking glass, plates, or a heavy door slamming.',
+            'ちゅるちゅる': 'Smooth, light slurping of noodles like ramen, udon, or somen.',
+            'どきどき': 'Heart pounding from EITHER nervousness (exams, speeches) OR romantic excitement! Compare with わくわく.',
+            'わくわく': 'Purely positive excitement and joyful anticipation (never nervous/scared like どきどき).',
+            'いらいら': 'Building frustration or impatience (traffic jams, slow Wi-Fi, waiting in line).',
+            'ほっと': 'Letting out a warm sigh of relief after tension ends — always pairs with する (ほっとする).',
+            'びっくり': 'Sudden surprise or being startled (pairs with する: びっくりした!).',
+            'うきうき': 'Lighthearted, bouncy cheerfulness before something fun like a date or holiday.',
+            'がっかり': 'Feeling let down or disappointed when hopes aren\'t met (がっかりする).',
+            'ぼんやり': 'Spacing out, daydreaming, or seeing something blurry/vague.',
+            'すっきり': 'Feeling completely refreshed, clear-headed, or neatly decluttered (shower, clean room, solved mystery).',
+            'そわそわ': 'Restless, fidgety nervousness when you can\'t sit still (before an interview or big announcement).',
+            'いそいそ': 'Cheerfully and eagerly hurrying to prepare for something you look forward to.',
+            'さっと': 'Doing an action swiftly and cleanly in one smooth motion.',
+            'ぐるぐる': 'Spinning round and round (dizzy head, wrapping a scarf, circling an area).',
+            'ぴかぴか': 'Gleaming clean OR sparkling brand-new (like ぴかぴかの1年生 = brand-new first grader).',
+            'ぐっすり': 'Sleeping deeply and soundly all night without waking up.',
+            'うろうろ': 'Wandering or pacing aimlessly (often when lost or looking around suspiciously).',
+            'こっそり': 'Doing something quietly and secretly so nobody notices (often playful or sneaky).',
+            'ぶらぶら': 'Strolling leisurely with no rush — enjoying the walk itself.',
+            'ふわふわ': 'Soft, airy, cloud-like texture (fluffy bread, pancakes, kittens) or floating lightly.',
+            'じっと': 'Staring fixedly without blinking OR staying completely still and patient.',
+            'ゆらゆら': 'Gently swaying or wavering back and forth (flames, seaweed, wind chimes).',
+            'のろのろ': 'Moving sluggishly and very slowly (snails, heavy traffic jams).',
+            'かんかん': 'Blazing, scorching mid-summer sunlight (also used for someone being furiously angry!).',
+            'しとしと': 'Quiet, fine, gentle steady rain — classic peaceful rainy-season atmosphere. Opposite of ざあざあ!',
+            'ざあざあ': 'Heavy pouring rain! Notice the voiced ざ (dakuten ゛) signals heavier, louder intensity than しとしと.',
+            'じめじめ': 'Damp, sticky, humid discomfort during Japan\'s June rainy season (梅雨).',
+            'ぴゅーぴゅー': 'Sharp, cold wind whistling and howling past.',
+            'そよそよ': 'A gentle, pleasant, refreshing breeze softly moving leaves or hair.',
+            'どんより': 'Heavy, dull, overcast gray sky right before rain.',
+            'ぽかぽか': 'Pleasantly warm, cozy sunshine that makes you feel sleepy in spring.',
+            'ごろごろ': 'Thunder rumbling in the distance — ALSO super common for "lounging lazily at home" (家でごろごろする)!',
+            'びしょびしょ': 'Unpleasantly soaking wet all the way through (clothes, shoes, hair in the rain).'
+        };
+
+        // Read all 42 cards dynamically from DOM
+        const cards = Array.from(document.querySelectorAll('.ono-card'));
+        const ONO_ITEMS = cards.map((card, idx) => {
+            const jp = card.querySelector('.japanese').textContent.trim();
+            const romaji = card.querySelector('.romaji').textContent.trim();
+            const icon = card.querySelector('.sound-icon').textContent.trim();
+            const imgEl = card.querySelector('.illustration-container img');
+            const imgSrc = imgEl ? imgEl.getAttribute('src') : '';
+            const meaning = card.querySelector('.meaning').textContent.trim();
+            const exJaEl = card.querySelector('.example-ja');
+            const exEnEl = card.querySelector('.example-en');
+            return {
+                id: idx + 1,
+                cat: card.dataset.category,
+                jp, romaji, icon, imgSrc, meaning,
+                exJa: exJaEl ? exJaEl.textContent.trim() : '',
+                exEn: exEnEl ? exEnEl.textContent.trim() : '',
+                nuance: NUANCE_TIPS[jp] || `Common Japanese ${card.dataset.category} onomatopoeia meaning "${meaning}".`
+            };
+        });
+
+        let onoState = { status: {}, streak: 0, showRomaji: true };
+        try {
+            const saved = localStorage.getItem(ONO_STORAGE_KEY);
+            if (saved) onoState = Object.assign(onoState, JSON.parse(saved));
+        } catch (e) {}
+        function saveOnoState() { try { localStorage.setItem(ONO_STORAGE_KEY, JSON.stringify(onoState)); } catch (e) {} }
+
+        let currentView = 'grid'; // grid | list | context | meaning | weak
+        let currentCat = 'all';
+        let curItem = null, curChoices = [], answered = false, pickedId = null, hintOpen = false;
+
         const filterTabs = document.querySelectorAll('.filter-tab');
-        const cards = document.querySelectorAll('.ono-card');
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const gridContainer = document.getElementById('grid');
+        const quizPanel = document.getElementById('quiz-panel');
+
+        function shuffle(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function updateOnoStats() {
+            const m = Object.values(onoState.status).filter(v => v === 'mastered').length;
+            const w = Object.values(onoState.status).filter(v => v === 'weak').length;
+            document.getElementById('oq-st-m').textContent = `Mastered ✅ ${m} / ${ONO_ITEMS.length}`;
+            document.getElementById('oq-st-w').textContent = `Weak 🔴 ${w}`;
+            document.getElementById('oq-st-s').textContent = `🔥 ${onoState.streak}`;
+            const dot = document.getElementById('oq-weak-dot');
+            dot.style.display = w > 0 ? 'inline-block' : 'none';
+            dot.textContent = w;
+
+            const rb = document.getElementById('oq-romaji-btn');
+            rb.classList.toggle('on', onoState.showRomaji);
+            rb.textContent = onoState.showRomaji ? '🔤 Romaji: ON' : '🔤 Romaji: OFF';
+        }
+
+        window.toggleOnoRomaji = function() {
+            onoState.showRomaji = !onoState.showRomaji;
+            saveOnoState();
+            updateOnoStats();
+            if (isQuizView()) renderQuiz();
+        };
+
+        function isQuizView() {
+            return currentView === 'context' || currentView === 'meaning' || currentView === 'weak';
+        }
+
+        function applyBrowseFilter() {
+            let visibleIndex = 0;
+            cards.forEach((card) => {
+                if (currentCat === 'all' || card.dataset.category === currentCat) {
+                    card.classList.remove('hidden');
+                    card.style.animationDelay = `${(visibleIndex % 10) * 0.08}s`;
+                    visibleIndex++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function loadNextQuiz() {
+            let pool = currentCat === 'all' ? ONO_ITEMS : ONO_ITEMS.filter(x => x.cat === currentCat);
+            if (currentView === 'weak') pool = pool.filter(x => onoState.status[x.id] === 'weak');
+            if (pool.length === 0) { curItem = null; return; }
+            const unmastered = pool.filter(x => onoState.status[x.id] !== 'mastered');
+            const src = (currentView !== 'weak' && unmastered.length > 0) ? unmastered : pool;
+            curItem = src[Math.floor(Math.random() * src.length)];
+            // Same-category distractors first!
+            const sameCat = shuffle(ONO_ITEMS.filter(x => x.id !== curItem.id && x.cat === curItem.cat));
+            const otherCat = shuffle(ONO_ITEMS.filter(x => x.id !== curItem.id && x.cat !== curItem.cat));
+            curChoices = shuffle([curItem, ...[...sameCat, ...otherCat].slice(0, 3)]);
+            answered = false; pickedId = null; hintOpen = false;
+        }
+
+        window.pickOno = function(id) {
+            if (answered || !curItem) return;
+            answered = true; pickedId = id;
+            if (id === curItem.id) {
+                onoState.status[curItem.id] = 'mastered';
+                onoState.streak++;
+            } else {
+                onoState.status[curItem.id] = 'weak';
+                onoState.streak = 0;
+            }
+            saveOnoState();
+            updateOnoStats();
+            renderQuiz();
+        };
+
+        window.nextOnoQuiz = function() {
+            loadNextQuiz();
+            renderQuiz();
+        };
+
+        window.toggleOnoHint = function() {
+            hintOpen = !hintOpen;
+            renderQuiz();
+        };
+
+        window.switchViewMode = function(v) {
+            currentView = v;
+            viewBtns.forEach(b => b.classList.toggle('active', b.dataset.view === v));
+            if (isQuizView()) {
+                gridContainer.classList.add('hidden');
+                quizPanel.classList.remove('hidden');
+                loadNextQuiz();
+                renderQuiz();
+            } else {
+                quizPanel.classList.add('hidden');
+                gridContainer.classList.remove('hidden');
+                if (v === 'list') gridContainer.classList.add('list-view');
+                else gridContainer.classList.remove('list-view');
+                applyBrowseFilter();
+            }
+        };
+
+        function renderQuiz() {
+            if (!curItem) {
+                quizPanel.innerHTML = `
+                    <div style="text-align:center; padding: 28px 10px;">
+                        <div style="font-size:44px; margin-bottom:8px;">🎉</div>
+                        <h2 style="margin:0 0 8px; color:var(--dark);">No Weak Words Here!</h2>
+                        <p style="color:var(--text-muted); font-size:14px; margin:0 0 18px;">
+                            Any onomatopoeia you miss in Context Quiz or Meaning Quiz will appear here automatically.
+                        </p>
+                        <button class="oq-next-btn" onclick="switchViewMode('context')">📝 Start Context Quiz</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const isOk = answered && pickedId === curItem.id;
+            const useContext = (currentView === 'context' || currentView === 'weak') && curItem.exJa.includes(curItem.jp);
+
+            let promptHTML = '';
+            if (useContext) {
+                const blankSpan = `<span class="oq-blank ${answered ? (isOk ? 'ok' : 'ng') : ''}">${answered ? curItem.jp : '＿＿＿'}</span>`;
+                const sentenceHTML = curItem.exJa.replace(curItem.jp, blankSpan);
+                promptHTML = `<div class="oq-icon">${curItem.icon}</div><div class="oq-ja">${sentenceHTML}</div>`;
+            } else {
+                promptHTML = `
+                    <div class="oq-icon">${curItem.icon}</div>
+                    <div class="oq-meaning">"${curItem.meaning}"</div>
+                    <div class="oq-sub">Which Japanese onomatopoeia matches this sound or feeling?</div>
+                `;
+            }
+
+            const fullMarked = curItem.exJa.includes(curItem.jp)
+                ? curItem.exJa.replace(curItem.jp, `<mark style="background:#fef08a;padding:1px 5px;border-radius:5px;">${curItem.jp}</mark>`)
+                : `${curItem.exJa}`;
+
+            quizPanel.innerHTML = `
+                <div class="oq-meta">
+                    <span class="oq-num">${currentView === 'weak' ? '🔴 Review Weak' : useContext ? '📝 Context Fill-in Quiz' : '💡 Meaning Match Quiz'}</span>
+                    <span class="oq-cat">${curItem.icon} ${curItem.cat}</span>
+                </div>
+
+                <div class="oq-prompt ${answered ? (isOk ? 'ok' : 'ng') : ''}">
+                    ${promptHTML}
+                </div>
+
+                ${useContext ? `
+                    <div class="oq-hint-row">
+                        <button class="oq-hint-btn" onclick="toggleOnoHint()">${hintOpen ? '🙈 Hide English Hint' : '💡 Show English Hint'}</button>
+                        ${hintOpen ? `<div class="oq-hint-text">🇺🇸 ${curItem.exEn}</div>` : '<span style="font-size:12px; color:var(--text-muted);">Same-category distractors are mixed in — feel the nuance!</span>'}
+                    </div>
+                ` : ''}
+
+                <div class="oq-choices">
+                    ${curChoices.map((c, idx) => {
+                        let cls = 'oq-choice';
+                        if (answered) {
+                            if (c.id === curItem.id) cls += ' ok';
+                            else if (c.id === pickedId) cls += ' ng';
+                        }
+                        return `
+                            <button class="${cls}" ${answered ? 'disabled' : ''} onclick="pickOno(${c.id})">
+                                <span class="oq-cnum">${idx + 1}</span>
+                                <span>${c.jp}${onoState.showRomaji ? `<span class="oq-rom">${c.romaji}</span>` : ''}</span>
+                            </button>
+                        `;
+                    }).join('')}
+                </div>
+
+                ${answered ? `
+                    <div><button class="oq-next-btn" onclick="nextOnoQuiz()">Next Question →</button></div>
+                    <div class="oq-fb ${isOk ? 'ok' : 'ng'}">
+                        <div class="oq-fb-head">
+                            ${curItem.imgSrc ? `<img class="oq-fb-img" src="${curItem.imgSrc}" alt="${curItem.jp}">` : ''}
+                            <div>
+                                <div style="font-size:16px; font-weight:800; color:${isOk ? '#16a34a' : '#dc2626'}; margin-bottom:4px;">
+                                    ${isOk ? '⭕️ Spot on!' : `❌ Answer: ${curItem.jp} (${curItem.romaji}) — Saved to Weak 🔴`}
+                                </div>
+                                <div style="font-weight:700; color:var(--dark); font-size:15px;">${fullMarked}</div>
+                                <div style="font-size:13px; color:#4b5563;">${curItem.exEn} — <em>${curItem.meaning}</em></div>
+                            </div>
+                        </div>
+                        <div class="oq-nuance">💡 <strong>Nuance Tip:</strong> ${curItem.nuance}</div>
+                    </div>
+                ` : '<div style="font-size:12px; color:var(--text-muted);">Tip: Press keys 1–4 to answer, Enter for next!</div>'}
+            `;
+        }
 
         filterTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 filterTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-                const category = tab.dataset.category;
-                let visibleIndex = 0;
-                cards.forEach((card) => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.classList.remove('hidden');
-                        card.style.animationDelay = `${(visibleIndex % 10) * 0.1}s`;
-                        visibleIndex++;
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-            });
-        });
-
-        // 表示切り替え
-        const viewBtns = document.querySelectorAll('.view-btn');
-        const gridContainer = document.getElementById('grid');
-
-        viewBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                viewBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                if (btn.dataset.view === 'list') {
-                    gridContainer.classList.add('list-view');
+                currentCat = tab.dataset.category;
+                if (isQuizView()) {
+                    loadNextQuiz();
+                    renderQuiz();
                 } else {
-                    gridContainer.classList.remove('list-view');
+                    applyBrowseFilter();
                 }
             });
         });
+
+        viewBtns.forEach(btn => {
+            btn.addEventListener('click', () => switchViewMode(btn.dataset.view));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!isQuizView() || !curItem) return;
+            if (['1','2','3','4'].includes(e.key) && !answered) {
+                const idx = parseInt(e.key, 10) - 1;
+                if (curChoices[idx]) pickOno(curChoices[idx].id);
+            } else if (e.key === 'Enter' && answered) {
+                nextOnoQuiz();
+            }
+        });
+
+        updateOnoStats();
     </script>
 </body>
 </html>
