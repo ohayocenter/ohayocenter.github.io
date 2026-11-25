@@ -3,34 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KANJI A1-2 - Study Tracker</title>
+    <title>Marugoto A1-2 Kanji Master (156) - OHAYO CENTER</title>
+    <meta name="description" content="Master 156 elementary kanji from Marugoto A1-2 across 9 topics with interactive quizzes, 60s speed runs, flashcards, and natural Japanese audio.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="Kanji A1-2 Study Tracker | OHAYO CENTER">
-    <meta property="og:description" content="Continue Marugoto A1 kanji (part 2) by topic, with readings, meanings and a progress tracker that saves what you have mastered.">
+    <meta property="og:title" content="Marugoto A1-2 Kanji Master | OHAYO CENTER">
+    <meta property="og:description" content="Master 156 elementary kanji from Marugoto A1-2 across 9 topics with interactive quizzes, 60s speed runs, flashcards, and natural Japanese audio.">
     <meta property="og:url" content="https://ohayocenter.com/A1-2.html">
     <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Kanji A1-2 Study Tracker | OHAYO CENTER">
-    <meta name="twitter:description" content="Continue Marugoto A1 kanji (part 2) by topic, with readings, meanings and a progress tracker that saves what you have mastered.">
+    <meta name="twitter:title" content="Marugoto A1-2 Kanji Master | OHAYO CENTER">
+    <meta name="twitter:description" content="Master 156 elementary kanji from Marugoto A1-2 across 9 topics with interactive quizzes, 60s speed runs, flashcards, and natural Japanese audio.">
     <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="icon.png" sizes="192x192">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Sawarabi+Mincho&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #27ae60;
-            --bg-color: #f8faf9;
-            --card-bg: #ffffff;
-            --success-color: #27ae60;
+            --primary: #10b981;
+            --primary-deep: #059669;
+            --primary-soft: #ecfdf5;
+            --bg: #f6fbf8;
+            --card: #ffffff;
+            --surface: #f8fafc;
+            --dark: #1e293b;
+            --text: #334155;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --ok: #10b981;
+            --ok-soft: #ecfdf5;
+            --warn: #f59e0b;
+            --warn-soft: #fffbeb;
+            --err: #ef4444;
+            --err-soft: #fef2f2;
+            --shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+        }
+        body.dark-mode {
+            --bg: #16181d;
+            --card: #22262e;
+            --surface: #1b1f26;
+            --dark: #f8fafc;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --border: #334155;
+            --primary-soft: #064e3b;
+            --ok-soft: #064e3b;
+            --warn-soft: #451a03;
+            --err-soft: #450a0a;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding-top: 86px;
+            min-height: 100vh;
+            transition: background 0.25s, color 0.25s;
         }
 
-        /* --- ナビゲーションバー --- */
+        /* --- NAV --- */
         nav {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(6px);
             padding: 0 5%;
             height: 70px;
             position: fixed;
@@ -41,92 +76,321 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            font-family: 'Noto Sans JP', sans-serif;
-            box-sizing: border-box;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.05);
         }
+        body.dark-mode nav { background: rgba(22, 24, 29, 0.95); }
         .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
-        .logo a { text-decoration: none; color: #2c3e50; }
-        .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+        .logo a { text-decoration: none; color: var(--dark); }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary-deep); }
 
-        /* --- 学習状況表示エリア --- */
-        .tracker-container {
-            background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center; width: 100%; max-width: 1100px; box-sizing: border-box;
-        }
-        .progress-text { font-size: 0.9rem; margin-bottom: 8px; color: var(--primary-color); font-weight: bold; }
-        .progress-outer { width: 100%; background: #eee; height: 12px; border-radius: 6px; overflow: hidden; }
-        .progress-inner { width: 0%; height: 100%; background: var(--success-color); transition: width 0.5s ease; }
+        .container { width: 96%; max-width: 960px; margin: 0 auto 30px; }
 
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
-            background-color: var(--bg-color); margin: 0; padding: 110px 20px 20px;
-            display: flex; flex-direction: column; align-items: center;
+        /* --- SERIES SWITCHER --- */
+        .series-bar {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
         }
-        
-        .container { max-width: 1100px; width: 100%; }
-        h1 { text-align: center; color: var(--primary-color); font-size: 1.6em; margin-bottom: 20px; }
-        
-        .slide {
-            display: none; background: var(--card-bg); padding: 30px;
-            border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            animation: fadeIn 0.4s ease;
+        .series-pill {
+            text-decoration: none;
+            padding: 7px 15px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            transition: 0.18s;
         }
-        .slide.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .topic-label {
-            background: var(--accent-color); color: white; display: inline-block; padding: 5px 15px; border-radius: 20px;
-            font-size: 0.9em; font-weight: bold; margin-bottom: 10px;
-        }
-        .topic-title {
-            font-size: 1.4em; font-weight: bold; color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; margin-bottom: 20px;
+        .series-pill:hover { border-color: var(--primary); color: var(--dark); }
+        .series-pill.active {
+            background: var(--primary-deep);
+            color: #fff;
+            border-color: var(--primary-deep);
         }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        
-        .kanji-card {
-            border: 1px solid #eee; padding: 15px; border-radius: 10px;
-            text-align: center; background: #fff; transition: all 0.2s;
-            position: relative; border-bottom: 3px solid #ddd;
+        /* --- HERO & PROGRESS --- */
+        .hero-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 20px 20px 18px;
+            box-shadow: var(--shadow);
+            margin-bottom: 14px;
         }
-        .kanji-card.mastered { background-color: #f0fff4; border-color: var(--success-color); border-bottom: 3px solid var(--success-color); }
-        .no-badge { position: absolute; top: 5px; left: 8px; font-size: 0.7em; color: #aaa; }
-        .master-check { position: absolute; top: 5px; right: 5px; cursor: pointer; transform: scale(1.1); z-index: 10; }
-
-        .question { font-size: 1.5em; font-weight: bold; color: #333; margin-bottom: 5px; margin-top: 5px; }
-        .meaning { font-size: 0.8em; color: #666; min-height: 2.5em; display: flex; align-items: center; justify-content: center; line-height: 1.2; }
-        .answer {
-            background: #f1f2f6; color: #f1f2f6; padding: 8px; border-radius: 5px;
-            cursor: pointer; font-weight: bold; font-size: 0.95em; transition: all 0.3s; border: 1px dashed #ccc;
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
         }
-        .answer.reveal { background: var(--accent-color); color: white; border-style: solid; }
-
-        .controls { text-align: center; margin-top: 30px; }
-        button {
-            padding: 12px 35px; font-size: 1em; cursor: pointer;
-            background: var(--primary-color); color: white;
-            border: none; border-radius: 30px; margin: 0 10px; transition: opacity 0.2s;
+        h1 { font-family: 'Sawarabi Mincho', serif; font-size: 1.65rem; color: var(--dark); margin-bottom: 3px; }
+        .hero-sub { font-size: 0.84rem; color: var(--muted); }
+        .hero-toggles { display: flex; gap: 7px; flex-wrap: wrap; }
+        .pill-toggle {
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
         }
-        button:hover { opacity: 0.8; }
-        button:disabled { background: #bdc3c7; cursor: not-allowed; }
+        .pill-toggle.on { background: var(--primary-deep); color: #fff; border-color: var(--primary-deep); }
 
-        /* --- 指定スタイルのリセットリンク --- */
-        .reset-link { color: #999; font-size: 0.8rem; cursor: pointer; margin-top: 20px; display: block; text-decoration: underline; }
-        
-        .footer { margin-top: 50px; text-align: center; padding: 25px; border-top: 1px solid #ddd; width: 100%; box-sizing: border-box; }
-        .bmc-button { display: inline-block; background-color: #FFDD00; color: #000; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .prog-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .prog-track { width: 100%; height: 10px; background: var(--primary-soft); border-radius: 999px; overflow: hidden; }
+        .prog-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--primary-deep)); border-radius: 999px; transition: width 0.35s; }
 
-        /* --- メディアクエリの統合 --- */
-        @media (max-width: 600px) { 
-            nav { padding: 0 15px; } 
-            .logo { font-size: 1rem; } 
-            .nav-links { gap: 0.8rem; } 
-            .nav-links a { font-size: 0.7rem; } 
-            .grid { grid-template-columns: repeat(2, 1fr); } 
-            .question { font-size: 1.5rem; }
+        /* --- 5 MODE TABS --- */
+        .mode-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 14px; }
+        .mode-tab {
+            padding: 11px 6px;
+            border-radius: 14px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.18s;
+            font-family: inherit;
+            text-align: center;
+        }
+        .mode-tab:hover { border-color: var(--primary); color: var(--dark); }
+        .mode-tab.active { background: var(--primary-deep); color: #fff; border-color: var(--primary-deep); }
+        .mode-tab.weak-tab { border-color: var(--warn); color: #b45309; }
+        body.dark-mode .mode-tab.weak-tab { color: #fcd34d; }
+        .mode-tab.weak-tab.active { background: var(--warn); color: #fff; border-color: var(--warn); }
+
+        /* --- TOPIC SELECTOR --- */
+        .theme-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 16px; }
+        .theme-btn {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.16s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+        .theme-btn:hover { border-color: var(--primary); }
+        .theme-btn.active { border-color: var(--primary-deep); background: var(--primary-soft); }
+        .theme-label { font-size: 0.76rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
+        .theme-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--primary-deep);
+            background: var(--card);
+            padding: 2px 6px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .theme-btn.done .theme-badge { background: var(--ok); color: #fff; border-color: var(--ok); }
+
+        /* --- MAIN PANEL --- */
+        .panel {
+            display: none;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 24px 20px;
+            box-shadow: var(--shadow);
+        }
+        .panel.active { display: block; animation: fadeIn 0.25s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .sub-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .chip-group { display: flex; gap: 6px; flex-wrap: wrap; }
+        .chip {
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .chip.active { background: var(--dark); color: var(--card); border-color: var(--dark); }
+
+        .quiz-stage { max-width: 560px; margin: 0 auto; text-align: center; }
+        .quiz-status { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 0.84rem; font-weight: 700; color: var(--muted); }
+        .combo-badge { background: var(--warn-soft); color: #b45309; padding: 3px 10px; border-radius: 999px; font-weight: 800; }
+        body.dark-mode .combo-badge { color: #fcd34d; }
+
+        .prompt-box { background: var(--surface); border: 2px solid var(--border); border-radius: 20px; padding: 26px 18px; margin-bottom: 16px; }
+        .prompt-kicker { font-size: 0.74rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+        .prompt-main { font-size: 3rem; font-weight: 700; color: var(--dark); line-height: 1.25; margin-bottom: 6px; }
+        .prompt-main.en-mode { font-size: 1.65rem; }
+        .prompt-sub { font-size: 0.88rem; color: var(--muted); min-height: 1.3em; }
+        .audio-circle {
+            margin-top: 10px;
+            padding: 7px 16px;
+            border-radius: 999px;
+            border: 1.5px solid var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary-deep);
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .opts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+        .opt-btn {
+            padding: 15px 12px;
+            border-radius: 15px;
+            border: 2px solid var(--border);
+            background: var(--card);
+            color: var(--dark);
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.16s;
+            font-family: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .opt-btn:hover:not(:disabled) { border-color: var(--primary); transform: translateY(-1px); }
+        .opt-btn .opt-romaji { font-size: 0.72rem; color: var(--muted); font-weight: 600; }
+        .opt-btn.correct { background: var(--ok-soft); border-color: var(--ok); color: #047857; }
+        .opt-btn.wrong { background: var(--err-soft); border-color: var(--err); color: var(--err); }
+        body.dark-mode .opt-btn.correct { color: #6ee7b7; }
+
+        .quiz-fb { min-height: 28px; font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; }
+        .btn-primary {
+            background: var(--primary-deep);
+            color: #fff;
+            border: none;
+            padding: 13px 30px;
+            border-radius: 50px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* --- FLASHCARDS --- */
+        .fc-card {
+            max-width: 440px;
+            margin: 0 auto 16px;
+            min-height: 245px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        .fc-kanji { font-size: 3.4rem; font-weight: 700; color: var(--dark); line-height: 1.2; }
+        .fc-back { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); width: 100%; }
+        .fc-card.flipped .fc-back { display: block; }
+        .fc-reading { font-size: 1.35rem; font-weight: 700; color: var(--primary-deep); }
+        .fc-romaji { font-size: 0.86rem; color: var(--muted); font-style: italic; margin: 2px 0 6px; }
+        .fc-meaning { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+        .fc-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .fc-btn-ok { background: var(--ok); color: #fff; border: none; padding: 12px 22px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+        .fc-btn-weak { background: var(--warn); color: #fff; border: none; padding: 12px 22px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+
+        /* --- STUDY GRID & SEARCH --- */
+        .grid-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+        .search-input {
+            flex: 1; min-width: 210px; padding: 10px 14px; border-radius: 12px;
+            border: 1.5px solid var(--border); background: var(--surface); color: var(--dark);
+            font-size: 0.9rem; outline: none; font-family: inherit;
+        }
+        .search-input:focus { border-color: var(--primary-deep); }
+        .word-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+        .word-card {
+            border: 2px solid var(--border); border-radius: 14px; padding: 11px 8px 10px;
+            background: var(--card); text-align: center; display: flex; flex-direction: column;
+            justify-content: space-between; transition: 0.2s;
+        }
+        .word-card.mastered { border-color: var(--ok); background: var(--ok-soft); }
+        .word-card.is-weak { border-color: var(--warn); }
+        .wc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+        .wc-no { font-size: 0.66rem; color: var(--muted); font-weight: 700; }
+        .wc-icon-btn { background: none; border: none; cursor: pointer; font-size: 0.9rem; padding: 2px 3px; color: var(--muted); }
+        .wc-kanji { font-size: 1.42rem; font-weight: 700; color: var(--dark); margin: 4px 0; line-height: 1.25; }
+        .wc-ans { min-height: 3.4em; display: flex; flex-direction: column; justify-content: center; margin-bottom: 6px; }
+        .wc-read { color: var(--primary-deep); font-weight: 700; font-size: 0.9rem; visibility: hidden; }
+        .wc-romaji { color: var(--muted); font-size: 0.72rem; visibility: hidden; }
+        .wc-mean { color: var(--text); font-size: 0.76rem; margin-top: 2px; visibility: hidden; line-height: 1.25; }
+        .wc-read.show, .wc-romaji.show, .wc-mean.show { visibility: visible; }
+        .wc-btns { display: flex; gap: 4px; }
+        .wc-btn { flex: 1; border: 1px solid var(--border); background: var(--surface); color: var(--muted); font-size: 0.68rem; font-weight: 700; padding: 5px 2px; border-radius: 7px; cursor: pointer; }
+        .wc-btn.active { background: var(--dark); color: var(--card); border-color: var(--dark); }
+
+        /* --- SPEED RESULT --- */
+        .rank-circle {
+            width: 68px; height: 68px; border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+            color: #fff; font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+        }
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 380px; margin: 12px auto 16px; }
+        .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 6px; }
+        .stat-box b { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; display: block; color: var(--dark); }
+        .stat-box span { font-size: 0.68rem; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+
+        .support-section { text-align: center; margin: 20px auto 36px; padding: 20px 16px; max-width: 780px; }
+        .support-section p { color: var(--muted); font-size: 0.88rem; margin-bottom: 12px; }
+        .bmc-btn { display: inline-flex; align-items: center; background: #FFDD00; color: #000; border-radius: 12px; padding: 10px 20px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .bmc-btn img { height: 22px; margin-right: 10px; }
+        .reset-link { color: var(--muted); font-size: 0.78rem; cursor: pointer; margin-top: 14px; display: inline-block; text-decoration: underline; }
+
+        @media (max-width: 820px) { .word-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) {
+            nav { padding: 0 14px; }
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a { font-size: 0.7rem; }
+            .mode-tabs { grid-template-columns: repeat(3, 1fr); }
+            .theme-bar { grid-template-columns: repeat(2, 1fr); }
+            .word-grid { grid-template-columns: repeat(2, 1fr); }
+            .opts-grid { grid-template-columns: 1fr; }
+            .prompt-main { font-size: 2.4rem; }
         }
     </style>
 <style id="ohayo-cta-style">
@@ -166,57 +430,182 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+        <li><a onclick="toggleDarkMode()" title="Toggle Dark Mode"><i class="fa-solid fa-circle-half-stroke"></i></a></li>
     </ul>
 </nav>
 
 <div class="container">
-    <h1>KANJI A1-2</h1>
+    <div class="series-bar" aria-label="Marugoto Kanji Series">
+            <a class="series-pill" href="A1-1.html">📙 A1-1 (65)</a>
+            <a class="series-pill active" href="A1-2.html">📗 A1-2 (156)</a>
+            <a class="series-pill" href="A2.html">📘 A2 (170)</a>
+    </div>
 
-    <div class="tracker-container">
-        <div class="progress-text">MY PROGRESS: <span id="masteredCount">0</span> / <span id="totalCountDisplay">0</span> (<span id="progressPercent">0</span>%)</div>
-        <div class="progress-outer">
-            <div id="progressInner" class="progress-inner"></div>
+    <div class="hero-card">
+        <div class="hero-top">
+            <div>
+                <h1>Marugoto A1-2 Kanji</h1>
+                <p class="hero-sub">156 Elementary Kanji (No.66–221) — 9 topics with quizzes, speed runs, flashcards & natural audio!</p>
+            </div>
+            <div class="hero-toggles">
+                <button type="button" class="pill-toggle" id="romaji-toggle" onclick="toggleRomaji()">ABC Romaji: OFF</button>
+                <button type="button" class="pill-toggle on" id="audio-toggle" onclick="toggleAutoAudio()">🔊 Audio: ON</button>
+            </div>
+        </div>
+        <div class="prog-row">
+            <span id="mastery-text">Mastered: 0 / 156 (0%)</span>
+            <span id="weak-summary" style="color:var(--warn);">🎯 Weak: 0</span>
+        </div>
+        <div class="prog-track"><div class="prog-fill" id="mastery-bar"></div></div>
+    </div>
+
+    <div class="mode-tabs" role="tablist">
+        <button type="button" class="mode-tab active" data-tab="quiz" onclick="switchMode('quiz')">🎯 4-Choice Quiz</button>
+        <button type="button" class="mode-tab" data-tab="speed" onclick="switchMode('speed')">⚡ 60s Speed</button>
+        <button type="button" class="mode-tab" data-tab="flash" onclick="switchMode('flash')">🃏 Flashcards</button>
+        <button type="button" class="mode-tab weak-tab" data-tab="weak" id="weak-tab-btn" onclick="switchMode('weak')">🎯 Weak (0)</button>
+        <button type="button" class="mode-tab" data-tab="grid" onclick="switchMode('grid')">📚 All 156 List</button>
+    </div>
+
+    <div class="theme-bar" id="theme-bar"></div>
+
+    <!-- 1. QUIZ PANEL -->
+    <div class="panel active" id="panel-quiz">
+        <div class="sub-controls">
+            <div class="chip-group">
+                <button type="button" class="chip active" data-qtype="reading" onclick="setQuizType('reading')">漢字 → 読み</button>
+                <button type="button" class="chip" data-qtype="meaning" onclick="setQuizType('meaning')">漢字 → English</button>
+                <button type="button" class="chip" data-qtype="kanji" onclick="setQuizType('kanji')">English → 漢字</button>
+                <button type="button" class="chip" data-qtype="audio" onclick="setQuizType('audio')">🔊 Audio → 漢字</button>
+            </div>
+            <div class="chip-group">
+                <button type="button" class="chip active" data-qscope="topic" onclick="setQuizScope('topic')">Current Topic</button>
+                <button type="button" class="chip" data-qscope="all" onclick="setQuizScope('all')">All 156 Mix</button>
+            </div>
+        </div>
+        <div class="quiz-stage">
+            <div class="quiz-status">
+                <span id="quiz-progress">Question 1 / 10</span>
+                <span class="combo-badge" id="quiz-combo">🔥 0 Streak</span>
+                <span id="quiz-score">Score: 0</span>
+            </div>
+            <div class="prompt-box">
+                <div class="prompt-kicker" id="quiz-kicker">CHOOSE THE CORRECT READING</div>
+                <div class="prompt-main" id="quiz-prompt">魚</div>
+                <div class="prompt-sub" id="quiz-sub"></div>
+                <button type="button" class="audio-circle" id="quiz-audio-btn" onclick="playCurrentQuizAudio()">🔊 Listen</button>
+            </div>
+            <div class="opts-grid" id="quiz-opts"></div>
+            <div class="quiz-fb" id="quiz-fb"></div>
+            <button type="button" class="btn-primary" id="quiz-next-btn" style="display:none;" onclick="nextQuizQ()">Next Question →</button>
         </div>
     </div>
 
-    <div class="slide active" id="slide1">
-        <div class="topic-label">Topic 1</div><div class="topic-title">私とかぞく [No.66-87]</div>
-        <div class="grid" id="gridT1"></div>
-        <div class="topic-label">Topic 2</div><div class="topic-title">きせつと天気 [No.88-104]</div>
-        <div class="grid" id="gridT2"></div>
-    </div>
-    <div class="slide" id="slide2">
-        <div class="topic-label">Topic 3</div><div class="topic-title">私の町 [No.105-122]</div>
-        <div class="grid" id="gridT3"></div>
-    </div>
-    <div class="slide" id="slide3">
-        <div class="topic-label">Topic 4</div><div class="topic-title">出かける [No.123-137]</div>
-        <div class="grid" id="gridT4"></div>
-        <div class="topic-label">Topic 5</div><div class="topic-title">外国語と外国文化 [No.138-154]</div>
-        <div class="grid" id="gridT5"></div>
-    </div>
-    <div class="slide" id="slide4">
-        <div class="topic-label">Topic 6</div><div class="topic-title">そとで食べる [No.155-168]</div>
-        <div class="grid" id="gridT6"></div>
-        <div class="topic-label">Topic 7</div><div class="topic-title">出張 [No.169-185]</div>
-        <div class="grid" id="gridT7"></div>
-    </div>
-    <div class="slide" id="slide5">
-        <div class="topic-label">Topic 8</div><div class="topic-title">けんこう [No.186-204]</div>
-        <div class="grid" id="gridT8"></div>
-    </div>
-    <div class="slide" id="slide6">
-        <div class="topic-label">Topic 9</div><div class="topic-title">お祝い [No.205-221]</div>
-        <div class="grid" id="gridT9"></div>
+    <!-- 2. SPEED RUN PANEL -->
+    <div class="panel" id="panel-speed">
+        <div class="quiz-stage" id="speed-start-view">
+            <h2 style="font-family:'Sawarabi Mincho',serif; color:var(--dark); margin-bottom:6px;">⚡ 60-Second Kanji Speed Run</h2>
+            <p style="font-size:0.88rem; color:var(--muted); margin-bottom:12px;">Answer as many Kanji → Reading questions as you can in 60 seconds!</p>
+            <div style="margin-bottom:14px; font-weight:700; color:#b45309;" id="speed-best-txt">🏆 Personal Best: 0</div>
+            <div class="chip-group" style="justify-content:center; margin-bottom:18px;">
+                <button type="button" class="chip active" data-sscope="topic" onclick="setSpeedScope('topic')">Current Topic</button>
+                <button type="button" class="chip" data-sscope="all" onclick="setSpeedScope('all')">All 156 Mix</button>
+            </div>
+            <button type="button" class="btn-primary" onclick="startSpeedRun()">START 60s RUN</button>
+        </div>
+
+        <div class="quiz-stage" id="speed-play-view" style="display:none;">
+            <div class="quiz-status">
+                <span id="sp-timer" style="color:var(--primary-deep); font-family:'Montserrat',sans-serif;">⏱ 60s</span>
+                <span class="combo-badge" id="sp-combo">🔥 0</span>
+                <span id="sp-score" style="font-family:'Montserrat',sans-serif;">SCORE: 0</span>
+            </div>
+            <div class="prompt-box">
+                <div class="prompt-kicker">TAP THE READING FAST!</div>
+                <div class="prompt-main" id="sp-prompt">魚</div>
+                <div class="prompt-sub" id="sp-sub"></div>
+            </div>
+            <div class="opts-grid" id="sp-opts"></div>
+        </div>
+
+        <div class="quiz-stage" id="speed-done-view" style="display:none;">
+            <div class="rank-circle" id="sp-rank">A</div>
+            <h2 style="color:var(--dark); margin-bottom:4px;">Speed Run Complete!</h2>
+            <div id="sp-new-best" style="color:#d97706; font-weight:800; font-size:0.86rem; display:none;">🎉 NEW PERSONAL BEST!</div>
+            <div class="stat-grid">
+                <div class="stat-box"><b id="sp-res-score">0</b><span>Correct</span></div>
+                <div class="stat-box"><b id="sp-res-combo">0</b><span>Max Combo</span></div>
+                <div class="stat-box"><b id="sp-res-acc">100%</b><span>Accuracy</span></div>
+            </div>
+            <button type="button" class="btn-primary" onclick="startSpeedRun()">Play Again ⚡</button>
+        </div>
     </div>
 
-    <div class="controls">
-        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
-        <span id="pageIndicator" style="font-weight: bold; margin: 0 15px;">1 / 6</span>
-        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    <!-- 3. FLASHCARDS PANEL -->
+    <div class="panel" id="panel-flash">
+        <div class="quiz-stage">
+            <div class="quiz-status">
+                <span id="fc-counter">Card 1 / 10</span>
+                <button type="button" class="chip" onclick="shuffleFlashcards()">🔀 Shuffle</button>
+            </div>
+            <div class="fc-card" id="fc-card" onclick="flipFlashcard()">
+                <div class="prompt-kicker">TAP CARD TO FLIP</div>
+                <div class="fc-kanji" id="fc-kanji">魚</div>
+                <div class="fc-back">
+                    <div class="fc-reading" id="fc-reading">さかな</div>
+                    <div class="fc-romaji" id="fc-romaji">sakana</div>
+                    <div class="fc-meaning" id="fc-meaning">Fish</div>
+                </div>
+            </div>
+            <div style="margin-bottom:14px;">
+                <button type="button" class="audio-circle" onclick="playFlashAudio()">🔊 Listen</button>
+            </div>
+            <div class="fc-actions">
+                <button type="button" class="fc-btn-weak" onclick="rateFlashcard(false)">🔁 Still Tricky</button>
+                <button type="button" class="fc-btn-ok" onclick="rateFlashcard(true)">✅ Got It!</button>
+            </div>
+        </div>
     </div>
 
-    <!-- OHAYO_NEXT_CTA -->
+    <!-- 4. REVIEW WEAK PANEL -->
+    <div class="panel" id="panel-weak">
+        <div class="quiz-stage" id="weak-empty-view" style="display:none;">
+            <div style="font-size:3rem; margin-bottom:8px;">🎉</div>
+            <h2 style="color:var(--dark); margin-bottom:6px;">No Weak Words Yet!</h2>
+            <p style="font-size:0.88rem; color:var(--muted); margin-bottom:16px;">Any word you miss in a quiz or mark "Still Tricky" in Flashcards will appear here for focused review.</p>
+            <button type="button" class="btn-primary" onclick="switchMode('quiz')">Start a Quiz →</button>
+        </div>
+        <div class="quiz-stage" id="weak-play-view">
+            <div class="quiz-status">
+                <span id="wk-count">Weak Queue: 0</span>
+                <span style="color:var(--ok);">Answer right to clear!</span>
+            </div>
+            <div class="prompt-box">
+                <div class="prompt-kicker">WEAK WORD REVIEW</div>
+                <div class="prompt-main" id="wk-prompt">魚</div>
+                <button type="button" class="audio-circle" onclick="playWeakAudio()">🔊 Listen</button>
+            </div>
+            <div class="opts-grid" id="wk-opts"></div>
+            <div class="quiz-fb" id="wk-fb"></div>
+            <button type="button" class="btn-primary" id="wk-next-btn" style="display:none;" onclick="loadWeakQ()">Next Weak Word →</button>
+        </div>
+    </div>
+
+    <!-- 5. ALL LIST & SEARCH PANEL -->
+    <div class="panel" id="panel-grid">
+        <div class="grid-toolbar">
+            <input type="text" class="search-input" id="search-input" placeholder="🔍 Search all 156 kanji (kanji, hiragana, romaji, English)..." oninput="renderGrid()">
+            <div class="chip-group">
+                <button type="button" class="chip" onclick="revealAllGrid(true)">👀 Show All</button>
+                <button type="button" class="chip" onclick="revealAllGrid(false)">🙈 Hide All</button>
+            </div>
+        </div>
+        <div id="grid-heading" style="font-weight:700; color:var(--dark); margin-bottom:12px; font-size:1rem;"></div>
+        <div class="word-grid" id="word-grid"></div>
+    </div>
+</div>
+
+<!-- OHAYO_NEXT_CTA -->
 <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
   <div class="ohayo-cta-next">
     <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
@@ -235,93 +624,491 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
   </div>
 </section>
 
-<div class="footer">
-        <a class="bmc-button" href="https://buymeacoffee.com/ohayocenter" target="_blank">SUPPORT OHAYO CENTER</a>
-        <span class="reset-link" onclick="resetProgress()">Reset Progress</span>
-    </div>
+<div class="support-section">
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+        <span>Support OHAYO CENTER</span>
+    </a><br>
+    <span class="reset-link" onclick="resetProgress()">Reset Saved Progress</span>
 </div>
 
 <script>
-    const data = {
-        T1: [{n:66,q:"私",a:"わたし",m:"I/Me"},{n:67,q:"父",a:"ちち",m:"Father"},{n:68,q:"母",a:"はは",m:"Mother"},{n:69,q:"子ども",a:"こども",m:"Child"},{n:70,q:"男",a:"おとこ",m:"Man"},{n:71,q:"女",a:"おんな",m:"Woman"},{n:72,q:"人",a:"ひと",m:"Person"},{n:73,q:"お父さん",a:"おとうさん",m:"Father (Polite)"},{n:74,q:"お母さん",a:"おかあさん",m:"Mother (Polite)"},{n:75,q:"何人",a:"なんにん",m:"How many people"},{n:76,q:"国",a:"くに",m:"Country"},{n:77,q:"外国",a:"がいこく",m:"Foreign country"},{n:78,q:"~語",a:"ご",m:"Language"},{n:79,q:"日本語",a:"にほんご",m:"Japanese"},{n:80,q:"英語",a:"えいご",m:"English"},{n:81,q:"中国語",a:"ちゅうごくご",m:"Chinese"},{n:82,q:"~人",a:"じん",m:"Nationality"},{n:83,q:"日本人",a:"にほんじん",m:"Japanese person"},{n:84,q:"好き",a:"すき",m:"Like"},{n:85,q:"本",a:"ほん",m:"Book"},{n:86,q:"読書",a:"どくしょ",m:"Reading"},{n:87,q:"何",a:"なに",m:"What"}],
-        T2: [{n:88,q:"春",a:"はる",m:"Spring"},{n:89,q:"夏",a:"なつ",m:"Summer"},{n:90,q:"秋",a:"あき",m:"Autumn"},{n:91,q:"冬",a:"ふゆ",m:"Winter"},{n:92,q:"今",a:"いま",m:"Now"},{n:93,q:"花",a:"はな",m:"Flower"},{n:94,q:"海",a:"うみ",m:"Sea"},{n:95,q:"山",a:"やま",m:"Mountain"},{n:96,q:"川",a:"かわ",m:"River"},{n:97,q:"今日",a:"きょう",m:"Today"},{n:98,q:"天気",a:"てんき",m:"Weather"},{n:99,q:"晴れ",a:"はれ",m:"Sunny"},{n:100,q:"雨",a:"あめ",m:"Rain"},{n:101,q:"雪",a:"ゆき",m:"Snow"},{n:102,q:"雲",a:"くも",m:"Cloud"},{n:103,q:"風",a:"かぜ",m:"Wind"},{n:104,q:"空",a:"そら",m:"Sky"}],
-        T3: [{n:105,q:"町",a:"まち",m:"Town"},{n:106,q:"店",a:"みせ",m:"Shop"},{n:107,q:"人気",a:"にんき",m:"Popular"},{n:108,q:"多い",a:"おおい",m:"Many"},{n:109,q:"少ない",a:"すくない",m:"Few"},{n:110,q:"高い",a:"たかい",m:"High/Exp."},{n:111,q:"安い",a:"やすい",m:"Cheap"},{n:112,q:"広い",a:"ひろい",m:"Spacious"},{n:113,q:"道",a:"みち",m:"Road"},{n:114,q:"通り",a:"とおり",m:"Street"},{n:115,q:"右",a:"みぎ",m:"Right"},{n:116,q:"左",a:"ひだり",m:"Left"},{n:117,q:"一つ",a:"ひとつ",m:"One"},{n:118,q:"二つ",a:"ふたつ",m:"Two"},{n:119,q:"赤い",a:"あかい",m:"Red"},{n:120,q:"青い",a:"あおい",m:"Blue"},{n:121,q:"黒い",a:"くろい",m:"Black"},{n:122,q:"白い",a:"しろい",m:"White"}],
-        T4: [{n:123,q:"時間",a:"じかん",m:"Time"},{n:124,q:"場所",a:"ばしょ",m:"Place"},{n:125,q:"駅",a:"えき",m:"Station"},{n:126,q:"日",a:"ひ",m:"Day"},{n:127,q:"出かけます",a:"でかけます",m:"To go out"},{n:128,q:"待ちます",a:"まちます",m:"To wait"},{n:129,q:"止まります",a:"とまります",m:"To stop/stay"},{n:130,q:"食事",a:"しょくじ",m:"Meal"},{n:131,q:"仕事",a:"しごと",m:"Work"},{n:132,q:"前",a:"まえ",m:"Front/Before"},{n:133,q:"後",a:"あと",m:"Back/After"},{n:134,q:"朝",a:"あさ",m:"Morning"},{n:135,q:"昼",a:"ひる",m:"Noon"},{n:136,q:"夜",a:"よる",m:"Night"},{n:137,q:"乗ります",a:"のります",m:"To ride"}],
-        T5: [{n:138,q:"学校",a:"がっこう",m:"School"},{n:139,q:"小学校",a:"しょうがっこう",m:"Elem. School"},{n:140,q:"中学校",a:"ちゅうがっこう",m:"Middle School"},{n:141,q:"高校",a:"こうこう",m:"High School"},{n:142,q:"大学",a:"だいがく",m:"University"},{n:143,q:"先生",a:"せんせい",m:"Teacher"},{n:144,q:"学生",a:"がくせい",m:"Student"},{n:145,q:"~年生",a:"ねんせい",m:"Year/Grade"},{n:146,q:"勉強",a:"べんきょう",m:"Study"},{n:147,q:"文化",a:"ぶんか",m:"Culture"},{n:148,q:"音楽",a:"おんがく",m:"Music"},{n:149,q:"旅行",a:"りょこう",m:"Trip"},{n:150,q:"留学",a:"りゅうがく",m:"Study abroad"},{n:151,q:"友だち",a:"ともだち",m:"Friend"},{n:152,q:"楽しい",a:"たのしい",m:"Fun"},{n:153,q:"週",a:"しゅう",m:"Week"},{n:154,q:"~回",a:"かい",m:"Times"}],
-        T6: [{n:155,q:"食べ物",a:"たべもの",m:"Food"},{n:156,q:"飲み物",a:"のみもの",m:"Drink"},{n:157,q:"お茶",a:"おちゃ",m:"Tea"},{n:158,q:"お酒",a:"おさけ",m:"Alcohol"},{n:159,q:"作ります",a:"つくります",m:"To make"},{n:160,q:"持っていきます",a:"もっていきます",m:"To take"},{n:161,q:"お願いします",a:"おねがいします",m:"Please"},{n:162,q:"料理",a:"りょうり",m:"Cooking"},{n:163,q:"味",a:"あじ",m:"Taste"},{n:164,q:"色",a:"いろ",m:"Color"},{n:165,q:"野菜",a:"やさい",m:"Vegetable"},{n:166,q:"少し",a:"すこし",m:"A little"},{n:167,q:"中",a:"なか",m:"Inside"},{n:168,q:"入っています",a:"はいっています",m:"Is inside"}],
-        T7: [{n:169,q:"会社",a:"かいしゃ",m:"Company"},{n:170,q:"本社",a:"ほんしゃ",m:"Head office"},{n:171,q:"支社",a:"ししゃ",m:"Branch office"},{n:172,q:"出張",a:"しゅっちょう",m:"Business trip"},{n:173,q:"空港",a:"くうこう",m:"Airport"},{n:174,q:"出発",a:"しゅっぱつ",m:"Departure"},{n:175,q:"到着",a:"とうちゃく",m:"Arrival"},{n:176,q:"午前",a:"ごぜん",m:"AM"},{n:177,q:"午後",a:"ごご",m:"PM"},{n:178,q:"自分",a:"じぶん",m:"Self"},{n:179,q:"電話",a:"でんわ",m:"Telephone"},{n:180,q:"電気",a:"でんき",m:"Electricity"},{n:181,q:"電車",a:"でんしゃ",m:"Train"},{n:182,q:"車",a:"くるま",m:"Car"},{n:183,q:"送ります",a:"おくります",m:"To send"},{n:184,q:"使います",a:"つかいます",m:"To use"},{n:185,q:"借ります",a:"かります",m:"To borrow"}],
-        T8: [{n:186,q:"体",a:"からだ",m:"Body"},{n:187,q:"頭",a:"あたま",m:"Head"},{n:188,q:"目",a:"め",m:"Eye"},{n:189,q:"口",a:"くち",m:"Mouth"},{n:190,q:"耳",a:"みみ",m:"Ear"},{n:191,q:"手",a:"て",m:"Hand"},{n:192,q:"足",a:"あし",m:"Foot"},{n:193,q:"上",a:"うえ",m:"Above"},{n:194,q:"下",a:"した",m:"Below"},{n:195,q:"毎~",a:"まい",m:"Every"},{n:196,q:"毎朝",a:"まいあさ",m:"Every morning"},{n:197,q:"毎日",a:"まいにち",m:"Every day"},{n:198,q:"週末",a:"しゅうまつ",m:"Weekend"},{n:199,q:"元気",a:"げんき",m:"Healthy"},{n:200,q:"外",a:"そと",m:"Outside"},{n:201,q:"起きます",a:"おきます",m:"To wake up"},{n:202,q:"歩きます",a:"あるきます",m:"To walk"},{n:203,q:"走ります",a:"はしります",m:"To run"},{n:204,q:"泳ぎます",a:"およぎます",m:"To swim"}],
-        T9: [{n:205,q:"お祝い",a:"おいわい",m:"Celebration"},{n:206,q:"誕生日",a:"たんじょうび",m:"Birthday"},{n:207,q:"結婚",a:"けっこん",m:"Marriage"},{n:208,q:"絵",a:"え",m:"Picture"},{n:209,q:"写真",a:"しゃしん",m:"Photo"},{n:210,q:"時計",a:"とけい",m:"Clock"},{n:211,q:"着ます",a:"きます",m:"To wear"},{n:212,q:"先~",a:"せん",m:"Last ~"},{n:213,q:"先週",a:"せんしゅう",m:"Last week"},{n:214,q:"今~",a:"こん",m:"This ~"},{n:215,q:"今月",a:"こんげつ",m:"This month"},{n:216,q:"来~",a:"らい",m:"Next ~"},{n:217,q:"来年",a:"らいねん",m:"Next year"},{n:218,q:"今年",a:"ことし",m:"This year"},{n:219,q:"去年",a:"きょねん",m:"Last year"},{n:220,q:"家",a:"いえ",m:"House"},{n:221,q:"思います",a:"おもいます",m:"To think"}]
-    };
+    const TOPICS_META = [{"id": 1, "icon": "👨‍👩‍👧", "jp": "Topic 1：私とかぞく", "en": "Me & Family"}, {"id": 2, "icon": "🌸", "jp": "Topic 2：きせつと天気", "en": "Seasons & Weather"}, {"id": 3, "icon": "🏙️", "jp": "Topic 3：私の町", "en": "My Town"}, {"id": 4, "icon": "🚆", "jp": "Topic 4：出かける", "en": "Going Out"}, {"id": 5, "icon": "🌍", "jp": "Topic 5：外国語と外国文化", "en": "Languages & Culture"}, {"id": 6, "icon": "🍜", "jp": "Topic 6：そとで食べる", "en": "Eating Out"}, {"id": 7, "icon": "💼", "jp": "Topic 7：出張", "en": "Business Trip"}, {"id": 8, "icon": "💪", "jp": "Topic 8：けんこう", "en": "Health"}, {"id": 9, "icon": "🎉", "jp": "Topic 9：お祝い", "en": "Celebrations"}];
+    const WORDS = [{"n": 66, "id": "m066", "topic": 1, "k": "私", "h": "わたし", "r": "watashi", "e": "I/Me"}, {"n": 67, "id": "m067", "topic": 1, "k": "父", "h": "ちち", "r": "chichi", "e": "Father"}, {"n": 68, "id": "m068", "topic": 1, "k": "母", "h": "はは", "r": "haha", "e": "Mother"}, {"n": 69, "id": "m069", "topic": 1, "k": "子ども", "h": "こども", "r": "kodomo", "e": "Child"}, {"n": 70, "id": "m070", "topic": 1, "k": "男", "h": "おとこ", "r": "otoko", "e": "Man"}, {"n": 71, "id": "m071", "topic": 1, "k": "女", "h": "おんな", "r": "onna", "e": "Woman"}, {"n": 72, "id": "m072", "topic": 1, "k": "人", "h": "ひと", "r": "hito", "e": "Person"}, {"n": 73, "id": "m073", "topic": 1, "k": "お父さん", "h": "おとうさん", "r": "otousan", "e": "Father (Polite)"}, {"n": 74, "id": "m074", "topic": 1, "k": "お母さん", "h": "おかあさん", "r": "okaasan", "e": "Mother (Polite)"}, {"n": 75, "id": "m075", "topic": 1, "k": "何人", "h": "なんにん", "r": "nannin", "e": "How many people"}, {"n": 76, "id": "m076", "topic": 1, "k": "国", "h": "くに", "r": "kuni", "e": "Country"}, {"n": 77, "id": "m077", "topic": 1, "k": "外国", "h": "がいこく", "r": "gaikoku", "e": "Foreign country"}, {"n": 78, "id": "m078", "topic": 1, "k": "~語", "h": "ご", "r": "go", "e": "Language"}, {"n": 79, "id": "m079", "topic": 1, "k": "日本語", "h": "にほんご", "r": "nihongo", "e": "Japanese"}, {"n": 80, "id": "m080", "topic": 1, "k": "英語", "h": "えいご", "r": "eigo", "e": "English"}, {"n": 81, "id": "m081", "topic": 1, "k": "中国語", "h": "ちゅうごくご", "r": "chuugokugo", "e": "Chinese"}, {"n": 82, "id": "m082", "topic": 1, "k": "~人", "h": "じん", "r": "jin", "e": "Nationality"}, {"n": 83, "id": "m083", "topic": 1, "k": "日本人", "h": "にほんじん", "r": "nihonjin", "e": "Japanese person"}, {"n": 84, "id": "m084", "topic": 1, "k": "好き", "h": "すき", "r": "suki", "e": "Like"}, {"n": 85, "id": "m085", "topic": 1, "k": "本", "h": "ほん", "r": "hon", "e": "Book"}, {"n": 86, "id": "m086", "topic": 1, "k": "読書", "h": "どくしょ", "r": "dokusho", "e": "Reading"}, {"n": 87, "id": "m087", "topic": 1, "k": "何", "h": "なに", "r": "nani", "e": "What"}, {"n": 88, "id": "m088", "topic": 2, "k": "春", "h": "はる", "r": "haru", "e": "Spring"}, {"n": 89, "id": "m089", "topic": 2, "k": "夏", "h": "なつ", "r": "natsu", "e": "Summer"}, {"n": 90, "id": "m090", "topic": 2, "k": "秋", "h": "あき", "r": "aki", "e": "Autumn"}, {"n": 91, "id": "m091", "topic": 2, "k": "冬", "h": "ふゆ", "r": "fuyu", "e": "Winter"}, {"n": 92, "id": "m092", "topic": 2, "k": "今", "h": "いま", "r": "ima", "e": "Now"}, {"n": 93, "id": "m093", "topic": 2, "k": "花", "h": "はな", "r": "hana", "e": "Flower"}, {"n": 94, "id": "m094", "topic": 2, "k": "海", "h": "うみ", "r": "umi", "e": "Sea"}, {"n": 95, "id": "m095", "topic": 2, "k": "山", "h": "やま", "r": "yama", "e": "Mountain"}, {"n": 96, "id": "m096", "topic": 2, "k": "川", "h": "かわ", "r": "kawa", "e": "River"}, {"n": 97, "id": "m097", "topic": 2, "k": "今日", "h": "きょう", "r": "kyou", "e": "Today"}, {"n": 98, "id": "m098", "topic": 2, "k": "天気", "h": "てんき", "r": "tenki", "e": "Weather"}, {"n": 99, "id": "m099", "topic": 2, "k": "晴れ", "h": "はれ", "r": "hare", "e": "Sunny"}, {"n": 100, "id": "m100", "topic": 2, "k": "雨", "h": "あめ", "r": "ame", "e": "Rain"}, {"n": 101, "id": "m101", "topic": 2, "k": "雪", "h": "ゆき", "r": "yuki", "e": "Snow"}, {"n": 102, "id": "m102", "topic": 2, "k": "雲", "h": "くも", "r": "kumo", "e": "Cloud"}, {"n": 103, "id": "m103", "topic": 2, "k": "風", "h": "かぜ", "r": "kaze", "e": "Wind"}, {"n": 104, "id": "m104", "topic": 2, "k": "空", "h": "そら", "r": "sora", "e": "Sky"}, {"n": 105, "id": "m105", "topic": 3, "k": "町", "h": "まち", "r": "machi", "e": "Town"}, {"n": 106, "id": "m106", "topic": 3, "k": "店", "h": "みせ", "r": "mise", "e": "Shop"}, {"n": 107, "id": "m107", "topic": 3, "k": "人気", "h": "にんき", "r": "ninki", "e": "Popular"}, {"n": 108, "id": "m108", "topic": 3, "k": "多い", "h": "おおい", "r": "ooi", "e": "Many"}, {"n": 109, "id": "m109", "topic": 3, "k": "少ない", "h": "すくない", "r": "sukunai", "e": "Few"}, {"n": 110, "id": "m110", "topic": 3, "k": "高い", "h": "たかい", "r": "takai", "e": "High/Exp."}, {"n": 111, "id": "m111", "topic": 3, "k": "安い", "h": "やすい", "r": "yasui", "e": "Cheap"}, {"n": 112, "id": "m112", "topic": 3, "k": "広い", "h": "ひろい", "r": "hiroi", "e": "Spacious"}, {"n": 113, "id": "m113", "topic": 3, "k": "道", "h": "みち", "r": "michi", "e": "Road"}, {"n": 114, "id": "m114", "topic": 3, "k": "通り", "h": "とおり", "r": "toori", "e": "Street"}, {"n": 115, "id": "m115", "topic": 3, "k": "右", "h": "みぎ", "r": "migi", "e": "Right"}, {"n": 116, "id": "m116", "topic": 3, "k": "左", "h": "ひだり", "r": "hidari", "e": "Left"}, {"n": 117, "id": "m117", "topic": 3, "k": "一つ", "h": "ひとつ", "r": "hitotsu", "e": "One"}, {"n": 118, "id": "m118", "topic": 3, "k": "二つ", "h": "ふたつ", "r": "futatsu", "e": "Two"}, {"n": 119, "id": "m119", "topic": 3, "k": "赤い", "h": "あかい", "r": "akai", "e": "Red"}, {"n": 120, "id": "m120", "topic": 3, "k": "青い", "h": "あおい", "r": "aoi", "e": "Blue"}, {"n": 121, "id": "m121", "topic": 3, "k": "黒い", "h": "くろい", "r": "kuroi", "e": "Black"}, {"n": 122, "id": "m122", "topic": 3, "k": "白い", "h": "しろい", "r": "shiroi", "e": "White"}, {"n": 123, "id": "m123", "topic": 4, "k": "時間", "h": "じかん", "r": "jikan", "e": "Time"}, {"n": 124, "id": "m124", "topic": 4, "k": "場所", "h": "ばしょ", "r": "basho", "e": "Place"}, {"n": 125, "id": "m125", "topic": 4, "k": "駅", "h": "えき", "r": "eki", "e": "Station"}, {"n": 126, "id": "m126", "topic": 4, "k": "日", "h": "ひ", "r": "hi", "e": "Day"}, {"n": 127, "id": "m127", "topic": 4, "k": "出かけます", "h": "でかけます", "r": "dekakemasu", "e": "To go out"}, {"n": 128, "id": "m128", "topic": 4, "k": "待ちます", "h": "まちます", "r": "machimasu", "e": "To wait"}, {"n": 129, "id": "m129", "topic": 4, "k": "止まります", "h": "とまります", "r": "tomarimasu", "e": "To stop/stay"}, {"n": 130, "id": "m130", "topic": 4, "k": "食事", "h": "しょくじ", "r": "shokuji", "e": "Meal"}, {"n": 131, "id": "m131", "topic": 4, "k": "仕事", "h": "しごと", "r": "shigoto", "e": "Work"}, {"n": 132, "id": "m132", "topic": 4, "k": "前", "h": "まえ", "r": "mae", "e": "Front/Before"}, {"n": 133, "id": "m133", "topic": 4, "k": "後", "h": "あと", "r": "ato", "e": "Back/After"}, {"n": 134, "id": "m134", "topic": 4, "k": "朝", "h": "あさ", "r": "asa", "e": "Morning"}, {"n": 135, "id": "m135", "topic": 4, "k": "昼", "h": "ひる", "r": "hiru", "e": "Noon"}, {"n": 136, "id": "m136", "topic": 4, "k": "夜", "h": "よる", "r": "yoru", "e": "Night"}, {"n": 137, "id": "m137", "topic": 4, "k": "乗ります", "h": "のります", "r": "norimasu", "e": "To ride"}, {"n": 138, "id": "m138", "topic": 5, "k": "学校", "h": "がっこう", "r": "gakkou", "e": "School"}, {"n": 139, "id": "m139", "topic": 5, "k": "小学校", "h": "しょうがっこう", "r": "shougakkou", "e": "Elem. School"}, {"n": 140, "id": "m140", "topic": 5, "k": "中学校", "h": "ちゅうがっこう", "r": "chuugakkou", "e": "Middle School"}, {"n": 141, "id": "m141", "topic": 5, "k": "高校", "h": "こうこう", "r": "koukou", "e": "High School"}, {"n": 142, "id": "m142", "topic": 5, "k": "大学", "h": "だいがく", "r": "daigaku", "e": "University"}, {"n": 143, "id": "m143", "topic": 5, "k": "先生", "h": "せんせい", "r": "sensei", "e": "Teacher"}, {"n": 144, "id": "m144", "topic": 5, "k": "学生", "h": "がくせい", "r": "gakusei", "e": "Student"}, {"n": 145, "id": "m145", "topic": 5, "k": "~年生", "h": "ねんせい", "r": "nensei", "e": "Year/Grade"}, {"n": 146, "id": "m146", "topic": 5, "k": "勉強", "h": "べんきょう", "r": "benkyou", "e": "Study"}, {"n": 147, "id": "m147", "topic": 5, "k": "文化", "h": "ぶんか", "r": "bunka", "e": "Culture"}, {"n": 148, "id": "m148", "topic": 5, "k": "音楽", "h": "おんがく", "r": "ongaku", "e": "Music"}, {"n": 149, "id": "m149", "topic": 5, "k": "旅行", "h": "りょこう", "r": "ryokou", "e": "Trip"}, {"n": 150, "id": "m150", "topic": 5, "k": "留学", "h": "りゅうがく", "r": "ryuugaku", "e": "Study abroad"}, {"n": 151, "id": "m151", "topic": 5, "k": "友だち", "h": "ともだち", "r": "tomodachi", "e": "Friend"}, {"n": 152, "id": "m152", "topic": 5, "k": "楽しい", "h": "たのしい", "r": "tanoshii", "e": "Fun"}, {"n": 153, "id": "m153", "topic": 5, "k": "週", "h": "しゅう", "r": "shuu", "e": "Week"}, {"n": 154, "id": "m154", "topic": 5, "k": "~回", "h": "かい", "r": "kai", "e": "Times"}, {"n": 155, "id": "m155", "topic": 6, "k": "食べ物", "h": "たべもの", "r": "tabemono", "e": "Food"}, {"n": 156, "id": "m156", "topic": 6, "k": "飲み物", "h": "のみもの", "r": "nomimono", "e": "Drink"}, {"n": 157, "id": "m157", "topic": 6, "k": "お茶", "h": "おちゃ", "r": "ocha", "e": "Tea"}, {"n": 158, "id": "m158", "topic": 6, "k": "お酒", "h": "おさけ", "r": "osake", "e": "Alcohol"}, {"n": 159, "id": "m159", "topic": 6, "k": "作ります", "h": "つくります", "r": "tsukurimasu", "e": "To make"}, {"n": 160, "id": "m160", "topic": 6, "k": "持っていきます", "h": "もっていきます", "r": "motteikimasu", "e": "To take"}, {"n": 161, "id": "m161", "topic": 6, "k": "お願いします", "h": "おねがいします", "r": "onegaishimasu", "e": "Please"}, {"n": 162, "id": "m162", "topic": 6, "k": "料理", "h": "りょうり", "r": "ryouri", "e": "Cooking"}, {"n": 163, "id": "m163", "topic": 6, "k": "味", "h": "あじ", "r": "aji", "e": "Taste"}, {"n": 164, "id": "m164", "topic": 6, "k": "色", "h": "いろ", "r": "iro", "e": "Color"}, {"n": 165, "id": "m165", "topic": 6, "k": "野菜", "h": "やさい", "r": "yasai", "e": "Vegetable"}, {"n": 166, "id": "m166", "topic": 6, "k": "少し", "h": "すこし", "r": "sukoshi", "e": "A little"}, {"n": 167, "id": "m167", "topic": 6, "k": "中", "h": "なか", "r": "naka", "e": "Inside"}, {"n": 168, "id": "m168", "topic": 6, "k": "入っています", "h": "はいっています", "r": "haitteimasu", "e": "Is inside"}, {"n": 169, "id": "m169", "topic": 7, "k": "会社", "h": "かいしゃ", "r": "kaisha", "e": "Company"}, {"n": 170, "id": "m170", "topic": 7, "k": "本社", "h": "ほんしゃ", "r": "honsha", "e": "Head office"}, {"n": 171, "id": "m171", "topic": 7, "k": "支社", "h": "ししゃ", "r": "shisha", "e": "Branch office"}, {"n": 172, "id": "m172", "topic": 7, "k": "出張", "h": "しゅっちょう", "r": "shutchou", "e": "Business trip"}, {"n": 173, "id": "m173", "topic": 7, "k": "空港", "h": "くうこう", "r": "kuukou", "e": "Airport"}, {"n": 174, "id": "m174", "topic": 7, "k": "出発", "h": "しゅっぱつ", "r": "shuppatsu", "e": "Departure"}, {"n": 175, "id": "m175", "topic": 7, "k": "到着", "h": "とうちゃく", "r": "touchaku", "e": "Arrival"}, {"n": 176, "id": "m176", "topic": 7, "k": "午前", "h": "ごぜん", "r": "gozen", "e": "AM"}, {"n": 177, "id": "m177", "topic": 7, "k": "午後", "h": "ごご", "r": "gogo", "e": "PM"}, {"n": 178, "id": "m178", "topic": 7, "k": "自分", "h": "じぶん", "r": "jibun", "e": "Self"}, {"n": 179, "id": "m179", "topic": 7, "k": "電話", "h": "でんわ", "r": "denwa", "e": "Telephone"}, {"n": 180, "id": "m180", "topic": 7, "k": "電気", "h": "でんき", "r": "denki", "e": "Electricity"}, {"n": 181, "id": "m181", "topic": 7, "k": "電車", "h": "でんしゃ", "r": "densha", "e": "Train"}, {"n": 182, "id": "m182", "topic": 7, "k": "車", "h": "くるま", "r": "kuruma", "e": "Car"}, {"n": 183, "id": "m183", "topic": 7, "k": "送ります", "h": "おくります", "r": "okurimasu", "e": "To send"}, {"n": 184, "id": "m184", "topic": 7, "k": "使います", "h": "つかいます", "r": "tsukaimasu", "e": "To use"}, {"n": 185, "id": "m185", "topic": 7, "k": "借ります", "h": "かります", "r": "karimasu", "e": "To borrow"}, {"n": 186, "id": "m186", "topic": 8, "k": "体", "h": "からだ", "r": "karada", "e": "Body"}, {"n": 187, "id": "m187", "topic": 8, "k": "頭", "h": "あたま", "r": "atama", "e": "Head"}, {"n": 188, "id": "m188", "topic": 8, "k": "目", "h": "め", "r": "me", "e": "Eye"}, {"n": 189, "id": "m189", "topic": 8, "k": "口", "h": "くち", "r": "kuchi", "e": "Mouth"}, {"n": 190, "id": "m190", "topic": 8, "k": "耳", "h": "みみ", "r": "mimi", "e": "Ear"}, {"n": 191, "id": "m191", "topic": 8, "k": "手", "h": "て", "r": "te", "e": "Hand"}, {"n": 192, "id": "m192", "topic": 8, "k": "足", "h": "あし", "r": "ashi", "e": "Foot"}, {"n": 193, "id": "m193", "topic": 8, "k": "上", "h": "うえ", "r": "ue", "e": "Above"}, {"n": 194, "id": "m194", "topic": 8, "k": "下", "h": "した", "r": "shita", "e": "Below"}, {"n": 195, "id": "m195", "topic": 8, "k": "毎~", "h": "まい", "r": "mai", "e": "Every"}, {"n": 196, "id": "m196", "topic": 8, "k": "毎朝", "h": "まいあさ", "r": "maiasa", "e": "Every morning"}, {"n": 197, "id": "m197", "topic": 8, "k": "毎日", "h": "まいにち", "r": "mainichi", "e": "Every day"}, {"n": 198, "id": "m198", "topic": 8, "k": "週末", "h": "しゅうまつ", "r": "shuumatsu", "e": "Weekend"}, {"n": 199, "id": "m199", "topic": 8, "k": "元気", "h": "げんき", "r": "genki", "e": "Healthy"}, {"n": 200, "id": "m200", "topic": 8, "k": "外", "h": "そと", "r": "soto", "e": "Outside"}, {"n": 201, "id": "m201", "topic": 8, "k": "起きます", "h": "おきます", "r": "okimasu", "e": "To wake up"}, {"n": 202, "id": "m202", "topic": 8, "k": "歩きます", "h": "あるきます", "r": "arukimasu", "e": "To walk"}, {"n": 203, "id": "m203", "topic": 8, "k": "走ります", "h": "はしります", "r": "hashirimasu", "e": "To run"}, {"n": 204, "id": "m204", "topic": 8, "k": "泳ぎます", "h": "およぎます", "r": "oyogimasu", "e": "To swim"}, {"n": 205, "id": "m205", "topic": 9, "k": "お祝い", "h": "おいわい", "r": "oiwai", "e": "Celebration"}, {"n": 206, "id": "m206", "topic": 9, "k": "誕生日", "h": "たんじょうび", "r": "tanjoubi", "e": "Birthday"}, {"n": 207, "id": "m207", "topic": 9, "k": "結婚", "h": "けっこん", "r": "kekkon", "e": "Marriage"}, {"n": 208, "id": "m208", "topic": 9, "k": "絵", "h": "え", "r": "e", "e": "Picture"}, {"n": 209, "id": "m209", "topic": 9, "k": "写真", "h": "しゃしん", "r": "shashin", "e": "Photo"}, {"n": 210, "id": "m210", "topic": 9, "k": "時計", "h": "とけい", "r": "tokei", "e": "Clock"}, {"n": 211, "id": "m211", "topic": 9, "k": "着ます", "h": "きます", "r": "kimasu", "e": "To wear"}, {"n": 212, "id": "m212", "topic": 9, "k": "先~", "h": "せん", "r": "sen", "e": "Last ~"}, {"n": 213, "id": "m213", "topic": 9, "k": "先週", "h": "せんしゅう", "r": "senshuu", "e": "Last week"}, {"n": 214, "id": "m214", "topic": 9, "k": "今~", "h": "こん", "r": "kon", "e": "This ~"}, {"n": 215, "id": "m215", "topic": 9, "k": "今月", "h": "こんげつ", "r": "kongetsu", "e": "This month"}, {"n": 216, "id": "m216", "topic": 9, "k": "来~", "h": "らい", "r": "rai", "e": "Next ~"}, {"n": 217, "id": "m217", "topic": 9, "k": "来年", "h": "らいねん", "r": "rainen", "e": "Next year"}, {"n": 218, "id": "m218", "topic": 9, "k": "今年", "h": "ことし", "r": "kotoshi", "e": "This year"}, {"n": 219, "id": "m219", "topic": 9, "k": "去年", "h": "きょねん", "r": "kyonen", "e": "Last year"}, {"n": 220, "id": "m220", "topic": 9, "k": "家", "h": "いえ", "r": "ie", "e": "House"}, {"n": 221, "id": "m221", "topic": 9, "k": "思います", "h": "おもいます", "r": "omoimasu", "e": "To think"}];
 
-    let masteredData = JSON.parse(localStorage.getItem('kanji_mastered_list_A1_2')) || [];
-    const totalCount = 156;
+    // Preserve existing localStorage mastery array format [n1, n2, ...] for backward compatibility!
+    const MASTERY_KEY = 'kanji_mastered_list_A1_2';
+    const WEAK_KEY = 'ohayo_marugoto_a1_2_weak_v1';
+    const BEST_KEY = 'ohayo_marugoto_a1_2_best_v1';
 
-    function populate() {
-        Object.keys(data).forEach(key => {
-            const grid = document.getElementById('grid' + key);
-            data[key].forEach(item => {
-                const isMastered = masteredData.includes(item.n);
-                const card = document.createElement('div');
-                card.className = `kanji-card ${isMastered ? 'mastered' : ''}`;
-                card.id = `card-${item.n}`;
-                card.innerHTML = `
-                    <span class="no-badge">${item.n}</span>
-                    <input type="checkbox" class="master-check" ${isMastered ? 'checked' : ''} onclick="toggleMaster(event, ${item.n})">
-                    <div class="question">${item.q}</div>
-                    <div class="meaning">${item.m}</div>
-                    <div class="answer" onclick="this.classList.toggle('reveal')">${item.a}</div>
-                `;
-                grid.appendChild(card);
-            });
+    function loadJSON(k, fb) {
+        try { return JSON.parse(localStorage.getItem(k) || 'null') ?? fb; }
+        catch { return fb; }
+    }
+    function saveJSON(k, v) {
+        try { localStorage.setItem(k, JSON.stringify(v)); } catch {}
+    }
+
+    let masteredArr = loadJSON(MASTERY_KEY, []);
+    if (!Array.isArray(masteredArr)) masteredArr = [];
+    let weakMap = loadJSON(WEAK_KEY, {});
+    let speedBest = loadJSON(BEST_KEY, { topic: 0, all: 0 });
+
+    let currentTopic = 1;
+    let currentMode = 'quiz';
+    let showRomaji = false;
+    let autoAudio = true;
+
+    let quizType = 'reading', quizScope = 'topic', quizQueue = [], quizIdx = 0, quizScore = 0, quizStreak = 0, quizLocked = false;
+    let speedScope = 'topic', spTimer = null, spTime = 60, spScore = 0, spCombo = 0, spMaxCombo = 0, spAttempts = 0, spCurrent = null;
+    let fcList = [], fcIdx = 0;
+    let wkCurrent = null, wkLocked = false;
+
+    const player = new Audio();
+    player.preload = 'auto';
+    function playWordAudio(id) {
+        if (!id) return;
+        player.pause();
+        player.currentTime = 0;
+        player.src = `marugoto-audio/${id}.mp3`;
+        const p = player.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        try { localStorage.setItem('ohayo_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch {}
+    }
+    if (localStorage.getItem('ohayo_theme') === 'dark') document.body.classList.add('dark-mode');
+
+    function toggleRomaji() {
+        showRomaji = !showRomaji;
+        const btn = document.getElementById('romaji-toggle');
+        btn.classList.toggle('on', showRomaji);
+        btn.textContent = showRomaji ? 'ABC Romaji: ON' : 'ABC Romaji: OFF';
+        if (currentMode === 'quiz') renderQuizQ();
+        if (currentMode === 'flash') renderFlashcard();
+        if (currentMode === 'grid') renderGrid();
+    }
+    function toggleAutoAudio() {
+        autoAudio = !autoAudio;
+        const btn = document.getElementById('audio-toggle');
+        btn.classList.toggle('on', autoAudio);
+        btn.textContent = autoAudio ? '🔊 Audio: ON' : '🔇 Audio: OFF';
+    }
+
+    function isMastered(n) { return masteredArr.includes(n); }
+    function setMastered(n, val) {
+        if (val) { if (!masteredArr.includes(n)) masteredArr.push(n); }
+        else { masteredArr = masteredArr.filter(x => x !== n); }
+        saveJSON(MASTERY_KEY, masteredArr);
+        updateStats();
+    }
+    function addWeak(n) { weakMap[n] = true; saveJSON(WEAK_KEY, weakMap); updateStats(); }
+    function removeWeak(n) { if (weakMap[n]) { delete weakMap[n]; saveJSON(WEAK_KEY, weakMap); updateStats(); } }
+
+    function updateStats() {
+        const validSet = new Set(WORDS.map(w => w.n));
+        const mCount = masteredArr.filter(n => validSet.has(n)).length;
+        const wCount = Object.keys(weakMap).length;
+        const pct = Math.round((mCount / WORDS.length) * 100);
+        document.getElementById('mastery-text').textContent = `Mastered: ${mCount} / ${WORDS.length} (${pct}%)`;
+        document.getElementById('mastery-bar').style.width = pct + '%';
+        document.getElementById('weak-summary').textContent = `🎯 Weak: ${wCount}`;
+        document.getElementById('weak-tab-btn').textContent = `🎯 Weak (${wCount})`;
+        renderThemeBar();
+    }
+
+    function renderThemeBar() {
+        const bar = document.getElementById('theme-bar');
+        bar.innerHTML = '';
+        TOPICS_META.forEach(t => {
+            const list = WORDS.filter(w => w.topic === t.id);
+            const done = list.filter(w => isMastered(w.n)).length;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'theme-btn' + (t.id === currentTopic ? ' active' : '') + (done === list.length ? ' done' : '');
+            btn.innerHTML = `<span class="theme-label">${t.icon} ${t.en}</span><span class="theme-badge">${done}/${list.length}</span>`;
+            btn.onclick = () => selectTopic(t.id);
+            bar.appendChild(btn);
         });
     }
 
-    function toggleMaster(event, n) {
-        event.stopPropagation();
-        const card = document.getElementById(`card-${n}`);
-        if (event.target.checked) {
-            if (!masteredData.includes(n)) masteredData.push(n);
-            card.classList.add('mastered');
+    function selectTopic(id) {
+        currentTopic = id;
+        renderThemeBar();
+        if (currentMode === 'quiz') startQuizSession();
+        else if (currentMode === 'flash') initFlashcards();
+        else if (currentMode === 'grid') {
+            document.getElementById('search-input').value = '';
+            renderGrid();
+        }
+    }
+
+    function switchMode(m) {
+        if (spTimer) { clearInterval(spTimer); spTimer = null; }
+        currentMode = m;
+        document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === m));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('panel-' + m).classList.add('active');
+        document.getElementById('theme-bar').style.display = (m === 'weak') ? 'none' : 'grid';
+
+        if (m === 'quiz') startQuizSession();
+        else if (m === 'speed') showSpeedStart();
+        else if (m === 'flash') initFlashcards();
+        else if (m === 'weak') loadWeakQ();
+        else if (m === 'grid') renderGrid();
+    }
+
+    function getPool(scope) {
+        return scope === 'all' ? [...WORDS] : WORDS.filter(w => w.topic === currentTopic);
+    }
+    function buildDistractors(target, pool) {
+        const src = pool.length >= 4 ? pool : WORDS;
+        const others = src.filter(w => w.n !== target.n && w.h !== target.h && w.e !== target.e);
+        others.sort(() => Math.random() - 0.5);
+        return [target, ...others.slice(0, 3)].sort(() => Math.random() - 0.5);
+    }
+
+    /* --- 1. QUIZ --- */
+    function setQuizType(t) {
+        quizType = t;
+        document.querySelectorAll('[data-qtype]').forEach(b => b.classList.toggle('active', b.dataset.qtype === t));
+        startQuizSession();
+    }
+    function setQuizScope(s) {
+        quizScope = s;
+        document.querySelectorAll('[data-qscope]').forEach(b => b.classList.toggle('active', b.dataset.qscope === s));
+        startQuizSession();
+    }
+    function startQuizSession() {
+        const pool = getPool(quizScope).sort(() => Math.random() - 0.5);
+        quizQueue = pool.slice(0, Math.min(10, pool.length));
+        quizIdx = 0; quizScore = 0; quizStreak = 0;
+        renderQuizQ();
+    }
+    function playCurrentQuizAudio() {
+        const item = quizQueue[quizIdx];
+        if (item) playWordAudio(item.id);
+    }
+    function renderQuizQ() {
+        quizLocked = false;
+        const item = quizQueue[quizIdx];
+        if (!item) return;
+        document.getElementById('quiz-progress').textContent = `Question ${quizIdx + 1} / ${quizQueue.length}`;
+        document.getElementById('quiz-combo').textContent = `🔥 ${quizStreak} Streak`;
+        document.getElementById('quiz-score').textContent = `Score: ${quizScore}`;
+        document.getElementById('quiz-fb').textContent = '';
+        document.getElementById('quiz-next-btn').style.display = 'none';
+
+        const kicker = document.getElementById('quiz-kicker');
+        const prompt = document.getElementById('quiz-prompt');
+        const sub = document.getElementById('quiz-sub');
+        const audioBtn = document.getElementById('quiz-audio-btn');
+        prompt.classList.remove('en-mode');
+
+        if (quizType === 'reading') {
+            kicker.textContent = 'CHOOSE THE CORRECT READING';
+            prompt.textContent = item.k;
+            sub.textContent = `Meaning: ${item.e}`;
+            audioBtn.style.display = 'none';
+        } else if (quizType === 'meaning') {
+            kicker.textContent = 'CHOOSE THE ENGLISH MEANING';
+            prompt.textContent = item.k;
+            sub.textContent = showRomaji ? `${item.h} (${item.r})` : item.h;
+            audioBtn.style.display = 'inline-block';
+            if (autoAudio) playWordAudio(item.id);
+        } else if (quizType === 'kanji') {
+            kicker.textContent = 'CHOOSE THE MATCHING KANJI';
+            prompt.textContent = item.e;
+            prompt.classList.add('en-mode');
+            sub.textContent = showRomaji ? `${item.h} (${item.r})` : '';
+            audioBtn.style.display = 'inline-block';
+            if (autoAudio) playWordAudio(item.id);
         } else {
-            masteredData = masteredData.filter(id => id !== n);
-            card.classList.remove('mastered');
+            kicker.textContent = 'LISTEN & CHOOSE THE MATCHING KANJI';
+            prompt.textContent = '🔊';
+            sub.textContent = 'Tap Listen to replay';
+            audioBtn.style.display = 'inline-block';
+            playWordAudio(item.id);
         }
-        localStorage.setItem('kanji_mastered_list_A1_2', JSON.stringify(masteredData));
-        updateProgressBar();
+
+        const opts = buildDistractors(item, getPool(quizScope));
+        const grid = document.getElementById('quiz-opts');
+        grid.innerHTML = '';
+        opts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'opt-btn';
+            if (quizType === 'reading') {
+                btn.innerHTML = `<span>${opt.h}</span>${showRomaji ? `<span class="opt-romaji">${opt.r}</span>` : ''}`;
+            } else if (quizType === 'meaning') {
+                btn.textContent = opt.e;
+            } else {
+                btn.textContent = opt.k;
+            }
+            btn.onclick = () => checkQuizAnswer(opt, btn, item);
+            grid.appendChild(btn);
+        });
+    }
+    function checkQuizAnswer(chosen, btnEl, target) {
+        if (quizLocked) return;
+        quizLocked = true;
+        const fb = document.getElementById('quiz-fb');
+        document.getElementById('quiz-audio-btn').style.display = 'inline-block';
+        if (autoAudio) playWordAudio(target.id);
+
+        if (chosen.n === target.n) {
+            btnEl.classList.add('correct');
+            quizScore++; quizStreak++;
+            setMastered(target.n, true);
+            fb.style.color = 'var(--ok)';
+            fb.textContent = `✅ Correct! ${target.k} = ${target.h} (${target.r}) — ${target.e}`;
+        } else {
+            btnEl.classList.add('wrong');
+            quizStreak = 0;
+            addWeak(target.n);
+            fb.style.color = 'var(--err)';
+            fb.textContent = `❌ Answer: ${target.k} = ${target.h} (${target.r}) — ${target.e}`;
+        }
+        document.getElementById('quiz-combo').textContent = `🔥 ${quizStreak} Streak`;
+        document.getElementById('quiz-score').textContent = `Score: ${quizScore}`;
+        const nxt = document.getElementById('quiz-next-btn');
+        nxt.textContent = quizIdx >= quizQueue.length - 1 ? `Finish (${quizScore}/${quizQueue.length}) & New Round →` : 'Next Question →';
+        nxt.style.display = 'inline-block';
+    }
+    function nextQuizQ() {
+        quizIdx++;
+        if (quizIdx < quizQueue.length) renderQuizQ();
+        else startQuizSession();
     }
 
-    function updateProgressBar() {
-        const count = masteredData.length;
-        const percent = Math.round((count / totalCount) * 100);
-        document.getElementById('totalCountDisplay').innerText = totalCount;
-        document.getElementById('masteredCount').innerText = count;
-        document.getElementById('progressPercent').innerText = percent;
-        document.getElementById('progressInner').style.width = percent + '%';
+    /* --- 2. SPEED RUN --- */
+    function setSpeedScope(s) {
+        speedScope = s;
+        document.querySelectorAll('[data-sscope]').forEach(b => b.classList.toggle('active', b.dataset.sscope === s));
+        document.getElementById('speed-best-txt').textContent = `🏆 Personal Best: ${speedBest[s] || 0}`;
+    }
+    function showSpeedStart() {
+        document.getElementById('speed-start-view').style.display = 'block';
+        document.getElementById('speed-play-view').style.display = 'none';
+        document.getElementById('speed-done-view').style.display = 'none';
+        document.getElementById('speed-best-txt').textContent = `🏆 Personal Best: ${speedBest[speedScope] || 0}`;
+    }
+    function startSpeedRun() {
+        spTime = 60; spScore = 0; spCombo = 0; spMaxCombo = 0; spAttempts = 0;
+        document.getElementById('speed-start-view').style.display = 'none';
+        document.getElementById('speed-done-view').style.display = 'none';
+        document.getElementById('speed-play-view').style.display = 'block';
+        document.getElementById('sp-timer').textContent = '⏱ 60s';
+        document.getElementById('sp-score').textContent = 'SCORE: 0';
+        document.getElementById('sp-combo').textContent = '🔥 0';
+        nextSpeedQ();
+        if (spTimer) clearInterval(spTimer);
+        spTimer = setInterval(() => {
+            spTime--;
+            document.getElementById('sp-timer').textContent = `⏱ ${spTime}s`;
+            if (spTime <= 0) endSpeedRun();
+        }, 1000);
+    }
+    function nextSpeedQ() {
+        const pool = getPool(speedScope);
+        spCurrent = pool[Math.floor(Math.random() * pool.length)];
+        document.getElementById('sp-prompt').textContent = spCurrent.k;
+        document.getElementById('sp-sub').textContent = spCurrent.e;
+        const opts = buildDistractors(spCurrent, pool);
+        const grid = document.getElementById('sp-opts');
+        grid.innerHTML = '';
+        opts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'opt-btn';
+            btn.textContent = opt.h;
+            btn.onclick = () => {
+                spAttempts++;
+                if (opt.n === spCurrent.n) {
+                    spScore++; spCombo++;
+                    if (spCombo > spMaxCombo) spMaxCombo = spCombo;
+                    setMastered(spCurrent.n, true);
+                    if (autoAudio) playWordAudio(spCurrent.id);
+                    document.getElementById('sp-score').textContent = `SCORE: ${spScore}`;
+                    document.getElementById('sp-combo').textContent = `🔥 ${spCombo}`;
+                    nextSpeedQ();
+                } else {
+                    spCombo = 0;
+                    addWeak(spCurrent.n);
+                    btn.classList.add('wrong');
+                    document.getElementById('sp-combo').textContent = '🔥 0';
+                }
+            };
+            grid.appendChild(btn);
+        });
+    }
+    function endSpeedRun() {
+        clearInterval(spTimer); spTimer = null;
+        document.getElementById('speed-play-view').style.display = 'none';
+        document.getElementById('speed-done-view').style.display = 'block';
+        const acc = spAttempts > 0 ? Math.round((spScore / spAttempts) * 100) : 100;
+        const rank = spScore >= 28 ? 'S' : (spScore >= 18 ? 'A' : (spScore >= 10 ? 'B' : 'C'));
+        document.getElementById('sp-rank').textContent = rank;
+        document.getElementById('sp-res-score').textContent = spScore;
+        document.getElementById('sp-res-combo').textContent = spMaxCombo;
+        document.getElementById('sp-res-acc').textContent = acc + '%';
+        const nb = document.getElementById('sp-new-best');
+        if (spScore > (speedBest[speedScope] || 0)) {
+            speedBest[speedScope] = spScore;
+            saveJSON(BEST_KEY, speedBest);
+            nb.style.display = 'block';
+        } else {
+            nb.style.display = 'none';
+        }
     }
 
+    /* --- 3. FLASHCARDS --- */
+    function initFlashcards() { fcList = WORDS.filter(w => w.topic === currentTopic); fcIdx = 0; renderFlashcard(); }
+    function shuffleFlashcards() { fcList = [...fcList].sort(() => Math.random() - 0.5); fcIdx = 0; renderFlashcard(); }
+    function renderFlashcard() {
+        const item = fcList[fcIdx];
+        if (!item) return;
+        document.getElementById('fc-counter').textContent = `Card ${fcIdx + 1} / ${fcList.length}`;
+        document.getElementById('fc-card').classList.remove('flipped');
+        document.getElementById('fc-kanji').textContent = item.k;
+        document.getElementById('fc-reading').textContent = item.h;
+        document.getElementById('fc-romaji').textContent = item.r;
+        document.getElementById('fc-romaji').style.display = showRomaji ? 'block' : 'none';
+        document.getElementById('fc-meaning').textContent = item.e;
+    }
+    function flipFlashcard() {
+        const card = document.getElementById('fc-card');
+        card.classList.toggle('flipped');
+        if (card.classList.contains('flipped') && autoAudio) playFlashAudio();
+    }
+    function playFlashAudio() { const item = fcList[fcIdx]; if (item) playWordAudio(item.id); }
+    function rateFlashcard(gotIt) {
+        const item = fcList[fcIdx];
+        if (item) {
+            if (gotIt) { setMastered(item.n, true); removeWeak(item.n); }
+            else addWeak(item.n);
+        }
+        fcIdx = (fcIdx + 1) % fcList.length;
+        renderFlashcard();
+    }
+
+    /* --- 4. REVIEW WEAK --- */
+    function loadWeakQ() {
+        wkLocked = false;
+        const weakIds = Object.keys(weakMap).map(Number);
+        document.getElementById('wk-count').textContent = `Weak Queue: ${weakIds.length}`;
+        if (weakIds.length === 0) {
+            document.getElementById('weak-empty-view').style.display = 'block';
+            document.getElementById('weak-play-view').style.display = 'none';
+            return;
+        }
+        document.getElementById('weak-empty-view').style.display = 'none';
+        document.getElementById('weak-play-view').style.display = 'block';
+        const pick = weakIds[Math.floor(Math.random() * weakIds.length)];
+        wkCurrent = WORDS.find(w => w.n === pick);
+        document.getElementById('wk-prompt').textContent = wkCurrent.k;
+        document.getElementById('wk-fb').textContent = '';
+        document.getElementById('wk-next-btn').style.display = 'none';
+
+        const opts = buildDistractors(wkCurrent, WORDS);
+        const grid = document.getElementById('wk-opts');
+        grid.innerHTML = '';
+        opts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'opt-btn';
+            btn.innerHTML = `<span>${opt.h}</span><span class="opt-romaji">${opt.e}</span>`;
+            btn.onclick = () => {
+                if (wkLocked) return;
+                wkLocked = true;
+                if (autoAudio) playWordAudio(wkCurrent.id);
+                const fb = document.getElementById('wk-fb');
+                if (opt.n === wkCurrent.n) {
+                    btn.classList.add('correct');
+                    setMastered(wkCurrent.n, true);
+                    removeWeak(wkCurrent.n);
+                    fb.style.color = 'var(--ok)';
+                    fb.textContent = `✅ Cleared from Weak! ${wkCurrent.k} = ${wkCurrent.h} (${wkCurrent.e})`;
+                } else {
+                    btn.classList.add('wrong');
+                    fb.style.color = 'var(--err)';
+                    fb.textContent = `🔁 Keep practicing: ${wkCurrent.k} = ${wkCurrent.h} (${wkCurrent.e})`;
+                }
+                document.getElementById('wk-next-btn').style.display = 'inline-block';
+            };
+            grid.appendChild(btn);
+        });
+    }
+    function playWeakAudio() { if (wkCurrent) playWordAudio(wkCurrent.id); }
+
+    /* --- 5. LIST & SEARCH --- */
+    function renderGrid() {
+        const q = document.getElementById('search-input').value.trim().toLowerCase();
+        const list = q
+            ? WORDS.filter(w => w.k.includes(q) || w.h.includes(q) || w.r.toLowerCase().includes(q) || w.e.toLowerCase().includes(q))
+            : WORDS.filter(w => w.topic === currentTopic);
+
+        const meta = TOPICS_META.find(t => t.id === currentTopic);
+        document.getElementById('grid-heading').textContent = q
+            ? `Search Results: ${list.length} / ${WORDS.length}`
+            : `${meta.icon} ${meta.jp} (${meta.en})`;
+
+        const grid = document.getElementById('word-grid');
+        grid.innerHTML = '';
+        list.forEach(w => {
+            const isM = isMastered(w.n);
+            const isW = !!weakMap[w.n];
+            const card = document.createElement('div');
+            card.className = 'word-card' + (isM ? ' mastered' : '') + (isW ? ' is-weak' : '');
+            card.innerHTML = `
+                <div class="wc-top">
+                    <span class="wc-no">#${w.n}</span>
+                    <div>
+                        <button type="button" class="wc-icon-btn" title="Listen" onclick="playWordAudio('${w.id}')">🔊</button>
+                        <button type="button" class="wc-icon-btn" title="Toggle Mastered" onclick="toggleCardMastery(${w.n})">${isM ? '✅' : '☐'}</button>
+                    </div>
+                </div>
+                <div class="wc-kanji">${w.k}</div>
+                <div class="wc-ans">
+                    <div class="wc-read" id="gr-${w.n}">${w.h}</div>
+                    <div class="wc-romaji" id="gro-${w.n}">${showRomaji ? w.r : ''}</div>
+                    <div class="wc-mean" id="gm-${w.n}">${w.e}</div>
+                </div>
+                <div class="wc-btns">
+                    <button type="button" class="wc-btn" onclick="toggleGridField(this,'gr-${w.n}','gro-${w.n}')">Reading</button>
+                    <button type="button" class="wc-btn" onclick="toggleGridField(this,'gm-${w.n}')">English</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+    function toggleCardMastery(n) { setMastered(n, !isMastered(n)); renderGrid(); }
+    function toggleGridField(btn, id1, id2) {
+        btn.classList.toggle('active');
+        document.getElementById(id1).classList.toggle('show');
+        if (id2) document.getElementById(id2).classList.toggle('show');
+    }
+    function revealAllGrid(show) {
+        document.querySelectorAll('#word-grid .wc-read, #word-grid .wc-romaji, #word-grid .wc-mean').forEach(el => el.classList.toggle('show', show));
+        document.querySelectorAll('#word-grid .wc-btn').forEach(b => b.classList.toggle('active', show));
+    }
     function resetProgress() {
-        if (confirm("Reset progress?")) {
-            masteredData = [];
-            localStorage.removeItem('kanji_mastered_list_A1_2');
-            location.reload();
-        }
+        if (!confirm('Reset saved progress for this Marugoto level?')) return;
+        masteredArr = []; weakMap = {}; speedBest = { topic: 0, all: 0 };
+        try {
+            localStorage.removeItem(MASTERY_KEY);
+            localStorage.removeItem(WEAK_KEY);
+            localStorage.removeItem(BEST_KEY);
+        } catch {}
+        updateStats();
+        switchMode(currentMode);
     }
 
-    let currentSlide = 1;
-    const totalSlides = 6;
-    function changeSlide(n) {
-        document.getElementById(`slide${currentSlide}`).classList.remove('active');
-        currentSlide += n;
-        document.getElementById(`slide${currentSlide}`).classList.add('active');
-        document.getElementById('prevBtn').disabled = currentSlide === 1;
-        document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
-        document.getElementById('pageIndicator').innerText = `${currentSlide} / ${totalSlides}`;
-        window.scrollTo(0, 0);
-    }
-
-    populate();
-    updateProgressBar();
+    updateStats();
+    startQuizSession();
 </script>
 </body>
 </html>
