@@ -142,8 +142,9 @@
             background: #fafafa; border-radius: 14px; border: 1px solid #eee;
         }
         .cal-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-        .cal-dot-open { width: 13px; height: 13px; border-radius: 4px; background: #eaffea; border: 1px solid #8ce095; display: inline-block; }
+        .cal-dot-open { width: 13px; height: 13px; border-radius: 4px; background: #ccf2d2; border: 1px solid #7dd68b; display: inline-block; }
         .cal-dot-booked { width: 13px; height: 13px; border-radius: 4px; background: #888; display: inline-block; }
+        .cal-dot-closed { width: 13px; height: 13px; border-radius: 4px; background: rgba(148, 163, 184, 0.22); border: 1px solid #cbd5e1; display: inline-block; }
         .cal-tz-badge { font-weight: bold; color: var(--dark); }
         .cal-cta-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; margin-top: 2rem; }
 
@@ -322,8 +323,8 @@
         .fc-col-header-cell.fc-day-sat a { color: #2980b9 !important; }
         .fc-col-header-cell.fc-day-sun a { color: #e74c3c !important; }
         .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * { top: 70px !important; }
-        .fc-non-business { background-color: rgba(0,0,0,0.5); } 
-        .fc-business-hour { background-color: #eaffea !important; }
+        .fc .fc-non-business { background-color: rgba(148, 163, 184, 0.16) !important; }
+        .fc .fc-bg-event.open-hour-bg { background-color: #ccf2d2 !important; opacity: 0.85 !important; }
 
         /* ====== レスポンシブ用 CSS ====== */
         /* タブレット用の調整（2列にする）を追加 */
@@ -567,6 +568,7 @@
         <div class="cal-legend">
             <span class="cal-legend-item"><span class="cal-dot-open"></span> Open hours</span>
             <span class="cal-legend-item"><span class="cal-dot-booked"></span> Already booked</span>
+            <span class="cal-legend-item"><span class="cal-dot-closed"></span> Closed</span>
             <span class="cal-legend-item cal-tz-badge" id="cal-tz-note"><i class="fa-solid fa-globe" style="color: var(--primary);"></i> Showing in your local time</span>
         </div>
         <div id='calendar'></div>
@@ -1347,6 +1349,17 @@
             { daysOfWeek: [ 0, 6 ], startMin: 18 * 60, endMin: 24 * 60 }
         ];
 
+        var localOpenHours = convertJstBusinessHours(jstOpenHours);
+        var openHourBgEvents = localOpenHours.map(function(slot) {
+            return {
+                daysOfWeek: slot.daysOfWeek,
+                startTime: slot.startTime,
+                endTime: slot.endTime,
+                display: 'background',
+                classNames: ['open-hour-bg']
+            };
+        });
+
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: window.innerWidth < 600 ? 'timeGridDay' : 'timeGridWeek', 
@@ -1355,8 +1368,9 @@
             headerToolbar: { left: 'prev,next today', center: 'title', right: window.innerWidth < 600 ? '' : 'timeGridWeek,timeGridDay' },
             slotMinTime: '00:00:00', slotMaxTime: '24:00:00', allDaySlot: false, height: 'auto', nowIndicator: true, expandRows: true, stickyHeaderDates: true,
             eventColor: '#888888', eventTextColor: '#ffffff',
-            businessHours: convertJstBusinessHours(jstOpenHours),
+            businessHours: localOpenHours,
             eventSources: [
+                { events: openHourBgEvents },
                 { url: 'https://script.google.com/macros/s/AKfycbw4u0CGA0L8v4BPIwKBNuyf6qgt2SscK_zidZAiEX2GTgb5_3vOoD26YhgIX4y91Ehmmw/exec', method: 'GET' }
             ],
             windowResize: function(arg) {
