@@ -1,282 +1,2506 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn Japanese with Anime Titles for FUN 😎</title>
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="OHAYO CENTER">
-<meta property="og:title" content="Learn Japanese with Anime Titles | OHAYO CENTER">
-<meta property="og:description" content="Learn Japanese with 20 famous anime titles: hear each title read aloud and discover what the names mean.">
-<meta property="og:url" content="https://ohayocenter.com/anime1.html">
-<meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Learn Japanese with Anime Titles | OHAYO CENTER">
-<meta name="twitter:description" content="Learn Japanese with 20 famous anime titles: hear each title read aloud and discover what the names mean.">
-<meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Japanese with 40 Famous Anime Titles (EN/PT/IT/ES) | OHAYO CENTER</title>
+  <meta name="description" content="Decode real kanji and Japanese vocabulary hidden inside 40 famous anime titles across 5 genres, with native Japanese audio, vocabulary quiz, Guess-the-Anime audio game, and 4-language support (EN/PT/IT/ES).">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OHAYO CENTER">
+  <meta property="og:title" content="Learn Japanese with 40 Famous Anime Titles | OHAYO CENTER">
+  <meta property="og:description" content="Learn Japanese kanji & vocabulary through 40 famous anime titles across 5 genres with native audio, interactive quizzes, and 4 languages (EN/PT/IT/ES).">
+  <meta property="og:url" content="https://ohayocenter.com/anime1.html">
+  <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Learn Japanese with 40 Famous Anime Titles | OHAYO CENTER">
+  <meta name="twitter:description" content="Learn Japanese kanji & vocabulary through 40 famous anime titles across 5 genres with native audio, interactive quizzes, and 4 languages (EN/PT/IT/ES).">
+  <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+
   <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-<style>
-  /* --- ナビゲーションバー --- */
-  nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 0 5%; height: 70px; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box; }
-  .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; font-size: 1.2rem; white-space: nowrap; }
-  .logo a { text-decoration: none; color: #2c3e50; }
-  .nav-links { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-  .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
-  @media (max-width: 600px) { nav { padding: 0 15px; } .logo { font-size: 1rem; } .nav-links { gap: 0.8rem; } .nav-links a { font-size: 0.7rem; } }
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" sizes="192x192" href="icon.png">
 
-  /* --- メインレイアウト --- */
-  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: #f0f4f8; color: #333; display: flex; justify-content: center; padding: 90px 20px 80px; }
-  .main-wrapper { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
-  .slide-container { background-color: #ffffff; width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); padding: 40px; box-sizing: border-box; position: relative; }
-  h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 10px; }
-  .instructions { text-align: center; color: #666; margin-bottom: 30px; font-size: 0.95em; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 
-  .topic-label { background-color: #e2e8f0; color: #4a5568; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; display: inline-block; margin-bottom: 20px; font-weight: bold; border-left: 4px solid #8e44ad; }
-  
-  .slide { display: none; animation: fadeIn 0.4s; }
-  .slide.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  <style>
+    :root {
+      --primary: #ff9f43;
+      --primary-dark: #ee8a2e;
+      --primary-light: #fff5eb;
+      --purple: #7c3aed;
+      --purple-dark: #6d28d9;
+      --purple-soft: #f5f3ff;
+      --purple-bd: #ddd6fe;
+      --dark: #2c3e50;
+      --text: #444444;
+      --muted: #64748b;
+      --bg: #fdfaf6;
+      --card: #ffffff;
+      --border: #e9e2d8;
+      --shadow: 0 10px 28px rgba(44, 62, 80, 0.08);
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --good-text: #14532d;
+      --bad: #dc2626;
+      --bad-soft: #fee2e2;
+      --bad-text: #7f1d1d;
+      --rose-soft: #ffe4e6;
+      --rose-bd: #fb7185;
+    }
 
-  /* --- フラッシュカードのグリッドレイアウト（少し幅広に設定） --- */
-  .flashcard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    body.dark-mode {
+      --dark: #f8fafc;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary-light: rgba(255, 159, 67, 0.16);
+      --purple: #a78bfa;
+      --purple-dark: #8b5cf6;
+      --purple-soft: rgba(124, 58, 237, 0.22);
+      --purple-bd: #6d28d9;
+      --good-soft: rgba(22, 163, 74, 0.22);
+      --good-text: #bbf7d0;
+      --bad-soft: rgba(220, 38, 38, 0.22);
+      --bad-text: #fecaca;
+      --rose-soft: rgba(244, 63, 94, 0.2);
+      --rose-bd: #fb7185;
+      --shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    }
 
-  /* --- 3DフリップカードのCSS --- */
-  .flashcard { background-color: transparent; width: 100%; height: 180px; perspective: 1000px; cursor: pointer; }
-  .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-  .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
-  .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 15px; box-sizing: border-box; }
-  
-  /* 表面（英語タイトル） */
-  .flashcard-front { background-color: #fff; border: 2px solid #8e44ad; } 
-  .flashcard-front .emoji { font-size: 2.5rem; margin-bottom: 10px; }
-  .flashcard-front .eng-title { font-size: 1.2rem; font-weight: bold; color: #2c3e50; line-height: 1.3; }
-  
-  /* 裏面（日本語・解説） */
-  .flashcard-back { background-color: #8e44ad; color: white; transform: rotateY(180deg); }
-  .flashcard-back .jp-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 5px; line-height: 1.2; }
-  .flashcard-back .romaji { font-size: 0.9rem; font-style: italic; margin-bottom: 10px; opacity: 0.9; }
-  .flashcard-back .meaning { font-size: 0.85rem; line-height: 1.4; background: rgba(0,0,0,0.15); padding: 8px; border-radius: 8px; width: 100%; text-align: left; }
+    * { box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      transition: background 0.25s, color 0.25s;
+      overflow-x: hidden;
+    }
 
-  /* ナビゲーションボタン */
-  .nav-controls { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #e2e8f0; }
-  .nav-btn { background-color: #2c3e50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 1em; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
-  .nav-btn:hover { background-color: #1a252f; }
-  .nav-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
-  .slide-indicator { font-size: 0.9em; color: #718096; align-self: center; font-weight: bold; }
-  
-  /* --- Support Section --- */
-  .support-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; width: 100%; }
-  .support-section h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 10px; }
-  .support-section p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-  .bmc-custom-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #FFDD00; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1.1em; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-  .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-  .bmc-custom-btn span { margin-left: 8px; letter-spacing: 0.5px; }
+    /* --- Fixed Top Navigation (70px) --- */
+    .site-nav {
+      background: rgba(255, 255, 255, 0.96);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 70px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+    body.dark-mode .site-nav {
+      background: rgba(15, 23, 42, 0.94);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-logo a {
+      font-family: 'Sawarabi Mincho', serif;
+      font-weight: bold;
+      color: var(--dark);
+      font-size: 1.2rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .site-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav-links a {
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-nav-links a:hover { color: var(--primary); }
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.92rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .site-nav { padding: 0 12px; }
+      .site-logo a { font-size: 1rem; }
+      .nav-right { gap: 0.55rem; }
+      .site-nav-links { gap: 0.65rem; }
+      .site-nav-links a { font-size: 0.68rem; }
+      .theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+    }
 
-  @media (max-width: 600px) { 
-      .slide-container { padding: 30px 15px 50px; } 
-      .flashcard-grid { grid-template-columns: 1fr; gap: 15px;}
-      .flashcard { height: 160px; }
-      .flashcard-front .emoji { font-size: 2rem; }
-      .flashcard-front .eng-title { font-size: 1.1rem; }
-      .flashcard-back .jp-title { font-size: 1.1rem; }
-      .flashcard-back .meaning { font-size: 0.8rem; }
-  }
-</style>
-<style id="ohayo-cta-style">
-.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
-.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
-.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
-.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
-.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
-.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
-.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
-.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
-.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
-.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
-.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
-.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
-.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
-@media (max-width: 600px) {
-  .ohayo-cta-grid { grid-template-columns: 1fr; }
-  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
-  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
-}
-</style>
+    /* --- Main Layout --- */
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 14px 44px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--purple);
+      background: var(--purple-soft);
+      padding: 4px 11px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    .hero-card h1 {
+      margin: 0;
+      font-family: 'Sawarabi Mincho', serif;
+      font-size: clamp(1.3rem, 3.8vw, 1.75rem);
+      color: var(--dark);
+      line-height: 1.25;
+    }
+    .hero-sub {
+      margin: 6px 0 0;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 12px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+    }
+    .ctrl-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .ctrl-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .lang-btn {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 4px 9px;
+      border-radius: 9px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .lang-btn:hover { border-color: var(--primary); }
+    .lang-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: #c8640b;
+    }
+    body.dark-mode .lang-btn.active { color: #ffbe76; }
+    .pill-toggle {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .pill-toggle:hover { border-color: var(--purple); }
+    .pill-toggle.active {
+      background: var(--purple-soft);
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .stat-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .stat-val { font-size: 1.05rem; font-weight: 800; color: var(--dark); line-height: 1.2; }
+    .stat-val.green { color: var(--good); }
+    .stat-val.rose { color: #e11d48; }
+    .stat-val.orange { color: var(--primary); }
+    .stat-lbl { font-size: 0.68rem; font-weight: 700; color: var(--muted); margin-top: 3px; }
+
+    /* --- 4 Mode Tabs --- */
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .mode-btn {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--dark);
+      font-family: inherit;
+      transition: 0.15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .mode-btn:hover { border-color: var(--purple); }
+    .mode-btn.active {
+      background: var(--purple-soft);
+      border-color: var(--purple);
+      color: var(--purple);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.18);
+    }
+    .mode-title { font-size: 0.8rem; font-weight: 800; line-height: 1.25; }
+    .mode-sub { font-size: 0.66rem; color: var(--muted); font-weight: 600; }
+
+    /* --- Genre Filter Bar --- */
+    .genre-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .chip-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .chip:hover { border-color: var(--purple); color: var(--dark); }
+    .chip.active {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.28);
+    }
+    .chip.orange-active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* --- Explore Cards Grid --- */
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .anime-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 14px rgba(44, 62, 80, 0.05);
+      transition: transform 0.18s, border-color 0.18s;
+    }
+    .anime-card:hover {
+      border-color: var(--purple-bd);
+      transform: translateY(-2px);
+    }
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .card-title-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+    .card-em { font-size: 1.85rem; line-height: 1.1; flex-shrink: 0; }
+    .card-en { font-size: 0.96rem; font-weight: 800; color: var(--dark); line-height: 1.3; }
+    .card-lit { font-size: 0.74rem; font-weight: 600; color: var(--purple); margin-top: 3px; line-height: 1.35; }
+    .card-genre-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      margin-top: 5px;
+    }
+    .card-icon-btns {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .icon-toggle {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      border-radius: 10px;
+      padding: 4px 7px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .icon-toggle.watched { background: var(--rose-soft); border-color: var(--rose-bd); }
+    .icon-toggle.learned { background: var(--good-soft); border-color: var(--good); }
+
+    .decode-panel {
+      margin-top: 12px;
+      border-radius: 15px;
+      padding: 12px;
+      background: var(--purple-soft);
+      border: 1.5px solid var(--purple-bd);
+      animation: fadeUp 0.2s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .decode-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+    .decode-jp { font-size: 1.08rem; font-weight: 800; color: var(--dark); line-height: 1.3; }
+    .decode-ro { font-size: 0.78rem; font-weight: 700; color: var(--purple); margin-bottom: 8px; }
+    .word-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .word-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 4px 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+    .word-chip span { color: #d97706; }
+    body.dark-mode .word-chip span { color: #ffbe76; }
+    .decode-tip { font-size: 0.74rem; line-height: 1.5; color: var(--text); }
+
+    .audio-pill {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: 0.15s;
+    }
+    .audio-pill:hover { border-color: var(--purple); }
+    .audio-pill.primary {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: #fff;
+    }
+    .audio-pill.primary:hover { background: var(--purple-dark); }
+
+    .reveal-btn {
+      margin-top: 12px;
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      border: 1.5px solid var(--primary);
+      background: var(--primary-light);
+      color: #c8640b;
+      transition: 0.15s;
+    }
+    body.dark-mode .reveal-btn { color: #ffbe76; }
+    .reveal-btn:hover { background: var(--primary); color: #fff; }
+    .reveal-btn.open {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--muted);
+    }
+    .reveal-btn.open:hover { border-color: var(--purple); color: var(--dark); background: transparent; }
+
+    /* --- Quiz Panels --- */
+    .panel-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 22px 20px;
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.2s ease;
+    }
+    .panel-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+    }
+    .prompt-box {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .prompt-box.purple {
+      background: var(--purple-soft);
+      border-color: var(--purple-bd);
+    }
+    .source-pill {
+      display: inline-block;
+      background: var(--purple-soft);
+      color: var(--purple);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .prompt-big {
+      font-size: clamp(1.7rem, 5vw, 2.3rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .prompt-sub { font-size: 0.88rem; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .choices-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--card);
+      border: 2px solid var(--border);
+      color: var(--dark);
+      border-radius: 16px;
+      padding: 13px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+    .choice-btn:disabled { cursor: default; }
+    .choice-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--purple-soft);
+      color: var(--purple);
+      font-size: 0.74rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .choice-main { font-size: 0.92rem; font-weight: 800; line-height: 1.35; }
+    .choice-sub { font-size: 0.74rem; color: var(--muted); margin-top: 2px; }
+    .choice-btn.is-correct { background: var(--good-soft); border-color: var(--good); color: var(--good-text); }
+    .choice-btn.is-correct .choice-num { background: var(--good); color: #fff; }
+    .choice-btn.is-wrong { background: var(--bad-soft); border-color: var(--bad); color: var(--bad-text); }
+    .choice-btn.is-wrong .choice-num { background: var(--bad); color: #fff; }
+
+    .feedback-box {
+      display: none;
+      margin-top: 16px;
+      border-radius: 18px;
+      padding: 15px 16px;
+      border: 2px solid var(--border);
+      animation: fadeUp 0.2s ease;
+    }
+    .feedback-box.show { display: block; }
+    .feedback-box.good { background: var(--good-soft); border-color: var(--good); }
+    .feedback-box.bad { background: var(--bad-soft); border-color: var(--bad); }
+    .fb-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .fb-title { font-size: 0.94rem; font-weight: 800; }
+    .feedback-box.good .fb-title { color: var(--good-text); }
+    .feedback-box.bad .fb-title { color: var(--bad-text); }
+    .fb-jp { font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+    .fb-note { font-size: 0.82rem; line-height: 1.55; color: var(--text); margin-bottom: 12px; }
+    .fb-footer { text-align: right; }
+
+    .btn-main {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      padding: 11px 20px;
+      border-radius: 13px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.34);
+      transition: 0.15s;
+    }
+    .btn-main:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-sub {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 10px 16px;
+      border-radius: 13px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .summary-box { text-align: center; padding: 24px 16px; }
+    .summary-emoji { font-size: 2.5rem; margin-bottom: 6px; }
+    .summary-score { font-size: 1.9rem; font-weight: 800; color: var(--dark); margin: 4px 0; }
+    .summary-msg { font-size: 0.9rem; color: var(--text); margin: 0 0 16px; }
+    .summary-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+    /* --- Vocab Bank --- */
+    .search-box {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .search-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--dark);
+      font-size: 0.88rem;
+      font-family: inherit;
+    }
+    .bank-list { display: flex; flex-direction: column; gap: 9px; }
+    .bank-item {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 13px 15px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .daily-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: #c8640b;
+    }
+    body.dark-mode .daily-badge { color: #ffbe76; }
+
+    .utility-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+    .reset-link {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.76rem;
+      font-family: inherit;
+    }
+    .reset-link:hover { color: var(--bad); }
+
+    .hidden { display: none !important; }
+
+    /* --- Bottom CTA (Recommended Next + Trial Lesson Hero + BMC Support) --- */
+    .ohayo-cta-wrap {
+      max-width: 860px;
+      width: 100%;
+      margin: 34px auto 22px;
+      text-align: left;
+    }
+    .ohayo-cta-next {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    }
+    .ohayo-cta-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+    .ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ohayo-cta-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 15px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--dark);
+      background: var(--bg);
+      transition: 0.2s;
+    }
+    .ohayo-cta-link:hover { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); }
+    .ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: var(--primary); letter-spacing: 0.05em; margin-bottom: 2px; }
+    .ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: var(--dark); line-height: 1.35; }
+    .ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: var(--primary); flex-shrink: 0; }
+    .ohayo-cta-lesson {
+      background: var(--primary-light);
+      border: 2px solid #ffd8b3;
+      border-radius: 18px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 6px 20px rgba(255, 159, 67, 0.12);
+    }
+    body.dark-mode .ohayo-cta-lesson { border-color: var(--primary); }
+    .ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
+    .ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: var(--dark); line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
+    .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: var(--text); line-height: 1.5; }
+    .ohayo-cta-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff !important;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 12px 22px;
+      border-radius: 50px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35);
+      transition: 0.2s;
+    }
+    .ohayo-cta-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+    .support-section {
+      text-align: center;
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px dashed var(--border);
+    }
+    .support-section p { color: var(--muted); font-size: 0.86rem; margin: 0 0 12px; }
+    .bmc-custom-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #FFDD00;
+      color: #000000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .bmc-custom-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14); }
+    .bmc-custom-btn span { margin-left: 7px; letter-spacing: 0.4px; }
+
+    @media (max-width: 680px) {
+      .anime-grid, .choices-grid { grid-template-columns: 1fr; }
+      .mode-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 14px 10px 36px; }
+      .hero-card, .panel-card { padding: 16px 14px; border-radius: 20px; }
+      .ohayo-cta-grid { grid-template-columns: 1fr; }
+      .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+      .ohayo-cta-btn { width: 100%; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
-        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
-        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
-        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+<nav class="site-nav">
+  <div class="site-logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+  <div class="nav-right">
+    <ul class="site-nav-links">
+      <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+      <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+      <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
     </ul>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+  </div>
 </nav>
 
-<div class="main-wrapper">
-  <div class="slide-container">
-    <h1>Learn Japanese with Anime Titles for FUN 😎</h1>
-    <p class="instructions">Click on the English title to reveal the true Japanese meaning!</p>
-    
-    <div id="quiz-container"></div>
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero-card">
+    <span class="eyebrow" id="uiEyebrow">🎬 CULTURE &amp; FUN · 40 FAMOUS ANIME · 5 GENRES</span>
+    <h1 id="uiTitle">Learn Japanese with Anime Titles</h1>
+    <p class="hero-sub" id="uiSub">Decode real kanji &amp; vocabulary hidden inside 40 famous anime titles — with native Japanese audio &amp; quizzes!</p>
 
-    <div class="nav-controls">
-      <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)" disabled>← PREV</button>
-      <div id="slideIndicator" class="slide-indicator">Slide 1 of 2</div>
-      <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">NEXT →</button>
+    <div class="controls-row">
+      <div class="ctrl-group">
+        <span class="ctrl-label" id="uiLangLabel">Lang:</span>
+        <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+        <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+        <button type="button" class="lang-btn" data-lang="it">🇮🇹 IT</button>
+        <button type="button" class="lang-btn" data-lang="es">🇪🇸 ES</button>
+      </div>
+      <div class="ctrl-group">
+        <button type="button" class="pill-toggle active" data-script="both">JP + Romaji</button>
+        <button type="button" class="pill-toggle" data-script="jp">JP Only</button>
+        <button type="button" class="pill-toggle active" id="autoAudioBtn">🔊 Auto Audio</button>
+      </div>
     </div>
 
-    <!-- OHAYO_NEXT_CTA -->
-<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
-  <div class="ohayo-cta-next">
-    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
-    <div class="ohayo-cta-grid">
-      <a class="ohayo-cta-link" href="idioms.html"><div><span class="ohayo-cta-tag">CULTURE & FUN</span><span class="ohayo-cta-name">Japanese Idioms & Slang (40)</span></div><span class="ohayo-cta-arrow">→</span></a>
-      <a class="ohayo-cta-link" href="audioblog.html"><div><span class="ohayo-cta-tag">LISTENING</span><span class="ohayo-cta-name">Audio Blog (Natural Japanese)</span></div><span class="ohayo-cta-arrow">→</span></a>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-val green" id="statLearned">0 / 40</div>
+        <div class="stat-lbl" id="lblLearned">⭐ Learned</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val rose" id="statWatched">0 ❤️</div>
+        <div class="stat-lbl" id="lblWatched">Anime Watched</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val orange" id="statStreak">0 🔥</div>
+        <div class="stat-lbl" id="lblStreak">Quiz Streak</div>
+      </div>
     </div>
-  </div>
-  <div class="ohayo-cta-lesson">
-    <div>
-      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
-      <h3>Want to use what you just practiced with a native teacher?</h3>
-      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
-    </div>
-    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
-  </div>
-</section>
+  </section>
 
-<div class="support-section">
-      <h2>Support OHAYO CENTER</h2>
-      <p>If you find these materials helpful, please consider supporting us!</p>
-      <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenteh" target="_blank">
-        ☕️ <span>SUPPORT OHAYO CENTER</span>
-      </a>
-    </div>
+  <!-- 4 MODE TABS -->
+  <div class="mode-grid" role="tablist">
+    <button type="button" class="mode-btn active" data-mode="explore">
+      <span class="mode-title" id="mTitleExplore">🎬 Explore 40</span>
+      <span class="mode-sub" id="mSubExplore">Genres &amp; Breakdown</span>
+    </button>
+    <button type="button" class="mode-btn" data-mode="vocab">
+      <span class="mode-title" id="mTitleVocab">🧩 Vocab Quiz</span>
+      <span class="mode-sub" id="mSubVocab">Kanji &amp; Words</span>
+    </button>
+    <button type="button" class="mode-btn" data-mode="audio">
+      <span class="mode-title" id="mTitleAudio">🎧 Guess Anime!</span>
+      <span class="mode-sub" id="mSubAudio">Audio Challenge</span>
+    </button>
+    <button type="button" class="mode-btn" data-mode="bank">
+      <span class="mode-title" id="mTitleBank">📚 Vocab Bank</span>
+      <span class="mode-sub" id="mSubBank">Search Useful Words</span>
+    </button>
   </div>
-</div>
+
+  <!-- 1. EXPLORE VIEW -->
+  <section id="view-explore">
+    <div class="genre-bar">
+      <div class="chip-row" id="genreChips"></div>
+      <div class="chip-row">
+        <button type="button" class="chip" id="toggleAllCardsBtn">✨ Reveal All</button>
+      </div>
+    </div>
+    <div class="anime-grid" id="animeGrid"></div>
+  </section>
+
+  <!-- 2. VOCAB QUIZ VIEW -->
+  <section id="view-vocab" class="hidden">
+    <div class="panel-card" id="vqPlayCard">
+      <div class="panel-meta">
+        <span id="vqProgress">Q 1 / 10</span>
+        <span id="vqScore">Score: 0</span>
+      </div>
+      <div class="prompt-box">
+        <div class="source-pill" id="vqFrom"></div>
+        <div class="prompt-big" id="vqWord"></div>
+        <div class="prompt-sub" id="vqRo"></div>
+      </div>
+      <div class="choices-grid" id="vqChoices"></div>
+      <div class="feedback-box" id="vqFeedback">
+        <div class="fb-head">
+          <div class="fb-title" id="vqFbTitle"></div>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="audio-pill primary" id="vqAudio1">🔊 1.0x</button>
+            <button type="button" class="audio-pill" id="vqAudioSlow">🐢 0.75x</button>
+          </div>
+        </div>
+        <div class="fb-note" id="vqFbDesc"></div>
+        <div class="fb-footer">
+          <button type="button" class="btn-main" id="vqNextBtn">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-card summary-box hidden" id="vqSummary">
+      <div class="summary-emoji" id="vqSumEmoji">🎉</div>
+      <div class="summary-score" id="vqSumScore">0 / 10</div>
+      <p class="summary-msg" id="vqSumMsg"></p>
+      <div class="summary-btns">
+        <button type="button" class="btn-main" id="vqRetryBtn">↺ Play 10 More</button>
+        <button type="button" class="btn-sub" id="vqGoAudioBtn">🎧 Try Audio Quiz</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. GUESS THE ANIME (AUDIO QUIZ) -->
+  <section id="view-audio" class="hidden">
+    <div class="panel-card" id="aqPlayCard">
+      <div class="panel-meta">
+        <span id="aqProgress">Q 1 / 10</span>
+        <span id="aqScore">Score: 0</span>
+      </div>
+      <div class="prompt-box purple">
+        <div style="font-size:0.86rem; font-weight:800; color:var(--purple); margin-bottom:12px;" id="aqPromptTitle">🎧 Listen to the Japanese title and guess the anime!</div>
+        <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="audio-pill primary" id="aqPlay1" style="padding:9px 18px; font-size:0.84rem;">🔊 Play Title (1.0x)</button>
+          <button type="button" class="audio-pill" id="aqPlaySlow" style="padding:9px 16px; font-size:0.84rem;">🐢 Slow (0.75x)</button>
+        </div>
+      </div>
+      <div class="choices-grid" id="aqChoices"></div>
+      <div class="feedback-box" id="aqFeedback">
+        <div class="fb-head">
+          <div class="fb-title" id="aqFbTitle"></div>
+          <button type="button" class="audio-pill" id="aqReplayBtn">🔊 Replay</button>
+        </div>
+        <div class="fb-jp" id="aqFbJp"></div>
+        <div class="fb-note" id="aqFbNote"></div>
+        <div class="fb-footer">
+          <button type="button" class="btn-main" id="aqNextBtn">Next Anime →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-card summary-box hidden" id="aqSummary">
+      <div class="summary-emoji" id="aqSumEmoji">🎧</div>
+      <div class="summary-score" id="aqSumScore">0 / 10</div>
+      <p class="summary-msg" id="aqSumMsg"></p>
+      <div class="summary-btns">
+        <button type="button" class="btn-main" id="aqRetryBtn">↺ Play 10 More</button>
+        <button type="button" class="btn-sub" id="aqGoVocabBtn">🧩 Try Vocab Quiz</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. VOCAB BANK VIEW -->
+  <section id="view-bank" class="hidden">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="bankSearch" placeholder="Search kanji, romaji, anime title, EN / PT / IT / ES...">
+    </div>
+    <div class="genre-bar">
+      <div class="chip-row" id="bankFilterRow">
+        <button type="button" class="chip active" data-daily="all" id="bankAllChip">All Words</button>
+        <button type="button" class="chip" data-daily="3" id="bankDailyChip">★★★ Daily Essentials</button>
+      </div>
+      <span id="bankCount" style="font-size:0.78rem; font-weight:700; color:var(--muted);"></span>
+    </div>
+    <div class="bank-list" id="bankList"></div>
+  </section>
+
+  <div class="utility-bar">
+    <span id="bestBar">🏆 Best 10-Q: Vocab — · Audio —</span>
+    <button type="button" class="reset-link" id="resetBtn">↺ Reset saved progress</button>
+  </div>
+
+  <!-- OHAYO_NEXT_CTA -->
+  <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+    <div class="ohayo-cta-next">
+      <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+      <div class="ohayo-cta-grid">
+        <a class="ohayo-cta-link" href="idioms.html">
+          <div>
+            <span class="ohayo-cta-tag">CULTURE &amp; FUN</span>
+            <span class="ohayo-cta-name">Japanese Idioms &amp; Slang (40)</span>
+          </div>
+          <span class="ohayo-cta-arrow">→</span>
+        </a>
+        <a class="ohayo-cta-link" href="audioblog.html">
+          <div>
+            <span class="ohayo-cta-tag">LISTENING</span>
+            <span class="ohayo-cta-name">Audio Blog (Natural Japanese)</span>
+          </div>
+          <span class="ohayo-cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="ohayo-cta-lesson">
+      <div>
+        <p class="ohayo-cta-lesson-eyebrow">🗣️ TALK ABOUT YOUR FAVORITE ANIME IN JAPANESE</p>
+        <h3>Want to chat about anime &amp; real Japanese with a native teacher?</h3>
+        <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+      </div>
+      <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+    </div>
+  </section>
+
+  <div class="support-section">
+    <p>If you find these materials helpful, please consider supporting us!</p>
+    <a class="bmc-custom-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+      ☕️ <span>SUPPORT OHAYO CENTER</span>
+    </a>
+  </div>
+</main>
 
 <script>
-  // アニメタイトルの学習データ
-  const wordData = [
-    // Slide 1 (1-10)
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'ohayo_anime_lab_v2';
+
+  var UI = {
+    en: {
+      eyebrow: '🎬 CULTURE & FUN · 40 FAMOUS ANIME · 5 GENRES',
+      title: 'Learn Japanese with Anime Titles',
+      sub: 'Decode real kanji & vocabulary hidden inside 40 famous anime titles — with native Japanese audio & quizzes!',
+      langLabel: 'Lang:',
+      autoAudio: '🔊 Auto Audio',
+      lblLearned: '⭐ Learned', lblWatched: 'Anime Watched', lblStreak: 'Quiz Streak',
+      mTitleExplore: '🎬 Explore 40', mSubExplore: 'Genres & Breakdown',
+      mTitleVocab: '🧩 Vocab Quiz', mSubVocab: 'Kanji & Words',
+      mTitleAudio: '🎧 Guess Anime!', mSubAudio: 'Audio Challenge',
+      mTitleBank: '📚 Vocab Bank', mSubBank: 'Search Useful Words',
+      gAll: '🌐 All (40)', gAction: '⚔️ Action (10)', gFantasy: '🪄 Fantasy (7)',
+      gMovie: '🎞️ Ghibli & Movies (8)', gComedy: '🤣 Sports & Comedy (8)', gMystery: '🕵️ Mystery & Dark (7)',
+      gWatched: '❤️ Watched',
+      revealAll: '✨ Reveal All', hideAll: '▲ Hide All',
+      tapDecode: 'Tap below to decode Japanese →',
+      revealBtn: '✨ Reveal Japanese & Play Audio',
+      hideBtn: '▲ Hide Breakdown',
+      noWatched: 'No watched anime marked yet — tap 🤍 on anime you have seen!',
+      fromWord: 'From:', scoreWord: 'Score',
+      correct: '✅ Correct!', wrong: '❌ Answer:',
+      next: 'Next →', nextAnime: 'Next Anime →', seeResults: 'See Results ✓',
+      playAgain: '↺ Play 10 More', tryAudio: '🎧 Try Audio Quiz', tryVocab: '🧩 Try Vocab Quiz',
+      aqPrompt: '🎧 Listen to the native Japanese title and guess which anime it is!',
+      playTitle: '🔊 Play Title (1.0x)', playSlow: '🐢 Slow (0.75x)', replay: '🔊 Replay',
+      niceEar: '✅ Nice ear! You nailed it!', itWas: '❌ It was:',
+      vqPerf: 'Otaku Kanji Master! 10/10!', vqGreat: 'Awesome! You really know your anime Japanese!', vqKeep: 'Fun run! Explore the cards and try again!',
+      aqPerf: 'Perfect listening! True anime legend! 🏆', aqGreat: 'Great ears! You recognized almost every Japanese title!', aqKeep: 'Nice try! Listen to the titles in Explore mode and try again!',
+      bankPh: 'Search kanji, romaji, anime title, EN / PT / IT / ES...',
+      bankAll: 'All Words', bankDaily: '★★★ Daily Essentials',
+      dailyLbl: 'Daily Use', titleAudio: '🔊 Title Audio', wordsCount: 'words',
+      bestBar: '🏆 Best 10-Q: Vocab', audioLbl: 'Audio',
+      resetBtn: '↺ Reset saved progress',
+      resetConfirm: 'Reset all watched anime, learned marks, and best scores on this device?'
+    },
+    pt: {
+      eyebrow: '🎬 CULTURA E DIVERSÃO · 40 ANIMES · 5 GÊNEROS',
+      title: 'Aprenda Japonês com Títulos de Anime',
+      sub: 'Descubra kanji e vocabulário real escondidos em 40 títulos famosos — com áudio nativo e quizzes!',
+      langLabel: 'Idioma:',
+      autoAudio: '🔊 Áudio Auto',
+      lblLearned: '⭐ Aprendidos', lblWatched: 'Assistidos', lblStreak: 'Sequência',
+      mTitleExplore: '🎬 Explorar 40', mSubExplore: 'Gêneros e Análise',
+      mTitleVocab: '🧩 Quiz Vocab', mSubVocab: 'Kanji e Palavras',
+      mTitleAudio: '🎧 Adivinhe!', mSubAudio: 'Desafio de Áudio',
+      mTitleBank: '📚 Vocabulário', mSubBank: 'Palavras Úteis',
+      gAll: '🌐 Todos (40)', gAction: '⚔️ Ação (10)', gFantasy: '🪄 Fantasia (7)',
+      gMovie: '🎞️ Ghibli e Filmes (8)', gComedy: '🤣 Esporte e Comédia (8)', gMystery: '🕵️ Mistério e Dark (7)',
+      gWatched: '❤️ Assistidos',
+      revealAll: '✨ Revelar Todos', hideAll: '▲ Ocultar Todos',
+      tapDecode: 'Toque abaixo para ver o japonês →',
+      revealBtn: '✨ Revelar Japonês e Ouvir Áudio',
+      hideBtn: '▲ Ocultar Análise',
+      noWatched: 'Nenhum anime marcado ainda — toque no 🤍 nos animes que você já assistiu!',
+      fromWord: 'De:', scoreWord: 'Pontos',
+      correct: '✅ Correto!', wrong: '❌ Resposta:',
+      next: 'Próxima →', nextAnime: 'Próximo Anime →', seeResults: 'Ver Resultado ✓',
+      playAgain: '↺ Jogar mais 10', tryAudio: '🎧 Modo Áudio', tryVocab: '🧩 Quiz de Palavras',
+      aqPrompt: '🎧 Ouça o título em japonês nativo e adivinhe qual anime é!',
+      playTitle: '🔊 Ouvir Título (1.0x)', playSlow: '🐢 Devagar (0.75x)', replay: '🔊 Repetir',
+      niceEar: '✅ Ótimo ouvido! Acertou!', itWas: '❌ Era:',
+      vqPerf: 'Mestre dos Kanji de Anime! 10/10!', vqGreat: 'Incrível! Você manda muito bem!', vqKeep: 'Bom treino! Explore os cartões e tente de novo!',
+      aqPerf: 'Audição perfeita! Lenda dos animes! 🏆', aqGreat: 'Ótimo ouvido! Quase todos certos!', aqKeep: 'Boa tentativa! Ouça os títulos na aba Explorar e tente novamente!',
+      bankPh: 'Buscar kanji, romaji, anime, PT / EN / IT / ES...',
+      bankAll: 'Todas', bankDaily: '★★★ Uso Diário',
+      dailyLbl: 'Uso Diário', titleAudio: '🔊 Áudio do Título', wordsCount: 'palavras',
+      bestBar: '🏆 Recorde (10): Vocab', audioLbl: 'Áudio',
+      resetBtn: '↺ Limpar progresso salvo',
+      resetConfirm: 'Apagar todos os animes marcados e recordes salvos neste dispositivo?'
+    },
+    it: {
+      eyebrow: '🎬 CULTURA E DIVERTIMENTO · 40 ANIME · 5 GENERI',
+      title: 'Impara il Giapponese con gli Anime',
+      sub: 'Scopri i kanji e le parole reali nascoste in 40 titoli famosi — con audio nativo e quiz!',
+      langLabel: 'Lingua:',
+      autoAudio: '🔊 Audio Auto',
+      lblLearned: '⭐ Imparati', lblWatched: 'Visti', lblStreak: 'Serie',
+      mTitleExplore: '🎬 Esplora 40', mSubExplore: 'Generi e Analisi',
+      mTitleVocab: '🧩 Quiz Parole', mSubVocab: 'Kanji e Vocaboli',
+      mTitleAudio: '🎧 Indovina!', mSubAudio: 'Sfida Audio',
+      mTitleBank: '📚 Lessico', mSubBank: 'Parole Utili',
+      gAll: '🌐 Tutti (40)', gAction: '⚔️ Azione (10)', gFantasy: '🪄 Fantasy (7)',
+      gMovie: '🎞️ Ghibli e Film (8)', gComedy: '🤣 Sport e Commedia (8)', gMystery: '🕵️ Mistero e Dark (7)',
+      gWatched: '❤️ Visti',
+      revealAll: '✨ Mostra Tutti', hideAll: '▲ Nascondi Tutti',
+      tapDecode: 'Tocca sotto per scoprire il giapponese →',
+      revealBtn: '✨ Mostra Giapponese e Ascolta',
+      hideBtn: '▲ Nascondi Analisi',
+      noWatched: 'Nessun anime segnato ancora — tocca 🤍 sugli anime che hai già visto!',
+      fromWord: 'Da:', scoreWord: 'Punti',
+      correct: '✅ Esatto!', wrong: '❌ Risposta:',
+      next: 'Avanti →', nextAnime: 'Prossimo Anime →', seeResults: 'Vedi Risultati ✓',
+      playAgain: '↺ Altre 10 Domande', tryAudio: '🎧 Prova Sfida Audio', tryVocab: '🧩 Prova Quiz Parole',
+      aqPrompt: '🎧 Ascolta il titolo in giapponese nativo e indovina l’anime!',
+      playTitle: '🔊 Ascolta Titolo (1.0x)', playSlow: '🐢 Lento (0.75x)', replay: '🔊 Riascolta',
+      niceEar: '✅ Ottimo orecchio! Indovinato!', itWas: '❌ Era:',
+      vqPerf: 'Maestro dei Kanji Anime! 10/10!', vqGreat: 'Fantastico! Conosci bene il giapponese degli anime!', vqKeep: 'Buon giro! Esplora le carte e riprova!',
+      aqPerf: 'Ascolto perfetto! Vera leggenda anime! 🏆', aqGreat: 'Ottimo orecchio! Quasi tutti esatti!', aqKeep: 'Buon tentativo! Ascolta i titoli nella scheda Esplora e riprova!',
+      bankPh: 'Cerca kanji, romaji, titolo anime, IT / EN / PT / ES...',
+      bankAll: 'Tutte', bankDaily: '★★★ Uso Quotidiano',
+      dailyLbl: 'Uso Quotidiano', titleAudio: '🔊 Audio Titolo', wordsCount: 'parole',
+      bestBar: '🏆 Record (10): Parole', audioLbl: 'Audio',
+      resetBtn: '↺ Azzera progressi salvati',
+      resetConfirm: 'Vuoi azzerare tutti gli anime salvati e i punteggi su questo dispositivo?'
+    },
+    es: {
+      eyebrow: '🎬 CULTURA Y DIVERSIÓN · 40 ANIMES · 5 GÉNEROS',
+      title: 'Aprende Japonés con Títulos de Anime',
+      sub: 'Descifra kanji y vocabulario real oculto en 40 títulos famosos — ¡con audio nativo y quizzes!',
+      langLabel: 'Idioma:',
+      autoAudio: '🔊 Audio Auto',
+      lblLearned: '⭐ Aprendidos', lblWatched: 'Vistos', lblStreak: 'Racha',
+      mTitleExplore: '🎬 Explorar 40', mSubExplore: 'Géneros y Análisis',
+      mTitleVocab: '🧩 Quiz Vocab', mSubVocab: 'Kanji y Palabras',
+      mTitleAudio: '🎧 ¡Adivina!', mSubAudio: 'Reto de Audio',
+      mTitleBank: '📚 Vocabulario', mSubBank: 'Palabras Útiles',
+      gAll: '🌐 Todos (40)', gAction: '⚔️ Acción (10)', gFantasy: '🪄 Fantasía (7)',
+      gMovie: '🎞️ Ghibli y Pelis (8)', gComedy: '🤣 Deportes y Comedia (8)', gMystery: '🕵️ Misterio y Dark (7)',
+      gWatched: '❤️ Vistos',
+      revealAll: '✨ Mostrar Todos', hideAll: '▲ Ocultar Todos',
+      tapDecode: 'Toca abajo para ver el japonés →',
+      revealBtn: '✨ Mostrar Japonés y Escuchar',
+      hideBtn: '▲ Ocultar Análisis',
+      noWatched: 'Aún no marcaste animes — ¡toca 🤍 en los que ya hayas visto!',
+      fromWord: 'De:', scoreWord: 'Puntos',
+      correct: '✅ ¡Correcto!', wrong: '❌ Respuesta:',
+      next: 'Siguiente →', nextAnime: 'Siguiente Anime →', seeResults: 'Ver Resultados ✓',
+      playAgain: '↺ Jugar 10 Más', tryAudio: '🎧 Probar Reto Audio', tryVocab: '🧩 Probar Quiz Vocab',
+      aqPrompt: '🎧 ¡Escucha el título en japonés nativo y adivina qué anime es!',
+      playTitle: '🔊 Escuchar Título (1.0x)', playSlow: '🐢 Lento (0.75x)', replay: '🔊 Repetir',
+      niceEar: '✅ ¡Buen oído! ¡Acertaste!', itWas: '❌ Era:',
+      vqPerf: '¡Maestro de Kanji Anime! ¡10/10!', vqGreat: '¡Genial! ¡Dominas el japonés de los animes!', vqKeep: '¡Buena partida! Explora las tarjetas e inténtalo otra vez.',
+      aqPerf: '¡Oído perfecto! ¡Leyenda del anime! 🏆', aqGreat: '¡Muy buen oído! ¡Casi todos correctos!', aqKeep: '¡Buen intento! Escucha los títulos en Explorar y vuelve a jugar.',
+      bankPh: 'Buscar kanji, romaji, anime, ES / EN / PT / IT...',
+      bankAll: 'Todas', bankDaily: '★★★ Uso Diario',
+      dailyLbl: 'Uso Diario', titleAudio: '🔊 Audio del Título', wordsCount: 'palabras',
+      bestBar: '🏆 Récord (10): Vocab', audioLbl: 'Audio',
+      resetBtn: '↺ Borrar progreso guardado',
+      resetConfirm: '¿Borrar todos los animes marcados y récords en este dispositivo?'
+    }
+  };
+
+  var GENRE_LABELS = {
+    action: { en: '⚔️ Action', pt: '⚔️ Ação', it: '⚔️ Azione', es: '⚔️ Acción' },
+    fantasy: { en: '🪄 Fantasy', pt: '🪄 Fantasia', it: '🪄 Fantasy', es: '🪄 Fantasía' },
+    movie: { en: '🎞️ Ghibli & Movies', pt: '🎞️ Ghibli e Filmes', it: '🎞️ Ghibli e Film', es: '🎞️ Ghibli y Pelis' },
+    comedy: { en: '🤣 Sports & Comedy', pt: '🤣 Esporte e Comédia', it: '🤣 Sport e Commedia', es: '🤣 Deportes y Comedia' },
+    mystery: { en: '🕵️ Mystery & Dark', pt: '🕵️ Mistério e Dark', it: '🕵️ Mistero e Dark', es: '🕵️ Misterio y Dark' }
+  };
+
+  var ANIME = [
+    // ===== 1. ACTION & BATTLE (10) =====
     {
-      title: "Popular Anime 1-10",
+      id: 'jujutsu', genre: 'action', em: '🤞',
+      en: 'Jujutsu Kaisen', jp: '呪術廻戦', ro: 'Jujutsu Kaisen', audio: 'anime-audio/jujutsu-kaisen.mp3',
+      lit: { en: 'Sorcery Endless Battle', pt: 'Batalha Sem Fim de Feitiçaria', it: 'Battaglia infinita di stregoneria', es: 'Batalla sin fin de hechicería' },
+      tip: {
+        en: '呪術 (Jujutsu) combines 呪 (curse) + 術 (technique/art), while 廻戦 means a cycling, endless battle.',
+        pt: '呪術 (Jujutsu) une 呪 (maldição) + 術 (técnica/arte), e 廻戦 significa batalha sem fim.',
+        it: '呪術 (Jujutsu) unisce 呪 (maledizione) + 術 (tecnica), mentre 廻戦 significa battaglia continua.',
+        es: '呪術 (Jujutsu) une 呪 (maldición) + 術 (técnica) y 廻戦 significa batalla interminable.'
+      },
       words: [
-        { e: "Jujutsu Kaisen", j: "呪術廻戦", r: "Jujutsu Kaisen", m: "<b>Jujutsu:</b> Sorcery / Magic<br><b>Kaisen:</b> Endless Battle", em: "🤞", audio: "anime-audio/jujutsu-kaisen.mp3" },
-        { e: "Frieren: Beyond Journey's End", j: "葬送のフリーレン", r: "Sōsō no Frieren", m: "<b>Sōsō:</b> Sending off / Funeral. The English title is a beautiful translation.", em: "🧝‍♀️", audio: "anime-audio/soso-no-frieren.mp3" },
-        { e: "One-Punch Man", j: "ワンパンマン", r: "Wanpanman", m: "<b>Wanpan:</b> Abbreviation of 'One Punch' in Katakana.", em: "👊", audio: "anime-audio/wanpanman.mp3" },
-        { e: "Demon Slayer", j: "鬼滅の刃", r: "Kimetsu no Yaiba", m: "<b>Oni:</b> Demon<br><b>Metsu:</b> Destroy / Slayer<br><b>Yaiba:</b> Blade", em: "🗡️", audio: "anime-audio/kimetsu-no-yaiba.mp3" },
-        { e: "Attack on Titan", j: "進撃の巨人", r: "Shingeki no Kyojin", m: "<b>Kyojin:</b> Titan / Giant<br><b>Shingeki:</b> Advance / Attack", em: "🧱", audio: "anime-audio/shingeki-no-kyojin.mp3" },
-        { e: "Spirited Away", j: "千と千尋の神隠し", r: "Sen to Chihiro no Kamikakushi", m: "<b>Kamikakushi:</b> Hidden by Gods. A traditional Japanese belief.", em: "🐉", audio: "anime-audio/sen-to-chihiro-no-kamikakushi.mp3" },
-        { e: "The Apothecary Diaries", j: "薬屋のひとりごと", r: "Kusuriya no Hitorigoto", m: "<b>Kusuriya:</b> Pharmacy<br><b>Hitorigoto:</b> Talking to oneself", em: "🌿", audio: "anime-audio/kusuriya-no-hitorigoto.mp3" },
-        { e: "Chainsaw Man", j: "チェンソーマン", r: "Chensōman", m: "A great way to practice Katakana! Also learn words like <b>Akuma</b> (Devil).", em: "🪚", audio: "anime-audio/chensoman.mp3" },
-        { e: "Fullmetal Alchemist", j: "鋼の錬金術師", r: "Hagane no Renkinjutsushi", m: "<b>Hagane:</b> Steel / Fullmetal<br><b>Renkinjutsushi:</b> Alchemist", em: "⚙️", audio: "anime-audio/hagane-no-renkinjutsushi.mp3" },
-        { e: "That Time I Got Reincarnated as a Slime", j: "転生したらスライムだった件", r: "Tensei shitara Slime datta ken", m: "<b>Tensei:</b> Reincarnation<br><b>〜ken:</b> The matter of...", em: "💧", audio: "anime-audio/tensei-shitara-slime-datta-ken.mp3" }
+        { jp: '呪術', ro: 'jujutsu', daily: 1, tr: { en: 'Sorcery / Curse magic', pt: 'Feitiçaria', it: 'Stregoneria', es: 'Hechicería' } },
+        { jp: '戦', ro: 'sen / tatakai', daily: 2, tr: { en: 'Battle / Fight', pt: 'Batalha / Luta', it: 'Battaglia / Lotta', es: 'Batalla / Lucha' } }
       ]
     },
-    // Slide 2 (11-20)
     {
-      title: "Popular Anime 11-20",
+      id: 'kimetsu', genre: 'action', em: '🗡️',
+      en: 'Demon Slayer', jp: '鬼滅の刃', ro: 'Kimetsu no Yaiba', audio: 'anime-audio/kimetsu-no-yaiba.mp3',
+      lit: { en: 'Blade of Demon Destruction', pt: 'Lâmina da Destruição de Demônios', it: 'La lama che distrugge i demoni', es: 'Hoja destructora de demonios' },
+      tip: {
+        en: '鬼 (Oni) is a classic Japanese folklore demon, 滅 (Metsu) means destroy, and 刃 (Yaiba) means blade.',
+        pt: '鬼 (Oni) é o demônio do folclore japonês, 滅 (Metsu) é destruir e 刃 (Yaiba) é lâmina.',
+        it: '鬼 (Oni) è il demone del folklore giapponese, 滅 (Metsu) significa distruggere e 刃 (Yaiba) lama.',
+        es: '鬼 (Oni) es el demonio del folclore japonés, 滅 (Metsu) destruir y 刃 (Yaiba) hoja/filo.'
+      },
       words: [
-        { e: "A Silent Voice", j: "聲の形", r: "Koe no Katachi", m: "<b>Koe (聲):</b> Old kanji for Voice<br><b>Katachi:</b> Shape. Lit: The Shape of Voice.", em: "🤟", audio: "anime-audio/koe-no-katachi.mp3" },
-        { e: "My Hero Academia", j: "僕のヒーローアカデミア", r: "Boku no Hīrō Akademia", m: "<b>Boku:</b> 'I' or 'Me' (Used mostly by males, sounds humble and young).", em: "🦸‍♂️", audio: "anime-audio/boku-no-hiro-akademia.mp3" },
-        { e: "Mushoku Tensei: Jobless Reincarnation", j: "無職転生", r: "Mushoku Tensei", m: "<b>Mu:</b> No/Zero + <b>Shoku:</b> Job = <b>Mushoku:</b> Jobless/Unemployed.", em: "🪄", audio: "anime-audio/mushoku-tensei.mp3" },
-        { e: "Re:ZERO -Starting Life in Another World-", j: "Re:ゼロから始める異世界生活", r: "Re:Zero kara Hajimeru Isekai Seikatsu", m: "<b>Isekai:</b> Another world<br><b>Seikatsu:</b> Life", em: "🔄", audio: "anime-audio/re-zero-kara-hajimeru-isekai-seikatsu.mp3" },
-        { e: "Assassination Classroom", j: "暗殺教室", r: "Ansatsu Kyōshitsu", m: "<b>Ansatsu:</b> Assassination<br><b>Kyōshitsu:</b> Classroom", em: "🐙", audio: "anime-audio/ansatsu-kyoshitsu.mp3" },
-        { e: "Haikyu!!", j: "ハイキュー!!", r: "Haikyū!!", m: "<b>Haikyuu (排球):</b> The Japanese word/kanji for Volleyball.", em: "🏐", audio: "anime-audio/haikyu.mp3" },
-        { e: "Gintama", j: "銀魂", r: "Gintama", m: "<b>Gin:</b> Silver<br><b>Tama (Tamashii):</b> Soul. Lit: Silver Soul.", em: "🍡", audio: "anime-audio/gintama.mp3" },
-        { e: "Oshi no Ko", j: "推しの子", r: "Oshi no Ko", m: "<b>Oshi:</b> Favorite character / Bias. A very common word in modern pop culture!", em: "🌟", audio: "anime-audio/oshi-no-ko.mp3" },
-        { e: "Weathering with You", j: "天気の子", r: "Tenki no Ko", m: "<b>Tenki:</b> Weather<br><b>Ko:</b> Child. 'Weathering' is a great English localization.", em: "☀️", audio: "anime-audio/tenki-no-ko.mp3" },
-        { e: "Your Name.", j: "君の名は。", r: "Kimi no Na wa.", m: "<b>Kimi:</b> You<br><b>Na:</b> Name. A very poetic and beautiful way to ask 'What is your name?'.", em: "☄️", audio: "anime-audio/kimi-no-na-wa.mp3" }
+        { jp: '鬼', ro: 'oni', daily: 2, tr: { en: 'Demon / Ogre', pt: 'Demônio / Ogro', it: 'Demone / Orco', es: 'Demonio / Ogro' } },
+        { jp: '刃', ro: 'yaiba', daily: 1, tr: { en: 'Blade', pt: 'Lâmina', it: 'Lama', es: 'Hoja / Filo' } }
+      ]
+    },
+    {
+      id: 'shingeki', genre: 'action', em: '🧱',
+      en: 'Attack on Titan', jp: '進撃の巨人', ro: 'Shingeki no Kyojin', audio: 'anime-audio/shingeki-no-kyojin.mp3',
+      lit: { en: 'The Advancing Titan', pt: 'O Titã que Avança', it: 'Il gigante che avanza', es: 'El titán que avanza' },
+      tip: {
+        en: '巨人 (Kyojin = Giant) is also the nickname of Tokyo’s famous baseball team, the Yomiuri Giants!',
+        pt: '巨人 (Kyojin = Gigante) também é o apelido do famoso time de beisebol de Tóquio!',
+        it: '巨人 (Kyojin = Gigante) è anche il nome della celebre squadra di baseball di Tokyo!',
+        es: '巨人 (Kyojin = Gigante) también es el apodo del famoso equipo de béisbol de Tokio.'
+      },
+      words: [
+        { jp: '巨人', ro: 'kyojin', daily: 2, tr: { en: 'Giant / Titan', pt: 'Gigante / Titã', it: 'Gigante / Titano', es: 'Gigante / Titán' } },
+        { jp: '進撃', ro: 'shingeki', daily: 1, tr: { en: 'Advance / Charge', pt: 'Avanço / Ataque', it: 'Avanzata / Attacco', es: 'Avance / Ataque' } }
+      ]
+    },
+    {
+      id: 'chainsaw', genre: 'action', em: '🪚',
+      en: 'Chainsaw Man', jp: 'チェンソーマン', ro: 'Chensōman', audio: 'anime-audio/chensoman.mp3',
+      lit: { en: 'Chainsaw Man (Katakana)', pt: 'Homem-Motosserra (Katakana)', it: 'Chainsaw Man (Katakana)', es: 'Chainsaw Man (Katakana)' },
+      tip: {
+        en: 'Great Katakana reading practice! Notice how the "ー" mark stretches the vowel sound in チェンソー (chensō).',
+        pt: 'Ótimo treino de Katakana! Note o traço "ー" que alonga a vogal em チェンソー (chensō).',
+        it: 'Ottimo esercizio di Katakana! Nota il trattino "ー" che allunga la vocale in チェンソー (chensō).',
+        es: '¡Gran práctica de Katakana! Fíjate en la barra "ー" que alarga la vocal en チェンソー (chensō).'
+      },
+      words: [
+        { jp: '悪魔', ro: 'akuma', daily: 2, tr: { en: 'Devil / Demon (key series word)', pt: 'Demônio / Diabo', it: 'Diavolo / Demone', es: 'Demonio / Diablo' } }
+      ]
+    },
+    {
+      id: 'hagaren', genre: 'action', em: '⚙️',
+      en: 'Fullmetal Alchemist', jp: '鋼の錬金術師', ro: 'Hagane no Renkinjutsushi', audio: 'anime-audio/hagane-no-renkinjutsushi.mp3',
+      lit: { en: 'Alchemist of Steel', pt: 'Alquimista de Aço', it: 'L’alchimista d’acciaio', es: 'El alquimista de acero' },
+      tip: {
+        en: '鋼 (Hagane) means steel. 錬金術師 (Renkinjutsushi) is a fun 5-kanji tongue twister meaning Alchemist!',
+        pt: '鋼 (Hagane) significa aço. 錬金術師 (Renkinjutsushi) é um ótimo trava-línguas de 5 kanji!',
+        it: '鋼 (Hagane) significa acciaio. 錬金術師 (Renkinjutsushi) è un divertente scioglilingua di 5 kanji!',
+        es: '鋼 (Hagane) significa acero. ¡錬金術師 (Renkinjutsushi) es un divertido trabalenguas de 5 kanji!'
+      },
+      words: [
+        { jp: '鋼', ro: 'hagane', daily: 2, tr: { en: 'Steel', pt: 'Aço', it: 'Acciaio', es: 'Acero' } },
+        { jp: '錬金術師', ro: 'renkinjutsushi', daily: 1, tr: { en: 'Alchemist', pt: 'Alquimista', it: 'Alchimista', es: 'Alquimista' } }
+      ]
+    },
+    {
+      id: 'heroaca', genre: 'action', em: '🦸‍♂️',
+      en: 'My Hero Academia', jp: '僕のヒーローアカデミア', ro: 'Boku no Hīrō Akademia', audio: 'anime-audio/boku-no-hiro-akademia.mp3',
+      lit: { en: 'My Hero Academia', pt: 'Minha Academia de Heróis', it: 'La mia accademia di eroi', es: 'Mi academia de héroes' },
+      tip: {
+        en: '僕 (Boku) means "I / me" — mostly used by boys/men, sounding polite, humble, and youthful.',
+        pt: '僕 (Boku) significa "eu" — usado geralmente por meninos/homens, soa educado e jovem.',
+        it: '僕 (Boku) significa "io" — usato di solito da ragazzi/uomini, suona gentile e giovane.',
+        es: '僕 (Boku) significa "yo": suele usarlo un chico u hombre y suena modesto y juvenil.'
+      },
+      words: [
+        { jp: '僕', ro: 'boku', daily: 3, tr: { en: 'I / Me (humble masculine)', pt: 'Eu (masculino suave)', it: 'Io (maschile cortese)', es: 'Yo (masculino suave)' } }
+      ]
+    },
+    {
+      id: 'wanpan', genre: 'action', em: '👊',
+      en: 'One-Punch Man', jp: 'ワンパンマン', ro: 'Wanpanman', audio: 'anime-audio/wanpanman.mp3',
+      lit: { en: 'One-Punch Man (Shortened Katakana)', pt: 'Homem de Um Soco (Katakana)', it: 'One-Punch Man (Katakana)', es: 'One-Punch Man (Katakana)' },
+      tip: {
+        en: 'Japanese loves shortening long English words into 4-beat Katakana: "One Punch" → ワンパン (Wanpan) + a pun on Anpanman!',
+        pt: 'O japonês adora abreviar palavras em inglês: "One Punch" virou ワンパン (Wanpan), brincando com Anpanman!',
+        it: 'Il giapponese ama abbreviare l’inglese: "One Punch" diventa ワンパン (Wanpan), richiamando Anpanman!',
+        es: 'Al japonés le encanta acortar el inglés: "One Punch" pasa a ワンパン (Wanpan), ¡guiño a Anpanman!'
+      },
+      words: [
+        { jp: 'ワンパン', ro: 'wanpan', daily: 2, tr: { en: 'One punch / One-hit KO (slang)', pt: 'Um soco / nocaute em um golpe', it: 'Un solo pugno / KO al primo colpo', es: 'Un solo golpe / KO instantáneo' } }
+      ]
+    },
+    {
+      id: 'yuyu', genre: 'action', em: '👻',
+      en: 'Yu Yu Hakusho', jp: '幽☆遊☆白書', ro: 'Yū Yū Hakusho', audio: 'anime-audio/yuyu-hakusho.mp3',
+      lit: { en: 'Ghost Files / Spirit World White Paper', pt: 'Arquivos Fantasma / Relatório Espiritual', it: 'File degli Spiriti / Libro Bianco', es: 'Archivos Fantasma / Informe Espiritual' },
+      tip: {
+        en: '白書 (Hakusho = White Paper) is a real formal word used in Japanese news for official government reports!',
+        pt: '白書 (Hakusho = Relatório Oficial) é uma palavra real usada nos jornais japoneses!',
+        it: '白書 (Hakusho = Libro Bianco) è una vera parola formale usata nei telegiornali giapponesi!',
+        es: '白書 (Hakusho = Informe oficial) es una palabra real muy usada en noticias de Japón.'
+      },
+      words: [
+        { jp: '白書', ro: 'hakusho', daily: 2, tr: { en: 'White paper / Official report', pt: 'Relatório oficial', it: 'Libro bianco / Rapporto ufficiale', es: 'Informe oficial / Libro blanco' } },
+        { jp: '遊', ro: 'yū / asobu', daily: 3, tr: { en: 'Play / Wander', pt: 'Brincar / Passear', it: 'Giocare / Vagare', es: 'Jugar / Pasear' } }
+      ]
+    },
+    {
+      id: 'baki', genre: 'action', em: '🥋',
+      en: 'Baki the Grappler', jp: 'グラップラー刃牙', ro: 'Gurappurā Baki', audio: 'anime-audio/grappler-baki.mp3',
+      lit: { en: 'Grappler Baki (Blade & Fang)', pt: 'Baki o Lutador (Lâmina e Presa)', it: 'Baki il lottatore (Lama e Zanna)', es: 'Baki el luchador (Hoja y Colmillo)' },
+      tip: {
+        en: 'Baki’s name 刃牙 literally uses the fierce kanji 刃 (blade) + 牙 (fang) — a classic manga naming style!',
+        pt: 'O nome 刃牙 usa os kanji poderosos 刃 (lâmina) + 牙 (presa) — típico estilo de nomes em mangás!',
+        it: 'Il nome 刃牙 usa i kanji feroci 刃 (lama) + 牙 (zanna) — un classico stile dei manga!',
+        es: 'El nombre 刃牙 usa los kanji feroces 刃 (filo) + 牙 (colmillo), ¡muy típico del manga!'
+      },
+      words: [
+        { jp: '牙', ro: 'kiba', daily: 1, tr: { en: 'Fang / Tusk', pt: 'Presa / Canino', it: 'Zanna', es: 'Colmillo' } }
+      ]
+    },
+    {
+      id: 'sakamoto', genre: 'action', em: '🏪',
+      en: 'SAKAMOTO DAYS', jp: 'SAKAMOTO DAYS（サカモトデイズ）', ro: 'Sakamoto Deizu', audio: 'anime-audio/sakamoto-days.mp3',
+      lit: { en: 'Sakamoto’s Everyday Life', pt: 'O Dia a Dia do Sakamoto', it: 'I giorni di Sakamoto', es: 'Los días de Sakamoto' },
+      tip: {
+        en: '坂本 (Sakamoto) is a super common Japanese family name (meaning "base of a slope" 坂 + 本). Many modern manga use English titles read in Katakana!',
+        pt: '坂本 (Sakamoto) é um sobrenome japonês super comum ("pé da ladeira"). Muitos mangás atuais usam títulos em inglês lidos em Katakana!',
+        it: '坂本 (Sakamoto) è un cognome giapponese comunissimo ("ai piedi della salita"). Molti manga moderni usano titoli inglesi letti in Katakana!',
+        es: '坂本 (Sakamoto) es un apellido japonés muy común ("pie de la cuesta"). ¡Muchos mangas modernos usan títulos en inglés leídos en Katakana!'
+      },
+      words: [
+        { jp: '坂', ro: 'saka', daily: 3, tr: { en: 'Slope / Hill (in Sakamoto)', pt: 'Ladeira / Subida', it: 'Salita / Pendio', es: 'Cuesta / Pendiente' } }
+      ]
+    },
+
+    // ===== 2. FANTASY & ISEKAI (7) =====
+    {
+      id: 'frieren', genre: 'fantasy', em: '🧝‍♀️',
+      en: 'Frieren: Beyond Journey’s End', jp: '葬送のフリーレン', ro: 'Sōsō no Frieren', audio: 'anime-audio/soso-no-frieren.mp3',
+      lit: { en: 'Frieren of Sending-Off / the Slayer', pt: 'Frieren da Despedida / Funeral', it: 'Frieren dell’addio / del commiato', es: 'Frieren de la despedida' },
+      tip: {
+        en: '葬送 (Sōsō) means "funeral / sending off" — a poetic double meaning for bidding farewell to friends and sending demons away!',
+        pt: '葬送 (Sōsō) significa "despedida / funeral" — tem um lindo duplo sentido para amigos e demônios!',
+        it: '葬送 (Sōsō) significa "commiato / funerale" — ha un doppio senso poetico per amici e demoni!',
+        es: '葬送 (Sōsō) significa "despedida / funeral": ¡tiene un doble sentido poético para amigos y demonios!'
+      },
+      words: [
+        { jp: '葬送', ro: 'sōsō', daily: 1, tr: { en: 'Sending off / Funeral', pt: 'Despedida / Funeral', it: 'Commiato / Funerale', es: 'Despedida / Funeral' } }
+      ]
+    },
+    {
+      id: 'kusuriya', genre: 'fantasy', em: '🌿',
+      en: 'The Apothecary Diaries', jp: '薬屋のひとりごと', ro: 'Kusuriya no Hitorigoto', audio: 'anime-audio/kusuriya-no-hitorigoto.mp3',
+      lit: { en: 'Monologue of the Apothecary', pt: 'Monólogo da Boticária', it: 'I monologhi della farmacista', es: 'Los monólogos de la boticaria' },
+      tip: {
+        en: 'Super practical daily Japanese: 薬 (kusuri = medicine) + 屋 (ya = shop) & ひとりごと (talking to oneself)!',
+        pt: 'Japonês super útil no dia a dia: 薬 (remédio) + 屋 (loja) e ひとりごと (falar sozinho)!',
+        it: 'Giapponese utilissimo: 薬 (medicina) + 屋 (negozio) e ひとりごと (parlare tra sé)!',
+        es: '¡Japonés muy práctico: 薬 (medicina) + 屋 (tienda) y ひとりごと (hablar solo)!'
+      },
+      words: [
+        { jp: '薬屋', ro: 'kusuriya', daily: 3, tr: { en: 'Pharmacy / Apothecary', pt: 'Farmácia / Boticário', it: 'Farmacia / Speziale', es: 'Farmacia / Boticario' } },
+        { jp: 'ひとりごと', ro: 'hitorigoto', daily: 3, tr: { en: 'Talking to oneself', pt: 'Falar sozinho', it: 'Parlare da soli', es: 'Hablar solo' } }
+      ]
+    },
+    {
+      id: 'tensura', genre: 'fantasy', em: '💧',
+      en: 'That Time I Got Reincarnated as a Slime', jp: '転生したらスライムだった件', ro: 'Tensei shitara Suraimu datta ken', audio: 'anime-audio/tensei-shitara-slime-datta-ken.mp3',
+      lit: { en: 'The Matter of Being a Slime After Reincarnating', pt: 'O Caso de Ter Virado um Slime ao Reencarnar', it: 'Il caso in cui mi sono reincarnato in uno slime', es: 'El caso de reencarnar en un slime' },
+      tip: {
+        en: '〜たら (if / when) is core N4 grammar, and 〜件 (the matter of) is an internet-forum phrasing often used in modern light novels!',
+        pt: '〜たら (quando/se) é gramática essencial do N4, e 〜件 (o caso de) vem de fóruns da internet japonesa!',
+        it: '〜たら (quando/se) è grammatica base N4, e 〜件 (la questione di) viene dai forum giapponesi!',
+        es: '〜たら (cuando/si) es gramática clave N4, y 〜件 (el asunto de) viene de los foros japoneses.'
+      },
+      words: [
+        { jp: '転生', ro: 'tensei', daily: 2, tr: { en: 'Reincarnation', pt: 'Reencarnação', it: 'Reincarnazione', es: 'Reencarnación' } }
+      ]
+    },
+    {
+      id: 'mushoku', genre: 'fantasy', em: '🪄',
+      en: 'Mushoku Tensei: Jobless Reincarnation', jp: '無職転生', ro: 'Mushoku Tensei', audio: 'anime-audio/mushoku-tensei.mp3',
+      lit: { en: 'Unemployed Reincarnation', pt: 'Reencarnação de um Desempregado', it: 'Reincarnazione di un disoccupato', es: 'Reencarnación de un desempleado' },
+      tip: {
+        en: '無 (Mu = none/zero) + 職 (Shoku = job/work) = 無職 (unemployed). 無 works as a prefix in many real words like 無料 (muryō = free)!',
+        pt: '無 (sem/zero) + 職 (emprego) = 無職 (desempregado). 無 aparece em várias palavras úteis como 無料 (grátis)!',
+        it: '無 (senza) + 職 (lavoro) = 無職 (disoccupato). 無 compare in tante parole utili come 無料 (gratis)!',
+        es: '無 (sin) + 職 (empleo) = 無職 (desempleado). ¡無 aparece en muchas palabras útiles como 無料 (gratis)!'
+      },
+      words: [
+        { jp: '無職', ro: 'mushoku', daily: 3, tr: { en: 'Jobless / Unemployed', pt: 'Desempregado', it: 'Disoccupato', es: 'Desempleado' } }
+      ]
+    },
+    {
+      id: 'rezero', genre: 'fantasy', em: '🔄',
+      en: 'Re:ZERO -Starting Life in Another World-', jp: 'Re:ゼロから始める異世界生活', ro: 'Ri:Zero kara Hajimeru Isekai Seikatsu', audio: 'anime-audio/re-zero-kara-hajimeru-isekai-seikatsu.mp3',
+      lit: { en: 'Another-World Life Starting from Zero', pt: 'Vida em Outro Mundo Começando do Zero', it: 'Vita in un altro mondo partendo da zero', es: 'Vida en otro mundo empezando desde cero' },
+      tip: {
+        en: 'Japanese fans shorten it to リゼロ (Ri-Zero). 始める (to start) and 生活 (daily life) are everyday N4/N3 essentials!',
+        pt: 'Os fãs chamam de リゼロ (Ri-Zero). 始める (começar) e 生活 (vida cotidiana) são essenciais no dia a dia!',
+        it: 'I fan lo chiamano リゼロ (Ri-Zero). 始める (iniziare) e 生活 (vita quotidiana) sono parole base utilissime!',
+        es: 'Los fans lo llaman リゼロ (Ri-Zero). ¡始める (empezar) y 生活 (vida diaria) son esenciales!'
+      },
+      words: [
+        { jp: '異世界', ro: 'isekai', daily: 2, tr: { en: 'Another world', pt: 'Outro mundo', it: 'Altro mondo', es: 'Otro mundo' } },
+        { jp: '生活', ro: 'seikatsu', daily: 3, tr: { en: 'Daily life / Living', pt: 'Vida cotidiana', it: 'Vita quotidiana', es: 'Vida diaria' } }
+      ]
+    },
+    {
+      id: 'dungeon', genre: 'fantasy', em: '🍲',
+      en: 'Delicious in Dungeon', jp: 'ダンジョン飯', ro: 'Danjon Meshi', audio: 'anime-audio/dungeon-meshi.mp3',
+      lit: { en: 'Dungeon Meals', pt: 'Comida de Masmorra', it: 'Pasti nel Dungeon', es: 'Comida de Mazmorra' },
+      tip: {
+        en: '飯 (Meshi) is a casual, hearty word for "meal / food" — heard constantly in anime and casual Japanese ("Meshi kuō!" = Let’s eat!).',
+        pt: '飯 (Meshi) é uma forma bem informal para "comida / refeição" — super comum em animes e entre amigos!',
+        it: '飯 (Meshi) è un modo informale per dire "pasto / cibo" — usatissimo negli anime e tra amici!',
+        es: '飯 (Meshi) es una forma informal de decir "comida" — ¡se escucha muchísimo en anime y entre amigos!'
+      },
+      words: [
+        { jp: '飯', ro: 'meshi', daily: 3, tr: { en: 'Meal / Food (casual)', pt: 'Comida / Refeição (informal)', it: 'Pasto / Cibo (informale)', es: 'Comida (informal)' } }
+      ]
+    },
+    {
+      id: 'konosuba', genre: 'fantasy', em: '✨',
+      en: 'KonoSuba: God’s Blessing on This Wonderful World!', jp: 'この素晴らしい世界に祝福を！', ro: 'Kono Subarashii Sekai ni Shukufuku o!', audio: 'anime-audio/konosuba.mp3',
+      lit: { en: 'Blessings to This Wonderful World!', pt: 'Bênçãos a Este Mundo Maravilhoso!', it: 'Benedizioni a questo mondo meraviglioso!', es: '¡Bendiciones para este mundo maravilloso!' },
+      tip: {
+        en: 'A goldmine of N5–N3 words! 素晴らしい (wonderful) + 世界 (world) + 祝福 (blessing) — shortened by fans to このすば (KonoSuba).',
+        pt: 'Uma mina de ouro de vocabulário: 素晴らしい (maravilhoso) + 世界 (mundo) + 祝福 (bênção)!',
+        it: 'Una miniera di parole utili: 素晴らしい (meraviglioso) + 世界 (mondo) + 祝福 (benedizione)!',
+        es: '¡Una mina de vocabulario: 素晴らしい (maravilloso) + 世界 (mundo) + 祝福 (bendición)!'
+      },
+      words: [
+        { jp: '世界', ro: 'sekai', daily: 3, tr: { en: 'World', pt: 'Mundo', it: 'Mondo', es: 'Mundo' } },
+        { jp: '祝福', ro: 'shukufuku', daily: 2, tr: { en: 'Blessing', pt: 'Bênção', it: 'Benedizione', es: 'Bendición' } }
+      ]
+    },
+
+    // ===== 3. GHIBLI & MOVIES (8) =====
+    {
+      id: 'chihiro', genre: 'movie', em: '🐉',
+      en: 'Spirited Away', jp: '千と千尋の神隠し', ro: 'Sen to Chihiro no Kamikakushi', audio: 'anime-audio/sen-to-chihiro-no-kamikakushi.mp3',
+      lit: { en: 'Sen and Chihiro’s Spiriting Away', pt: 'O Desaparecimento de Sen e Chihiro', it: 'La sparizione di Sen e Chihiro', es: 'La desaparición de Sen y Chihiro' },
+      tip: {
+        en: '神隠し (Kamikakushi = Hidden by Gods) is a traditional Japanese folklore concept for mysterious disappearances.',
+        pt: '神隠し (Kamikakushi = Escondido pelos deuses) é um termo tradicional do folclore japonês.',
+        it: '神隠し (Kamikakushi = Nascosto dagli dei) è un concetto tradizionale del folklore giapponese.',
+        es: '神隠し (Kamikakushi = Ocultado por los dioses) es un concepto clásico del folclore japonés.'
+      },
+      words: [
+        { jp: '神隠し', ro: 'kamikakushi', daily: 1, tr: { en: 'Hidden by Gods (Spirited away)', pt: 'Levado pelos deuses', it: 'Rapito dagli dei', es: 'Ocultado por los dioses' } },
+        { jp: '千', ro: 'sen', daily: 3, tr: { en: 'One thousand (1,000)', pt: 'Mil (1.000)', it: 'Mille (1.000)', es: 'Mil (1.000)' } }
+      ]
+    },
+    {
+      id: 'laputa', genre: 'movie', em: '☁️',
+      en: 'Castle in the Sky', jp: '天空の城ラピュタ', ro: 'Tenkū no Shiro Rapyuta', audio: 'anime-audio/tenku-no-shiro-laputa.mp3',
+      lit: { en: 'Laputa, Castle of the Heavens', pt: 'Laputa, o Castelo no Céu', it: 'Laputa, il castello nel cielo', es: 'Laputa, el castillo en el cielo' },
+      tip: {
+        en: '城 (Shiro = castle) is a must-know word for traveling in Japan (e.g. Osaka-jō, Himeji-jō)! 天空 (Tenkū) means high sky / heavens.',
+        pt: '城 (Shiro = castelo) é essencial ao viajar pelo Japão (Castelo de Osaka, Himeji)! 天空 significa céu alto.',
+        it: '城 (Shiro = castello) è utilissima viaggiando in Giappone (Castello di Osaka, Himeji)! 天空 significa cielo alto.',
+        es: '城 (Shiro = castillo) es clave al viajar por Japón (Castillo de Osaka, Himeji). 天空 significa cielo alto.'
+      },
+      words: [
+        { jp: '城', ro: 'shiro', daily: 3, tr: { en: 'Castle', pt: 'Castelo', it: 'Castello', es: 'Castillo' } },
+        { jp: '天空', ro: 'tenkū', daily: 1, tr: { en: 'Sky / Heavens', pt: 'Céu / Firmamento', it: 'Cielo / Volta celeste', es: 'Cielo / Firmamento' } }
+      ]
+    },
+    {
+      id: 'totoro', genre: 'movie', em: '🌳',
+      en: 'My Neighbor Totoro', jp: 'となりのトトロ', ro: 'Tonari no Totoro', audio: 'anime-audio/tonari-no-totoro.mp3',
+      lit: { en: 'Next-Door Totoro', pt: 'Totoro da Casa ao Lado', it: 'Totoro della porta accanto', es: 'Totoro de al lado' },
+      tip: {
+        en: 'となり (Tonari = next to / neighbor) is a super essential N5 word used every day for seats, rooms, and shops!',
+        pt: 'となり (Tonari = ao lado / vizinho) é uma palavra N5 usada todo dia para assentos, salas e lojas!',
+        it: 'となり (Tonari = accanto / vicino) è una parola N5 usata ogni giorno per posti, stanze e negozi!',
+        es: 'となり (Tonari = al lado / vecino) es una palabra N5 de uso diario para asientos, cuartos y tiendas.'
+      },
+      words: [
+        { jp: 'となり', ro: 'tonari', daily: 3, tr: { en: 'Next to / Neighbor', pt: 'Ao lado / Vizinho', it: 'Accanto / Vicino', es: 'Al lado / Vecino' } }
+      ]
+    },
+    {
+      id: 'majo', genre: 'movie', em: '🧹',
+      en: 'Kiki’s Delivery Service', jp: '魔女の宅急便', ro: 'Majo no Takkyūbin', audio: 'anime-audio/majo-no-takkyubin.mp3',
+      lit: { en: 'Witch’s Express Delivery', pt: 'Serviço de Entregas da Bruxa', it: 'Il servizio consegne della strega', es: 'El servicio de entregas de la bruja' },
+      tip: {
+        en: '宅急便 (Takkyūbin) is a real parcel delivery word you will see on trucks and at hotels all over Japan!',
+        pt: '宅急便 (Takkyūbin) é uma palavra real de entrega de encomendas que você vê em hotéis e ruas do Japão!',
+        it: '宅急便 (Takkyūbin) è la parola reale per la consegna pacchi che vedrai negli hotel in tutto il Giappone!',
+        es: '宅急便 (Takkyūbin) es el servicio real de envío de paquetes que verás en hoteles por todo Japón.'
+      },
+      words: [
+        { jp: '魔女', ro: 'majo', daily: 2, tr: { en: 'Witch', pt: 'Bruxa', it: 'Strega', es: 'Bruja' } },
+        { jp: '宅急便', ro: 'takkyūbin', daily: 3, tr: { en: 'Home parcel delivery', pt: 'Entrega de encomendas', it: 'Corriere espresso', es: 'Mensajería / Paquetería' } }
+      ]
+    },
+    {
+      id: 'suzume', genre: 'movie', em: '🚪',
+      en: 'Suzume', jp: 'すずめの戸締まり', ro: 'Suzume no Tojimari', audio: 'anime-audio/suzume-no-tojimari.mp3',
+      lit: { en: 'Suzume’s Locking Up of Doors', pt: 'O Trancar de Portas de Suzume', it: 'Il chiudere le porte di Suzume', es: 'El cierre de puertas de Suzume' },
+      tip: {
+        en: '戸締まり (Tojimari) is a very natural everyday Japanese word for checking that doors & windows are locked before leaving home!',
+        pt: '戸締まり (Tojimari) é a palavra natural do dia a dia para conferir se portas e janelas estão trancadas!',
+        it: '戸締まり (Tojimari) è la parola quotidiana usata in Giappone per controllare che porte e finestre siano chiuse!',
+        es: '戸締まり (Tojimari) es la palabra diaria para revisar que puertas y ventanas queden bien cerradas.'
+      },
+      words: [
+        { jp: '戸締まり', ro: 'tojimari', daily: 3, tr: { en: 'Locking up doors/windows', pt: 'Trancar portas e janelas', it: 'Chiudere a chiave porte/finestre', es: 'Cerrar puertas y ventanas con llave' } }
+      ]
+    },
+    {
+      id: 'koe', genre: 'movie', em: '🤟',
+      en: 'A Silent Voice', jp: '聲の形', ro: 'Koe no Katachi', audio: 'anime-audio/koe-no-katachi.mp3',
+      lit: { en: 'The Shape of Voice', pt: 'A Forma da Voz', it: 'La forma della voce', es: 'La forma de la voz' },
+      tip: {
+        en: '聲 is the traditional kanji for 声 (Koe = voice) — it contains 耳 (ear) inside! 形 (Katachi) means shape or form.',
+        pt: '聲 é o kanji antigo de 声 (Koe = voz) — note o radical 耳 (orelha) dentro dele! 形 significa forma.',
+        it: '聲 è il kanji tradizionale di 声 (Koe = voce) — contiene 耳 (orecchio)! 形 (Katachi) significa forma.',
+        es: '聲 es el kanji clásico de 声 (Koe = voz) — ¡lleva 耳 (oreja) dentro! 形 (Katachi) significa forma.'
+      },
+      words: [
+        { jp: '声（聲）', ro: 'koe', daily: 3, tr: { en: 'Voice', pt: 'Voz', it: 'Voce', es: 'Voz' } },
+        { jp: '形', ro: 'katachi', daily: 3, tr: { en: 'Shape / Form', pt: 'Forma / Formato', it: 'Forma', es: 'Forma' } }
+      ]
+    },
+    {
+      id: 'tenki', genre: 'movie', em: '☀️',
+      en: 'Weathering with You', jp: '天気の子', ro: 'Tenki no Ko', audio: 'anime-audio/tenki-no-ko.mp3',
+      lit: { en: 'Child of Weather', pt: 'Filha do Tempo (Clima)', it: 'La ragazza del tempo', es: 'La chica del tiempo' },
+      tip: {
+        en: '天気 (Tenki = weather) is one of the most useful small-talk words in Japan: "Ii tenki desu ne!" (Nice weather!).',
+        pt: '天気 (Tenki = tempo/clima) é essencial para puxar assunto no Japão: "Ii tenki desu ne!" (Tempo bom, né!).',
+        it: '天気 (Tenki = tempo/meteo) è perfetta per fare conversazione: "Ii tenki desu ne!" (Che bel tempo!).',
+        es: '天気 (Tenki = clima/tiempo) es perfecta para conversar: "Ii tenki desu ne!" (¡Qué buen tiempo!).'
+      },
+      words: [
+        { jp: '天気', ro: 'tenki', daily: 3, tr: { en: 'Weather', pt: 'Tempo / Clima', it: 'Meteo / Tempo', es: 'Tiempo / Clima' } },
+        { jp: '子', ro: 'ko', daily: 3, tr: { en: 'Child', pt: 'Criança / Filho(a)', it: 'Bambino / Ragazzo(a)', es: 'Niño / Hijo(a)' } }
+      ]
+    },
+    {
+      id: 'kiminonawa', genre: 'movie', em: '☄️',
+      en: 'Your Name.', jp: '君の名は。', ro: 'Kimi no Na wa.', audio: 'anime-audio/kimi-no-na-wa.mp3',
+      lit: { en: 'What is Your Name? (Poetic)', pt: 'Qual é o Seu Nome? (Poético)', it: 'Qual è il tuo nome? (Poetico)', es: '¿Cuál es tu nombre? (Poético)' },
+      tip: {
+        en: 'A poetic way to ask "What is your name?". In everyday conversation, use 名前 (namae): "O-namae wa nan desu ka?"',
+        pt: 'Forma poética de perguntar "Qual o seu nome?". No dia a dia, use 名前 (namae).',
+        it: 'Modo poetico per chiedere il nome. Ogni giorno si usa 名前 (namae): "O-namae wa nan desu ka?"',
+        es: 'Forma poética de preguntar el nombre. A diario se usa 名前 (namae): "O-namae wa nan desu ka?"'
+      },
+      words: [
+        { jp: '君', ro: 'kimi', daily: 3, tr: { en: 'You (casual / poetic)', pt: 'Você (informal / poético)', it: 'Tu (informale / poetico)', es: 'Tú (informal / poético)' } },
+        { jp: '名', ro: 'na', daily: 2, tr: { en: 'Name (short / poetic)', pt: 'Nome (poético)', it: 'Nome (poetico)', es: 'Nombre (poético)' } }
+      ]
+    },
+
+    // ===== 4. SPORTS, COMEDY & ROMANCE (8) =====
+    {
+      id: 'haikyu', genre: 'comedy', em: '🏐',
+      en: 'Haikyu!!', jp: 'ハイキュー!!', ro: 'Haikyū!!', audio: 'anime-audio/haikyu.mp3',
+      lit: { en: 'Volleyball (Traditional Japanese term)', pt: 'Vôlei (termo japonês tradicional)', it: 'Pallavolo (termine tradizionale)', es: 'Voleibol (término tradicional)' },
+      tip: {
+        en: '排球 (Haikyū) is the kanji word for Volleyball (modern Japanese usually says バレーボール, barēbōru).',
+        pt: '排球 (Haikyū) é a palavra em kanji para vôlei (hoje em dia se diz mais バレーボール).',
+        it: '排球 (Haikyū) è la parola in kanji per pallavolo (oggi si usa spesso バレーボール).',
+        es: '排球 (Haikyū) es la palabra en kanji para voleibol (hoy suele decirse バレーボール).'
+      },
+      words: [
+        { jp: '排球', ro: 'haikyū', daily: 1, tr: { en: 'Volleyball', pt: 'Vôlei', it: 'Pallavolo', es: 'Voleibol' } }
+      ]
+    },
+    {
+      id: 'yowamushi', genre: 'comedy', em: '🚴',
+      en: 'Yowamushi Pedal', jp: '弱虫ペダル', ro: 'Yowamushi Pedaru', audio: 'anime-audio/yowamushi-pedal.mp3',
+      lit: { en: 'Weakling / Crybaby Pedal', pt: 'Pedal do Medroso / Fracote', it: 'Il pedale del fifone', es: 'El pedal del cobarde' },
+      tip: {
+        en: '弱虫 (Yowamushi = weak + bug) is a super common everyday Japanese word for "crybaby / wimp"! Also compare 泣き虫 (nakimushi = crybaby).',
+        pt: '弱虫 (fraco + inseto) é uma expressão super comum para "medroso / fracote"! Veja também 泣き虫 (chorão).',
+        it: '弱虫 (debole + insetto) è un’espressione comunissima per "fifone / pauroso"! Simile a 泣き虫 (piagnucolone).',
+        es: '弱虫 (débil + bicho) es una expresión muy usada para "cobarde / miedoso". ¡Igual que 泣き虫 (llorón)!'
+      },
+      words: [
+        { jp: '弱虫', ro: 'yowamushi', daily: 3, tr: { en: 'Wimp / Coward / Crybaby', pt: 'Medroso / Fracote', it: 'Fifone / Pauroso', es: 'Cobarde / Miedoso' } }
+      ]
+    },
+    {
+      id: 'gintama', genre: 'comedy', em: '🍡',
+      en: 'Gintama', jp: '銀魂', ro: 'Gintama', audio: 'anime-audio/gintama.mp3',
+      lit: { en: 'Silver Soul', pt: 'Alma de Prata', it: 'Anima d’argento', es: 'Alma de plata' },
+      tip: {
+        en: '銀 (Gin = silver) + 魂 (Tama / Tamashii = soul). Notice how 銀 is also in 銀行 (Ginkō = bank)!',
+        pt: '銀 (Gin = prata) + 魂 (Tama / Tamashii = alma). Note que 銀 também está em 銀行 (banco)!',
+        it: '銀 (Gin = argento) + 魂 (Tama / Tamashii = anima). 銀 compare anche in 銀行 (banca)!',
+        es: '銀 (Gin = plata) + 魂 (Tama / Tamashii = alma). ¡銀 también aparece en 銀行 (banco)!'
+      },
+      words: [
+        { jp: '銀', ro: 'gin', daily: 3, tr: { en: 'Silver', pt: 'Prata', it: 'Argento', es: 'Plata' } },
+        { jp: '魂', ro: 'tamashii', daily: 2, tr: { en: 'Soul / Spirit', pt: 'Alma / Espírito', it: 'Anima / Spirito', es: 'Alma / Espíritu' } }
+      ]
+    },
+    {
+      id: 'oshinoko', genre: 'comedy', em: '🌟',
+      en: 'Oshi no Ko', jp: '推しの子', ro: 'Oshi no Ko', audio: 'anime-audio/oshi-no-ko.mp3',
+      lit: { en: 'My Favorite Idol’s Child', pt: 'Filho da Minha Ídolo Favorita', it: 'Il figlio della mia idol preferita', es: 'El hijo de mi ídolo favorita' },
+      tip: {
+        en: '推し (Oshi = favorite character / idol / bias) is one of the biggest modern Japanese buzzwords — you will hear it everywhere!',
+        pt: '推し (Oshi = personagem ou ídolo favorito) é uma das palavras modernas mais usadas no Japão atual!',
+        it: '推し (Oshi = personaggio o idol preferito) è una delle parole moderne più usate oggi in Giappone!',
+        es: '推し (Oshi = personaje o ídolo favorito) es una de las palabras modernas más populares en Japón.'
+      },
+      words: [
+        { jp: '推し', ro: 'oshi', daily: 3, tr: { en: 'Favorite / Bias / Idol you support', pt: 'Favorito / Ídolo que você apoia', it: 'Preferito / Bias', es: 'Favorito / Bias' } }
+      ]
+    },
+    {
+      id: 'bocchi', genre: 'comedy', em: '🎸',
+      en: 'Bocchi the Rock!', jp: 'ぼっち・ざ・ろっく！', ro: 'Bocchi za Rokku!', audio: 'anime-audio/bocchi-the-rock.mp3',
+      lit: { en: 'Loner the Rock!', pt: 'Solitária do Rock!', it: 'Solitaria del Rock!', es: '¡Solitaria del Rock!' },
+      tip: {
+        en: 'ぼっち (Bocchi) comes from ひとりぼっち (all alone) — huge modern slang for someone doing things solo ("bocchi lunch" = eating lunch alone)!',
+        pt: 'ぼっち (Bocchi) vem de ひとりぼっち (sozinho) — gíria super popular para quem faz tudo sozinho!',
+        it: 'ぼっち (Bocchi) viene da ひとりぼっち (tutto solo) — slang modernissimo per chi sta da solo!',
+        es: 'ぼっち (Bocchi) viene de ひとりぼっち (totalmente solo) — ¡jerga súper popular en Japón!'
+      },
+      words: [
+        { jp: 'ぼっち', ro: 'bocchi', daily: 3, tr: { en: 'Loner / All alone (slang)', pt: 'Solitário / Sozinho (gíria)', it: 'Solitario / Da solo (slang)', es: 'Solitario / Solo (jerga)' } }
+      ]
+    },
+    {
+      id: 'komi', genre: 'comedy', em: '📝',
+      en: 'Komi Can’t Communicate', jp: '古見さんは、コミュ症です。', ro: 'Komi-san wa, Komyushō desu.', audio: 'anime-audio/komi-san-wa-komyusho-desu.mp3',
+      lit: { en: 'Komi-san is Socially Awkward.', pt: 'Komi-san tem dificuldade de se comunicar.', it: 'Komi-san ha difficoltà a comunicare.', es: 'Komi-san tiene fobia social.' },
+      tip: {
+        en: 'コミュ症 (Komyushō = communication + disorder) is widely used casual Japanese slang for being shy or socially awkward.',
+        pt: 'コミュ症 (Komyushō) é uma gíria super usada no Japão para quem é muito tímido para conversar.',
+        it: 'コミュ症 (Komyushō) è uno slang comunissimo per descrivere chi è molto timido nel comunicare.',
+        es: 'コミュ症 (Komyushō) es una jerga muy común para describir a alguien tímido o al que le cuesta socializar.'
+      },
+      words: [
+        { jp: 'コミュ症', ro: 'komyushō', daily: 3, tr: { en: 'Socially awkward / Bad at talking (slang)', pt: 'Tímido / Ruim de papo (gíria)', it: 'Timido / Impacciato (slang)', es: 'Tímido / Le cuesta socializar (jerga)' } }
+      ]
+    },
+    {
+      id: 'kaguya', genre: 'comedy', em: '💘',
+      en: 'Kaguya-sama: Love Is War', jp: 'かぐや様は告らせたい', ro: 'Kaguya-sama wa Kokurasetai', audio: 'anime-audio/kaguya-sama-wa-kokurasetai.mp3',
+      lit: { en: 'Kaguya-sama Wants to Make Him Confess', pt: 'Kaguya-sama Quer Fazê-lo Se Declarar', it: 'Kaguya-sama vuole farlo dichiarare', es: 'Kaguya-sama quiere hacer que se confiese' },
+      tip: {
+        en: '告る (Kokuru) is casual youth slang from 告白する (confess love). Adding 〜させたい means "wants to make someone do ~" (N4 causative)!',
+        pt: '告る (Kokuru) é gíria jovem para se declarar. 〜させたい significa "querer fazer alguém fazer ~"!',
+        it: '告る (Kokuru) è lo slang giovanile per dichiararsi. 〜させたい significa "voler far fare qualcosa a qualcuno"!',
+        es: '告る (Kokuru) es jerga juvenil para declararse. ¡〜させたい significa "querer hacer que alguien haga ~"!'
+      },
+      words: [
+        { jp: '告る', ro: 'kokuru', daily: 3, tr: { en: 'Confess one’s love (slang)', pt: 'Se declarar (gíria)', it: 'Dichiararsi (slang)', es: 'Declararse (jerga)' } }
+      ]
+    },
+    {
+      id: 'shigatsu', genre: 'comedy', em: '🎻',
+      en: 'Your Lie in April', jp: '四月は君の嘘', ro: 'Shigatsu wa Kimi no Uso', audio: 'anime-audio/shigatsu-wa-kimi-no-uso.mp3',
+      lit: { en: 'April is Your Lie', pt: 'Abril é a Sua Mentira', it: 'Aprile è la tua bugia', es: 'Abril es tu mentira' },
+      tip: {
+        en: 'Two must-know N5/N4 words: 四月 (Shigatsu = April — Japanese school & fiscal years start in April!) and 嘘 (Uso = lie / "No way!").',
+        pt: 'Duas palavras essenciais: 四月 (Abril — início do ano escolar no Japão!) e 嘘 (mentira / "Sério?!").',
+        it: 'Due parole essenziali: 四月 (Aprile — inizio dell’anno scolastico!) e 嘘 (bugia / "Ma dai!").',
+        es: 'Dos palabras clave: 四月 (Abril — ¡inicio del año escolar en Japón!) y 嘘 (mentira / "¡No puede ser!").'
+      },
+      words: [
+        { jp: '四月', ro: 'shigatsu', daily: 3, tr: { en: 'April', pt: 'Abril', it: 'Aprile', es: 'Abril' } },
+        { jp: '嘘', ro: 'uso', daily: 3, tr: { en: 'Lie / "No way!"', pt: 'Mentira / "Sério?!"', it: 'Bugia / "Non ci credo!"', es: 'Mentira / "¡En serio?!"' } }
+      ]
+    },
+
+    // ===== 5. MYSTERY & DARK (7) =====
+    {
+      id: 'ansatsu', genre: 'mystery', em: '🐙',
+      en: 'Assassination Classroom', jp: '暗殺教室', ro: 'Ansatsu Kyōshitsu', audio: 'anime-audio/ansatsu-kyoshitsu.mp3',
+      lit: { en: 'Assassination Classroom', pt: 'Sala de Aula de Assassinato', it: 'Classe dell’assassinio', es: 'Aula de asesinato' },
+      tip: {
+        en: '教室 (Kyōshitsu = classroom) is a core N5 school word (教 = teach + 室 = room). 暗殺 (Ansatsu) = assassination.',
+        pt: '教室 (Kyōshitsu = sala de aula) é vocabulário essencial do N5 (教 ensinar + 室 sala)!',
+        it: '教室 (Kyōshitsu = aula) è una parola scolastica base N5 (教 insegnare + 室 stanza)!',
+        es: '教室 (Kyōshitsu = aula / salón) es vocabulario clave N5 (教 enseñar + 室 habitación).'
+      },
+      words: [
+        { jp: '教室', ro: 'kyōshitsu', daily: 3, tr: { en: 'Classroom', pt: 'Sala de aula', it: 'Aula / Classe', es: 'Aula / Salón de clase' } },
+        { jp: '暗殺', ro: 'ansatsu', daily: 1, tr: { en: 'Assassination', pt: 'Assassinato', it: 'Assassinio', es: 'Asesinato' } }
+      ]
+    },
+    {
+      id: 'ghoul', genre: 'mystery', em: '🎭',
+      en: 'Tokyo Ghoul', jp: '東京喰種（トーキョーグール）', ro: 'Tōkyō Gūru', audio: 'anime-audio/tokyo-ghoul.mp3',
+      lit: { en: 'Tokyo Flesh-Eating Species (Ghoul)', pt: 'Espécie Devoradora de Tóquio (Ghoul)', it: 'Specie divoratrice di Tokyo (Ghoul)', es: 'Especie devoradora de Tokio (Ghoul)' },
+      tip: {
+        en: 'Cool manga trick called "Ateji" (creative furigana): the author writes 喰種 (eat + species) in kanji, but forces you to read it as グール (Ghoul)!',
+        pt: 'Truque clássico de mangá: escreve-se 喰種 (comer + espécie) em kanji, mas lê-se como グール (Ghoul)!',
+        it: 'Un trucco tipico dei manga: si scrive 喰種 (mangiare + specie) in kanji, ma si legge グール (Ghoul)!',
+        es: 'Truco típico del manga: se escribe 喰種 (comer + especie) en kanji, ¡pero se lee グール (Ghoul)!'
+      },
+      words: [
+        { jp: '東京', ro: 'Tōkyō', daily: 3, tr: { en: 'Tokyo (East Capital)', pt: 'Tóquio (Capital do Leste)', it: 'Tokyo (Capitale dell’Est)', es: 'Tokio (Capital del Este)' } }
+      ]
+    },
+    {
+      id: 'conan', genre: 'mystery', em: '🔍',
+      en: 'Detective Conan', jp: '名探偵コナン', ro: 'Meitantei Konan', audio: 'anime-audio/meitantei-conan.mp3',
+      lit: { en: 'Great Detective Conan', pt: 'Grande Detetive Conan', it: 'Il grande detective Conan', es: 'El gran detective Conan' },
+      tip: {
+        en: '名 (Mei = famous / master) + 探偵 (Tantei = detective). You also see 名 in 名物 (meibutsu = local specialty food when traveling)!',
+        pt: '名 (famoso/mestre) + 探偵 (detetive). 名 também aparece em 名物 (prato típico local nas viagens)!',
+        it: '名 (famoso/maestro) + 探偵 (detective). 名 si trova anche in 名物 (specialità locale in viaggio)!',
+        es: '名 (famoso/maestro) + 探偵 (detective). ¡名 también sale en 名物 (especialidad local en viajes)!'
+      },
+      words: [
+        { jp: '名探偵', ro: 'meitantei', daily: 2, tr: { en: 'Great detective', pt: 'Grande detetive', it: 'Grande detective', es: 'Gran detective' } }
+      ]
+    },
+    {
+      id: 'neverland', genre: 'mystery', em: '🦉',
+      en: 'The Promised Neverland', jp: '約束のネバーランド', ro: 'Yakusoku no Nebārando', audio: 'anime-audio/yakusoku-no-neverland.mp3',
+      lit: { en: 'Neverland of the Promise', pt: 'A Terra do Nunca da Promessa', it: 'La Neverland della promessa', es: 'El País de Nunca Jamás prometido' },
+      tip: {
+        en: '約束 (Yakusoku = promise / appointment) is an essential N4 word! "Yakusoku ga arimasu" = "I have plans / an appointment."',
+        pt: '約束 (Yakusoku = promessa / compromisso) é essencial no N4! "Yakusoku ga arimasu" = "Tenho um compromisso."',
+        it: '約束 (Yakusoku = promessa / appuntamento) è fondamentale in N4! "Yakusoku ga arimasu" = "Ho un impegno."',
+        es: '約束 (Yakusoku = promesa / cita) es clave en N4: "Yakusoku ga arimasu" = "Tengo un compromiso."'
+      },
+      words: [
+        { jp: '約束', ro: 'yakusoku', daily: 3, tr: { en: 'Promise / Appointment', pt: 'Promessa / Compromisso', it: 'Promessa / Appuntamento', es: 'Promesa / Cita' } }
+      ]
+    },
+    {
+      id: 'kaiju8', genre: 'mystery', em: '🦖',
+      en: 'Kaiju No. 8', jp: '怪獣8号', ro: 'Kaijū Hachi-gō', audio: 'anime-audio/kaiju-8-go.mp3',
+      lit: { en: 'Monster Number 8', pt: 'Monstro Número 8', it: 'Mostro Numero 8', es: 'Monstruo Número 8' },
+      tip: {
+        en: '〜号 (-gō = Number 〜) is a practical counter you see on Japanese trains (car No. 8 = 8号車) and typhoons!',
+        pt: '〜号 (-gō = Número 〜) é usado nos vagões de trem no Japão (vagão 8 = 8号車) e em tufões!',
+        it: '〜号 (-gō = Numero 〜) si usa sui treni giapponesi (carrozza 8 = 8号車) e per i tifoni!',
+        es: '〜号 (-gō = Número 〜) se usa en trenes de Japón (vagón 8 = 8号車) y para numerar tifones.'
+      },
+      words: [
+        { jp: '怪獣', ro: 'kaijū', daily: 2, tr: { en: 'Giant monster', pt: 'Monstro gigante', it: 'Mostro gigante', es: 'Monstruo gigante' } },
+        { jp: '〜号', ro: '-gō', daily: 3, tr: { en: 'Number ~ (car / issue / typhoon)', pt: 'Número ~ (vagão / edição)', it: 'Numero ~ (carrozza / numero)', es: 'Número ~ (vagón / edición)' } }
+      ]
+    },
+    {
+      id: 'mirai', genre: 'mystery', em: '📱',
+      en: 'Future Diary', jp: '未来日記', ro: 'Mirai Nikki', audio: 'anime-audio/mirai-nikki.mp3',
+      lit: { en: 'Future Diary', pt: 'Diário do Futuro', it: 'Diario del futuro', es: 'Diario del futuro' },
+      tip: {
+        en: 'Two clean, practical N4 words: 未来 (Mirai = future) + 日記 (Nikki = diary — "Nikki o kaku" = keep a diary).',
+        pt: 'Duas palavras ótimas do N4: 未来 (futuro) + 日記 (diário — "Nikki o kaku" = escrever no diário).',
+        it: 'Due parole utilissime N4: 未来 (futuro) + 日記 (diario — "Nikki o kaku" = scrivere un diario).',
+        es: 'Dos palabras muy útiles N4: 未来 (futuro) + 日記 (diario — "Nikki o kaku" = escribir un diario).'
+      },
+      words: [
+        { jp: '未来', ro: 'mirai', daily: 3, tr: { en: 'Future', pt: 'Futuro', it: 'Futuro', es: 'Futuro' } },
+        { jp: '日記', ro: 'nikki', daily: 3, tr: { en: 'Diary / Journal', pt: 'Diário', it: 'Diario', es: 'Diario' } }
+      ]
+    },
+    {
+      id: 'tokikake', genre: 'mystery', em: '⏳',
+      en: 'The Girl Who Leapt Through Time', jp: '時をかける少女', ro: 'Toki o Kakeru Shōjo', audio: 'anime-audio/toki-o-kakeru-shojo.mp3',
+      lit: { en: 'The Girl Who Runs/Leaps Through Time', pt: 'A Garota que Salta no Tempo', it: 'La ragazza che saltava nel tempo', es: 'La chica que saltaba a través del tiempo' },
+      tip: {
+        en: '時 (Toki = time) and 少女 (Shōjo = young girl — where "Shōjo Manga" comes from!). 駆ける (kakeru) means to dash/leap through.',
+        pt: '時 (Toki = tempo) e 少女 (Shōjo = garota — daí vem "Shōjo Mangá"!).',
+        it: '時 (Toki = tempo) e 少女 (Shōjo = ragazza — da cui viene "Shōjo Manga"!).',
+        es: '時 (Toki = tiempo) y 少女 (Shōjo = chica — ¡de ahí viene "Shōjo Manga"!).'
+      },
+      words: [
+        { jp: '時', ro: 'toki', daily: 3, tr: { en: 'Time / Moment', pt: 'Tempo / Momento', it: 'Tempo / Momento', es: 'Tiempo / Momento' } },
+        { jp: '少女', ro: 'shōjo', daily: 3, tr: { en: 'Young girl', pt: 'Garota / Menina', it: 'Ragazza', es: 'Chica / Muchacha' } }
       ]
     }
   ];
 
-  const totalSlides = wordData.length;
-  let currentSlide = 1;
-
-  function initApp() {
-    const container = document.getElementById('quiz-container');
-    
-    wordData.forEach((data, index) => {
-      const slideNum = index + 1;
-      const isActive = slideNum === 1 ? 'active' : '';
-      
-      let cardsHtml = '';
-      data.words.forEach(word => {
-        cardsHtml += `
-          <div class="flashcard" onclick="flipAndSpeak(this, '${word.audio}')">
-            <div class="flashcard-inner">
-              <div class="flashcard-front">
-                <div class="emoji">${word.em}</div>
-                <div class="eng-title">${word.e}</div>
-              </div>
-              <div class="flashcard-back">
-                <div class="jp-title">${word.j}</div>
-                <div class="romaji">${word.r}</div>
-                <div class="meaning">${word.m}</div>
-              </div>
-            </div>
-          </div>
-        `;
+  // Flatten Vocab Bank
+  var VOCAB_BANK = [];
+  ANIME.forEach(function (a) {
+    a.words.forEach(function (w) {
+      VOCAB_BANK.push({
+        jp: w.jp,
+        ro: w.ro,
+        daily: w.daily,
+        tr: w.tr,
+        anime: a
       });
-
-      const slideHtml = `
-        <div id="slide${slideNum}" class="slide ${isActive}">
-          <div class="topic-label">${data.title}</div>
-          <div class="flashcard-grid">
-            ${cardsHtml}
-          </div>
-        </div>
-      `;
-      container.innerHTML += slideHtml;
     });
+  });
+
+  // --- Persistence ---
+  function loadSaved() {
+    var def = {
+      lang: 'en',
+      script: 'both',
+      dark: false,
+      autoAudio: true,
+      learned: [],
+      watched: [],
+      bestVocab: null,
+      bestAudio: null
+    };
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var p = JSON.parse(raw);
+        if (p) {
+          if (UI[p.lang]) def.lang = p.lang;
+          if (p.script === 'both' || p.script === 'jp') def.script = p.script;
+          def.dark = !!p.dark;
+          def.autoAudio = p.autoAudio !== false;
+          if (Array.isArray(p.learned)) def.learned = p.learned;
+          if (Array.isArray(p.watched)) def.watched = p.watched;
+          if (typeof p.bestVocab === 'number') def.bestVocab = p.bestVocab;
+          if (typeof p.bestAudio === 'number') def.bestAudio = p.bestAudio;
+        }
+      }
+    } catch (e) {}
+    return def;
   }
 
-  // ★自動音声はオフ。audioFileが設定された時のみ再生される仕様★
-  function flipAndSpeak(cardElement, audioFile) {
-    cardElement.classList.toggle('flipped');
+  var init = loadSaved();
+  var state = {
+    mode: 'explore',
+    lang: init.lang,
+    script: init.script,
+    dark: init.dark,
+    autoAudio: init.autoAudio,
+    genre: 'all',
+    bankDaily: 'all',
+    learned: new Set(init.learned),
+    watched: new Set(init.watched),
+    openCards: new Set(['kimetsu', 'frieren']),
+    bestVocab: init.bestVocab,
+    bestAudio: init.bestAudio,
+    streak: 0,
+    // Vocab quiz
+    vqDeck: [], vqIdx: 0, vqScore: 0, vqCurrent: null, vqAnswered: false, vqPicked: -1, vqDone: false,
+    // Audio quiz
+    aqDeck: [], aqIdx: 0, aqScore: 0, aqCurrent: null, aqAnswered: false, aqPicked: -1, aqDone: false
+  };
 
-    // 表面から裏面になった時だけチェック
-    if(cardElement.classList.contains('flipped')) {
-        // audioFile（例: "jujutsu.mp3"）が入力されている場合のみ再生
-        if (audioFile && audioFile !== "") {
-            const audio = new Audio(audioFile);
-            audio.play();
-        }
+  function persist() {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        lang: state.lang,
+        script: state.script,
+        dark: state.dark,
+        autoAudio: state.autoAudio,
+        learned: Array.from(state.learned),
+        watched: Array.from(state.watched),
+        bestVocab: state.bestVocab,
+        bestAudio: state.bestAudio
+      }));
+    } catch (e) {}
+  }
+
+  // --- Audio Player (uses native MP3s in anime-audio/ with fallback) ---
+  var player = new Audio();
+  player.preload = 'auto';
+
+  function speakFallback(text, rate) {
+    if (!text || !('speechSynthesis' in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ja-JP';
+      u.rate = rate || 0.95;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  function playAnimeAudio(animeObj, rate) {
+    if (!animeObj) return;
+    var speed = rate || 1.0;
+    var fellBack = false;
+    var fallback = function () {
+      if (fellBack) return;
+      fellBack = true;
+      speakFallback(animeObj.jp, speed);
+    };
+    try {
+      player.pause();
+      player.onerror = fallback;
+      player.src = animeObj.audio;
+      player.currentTime = 0;
+      player.playbackRate = speed;
+      var p = player.play();
+      if (p && p.catch) {
+        p.catch(function (err) {
+          if (err && err.name !== 'AbortError') fallback();
+        });
+      }
+    } catch (e) {
+      fallback();
     }
   }
 
-  function changeSlide(direction) {
-    document.getElementById('slide' + currentSlide).classList.remove('active');
-    currentSlide += direction;
-    document.getElementById('slide' + currentSlide).classList.add('active');
-    
-    document.getElementById('prevBtn').disabled = (currentSlide === 1);
-    document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
-    
-    document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function shuffleArr(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i];
+      a[i] = a[j];
+      a[j] = tmp;
+    }
+    return a;
   }
 
-  window.onload = initApp;
+  // --- Vocab Quiz Session ---
+  function startVocabQuiz() {
+    state.vqDeck = shuffleArr(VOCAB_BANK).slice(0, 10);
+    state.vqIdx = 0;
+    state.vqScore = 0;
+    state.vqDone = false;
+    buildVocabQuestion();
+  }
 
+  function buildVocabQuestion() {
+    if (state.vqIdx >= state.vqDeck.length) {
+      state.vqDone = true;
+      if (state.bestVocab === null || state.vqScore > state.bestVocab) {
+        state.bestVocab = state.vqScore;
+        persist();
+      }
+      return;
+    }
+    var target = state.vqDeck[state.vqIdx];
+    var tMean = target.tr[state.lang];
+    var pool = shuffleArr(VOCAB_BANK.filter(function (x) {
+      return x.jp !== target.jp && x.tr[state.lang] !== tMean;
+    }));
+    var distractors = [];
+    for (var i = 0; i < pool.length && distractors.length < 3; i++) {
+      var m = pool[i].tr[state.lang];
+      if (!distractors.some(function (d) { return d.tr[state.lang] === m; })) {
+        distractors.push(pool[i]);
+      }
+    }
+    state.vqCurrent = { target: target, choices: shuffleArr([target].concat(distractors)) };
+    state.vqAnswered = false;
+    state.vqPicked = -1;
+  }
+
+  // --- Audio Quiz Session ---
+  function startAudioQuiz() {
+    state.aqDeck = shuffleArr(ANIME).slice(0, 10);
+    state.aqIdx = 0;
+    state.aqScore = 0;
+    state.aqDone = false;
+    buildAudioQuestion();
+  }
+
+  function buildAudioQuestion() {
+    if (state.aqIdx >= state.aqDeck.length) {
+      state.aqDone = true;
+      if (state.bestAudio === null || state.aqScore > state.bestAudio) {
+        state.bestAudio = state.aqScore;
+        persist();
+      }
+      return;
+    }
+    var target = state.aqDeck[state.aqIdx];
+    var distractors = shuffleArr(ANIME.filter(function (x) { return x.id !== target.id; })).slice(0, 3);
+    state.aqCurrent = { target: target, choices: shuffleArr([target].concat(distractors)) };
+    state.aqAnswered = false;
+    state.aqPicked = -1;
+  }
+
+  // --- Render ---
+  function applyTheme() {
+    document.body.classList.toggle('dark-mode', state.dark);
+    document.getElementById('themeBtn').textContent = state.dark ? '☀️' : '🌙';
+  }
+
+  function renderStatic() {
+    var t = UI[state.lang];
+    document.getElementById('uiEyebrow').textContent = t.eyebrow;
+    document.getElementById('uiTitle').textContent = t.title;
+    document.getElementById('uiSub').textContent = t.sub;
+    document.getElementById('uiLangLabel').textContent = t.langLabel;
+    document.getElementById('autoAudioBtn').textContent = t.autoAudio;
+
+    document.getElementById('lblLearned').textContent = t.lblLearned;
+    document.getElementById('lblWatched').textContent = t.lblWatched;
+    document.getElementById('lblStreak').textContent = t.lblStreak;
+
+    document.getElementById('mTitleExplore').textContent = t.mTitleExplore;
+    document.getElementById('mSubExplore').textContent = t.mSubExplore;
+    document.getElementById('mTitleVocab').textContent = t.mTitleVocab;
+    document.getElementById('mSubVocab').textContent = t.mSubVocab;
+    document.getElementById('mTitleAudio').textContent = t.mTitleAudio;
+    document.getElementById('mSubAudio').textContent = t.mSubAudio;
+    document.getElementById('mTitleBank').textContent = t.mTitleBank;
+    document.getElementById('mSubBank').textContent = t.mSubBank;
+
+    document.getElementById('vqRetryBtn').textContent = t.playAgain;
+    document.getElementById('vqGoAudioBtn').textContent = t.tryAudio;
+    document.getElementById('aqPromptTitle').textContent = t.aqPrompt;
+    document.getElementById('aqPlay1').textContent = t.playTitle;
+    document.getElementById('aqPlaySlow').textContent = t.playSlow;
+    document.getElementById('aqReplayBtn').textContent = t.replay;
+    document.getElementById('aqRetryBtn').textContent = t.playAgain;
+    document.getElementById('aqGoVocabBtn').textContent = t.tryVocab;
+
+    document.getElementById('bankSearch').placeholder = t.bankPh;
+    document.getElementById('bankAllChip').textContent = t.bankAll;
+    document.getElementById('bankDailyChip').textContent = t.bankDaily;
+    document.getElementById('resetBtn').textContent = t.resetBtn;
+
+    document.getElementById('statLearned').textContent = state.learned.size + ' / ' + ANIME.length;
+    document.getElementById('statWatched').textContent = state.watched.size + ' ❤️';
+    document.getElementById('statStreak').textContent = state.streak + ' 🔥';
+
+    document.querySelectorAll('.lang-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.lang === state.lang);
+    });
+    document.querySelectorAll('[data-script]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.script === state.script);
+    });
+    document.getElementById('autoAudioBtn').classList.toggle('active', state.autoAudio);
+
+    document.querySelectorAll('.mode-btn').forEach(function (b) {
+      var a = b.dataset.mode === state.mode;
+      b.classList.toggle('active', a);
+      document.getElementById('view-' + b.dataset.mode).classList.toggle('hidden', !a);
+    });
+
+    var bv = state.bestVocab !== null ? (state.bestVocab + '/10') : '—';
+    var ba = state.bestAudio !== null ? (state.bestAudio + '/10') : '—';
+    document.getElementById('bestBar').textContent = t.bestBar + ' ' + bv + ' · ' + t.audioLbl + ' ' + ba;
+  }
+
+  function filteredAnime() {
+    if (state.genre === 'all') return ANIME;
+    if (state.genre === 'watched') return ANIME.filter(function (a) { return state.watched.has(a.id); });
+    return ANIME.filter(function (a) { return a.genre === state.genre; });
+  }
+
+  function renderExplore() {
+    var t = UI[state.lang];
+    var genreDefs = [
+      { k: 'all', l: t.gAll },
+      { k: 'action', l: t.gAction },
+      { k: 'fantasy', l: t.gFantasy },
+      { k: 'movie', l: t.gMovie },
+      { k: 'comedy', l: t.gComedy },
+      { k: 'mystery', l: t.gMystery },
+      { k: 'watched', l: t.gWatched + ' (' + state.watched.size + ')' }
+    ];
+    var chipRow = document.getElementById('genreChips');
+    chipRow.innerHTML = '';
+    genreDefs.forEach(function (g) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'chip' + (state.genre === g.k ? ' active' : '');
+      btn.textContent = g.l;
+      btn.onclick = function () {
+        state.genre = g.k;
+        renderExplore();
+      };
+      chipRow.appendChild(btn);
+    });
+
+    var list = filteredAnime();
+    var allOpen = list.length > 0 && list.every(function (a) { return state.openCards.has(a.id); });
+    document.getElementById('toggleAllCardsBtn').textContent = allOpen ? t.hideAll : t.revealAll;
+
+    var grid = document.getElementById('animeGrid');
+    grid.innerHTML = '';
+
+    if (!list.length) {
+      var empty = document.createElement('div');
+      empty.className = 'panel-card';
+      empty.style.gridColumn = '1 / -1';
+      empty.style.textAlign = 'center';
+      empty.style.color = 'var(--muted)';
+      empty.textContent = t.noWatched;
+      grid.appendChild(empty);
+      return;
+    }
+
+    list.forEach(function (a) {
+      var isOpen = state.openCards.has(a.id);
+      var isLearned = state.learned.has(a.id);
+      var isWatched = state.watched.has(a.id);
+
+      var card = document.createElement('article');
+      card.className = 'anime-card';
+
+      var decodeHtml = '';
+      if (isOpen) {
+        var wordsHtml = a.words.map(function (w) {
+          return '<span class="word-chip">' + w.jp + (state.script === 'both' ? ' (' + w.ro + ')' : '') + ' = <span>' + w.tr[state.lang] + '</span></span>';
+        }).join('');
+        decodeHtml =
+          '<div class="decode-panel">' +
+            '<div class="decode-top">' +
+              '<div class="decode-jp">' + a.jp + '</div>' +
+              '<div style="display:flex; gap:5px; flex-shrink:0;">' +
+                '<button type="button" class="audio-pill primary" data-act="a1">🔊</button>' +
+                '<button type="button" class="audio-pill" data-act="aSlow">🐢</button>' +
+              '</div>' +
+            '</div>' +
+            (state.script === 'both' ? '<div class="decode-ro">' + a.ro + '</div>' : '') +
+            '<div class="word-chips">' + wordsHtml + '</div>' +
+            '<div class="decode-tip">💡 ' + a.tip[state.lang] + '</div>' +
+          '</div>';
+      }
+
+      card.innerHTML =
+        '<div>' +
+          '<div class="card-head">' +
+            '<div class="card-title-wrap">' +
+              '<div class="card-em">' + a.em + '</div>' +
+              '<div>' +
+                '<div class="card-en">' + a.en + '</div>' +
+                '<div class="card-lit">' + (isOpen ? a.lit[state.lang] : t.tapDecode) + '</div>' +
+                '<span class="card-genre-tag">' + GENRE_LABELS[a.genre][state.lang] + '</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="card-icon-btns">' +
+              '<button type="button" class="icon-toggle' + (isWatched ? ' watched' : '') + '" data-act="watch" title="Watched">' + (isWatched ? '❤️' : '🤍') + '</button>' +
+              '<button type="button" class="icon-toggle' + (isLearned ? ' learned' : '') + '" data-act="learn" title="Learned">' + (isLearned ? '✅' : '⭐') + '</button>' +
+            '</div>' +
+          '</div>' +
+          decodeHtml +
+        '</div>' +
+        '<button type="button" class="reveal-btn' + (isOpen ? ' open' : '') + '" data-act="toggle">' + (isOpen ? t.hideBtn : t.revealBtn) + '</button>';
+
+      card.querySelector('[data-act="watch"]').onclick = function () {
+        if (state.watched.has(a.id)) state.watched.delete(a.id);
+        else state.watched.add(a.id);
+        persist();
+        renderAll();
+      };
+      card.querySelector('[data-act="learn"]').onclick = function () {
+        if (state.learned.has(a.id)) state.learned.delete(a.id);
+        else state.learned.add(a.id);
+        persist();
+        renderAll();
+      };
+      card.querySelector('[data-act="toggle"]').onclick = function () {
+        if (state.openCards.has(a.id)) {
+          state.openCards.delete(a.id);
+        } else {
+          state.openCards.add(a.id);
+          if (state.autoAudio) playAnimeAudio(a, 1.0);
+        }
+        renderExplore();
+      };
+      var a1 = card.querySelector('[data-act="a1"]');
+      if (a1) a1.onclick = function () { playAnimeAudio(a, 1.0); };
+      var aSlow = card.querySelector('[data-act="aSlow"]');
+      if (aSlow) aSlow.onclick = function () { playAnimeAudio(a, 0.75); };
+
+      grid.appendChild(card);
+    });
+  }
+
+  function renderVocabQuiz() {
+    var t = UI[state.lang];
+    document.getElementById('vqPlayCard').classList.toggle('hidden', state.vqDone);
+    document.getElementById('vqSummary').classList.toggle('hidden', !state.vqDone);
+
+    if (state.vqDone) {
+      var pct = Math.round((state.vqScore / 10) * 100);
+      document.getElementById('vqSumEmoji').textContent = pct === 100 ? '🏆' : pct >= 80 ? '🎉' : '💪';
+      document.getElementById('vqSumScore').textContent = state.vqScore + ' / 10 (' + pct + '%)';
+      document.getElementById('vqSumMsg').textContent = pct === 100 ? t.vqPerf : pct >= 80 ? t.vqGreat : t.vqKeep;
+      return;
+    }
+
+    if (!state.vqCurrent) startVocabQuiz();
+    var q = state.vqCurrent;
+    var w = q.target;
+
+    document.getElementById('vqProgress').textContent = 'Q ' + (state.vqIdx + 1) + ' / 10';
+    document.getElementById('vqScore').textContent = t.scoreWord + ': ' + state.vqScore;
+    document.getElementById('vqFrom').textContent = w.anime.em + ' ' + t.fromWord + ' ' + w.anime.en + ' (' + w.anime.jp + ')';
+    document.getElementById('vqWord').textContent = w.jp;
+    document.getElementById('vqRo').textContent = state.script === 'both' ? w.ro : '';
+
+    var grid = document.getElementById('vqChoices');
+    grid.innerHTML = '';
+    q.choices.forEach(function (ch, idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'choice-btn';
+      if (state.vqAnswered) {
+        btn.disabled = true;
+        if (ch.jp === w.jp) btn.className += ' is-correct';
+        else if (idx === state.vqPicked) btn.className += ' is-wrong';
+      }
+      btn.innerHTML = '<span class="choice-num">' + (idx + 1) + '</span><div class="choice-main">' + ch.tr[state.lang] + '</div>';
+      btn.onclick = function () {
+        if (state.vqAnswered) return;
+        state.vqAnswered = true;
+        state.vqPicked = idx;
+        if (ch.jp === w.jp) {
+          state.vqScore += 1;
+          state.streak += 1;
+        } else {
+          state.streak = 0;
+        }
+        renderStatic();
+        renderVocabQuiz();
+        if (state.autoAudio) playAnimeAudio(w.anime, 1.0);
+      };
+      grid.appendChild(btn);
+    });
+
+    var fb = document.getElementById('vqFeedback');
+    if (state.vqAnswered) {
+      var ok = q.choices[state.vqPicked] && q.choices[state.vqPicked].jp === w.jp;
+      fb.className = 'feedback-box show ' + (ok ? 'good' : 'bad');
+      document.getElementById('vqFbTitle').textContent = ok
+        ? t.correct + ' ' + w.jp + ' = ' + w.tr[state.lang]
+        : t.wrong + ' ' + w.tr[state.lang];
+      document.getElementById('vqFbDesc').textContent = w.anime.tip[state.lang];
+      document.getElementById('vqNextBtn').textContent = (state.vqIdx === 9) ? t.seeResults : t.next;
+    } else {
+      fb.className = 'feedback-box';
+    }
+  }
+
+  function renderAudioQuiz() {
+    var t = UI[state.lang];
+    document.getElementById('aqPlayCard').classList.toggle('hidden', state.aqDone);
+    document.getElementById('aqSummary').classList.toggle('hidden', !state.aqDone);
+
+    if (state.aqDone) {
+      var pct = Math.round((state.aqScore / 10) * 100);
+      document.getElementById('aqSumEmoji').textContent = pct === 100 ? '🏆' : pct >= 80 ? '🎧' : '💪';
+      document.getElementById('aqSumScore').textContent = state.aqScore + ' / 10 (' + pct + '%)';
+      document.getElementById('aqSumMsg').textContent = pct === 100 ? t.aqPerf : pct >= 80 ? t.aqGreat : t.aqKeep;
+      return;
+    }
+
+    if (!state.aqCurrent) startAudioQuiz();
+    var q = state.aqCurrent;
+    var a = q.target;
+
+    document.getElementById('aqProgress').textContent = 'Q ' + (state.aqIdx + 1) + ' / 10';
+    document.getElementById('aqScore').textContent = t.scoreWord + ': ' + state.aqScore;
+
+    var grid = document.getElementById('aqChoices');
+    grid.innerHTML = '';
+    q.choices.forEach(function (ch, idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'choice-btn';
+      if (state.aqAnswered) {
+        btn.disabled = true;
+        if (ch.id === a.id) btn.className += ' is-correct';
+        else if (idx === state.aqPicked) btn.className += ' is-wrong';
+      }
+      btn.innerHTML =
+        '<span class="choice-num">' + (idx + 1) + '</span>' +
+        '<span style="font-size:1.35rem; flex-shrink:0;">' + ch.em + '</span>' +
+        '<div><div class="choice-main">' + ch.en + '</div><div class="choice-sub">' + ch.lit[state.lang] + '</div></div>';
+      btn.onclick = function () {
+        if (state.aqAnswered) return;
+        state.aqAnswered = true;
+        state.aqPicked = idx;
+        if (ch.id === a.id) {
+          state.aqScore += 1;
+          state.streak += 1;
+          state.learned.add(a.id);
+          persist();
+        } else {
+          state.streak = 0;
+        }
+        renderStatic();
+        renderAudioQuiz();
+      };
+      grid.appendChild(btn);
+    });
+
+    var fb = document.getElementById('aqFeedback');
+    if (state.aqAnswered) {
+      var ok = q.choices[state.aqPicked] && q.choices[state.aqPicked].id === a.id;
+      fb.className = 'feedback-box show ' + (ok ? 'good' : 'bad');
+      document.getElementById('aqFbTitle').textContent = ok ? t.niceEar : (t.itWas + ' ' + a.en);
+      document.getElementById('aqFbJp').textContent = a.jp + ' (' + a.ro + ')';
+      document.getElementById('aqFbNote').textContent = a.tip[state.lang];
+      document.getElementById('aqNextBtn').textContent = (state.aqIdx === 9) ? t.seeResults : t.nextAnime;
+    } else {
+      fb.className = 'feedback-box';
+    }
+  }
+
+  function renderBank() {
+    var t = UI[state.lang];
+    document.querySelectorAll('#bankFilterRow [data-daily]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.daily === state.bankDaily);
+    });
+    var qStr = (document.getElementById('bankSearch').value || '').trim().toLowerCase();
+    var items = VOCAB_BANK.filter(function (v) {
+      if (state.bankDaily === '3' && v.daily < 3) return false;
+      if (!qStr) return true;
+      var hay = [v.jp, v.ro, v.tr.en, v.tr.pt, v.tr.it, v.tr.es, v.anime.en, v.anime.jp].join(' ').toLowerCase();
+      return hay.indexOf(qStr) !== -1;
+    });
+    document.getElementById('bankCount').textContent = items.length + ' ' + t.wordsCount;
+
+    var list = document.getElementById('bankList');
+    list.innerHTML = '';
+    items.forEach(function (v) {
+      var row = document.createElement('div');
+      row.className = 'bank-item';
+      var stars = v.daily === 3 ? '★★★' : v.daily === 2 ? '★★' : '★';
+      row.innerHTML =
+        '<div style="flex:1; min-width:210px;">' +
+          '<div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">' +
+            '<span style="font-size:1.05rem; font-weight:800; color:var(--dark);">' + v.jp + '</span>' +
+            (state.script === 'both' ? '<span style="font-size:0.8rem; color:var(--muted);">(' + v.ro + ')</span>' : '') +
+            '<span class="daily-badge">' + t.dailyLbl + ' ' + stars + '</span>' +
+          '</div>' +
+          '<div style="font-size:0.86rem; font-weight:700; color:var(--text); margin-top:3px;">' + v.tr[state.lang] + '</div>' +
+          '<div style="font-size:0.74rem; font-weight:600; color:var(--purple); margin-top:2px;">' + v.anime.em + ' ' + v.anime.en + ' (' + v.anime.jp + ')</div>' +
+        '</div>' +
+        '<div style="display:flex; gap:6px;">' +
+          '<button type="button" class="audio-pill primary" data-act="a1">' + t.titleAudio + '</button>' +
+          '<button type="button" class="audio-pill" data-act="aSlow">🐢</button>' +
+        '</div>';
+      row.querySelector('[data-act="a1"]').onclick = function () { playAnimeAudio(v.anime, 1.0); };
+      row.querySelector('[data-act="aSlow"]').onclick = function () { playAnimeAudio(v.anime, 0.75); };
+      list.appendChild(row);
+    });
+  }
+
+  function renderAll() {
+    applyTheme();
+    renderStatic();
+    if (state.mode === 'explore') renderExplore();
+    else if (state.mode === 'vocab') renderVocabQuiz();
+    else if (state.mode === 'audio') renderAudioQuiz();
+    else if (state.mode === 'bank') renderBank();
+  }
+
+  // --- Events ---
+  document.getElementById('themeBtn').onclick = function () {
+    state.dark = !state.dark;
+    persist();
+    applyTheme();
+  };
+
+  document.querySelectorAll('.lang-btn').forEach(function (b) {
+    b.onclick = function () {
+      state.lang = b.dataset.lang;
+      persist();
+      renderAll();
+    };
+  });
+
+  document.querySelectorAll('[data-script]').forEach(function (b) {
+    b.onclick = function () {
+      state.script = b.dataset.script;
+      persist();
+      renderAll();
+    };
+  });
+
+  document.getElementById('autoAudioBtn').onclick = function () {
+    state.autoAudio = !state.autoAudio;
+    persist();
+    renderStatic();
+  };
+
+  document.querySelectorAll('.mode-btn').forEach(function (b) {
+    b.onclick = function () {
+      var m = b.dataset.mode;
+      state.mode = m;
+      if (m === 'vocab' && (!state.vqDeck.length || state.vqDone)) startVocabQuiz();
+      if (m === 'audio' && (!state.aqDeck.length || state.aqDone)) startAudioQuiz();
+      renderAll();
+      if (m === 'audio' && state.aqCurrent && !state.aqDone && state.autoAudio) {
+        playAnimeAudio(state.aqCurrent.target, 1.0);
+      }
+    };
+  });
+
+  document.getElementById('toggleAllCardsBtn').onclick = function () {
+    var list = filteredAnime();
+    var allOpen = list.length > 0 && list.every(function (a) { return state.openCards.has(a.id); });
+    list.forEach(function (a) {
+      if (allOpen) state.openCards.delete(a.id);
+      else state.openCards.add(a.id);
+    });
+    renderExplore();
+  };
+
+  document.getElementById('vqAudio1').onclick = function () {
+    if (state.vqCurrent) playAnimeAudio(state.vqCurrent.target.anime, 1.0);
+  };
+  document.getElementById('vqAudioSlow').onclick = function () {
+    if (state.vqCurrent) playAnimeAudio(state.vqCurrent.target.anime, 0.75);
+  };
+  document.getElementById('vqNextBtn').onclick = function () {
+    state.vqIdx += 1;
+    buildVocabQuestion();
+    renderAll();
+  };
+  document.getElementById('vqRetryBtn').onclick = function () {
+    startVocabQuiz();
+    renderAll();
+  };
+  document.getElementById('vqGoAudioBtn').onclick = function () {
+    state.mode = 'audio';
+    startAudioQuiz();
+    renderAll();
+    if (state.aqCurrent && state.autoAudio) playAnimeAudio(state.aqCurrent.target, 1.0);
+  };
+
+  document.getElementById('aqPlay1').onclick = function () {
+    if (state.aqCurrent) playAnimeAudio(state.aqCurrent.target, 1.0);
+  };
+  document.getElementById('aqPlaySlow').onclick = function () {
+    if (state.aqCurrent) playAnimeAudio(state.aqCurrent.target, 0.75);
+  };
+  document.getElementById('aqReplayBtn').onclick = function () {
+    if (state.aqCurrent) playAnimeAudio(state.aqCurrent.target, 1.0);
+  };
+  document.getElementById('aqNextBtn').onclick = function () {
+    state.aqIdx += 1;
+    buildAudioQuestion();
+    renderAll();
+    if (state.aqCurrent && !state.aqDone && state.autoAudio) {
+      playAnimeAudio(state.aqCurrent.target, 1.0);
+    }
+  };
+  document.getElementById('aqRetryBtn').onclick = function () {
+    startAudioQuiz();
+    renderAll();
+    if (state.aqCurrent && state.autoAudio) playAnimeAudio(state.aqCurrent.target, 1.0);
+  };
+  document.getElementById('aqGoVocabBtn').onclick = function () {
+    state.mode = 'vocab';
+    startVocabQuiz();
+    renderAll();
+  };
+
+  document.querySelectorAll('#bankFilterRow [data-daily]').forEach(function (b) {
+    b.onclick = function () {
+      state.bankDaily = b.dataset.daily;
+      renderBank();
+    };
+  });
+  document.getElementById('bankSearch').addEventListener('input', renderBank);
+
+  document.getElementById('resetBtn').onclick = function () {
+    if (!confirm(UI[state.lang].resetConfirm)) return;
+    state.learned = new Set();
+    state.watched = new Set();
+    state.bestVocab = null;
+    state.bestAudio = null;
+    state.streak = 0;
+    try { window.localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    renderAll();
+  };
+
+  // Keyboard shortcuts for quizzes
+  document.addEventListener('keydown', function (e) {
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (state.mode === 'vocab' && !state.vqDone) {
+      if (e.key >= '1' && e.key <= '4' && !state.vqAnswered) {
+        var vBtns = document.querySelectorAll('#vqChoices .choice-btn');
+        var vi = parseInt(e.key, 10) - 1;
+        if (vBtns[vi]) vBtns[vi].click();
+      } else if ((e.key === 'Enter' || e.key === 'ArrowRight') && state.vqAnswered) {
+        document.getElementById('vqNextBtn').click();
+      }
+    } else if (state.mode === 'audio' && !state.aqDone) {
+      if (e.key >= '1' && e.key <= '4' && !state.aqAnswered) {
+        var aBtns = document.querySelectorAll('#aqChoices .choice-btn');
+        var ai = parseInt(e.key, 10) - 1;
+        if (aBtns[ai]) aBtns[ai].click();
+      } else if ((e.key === 'Enter' || e.key === 'ArrowRight') && state.aqAnswered) {
+        document.getElementById('aqNextBtn').click();
+      } else if (e.key === 'r' || e.key === 'R') {
+        if (state.aqCurrent) playAnimeAudio(state.aqCurrent.target, 1.0);
+      }
+    }
+  });
+
+  renderAll();
+})();
 </script>
-
 </body>
-
 </html>
-
-
