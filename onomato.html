@@ -1,1286 +1,1661 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ブラウザにキャッシュの再確認を促す設定 -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <title>オノマトペ - Onomatopoeia | OHAYO CENTER</title>
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="オノマトペ - Onomatopoeia | OHAYO CENTER">
-    <meta property="og:description" content="Learn 42 Japanese onomatopoeia words in 4 categories, with illustrations, meanings and example sentences.">
-    <meta property="og:url" content="https://ohayocenter.com/onomato.html">
-    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="オノマトペ - Onomatopoeia | OHAYO CENTER">
-    <meta name="twitter:description" content="Learn 42 Japanese onomatopoeia words in 4 categories, with illustrations, meanings and example sentences.">
-    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    <link rel="icon" href="icon.png?v=1.1" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png?v=1.1">
-    <link rel="icon" sizes="192x192" href="icon.png?v=1.1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Manrope:wght@400;600;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #E63946;
-            --primary-light: #FF5766;
-            --secondary: #F4A261;
-            --accent: #2A9D8F;
-            --dark: #264653;
-            --light-bg: #FAF9F6;
-            --card-bg: #FFFFFF;
-            --text-dark: #1D3557;
-            --text-muted: #6B7280;
-            --border: #E5E7EB;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>オノマトペ - Onomatopoeia | OHAYO CENTER</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OHAYO CENTER">
+  <meta property="og:title" content="オノマトペ - Onomatopoeia | OHAYO CENTER">
+  <meta property="og:description" content="Learn 42 Japanese onomatopoeia words across 4 categories with bright watercolor illustrations, examples, interactive quizzes, and 3D flashcards.">
+  <meta property="og:url" content="https://ohayocenter.com/onomato.html">
+  <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="オノマトペ - Onomatopoeia | OHAYO CENTER">
+  <meta name="twitter:description" content="Learn 42 Japanese onomatopoeia words across 4 categories with bright watercolor illustrations, examples, interactive quizzes, and 3D flashcards.">
+  <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" sizes="192x192" href="icon.png">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Noto+Sans+JP:wght@400;700;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(135deg, #FAF9F6 0%, #F0EDE5 100%);
-            color: var(--text-dark);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
+  <style>
+    :root {
+      --primary: #ff9f43;
+      --primary-dark: #ee8a2e;
+      --primary-light: #fff5eb;
+      --accent: #2a9d8f;
+      --dark: #2c3e50;
+      --text: #444;
+      --muted: #64748b;
+      --bg: #fdfaf6;
+      --card: #ffffff;
+      --border: #ebe4db;
+      --shadow: 0 10px 26px rgba(44, 62, 80, 0.07);
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --bad: #dc2626;
+      --bad-soft: #fee2e2;
+    }
+    body.dark-mode {
+      --dark: #f8fafc;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary-light: rgba(255, 159, 67, 0.16);
+      --good-soft: rgba(22, 163, 74, 0.22);
+      --bad-soft: rgba(220, 38, 38, 0.22);
+      --shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+    }
+    body.hide-romaji .romaji-line { display: none !important; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.25s, color 0.25s;
+    }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    /* --- Fixed Top Navigation (70px) --- */
+    nav {
+      background: rgba(255, 255, 255, 0.96);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 70px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+    body.dark-mode nav {
+      background: rgba(15, 23, 42, 0.94);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Sawarabi Mincho', serif;
+      font-weight: bold;
+      font-size: 1.25rem;
+      white-space: nowrap;
+    }
+    .logo a { text-decoration: none; color: var(--dark); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-links { list-style: none; display: flex; gap: 1.15rem; margin: 0; padding: 0; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.92rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 12px; }
+      .logo { font-size: 1rem; }
+      .nav-right { gap: 0.55rem; }
+      .nav-links { gap: 0.65rem; }
+      .nav-links a { font-size: 0.68rem; }
+      .theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+    }
 
-        nav { 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(5px); 
-            padding: 0 5%; 
-            height: 70px; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            left: 0;
-            z-index: 1000; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-        nav .logo { font-family: 'Sawarabi Mincho', serif; font-weight: bold; color: #2c3e50; font-size: 1.2rem; white-space: nowrap; text-decoration: none; }
-        nav .logo a { text-decoration: none; color: inherit; }
-        nav .nav-links { list-style: none; display: flex; gap: 1.2rem; }
-        nav .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+    /* --- Main Layout --- */
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 16px 14px 40px; }
 
-        .hero { padding: 110px 0 60px; text-align: center; position: relative; overflow: hidden; }
-        .hero h1 { font-size: 56px; font-weight: 900; color: var(--dark); margin-bottom: 16px; letter-spacing: -0.02em; }
-        .hero .subtitle { font-family: 'Manrope', sans-serif; font-size: 24px; font-weight: 600; color: var(--primary); margin-bottom: 12px; }
-        .hero p { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .top-bar h1 {
+      margin: 0;
+      font-family: 'Sawarabi Mincho', serif;
+      font-size: clamp(1.22rem, 3vw, 1.7rem);
+      color: var(--dark);
+    }
+    .mode-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mode-tab {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .mode-tab:hover { border-color: var(--primary); }
+    .mode-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255, 159, 67, 0.34);
+    }
 
-        .filter-section {
-            padding: 30px 0 40px; background: var(--card-bg);
-            box-shadow: var(--shadow-sm); margin-bottom: 40px; border-radius: 16px;
-        }
-        .view-controls { display: flex; justify-content: flex-end; padding: 0 30px 20px; }
-        .view-toggle { display: inline-flex; background: #f1f3f5; border-radius: 10px; padding: 4px; }
-        .view-btn { padding: 8px 16px; border: none; background: transparent; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 700; color: var(--text-muted); transition: 0.3s; display: flex; align-items: center; gap: 6px; }
-        .view-btn.active { background: #fff; color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    /* --- Compact Helper + Progress Strip --- */
+    .helper-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+    }
+    .helper-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+    .stats-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 0.78rem; font-weight: 800; color: var(--dark); }
+    .stat-badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .stat-badge.weak { color: var(--bad); border-color: rgba(220, 38, 38, 0.35); background: var(--bad-soft); }
+    .toggle-pill {
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .toggle-pill.on { background: var(--primary-light); border-color: var(--primary); color: #c8640b; }
+    body.dark-mode .toggle-pill.on { color: #ffbe76; }
+    .prog-track { height: 7px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .prog-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), #22c55e); transition: width 0.35s; }
 
-        .filter-tabs { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; padding: 0 20px; }
-        .filter-tab { padding: 12px 28px; background: transparent; border: 2px solid var(--border); border-radius: 50px; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; font-size: 16px; font-weight: 600; color: var(--text-dark); transition: 0.3s; }
-        .filter-tab:hover { border-color: var(--primary); transform: translateY(-2px); }
-        .filter-tab.active { background: var(--primary); border-color: var(--primary); color: white; }
+    /* --- Gallery Toolbar & Slim Category Chips --- */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 190px;
+      padding: 8px 14px;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--dark);
+      font-size: 0.84rem;
+      font-family: inherit;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .chip {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.14s;
+      white-space: nowrap;
+    }
+    .chip:hover { border-color: var(--primary); }
+    .chip.active { background: var(--primary-light); border-color: var(--primary); color: #c8640b; }
+    body.dark-mode .chip.active { color: #ffbe76; }
 
-        /* ====== グリッドレイアウトの設定 ====== */
-        .onomatopoeia-grid {
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 28px; padding: 20px 0 80px; transition: all 0.3s ease;
-        }
+    /* --- Gallery Cards (Full-Bleed 16:9 Art!) --- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: 0.2s;
+    }
+    .card.learned { border: 2px solid var(--good); }
+    .img-wrap { width: 100%; aspect-ratio: 16 / 9; background: #eef2f6; overflow: hidden; position: relative; }
+    body.dark-mode .img-wrap { background: #0f172a; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cat-pill {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.72);
+      color: #fff;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      backdrop-filter: blur(4px);
+    }
+    .fav-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border: none;
+      background: rgba(255, 255, 255, 0.92);
+      color: #94a3b8;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fav-btn.on { color: #f59e0b; background: #fffbeb; }
+    .card-body { padding: 13px 15px; display: flex; flex-direction: column; flex: 1; }
+    .word-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .jp-title { font-family: 'Sawarabi Mincho', serif; font-size: 1.38rem; font-weight: 800; color: var(--dark); margin: 0; }
+    .romaji-line { font-size: 0.8rem; font-weight: 700; color: #0284c7; margin: 2px 0 6px; }
+    body.dark-mode .romaji-line { color: #38bdf8; }
+    .en-mean { font-size: 0.94rem; font-weight: 800; color: var(--primary-dark); margin: 0 0 9px; }
+    .ex-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+    .ex-box {
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+    .ex-en { display: block; color: var(--muted); font-size: 0.74rem; margin-top: 2px; }
+    .mark-btn {
+      margin-top: auto;
+      width: 100%;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      padding: 8px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .card.learned .mark-btn { background: var(--good-soft); border-color: var(--good); color: var(--good); }
 
-        /* ====== リスト表示時のグリッド崩れ修正 ====== */
-        .onomatopoeia-grid.list-view {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    /* --- 10-Q Quiz View --- */
+    .quiz-wrap { max-width: 560px; margin: 0 auto 24px; }
+    .quiz-mode-bar { display: flex; justify-content: center; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+    .quiz-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .quiz-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 215px;
+      border-radius: 13px;
+      overflow: hidden;
+      margin: 8px 0 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .quiz-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .quiz-img.mystery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-light), var(--bg));
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.84rem;
+      padding: 12px;
+    }
+    .quiz-prompt { font-size: 1.15rem; font-weight: 800; color: var(--dark); margin: 4px 0; line-height: 1.6; }
+    .quiz-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 10px; }
+    .quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .quiz-opt {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 12px 12px;
+      min-height: 50px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+      transition: 0.14s;
+    }
+    .quiz-opt.full { grid-column: 1 / -1; text-align: left; }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+    .quiz-opt.ok { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+    .quiz-opt.ng { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+    .btn-primary {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      padding: 11px 22px;
+      min-height: 44px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.34);
+    }
 
-        .ono-card {
-            background: var(--card-bg); border-radius: 16px; padding: 32px; box-shadow: var(--shadow-sm); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid transparent; position: relative; overflow: hidden; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s forwards; display: flex; flex-direction: column; height: 100%;
-        }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .ono-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+    /* --- 3D Flashcards --- */
+    .fc-wrap { max-width: 520px; margin: 0 auto 24px; text-align: center; }
+    .fc-stage { perspective: 1000px; min-height: 365px; margin-bottom: 12px; cursor: pointer; }
+    .fc-inner { position: relative; min-height: 365px; transform-style: preserve-3d; transition: transform 0.45s; }
+    .fc-stage.flipped .fc-inner { transform: rotateY(180deg); }
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      min-height: 365px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+    }
+    .fc-face.back { transform: rotateY(180deg); background: linear-gradient(180deg, var(--card), var(--primary-light)); }
+    .fc-img { width: 100%; aspect-ratio: 16 / 9; max-height: 210px; border-radius: 13px; overflow: hidden; margin-bottom: 10px; }
+    .fc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fc-controls { display: flex; gap: 8px; justify-content: center; }
+    .btn-ghost {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 10px 16px;
+      min-height: 44px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-        .card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-        .sound-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; color: white; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3); }
-        .japanese { font-size: 28px; font-weight: 900; color: var(--dark); margin-bottom: 4px; }
-        .romaji { font-family: 'Manrope', sans-serif; font-size: 14px; color: var(--text-muted); }
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s;
+      z-index: 2000;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        .illustration-container { width: 100%; height: 180px; margin-bottom: 20px; border-radius: 12px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; padding: 16px; overflow: hidden; }
-        .illustration-container img { width: 100%; height: 100%; object-fit: contain; }
-        .illustration-container.scene-cut { height: auto; aspect-ratio: 16 / 9; padding: 0; background-color: #f1f5f9; border-radius: 14px; }
-        .illustration-container.scene-cut img { object-fit: cover; display: block; }
+    footer { padding: 28px 15px 40px; text-align: center; font-size: 0.85rem; color: var(--muted); border-top: 2px solid var(--border); max-width: 600px; margin: 20px auto 0; }
+    .bmc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #FFDD00;
+      color: #000000;
+      padding: 11px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(255, 221, 0, 0.3);
+      margin: 10px 0 16px;
+      font-family: 'Fredoka', sans-serif;
+    }
+    .bmc-btn:hover { transform: translateY(-2px); }
+    .hidden { display: none !important; }
 
-        .meaning { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 20px; padding: 12px; background: rgba(230, 57, 70, 0.05); border-radius: 8px; border-left: 3px solid var(--primary); }
-        .example { padding: 16px; background: var(--light-bg); border-radius: 10px; border-left: 3px solid var(--accent); margin-bottom: 12px; }
-        .example:last-child { margin-bottom: 0; }
-        .example-ja { font-size: 16px; font-weight: 500; color: var(--text-dark); margin-bottom: 8px; }
-        .example-en { font-family: 'Manrope', sans-serif; font-size: 14px; color: var(--text-muted); }
-        .category-tag { display: inline-block; padding: 6px 14px; background: var(--secondary); color: white; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-top: auto; align-self: flex-start; }
+    /* Mobile: Compact Collapsible Gallery + 1-Screen Quiz! */
+    @media (max-width: 680px) {
+      .wrap { padding: 12px 12px 36px; }
+      .quiz-img { max-height: 155px; }
+      .quiz-card { padding: 13px; }
+      .quiz-opts { grid-template-columns: 1fr; }
+      .quiz-opt { padding: 10px 12px; font-size: 0.88rem; text-align: left; }
+      .card:not(.open) { flex-direction: row; align-items: center; padding: 10px; gap: 12px; cursor: pointer; }
+      .card:not(.open) .img-wrap { width: 92px; height: 56px; aspect-ratio: auto; border-radius: 10px; flex-shrink: 0; }
+      .card:not(.open) .cat-pill, .card:not(.open) .fav-btn { display: none; }
+      .card:not(.open) .card-body { padding: 0; }
+      .card:not(.open) .ex-list, .card:not(.open) .mark-btn { display: none; }
+      .card:not(.open) .jp-title { font-size: 1.08rem; }
+      .card:not(.open) .en-mean { font-size: 0.8rem; margin: 2px 0 0; }
+      .card:not(.open) .romaji-line { font-size: 0.74rem; margin: 0; }
+    }
+  </style>
 
-        /* ====== リストビューのデザイン詳細修正 ====== */
-        .list-view .ono-card { 
-            flex-direction: row; 
-            align-items: center; 
-            padding: 12px 24px; 
-            gap: 24px; 
-            height: auto;
-            min-height: 80px;
-        }
-        .list-view .card-header { 
-            margin-bottom: 0; 
-            width: 280px; 
-            flex-shrink: 0; 
-        }
-        .list-view .sound-icon {
-            width: 44px; height: 44px; font-size: 22px;
-        }
-        .list-view .japanese { font-size: 22px; }
-        .list-view .meaning { 
-            margin-bottom: 0; 
-            background: transparent; 
-            border: none; 
-            flex: 1; 
-            color: var(--text-dark); 
-            padding: 0;
-        }
-        .list-view .examples, .list-view .category-tag, .list-view .illustration-container { display: none !important; }
-
-        footer { padding: 3rem 1rem; text-align: center; font-size: 0.75rem; color: #aaa; }
-        .bmc-btn { display: inline-flex; align-items: center; padding: 6px 12px; color: #000000; background-color: #FFDD00; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; margin: 10px 0; }
-        .hidden { display: none !important; }
-
-        @media (max-width: 768px) {
-            /* --- 既存のスタイル --- */
-            .hero h1 { font-size: 40px; }
-            .onomatopoeia-grid { grid-template-columns: 1fr; }
-            .list-view .ono-card { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .list-view .card-header { width: 100%; }
-
-            /* --- ナビゲーションバーのレスポンシブ調整 --- */
-            nav {
-                padding: 0 12px;
-            }
-            nav .logo {
-                font-size: 0.95rem;
-                flex-shrink: 0;
-            }
-            nav .nav-links {
-                gap: 0.6rem;
-            }
-            nav .nav-links a {
-                font-size: 0.65rem;
-                letter-spacing: 0;
-            }
-        }
-        /* ====== クイズモード専用スタイル ====== */
-        .ono-quiz-bar {
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
-            gap: 12px; padding: 0 28px 18px; margin-bottom: 18px; border-bottom: 1px solid #eef0f3;
-        }
-        .ono-stats { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        .ono-stat-pill {
-            font-size: 12.5px; font-weight: 700; padding: 5px 12px; border-radius: 999px;
-            background: #f8fafc; border: 1px solid #e5e7eb; color: var(--dark);
-        }
-        .ono-stat-pill.green { color: #16a34a; background: #f0fdf4; border-color: #bbf7d0; }
-        .ono-stat-pill.red { color: #dc2626; background: #fef2f2; border-color: #fecaca; }
-        .ono-stat-pill.orange { color: #e67e22; background: #fff5eb; border-color: #fed7aa; }
-        .ono-romaji-btn {
-            border: 1.5px solid var(--border); background: #fff; color: var(--dark);
-            padding: 6px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 700;
-            cursor: pointer; transition: 0.15s; font-family: inherit;
-        }
-        .ono-romaji-btn.on { border-color: #ff9f43; background: #fff5eb; color: #e67e22; }
-        .view-toggle { flex-wrap: wrap; gap: 4px; }
-        .view-btn .weak-dot {
-            display: inline-block; background: #dc2626; color: #fff; font-size: 10.5px;
-            padding: 1px 6px; border-radius: 999px; margin-left: 3px;
-        }
-        .ono-quiz-panel {
-            max-width: 780px; margin: 0 auto 60px; background: #fff;
-            border: 1px solid var(--border); border-radius: 20px; padding: 26px 24px;
-            box-shadow: var(--shadow-md);
-        }
-        .oq-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-        .oq-num { font-size: 13px; font-weight: 700; color: var(--text-muted); }
-        .oq-cat { font-size: 11.5px; font-weight: 800; padding: 4px 11px; border-radius: 999px; background: #e6f7f5; color: var(--accent); text-transform: uppercase; }
-        .oq-prompt {
-            background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px;
-            padding: 24px 18px; text-align: center; margin-bottom: 16px;
-        }
-        .oq-prompt.ok { border-color: #16a34a; background: #f0fdf4; }
-        .oq-prompt.ng { border-color: #dc2626; background: #fef2f2; }
-        .oq-icon { font-size: 40px; margin-bottom: 8px; }
-        .oq-ja { font-size: 22px; font-weight: 800; color: var(--dark); line-height: 1.85; }
-        .oq-blank {
-            display: inline-block; min-width: 96px; padding: 2px 12px; margin: 0 4px;
-            border-radius: 10px; border: 2px dashed #ff9f43; background: #fff5eb;
-            color: #e67e22; font-weight: 900;
-        }
-        .oq-blank.ok { border-style: solid; border-color: #16a34a; background: #dcfce7; color: #14532d; }
-        .oq-blank.ng { border-style: solid; border-color: #dc2626; background: #fee2e2; color: #7f1d1d; }
-        .oq-meaning { font-size: 20px; font-weight: 800; color: var(--dark); }
-        .oq-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
-        .oq-hint-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
-        .oq-hint-btn {
-            border: 1.5px solid var(--border); background: #fff; color: var(--dark);
-            font-size: 12.5px; font-weight: 700; padding: 6px 13px; border-radius: 999px; cursor: pointer; font-family: inherit;
-        }
-        .oq-hint-text { font-size: 13.5px; color: #374151; background: #f3f4f6; padding: 6px 12px; border-radius: 10px; flex: 1; }
-        .oq-choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
-        .oq-choice {
-            display: flex; align-items: center; gap: 10px; padding: 14px 16px;
-            border-radius: 14px; border: 2px solid #e2e8f0; background: #fff;
-            color: var(--dark); font-size: 18px; font-weight: 800; cursor: pointer; text-align: left;
-            transition: 0.15s; font-family: inherit;
-        }
-        .oq-choice:hover:not(:disabled) { border-color: #ff9f43; background: #fff5eb; transform: translateY(-1px); }
-        .oq-choice:disabled { opacity: 0.5; cursor: default; }
-        .oq-choice.ok { border-color: #16a34a; background: #dcfce7; color: #14532d; opacity: 1 !important; }
-        .oq-choice.ng { border-color: #dc2626; background: #fee2e2; color: #7f1d1d; opacity: 1 !important; }
-        .oq-cnum {
-            width: 26px; height: 26px; border-radius: 50%; background: #f1f5f9; color: var(--text-muted);
-            font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-        }
-        .oq-rom { display: block; font-size: 11.5px; font-weight: 600; color: var(--text-muted); }
-        .oq-next-btn {
-            background: #ff9f43; color: #fff; border: none; border-radius: 12px;
-            padding: 12px 24px; font-size: 15px; font-weight: 800; cursor: pointer;
-            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.35); font-family: inherit;
-        }
-        .oq-next-btn:hover { background: #e67e22; }
-        .oq-fb { margin-top: 16px; border-radius: 16px; padding: 16px 18px; border: 2px solid var(--border); }
-        .oq-fb.ok { background: #f0fdf4; border-color: #86efac; }
-        .oq-fb.ng { background: #fef2f2; border-color: #fca5a5; }
-        .oq-fb-head { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-        .oq-fb-img { width: 120px; height: 68px; object-fit: cover; border-radius: 10px; border: 1px solid #e5e7eb; flex-shrink: 0; background: #fff; }
-        .oq-nuance { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 11px 14px; margin-top: 10px; font-size: 13.5px; color: #374151; }
-        @media (max-width: 768px) {
-            .ono-quiz-bar { padding: 0 16px 14px; }
-            .view-controls { padding: 0 16px 16px; justify-content: center; }
-            .oq-choices { grid-template-columns: 1fr; }
-            .ono-quiz-panel { padding: 18px 14px; }
-        }
-    </style>
-<style id="ohayo-cta-style">
-.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
-.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
-.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
-.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
-.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
-.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
-.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
-.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
-.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
-.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
-.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
-.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
-.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
-@media (max-width: 600px) {
-  .ohayo-cta-grid { grid-template-columns: 1fr; }
-  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
-  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
-}
-</style>
+  <style id="ohayo-cta-style">
+    .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
+    .ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+    .ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
+    .ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
+    .ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
+    .ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
+    .ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
+    .ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
+    .ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
+    .ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
+    .ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
+    .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
+    .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
+    .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
+    body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
+    body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
+    body.dark-mode .ohayo-cta-name { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
+    body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
+    @media (max-width: 600px) {
+      .ohayo-cta-grid { grid-template-columns: 1fr; }
+      .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+      .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-        <ul class="nav-links">
-            <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
-            <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
-            <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1>オノマトペ</h1>
-                <div class="subtitle">Japanese Onomatopoeia</div>
-                <p>音や様子を表現する日本語の擬音語・擬態語を学びましょう</p>
-            </div>
-        </section>
+  <main class="wrap">
+    <header class="top-bar">
+      <h1>✨ オノマトペ Onomatopoeia (42)</h1>
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="gallery">📚 Gallery</button>
+        <button class="mode-tab" data-mode="quiz">🎯 10-Q Quiz</button>
+        <button class="mode-tab" data-mode="cards">🃏 Flashcards</button>
+      </div>
+    </header>
 
-        <div class="container">
-            <div class="filter-section">
-                <div class="ono-quiz-bar">
-                    <div class="ono-stats">
-                        <span class="ono-stat-pill green" id="oq-st-m">Mastered ✅ 0 / 42</span>
-                        <span class="ono-stat-pill red" id="oq-st-w">Weak 🔴 0</span>
-                        <span class="ono-stat-pill orange" id="oq-st-s">🔥 0</span>
-                    </div>
-                    <button class="ono-romaji-btn on" id="oq-romaji-btn" onclick="toggleOnoRomaji()">🔤 Romaji: ON</button>
-                </div>
-
-                <div class="view-controls">
-                    <div class="view-toggle">
-                        <button class="view-btn active" data-view="grid"><i class="fa-solid fa-border-all"></i> Cards</button>
-                        <button class="view-btn" data-view="list"><i class="fa-solid fa-list"></i> List</button>
-                        <button class="view-btn" data-view="context">📝 Context Quiz</button>
-                        <button class="view-btn" data-view="meaning">💡 Meaning Quiz</button>
-                        <button class="view-btn" data-view="weak">🔴 Weak <span class="weak-dot" id="oq-weak-dot" style="display:none">0</span></button>
-                    </div>
-                </div>
-
-                <div class="filter-tabs">
-                    <button class="filter-tab active" data-category="all">すべて (All)</button>
-                    <button class="filter-tab" data-category="sounds">音 (Sounds)</button>
-                    <button class="filter-tab" data-category="feelings">感情 (Feelings)</button>
-                    <button class="filter-tab" data-category="movement">動き (Movement)</button>
-                    <button class="filter-tab" data-category="weather">天気 (Weather)</button>
-                </div>
-            </div>
-
-            <div id="quiz-panel" class="ono-quiz-panel hidden"></div>
-
-            <div class="onomatopoeia-grid" id="grid">
-                
-                <!-- ====== SOUNDS (音) ====== -->
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🔔</div>
-                        <div class="card-title"><div class="japanese">ピンポン</div><div class="romaji">pinpon</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/pinpon.webp?v=1.1" alt="ピンポン"></div>
-                    <div class="meaning">Ding-dong (doorbell sound)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">ピンポンと呼び鈴が鳴った。</div><div class="example-en">The doorbell rang with a ding-dong.</div></div>
-                        <div class="example"><div class="example-ja">玄関でピンポンが聞こえた。</div><div class="example-en">I heard the doorbell chime at the entrance.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">💧</div>
-                        <div class="card-title"><div class="japanese">ぽたぽた</div><div class="romaji">pota pota</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/potapota.webp?v=1.1" alt="ぽたぽた"></div>
-                    <div class="meaning">Drip-drop (water drops)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">蛇口から水がぽたぽた落ちている。</div><div class="example-en">Water is dripping from the faucet.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🐾</div>
-                        <div class="card-title"><div class="japanese">ばたばた</div><div class="romaji">bata bata</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/batabata.webp?v=1.1" alt="ばたばた"></div>
-                    <div class="meaning">Flapping, clattering (hectic)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">子どもたちがばたばたと走り回っている。</div><div class="example-en">Children are running around noisily.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🥤</div>
-                        <div class="card-title"><div class="japanese">ごくごく</div><div class="romaji">goku goku</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/gokugoku.webp?v=1.1" alt="ごくごく"></div>
-                    <div class="meaning">Gulping down a drink</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">冷たい水をごくごく飲んだ。</div><div class="example-en">I gulped down the cold water.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🗣️</div>
-                        <div class="card-title"><div class="japanese">ぺらぺら</div><div class="romaji">pera pera</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/perapera.webp?v=1.1" alt="ぺらぺら"></div>
-                    <div class="meaning">Fluent / speaking non-stop</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">彼女は英語がぺらぺらだ。</div><div class="example-en">She is fluent in English.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🐶</div>
-                        <div class="card-title"><div class="japanese">わんわん</div><div class="romaji">wan wan</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/wanwan.webp?v=1.1" alt="わんわん"></div>
-                    <div class="meaning">Bow-wow / barking loudly</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">犬がわんわん吠えている。</div><div class="example-en">The dog is barking loudly.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🐱</div>
-                        <div class="card-title"><div class="japanese">にゃあにゃあ</div><div class="romaji">nyaa nyaa</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/nyaanyaa.webp?v=1.1" alt="にゃあにゃあ"></div>
-                    <div class="meaning">Meow (cat sound)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">猫がにゃあにゃあ鳴いている。</div><div class="example-en">A cat is meowing.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🥁</div>
-                        <div class="card-title"><div class="japanese">どんどん</div><div class="romaji">don don</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/dondon.webp?v=1.1" alt="どんどん"></div>
-                    <div class="meaning">Knocking / steadily progressing</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">日本語がどんどん上達している。</div><div class="example-en">My Japanese is improving rapidly.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">💥</div>
-                        <div class="card-title"><div class="japanese">がちゃん</div><div class="romaji">gachan</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/gachan.webp?v=1.1" alt="がちゃん"></div>
-                    <div class="meaning">Clank / crash (breaking)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">お皿ががちゃんと割れた。</div><div class="example-en">The plate broke with a crash.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <div class="ono-card" data-category="sounds">
-                    <div class="card-header">
-                        <div class="sound-icon">🍜</div>
-                        <div class="card-title"><div class="japanese">ちゅるちゅる</div><div class="romaji">churu churu</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/churuchuru.webp?v=1.1" alt="ちゅるちゅる"></div>
-                    <div class="meaning">Slurping (noodles)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">ラーメンをちゅるちゅる食べる。</div><div class="example-en">I slurp the ramen noodles.</div></div>
-                    </div>
-                    <span class="category-tag">sounds</span>
-                </div>
-
-                <!-- ====== FEELINGS (感情) ====== -->
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">💓</div>
-                        <div class="card-title"><div class="japanese">どきどき</div><div class="romaji">doki doki</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/dokidoki.webp?v=1.1" alt="どきどき"></div>
-                    <div class="meaning">Heart pounding (excitement/nervous)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">試験の前でどきどきした。</div><div class="example-en">My heart was pounding before the exam.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">😊</div>
-                        <div class="card-title"><div class="japanese">わくわく</div><div class="romaji">waku waku</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/wakuwaku.webp?v=1.1" alt="わくわく"></div>
-                    <div class="meaning">Excited, thrilled</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">旅行が楽しみでわくわくしている。</div><div class="example-en">I'm excited for the trip.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">😰</div>
-                        <div class="card-title"><div class="japanese">いらいら</div><div class="romaji">ira ira</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/iraira.webp?v=1.1" alt="いらいら"></div>
-                    <div class="meaning">Irritated, frustrated</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">渋滞でいらいらしてきた。</div><div class="example-en">I'm getting irritated by traffic.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">☕</div>
-                        <div class="card-title"><div class="japanese">ほっと</div><div class="romaji">hotto</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/hotto.webp?v=1.1" alt="ほっと"></div>
-                    <div class="meaning">Relieved, at ease</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">テストが終わってほっとした。</div><div class="example-en">I felt relieved after the test.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">😲</div>
-                        <div class="card-title"><div class="japanese">びっくり</div><div class="romaji">bikkuri</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/bikkuri.webp?v=1.1" alt="びっくり"></div>
-                    <div class="meaning">Surprised, startled</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">大きな音にびっくりした。</div><div class="example-en">I was surprised by the loud noise.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">🎵</div>
-                        <div class="card-title"><div class="japanese">うきうき</div><div class="romaji">uki uki</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/ukiuki.webp?v=1.1" alt="うきうき"></div>
-                    <div class="meaning">Cheerful, bouncing with joy</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">デートの前でうきうきしている。</div><div class="example-en">I'm so cheerful before the date.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">😞</div>
-                        <div class="card-title"><div class="japanese">がっかり</div><div class="romaji">gakkari</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/gakkari.webp?v=1.1" alt="がっかり"></div>
-                    <div class="meaning">Disappointed</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">試合に負けてがっかりした。</div><div class="example-en">I was disappointed losing the game.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">😶</div>
-                        <div class="card-title"><div class="japanese">ぼんやり</div><div class="romaji">bonyari</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/bonyari.webp?v=1.1" alt="ぼんやり"></div>
-                    <div class="meaning">Absent-minded, spacing out</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">授業中、ぼんやりしていた。</div><div class="example-en">I was spacing out during class.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">✨</div>
-                        <div class="card-title"><div class="japanese">すっきり</div><div class="romaji">sukkiri</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/sukkiri.webp?v=1.1" alt="すっきり"></div>
-                    <div class="meaning">Refreshed, clear-headed</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">シャワーを浴びてすっきりした。</div><div class="example-en">I felt refreshed after a shower.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">🫣</div>
-                        <div class="card-title"><div class="japanese">そわそわ</div><div class="romaji">sowa sowa</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/sowasowa.webp?v=1.1" alt="そわそわ"></div>
-                    <div class="meaning">Restless, fidgety</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">面接の前でそわそわしている。</div><div class="example-en">I'm fidgeting before the interview.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <div class="ono-card" data-category="feelings">
-                    <div class="card-header">
-                        <div class="sound-icon">🏃‍♀️</div>
-                        <div class="card-title"><div class="japanese">いそいそ</div><div class="romaji">iso iso</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/isoiso.webp?v=1.1" alt="いそいそ"></div>
-                    <div class="meaning">Joyfully hurrying</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">彼女はいそいそと出かけた。</div><div class="example-en">She hurried out happily.</div></div>
-                    </div>
-                    <span class="category-tag">feelings</span>
-                </div>
-
-                <!-- ====== MOVEMENT (動き) ====== -->
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">🏃</div>
-                        <div class="card-title"><div class="japanese">さっと</div><div class="romaji">satto</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/satto.webp?v=1.1" alt="さっと"></div>
-                    <div class="meaning">Quickly, swiftly</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">彼女はさっと部屋を出た。</div><div class="example-en">She quickly left the room.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">🌀</div>
-                        <div class="card-title"><div class="japanese">ぐるぐる</div><div class="romaji">guru guru</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/guruguru.webp?v=1.1" alt="ぐるぐる"></div>
-                    <div class="meaning">Round and round</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">頭がぐるぐる回っている。</div><div class="example-en">My head is spinning.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">✨</div>
-                        <div class="card-title"><div class="japanese">ぴかぴか</div><div class="romaji">pika pika</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/pikapika.webp?v=1.1" alt="ぴかぴか"></div>
-                    <div class="meaning">Sparkling, shiny</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">床をぴかぴかに磨いた。</div><div class="example-en">I polished the floor until it gleamed.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">😴</div>
-                        <div class="card-title"><div class="japanese">ぐっすり</div><div class="romaji">gussuri</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/gussuri.webp?v=1.1" alt="ぐっすり"></div>
-                    <div class="meaning">Sleeping soundly</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">昨日はぐっすり眠れた。</div><div class="example-en">I slept soundly yesterday.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">🚶</div>
-                        <div class="card-title"><div class="japanese">うろうろ</div><div class="romaji">uro uro</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/urouro.webp?v=1.1" alt="うろうろ"></div>
-                    <div class="meaning">Wandering, pacing around</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">道に迷ってうろうろした。</div><div class="example-en">I wandered around lost.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">🤫</div>
-                        <div class="card-title"><div class="japanese">こっそり</div><div class="romaji">kossori</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/kossori.webp?v=1.1" alt="こっそり"></div>
-                    <div class="meaning">Secretly, stealthily</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">夜中にこっそりケーキを食べた。</div><div class="example-en">I secretly ate cake at night.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">🛍️</div>
-                        <div class="card-title"><div class="japanese">ぶらぶら</div><div class="romaji">bura bura</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/burabura.webp?v=1.1" alt="ぶらぶら"></div>
-                    <div class="meaning">Strolling aimlessly</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">週末は町をぶらぶらした。</div><div class="example-en">I strolled around town on the weekend.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">☁️</div>
-                        <div class="card-title"><div class="japanese">ふわふわ</div><div class="romaji">fuwa fuwa</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/fuwafuwa.webp?v=1.1" alt="ふわふわ"></div>
-                    <div class="meaning">Fluffy, floating lightly</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">ふわふわのパンを食べた。</div><div class="example-en">I ate some fluffy bread.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">👁️</div>
-                        <div class="card-title"><div class="japanese">じっと</div><div class="romaji">jitto</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/jitto.webp?v=1.1" alt="じっと"></div>
-                    <div class="meaning">Staring fixedly, remaining still</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">彼女の顔をじっと見つめた。</div><div class="example-en">I stared fixedly at her face.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">🍃</div>
-                        <div class="card-title"><div class="japanese">ゆらゆら</div><div class="romaji">yura yura</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/yurayura.webp?v=1.1" alt="ゆらゆら"></div>
-                    <div class="meaning">Swaying, swinging gently</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">火がゆらゆら揺れている。</div><div class="example-en">The fire is swaying gently.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <div class="ono-card" data-category="movement">
-                    <div class="card-header">
-                        <div class="sound-icon">🐢</div>
-                        <div class="card-title"><div class="japanese">のろのろ</div><div class="romaji">noro noro</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/noronoro.webp?v=1.1" alt="のろのろ"></div>
-                    <div class="meaning">Sluggishly, very slowly</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">渋滞で車がのろのろ進んでいる。</div><div class="example-en">Cars are crawling along in traffic.</div></div>
-                    </div>
-                    <span class="category-tag">movement</span>
-                </div>
-
-                <!-- ====== WEATHER (天気) ====== -->
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">☀️</div>
-                        <div class="card-title"><div class="japanese">かんかん</div><div class="romaji">kankan</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/kankan.webp?v=1.1" alt="かんかん"></div>
-                    <div class="meaning">Blazing hot (scorching sun)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">太陽がかんかん照りつけている。</div><div class="example-en">The sun is blazing down.</div></div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">🌧️</div>
-                        <div class="card-title"><div class="japanese">しとしと</div><div class="romaji">shito shito</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/shitoshito.webp?v=1.1" alt="しとしと"></div>
-                    <div class="meaning">Gently, softly (light rain)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">雨がしとしと降っている。</div><div class="example-en">It's drizzling gently.</div></div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">⚡</div>
-                        <div class="card-title"><div class="japanese">ざあざあ</div><div class="romaji">zaa zaa</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/zaazaa.webp?v=1.1" alt="ざあざあ"></div>
-                    <div class="meaning">Pouring (heavy rain)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">雨がざあざあ降っている。</div><div class="example-en">The rain is pouring down.</div></div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">💧</div>
-                        <div class="card-title"><div class="japanese">じめじめ</div><div class="romaji">jime jime</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/jimejime.webp?v=1.1" alt="じめじめ"></div>
-                    <div class="meaning">Damp, humid</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">梅雨はじめじめして不快だ。</div><div class="example-en">The rainy season is damp.</div></div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">🌬️</div>
-                        <div class="card-title"><div class="japanese">ぴゅーぴゅー</div><div class="romaji">pyuu pyuu</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/pyuupyuu.webp?v=1.1" alt="ぴゅーぴゅー"></div>
-                    <div class="meaning">Howling (wind)</div>
-                    <div class="examples">
-                        <div class="example"><div class="example-ja">冷たい風がぴゅーぴゅー吹いている。</div><div class="example-en">The cold wind is howling.</div></div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">🎐</div>
-                        <div class="card-title"><div class="japanese">そよそよ</div><div class="romaji">soyo soyo</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/soyosoyo.webp?v=1.1" alt="そよそよ"></div>
-                    <div class="meaning">Gentle breeze</div>
-                    <div class="examples">
-                        <div class="example">
-                            <div class="example-ja">春の風がそよそよ吹く。</div>
-                            <div class="example-en">A gentle spring breeze is blowing.</div>
-                        </div>
-                        <div class="example">
-                            <div class="example-ja">窓からそよそよと風が入ってくる。</div>
-                            <div class="example-en">A soft breeze is coming in through the window.</div>
-                        </div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">☁️</div>
-                        <div class="card-title"><div class="japanese">どんより</div><div class="romaji">donyori</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/donyori.webp?v=1.1" alt="どんより"></div>
-                    <div class="meaning">Overcast, gloomy</div>
-                    <div class="examples">
-                        <div class="example">
-                            <div class="example-ja">空がどんよりと曇っている。</div>
-                            <div class="example-en">The sky is heavily overcast.</div>
-                        </div>
-                        <div class="example">
-                            <div class="example-ja">今日はどんよりした天気だ。</div>
-                            <div class="example-en">It's a gloomy weather today.</div>
-                        </div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">☀️</div>
-                        <div class="card-title"><div class="japanese">ぽかぽか</div><div class="romaji">poka poka</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/pokapoka.webp?v=1.1" alt="ぽかぽか"></div>
-                    <div class="meaning">Pleasantly warm</div>
-                    <div class="examples">
-                        <div class="example">
-                            <div class="example-ja">春になってぽかぽか暖かい。</div>
-                            <div class="example-en">It's pleasantly warm now that it's spring.</div>
-                        </div>
-                        <div class="example">
-                            <div class="example-ja">温泉に入って体がぽかぽかする。</div>
-                            <div class="example-en">My body feels nice and warm after the hot spring.</div>
-                        </div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">🌩️</div>
-                        <div class="card-title"><div class="japanese">ごろごろ</div><div class="romaji">goro goro</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/gorogoro.webp?v=1.1" alt="ごろごろ"></div>
-                    <div class="meaning">Thunder rumbling</div>
-                    <div class="examples">
-                        <div class="example">
-                            <div class="example-ja">雷がごろごろ鳴っている。</div>
-                            <div class="example-en">Thunder is rumbling.</div>
-                        </div>
-                        <div class="example">
-                            <div class="example-ja">休日は家でごろごろする。</div>
-                            <div class="example-en">I lounge around at home on my days off.</div>
-                        </div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-                <div class="ono-card" data-category="weather">
-                    <div class="card-header">
-                        <div class="sound-icon">☔</div>
-                        <div class="card-title"><div class="japanese">びしょびしょ</div><div class="romaji">bisho bisho</div></div>
-                    </div>
-                    <div class="illustration-container"><img src="images/bishobisho.webp?v=1.1" alt="びしょびしょ"></div>
-                    <div class="meaning">Soaking wet</div>
-                    <div class="examples">
-                        <div class="example">
-                            <div class="example-ja">雨で服がびしょびしょになった。</div>
-                            <div class="example-en">My clothes got soaking wet in the rain.</div>
-                        </div>
-                        <div class="example">
-                            <div class="example-ja">傘を忘れて髪がびしょびしょだ。</div>
-                            <div class="example-en">I forgot my umbrella and my hair is drenched.</div>
-                        </div>
-                    </div>
-                    <span class="category-tag">weather</span>
-                </div>
-
-            </div>
+    <!-- Compact Progress & Romaji Bar -->
+    <div class="helper-card">
+      <div class="helper-top">
+        <div class="stats-row">
+          <span class="stat-badge" id="progText">✅ 0 / 42 Mastered</span>
+          <span class="stat-badge weak" id="weakBadge">🔴 Weak: 0</span>
         </div>
-    </main>
+        <button class="toggle-pill on" id="romajiToggle">Aa Romaji ON</button>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+
+    <!-- 1. GALLERY VIEW -->
+    <section id="galleryView">
+      <div class="toolbar">
+        <input class="search-input" id="searchInput" type="search" placeholder="🔍 Search English, Romaji, or Japanese...">
+        <div class="chip-row">
+          <button class="chip active" data-cat="all">All (42)</button>
+          <button class="chip" data-cat="sounds">🔊 Sounds (10)</button>
+          <button class="chip" data-cat="feelings">💛 Feelings (11)</button>
+          <button class="chip" data-cat="movement">🏃 Action &amp; Feel (11)</button>
+          <button class="chip" data-cat="weather">🌦️ Weather (10)</button>
+          <button class="chip" id="favFilterBtn">⭐ Favorites (0)</button>
+          <button class="chip" id="weakFilterBtn">🔴 Weak</button>
+        </div>
+      </div>
+      <div class="grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- 2. 10-Q QUIZ VIEW -->
+    <section id="quizView" class="hidden">
+      <div class="quiz-wrap">
+        <div class="quiz-mode-bar">
+          <button class="chip active" data-qtype="context">📝 Context Quiz (Art Reveal!)</button>
+          <button class="chip" data-qtype="meaning">💡 Meaning Quiz</button>
+          <button class="chip" data-qtype="weak">🔴 Review Weak</button>
+        </div>
+        <div class="quiz-card" id="quizCard">
+          <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700; color:var(--muted);">
+            <span id="qProg">Question 1 / 10</span>
+            <span id="qScore">⭐ 0 · 🔥 0</span>
+          </div>
+          <div class="quiz-img" id="quizImgBox"></div>
+          <div class="quiz-prompt" id="quizPrompt"></div>
+          <div class="romaji-line" id="quizRomaji"></div>
+          <div class="quiz-sub" id="quizSub"></div>
+          <div class="quiz-opts" id="quizOpts"></div>
+          <div id="quizFeedback" style="margin-top:10px; font-weight:800; min-height:20px; font-size:0.88rem;"></div>
+          <button class="btn-primary hidden" id="quizNextBtn" style="margin-top:10px;">Next Question →</button>
+        </div>
+        <div class="quiz-card hidden" id="quizDoneCard">
+          <div style="font-size:2.5rem;">🎉</div>
+          <h2 id="quizDoneTitle" style="margin:6px 0; color:var(--dark);">Quiz Complete!</h2>
+          <p id="quizDoneScore" style="font-size:1.15rem; font-weight:800; color:var(--primary-dark); margin:6px 0 16px;"></p>
+          <button class="btn-primary" id="quizRetryBtn">🔄 Play Another 10 Questions</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 3D FLASHCARDS VIEW -->
+    <section id="cardsView" class="hidden">
+      <div class="fc-wrap">
+        <p style="margin:0 0 8px; font-size:0.82rem; color:var(--muted);" id="fcCounter">Card 1 / 42 · Tap card to flip!</p>
+        <div class="fc-stage" id="fcStage" role="button" tabindex="0">
+          <div class="fc-inner">
+            <div class="fc-face front">
+              <div class="fc-img"><img id="fcImg" src="" alt=""></div>
+              <div style="font-size:1rem; font-weight:800; color:var(--primary-dark);" id="fcMeanFront"></div>
+              <div style="font-size:0.76rem; color:var(--muted); margin-top:6px;">👆 Which Japanese onomatopoeia is this? Tap to flip!</div>
+            </div>
+            <div class="fc-face back">
+              <div style="font-family:'Sawarabi Mincho',serif; font-size:1.85rem; font-weight:800; color:var(--dark);" id="fcJp"></div>
+              <div class="romaji-line" style="margin:4px 0 8px; font-size:0.95rem;" id="fcRomaji"></div>
+              <div style="font-size:0.96rem; font-weight:700; color:var(--primary-dark); margin-bottom:10px;" id="fcMeanBack"></div>
+              <div class="ex-list" style="width:100%; text-align:left;" id="fcExList"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button class="btn-ghost" id="fcPrev">← Prev</button>
+          <button class="btn-primary" id="fcGot">✅ Mastered!</button>
+          <button class="btn-ghost" id="fcNext">Next →</button>
+        </div>
+      </div>
+    </section>
 
     <!-- OHAYO_NEXT_CTA -->
-<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
-  <div class="ohayo-cta-next">
-    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
-    <div class="ohayo-cta-grid">
-      <a class="ohayo-cta-link" href="idioms.html"><div><span class="ohayo-cta-tag">CULTURE & FUN</span><span class="ohayo-cta-name">Japanese Idioms & Slang (40)</span></div><span class="ohayo-cta-arrow">→</span></a>
-      <a class="ohayo-cta-link" href="anime1.html"><div><span class="ohayo-cta-tag">CULTURE & FUN</span><span class="ohayo-cta-name">Learn with Anime Titles</span></div><span class="ohayo-cta-arrow">→</span></a>
-    </div>
-  </div>
-  <div class="ohayo-cta-lesson">
-    <div>
-      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
-      <h3>Want to use what you just practiced with a native teacher?</h3>
-      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
-    </div>
-    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
-  </div>
-</section>
+    <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+      <div class="ohayo-cta-next">
+        <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+        <div class="ohayo-cta-grid">
+          <a class="ohayo-cta-link" href="idioms.html"><div><span class="ohayo-cta-tag">CULTURE &amp; FUN</span><span class="ohayo-cta-name">Japanese Idioms &amp; Slang (40)</span></div><span class="ohayo-cta-arrow">→</span></a>
+          <a class="ohayo-cta-link" href="anime1.html"><div><span class="ohayo-cta-tag">CULTURE &amp; FUN</span><span class="ohayo-cta-name">Learn with Anime Titles</span></div><span class="ohayo-cta-arrow">→</span></a>
+        </div>
+      </div>
+      <div class="ohayo-cta-lesson">
+        <div>
+          <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
+          <h3>Want to use what you just practiced with a native teacher?</h3>
+          <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+        </div>
+        <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+      </div>
+    </section>
 
-<footer>
-        <p>If you find these materials helpful, please consider supporting us!</p>
-        <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" style="height: 18px; margin-right: 8px;">
-            <span>Support OHAYO CENTER</span>
-        </a>
-        <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
+    <footer>
+      <p>If you like the material please support us!</p>
+      <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+      </a>
+      <p>&copy; OHAYO CENTER</p>
     </footer>
+  </main>
 
-    <script>
-        const ONO_STORAGE_KEY = 'ohayo_onomato_quiz_v1';
-        const NUANCE_TIPS = {
-            'ピンポン': 'Used for both a doorbell chime ("ding-dong") and the "correct answer!" quiz buzzer sound in Japan.',
-            'ぽたぽた': 'Slow, soft individual drops falling one by one (water, sweat, sauce). Much gentler than ざあざあ.',
-            'ばたばた': 'Clattering footsteps or flapping — also super common in daily Japanese to mean "hectic / super busy"!',
-            'ごくごく': 'Big, refreshing gulps when drinking something cold and thirst-quenching.',
-            'ぺらぺら': 'Speaking a foreign language smoothly without pausing (also means thin/flimsy paper!).',
-            'わんわん': 'A dog barking loudly — also used playfully for someone crying loudly (わんわん泣く).',
-            'にゃあにゃあ': 'The standard Japanese sound for a cat meowing.',
-            'どんどん': 'Steady, energetic knocking OR rapidly progressing / improving (日本語がどんどん上手になる!).',
-            'がちゃん': 'A single sudden crash of breaking glass, plates, or a heavy door slamming.',
-            'ちゅるちゅる': 'Smooth, light slurping of noodles like ramen, udon, or somen.',
-            'どきどき': 'Heart pounding from EITHER nervousness (exams, speeches) OR romantic excitement! Compare with わくわく.',
-            'わくわく': 'Purely positive excitement and joyful anticipation (never nervous/scared like どきどき).',
-            'いらいら': 'Building frustration or impatience (traffic jams, slow Wi-Fi, waiting in line).',
-            'ほっと': 'Letting out a warm sigh of relief after tension ends — always pairs with する (ほっとする).',
-            'びっくり': 'Sudden surprise or being startled (pairs with する: びっくりした!).',
-            'うきうき': 'Lighthearted, bouncy cheerfulness before something fun like a date or holiday.',
-            'がっかり': 'Feeling let down or disappointed when hopes aren\'t met (がっかりする).',
-            'ぼんやり': 'Spacing out, daydreaming, or seeing something blurry/vague.',
-            'すっきり': 'Feeling completely refreshed, clear-headed, or neatly decluttered (shower, clean room, solved mystery).',
-            'そわそわ': 'Restless, fidgety nervousness when you can\'t sit still (before an interview or big announcement).',
-            'いそいそ': 'Cheerfully and eagerly hurrying to prepare for something you look forward to.',
-            'さっと': 'Doing an action swiftly and cleanly in one smooth motion.',
-            'ぐるぐる': 'Spinning round and round (dizzy head, wrapping a scarf, circling an area).',
-            'ぴかぴか': 'Gleaming clean OR sparkling brand-new (like ぴかぴかの1年生 = brand-new first grader).',
-            'ぐっすり': 'Sleeping deeply and soundly all night without waking up.',
-            'うろうろ': 'Wandering or pacing aimlessly (often when lost or looking around suspiciously).',
-            'こっそり': 'Doing something quietly and secretly so nobody notices (often playful or sneaky).',
-            'ぶらぶら': 'Strolling leisurely with no rush — enjoying the walk itself.',
-            'ふわふわ': 'Soft, airy, cloud-like texture (fluffy bread, pancakes, kittens) or floating lightly.',
-            'じっと': 'Staring fixedly without blinking OR staying completely still and patient.',
-            'ゆらゆら': 'Gently swaying or wavering back and forth (flames, seaweed, wind chimes).',
-            'のろのろ': 'Moving sluggishly and very slowly (snails, heavy traffic jams).',
-            'かんかん': 'Blazing, scorching mid-summer sunlight (also used for someone being furiously angry!).',
-            'しとしと': 'Quiet, fine, gentle steady rain — classic peaceful rainy-season atmosphere. Opposite of ざあざあ!',
-            'ざあざあ': 'Heavy pouring rain! Notice the voiced ざ (dakuten ゛) signals heavier, louder intensity than しとしと.',
-            'じめじめ': 'Damp, sticky, humid discomfort during Japan\'s June rainy season (梅雨).',
-            'ぴゅーぴゅー': 'Sharp, cold wind whistling and howling past.',
-            'そよそよ': 'A gentle, pleasant, refreshing breeze softly moving leaves or hair.',
-            'どんより': 'Heavy, dull, overcast gray sky right before rain.',
-            'ぽかぽか': 'Pleasantly warm, cozy sunshine that makes you feel sleepy in spring.',
-            'ごろごろ': 'Thunder rumbling in the distance — ALSO super common for "lounging lazily at home" (家でごろごろする)!',
-            'びしょびしょ': 'Unpleasantly soaking wet all the way through (clothes, shoes, hair in the rain).'
+  <div class="toast" id="toast">✅ Marked as Mastered!</div>
+
+  <script>
+    const ITEMS = [
+  {
+    "slug": "pinpon",
+    "cat": "sounds",
+    "icon": "🔔",
+    "jp": "ピンポン",
+    "romaji": "pinpon",
+    "img": "images/pinpon.webp",
+    "meaning": "Ding-dong (doorbell sound)",
+    "examples": [
+      {
+        "ja": "ピンポンと呼び鈴が鳴った。",
+        "en": "The doorbell rang with a ding-dong."
+      },
+      {
+        "ja": "玄関でピンポンが聞こえた。",
+        "en": "I heard the doorbell chime at the entrance."
+      }
+    ]
+  },
+  {
+    "slug": "potapota",
+    "cat": "sounds",
+    "icon": "💧",
+    "jp": "ぽたぽた",
+    "romaji": "pota pota",
+    "img": "images/potapota.webp",
+    "meaning": "Drip-drop (water drops)",
+    "examples": [
+      {
+        "ja": "蛇口から水がぽたぽた落ちている。",
+        "en": "Water is dripping from the faucet."
+      }
+    ]
+  },
+  {
+    "slug": "batabata",
+    "cat": "sounds",
+    "icon": "🐾",
+    "jp": "ばたばた",
+    "romaji": "bata bata",
+    "img": "images/batabata.webp",
+    "meaning": "Flapping, clattering (hectic)",
+    "examples": [
+      {
+        "ja": "子どもたちがばたばたと走り回っている。",
+        "en": "Children are running around noisily."
+      }
+    ]
+  },
+  {
+    "slug": "gokugoku",
+    "cat": "sounds",
+    "icon": "🥤",
+    "jp": "ごくごく",
+    "romaji": "goku goku",
+    "img": "images/gokugoku.webp",
+    "meaning": "Gulping down a drink",
+    "examples": [
+      {
+        "ja": "冷たい水をごくごく飲んだ。",
+        "en": "I gulped down the cold water."
+      }
+    ]
+  },
+  {
+    "slug": "perapera",
+    "cat": "sounds",
+    "icon": "🗣️",
+    "jp": "ぺらぺら",
+    "romaji": "pera pera",
+    "img": "images/perapera.webp",
+    "meaning": "Fluent / speaking non-stop",
+    "examples": [
+      {
+        "ja": "彼女は英語がぺらぺらだ。",
+        "en": "She is fluent in English."
+      }
+    ]
+  },
+  {
+    "slug": "wanwan",
+    "cat": "sounds",
+    "icon": "🐶",
+    "jp": "わんわん",
+    "romaji": "wan wan",
+    "img": "images/wanwan.webp",
+    "meaning": "Bow-wow / barking loudly",
+    "examples": [
+      {
+        "ja": "犬がわんわん吠えている。",
+        "en": "The dog is barking loudly."
+      }
+    ]
+  },
+  {
+    "slug": "nyaanyaa",
+    "cat": "sounds",
+    "icon": "🐱",
+    "jp": "にゃあにゃあ",
+    "romaji": "nyaa nyaa",
+    "img": "images/nyaanyaa.webp",
+    "meaning": "Meow (cat sound)",
+    "examples": [
+      {
+        "ja": "猫がにゃあにゃあ鳴いている。",
+        "en": "A cat is meowing."
+      }
+    ]
+  },
+  {
+    "slug": "dondon",
+    "cat": "sounds",
+    "icon": "🥁",
+    "jp": "どんどん",
+    "romaji": "don don",
+    "img": "images/dondon.webp",
+    "meaning": "Knocking / steadily progressing",
+    "examples": [
+      {
+        "ja": "日本語がどんどん上達している。",
+        "en": "My Japanese is improving rapidly."
+      }
+    ]
+  },
+  {
+    "slug": "gachan",
+    "cat": "sounds",
+    "icon": "💥",
+    "jp": "がちゃん",
+    "romaji": "gachan",
+    "img": "images/gachan.webp",
+    "meaning": "Clank / crash (breaking)",
+    "examples": [
+      {
+        "ja": "お皿ががちゃんと割れた。",
+        "en": "The plate broke with a crash."
+      }
+    ]
+  },
+  {
+    "slug": "churuchuru",
+    "cat": "sounds",
+    "icon": "🍜",
+    "jp": "ちゅるちゅる",
+    "romaji": "churu churu",
+    "img": "images/churuchuru.webp",
+    "meaning": "Slurping (noodles)",
+    "examples": [
+      {
+        "ja": "ラーメンをちゅるちゅる食べる。",
+        "en": "I slurp the ramen noodles."
+      }
+    ]
+  },
+  {
+    "slug": "dokidoki",
+    "cat": "feelings",
+    "icon": "💓",
+    "jp": "どきどき",
+    "romaji": "doki doki",
+    "img": "images/dokidoki.webp",
+    "meaning": "Heart pounding (excitement/nervous)",
+    "examples": [
+      {
+        "ja": "試験の前でどきどきした。",
+        "en": "My heart was pounding before the exam."
+      }
+    ]
+  },
+  {
+    "slug": "wakuwaku",
+    "cat": "feelings",
+    "icon": "😊",
+    "jp": "わくわく",
+    "romaji": "waku waku",
+    "img": "images/wakuwaku.webp",
+    "meaning": "Excited, thrilled",
+    "examples": [
+      {
+        "ja": "旅行が楽しみでわくわくしている。",
+        "en": "I'm excited for the trip."
+      }
+    ]
+  },
+  {
+    "slug": "iraira",
+    "cat": "feelings",
+    "icon": "😰",
+    "jp": "いらいら",
+    "romaji": "ira ira",
+    "img": "images/iraira.webp",
+    "meaning": "Irritated, frustrated",
+    "examples": [
+      {
+        "ja": "渋滞でいらいらしてきた。",
+        "en": "I'm getting irritated by traffic."
+      }
+    ]
+  },
+  {
+    "slug": "hotto",
+    "cat": "feelings",
+    "icon": "☕",
+    "jp": "ほっと",
+    "romaji": "hotto",
+    "img": "images/hotto.webp",
+    "meaning": "Relieved, at ease",
+    "examples": [
+      {
+        "ja": "テストが終わってほっとした。",
+        "en": "I felt relieved after the test."
+      }
+    ]
+  },
+  {
+    "slug": "bikkuri",
+    "cat": "feelings",
+    "icon": "😲",
+    "jp": "びっくり",
+    "romaji": "bikkuri",
+    "img": "images/bikkuri.webp",
+    "meaning": "Surprised, startled",
+    "examples": [
+      {
+        "ja": "大きな音にびっくりした。",
+        "en": "I was surprised by the loud noise."
+      }
+    ]
+  },
+  {
+    "slug": "ukiuki",
+    "cat": "feelings",
+    "icon": "🎵",
+    "jp": "うきうき",
+    "romaji": "uki uki",
+    "img": "images/ukiuki.webp",
+    "meaning": "Cheerful, bouncing with joy",
+    "examples": [
+      {
+        "ja": "デートの前でうきうきしている。",
+        "en": "I'm so cheerful before the date."
+      }
+    ]
+  },
+  {
+    "slug": "gakkari",
+    "cat": "feelings",
+    "icon": "😞",
+    "jp": "がっかり",
+    "romaji": "gakkari",
+    "img": "images/gakkari.webp",
+    "meaning": "Disappointed",
+    "examples": [
+      {
+        "ja": "試合に負けてがっかりした。",
+        "en": "I was disappointed losing the game."
+      }
+    ]
+  },
+  {
+    "slug": "bonyari",
+    "cat": "feelings",
+    "icon": "😶",
+    "jp": "ぼんやり",
+    "romaji": "bonyari",
+    "img": "images/bonyari.webp",
+    "meaning": "Absent-minded, spacing out",
+    "examples": [
+      {
+        "ja": "授業中、ぼんやりしていた。",
+        "en": "I was spacing out during class."
+      }
+    ]
+  },
+  {
+    "slug": "sukkiri",
+    "cat": "feelings",
+    "icon": "✨",
+    "jp": "すっきり",
+    "romaji": "sukkiri",
+    "img": "images/sukkiri.webp",
+    "meaning": "Refreshed, clear-headed",
+    "examples": [
+      {
+        "ja": "シャワーを浴びてすっきりした。",
+        "en": "I felt refreshed after a shower."
+      }
+    ]
+  },
+  {
+    "slug": "sowasowa",
+    "cat": "feelings",
+    "icon": "🫣",
+    "jp": "そわそわ",
+    "romaji": "sowa sowa",
+    "img": "images/sowasowa.webp",
+    "meaning": "Restless, fidgety",
+    "examples": [
+      {
+        "ja": "面接の前でそわそわしている。",
+        "en": "I'm fidgeting before the interview."
+      }
+    ]
+  },
+  {
+    "slug": "isoiso",
+    "cat": "feelings",
+    "icon": "🏃‍♀️",
+    "jp": "いそいそ",
+    "romaji": "iso iso",
+    "img": "images/isoiso.webp",
+    "meaning": "Joyfully hurrying",
+    "examples": [
+      {
+        "ja": "彼女はいそいそと出かけた。",
+        "en": "She hurried out happily."
+      }
+    ]
+  },
+  {
+    "slug": "satto",
+    "cat": "movement",
+    "icon": "🏃",
+    "jp": "さっと",
+    "romaji": "satto",
+    "img": "images/satto.webp",
+    "meaning": "Quickly, swiftly",
+    "examples": [
+      {
+        "ja": "彼女はさっと部屋を出た。",
+        "en": "She quickly left the room."
+      }
+    ]
+  },
+  {
+    "slug": "guruguru",
+    "cat": "movement",
+    "icon": "🌀",
+    "jp": "ぐるぐる",
+    "romaji": "guru guru",
+    "img": "images/guruguru.webp",
+    "meaning": "Round and round",
+    "examples": [
+      {
+        "ja": "頭がぐるぐる回っている。",
+        "en": "My head is spinning."
+      }
+    ]
+  },
+  {
+    "slug": "pikapika",
+    "cat": "movement",
+    "icon": "✨",
+    "jp": "ぴかぴか",
+    "romaji": "pika pika",
+    "img": "images/pikapika.webp",
+    "meaning": "Sparkling, shiny",
+    "examples": [
+      {
+        "ja": "床をぴかぴかに磨いた。",
+        "en": "I polished the floor until it gleamed."
+      }
+    ]
+  },
+  {
+    "slug": "gussuri",
+    "cat": "movement",
+    "icon": "😴",
+    "jp": "ぐっすり",
+    "romaji": "gussuri",
+    "img": "images/gussuri.webp",
+    "meaning": "Sleeping soundly",
+    "examples": [
+      {
+        "ja": "昨日はぐっすり眠れた。",
+        "en": "I slept soundly yesterday."
+      }
+    ]
+  },
+  {
+    "slug": "urouro",
+    "cat": "movement",
+    "icon": "🚶",
+    "jp": "うろうろ",
+    "romaji": "uro uro",
+    "img": "images/urouro.webp",
+    "meaning": "Wandering, pacing around",
+    "examples": [
+      {
+        "ja": "道に迷ってうろうろした。",
+        "en": "I wandered around lost."
+      }
+    ]
+  },
+  {
+    "slug": "kossori",
+    "cat": "movement",
+    "icon": "🤫",
+    "jp": "こっそり",
+    "romaji": "kossori",
+    "img": "images/kossori.webp",
+    "meaning": "Secretly, stealthily",
+    "examples": [
+      {
+        "ja": "夜中にこっそりケーキを食べた。",
+        "en": "I secretly ate cake at night."
+      }
+    ]
+  },
+  {
+    "slug": "burabura",
+    "cat": "movement",
+    "icon": "🛍️",
+    "jp": "ぶらぶら",
+    "romaji": "bura bura",
+    "img": "images/burabura.webp",
+    "meaning": "Strolling aimlessly",
+    "examples": [
+      {
+        "ja": "週末は町をぶらぶらした。",
+        "en": "I strolled around town on the weekend."
+      }
+    ]
+  },
+  {
+    "slug": "fuwafuwa",
+    "cat": "movement",
+    "icon": "☁️",
+    "jp": "ふわふわ",
+    "romaji": "fuwa fuwa",
+    "img": "images/fuwafuwa.webp",
+    "meaning": "Fluffy, floating lightly",
+    "examples": [
+      {
+        "ja": "ふわふわのパンを食べた。",
+        "en": "I ate some fluffy bread."
+      }
+    ]
+  },
+  {
+    "slug": "jitto",
+    "cat": "movement",
+    "icon": "👁️",
+    "jp": "じっと",
+    "romaji": "jitto",
+    "img": "images/jitto.webp",
+    "meaning": "Staring fixedly, remaining still",
+    "examples": [
+      {
+        "ja": "彼女の顔をじっと見つめた。",
+        "en": "I stared fixedly at her face."
+      }
+    ]
+  },
+  {
+    "slug": "yurayura",
+    "cat": "movement",
+    "icon": "🍃",
+    "jp": "ゆらゆら",
+    "romaji": "yura yura",
+    "img": "images/yurayura.webp",
+    "meaning": "Swaying, swinging gently",
+    "examples": [
+      {
+        "ja": "火がゆらゆら揺れている。",
+        "en": "The fire is swaying gently."
+      }
+    ]
+  },
+  {
+    "slug": "noronoro",
+    "cat": "movement",
+    "icon": "🐢",
+    "jp": "のろのろ",
+    "romaji": "noro noro",
+    "img": "images/noronoro.webp",
+    "meaning": "Sluggishly, very slowly",
+    "examples": [
+      {
+        "ja": "渋滞で車がのろのろ進んでいる。",
+        "en": "Cars are crawling along in traffic."
+      }
+    ]
+  },
+  {
+    "slug": "kankan",
+    "cat": "weather",
+    "icon": "☀️",
+    "jp": "かんかん",
+    "romaji": "kankan",
+    "img": "images/kankan.webp",
+    "meaning": "Blazing hot (scorching sun)",
+    "examples": [
+      {
+        "ja": "太陽がかんかん照りつけている。",
+        "en": "The sun is blazing down."
+      }
+    ]
+  },
+  {
+    "slug": "shitoshito",
+    "cat": "weather",
+    "icon": "🌧️",
+    "jp": "しとしと",
+    "romaji": "shito shito",
+    "img": "images/shitoshito.webp",
+    "meaning": "Gently, softly (light rain)",
+    "examples": [
+      {
+        "ja": "雨がしとしと降っている。",
+        "en": "It's drizzling gently."
+      }
+    ]
+  },
+  {
+    "slug": "zaazaa",
+    "cat": "weather",
+    "icon": "⚡",
+    "jp": "ざあざあ",
+    "romaji": "zaa zaa",
+    "img": "images/zaazaa.webp",
+    "meaning": "Pouring (heavy rain)",
+    "examples": [
+      {
+        "ja": "雨がざあざあ降っている。",
+        "en": "The rain is pouring down."
+      }
+    ]
+  },
+  {
+    "slug": "jimejime",
+    "cat": "weather",
+    "icon": "💧",
+    "jp": "じめじめ",
+    "romaji": "jime jime",
+    "img": "images/jimejime.webp",
+    "meaning": "Damp, humid",
+    "examples": [
+      {
+        "ja": "梅雨はじめじめして不快だ。",
+        "en": "The rainy season is damp."
+      }
+    ]
+  },
+  {
+    "slug": "pyuupyuu",
+    "cat": "weather",
+    "icon": "🌬️",
+    "jp": "ぴゅーぴゅー",
+    "romaji": "pyuu pyuu",
+    "img": "images/pyuupyuu.webp",
+    "meaning": "Howling (wind)",
+    "examples": [
+      {
+        "ja": "冷たい風がぴゅーぴゅー吹いている。",
+        "en": "The cold wind is howling."
+      }
+    ]
+  },
+  {
+    "slug": "soyosoyo",
+    "cat": "weather",
+    "icon": "🎐",
+    "jp": "そよそよ",
+    "romaji": "soyo soyo",
+    "img": "images/soyosoyo.webp",
+    "meaning": "Gentle breeze",
+    "examples": [
+      {
+        "ja": "春の風がそよそよ吹く。",
+        "en": "A gentle spring breeze is blowing."
+      },
+      {
+        "ja": "窓からそよそよと風が入ってくる。",
+        "en": "A soft breeze is coming in through the window."
+      }
+    ]
+  },
+  {
+    "slug": "donyori",
+    "cat": "weather",
+    "icon": "☁️",
+    "jp": "どんより",
+    "romaji": "donyori",
+    "img": "images/donyori.webp",
+    "meaning": "Overcast, gloomy",
+    "examples": [
+      {
+        "ja": "空がどんよりと曇っている。",
+        "en": "The sky is heavily overcast."
+      },
+      {
+        "ja": "今日はどんよりした天気だ。",
+        "en": "It's a gloomy weather today."
+      }
+    ]
+  },
+  {
+    "slug": "pokapoka",
+    "cat": "weather",
+    "icon": "☀️",
+    "jp": "ぽかぽか",
+    "romaji": "poka poka",
+    "img": "images/pokapoka.webp",
+    "meaning": "Pleasantly warm",
+    "examples": [
+      {
+        "ja": "春になってぽかぽか暖かい。",
+        "en": "It's pleasantly warm now that it's spring."
+      },
+      {
+        "ja": "温泉に入って体がぽかぽかする。",
+        "en": "My body feels nice and warm after the hot spring."
+      }
+    ]
+  },
+  {
+    "slug": "gorogoro",
+    "cat": "weather",
+    "icon": "🌩️",
+    "jp": "ごろごろ",
+    "romaji": "goro goro",
+    "img": "images/gorogoro.webp",
+    "meaning": "Thunder rumbling",
+    "examples": [
+      {
+        "ja": "雷がごろごろ鳴っている。",
+        "en": "Thunder is rumbling."
+      },
+      {
+        "ja": "休日は家でごろごろする。",
+        "en": "I lounge around at home on my days off."
+      }
+    ]
+  },
+  {
+    "slug": "bishobisho",
+    "cat": "weather",
+    "icon": "☔",
+    "jp": "びしょびしょ",
+    "romaji": "bisho bisho",
+    "img": "images/bishobisho.webp",
+    "meaning": "Soaking wet",
+    "examples": [
+      {
+        "ja": "雨で服がびしょびしょになった。",
+        "en": "My clothes got soaking wet in the rain."
+      },
+      {
+        "ja": "傘を忘れて髪がびしょびしょだ。",
+        "en": "I forgot my umbrella and my hair is drenched."
+      }
+    ]
+  }
+];
+
+    const CAT_LABELS = {
+      sounds: '🔊 Sounds',
+      feelings: '💛 Feelings',
+      movement: '🏃 Action & Feel',
+      weather: '🌦️ Weather'
+    };
+
+    // Preserve existing localStorage key `ohayo_onomato_quiz_v1`
+    const ONO_STORAGE_KEY = 'ohayo_onomato_quiz_v1';
+    const FAV_KEY = 'ohayo_onomato_favs_v1';
+
+    function loadState() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(ONO_STORAGE_KEY) || '{}');
+        return {
+          mastered: new Set(Array.isArray(raw.mastered) ? raw.mastered : []),
+          weak: new Set(Array.isArray(raw.weak) ? raw.weak : [])
         };
+      } catch (e) {
+        return { mastered: new Set(), weak: new Set() };
+      }
+    }
+    function saveState() {
+      try {
+        localStorage.setItem(ONO_STORAGE_KEY, JSON.stringify({
+          mastered: [...state.mastered],
+          weak: [...state.weak]
+        }));
+      } catch (e) {}
+    }
+    function loadFavs() {
+      try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); } catch (e) { return new Set(); }
+    }
+    function saveFavs() {
+      try { localStorage.setItem(FAV_KEY, JSON.stringify([...favs])); } catch (e) {}
+    }
 
-        // Read all 42 cards dynamically from DOM
-        const cards = Array.from(document.querySelectorAll('.ono-card'));
-        const ONO_ITEMS = cards.map((card, idx) => {
-            const jp = card.querySelector('.japanese').textContent.trim();
-            const romaji = card.querySelector('.romaji').textContent.trim();
-            const icon = card.querySelector('.sound-icon').textContent.trim();
-            const imgEl = card.querySelector('.illustration-container img');
-            const imgSrc = imgEl ? imgEl.getAttribute('src') : '';
-            const meaning = card.querySelector('.meaning').textContent.trim();
-            const exJaEl = card.querySelector('.example-ja');
-            const exEnEl = card.querySelector('.example-en');
-            return {
-                id: idx + 1,
-                cat: card.dataset.category,
-                jp, romaji, icon, imgSrc, meaning,
-                exJa: exJaEl ? exJaEl.textContent.trim() : '',
-                exEn: exEnEl ? exEnEl.textContent.trim() : '',
-                nuance: NUANCE_TIPS[jp] || `Common Japanese ${card.dataset.category} onomatopoeia meaning "${meaning}".`
-            };
+    const state = loadState();
+    const favs = loadFavs();
+
+    let mode = 'gallery', cat = 'all', favOnly = false, weakOnly = false, qType = 'context';
+    let qList = [], qIdx = 0, qScore = 0, qCombo = 0, qMaxCombo = 0;
+    let fcIdx = 0;
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 1400);
+    }
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function isMastered(item) {
+      return state.mastered.has(item.jp) || state.mastered.has(item.slug);
+    }
+    function isWeak(item) {
+      return state.weak.has(item.jp) || state.weak.has(item.slug);
+    }
+    function markMastered(item, on = true) {
+      if (on) {
+        state.mastered.add(item.jp);
+        state.weak.delete(item.jp);
+        state.weak.delete(item.slug);
+      } else {
+        state.mastered.delete(item.jp);
+        state.mastered.delete(item.slug);
+      }
+      saveState();
+      updateStats();
+    }
+    function markWeak(item) {
+      state.weak.add(item.jp);
+      saveState();
+      updateStats();
+    }
+
+    function updateStats() {
+      const mCount = ITEMS.filter(isMastered).length;
+      const wCount = ITEMS.filter(isWeak).length;
+      document.getElementById('progText').textContent = `✅ ${mCount} / ${ITEMS.length} Mastered`;
+      document.getElementById('weakBadge').textContent = `🔴 Weak: ${wCount}`;
+      document.getElementById('progFill').style.width = `${(mCount / ITEMS.length) * 100}%`;
+      document.getElementById('favFilterBtn').textContent = `⭐ Favorites (${favs.size})`;
+    }
+
+    function filteredItems() {
+      const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+      return ITEMS.filter(x =>
+        (cat === 'all' || x.cat === cat) &&
+        (!favOnly || favs.has(x.slug)) &&
+        (!weakOnly || isWeak(x)) &&
+        (!q || x.jp.includes(q) || x.romaji.toLowerCase().includes(q) || x.meaning.toLowerCase().includes(q))
+      );
+    }
+
+    // 1. Gallery
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+      const list = filteredItems();
+      if (!list.length) {
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--muted); padding:28px;">No matching words found.</p>';
+        return;
+      }
+      list.forEach((item, i) => {
+        const isL = isMastered(item);
+        const isF = favs.has(item.slug);
+        const el = document.createElement('div');
+        el.className = 'card' + (isL ? ' learned' : '') + (i === 0 ? ' open' : '');
+        const exHtml = item.examples.map(ex => `<div class="ex-box">${ex.ja}<span class="ex-en">${ex.en}</span></div>`).join('');
+        el.innerHTML = `
+          <div class="img-wrap">
+            <img src="${item.img}" alt="${item.jp}" loading="lazy">
+            <span class="cat-pill">${CAT_LABELS[item.cat] || item.cat}</span>
+            <button class="fav-btn ${isF ? 'on' : ''}" type="button" aria-label="Favorite">★</button>
+          </div>
+          <div class="card-body">
+            <div class="word-head"><h3 class="jp-title">${item.jp}</h3></div>
+            <div class="romaji-line">${item.romaji}</div>
+            <div class="en-mean">${item.meaning}</div>
+            <div class="ex-list">${exHtml}</div>
+            <button class="mark-btn" type="button">${isL ? 'Mastered ✓' : 'Mark as Mastered'}</button>
+          </div>
+        `;
+        el.onclick = e => {
+          if (!e.target.closest('button') && window.innerWidth <= 680) el.classList.toggle('open');
+        };
+        el.querySelector('.fav-btn').onclick = () => {
+          if (favs.has(item.slug)) favs.delete(item.slug);
+          else favs.add(item.slug);
+          saveFavs();
+          updateStats();
+          renderGallery();
+          showToast(favs.has(item.slug) ? '⭐ Saved to Favorites!' : 'Removed from Favorites');
+        };
+        el.querySelector('.mark-btn').onclick = () => {
+          markMastered(item, !isL);
+          renderGallery();
+        };
+        grid.appendChild(el);
+      });
+    }
+
+    // 2. 10-Q Quiz
+    function makeBlank(item) {
+      const ex = item.examples[0] || { ja: item.jp, en: item.meaning };
+      const blanked = ex.ja.includes(item.jp) ? ex.ja.replace(item.jp, '＿＿＿＿') : `＿＿＿＿ (${ex.ja})`;
+      return { ja: blanked, en: ex.en };
+    }
+
+    function startQuiz() {
+      document.getElementById('quizCard').classList.remove('hidden');
+      document.getElementById('quizDoneCard').classList.add('hidden');
+      let pool = ITEMS;
+      if (qType === 'weak') {
+        const w = ITEMS.filter(isWeak);
+        pool = w.length ? w : ITEMS;
+      } else if (filteredItems().length >= 4) {
+        pool = filteredItems();
+      }
+      qList = shuffle(pool).slice(0, Math.min(10, pool.length));
+      qIdx = 0; qScore = 0; qCombo = 0; qMaxCombo = 0;
+      renderQuiz();
+    }
+
+    function renderQuiz() {
+      if (qIdx >= qList.length) {
+        document.getElementById('quizCard').classList.add('hidden');
+        document.getElementById('quizDoneCard').classList.remove('hidden');
+        const pct = Math.round((qScore / qList.length) * 100);
+        const rank = pct === 100 ? 'S' : pct >= 80 ? 'A' : pct >= 60 ? 'B' : 'C';
+        document.getElementById('quizDoneTitle').textContent = `Rank ${rank} — Quiz Complete!`;
+        document.getElementById('quizDoneScore').textContent = `Score: ${qScore} / ${qList.length} (Max Combo 🔥 ${qMaxCombo})`;
+        return;
+      }
+      const item = qList[qIdx];
+      document.getElementById('qProg').textContent = `Question ${qIdx + 1} / ${qList.length}`;
+      document.getElementById('qScore').textContent = `⭐ ${qScore} · 🔥 ${qCombo}`;
+      document.getElementById('quizFeedback').textContent = '';
+      document.getElementById('quizNextBtn').classList.add('hidden');
+
+      const imgBox = document.getElementById('quizImgBox');
+      const opts = shuffle([item, ...shuffle(ITEMS.filter(x => x.slug !== item.slug)).slice(0, 3)]);
+      const optsBox = document.getElementById('quizOpts');
+      optsBox.innerHTML = '';
+
+      if (qType === 'meaning') {
+        imgBox.className = 'quiz-img';
+        imgBox.innerHTML = `<img src="${item.img}" alt="${item.jp}">`;
+        document.getElementById('quizPrompt').textContent = item.jp;
+        document.getElementById('quizRomaji').textContent = item.romaji;
+        document.getElementById('quizSub').textContent = 'What does this onomatopoeia mean?';
+        opts.forEach(o => {
+          const b = document.createElement('button');
+          b.className = 'quiz-opt full';
+          b.textContent = o.meaning;
+          b.onclick = () => handleQuizAnswer(o.slug === item.slug, b, opts, item, optsBox);
+          optsBox.appendChild(b);
         });
-
-        let onoState = { status: {}, streak: 0, showRomaji: true };
-        try {
-            const saved = localStorage.getItem(ONO_STORAGE_KEY);
-            if (saved) onoState = Object.assign(onoState, JSON.parse(saved));
-        } catch (e) {}
-        function saveOnoState() { try { localStorage.setItem(ONO_STORAGE_KEY, JSON.stringify(onoState)); } catch (e) {} }
-
-        let currentView = 'grid'; // grid | list | context | meaning | weak
-        let currentCat = 'all';
-        let curItem = null, curChoices = [], answered = false, pickedId = null, hintOpen = false;
-
-        const filterTabs = document.querySelectorAll('.filter-tab');
-        const viewBtns = document.querySelectorAll('.view-btn');
-        const gridContainer = document.getElementById('grid');
-        const quizPanel = document.getElementById('quiz-panel');
-
-        function shuffle(arr) {
-            const a = arr.slice();
-            for (let i = a.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [a[i], a[j]] = [a[j], a[i]];
-            }
-            return a;
-        }
-
-        function updateOnoStats() {
-            const m = Object.values(onoState.status).filter(v => v === 'mastered').length;
-            const w = Object.values(onoState.status).filter(v => v === 'weak').length;
-            document.getElementById('oq-st-m').textContent = `Mastered ✅ ${m} / ${ONO_ITEMS.length}`;
-            document.getElementById('oq-st-w').textContent = `Weak 🔴 ${w}`;
-            document.getElementById('oq-st-s').textContent = `🔥 ${onoState.streak}`;
-            const dot = document.getElementById('oq-weak-dot');
-            dot.style.display = w > 0 ? 'inline-block' : 'none';
-            dot.textContent = w;
-
-            const rb = document.getElementById('oq-romaji-btn');
-            rb.classList.toggle('on', onoState.showRomaji);
-            rb.textContent = onoState.showRomaji ? '🔤 Romaji: ON' : '🔤 Romaji: OFF';
-        }
-
-        window.toggleOnoRomaji = function() {
-            onoState.showRomaji = !onoState.showRomaji;
-            saveOnoState();
-            updateOnoStats();
-            if (isQuizView()) renderQuiz();
-        };
-
-        function isQuizView() {
-            return currentView === 'context' || currentView === 'meaning' || currentView === 'weak';
-        }
-
-        function applyBrowseFilter() {
-            let visibleIndex = 0;
-            cards.forEach((card) => {
-                if (currentCat === 'all' || card.dataset.category === currentCat) {
-                    card.classList.remove('hidden');
-                    card.style.animationDelay = `${(visibleIndex % 10) * 0.08}s`;
-                    visibleIndex++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        }
-
-        function loadNextQuiz() {
-            let pool = currentCat === 'all' ? ONO_ITEMS : ONO_ITEMS.filter(x => x.cat === currentCat);
-            if (currentView === 'weak') pool = pool.filter(x => onoState.status[x.id] === 'weak');
-            if (pool.length === 0) { curItem = null; return; }
-            const unmastered = pool.filter(x => onoState.status[x.id] !== 'mastered');
-            const src = (currentView !== 'weak' && unmastered.length > 0) ? unmastered : pool;
-            curItem = src[Math.floor(Math.random() * src.length)];
-            // Same-category distractors first!
-            const sameCat = shuffle(ONO_ITEMS.filter(x => x.id !== curItem.id && x.cat === curItem.cat));
-            const otherCat = shuffle(ONO_ITEMS.filter(x => x.id !== curItem.id && x.cat !== curItem.cat));
-            curChoices = shuffle([curItem, ...[...sameCat, ...otherCat].slice(0, 3)]);
-            answered = false; pickedId = null; hintOpen = false;
-        }
-
-        window.pickOno = function(id) {
-            if (answered || !curItem) return;
-            answered = true; pickedId = id;
-            if (id === curItem.id) {
-                onoState.status[curItem.id] = 'mastered';
-                onoState.streak++;
-            } else {
-                onoState.status[curItem.id] = 'weak';
-                onoState.streak = 0;
-            }
-            saveOnoState();
-            updateOnoStats();
-            renderQuiz();
-        };
-
-        window.nextOnoQuiz = function() {
-            loadNextQuiz();
-            renderQuiz();
-        };
-
-        window.toggleOnoHint = function() {
-            hintOpen = !hintOpen;
-            renderQuiz();
-        };
-
-        window.switchViewMode = function(v) {
-            currentView = v;
-            viewBtns.forEach(b => b.classList.toggle('active', b.dataset.view === v));
-            if (isQuizView()) {
-                gridContainer.classList.add('hidden');
-                quizPanel.classList.remove('hidden');
-                loadNextQuiz();
-                renderQuiz();
-            } else {
-                quizPanel.classList.add('hidden');
-                gridContainer.classList.remove('hidden');
-                if (v === 'list') gridContainer.classList.add('list-view');
-                else gridContainer.classList.remove('list-view');
-                applyBrowseFilter();
-            }
-        };
-
-        function renderQuiz() {
-            if (!curItem) {
-                quizPanel.innerHTML = `
-                    <div style="text-align:center; padding: 28px 10px;">
-                        <div style="font-size:44px; margin-bottom:8px;">🎉</div>
-                        <h2 style="margin:0 0 8px; color:var(--dark);">No Weak Words Here!</h2>
-                        <p style="color:var(--text-muted); font-size:14px; margin:0 0 18px;">
-                            Any onomatopoeia you miss in Context Quiz or Meaning Quiz will appear here automatically.
-                        </p>
-                        <button class="oq-next-btn" onclick="switchViewMode('context')">📝 Start Context Quiz</button>
-                    </div>
-                `;
-                return;
-            }
-
-            const isOk = answered && pickedId === curItem.id;
-            const useContext = (currentView === 'context' || currentView === 'weak') && curItem.exJa.includes(curItem.jp);
-
-            let promptHTML = '';
-            if (useContext) {
-                const blankSpan = `<span class="oq-blank ${answered ? (isOk ? 'ok' : 'ng') : ''}">${answered ? curItem.jp : '＿＿＿'}</span>`;
-                const sentenceHTML = curItem.exJa.replace(curItem.jp, blankSpan);
-                promptHTML = `<div class="oq-icon">${curItem.icon}</div><div class="oq-ja">${sentenceHTML}</div>`;
-            } else {
-                promptHTML = `
-                    <div class="oq-icon">${curItem.icon}</div>
-                    <div class="oq-meaning">"${curItem.meaning}"</div>
-                    <div class="oq-sub">Which Japanese onomatopoeia matches this sound or feeling?</div>
-                `;
-            }
-
-            const fullMarked = curItem.exJa.includes(curItem.jp)
-                ? curItem.exJa.replace(curItem.jp, `<mark style="background:#fef08a;padding:1px 5px;border-radius:5px;">${curItem.jp}</mark>`)
-                : `${curItem.exJa}`;
-
-            quizPanel.innerHTML = `
-                <div class="oq-meta">
-                    <span class="oq-num">${currentView === 'weak' ? '🔴 Review Weak' : useContext ? '📝 Context Fill-in Quiz' : '💡 Meaning Match Quiz'}</span>
-                    <span class="oq-cat">${curItem.icon} ${curItem.cat}</span>
-                </div>
-
-                <div class="oq-prompt ${answered ? (isOk ? 'ok' : 'ng') : ''}">
-                    ${promptHTML}
-                </div>
-
-                ${useContext ? `
-                    <div class="oq-hint-row">
-                        <button class="oq-hint-btn" onclick="toggleOnoHint()">${hintOpen ? '🙈 Hide English Hint' : '💡 Show English Hint'}</button>
-                        ${hintOpen ? `<div class="oq-hint-text">🇺🇸 ${curItem.exEn}</div>` : '<span style="font-size:12px; color:var(--text-muted);">Same-category distractors are mixed in — feel the nuance!</span>'}
-                    </div>
-                ` : ''}
-
-                <div class="oq-choices">
-                    ${curChoices.map((c, idx) => {
-                        let cls = 'oq-choice';
-                        if (answered) {
-                            if (c.id === curItem.id) cls += ' ok';
-                            else if (c.id === pickedId) cls += ' ng';
-                        }
-                        return `
-                            <button class="${cls}" ${answered ? 'disabled' : ''} onclick="pickOno(${c.id})">
-                                <span class="oq-cnum">${idx + 1}</span>
-                                <span>${c.jp}${onoState.showRomaji ? `<span class="oq-rom">${c.romaji}</span>` : ''}</span>
-                            </button>
-                        `;
-                    }).join('')}
-                </div>
-
-                ${answered ? `
-                    <div><button class="oq-next-btn" onclick="nextOnoQuiz()">Next Question →</button></div>
-                    <div class="oq-fb ${isOk ? 'ok' : 'ng'}">
-                        <div class="oq-fb-head">
-                            ${curItem.imgSrc ? `<img class="oq-fb-img" src="${curItem.imgSrc}" alt="${curItem.jp}">` : ''}
-                            <div>
-                                <div style="font-size:16px; font-weight:800; color:${isOk ? '#16a34a' : '#dc2626'}; margin-bottom:4px;">
-                                    ${isOk ? '⭕️ Spot on!' : `❌ Answer: ${curItem.jp} (${curItem.romaji}) — Saved to Weak 🔴`}
-                                </div>
-                                <div style="font-weight:700; color:var(--dark); font-size:15px;">${fullMarked}</div>
-                                <div style="font-size:13px; color:#4b5563;">${curItem.exEn} — <em>${curItem.meaning}</em></div>
-                            </div>
-                        </div>
-                        <div class="oq-nuance">💡 <strong>Nuance Tip:</strong> ${curItem.nuance}</div>
-                    </div>
-                ` : '<div style="font-size:12px; color:var(--text-muted);">Tip: Press keys 1–4 to answer, Enter for next!</div>'}
-            `;
-        }
-
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                filterTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                currentCat = tab.dataset.category;
-                if (isQuizView()) {
-                    loadNextQuiz();
-                    renderQuiz();
-                } else {
-                    applyBrowseFilter();
-                }
-            });
+      } else {
+        const bl = makeBlank(item);
+        imgBox.className = 'quiz-img mystery';
+        imgBox.innerHTML = `<div style="font-size:1.8rem; margin-bottom:4px;">🎁</div><div>Answer to reveal the illustration!</div>`;
+        document.getElementById('quizPrompt').textContent = bl.ja;
+        document.getElementById('quizRomaji').textContent = '';
+        document.getElementById('quizSub').textContent = `💡 "${bl.en}"`;
+        opts.forEach(o => {
+          const b = document.createElement('button');
+          b.className = 'quiz-opt';
+          b.innerHTML = `${o.jp}<span class="romaji-line" style="display:block; font-size:0.74rem; margin-top:2px;">${o.romaji}</span>`;
+          b.onclick = () => handleQuizAnswer(o.slug === item.slug, b, opts, item, optsBox);
+          optsBox.appendChild(b);
         });
+      }
+    }
 
-        viewBtns.forEach(btn => {
-            btn.addEventListener('click', () => switchViewMode(btn.dataset.view));
-        });
+    function handleQuizAnswer(ok, btn, opts, item, box) {
+      [...box.children].forEach(c => c.disabled = true);
+      if (ok) {
+        btn.classList.add('ok');
+        qScore++; qCombo++;
+        if (qCombo > qMaxCombo) qMaxCombo = qCombo;
+        markMastered(item, true);
+        document.getElementById('quizFeedback').textContent = `✅ Correct! ${item.jp} = ${item.meaning}`;
+        document.getElementById('quizFeedback').style.color = 'var(--good)';
+      } else {
+        btn.classList.add('ng');
+        qCombo = 0;
+        markWeak(item);
+        [...box.children].forEach((c, i) => { if (opts[i].slug === item.slug) c.classList.add('ok'); });
+        document.getElementById('quizFeedback').textContent = `❌ Answer: ${item.jp} (${item.romaji}) — ${item.meaning}`;
+        document.getElementById('quizFeedback').style.color = 'var(--bad)';
+      }
+      if (qType !== 'meaning') {
+        const imgBox = document.getElementById('quizImgBox');
+        imgBox.className = 'quiz-img';
+        imgBox.innerHTML = `<img src="${item.img}" alt="${item.jp}">`;
+      }
+      document.getElementById('qScore').textContent = `⭐ ${qScore} · 🔥 ${qCombo}`;
+      document.getElementById('quizNextBtn').classList.remove('hidden');
+    }
 
-        document.addEventListener('keydown', (e) => {
-            if (!isQuizView() || !curItem) return;
-            if (['1','2','3','4'].includes(e.key) && !answered) {
-                const idx = parseInt(e.key, 10) - 1;
-                if (curChoices[idx]) pickOno(curChoices[idx].id);
-            } else if (e.key === 'Enter' && answered) {
-                nextOnoQuiz();
-            }
-        });
+    // 3. 3D Flashcards
+    function fcPool() {
+      const f = filteredItems();
+      return f.length ? f : ITEMS;
+    }
+    function renderFC() {
+      const pool = fcPool();
+      if (fcIdx >= pool.length) fcIdx = 0;
+      const item = pool[fcIdx];
+      document.getElementById('fcStage').classList.remove('flipped');
+      document.getElementById('fcCounter').textContent = `Card ${fcIdx + 1} / ${pool.length} · Tap card to flip!`;
+      document.getElementById('fcImg').src = item.img;
+      document.getElementById('fcImg').alt = item.jp;
+      document.getElementById('fcMeanFront').textContent = item.meaning;
+      document.getElementById('fcJp').textContent = item.jp;
+      document.getElementById('fcRomaji').textContent = item.romaji;
+      document.getElementById('fcMeanBack').textContent = item.meaning;
+      document.getElementById('fcExList').innerHTML = item.examples.map(ex => `<div class="ex-box">${ex.ja}<span class="ex-en">${ex.en}</span></div>`).join('');
+    }
 
-        updateOnoStats();
-    </script>
+    // Wire events
+    document.querySelectorAll('.mode-tab').forEach(b => b.onclick = () => {
+      document.querySelectorAll('.mode-tab').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      mode = b.dataset.mode;
+      document.getElementById('galleryView').classList.toggle('hidden', mode !== 'gallery');
+      document.getElementById('quizView').classList.toggle('hidden', mode !== 'quiz');
+      document.getElementById('cardsView').classList.toggle('hidden', mode !== 'cards');
+      if (mode === 'gallery') renderGallery();
+      if (mode === 'quiz') startQuiz();
+      if (mode === 'cards') { fcIdx = 0; renderFC(); }
+    });
+
+    document.getElementById('romajiToggle').onclick = e => {
+      const off = document.body.classList.toggle('hide-romaji');
+      e.target.classList.toggle('on', !off);
+      e.target.textContent = off ? 'Aa Romaji OFF' : 'Aa Romaji ON';
+    };
+
+    document.querySelectorAll('[data-cat]').forEach(b => b.onclick = () => {
+      document.querySelectorAll('[data-cat]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      cat = b.dataset.cat;
+      renderGallery();
+    });
+    document.getElementById('favFilterBtn').onclick = e => {
+      favOnly = !favOnly;
+      e.target.classList.toggle('active', favOnly);
+      renderGallery();
+    };
+    document.getElementById('weakFilterBtn').onclick = e => {
+      weakOnly = !weakOnly;
+      e.target.classList.toggle('active', weakOnly);
+      renderGallery();
+    };
+    document.getElementById('searchInput').oninput = renderGallery;
+
+    document.querySelectorAll('[data-qtype]').forEach(b => b.onclick = () => {
+      document.querySelectorAll('[data-qtype]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      qType = b.dataset.qtype;
+      startQuiz();
+    });
+    document.getElementById('quizNextBtn').onclick = () => { qIdx++; renderQuiz(); };
+    document.getElementById('quizRetryBtn').onclick = startQuiz;
+
+    const fcStage = document.getElementById('fcStage');
+    fcStage.onclick = e => { if (!e.target.closest('button')) fcStage.classList.toggle('flipped'); };
+    fcStage.onkeydown = e => {
+      if (e.target.closest('button')) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fcStage.classList.toggle('flipped'); }
+    };
+    document.getElementById('fcPrev').onclick = () => { const p = fcPool(); fcIdx = (fcIdx - 1 + p.length) % p.length; renderFC(); };
+    document.getElementById('fcNext').onclick = () => { const p = fcPool(); fcIdx = (fcIdx + 1) % p.length; renderFC(); };
+    document.getElementById('fcGot').onclick = () => {
+      const p = fcPool();
+      markMastered(p[fcIdx], true);
+      fcIdx = (fcIdx + 1) % p.length;
+      renderFC();
+      showToast('✅ Marked as Mastered!');
+    };
+
+    // Dark mode sync with ohayo_theme
+    const themeBtn = document.getElementById('themeBtn');
+    if (localStorage.getItem('ohayo_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeBtn.textContent = '☀️';
+    }
+    themeBtn.onclick = () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('ohayo_theme', isDark ? 'dark' : 'light');
+    };
+
+    updateStats();
+    renderGallery();
+  </script>
 </body>
 </html>
