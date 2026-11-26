@@ -79,17 +79,20 @@
         .hero-trust-badge i { color: #ffd166; margin-right: 4px; }
 
         .hero-btn-container { margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
-        .hero-btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .hero-btn { padding: 13px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.92rem; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; }
         .hero-btn:hover { transform: translateY(-3px); }
-        .primary-btn { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(255,159,67,0.3); }
-        .primary-btn:hover { box-shadow: 0 6px 20px rgba(255,159,67,0.4); }
-        .secondary-btn { background: white; color: var(--dark); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .secondary-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); color: var(--primary); }
+        .hero-btn:active { transform: translateY(1px); }
+        .hero-btn .hero-btn-arrow { font-size: 0.78rem; opacity: 0.85; transition: transform 0.25s ease; margin-left: 2px; }
+        .hero-btn:hover .hero-btn-arrow { transform: translateY(3px); opacity: 1; }
+        .primary-btn { background: var(--primary); color: white; border-bottom: 3px solid #d97706; box-shadow: 0 6px 18px rgba(255,159,67,0.38); }
+        .primary-btn:hover { box-shadow: 0 9px 24px rgba(255,159,67,0.48); }
+        .secondary-btn { background: white; color: var(--dark); border: 1.5px solid rgba(255,255,255,0.9); border-bottom: 3px solid #cbd5e1; box-shadow: 0 6px 18px rgba(0,0,0,0.16); }
+        .secondary-btn:hover { box-shadow: 0 9px 24px rgba(0,0,0,0.22); color: var(--primary); }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.2rem 1rem; }
-        section { margin-bottom: 4rem; scroll-margin-top: 90px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.2rem 1rem; }
+        section { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
         section:last-of-type { margin-bottom: 0; }
-        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 3rem; }
+        h2 { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
 
         /* ====== Lesson 関連 ====== */
         .lesson-tabs { display: none; justify-content: center; gap: 8px; margin-bottom: 2rem; }
@@ -218,6 +221,19 @@
         .profile-text-grid h3 i { color: var(--primary); font-size: 1rem; }
         .profile-text-grid p { font-size: 0.9rem; margin-bottom: 1rem; color: #555; }
         .highlight-box { background: var(--primary-light); padding: 1.5rem; border-radius: 15px; border-left: 5px solid var(--primary); font-size: 0.9rem; margin-top: 1rem; }
+        .profile-story-toggle {
+            background: #fff; border-radius: 18px; border: 1.5px solid #ffe0c2;
+            overflow: hidden; margin: 0 auto 2rem; max-width: 800px;
+        }
+        .profile-story-toggle summary {
+            list-style: none; cursor: pointer; padding: 0.95rem 1.4rem;
+            background: var(--primary-light); display: flex; justify-content: space-between; align-items: center; gap: 0.8rem;
+            font-weight: bold; color: var(--dark); font-size: 0.92rem; user-select: none; transition: background 0.2s;
+        }
+        .profile-story-toggle summary::-webkit-details-marker { display: none; }
+        .profile-story-toggle summary:hover { background: #ffedd9; }
+        .profile-story-toggle[open] .guide-toggle-pill i { transform: rotate(180deg); }
+        .profile-story-body { padding: 1.8rem 1.4rem 1rem; border-top: 1px solid #f5e6d8; }
 
         /* ====== レベル別ポータルデザイン ====== */
         /* PCで確実に4列にするため repeat(4, 1fr) に変更 */
@@ -278,12 +294,63 @@
         
         .badge-interactive { position: absolute; top: -10px; right: -10px; background: #e74c3c; color: white; font-size: 0.7rem; font-weight: bold; padding: 5px 12px; border-radius: 20px; box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); z-index: 1; letter-spacing: 0.5px; }
         .badge-game { background: #9b59b6; box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3); }
+        .badge-orange { background: linear-gradient(135deg, #ff9f43, #e67e22); box-shadow: 0 4px 12px rgba(230, 126, 34, 0.35); }
+
+        /* ====== Study Tracker & Step/Done Stamps ====== */
+        .my-progress-bar {
+            background: #fff; border-radius: 20px; padding: 0.95rem 1.35rem; margin: 0 auto 2rem;
+            box-shadow: var(--shadow); border: 1.5px solid #ffe4c8;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.85rem;
+        }
+        .mp-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .mp-count {
+            background: var(--primary-light); color: #d35400; font-weight: 700;
+            font-size: 0.84rem; padding: 5px 14px; border-radius: 50px;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .mp-meter { width: 130px; height: 9px; background: #f1f3f5; border-radius: 50px; overflow: hidden; }
+        .mp-meter-fill { height: 100%; background: linear-gradient(90deg, #ff9f43, #2ecc71); border-radius: 50px; transition: width 0.35s ease; }
+        .mp-continue {
+            display: none; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #ff9f43, #f39c12); color: #fff;
+            padding: 7px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 700;
+            text-decoration: none; box-shadow: 0 4px 12px rgba(255,159,67,0.3); transition: 0.2s;
+        }
+        .mp-continue.show { display: inline-flex; }
+        .mp-continue:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255,159,67,0.4); }
+        .portal-prog { font-size: 0.72rem; font-weight: 700; color: #888; margin-bottom: 0.75rem; }
+        .sub-cat-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 1.2rem; }
+        .sub-cat-row .sub-category-title { margin-bottom: 0; }
+        .sub-cat-prog { font-size: 0.76rem; font-weight: 700; color: #888; background: #fff; padding: 2px 10px; border-radius: 50px; border: 1px solid #ececec; white-space: nowrap; }
+
+        .unified-card[data-mat] { padding-top: 2.3rem; border: 2px solid transparent; }
+        .unified-card[data-mat] .badge-interactive { top: -11px; left: 50%; right: auto; transform: translateX(-50%); white-space: nowrap; z-index: 2; }
+        .unified-card.is-hero-pick { border-color: #ffbd7a; background: linear-gradient(180deg, #ffffff 0%, #fff9f2 100%); }
+        .unified-card.is-done { border-color: #a9dfbf; background: linear-gradient(180deg, #ffffff 0%, #f4fcf6 100%); }
+        .step-pill {
+            position: absolute; top: 13px; left: 13px;
+            font-size: 0.67rem; font-weight: 700; padding: 2px 9px; border-radius: 50px;
+            background: #f2f4f7; color: #666; letter-spacing: 0.3px;
+        }
+        .step-pill.first { background: var(--primary-light); color: #d35400; }
+        .done-stamp {
+            position: absolute; top: 11px; right: 11px;
+            border: 1.5px solid #e0e4e8; background: #fff; color: #b0b8c1;
+            border-radius: 50px; padding: 2px 9px; font-size: 0.67rem; font-weight: 700;
+            font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+            transition: 0.2s; z-index: 3;
+        }
+        .done-stamp:hover { border-color: #2ecc71; color: #27ae60; }
+        .unified-card.is-done .done-stamp {
+            background: #2ecc71; border-color: #2ecc71; color: #fff;
+            box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
+        }
         
-        .level-section { margin-top: 5rem; padding-top: 3rem; border-top: 2px dashed #eaeaea; scroll-margin-top: 90px; }
-        .level-section h2.section-title { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+        .level-section { margin-top: 3.2rem; padding-top: 2.2rem; border-top: 2px dashed #eaeaea; scroll-margin-top: 90px; }
+        .level-section h2.section-title { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.9rem; margin-bottom: 2rem; }
         .sub-category-title { font-size: 1.1rem; color: #555; margin-bottom: 1.2rem; border-left: 4px solid; padding-left: 10px; font-weight: bold; }
 
-        .update-board { background: #fff; border-radius: 20px; padding: 1.8rem 2rem; margin: 2rem auto 4rem; max-width: 800px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
+        .update-board { background: #fff; border-radius: 20px; padding: 1.8rem 2rem; margin: 1.5rem auto 2.5rem; max-width: 800px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
         .update-board h3 { font-family: 'Sawarabi Mincho', serif; font-size: 1.3rem; color: var(--dark); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.8rem; text-align: left; }
         .update-list { list-style: none; }
         .update-list li { display: flex; align-items: flex-start; gap: 15px; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.9rem; }
@@ -292,6 +359,8 @@
         .update-date { font-weight: bold; color: var(--primary); min-width: 90px; font-family: monospace; font-size: 0.95rem; }
         .update-badge { background: var(--primary-light); color: var(--primary); padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; white-space: nowrap; }
         .update-text { color: #555; line-height: 1.5; }
+        .update-text a { color: var(--dark); font-weight: 700; text-decoration: none; border-bottom: 1.5px solid #ffd5ad; transition: color 0.15s, border-color 0.15s; }
+        .update-text a:hover { color: var(--primary); border-bottom-color: var(--primary); }
 
         .booking-btn:hover, .booking-btn:active { background-color: #9b59b6 !important; color: #ffffff !important; }
 
@@ -315,7 +384,7 @@
         #mail-reveal, #mail-reveal-privacy { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
 
         /* ====== カレンダー用スタイル ====== */
-        #schedule-section { background: #fff; padding: 3rem 1.2rem; border-radius: 25px; box-shadow: var(--shadow); margin-bottom: 5rem; max-width: 1000px; margin-left: auto; margin-right: auto; border: 1px solid rgba(0,0,0,0.02); }
+        #schedule-section { background: #fff; padding: 2.5rem 1.2rem; border-radius: 25px; box-shadow: var(--shadow); margin-bottom: 3.5rem; max-width: 1000px; margin-left: auto; margin-right: auto; border: 1px solid rgba(0,0,0,0.02); }
         :root { --fc-button-bg-color: var(--primary); --fc-button-border-color: var(--primary); --fc-button-hover-bg-color: #e68a35; --fc-button-active-bg-color: #cc7a2f; --fc-today-bg-color: #fffaf5;  --fc-border-color: #eee; }
         .fc-toolbar-title { font-family: 'Sawarabi Mincho', serif; color: var(--dark); font-size: 1.5rem !important; }
         .fc-day-sat { background-color: #f0f7ff !important; } 
@@ -349,10 +418,16 @@
             .guide-body { padding: 1.2rem 1rem; }
             .starter-quiz { padding: 1.3rem 1rem; }
 
-            .container { padding: 2rem 0.8rem 1rem; }
+            .container { padding: 1.8rem 0.8rem 1rem; }
+            section { margin-bottom: 2.5rem; }
+            h2 { margin-bottom: 1.5rem; font-size: 1.55rem; }
 
-            .profile-box { padding: 2rem 1rem; border-radius: 20px; }
-            .profile-image-container { width: 140px; height: 140px; }
+            .profile-box { padding: 1.8rem 1rem; border-radius: 20px; }
+            .profile-header { gap: 1.5rem; margin-bottom: 1.8rem; padding-bottom: 1.4rem; }
+            .profile-image-container { width: 136px; height: 136px; }
+            .video-wrapper { margin-bottom: 1.8rem; }
+            .profile-story-toggle summary { padding: 0.85rem 1rem; font-size: 0.84rem; }
+            .profile-story-body { padding: 1.2rem 1rem 0.6rem; }
 
             /* スマホ時は横スライド式に（次のカードが見切れてスワイプに気づける） */
             .level-portal-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 0.9rem; padding: 0.3rem 0.2rem 1rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -373,7 +448,7 @@
                 padding-bottom: 1.5rem; -webkit-overflow-scrolling: touch;
             }
             .horizontal-scroll-mobile .unified-card {
-                min-width: 250px; flex: 0 0 auto; scroll-snap-align: center;
+                min-width: 225px; flex: 0 0 auto; scroll-snap-align: center;
             }
             .horizontal-scroll-mobile::-webkit-scrollbar { display: none; }
             
@@ -385,9 +460,14 @@
             
             .btn-bottom { font-size: 0.68rem; padding: 8px 10px; min-height: 36px; }
             .badge-interactive { font-size: 0.6rem; padding: 3px 8px; top: -10px; right: 0px; }
+            .unified-card[data-mat] { padding-top: 2.15rem; }
+            .unified-card[data-mat] .badge-interactive { left: 50%; right: auto; transform: translateX(-50%); }
+            .my-progress-bar { padding: 0.85rem 1rem; justify-content: center; }
+            .mp-meter { width: 95px; }
 
-            .level-section { margin-top: 3rem; padding-top: 2rem; }
-            .level-section h2.section-title { font-size: 1.5rem; margin-bottom: 1.8rem; }
+            .level-section { margin-top: 2rem; padding-top: 1.6rem; }
+            .level-section h2.section-title { font-size: 1.45rem; margin-bottom: 1.4rem; }
+            #schedule-section { margin-bottom: 2.5rem; }
 
             .lesson-tabs { display: flex; }
             .lesson-grid { display: block; }
@@ -434,8 +514,8 @@
     </div>
     
     <div class="hero-btn-container">
-        <a href="#lessons" class="hero-btn primary-btn"><i class="fa-solid fa-seedling"></i>New Students | Lessons</a>
-        <a href="#resources" class="hero-btn secondary-btn"><i class="fa-solid fa-book-open"></i>FREE Learning Materials</a>
+        <a href="#lessons" class="hero-btn primary-btn"><i class="fa-solid fa-seedling"></i><span>New Students | Lessons</span><i class="fa-solid fa-arrow-down hero-btn-arrow"></i></a>
+        <a href="#resources" class="hero-btn secondary-btn"><i class="fa-solid fa-book-open"></i><span>FREE Learning Materials</span><i class="fa-solid fa-arrow-down hero-btn-arrow"></i></a>
     </div>
 </header>
 
@@ -461,7 +541,7 @@
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 1.5rem;">
                     <a href="https://buy.stripe.com/aFa6oG9hs2Eq3QbeQpbjW03" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(255,159,67,0.3);"><i class="fa-solid fa-credit-card"></i> ① PAY NOW (¥1,500)</a>
-                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check"></i> ② SCHEDULE</a>
+                    <a href="https://calendar.app.google/AQ6oCu4bULbnwaG59" target="_blank" rel="noopener noreferrer" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none;"><i class="fa-regular fa-calendar-check"></i> ② SCHEDULE</a>
                 </div>
             </div>
 
@@ -477,7 +557,7 @@
                     <a href="https://buy.stripe.com/00w7sKbpA1Am86reQpbjW00" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 2,000 yen</a>
                     <a href="https://buy.stripe.com/8x2bJ01P0en85Yj5fPbjW04" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / ¥8,000 <span class="off-badge off-badge-light">20% OFF</span></a>
                     <a href="https://buy.stripe.com/4gMcN4alw6UGfyTbEdbjW05" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-dumbbell"></i> 10 Lessons / ¥16,000 <span class="off-badge off-badge-gold">20% OFF</span></a>
-                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
+                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" rel="noopener noreferrer" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
 
@@ -493,7 +573,7 @@
                     <a href="https://buy.stripe.com/5kQaEW1P0en8biD7nXbjW01" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 3,000 yen</a>
                     <a href="https://buy.stripe.com/28E00igJU2EqcmHeQpbjW06" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / ¥12,000 <span class="off-badge off-badge-light">20% OFF</span></a>
                     <a href="https://buy.stripe.com/fZu7sK8doen872ndMlbjW07" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-dumbbell"></i> 10 Lessons / ¥24,000 <span class="off-badge off-badge-gold">20% OFF</span></a>
-                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
+                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" rel="noopener noreferrer" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
 
@@ -509,7 +589,7 @@
                     <a href="https://buy.stripe.com/cNi7sK2T4a6S5YjdMlbjW02" class="btn-bottom" style="background: white; color: #777; border: 1px solid #ddd; text-decoration: none;">1 Lesson / 4,000 yen</a>
                     <a href="https://buy.stripe.com/28E14mdxIfrc1I38s1bjW08" class="btn-bottom" style="background: var(--primary); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-fire-flame-curved"></i> 5 Lessons / ¥16,000 <span class="off-badge off-badge-light">20% OFF</span></a>
                     <a href="https://buy.stripe.com/7sY28qctE3IucmH23DbjW09" class="btn-bottom" style="background: var(--dark); color: white; text-decoration: none; border: none;"><i class="fa-solid fa-dumbbell"></i> 10 Lessons / ¥32,000 <span class="off-badge off-badge-gold">20% OFF</span></a>
-                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
+                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" rel="noopener noreferrer" class="btn-bottom" style="background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; margin-top: 5px;"><i class="fa-regular fa-calendar-check"></i> SCHEDULE</a>
                 </div>
             </div>
         </div>
@@ -554,7 +634,7 @@
                             <li><strong>App used:</strong> Google Meet (no installation required)</li>
                             <li><strong>Textbooks:</strong> Not required — free original materials provided</li>
                             <li><strong>Cancel / Reschedule:</strong> Free up to 24 hours before class</li>
-                            <li><strong>Questions?</strong> Feel free to message me anytime on <a href="https://www.instagram.com/ohayo_center" target="_blank" style="color: #E4405F; font-weight: bold;">Instagram DM (@ohayo_center)</a>!</li>
+                            <li><strong>Questions?</strong> Feel free to message me anytime on <a href="https://www.instagram.com/ohayo_center" target="_blank" rel="noopener noreferrer" style="color: #E4405F; font-weight: bold;">Instagram DM (@ohayo_center)</a>!</li>
                         </ul>
                     </div>
                 </div>
@@ -608,21 +688,29 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/WQMTbkMh5U8?si=TBQ6p6BGat42XON3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
 
-            <div class="profile-text-grid">
-                <div class="bio-section">
-                    <h3><i class="fa-solid fa-earth-americas"></i> My Journey</h3>
-                    <p>A lifelong lover of travel, I spent my 20s and 30s exploring diverse cultures across Asia, North America, and Europe. The kindness I received from people worldwide inspired my deep fascination with the power of communication.</p>
-                    <p>Now in my 40s, I balance my professional life as a <b>stay-at-home father</b> with my passion for teaching <b>one-on-one</b> Japanese <b>lessons</b> online at <b>Ohayo Center</b>. This role keeps me grounded, patient, and focused on helping others grow.</p>
-                </div>
-                <div class="philosophy-section">
-                    <h3><i class="fa-solid fa-dumbbell"></i> Like Fitness</h3>
-                    <p>Language learning is like weight training—something I've practiced for 20 years. You won't see results overnight, but consistency creates "muscle memory" that lasts a lifetime.</p>
-                    <div class="highlight-box">
-                        <strong>Why a "Cheat Day"?</strong><br>
-                        Mastering a language requires a lot of self-study, which can sometimes feel exhausting. I want our lessons to be your <b>"Cheat Day"</b>—a refreshing space to rediscover the joy of Japanese and recharge your motivation so you never have to face the challenge alone.
+            <details class="profile-story-toggle">
+                <summary>
+                    <span>📖 Read My Story · My Journey &amp; Why Lessons Are Like Fitness</span>
+                    <span class="guide-toggle-pill">Read More <i class="fa-solid fa-chevron-down"></i></span>
+                </summary>
+                <div class="profile-story-body">
+                    <div class="profile-text-grid">
+                        <div class="bio-section">
+                            <h3><i class="fa-solid fa-earth-americas"></i> My Journey</h3>
+                            <p>A lifelong lover of travel, I spent my 20s and 30s exploring diverse cultures across Asia, North America, and Europe. The kindness I received from people worldwide inspired my deep fascination with the power of communication.</p>
+                            <p>Now in my 40s, I balance my professional life as a <b>stay-at-home father</b> with my passion for teaching <b>one-on-one</b> Japanese <b>lessons</b> online at <b>Ohayo Center</b>. This role keeps me grounded, patient, and focused on helping others grow.</p>
+                        </div>
+                        <div class="philosophy-section">
+                            <h3><i class="fa-solid fa-dumbbell"></i> Like Fitness</h3>
+                            <p>Language learning is like weight training—something I've practiced for 20 years. You won't see results overnight, but consistency creates "muscle memory" that lasts a lifetime.</p>
+                            <div class="highlight-box">
+                                <strong>Why a "Cheat Day"?</strong><br>
+                                Mastering a language requires a lot of self-study, which can sometimes feel exhausting. I want our lessons to be your <b>"Cheat Day"</b>—a refreshing space to rediscover the joy of Japanese and recharge your motivation so you never have to face the challenge alone.
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </details>
             
             <div style="margin-top: 2.5rem; text-align: center; border-top: 1px solid #eee; padding-top: 2rem;">
                 <h3 style="font-family: 'Sawarabi Mincho', serif; margin-bottom: 1rem;">My Teaching Philosophy</h3>
@@ -636,7 +724,7 @@
 
     <!-- ================= STUDENT VOICES ================= -->
     <section id="voices">
-        <h2 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-comments" style="color: var(--primary);"></i> Student Voices</h2>
+        <h2 style="margin-bottom: 1.2rem;"><i class="fa-solid fa-comments" style="color: var(--primary);"></i> Student Voices</h2>
         <div class="voices-grid">
             <div class="voice-card">
                 <div class="voice-stars">★★★★★</div>
@@ -665,6 +753,17 @@
     <section id="resources">
         <h2 id="materials">Study Material</h2>
 
+        <!-- 学習進捗 & 続きから再開バー -->
+        <div class="my-progress-bar">
+            <div class="mp-left">
+                <span class="mp-count"><i class="fa-solid fa-trophy"></i> <span id="studyTotalDone">0 / 42 Cleared</span></span>
+                <div class="mp-meter"><div id="studyTotalFill" class="mp-meter-fill" style="width: 0%;"></div></div>
+            </div>
+            <a href="#" id="studyContinueBtn" class="mp-continue">
+                <i class="fa-solid fa-play"></i> <span id="studyContinueTxt">Continue</span>
+            </a>
+        </div>
+
         <!-- 30秒おすすめ教材診断 -->
         <div class="starter-quiz">
             <div class="starter-quiz-head">
@@ -678,90 +777,95 @@
                     <span class="goal-title">Trip to Japan</span>
                     <span class="goal-sub">Survival phrases</span>
                 </button>
-                <button type="button" class="goal-btn" onclick="pickStarterGoal('beginner', this)">
-                    <span class="goal-emoji">🌱</span>
-                    <span class="goal-title">Zero Beginner</span>
-                    <span class="goal-sub">Kana &amp; basics</span>
-                </button>
                 <button type="button" class="goal-btn" onclick="pickStarterGoal('culture', this)">
                     <span class="goal-emoji">🎬</span>
                     <span class="goal-title">Fun &amp; Culture</span>
                     <span class="goal-sub">Audio &amp; Idioms</span>
                 </button>
+                <button type="button" class="goal-btn" onclick="pickStarterGoal('beginner', this)">
+                    <span class="goal-emoji">🌱</span>
+                    <span class="goal-title">Zero Beginner</span>
+                    <span class="goal-sub">Kana &amp; basics</span>
+                </button>
                 <button type="button" class="goal-btn" onclick="pickStarterGoal('jlpt', this)">
                     <span class="goal-emoji">📝</span>
-                    <span class="goal-title">JLPT N5–N1</span>
+                    <span class="goal-title">JLPT N4–N1</span>
                     <span class="goal-sub">Grammar &amp; Kanji</span>
                 </button>
             </div>
             <div class="starter-result" id="starter-result"></div>
         </div>
 
-        <!-- レベル別 ポータルカード -->
+        <!-- レベル別 ポータルカード（Travel → Culture → Beginner → Intermediate → Advanced） -->
         <div class="level-portal-grid">
-
-            <!-- ⭐️ Culture & Fun -->
-            <a href="#section-culture" class="level-card card-culture">
-                <div class="icon-wrap"><i class="fa-solid fa-star"></i></div>
-                <h3>Culture & Fun</h3>
-                <span class="jlpt-badge">Audio Blog & Anime</span>
-                <ul>
-                    <li><i class="fa-solid fa-circle-play"></i> Audio Blog (Natural Japanese)</li>
-                    <li><i class="fa-solid fa-tv"></i> Anime Expressions & Idioms</li>
-                    <li><i class="fa-solid fa-comment-dots"></i> Onomatopoeia (Sound words)</li>
-                </ul>
-                <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">EXPLORE NOW</div>
-            </a>
 
             <!-- ✈️ Travel -->
             <a href="#section-travel" class="level-card card-travel">
                 <div class="icon-wrap"><i class="fa-solid fa-plane"></i></div>
                 <h3>Travel</h3>
-                <span class="jlpt-badge">Survival Japanese</span>
+                <span class="jlpt-badge">Trip Japan</span>
                 <ul>
-                    <li><i class="fa-solid fa-headphones"></i> Listening Quests</li>
-                    <li><i class="fa-solid fa-comments"></i> Survival Conversations</li>
-                    <li><i class="fa-solid fa-layer-group"></i> Travel Flashcards</li>
+                    <li><i class="fa-solid fa-headphones"></i> 1. Listen in Japan</li>
+                    <li><i class="fa-solid fa-layer-group"></i> 2. Travel Flashcards</li>
+                    <li><i class="fa-solid fa-plane-departure"></i> 3. Travel Quiz</li>
                 </ul>
+                <div class="portal-prog" data-portal-prog="travel">0 / 3 Done</div>
                 <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">EXPLORE NOW</div>
             </a>
 
-            <!-- 初級（Beginner） -->
+            <!-- ⭐️ Culture & Fun -->
+            <a href="#section-culture" class="level-card card-culture">
+                <div class="icon-wrap"><i class="fa-solid fa-star"></i></div>
+                <h3>Culture &amp; Fun</h3>
+                <span class="jlpt-badge">Audio &amp; Anime</span>
+                <ul>
+                    <li><i class="fa-solid fa-circle-play"></i> Audio Blog</li>
+                    <li><i class="fa-solid fa-comments"></i> Idioms &amp; Slang</li>
+                    <li><i class="fa-solid fa-tv"></i> Anime &amp; Onomatopoeia</li>
+                </ul>
+                <div class="portal-prog" data-portal-prog="culture">0 / 4 Done</div>
+                <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">EXPLORE NOW</div>
+            </a>
+
+            <!-- 🌱 Beginner -->
             <a href="#section-beginner" class="level-card card-beginner">
                 <div class="icon-wrap"><i class="fa-solid fa-seedling"></i></div>
                 <h3>Beginner</h3>
                 <span class="jlpt-badge">JLPT N5 - N4</span>
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> Hiragana &amp; Katakana</li>
-                    <li><i class="fa-solid fa-check"></i> Essential Adjectives &amp; Verbs</li>
-                    <li><i class="fa-solid fa-check"></i> Basic Grammar &amp; Kanji</li>
+                    <li><i class="fa-solid fa-check"></i> Write · Read · Type Kana</li>
+                    <li><i class="fa-solid fa-check"></i> Adjectives &amp; Plain Form</li>
+                    <li><i class="fa-solid fa-check"></i> N5–N4 Sentences &amp; Kanji</li>
                 </ul>
+                <div class="portal-prog" data-portal-prog="beginner">0 / 22 Done</div>
                 <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">START HERE</div>
             </a>
 
-            <!-- 中級（Intermediate） -->
+            <!-- 🚀 Intermediate -->
             <a href="#section-intermediate" class="level-card card-intermediate">
                 <div class="icon-wrap"><i class="fa-solid fa-rocket"></i></div>
                 <h3>Intermediate</h3>
-                <span class="jlpt-badge">JLPT N3 - N2</span>
+                <span class="jlpt-badge">N4→N3 &amp; N2</span>
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> N3 Grammar & Vocab</li>
-                    <li><i class="fa-solid fa-check"></i> N3 Kanji Challenge</li>
-                    <li><i class="fa-solid fa-check"></i> Sentence Builder</li>
+                    <li><i class="fa-solid fa-bolt"></i> Grammar Quest RPG (NEW!)</li>
+                    <li><i class="fa-solid fa-check"></i> N3 &amp; N2 Grammar Complete</li>
+                    <li><i class="fa-solid fa-check"></i> N3 Topic Vocab &amp; Kanji</li>
                 </ul>
+                <div class="portal-prog" data-portal-prog="intermediate">0 / 11 Done</div>
                 <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">START HERE</div>
             </a>
 
-            <!-- 上級（Advanced） -->
+            <!-- 👑 Advanced -->
             <a href="#section-advanced" class="level-card card-advanced">
                 <div class="icon-wrap"><i class="fa-solid fa-crown"></i></div>
                 <h3>Advanced</h3>
                 <span class="jlpt-badge">JLPT N1+</span>
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> N1 Kanji Master</li>
-                    <li><i class="fa-solid fa-check"></i> Native-level Reading</li>
-                    <li><i class="fa-solid fa-check"></i> 200 Questions Challenge</li>
+                    <li><i class="fa-solid fa-check"></i> N1 Kanji Part 1</li>
+                    <li><i class="fa-solid fa-check"></i> N1 Kanji Part 2</li>
+                    <li><i class="fa-solid fa-check"></i> 400 Questions Total</li>
                 </ul>
+                <div class="portal-prog" data-portal-prog="advanced">0 / 2 Done</div>
                 <div class="btn-bottom" style="font-size: 0.9rem; padding: 10px;">START HERE</div>
             </a>
         </div>
@@ -769,346 +873,468 @@
         <div class="update-board">
             <h3><i class="fa-solid fa-bell" style="color: var(--primary);"></i> What's New </h3>
             <ul class="update-list">
-                <li><span class="update-date">2026.NOV.26</span><span class="update-badge" style="color: #2980b9; background: #eaf2f8;">JLPT N2</span><span class="update-text">Complete <strong>JLPT N2 Grammar Trainer</strong> (15 Lessons · 120 Grammar Points · 240 Audio · 180 JLPT Questions &amp; Mock Test) is now available!</span></li>
-                <li><span class="update-date">2026.NOV.26</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">JLPT N3</span><span class="update-text">Complete <strong>JLPT N3 Grammar Trainer</strong> (14 Lessons · 84 Grammar Points · 168 Audio · 141 JLPT Questions &amp; Mock Test) is now available!</span></li>
+                <li><span class="update-date">2026.NOV.26</span><span class="update-badge" style="color: #d35400; background: #fff5eb;">GRAMMAR RPG</span><span class="update-text"><a href="grammar-quest.html">OHAYO Grammar Quest</a> (45 N4→N3 Patterns · 5 Languages · 405 Native Audio · Live Lesson Mode) is now available!</span></li>
+                <li><span class="update-date">2026.NOV.26</span><span class="update-badge" style="color: #2980b9; background: #eaf2f8;">JLPT N2</span><span class="update-text">Complete <a href="n2-grammar.html">JLPT N2 Grammar Trainer</a> (15 Lessons · 120 Grammar Points · 240 Audio · 180 JLPT Questions &amp; Mock Test) is now available!</span></li>
+                <li><span class="update-date">2026.NOV.26</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">JLPT N3</span><span class="update-text">Complete <a href="n3-grammar.html">JLPT N3 Grammar Trainer</a> (14 Lessons · 84 Grammar Points · 168 Audio · 141 JLPT Questions &amp; Mock Test) is now available!</span></li>
                 <li><span class="update-date">2026.NOV.25</span><span class="update-badge" style="color: #e67e22; background: #fff5eb;">JLPT UPGRADE</span><span class="update-text">All JLPT Kanji, Grammar, Sentence Builder (★ Test) &amp; Plain Form 300 upgraded with mock tests &amp; natural audio!</span></li>
                 <li><span class="update-date">2026.NOV.25</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">ONOMATOPOEIA</span><span class="update-text">Interactive Context &amp; Meaning Quiz Mode added to Japanese Onomatopoeia (42 words)!</span></li>
                 <li><span class="update-date">2026.NOV.22</span><span class="update-badge" style="color: #e67e22; background: #fdf3e7;">TRAVEL</span><span class="update-text">TRIP JAPAN 4: Listening Quests is now available!</span></li>
                 <li><span class="update-date">2026.NOV.20</span><span class="update-badge" style="color: #2980b9; background: #eaf2f8;">IDIOMS</span><span class="update-text">Japanese Idioms updated — now 40 expressions!</span></li>
                 <li><span class="update-date">2026.NOV.18</span><span class="update-badge" style="color: #27ae60; background: #eafaf1;">AUDIO BLOG</span><span class="update-text">Audio Blog Vol.7 "Black Friday in Japan" is now available!</span></li>
-                <li><span class="update-date">2026.NOV.17</span><span class="update-badge" style="color: #e74c3c; background: #fdf2f0;">FLASH CARD</span><span class="update-text">TRIP JAPAN 3: Travel Flashcards & Quiz is now available!</span></li>
+                <li><span class="update-date">2026.NOV.17</span><span class="update-badge" style="color: #e74c3c; background: #fdf2f0;">FLASH CARD</span><span class="update-text">TRIP JAPAN 3: Travel Flashcards &amp; Quiz is now available!</span></li>
                 <li><span class="update-date">2026.SEP.22</span><span class="update-badge" style="color: #ff9a9e; background: #fff5f5;">FLASH CARD</span><span class="update-text">い and な Adjective PRACTICE is now available!! </span></li>
-                <li><span class="update-date">2026.SEP.22</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Culture & Fun</span><span class="update-text">JAPANESE ONOMATOPOEIA is now available!</span></li>
+                <li><span class="update-date">2026.SEP.22</span><span class="update-badge" style="color: #9b59b6; background: #f4e9f7;">Culture &amp; Fun</span><span class="update-text">JAPANESE ONOMATOPOEIA is now available!</span></li>
             </ul>
         </div>
 
 
-        <!-- ================= ⭐️ CULTURE & FUN ================= -->
-        <div id="section-culture" class="level-section">
-            <h2 class="section-title" style="color:var(--primary);"><i class="fa-solid fa-star"></i> Culture & Fun (Audio Blog & Anime)</h2>
-            
-            <h4 class="sub-category-title" style="border-color: #2ecc71;">Audio Blog (Listening)</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="audioblog.html" class="unified-card">
-                    <i class="fa-solid fa-circle-play main-icon" style="color: #2ecc71;"></i>
-                    <h3>AUDIO BLOG</h3>
-                    <p>Listen & Learn natural Japanese</p>
-                    <div class="btn-bottom" style="color:#2ecc71; border:1px solid #2ecc71;">LISTEN NOW</div>
-                </a>
-            </div>
-
-            <h4 class="sub-category-title" style="border-color: #8e44ad;">Culture & Expressions</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="idioms.html" class="unified-card">
-                    <i class="fa-solid fa-comments main-icon" style="color: #9b59b6;"></i>
-                    <h3>Idioms and Slang</h3>
-                    <p>Essential Daily Idioms</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-                </a>
-                <a href="anime1.html" class="unified-card">
-                    <i class="fa-solid fa-tv main-icon" style="color: #8e44ad;"></i>
-                    <h3>Anime Titles</h3>
-                    <p>Learn through Anime 😎</p>
-                    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
-                </a>
-                <a href="onomato.html" class="unified-card">
-                    <i class="fa-solid fa-comment-dots main-icon" style="color: #e84393;"></i>
-                    <h3>Onomatopoeia</h3>
-                    <p>Sounds & Feelings words</p>
-                    <div class="btn-bottom" style="color:#e84393; border:1px solid #e84393;">STUDY NOW</div>
-                </a>
-            </div>
-        </div>
-
-        <!-- ================= ✈️ TRAVEL SECTION ================= -->
-        <div id="section-travel" class="level-section">
+        <!-- ================= ✈️ 1. TRAVEL SECTION ================= -->
+        <div id="section-travel" class="level-section" data-section-key="travel">
             <h2 class="section-title" style="color:#e67e22;"><i class="fa-solid fa-plane"></i> Travel (Trip Japan)</h2>
 
-            <h4 class="sub-category-title" style="border-color: #e74c3c;">Trip</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="trip-listen.html" class="unified-card">
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #e74c3c;">Trip Japan Survival (Step 1 → 3)</h4>
+                <span class="sub-cat-prog" data-group-prog="travel-main">0 / 3</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="travel-main">
+                <a href="trip-listen.html" class="unified-card is-hero-pick" data-mat="trip-listen.html" data-title="Listen in Japan">
                     <span class="badge-interactive">Start Here✨</span>
+                    <span class="step-pill first">Step 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-headphones main-icon" style="color: #e74c3c;"></i>
-                    <h3>Listening Quests</h3>
-                    <p>Listen &amp; Reply in 9 Real Scenes<br>No Kana Needed (EN/PT/IT/ES)</p>
+                    <h3>Listen in Japan</h3>
+                    <p>9 Real Scenes · No Kana Needed<br>(EN/PT/IT/ES)</p>
                     <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">LISTEN NOW</div>
                 </a>
-                <a href="trip-flashcards.html" class="unified-card">
+                <a href="trip-flashcards.html" class="unified-card" data-mat="trip-flashcards.html" data-title="Travel Flashcards">
                     <span class="badge-interactive">Interactive✨</span>
+                    <span class="step-pill">Step 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-layer-group main-icon" style="color: #e74c3c;"></i>
-                    <h3>Travel Flashcards &amp; Quiz</h3>
+                    <h3>Travel Flashcards</h3>
                     <p>50 Phrases &amp; 50 Verbs with Audio<br>(EN/PT/IT/ES)</p>
                     <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
                 </a>
-                <a href="trip-quiz.html" class="unified-card">
+                <a href="trip-quiz.html" class="unified-card" data-mat="trip-quiz.html" data-title="Travel Quiz">
                     <span class="badge-interactive badge-game">Quiz❓</span>
+                    <span class="step-pill">Step 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-plane-departure main-icon" style="color: #e74c3c;"></i>
-                    <h3>Travel Situational Quiz</h3>
+                    <h3>Travel Quiz</h3>
                     <p>25 Real Travel Situations<br>Audio Answers &amp; Best Score</p>
-                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">STUDY NOW</div>
+                    <div class="btn-bottom" style="color:#e74c3c; border:1px solid #e74c3c;">PLAY QUIZ</div>
                 </a>
             </div>
         </div>
 
-        <!-- ================= BEGINNER SECTION ================= -->
-        <div id="section-beginner" class="level-section">
-            <h2 class="section-title" style="color:#2ecc71;"><i class="fa-solid fa-seedling"></i> Beginner (N5-N4)</h2>
-            
-            <h4 class="sub-category-title" style="border-color: #2980b9;">Hiragana Practice</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="hiragana-nazori.html" class="unified-card">
-                    <span class="badge-interactive">Interactive✨</span>
+        <!-- ================= ⭐️ 2. CULTURE & FUN ================= -->
+        <div id="section-culture" class="level-section" data-section-key="culture">
+            <h2 class="section-title" style="color:var(--primary);"><i class="fa-solid fa-star"></i> Culture &amp; Fun</h2>
+
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: var(--primary);">Real-Life Japanese &amp; Listening</h4>
+                <span class="sub-cat-prog" data-group-prog="culture-main">0 / 4</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="culture-main">
+                <a href="audioblog.html" class="unified-card is-hero-pick" data-mat="audioblog.html" data-title="Audio Blog">
+                    <span class="step-pill first">Listening</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-circle-play main-icon" style="color: #2ecc71;"></i>
+                    <h3>Audio Blog</h3>
+                    <p>Natural Stories &amp; Transcript</p>
+                    <div class="btn-bottom" style="color:#2ecc71; border:1px solid #2ecc71;">LISTEN NOW</div>
+                </a>
+                <a href="idioms.html" class="unified-card" data-mat="idioms.html" data-title="Idioms &amp; Slang">
+                    <span class="step-pill">40 Idioms</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-comments main-icon" style="color: #9b59b6;"></i>
+                    <h3>Idioms &amp; Slang</h3>
+                    <p>Daily Native Expressions</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="onomato.html" class="unified-card" data-mat="onomato.html" data-title="Onomatopoeia">
+                    <span class="step-pill">42 Words</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-comment-dots main-icon" style="color: #e84393;"></i>
+                    <h3>Onomatopoeia</h3>
+                    <p>Sounds &amp; Feelings + Quiz</p>
+                    <div class="btn-bottom" style="color:#e84393; border:1px solid #e84393;">STUDY NOW</div>
+                </a>
+                <a href="anime1.html" class="unified-card" data-mat="anime1.html" data-title="Anime Titles in Japanese">
+                    <span class="step-pill">40 Titles</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-tv main-icon" style="color: #8e44ad;"></i>
+                    <h3>Anime Titles in Japanese</h3>
+                    <p>Learn 40 Famous Titles with Audio</p>
+                    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ================= 🌱 3. BEGINNER SECTION ================= -->
+        <div id="section-beginner" class="level-section" data-section-key="beginner">
+            <h2 class="section-title" style="color:#2ecc71;"><i class="fa-solid fa-seedling"></i> Beginner (N5 - N4)</h2>
+
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #2980b9;">Hiragana (Write → Read → Type)</h4>
+                <span class="sub-cat-prog" data-group-prog="beg-hira">0 / 3</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="beg-hira">
+                <a href="hiragana-nazori.html" class="unified-card" data-mat="hiragana-nazori.html" data-title="Write Hiragana">
+                    <span class="badge-interactive">Start Here✨</span>
+                    <span class="step-pill first">Step 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-pencil main-icon" style="color: #2980b9;"></i>
-                    <h3>Hiragana Tracing</h3>
-                    <p>Trace and Practice</p>
+                    <h3>Write Hiragana</h3>
+                    <p>Trace &amp; Learn Stroke Order</p>
                     <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
                 </a>
-                <a href="hiraganatype.html" class="unified-card">
-                    <span class="badge-interactive badge-game">Game🎮</span>
-                    <i class="fa-solid fa-keyboard main-icon" style="color: #2980b9;"></i>
-                    <h3>Hiragana Master</h3>
-                    <p>Typing & Reading Practice</p>
-                    <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">PLAY NOW</div>
-                </a>
-                <a href="Hiragana.html" class="unified-card">
+                <a href="Hiragana.html" class="unified-card" data-mat="Hiragana.html" data-title="Read Hiragana">
+                    <span class="step-pill">Step 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-language main-icon" style="color: #2980b9;"></i>
-                    <h3>Hiragana</h3>
-                    <p>Hiragana Practice with PC font</p>
+                    <h3>Read Hiragana</h3>
+                    <p>PC &amp; Real-World Fonts</p>
                     <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
+                </a>
+                <a href="hiraganatype.html" class="unified-card" data-mat="hiraganatype.html" data-title="Type Hiragana">
+                    <span class="badge-interactive badge-game">Game🎮</span>
+                    <span class="step-pill">Step 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-keyboard main-icon" style="color: #2980b9;"></i>
+                    <h3>Type Hiragana</h3>
+                    <p>Speed Typing Game</p>
+                    <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">PLAY NOW</div>
                 </a>
             </div>
 
-            <h4 class="sub-category-title" style="border-color: #d35400;">Katakana Practice</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="katakana-nazori.html" class="unified-card">
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #d35400;">Katakana (Write → Read → Menu → Type → Match)</h4>
+                <span class="sub-cat-prog" data-group-prog="beg-kata">0 / 5</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="beg-kata">
+                <a href="katakana-nazori.html" class="unified-card" data-mat="katakana-nazori.html" data-title="Write Katakana">
                     <span class="badge-interactive">Interactive✨</span>
+                    <span class="step-pill first">Step 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-pencil main-icon" style="color: #d35400;"></i>
-                    <h3>Katakana Tracing</h3>
-                    <p>Trace and Practice</p>
+                    <h3>Write Katakana</h3>
+                    <p>Trace &amp; Practice Strokes</p>
                     <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
                 </a>
-                <a href="katakanatype.html" class="unified-card">
+                <a href="Katakana1.html" class="unified-card" data-mat="Katakana1.html" data-title="Read Katakana">
+                    <span class="step-pill">Step 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-language main-icon" style="color: #d35400;"></i>
+                    <h3>Read Katakana</h3>
+                    <p>PC &amp; Real-World Fonts</p>
+                    <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
+                </a>
+                <a href="Katakana1-2.html" class="unified-card" data-mat="Katakana1-2.html" data-title="Menu Katakana">
+                    <span class="step-pill">Step 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-mug-saucer main-icon" style="color: #e67e22;"></i>
+                    <h3>Menu Katakana</h3>
+                    <p>Food, Drinks &amp; Daily Goods</p>
+                    <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
+                </a>
+                <a href="katakanatype.html" class="unified-card" data-mat="katakanatype.html" data-title="Type Katakana">
                     <span class="badge-interactive badge-game">Game🎮</span>
+                    <span class="step-pill">Step 4</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-keyboard main-icon" style="color: #d35400;"></i>
-                    <h3>Katakana Master</h3>
-                    <p>Typing & Reading Practice</p>
+                    <h3>Type Katakana</h3>
+                    <p>Speed Typing Game</p>
                     <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">PLAY NOW</div>
                 </a>
-                <a href="Katakana1.html" class="unified-card">
-                    <i class="fa-solid fa-language main-icon" style="color: #d35400;"></i>
-                    <h3>Katakana 1</h3>
-                    <p>Katakana Practice with PC font</p>
-                    <div class="btn-bottom" style="color:#d35400; border:1px solid #d35400;">STUDY NOW</div>
-                </a>
-                <a href="matching.html" class="unified-card">
+                <a href="matching.html" class="unified-card" data-mat="matching.html" data-title="Match Kana">
                     <span class="badge-interactive badge-game">Game🎮</span>
-                    <i class="fa-solid fa-gamepad main-icon" style="color: #ff9a9e;"></i>
-                    <h3>Matching Game</h3>
-                    <p>Hiragana & Katakana Matching</p>
-                    <div class="btn-bottom" style="color:#ff9a9e; border:1px solid #ff9a9e;">PLAY NOW</div>
+                    <span class="step-pill">Step 5</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-gamepad main-icon" style="color: #ff7675;"></i>
+                    <h3>Match Kana</h3>
+                    <p>Hiragana ↔ Katakana Game</p>
+                    <div class="btn-bottom" style="color:#ff7675; border:1px solid #ff7675;">PLAY NOW</div>
                 </a>
-                <a href="Katakana1-2.html" class="unified-card">
-                    <i class="fa-solid fa-language main-icon" style="color: #e67e22;"></i>
-                    <h3>Katakana 2</h3>
-                    <p>Food, Drinks, Daily Goods</p>
+            </div>
+
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #f39c12;">Grammar N5–N4 (Step 1 → 7)</h4>
+                <span class="sub-cat-prog" data-group-prog="beg-gram">0 / 7</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="beg-gram">
+                <a href="adj.html" class="unified-card" data-mat="adj.html" data-title="Adjectives 200">
+                    <span class="badge-interactive">Interactive✨</span>
+                    <span class="step-pill first">Step 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-shapes main-icon" style="color: #f39c12;"></i>
+                    <h3>Adjectives 200</h3>
+                    <p>i-adj &amp; na-adj Flashcards<br>JLPT N5–N1⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="plainform.html" class="unified-card" data-mat="plainform.html" data-title="Plain Form 300">
+                    <span class="badge-interactive">Interactive✨</span>
+                    <span class="step-pill">Step 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-bolt main-icon" style="color: #f39c12;"></i>
+                    <h3>Plain Form 300</h3>
+                    <p>Verb Conjugation Trainer</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="Grammar1-1.html" class="unified-card" data-mat="Grammar1-1.html" data-title="N5 Sentences 1">
+                    <span class="step-pill">Step 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
+                    <h3>N5 Sentences 1</h3>
+                    <p>Basic N5 Sentence Builder<br>JLPT N5⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="Grammar1-2.html" class="unified-card" data-mat="Grammar1-2.html" data-title="N5 Sentences 2">
+                    <span class="step-pill">Step 4</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
+                    <h3>N5 Sentences 2</h3>
+                    <p>More N5 Sentence Builder<br>JLPT N5⭐️</p>
+                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
+                </a>
+                <a href="Grammar2-1.html" class="unified-card" data-mat="Grammar2-1.html" data-title="N4 Sentences 1">
+                    <span class="step-pill">Step 5</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #e67e22;"></i>
+                    <h3>N4 Sentences 1</h3>
+                    <p>Everyday N4 Builder<br>JLPT N4⭐️⭐️</p>
+                    <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
+                </a>
+                <a href="Grammar2-2.html" class="unified-card" data-mat="Grammar2-2.html" data-title="N4 Sentences 2">
+                    <span class="step-pill">Step 6</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #e67e22;"></i>
+                    <h3>N4 Sentences 2</h3>
+                    <p>Next N4 Builder<br>JLPT N4⭐️⭐️</p>
+                    <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
+                </a>
+                <a href="conditional1.html" class="unified-card" data-mat="conditional1.html" data-title="N4 Conditionals">
+                    <span class="step-pill">Step 7</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-code-branch main-icon" style="color: #e67e22;"></i>
+                    <h3>N4 Conditionals</h3>
+                    <p>Master と・ば・たら・なら<br>JLPT N4⭐️⭐️</p>
                     <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">STUDY NOW</div>
                 </a>
             </div>
 
-            <h4 class="sub-category-title" style="border-color: #f39c12;">Grammar N5-N4</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="adj.html" class="unified-card">
-                    <span class="badge-interactive">Interactive✨</span>
-                    <i class="fa-solid fa-shapes main-icon" style="color: #f39c12;"></i>
-                    <h3>Adjectives 200</h3>
-                    <p>i-adj & na-adj Flashcards<br>JLPT N5-N1⭐️</p>
-                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-                </a>
-                <a href="plainform.html" class="unified-card">
-                    <span class="badge-interactive">Interactive✨</span>
-                    <i class="fa-solid fa-shapes main-icon" style="color: #f39c12;"></i>
-                    <h3>Plain Form Practice</h3>
-                    <p>Flashcards Verb Practice</p>
-                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-                </a>
-                <a href="Grammar1-1.html" class="unified-card">
-                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
-                    <h3>N5 Grammar 1-1</h3>
-                    <p>Sentence Builder Practice<br>JLPT N5⭐️</p>
-                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-                </a>
-                <a href="Grammar1-2.html" class="unified-card">
-                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
-                    <h3>N5 Grammar 1-2</h3>
-                    <p>Sentence Builder Practice<br>JLPT N5⭐️</p>
-                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-                </a>
-                <a href="Grammar2-1.html" class="unified-card">
-                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
-                    <h3>N4 Grammar 2-1</h3>
-                    <p>Sentence Builder Practice<br>JLPT N4⭐️⭐️</p>
-                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-                </a>
-                <a href="Grammar2-2.html" class="unified-card">
-                    <i class="fa-solid fa-pen-ruler main-icon" style="color: #f39c12;"></i>
-                    <h3>N4 Grammar 2-2</h3>
-                    <p>Sentence Builder Practice<br>JLPT N4⭐️⭐️</p>
-                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-                </a>
-                <a href="conditional1.html" class="unified-card">
-                    <i class="fa-solid fa-code-branch main-icon" style="color: #f39c12;"></i>
-                    <h3>N4 Conditionals</h3>
-                    <p>Conditional Sentence Practice<br>JLPT N4⭐️⭐️</p>
-                    <div class="btn-bottom" style="color:#f39c12; border:1px solid #f39c12;">STUDY NOW</div>
-                </a>
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #27ae60;">Kanji N5–N4</h4>
+                <span class="sub-cat-prog" data-group-prog="beg-kanji">0 / 7</span>
             </div>
-
-            <h4 class="sub-category-title" style="border-color: #27ae60;">Kanji N5-N4</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="N4-5verb1-1.html" class="unified-card">
-                    <span class="badge-interactive badge-game">Quiz❓</span>
-                    <i class="fa-solid fa-person-running main-icon" style="color: #27ae60;"></i> 
-                    <h3>Kanji 100 Quiz (Verbs)</h3>
-                    <p>N4/N5 Challenge</p>
-                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-                </a>
-                <a href="N4-5adj1-1.html" class="unified-card">
-                    <span class="badge-interactive badge-game">Quiz❓</span>
-                    <i class="fa-solid fa-palette main-icon" style="color: #27ae60;"></i> 
-                    <h3>Kanji 100 Quiz (Adj)</h3>
-                    <p>N4/N5 Challenge</p>
-                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-                </a>
-                <a href="N4-5noun1-1.html" class="unified-card">
-                    <span class="badge-interactive badge-game">Quiz❓</span>
-                    <i class="fa-solid fa-cube main-icon" style="color: #27ae60;"></i> 
-                    <h3>Kanji 100 Quiz (Nouns)</h3>
-                    <p>N4/N5 Challenge</p>
-                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div> 
-                </a>
-                <a href="Kanji-N4-5.html" class="unified-card">
-                    <i class="fa-solid fa-cube main-icon" style="color: #27ae60;"></i>
-                    <h3>Kanji Level (General)</h3>
-                    <p>300 Essential Kanji Master</p>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="beg-kanji">
+                <a href="Kanji-N4-5.html" class="unified-card" data-mat="Kanji-N4-5.html" data-title="Core 300 Kanji">
+                    <span class="step-pill first">Core 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-cubes main-icon" style="color: #27ae60;"></i>
+                    <h3>Core 300 Kanji</h3>
+                    <p>300 Essential N5–N4 Kanji</p>
                     <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">STUDY NOW</div>
                 </a>
-                <a href="A1-1.html" class="unified-card">
-                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i> 
+                <a href="N4-5verb1-1.html" class="unified-card" data-mat="N4-5verb1-1.html" data-title="N5–N4 Kanji Verbs">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <span class="step-pill">Core 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-person-running main-icon" style="color: #27ae60;"></i>
+                    <h3>N5–N4 Kanji Verbs</h3>
+                    <p>100 Essential Verbs Quiz</p>
+                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">PLAY QUIZ</div>
+                </a>
+                <a href="N4-5adj1-1.html" class="unified-card" data-mat="N4-5adj1-1.html" data-title="N5–N4 Kanji Adj">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <span class="step-pill">Core 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-palette main-icon" style="color: #27ae60;"></i>
+                    <h3>N5–N4 Kanji Adj</h3>
+                    <p>100 Essential Adjectives</p>
+                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">PLAY QUIZ</div>
+                </a>
+                <a href="N4-5noun1-1.html" class="unified-card" data-mat="N4-5noun1-1.html" data-title="N5–N4 Kanji Nouns">
+                    <span class="badge-interactive badge-game">Quiz❓</span>
+                    <span class="step-pill">Core 4</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-cube main-icon" style="color: #27ae60;"></i>
+                    <h3>N5–N4 Kanji Nouns</h3>
+                    <p>100 Essential Nouns Quiz</p>
+                    <div class="btn-bottom" style="color:#27ae60; border:1px solid #27ae60;">PLAY QUIZ</div>
+                </a>
+                <a href="A1-1.html" class="unified-card" data-mat="A1-1.html" data-title="Marugoto A1-1">
+                    <span class="step-pill">Textbook</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i>
                     <h3>Marugoto A1-1</h3>
-                    <p>Entry Level Marugoto A1</p>
+                    <p>65 Starter Kanji</p>
                     <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
                 </a>
-                <a href="A1-2.html" class="unified-card">
-                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i> 
+                <a href="A1-2.html" class="unified-card" data-mat="A1-2.html" data-title="Marugoto A1-2">
+                    <span class="step-pill">Textbook</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i>
                     <h3>Marugoto A1-2</h3>
-                    <p>Elementary Marugoto A1-2</p>
+                    <p>156 Elementary Kanji</p>
                     <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
                 </a>
-                <a href="A2.html" class="unified-card">
-                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i> 
+                <a href="A2.html" class="unified-card" data-mat="A2.html" data-title="Marugoto A2">
+                    <span class="step-pill">Textbook</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-book-open main-icon" style="color: #3498db;"></i>
                     <h3>Marugoto A2</h3>
-                    <p>Elementary Marugoto A2</p>
+                    <p>170 Elementary Kanji</p>
                     <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
                 </a>
             </div>
         </div>
 
-        <!-- ================= INTERMEDIATE SECTION ================= -->
-        <div id="section-intermediate" class="level-section">
-            <h2 class="section-title" style="color:#3498db;"><i class="fa-solid fa-rocket"></i> Intermediate (N3-N2)</h2>
-            
-            <h4 class="sub-category-title" style="border-color: #9b59b6;">Grammar N3 &amp; N2</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="n2-grammar.html" class="unified-card">
-                    <span class="badge-interactive badge-game">NEW✨ 120</span>
+        <!-- ================= 🚀 4. INTERMEDIATE SECTION ================= -->
+        <div id="section-intermediate" class="level-section" data-section-key="intermediate">
+            <h2 class="section-title" style="color:#3498db;"><i class="fa-solid fa-rocket"></i> Intermediate (N4→N3 &amp; N2)</h2>
+
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #9b59b6;">Grammar Roadmap (Step 1 → 4)</h4>
+                <span class="sub-cat-prog" data-group-prog="int-gram">0 / 4</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="int-gram">
+                <a href="grammar-quest.html" class="unified-card is-hero-pick" data-mat="grammar-quest.html" data-title="OHAYO Grammar Quest">
+                    <span class="badge-interactive badge-orange">NEW✨ RPG</span>
+                    <span class="step-pill first">Step 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-gamepad main-icon" style="color:#ff9f43;"></i>
+                    <h3>OHAYO Grammar Quest</h3>
+                    <p>N4→N3 Bridge · 45 Patterns<br>Boss Battle &amp; 5 Languages</p>
+                    <div class="btn-bottom" style="color:#e67e22; border:1px solid #e67e22;">PLAY QUEST</div>
+                </a>
+                <a href="Grammar3-1.html" class="unified-card" data-mat="Grammar3-1.html" data-title="N3 Sentence Drill">
+                    <span class="step-pill">Step 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-pen-ruler main-icon" style="color:#9b59b6;"></i>
+                    <h3>N3 Sentence Drill</h3>
+                    <p>Quick N3 Grammar Practice<br>JLPT N3⭐️⭐️⭐️</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="n3-grammar.html" class="unified-card" data-mat="n3-grammar.html" data-title="JLPT N3 Grammar">
+                    <span class="badge-interactive badge-game">84 Patterns</span>
+                    <span class="step-pill">Step 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-graduation-cap main-icon" style="color:#9b59b6;"></i>
+                    <h3>JLPT N3 Grammar</h3>
+                    <p>14 Lessons · Audio · Mock Test</p>
+                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                </a>
+                <a href="n2-grammar.html" class="unified-card" data-mat="n2-grammar.html" data-title="JLPT N2 Grammar">
+                    <span class="badge-interactive badge-game">120 Patterns</span>
+                    <span class="step-pill">Step 4</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
                     <i class="fa-solid fa-graduation-cap main-icon" style="color:#2980b9;"></i>
-                    <h3>JLPT N2 Grammar Trainer</h3>
-                    <p>15 Lessons · 120 Grammar Points<br>Audio · Compare · 180 JLPT Quiz</p>
+                    <h3>JLPT N2 Grammar</h3>
+                    <p>15 Lessons · Audio · Mock Test</p>
                     <div class="btn-bottom" style="color:#2980b9; border:1px solid #2980b9;">STUDY NOW</div>
                 </a>
-                <a href="n3-grammar.html" class="unified-card">
-                    <span class="badge-interactive badge-game">NEW✨ 84</span>
-                    <i class="fa-solid fa-graduation-cap main-icon" style="color:#9b59b6;"></i>
-                    <h3>JLPT N3 Grammar Trainer</h3>
-                    <p>14 Lessons · 84 Grammar Points<br>Audio · Compare · 141 JLPT Quiz</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+            </div>
+
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #3498db;">N3 Vocabulary by Topic</h4>
+                <span class="sub-cat-prog" data-group-prog="int-vocab">0 / 3</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="int-vocab">
+                <a href="N3-1.html" class="unified-card" data-mat="N3-1.html" data-title="Daily Life &amp; Cooking">
+                    <span class="step-pill first">Topic 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-utensils main-icon" style="color: #3498db;"></i>
+                    <h3>Daily Life &amp; Cooking</h3>
+                    <p>N3 Everyday Vocabulary</p>
+                    <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
                 </a>
-                <a href="Grammar3-1.html" class="unified-card">
-                    <i class="fa-solid fa-pen-ruler main-icon" style="color:#9b59b6;"></i>
-                    <h3>N3 Grammar 1-1</h3>
-                    <p>Grammar Practice<br>JLPT N3⭐️⭐️⭐️</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                <a href="N3-2.html" class="unified-card" data-mat="N3-2.html" data-title="Travel &amp; Leisure">
+                    <span class="step-pill">Topic 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-suitcase-rolling main-icon" style="color: #3498db;"></i>
+                    <h3>Travel &amp; Leisure</h3>
+                    <p>N3 Outing Vocabulary</p>
+                    <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
+                </a>
+                <a href="N3-3.html" class="unified-card" data-mat="N3-3.html" data-title="Work &amp; Commuting">
+                    <span class="step-pill">Topic 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-briefcase main-icon" style="color: #3498db;"></i>
+                    <h3>Work &amp; Commuting</h3>
+                    <p>N3 Office Vocabulary</p>
+                    <div class="btn-bottom" style="color:#3498db; border:1px solid #3498db;">STUDY NOW</div>
                 </a>
             </div>
 
-            <h4 class="sub-category-title" style="border-color: #9b59b6;">Kanji & Vocabulary N3</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="N3verb1-1.html" class="unified-card">
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #8e44ad;">N3 Kanji</h4>
+                <span class="sub-cat-prog" data-group-prog="int-kanji">0 / 4</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="int-kanji">
+                <a href="Kanji3-1.html" class="unified-card" data-mat="Kanji3-1.html" data-title="N3 Kanji Part 1">
+                    <span class="step-pill first">Step 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-pen-nib main-icon" style="color: #8e44ad;"></i>
+                    <h3>N3 Kanji Part 1</h3>
+                    <p>Reading &amp; Context Trainer</p>
+                    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
+                </a>
+                <a href="Kanji3-2.html" class="unified-card" data-mat="Kanji3-2.html" data-title="N3 Kanji Part 2">
+                    <span class="step-pill">Step 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-pen-nib main-icon" style="color: #8e44ad;"></i>
+                    <h3>N3 Kanji Part 2</h3>
+                    <p>Kanji &amp; Vocab Master</p>
+                    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">STUDY NOW</div>
+                </a>
+                <a href="N3verb1-1.html" class="unified-card" data-mat="N3verb1-1.html" data-title="N3 Kanji Verbs 100">
                     <span class="badge-interactive badge-game">Quiz❓</span>
-                    <i class="fa-solid fa-person-running main-icon" style="color: #9b59b6;"></i> 
-                    <h3>Kanji 100 Quiz (Verbs)</h3>
-                    <p>N3 Challenge</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
+                    <span class="step-pill">Step 3</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-person-running main-icon" style="color: #8e44ad;"></i>
+                    <h3>N3 Kanji Verbs 100</h3>
+                    <p>100 Verb Readings Quiz</p>
+                    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">PLAY QUIZ</div>
                 </a>
-                <a href="N3noun1-1.html" class="unified-card">
+                <a href="N3noun1-1.html" class="unified-card" data-mat="N3noun1-1.html" data-title="N3 Kanji Nouns 100">
                     <span class="badge-interactive badge-game">Quiz❓</span>
-                    <i class="fa-solid fa-cube main-icon" style="color: #9b59b6;"></i> 
-                    <h3>Kanji 100 Quiz (Nouns)</h3>
-                    <p>N3 Challenge</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div> 
-                </a>
-                <a href="Kanji3-1.html" class="unified-card">
-                    <i class="fa-solid fa-pen-nib main-icon" style="color: #9b59b6;"></i> 
-                    <h3>Kanji 3-1</h3>
-                    <p>Intermediate Practice<br>JLPT STYLE N3</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-                </a>
-                <a href="Kanji3-2.html" class="unified-card">
-                    <i class="fa-solid fa-pen-nib main-icon" style="color: #9b59b6;"></i> 
-                    <h3>Kanji 3-2</h3>
-                    <p>Intermediate Practice<br>JLPT STYLE N3</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-                </a>
-                <a href="N3-1.html" class="unified-card">
-                    <i class="fa-solid fa-spell-check main-icon" style="color: #9b59b6;"></i> 
-                    <h3>N3 Vocabulary-1</h3>
-                    <p>Practice N3 with Romaji</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-                </a>
-                <a href="N3-2.html" class="unified-card">
-                    <i class="fa-solid fa-spell-check main-icon" style="color: #9b59b6;"></i> 
-                    <h3>N3 Vocabulary-2</h3>
-                    <p>Practice N3 with Romaji</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
-                </a>
-                <a href="N3-3.html" class="unified-card">
-                    <i class="fa-solid fa-spell-check main-icon" style="color: #9b59b6;"></i> 
-                    <h3>N3 Vocabulary-3</h3>
-                    <p>Practice N3 with Romaji</p>
-                    <div class="btn-bottom" style="color:#9b59b6; border:1px solid #9b59b6;">STUDY NOW</div>
+                    <span class="step-pill">Step 4</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-cube main-icon" style="color: #8e44ad;"></i>
+                    <h3>N3 Kanji Nouns 100</h3>
+                    <p>100 Noun Readings Quiz</p>
+                    <div class="btn-bottom" style="color:#8e44ad; border:1px solid #8e44ad;">PLAY QUIZ</div>
                 </a>
             </div>
         </div>
 
-        <!-- ================= ADVANCED SECTION ================= -->
-        <div id="section-advanced" class="level-section">
+        <!-- ================= 👑 5. ADVANCED SECTION ================= -->
+        <div id="section-advanced" class="level-section" data-section-key="advanced">
             <h2 class="section-title" style="color:#e74c3c;"><i class="fa-solid fa-crown"></i> Advanced (N1+)</h2>
-            
-            <h4 class="sub-category-title" style="border-color: #c0392b;">Advanced Kanji N1</h4>
-            <div class="unified-grid horizontal-scroll-mobile">
-                <a href="N1-1.html" class="unified-card">
+
+            <div class="sub-cat-row">
+                <h4 class="sub-category-title" style="border-color: #c0392b;">JLPT N1 Kanji Challenge</h4>
+                <span class="sub-cat-prog" data-group-prog="adv-kanji">0 / 2</span>
+            </div>
+            <div class="unified-grid horizontal-scroll-mobile" data-group="adv-kanji">
+                <a href="N1-1.html" class="unified-card" data-mat="N1-1.html" data-title="N1 Kanji Part 1">
                     <span class="badge-interactive badge-game">Quiz❓</span>
-                    <i class="fa-solid fa-award main-icon" style="color: #c0392b;"></i> 
-                    <h3>Kanji N1-1</h3>
+                    <span class="step-pill first">Part 1</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-award main-icon" style="color: #c0392b;"></i>
+                    <h3>N1 Kanji Part 1</h3>
                     <p>200 Questions Challenge<br>🏆</p>
-                    <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
+                    <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">PLAY QUIZ</div>
                 </a>
-                <a href="N1-2.html" class="unified-card">
+                <a href="N1-2.html" class="unified-card" data-mat="N1-2.html" data-title="N1 Kanji Part 2">
                     <span class="badge-interactive badge-game">Quiz❓</span>
-                    <i class="fa-solid fa-award main-icon" style="color: #c0392b;"></i> 
-                    <h3>Kanji N1-2</h3>
+                    <span class="step-pill">Part 2</span>
+                    <button type="button" class="done-stamp" aria-label="Mark as done"><i class="fa-solid fa-check"></i><span></span></button>
+                    <i class="fa-solid fa-award main-icon" style="color: #c0392b;"></i>
+                    <h3>N1 Kanji Part 2</h3>
                     <p>200 Questions Challenge<br>🏆</p>
-                    <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">STUDY NOW</div> 
+                    <div class="btn-bottom" style="color:#c0392b; border:1px solid #c0392b;">PLAY QUIZ</div>
                 </a>
             </div>
         </div>
@@ -1117,7 +1343,7 @@
         <h2 style="border-top: 1px solid #ccc; padding-top: 3rem; margin-top: 4rem;">Links & Support</h2>
         <p style="text-align: center; color: #777; margin-bottom: 2rem;">Lesson purchases &amp; booking are in the <a href="#lessons" style="color: var(--primary); font-weight: bold;">Lesson Course</a> section above.</p>
         <div class="unified-grid">
-            <a href="https://www.instagram.com/ohayo_center" class="unified-card" target="_blank">
+            <a href="https://www.instagram.com/ohayo_center" class="unified-card" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-instagram main-icon" style="color: #E4405F;"></i>
                 <h3>Contact / Instagram</h3>
                 <p>Send me a DM on Instagram<br>for lesson inquiries &amp; questions.<br><strong>@ohayo_center</strong></p>
@@ -1129,9 +1355,9 @@
                 <h3>Booking Schedule</h3>
                 <p>For current students and<br>lesson pack members.</p>
                 <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: auto;">
-                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🍙</span> 30 MIN</a>
-                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🥪</span> 45 MIN</a>
-                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🍜</span> 60 MIN</a>
+                    <a href="https://calendar.app.google/Gf9HJM4vvkZKGsxD7" target="_blank" rel="noopener noreferrer" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🍙</span> 30 MIN</a>
+                    <a href="https://calendar.app.google/yBzRge6w3UXoAy6B6" target="_blank" rel="noopener noreferrer" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🥪</span> 45 MIN</a>
+                    <a href="https://calendar.app.google/zTi65D1gGWZZLiv17" target="_blank" rel="noopener noreferrer" class="btn-bottom booking-btn" style="color:#9b59b6; border:1px solid #9b59b6; text-decoration:none; display: flex; justify-content: center; align-items: center; gap: 8px;"><span>🍜</span> 60 MIN</a>
                 </div>
             </div>
             <div class="unified-card">
@@ -1139,22 +1365,16 @@
                 <h3>Learning Material</h3>
                 <p>Recommended resources<br>for your Japanese study.</p>
                 <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: auto;">
-                    <a href="https://marugotoweb.jp/ja/" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>📚</span> MARUGOTO PLUS</a>
-                    <a href="https://jisho.org/" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>🔍</span> JISHO.ORG</a>
-                    <a href="https://www.irodori.jpf.go.jp/index.html" target="_blank" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>🎨</span> IRODORI</a>
+                    <a href="https://marugotoweb.jp/ja/" target="_blank" rel="noopener noreferrer" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>📚</span> MARUGOTO PLUS</a>
+                    <a href="https://jisho.org/" target="_blank" rel="noopener noreferrer" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>🔍</span> JISHO.ORG</a>
+                    <a href="https://www.irodori.jpf.go.jp/index.html" target="_blank" rel="noopener noreferrer" class="btn-bottom booking-btn" style="color:var(--primary); border:1px solid var(--primary); text-decoration:none;"><span>🎨</span> IRODORI</a>
                 </div>
             </div>
-            <a href="https://buymeacoffee.com/ohayocenter" class="unified-card" target="_blank">
+            <a href="https://buymeacoffee.com/ohayocenter" class="unified-card" target="_blank" rel="noopener noreferrer">
                 <i class="fa-solid fa-mug-hot main-icon" style="color: #FFDD00;"></i>
                 <h3>SUPPORT OHAYO CENTER</h3>
                 <p>THANK YOU❤️</p>
                 <div class="btn-bottom" style="border: none; padding: 0;"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BMC" style="height: 30px;"></div>
-            </a>
-            <a href="#lessons" class="unified-card">
-                <i class="fa-solid fa-wallet main-icon" style="color: #00b894;"></i>
-                <h3>How to Pay</h3>
-                <p style="font-size: 0.8rem; line-height: 1.5;">Single lessons &amp; packs are<br>purchased in the <strong>Lesson Course</strong><br>section. We accept <strong>Credit Card</strong>,<br><strong>Apple Pay</strong>, <strong>Google Pay</strong><br>and <strong>Wise</strong>.</p>
-                <div class="btn-bottom" style="color:#00b894; border:1px solid #00b894;">SEE LESSONS &amp; PRICES</div>
             </a>
         </div>
     </section>
@@ -1251,39 +1471,148 @@
             title: "✈️ Best 3 Materials for Your Japan Trip",
             tip: "No kana reading required! Start with listening and flashcards.",
             items: [
-                { badge: "START HERE", name: "Listening Quests (9 Scenes)", desc: "Hear the clerk & pick your reply (EN/PT/IT/ES).", href: "trip-listen.html", color: "#e74c3c" },
-                { badge: "STEP 2", name: "Travel Flashcards & Quiz", desc: "50 essential travel phrases & 50 verbs with audio.", href: "trip-flashcards.html", color: "#e67e22" },
-                { badge: "STEP 3", name: "Travel Situational Quiz", desc: "25 real airport, hotel & restaurant challenges.", href: "trip-quiz.html", color: "#ff9f43" }
-            ]
-        },
-        beginner: {
-            title: "🌱 Best 3 Materials for Complete Beginners",
-            tip: "Learn hiragana step by step through tracing and fun games!",
-            items: [
-                { badge: "STEP 1", name: "Hiragana Tracing", desc: "Trace each character right on your screen with audio.", href: "hiragana-nazori.html", color: "#2980b9" },
-                { badge: "STEP 2", name: "Hiragana Master (Game)", desc: "Fun typing & reading practice with saved best scores.", href: "hiraganatype.html", color: "#2ecc71" },
-                { badge: "STEP 3", name: "Adjectives 200 Flashcards", desc: "Master everyday i-adj & na-adj with native audio.", href: "adj.html", color: "#f39c12" }
+                { badge: "STEP 1", name: "Listen in Japan (9 Scenes)", desc: "Hear the clerk & pick your reply (EN/PT/IT/ES).", href: "trip-listen.html", color: "#e74c3c" },
+                { badge: "STEP 2", name: "Travel Flashcards", desc: "50 essential travel phrases & 50 verbs with audio.", href: "trip-flashcards.html", color: "#e67e22" },
+                { badge: "STEP 3", name: "Travel Quiz (25 Scenes)", desc: "25 real airport, hotel & restaurant challenges.", href: "trip-quiz.html", color: "#ff9f43" }
             ]
         },
         culture: {
             title: "🎬 Best 3 Materials for Natural & Fun Japanese",
             tip: "Enjoy real living Japanese beyond textbooks!",
             items: [
-                { badge: "PICK 1", name: "Audio Blog (Vol.1–Vol.7)", desc: "Natural Japanese monologues with script & English translation.", href: "audioblog.html", color: "#2ecc71" },
-                { badge: "PICK 2", name: "Japanese Idioms & Slang (40)", desc: "Illustrated everyday idioms and modern slang.", href: "idioms.html", color: "#9b59b6" },
-                { badge: "PICK 3", name: "Japanese Onomatopoeia", desc: "Sound & feeling words with cute illustrations.", href: "onomato.html", color: "#e84393" }
+                { badge: "PICK 1", name: "Audio Blog (Vol.1–Vol.7)", desc: "Natural Japanese stories with transcript & translation.", href: "audioblog.html", color: "#2ecc71" },
+                { badge: "PICK 2", name: "Idioms & Slang (40)", desc: "Illustrated everyday idioms and modern slang.", href: "idioms.html", color: "#9b59b6" },
+                { badge: "PICK 3", name: "Onomatopoeia (42 + Quiz)", desc: "Sound & feeling words with interactive quiz.", href: "onomato.html", color: "#e84393" }
+            ]
+        },
+        beginner: {
+            title: "🌱 Best 3 Materials for Complete Beginners",
+            tip: "Follow Write → Read → Type Hiragana, then build everyday words!",
+            items: [
+                { badge: "STEP 1", name: "Write Hiragana", desc: "Trace each character right on your screen with audio.", href: "hiragana-nazori.html", color: "#2980b9" },
+                { badge: "STEP 2", name: "Type Hiragana (Game)", desc: "Fun typing & reading practice with saved best scores.", href: "hiraganatype.html", color: "#2ecc71" },
+                { badge: "STEP 3", name: "Adjectives 200", desc: "Master everyday i-adj & na-adj with native audio.", href: "adj.html", color: "#f39c12" }
             ]
         },
         jlpt: {
-            title: "📝 Best 3 Materials for JLPT Preparation",
-            tip: "Build speed and accuracy with focused grammar & kanji drills!",
+            title: "📝 Best 3 Materials for JLPT & Level Up",
+            tip: "Bridge N4→N3 with Grammar Quest, then master N3 & N2!",
             items: [
-                { badge: "N5–N4", name: "N5 Grammar Sentence Builder", desc: "Arrange words to master core N5 grammar patterns.", href: "Grammar1-1.html", color: "#f39c12" },
-                { badge: "N3", name: "N3 Kanji 100 Quiz (Verbs)", desc: "JLPT N3 kanji reading challenge with score tracking.", href: "N3verb1-1.html", color: "#3498db" },
-                { badge: "N1", name: "Kanji N1-1 (200 Questions)", desc: "Native-level challenge for advanced learners.", href: "N1-1.html", color: "#c0392b" }
+                { badge: "N4→N3 NEW", name: "OHAYO Grammar Quest", desc: "45 bridge patterns as a cozy RPG (5 langs & audio).", href: "grammar-quest.html", color: "#ff9f43" },
+                { badge: "JLPT N3", name: "JLPT N3 Grammar (84)", desc: "14 lessons, native audio & 141 JLPT quiz questions.", href: "n3-grammar.html", color: "#9b59b6" },
+                { badge: "JLPT N2", name: "JLPT N2 Grammar (120)", desc: "15 lessons, native audio & 180 JLPT quiz questions.", href: "n2-grammar.html", color: "#2980b9" }
             ]
         }
     };
+
+    /* ====== Study Material Progress & Continue Tracker (localStorage) ====== */
+    const STUDY_STORE_KEY = 'ohayo_study_tracker_v1';
+    function loadStudyTracker() {
+        try {
+            const raw = JSON.parse(localStorage.getItem(STUDY_STORE_KEY) || '{}');
+            return {
+                done: new Set(Array.isArray(raw.done) ? raw.done : []),
+                last: raw.last && raw.last.href ? raw.last : null
+            };
+        } catch (e) { return { done: new Set(), last: null }; }
+    }
+    function saveStudyTracker(st) {
+        try {
+            localStorage.setItem(STUDY_STORE_KEY, JSON.stringify({ done: [...st.done], last: st.last }));
+        } catch (e) {}
+    }
+    function initStudyTracker() {
+        const st = loadStudyTracker();
+        const cards = [...document.querySelectorAll('.unified-card[data-mat]')];
+        const total = cards.length;
+
+        function refreshUI() {
+            let totalDone = 0;
+            cards.forEach(card => {
+                const id = card.dataset.mat;
+                const isDone = st.done.has(id);
+                if (isDone) totalDone++;
+                card.classList.toggle('is-done', isDone);
+                const lbl = card.querySelector('.done-stamp span');
+                if (lbl) lbl.textContent = isDone ? 'Done' : '';
+            });
+            const totEl = document.getElementById('studyTotalDone');
+            const fillEl = document.getElementById('studyTotalFill');
+            if (totEl) totEl.textContent = totalDone + ' / ' + total + ' Cleared';
+            if (fillEl) fillEl.style.width = (total ? Math.round((totalDone / total) * 100) : 0) + '%';
+
+            // Per-group counts
+            document.querySelectorAll('[data-group]').forEach(grid => {
+                const gKey = grid.dataset.group;
+                const gCards = grid.querySelectorAll('.unified-card[data-mat]');
+                let gDone = 0;
+                gCards.forEach(c => { if (st.done.has(c.dataset.mat)) gDone++; });
+                const badge = document.querySelector('[data-group-prog="' + gKey + '"]');
+                if (badge) badge.textContent = gDone + ' / ' + gCards.length;
+            });
+
+            // Per-section portal counts
+            document.querySelectorAll('.level-section[data-section-key]').forEach(sec => {
+                const sKey = sec.dataset.sectionKey;
+                const sCards = sec.querySelectorAll('.unified-card[data-mat]');
+                let sDone = 0;
+                sCards.forEach(c => { if (st.done.has(c.dataset.mat)) sDone++; });
+                const pEl = document.querySelector('[data-portal-prog="' + sKey + '"]');
+                if (pEl) pEl.textContent = sDone + ' / ' + sCards.length + ' Done';
+            });
+
+            // Continue button (only shown once the student has opened a material)
+            const cBtn = document.getElementById('studyContinueBtn');
+            const cTxt = document.getElementById('studyContinueTxt');
+            if (cBtn && cTxt) {
+                if (st.last && st.last.href) {
+                    cBtn.href = st.last.href;
+                    cTxt.textContent = 'Continue: ' + st.last.title;
+                    cBtn.classList.add('show');
+                } else {
+                    cBtn.classList.remove('show');
+                }
+            }
+        }
+
+        cards.forEach(card => {
+            const id = card.dataset.mat;
+            const title = card.dataset.title || id;
+            const btn = card.querySelector('.done-stamp');
+            if (btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (st.done.has(id)) st.done.delete(id);
+                    else st.done.add(id);
+                    saveStudyTracker(st);
+                    refreshUI();
+                });
+            }
+            card.addEventListener('click', function() {
+                st.last = { href: id, title: title };
+                saveStudyTracker(st);
+            });
+        });
+
+        // Also record clicks from 30-second starter quiz recommendations
+        const starterWrap = document.getElementById('starter-result');
+        if (starterWrap) {
+            starterWrap.addEventListener('click', function(e) {
+                const link = e.target.closest('a.starter-rec-card');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    const h4 = link.querySelector('h4');
+                    if (href && !href.startsWith('#')) {
+                        st.last = { href: href, title: h4 ? h4.textContent.trim() : href };
+                        saveStudyTracker(st);
+                    }
+                }
+            });
+        }
+
+        refreshUI();
+    }
 
     function pickStarterGoal(key, btn) {
         if (btn) {
@@ -1347,6 +1676,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         pickStarterGoal('travel');
+        initStudyTracker();
 
         var tzNote = document.getElementById('cal-tz-note');
         try {
