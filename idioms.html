@@ -1,1139 +1,1673 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Japanese Idioms Study Material - OHAYO CENTER">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="OHAYO CENTER">
-    <meta property="og:title" content="Japanese Idioms | OHAYO CENTER">
-    <meta property="og:description" content="Learn 40 Japanese idioms and slang with illustrations, literal translations, meanings and examples.">
-    <meta property="og:url" content="https://ohayocenter.com/idioms.html">
-    <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Japanese Idioms | OHAYO CENTER">
-    <meta name="twitter:description" content="Learn 40 Japanese idioms and slang with illustrations, literal translations, meanings and examples.">
-    <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
-    <title>Japanese Idioms | OHAYO CENTER</title>
-    
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" sizes="192x192" href="icon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Japanese Idioms &amp; Modern Slang Study Material - OHAYO CENTER">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OHAYO CENTER">
+  <meta property="og:title" content="Japanese Idioms &amp; Modern Slang | OHAYO CENTER">
+  <meta property="og:description" content="Learn 40 Japanese idioms and modern slang with illustrations, native audio, romaji, furigana, interactive quizzes, and 3D flashcards.">
+  <meta property="og:url" content="https://ohayocenter.com/idioms.html">
+  <meta property="og:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Japanese Idioms &amp; Modern Slang | OHAYO CENTER">
+  <meta name="twitter:description" content="Learn 40 Japanese idioms and modern slang with illustrations, native audio, romaji, furigana, interactive quizzes, and 3D flashcards.">
+  <meta name="twitter:image" content="https://ohayocenter.com/og-image-onigiri.jpg">
+  <title>Japanese Idioms | OHAYO CENTER</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #ff9f43;
-            --primary-hover: #ee8a2e;
-            --primary-light: #fff5eb;
-            --dark: #2c3e50;
-            --text: #444;
-            --bg: #fdfdfd;
-            --card-bg: #ffffff;
-            --border: #edf2f7;
-            --shadow: 0 10px 25px rgba(0,0,0,0.05);
-            --radius: 20px;
-        }
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" sizes="192x192" href="icon.png">
 
-        body.dark-mode {
-            --bg: #1a202c;
-            --card-bg: #2d3748;
-            --text: #e2e8f0;
-            --dark: #f7fafc;
-            --border: #4a5568;
-            --primary-light: #3e362e;
-            --shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Noto+Sans+JP:wght@400;700;800&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            color: var(--text);
-            background-color: var(--bg);
-            line-height: 1.8;
-            transition: background-color 0.3s, color 0.3s;
-        }
+  <style>
+    :root {
+      --primary: #ff9f43;
+      --primary-dark: #ee8a2e;
+      --primary-light: #fff5eb;
+      --dark: #2c3e50;
+      --text: #444;
+      --muted: #64748b;
+      --bg: #fdfaf6;
+      --card: #ffffff;
+      --border: #ebe4db;
+      --shadow: 0 10px 26px rgba(44, 62, 80, 0.07);
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --bad: #dc2626;
+      --bad-soft: #fee2e2;
+    }
+    body.dark-mode {
+      --dark: #f8fafc;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary-light: rgba(255, 159, 67, 0.16);
+      --good-soft: rgba(22, 163, 74, 0.22);
+      --bad-soft: rgba(220, 38, 38, 0.22);
+      --shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+    }
+    body.hide-furigana rt { display: none; }
+    body.hide-romaji .romaji-line { display: none; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.25s, color 0.25s;
+    }
 
-        /* ヘッダーの最適化（スマホ対応） */
-        nav {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 0 5%;
-            height: 70px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: background 0.3s;
-        }
+    /* --- Fixed Top Navigation (70px) --- */
+    nav {
+      background: rgba(255, 255, 255, 0.96);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 70px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+    body.dark-mode nav {
+      background: rgba(15, 23, 42, 0.94);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Sawarabi Mincho', serif;
+      font-weight: bold;
+      font-size: 1.25rem;
+      white-space: nowrap;
+    }
+    .logo a { text-decoration: none; color: var(--dark); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-links { list-style: none; display: flex; gap: 1.15rem; margin: 0; padding: 0; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.92rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 12px; }
+      .logo { font-size: 1rem; }
+      .nav-right { gap: 0.55rem; }
+      .nav-links { gap: 0.65rem; }
+      .nav-links a { font-size: 0.68rem; }
+      .theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+    }
 
-        .logo { 
-            font-family: 'Sawarabi Mincho', serif; 
-            font-weight: bold; 
-            font-size: 1.3rem;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .logo a { text-decoration: none; color: #000; transition: color 0.3s; }
-        body.dark-mode .logo a { color: #fff; }
+    /* --- Main Container --- */
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 18px 14px 40px; }
 
-        .nav-right { display: flex; align-items: center; gap: 1rem; }
-        .nav-links { list-style: none; display: flex; gap: 1rem; }
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--text); 
-            font-weight: 500; 
-            font-size: 0.75rem; 
-            transition: 0.2s;
-            text-transform: uppercase;
-        }
-        .nav-links a:hover { color: var(--primary); }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .top-bar h1 {
+      margin: 0;
+      font-family: 'Sawarabi Mincho', serif;
+      font-size: clamp(1.25rem, 3vw, 1.72rem);
+      color: var(--dark);
+    }
+    .mode-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mode-tab {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s;
+    }
+    .mode-tab:hover { border-color: var(--primary); }
+    .mode-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255, 159, 67, 0.34);
+    }
 
-        .theme-toggle {
-            background: var(--primary-light);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
+    /* --- Helper Strip + Progress --- */
+    .helper-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 11px 14px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+    .helper-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .helper-toggles { display: flex; gap: 6px; flex-wrap: wrap; }
+    .toggle-pill {
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .toggle-pill.on { background: var(--primary-light); border-color: var(--primary); color: #c8640b; }
+    body.dark-mode .toggle-pill.on { color: #ffbe76; }
+    .prog-label { font-size: 0.78rem; font-weight: 800; color: var(--dark); }
+    .prog-track { height: 7px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .prog-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), #22c55e); transition: width 0.35s; }
 
-        @media (max-width: 600px) {
-            nav { padding: 0 3%; }
-            .logo { font-size: 1.1rem; }
-            .nav-links { gap: 0.6rem; }
-            .nav-links a { font-size: 0.65rem; }
-            .container { margin-top: 80px; padding: 1rem; }
-        }
+    /* --- Gallery Toolbar --- */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 190px;
+      padding: 9px 14px;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--dark);
+      font-size: 0.85rem;
+      font-family: inherit;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .chip {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.14s;
+    }
+    .chip:hover { border-color: var(--primary); }
+    .chip.active { background: var(--primary-light); border-color: var(--primary); color: #c8640b; }
+    body.dark-mode .chip.active { color: #ffbe76; }
 
-        .container { max-width: 1100px; margin: 90px auto 0; padding: 2rem 1.5rem; }
+    /* --- Gallery Cards --- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: 0.2s;
+    }
+    .card.learned { border: 2px solid var(--good); }
+    .img-wrap { width: 100%; aspect-ratio: 16 / 9; background: #eef2f6; overflow: hidden; position: relative; }
+    body.dark-mode .img-wrap { background: #0f172a; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fav-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border: none;
+      background: rgba(255, 255, 255, 0.92);
+      color: #94a3b8;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fav-btn.on { color: #f59e0b; background: #fffbeb; }
+    .audio-row { position: absolute; bottom: 8px; right: 8px; display: flex; gap: 5px; }
+    .audio-fab {
+      border: none;
+      background: rgba(255, 255, 255, 0.94);
+      color: #2c3e50;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      font-family: inherit;
+    }
+    .audio-fab:hover { background: var(--primary); color: #fff; }
+    .card-body { padding: 14px 16px; display: flex; flex-direction: column; flex: 1; }
+    .jp-title { font-family: 'Sawarabi Mincho', serif; font-size: 1.32rem; font-weight: 700; color: var(--dark); margin: 0; }
+    .jp-read { font-size: 0.78rem; color: var(--muted); margin: 2px 0; }
+    .romaji-line { font-size: 0.8rem; font-weight: 700; color: #0284c7; margin: 0 0 6px; }
+    body.dark-mode .romaji-line { color: #38bdf8; }
+    .lit { font-size: 0.76rem; color: #e11d48; font-style: italic; margin: 0 0 5px; font-weight: 700; }
+    .en-mean { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); margin: 0 0 4px; }
+    .desc-line { font-size: 0.8rem; color: var(--muted); margin: 0 0 9px; line-height: 1.45; }
+    .ex-box {
+      background: var(--bg);
+      border-left: 3px solid var(--primary);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.84rem;
+      margin-bottom: 10px;
+      line-height: 1.85;
+    }
+    .ex-box ruby rt { font-size: 0.62rem; color: var(--muted); }
+    .ex-en { display: block; color: var(--muted); font-size: 0.74rem; line-height: 1.4; margin-top: 3px; }
+    .note-box {
+      background: var(--primary-light);
+      border: 1px dashed var(--primary);
+      border-radius: 9px;
+      padding: 7px 9px;
+      font-size: 0.76rem;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .mark-btn {
+      margin-top: auto;
+      width: 100%;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      padding: 9px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .card.learned .mark-btn { background: var(--good-soft); border-color: var(--good); color: var(--good); }
 
-        /* タイトル・検索・プログレス */
-        .header-section { text-align: center; margin-bottom: 3rem; }
-        .section-title { font-family: 'Sawarabi Mincho', serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 0.5rem; }
-        .search-container { max-width: 500px; margin: 1.5rem auto; position: relative; }
-        .search-input {
-            width: 100%; padding: 12px 20px 12px 45px; border-radius: 50px;
-            border: 2px solid var(--border); background: var(--card-bg);
-            color: var(--text); font-size: 0.9rem; outline: none;
-        }
-        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #a0aec0; }
-        .progress-container {
-            background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius);
-            margin-bottom: 2rem; box-shadow: var(--shadow); border: 1px solid var(--border);
-        }
-        .progress-bar-bg { background: var(--border); border-radius: 50px; height: 10px; overflow: hidden; }
-        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #ffbd69); transition: width 0.6s; width: 0%; }
-        .progress-stats { display: flex; justify-content: space-between; margin-top: 0.8rem; font-size: 0.85rem; font-weight: bold; }
+    /* --- Quiz View --- */
+    .quiz-wrap { max-width: 560px; margin: 0 auto 24px; }
+    .quiz-mode-bar { display: flex; justify-content: center; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+    .quiz-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .quiz-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 220px;
+      border-radius: 13px;
+      overflow: hidden;
+      margin: 8px 0 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .quiz-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .quiz-img.mystery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-light), var(--bg));
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.84rem;
+      padding: 12px;
+    }
+    .quiz-prompt { font-size: 1.15rem; font-weight: 800; color: var(--dark); margin: 4px 0; line-height: 1.65; }
+    .quiz-prompt ruby rt { font-size: 0.62rem; color: var(--muted); }
+    .quiz-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 10px; }
+    .quiz-opts { display: grid; gap: 8px; }
+    .quiz-opt {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 12px 14px;
+      min-height: 48px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: 0.14s;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+    .quiz-opt.ok { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+    .quiz-opt.ng { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+    .btn-primary {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      padding: 11px 22px;
+      min-height: 44px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 12px rgba(255, 159, 67, 0.34);
+    }
 
-        /* ── VIEW CONTROLS (追加部分) ── */
-        .view-controls { display: flex; justify-content: flex-end; margin-bottom: 15px; }
-        .view-toggle { display: inline-flex; background: var(--border); border-radius: 10px; padding: 4px; }
-        .view-btn {
-            padding: 8px 16px; border: none; background: transparent; border-radius: 8px;
-            cursor: pointer; font-size: 14px; font-weight: 700; color: var(--text);
-            transition: all 0.3s ease; display: flex; align-items: center; gap: 6px;
-            font-family: 'Noto Sans JP', sans-serif;
-        }
-        .view-btn.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    /* --- 3D Flashcards --- */
+    .fc-wrap { max-width: 520px; margin: 0 auto 24px; text-align: center; }
+    .fc-stage { perspective: 1000px; min-height: 365px; margin-bottom: 12px; cursor: pointer; }
+    .fc-inner { position: relative; min-height: 365px; transform-style: preserve-3d; transition: transform 0.45s; }
+    .fc-stage.flipped .fc-inner { transform: rotateY(180deg); }
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      min-height: 365px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+    }
+    .fc-face.back { transform: rotateY(180deg); background: linear-gradient(180deg, var(--card), var(--primary-light)); }
+    .fc-img { width: 100%; aspect-ratio: 16 / 9; max-height: 205px; border-radius: 13px; overflow: hidden; margin-bottom: 10px; }
+    .fc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fc-controls { display: flex; gap: 8px; justify-content: center; }
+    .btn-ghost {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--dark);
+      padding: 10px 16px;
+      min-height: 44px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-        /* フィルター */
-        .filter-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
-        .filter-btn {
-            background: var(--card-bg); color: var(--text); border: 1px solid var(--border);
-            padding: 8px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 500;
-            cursor: pointer; transition: 0.2s;
-        }
-        .filter-btn.active { background: var(--primary); color: white; }
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s;
+      z-index: 2000;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* グリッドとカード */
-        .idioms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-        .idiom-card {
-            background: var(--card-bg); border-radius: var(--radius);
-            box-shadow: var(--shadow); border: 1px solid var(--border);
-            overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
-        }
-        .card-image-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #f8f9fa; }
-        body.dark-mode .card-image-wrap { background: #1a202c; }
-        .idiom-image { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
-        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .idiom-jp { font-family: 'Sawarabi Mincho', serif; font-size: 1.4rem; color: var(--dark); font-weight: 700; }
-        .idiom-reading { font-size: 0.8rem; color: #a0aec0; }
-        .literal-translation { font-size: 0.75rem; color: #e53e3e; font-style: italic; margin: 5px 0 10px; font-weight: 500; }
-        .idiom-en { font-size: 0.9rem; color: var(--primary); font-weight: bold; margin-bottom: 10px; }
-        .meaning-box { 
-            background: var(--bg); padding: 10px; border-radius: 10px; 
-            font-size: 0.85rem; margin-bottom: 15px; border-left: 3px solid var(--primary);
-        }
-        .example-toggle {
-            background: var(--primary-light); border: none; border-radius: 8px;
-            padding: 8px 12px; width: 100%; text-align: left;
-            font-size: 0.8rem; color: var(--primary); font-weight: 700; cursor: pointer;
-            display: flex; justify-content: space-between; margin-bottom: 10px;
-        }
-        .example-body { display: none; padding: 10px; border-bottom: 1px dashed var(--border); margin-bottom: 10px; font-size: 0.85rem; }
-        .example-body.open { display: block; }
-        .ex-en { color: #718096; font-style: italic; font-size: 0.75rem; display: block; margin-top: 4px; }
-        .mark-btn {
-            margin-top: auto; background: var(--bg); border: 1px solid var(--border);
-            border-radius: 10px; padding: 8px; font-size: 0.8rem; font-weight: bold;
-            color: #718096; cursor: pointer;
-        }
-        .idiom-card.learned { border: 2px solid #48bb78; }
-        .note-box {
-            background: #fffaf0; border: 1px dashed var(--primary); border-radius: 10px;
-            padding: 10px; font-size: 0.8rem; margin-bottom: 15px;
-        }
-        .note-box strong { color: var(--primary); }
-        body.dark-mode .note-box { background: var(--primary-light); }
-        .list-view .note-box { display: none; }
+    footer { padding: 28px 15px 40px; text-align: center; font-size: 0.85rem; color: var(--muted); border-top: 2px solid var(--border); max-width: 600px; margin: 20px auto 0; }
+    .bmc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #FFDD00;
+      color: #000000;
+      padding: 11px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(255, 221, 0, 0.3);
+      margin: 10px 0 16px;
+      font-family: 'Fredoka', sans-serif;
+    }
+    .bmc-btn:hover { transform: translateY(-2px); }
 
-        /* ── CARDS (LIST VIEW MODE 追加部分) ── */
-        .idioms-grid.list-view { display: flex; flex-direction: column; gap: 12px; }
-        .list-view .idiom-card { flex-direction: row; align-items: center; padding: 16px 24px; gap: 20px; border-radius: 16px; }
-        .list-view .card-image-wrap { display: none; }
-        .list-view .card-content { padding: 0; flex-direction: row; align-items: center; flex: 1; gap: 15px; }
-        .list-view .idiom-jp { font-size: 1.15rem; margin-bottom: 0; min-width: 200px; flex-shrink: 0;}
-        .list-view .idiom-reading, .list-view .literal-translation, .list-view .idiom-en { display: none; }
-        .list-view .meaning-box { margin-bottom: 0; font-size: 0.9rem; flex: 1; border-left: none; padding: 0; background: transparent;}
-        .list-view .example-toggle, .list-view .example-body { display: none; }
-        .list-view .mark-btn { margin-top: 0; width: auto; flex-shrink: 0; padding: 6px 12px; }
+    .hidden { display: none !important; }
 
-        @media (max-width: 768px) {
-            /* スマホでのリストビュー調整 */
-            .list-view .idiom-card { flex-direction: column; align-items: flex-start; padding: 16px; gap: 10px; }
-            .list-view .card-content { width: 100%; flex-direction: column; align-items: flex-start; gap: 10px; }
-            .list-view .idiom-jp { min-width: auto;}
-            .list-view .mark-btn { width: 100%; }
-        }
+    /* Mobile compact collapsible cards + 1-screen Quiz */
+    @media (max-width: 680px) {
+      .quiz-img { max-height: 155px; }
+      .quiz-card { padding: 13px; }
+      .quiz-opt { padding: 10px 12px; font-size: 0.86rem; }
+      .card:not(.open) { flex-direction: row; align-items: center; padding: 10px; gap: 12px; cursor: pointer; }
+      .card:not(.open) .img-wrap { width: 88px; height: 60px; aspect-ratio: auto; border-radius: 10px; flex-shrink: 0; }
+      .card:not(.open) .fav-btn, .card:not(.open) .audio-row { display: none; }
+      .card:not(.open) .card-body { padding: 0; }
+      .card:not(.open) .lit, .card:not(.open) .desc-line, .card:not(.open) .ex-box, .card:not(.open) .note-box, .card:not(.open) .mark-btn { display: none; }
+      .card:not(.open) .jp-title { font-size: 1.05rem; }
+      .card:not(.open) .en-mean { font-size: 0.8rem; margin: 2px 0 0; }
+    }
+  </style>
 
-        /* スマホ：カードを折りたたみ式にして一覧を短くする（タップで全文表示） */
-        @media (max-width: 768px) {
-            .idioms-grid:not(.list-view) .idiom-card { position: relative; }
-            .idioms-grid:not(.list-view) .idiom-card::after {
-                content: "▼"; position: absolute; top: 10px; right: 10px;
-                width: 22px; height: 22px; line-height: 22px; text-align: center;
-                font-size: 0.6rem; color: #718096; background: rgba(255,255,255,0.8);
-                border-radius: 50%;
-            }
-            .idioms-grid:not(.list-view) .idiom-card.open::after { content: "▲"; }
-            body.dark-mode .idioms-grid:not(.list-view) .idiom-card::after { background: rgba(0,0,0,0.4); color: #e2e8f0; }
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) {
-                flex-direction: row; align-items: center; gap: 12px; padding: 12px; cursor: pointer;
-            }
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .card-image-wrap {
-                width: 76px; height: 76px; aspect-ratio: auto; flex-shrink: 0; border-radius: 12px; overflow: hidden;
-            }
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .card-content { padding: 0; }
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .idiom-jp { font-size: 1.15rem; }
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .literal-translation,
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .idiom-en,
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .meaning-box,
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .note-box,
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .example-toggle,
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .example-body,
-            .idioms-grid:not(.list-view) .idiom-card:not(.open) .mark-btn { display: none; }
-        }
-
-        /* リスト表示：タップで読み方を表示（思い出してから確認する自習用） */
-        .list-view .card-content { flex-wrap: wrap; }
-        .list-view .idiom-jp { cursor: pointer; }
-        .list-view .idiom-card.reveal .idiom-reading { display: block; order: 1; width: 100%; }
-        @media (max-width: 768px) {
-            .list-view .idiom-card.reveal .idiom-reading { order: 0; width: auto; }
-        }
-
-        /* ── FOOTER & BMC BUTTON ── */
-        footer { padding: 4rem 1rem 3rem; text-align: center; font-size: 0.85rem; color: #718096; }
-        footer p { margin-bottom: 0.8rem; }
-        .bmc-btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            background-color: #FFDD00; color: #000000; padding: 10px 20px;
-            border-radius: 12px; font-weight: 700; font-size: 1rem;
-            text-decoration: none; transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 221, 0, 0.3);
-            margin: 10px 0 20px;
-        }
-        .bmc-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 221, 0, 0.4); }
-        .bmc-btn img { height: 22px; width: auto; margin-right: 10px; }
-    </style>
-<style id="ohayo-cta-style">
-.ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
-.ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-.ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
-.ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
-.ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
-.ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
-.ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
-.ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
-.ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
-.ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
-.ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
-.ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
-.ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
-.ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
-body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
-body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
-body.dark-mode .ohayo-cta-name { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
-body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
-body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
-@media (max-width: 600px) {
-  .ohayo-cta-grid { grid-template-columns: 1fr; }
-  .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
-  .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
-}
-</style>
+  <style id="ohayo-cta-style">
+    .ohayo-cta-wrap { max-width: 780px; width: 100%; margin: 36px auto 24px; padding: 0 12px; box-sizing: border-box; font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; text-align: left; }
+    .ohayo-cta-next { background: #ffffff; border: 1px solid #ececec; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+    .ohayo-cta-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: #888; margin: 0 0 12px; text-transform: uppercase; }
+    .ohayo-cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ohayo-cta-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px; border: 2px solid #f0f0f0; border-radius: 14px; text-decoration: none; color: #2c3e50; background: #fafafa; transition: 0.2s; }
+    .ohayo-cta-link:hover { border-color: #ff9f43; background: #fff5eb; transform: translateY(-2px); }
+    .ohayo-cta-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #ff9f43; letter-spacing: 0.05em; margin-bottom: 2px; }
+    .ohayo-cta-name { display: block; font-size: 0.92rem; font-weight: 700; color: #2c3e50; line-height: 1.35; }
+    .ohayo-cta-arrow { font-size: 1.1rem; font-weight: 700; color: #ff9f43; flex-shrink: 0; }
+    .ohayo-cta-lesson { background: #fff5eb; border: 2px solid #ffd8b3; border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 6px 20px rgba(255,159,67,0.1); }
+    .ohayo-cta-lesson-eyebrow { font-size: 0.72rem; font-weight: 700; color: #e67e22; letter-spacing: 0.05em; margin: 0 0 4px; }
+    .ohayo-cta-lesson h3 { margin: 0 0 6px; font-size: 1.05rem; color: #2c3e50; line-height: 1.4; font-family: 'Sawarabi Mincho', serif; }
+    .ohayo-cta-lesson p { margin: 0; font-size: 0.84rem; color: #555; line-height: 1.5; }
+    .ohayo-cta-btn { display: inline-block; background: #ff9f43; color: #ffffff !important; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 12px 22px; border-radius: 50px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255,159,67,0.35); transition: 0.2s; }
+    .ohayo-cta-btn:hover { background: #ee8a2e; transform: translateY(-2px); }
+    body.dark-mode .ohayo-cta-next { background: #2d3748; border-color: #4a5568; }
+    body.dark-mode .ohayo-cta-link { background: #1a202c; border-color: #4a5568; color: #f7fafc; }
+    body.dark-mode .ohayo-cta-name { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson { background: #3e362e; border-color: #ff9f43; }
+    body.dark-mode .ohayo-cta-lesson h3 { color: #f7fafc; }
+    body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
+    @media (max-width: 600px) {
+      .ohayo-cta-grid { grid-template-columns: 1fr; }
+      .ohayo-cta-lesson { flex-direction: column; text-align: center; padding: 18px 16px; }
+      .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
+    }
+  </style>
 </head>
 <body>
-
-<nav>
+  <nav>
     <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
     <div class="nav-right">
-        <ul class="nav-links">
-            <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
-            <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
-            <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-        </ul>
-        <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+      <ul class="nav-links">
+        <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
+        <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
+        <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">🌙</button>
     </div>
-</nav>
+  </nav>
 
-<div class="container">
-    <div class="header-section">
-        <h2 class="section-title">Japanese Idioms and Slang Collection</h2>
-        <p>Master Japanese with literal fun!</p>
-    </div>
+  <main class="wrap">
+    <header class="top-bar">
+      <h1>🎨 Japanese Idioms &amp; Slang (40)</h1>
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="gallery">📚 Gallery</button>
+        <button class="mode-tab" data-mode="quiz">🎯 10-Q Quiz</button>
+        <button class="mode-tab" data-mode="cards">🃏 Flashcards</button>
+      </div>
+    </header>
 
-    <div class="progress-container">
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
-        <div class="progress-stats">
-            <span>Progress</span>
-            <span><span id="learnedCount">0</span> / 40</span>
+    <!-- Beginner Helper Strip + Progress -->
+    <div class="helper-card">
+      <div class="helper-top">
+        <div class="helper-toggles">
+          <button class="toggle-pill on" id="romajiToggle">Aa Romaji ON</button>
+          <button class="toggle-pill on" id="furiToggle">あ Furigana ON</button>
         </div>
-    </div>
-
-    <div class="view-controls">
-        <div class="view-toggle">
-            <button class="view-btn active" data-view="grid"><i class="fa-solid fa-border-all"></i> カード</button>
-            <button class="view-btn" data-view="list"><i class="fa-solid fa-list"></i> リスト</button>
-        </div>
-        <p id="listHint" style="display: none; font-size: 0.75rem; color: #a0aec0; margin-top: 8px;">Tap an idiom to reveal its reading.</p>
-    </div>
-
-    <div class="filter-nav">
-        <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
-        <button class="filter-btn" onclick="filterCards('animal',this)">Animal</button>
-        <button class="filter-btn" onclick="filterCards('body',this)">Body</button>
-        <button class="filter-btn" onclick="filterCards('food',this)">Food</button>
-        <button class="filter-btn" onclick="filterCards('nature',this)">Nature</button>
-        <button class="filter-btn" onclick="filterCards('work',this)">Work</button>
+        <span class="prog-label" id="progText">0 / 40 Mastered</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
     </div>
 
-    <div class="idioms-grid" id="idiomsGrid">
-        <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="nekonote.webp" class="idiom-image" loading="lazy" alt="nekonote"></div>
-            <div class="card-content">
-                <p class="idiom-jp">猫の手も借りたい</p>
-                <p class="idiom-reading">ねこのてもかりたい</p>
-                <p class="literal-translation">Want to borrow even a cat's paw</p>
-                <p class="idiom-en">"Extremely busy"</p>
-                <div class="meaning-box">So busy you'd take help from anyone.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    年末は忙しくて、猫の手も借りたい状況だ。
-                    <span class="ex-en">(I'm so busy at the end of the year, I'd take any help I can get.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
+    <!-- 1. GALLERY VIEW -->
+    <section id="galleryView">
+      <div class="toolbar">
+        <input class="search-input" id="searchInput" type="search" placeholder="🔍 Search English, Romaji, or Japanese...">
+        <div class="chip-row">
+          <button class="chip active" data-cat="all">All (40)</button>
+          <button class="chip" data-cat="body">🧍 Body (11)</button>
+          <button class="chip" data-cat="slang">📱 Modern Slang (9)</button>
+          <button class="chip" data-cat="animal">🐱 Animals (7)</button>
+          <button class="chip" data-cat="food">🍙 Food (5)</button>
+          <button class="chip" data-cat="work">🌱 Work &amp; Proverbs (8)</button>
+          <button class="chip" id="favFilterBtn">⭐ Favorites (0)</button>
+          <button class="chip" id="unlearnedBtn">✨ Unlearned</button>
         </div>
-        <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="saba.webp" class="idiom-image" loading="lazy" alt="saba"></div>
-            <div class="card-content">
-                <p class="idiom-jp">サバを読む</p>
-                <p class="idiom-reading">さばをよむ</p>
-                <p class="literal-translation">Reading the mackerel</p>
-                <p class="idiom-en">"To fudge numbers"</p>
-                <div class="meaning-box">Manipulating counts or age to one's advantage.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は年齢を２歳ほどサバを読んでいる。
-                    <span class="ex-en">(He is fudging his age by about two years.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="atama.webp" class="idiom-image" loading="lazy" alt="atama"></div>
-            <div class="card-content">
-                <p class="idiom-jp">頭が固い</p>
-                <p class="idiom-reading">あたまがかたい</p>
-                <p class="literal-translation">Hard head</p>
-                <p class="idiom-en">"Stubborn / Inflexible"</p>
-                <div class="meaning-box">Unwilling to change ideas or ways.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は頭が固くて、新しい方法を認めようとしない。
-                    <span class="ex-en">(He is so stubborn that he won't accept new methods.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="yakimochi.webp" class="idiom-image" loading="lazy" alt="yakimochi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">やきもちを焼く</p>
-                <p class="idiom-reading">やきもちをやく</p>
-                <p class="literal-translation">Grilling mochi</p>
-                <p class="idiom-en">"To be jealous"</p>
-                <div class="meaning-box">Feeling romantic jealousy.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼女が他の人と楽しそうに話していると、彼はやきもちを焼く。
-                    <span class="ex-en">(He gets jealous when she talks happily with others.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="mimi.webp" class="idiom-image" loading="lazy" alt="mimi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">耳が痛い</p>
-                <p class="idiom-reading">みみがいたい</p>
-                <p class="literal-translation">Ears are aching</p>
-                <p class="idiom-en">"Hard to hear the truth"</p>
-                <div class="meaning-box">Finding a direct criticism painful to hear.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    生活習慣を注意されて、耳が痛い。
-                    <span class="ex-en">(It's hard to hear the truth when someone warns me about my lifestyle.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="mizu.webp" class="idiom-image" loading="lazy" alt="mizu"></div>
-            <div class="card-content">
-                <p class="idiom-jp">水に流す</p>
-                <p class="idiom-reading">みずにながす</p>
-                <p class="literal-translation">Let it flow into the water</p>
-                <p class="idiom-en">"Forgive and forget"</p>
-                <div class="meaning-box">To wash away past grudges.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    喧嘩のことは水に流して、仲直りしよう。
-                    <span class="ex-en">(Let's forgive and forget the fight and make up.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="asameshi.webp" class="idiom-image" loading="lazy" alt="asameshi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">朝飯前</p>
-                <p class="idiom-reading">あさめしまえ</p>
-                <p class="literal-translation">Before breakfast</p>
-                <p class="idiom-en">"Piece of cake"</p>
-                <div class="meaning-box">Something very easy to finish.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    この程度の修理なら朝飯前だよ。
-                    <span class="ex-en">(A simple repair like this is a piece of cake.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="hone.webp" class="idiom-image" loading="lazy" alt="hone"></div>
-            <div class="card-content">
-                <p class="idiom-jp">骨を折る</p>
-                <p class="idiom-reading">ほねをおる</p>
-                <p class="literal-translation">Breaking a bone</p>
-                <p class="idiom-en">"Take great pains"</p>
-                <div class="meaning-box">To work very hard on something.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    交渉のためにずいぶんと骨を折った。
-                    <span class="ex-en">(I took great pains to handle the negotiations.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="abura.webp" class="idiom-image" loading="lazy" alt="abura"></div>
-            <div class="card-content">
-                <p class="idiom-jp">油を売る</p>
-                <p class="idiom-reading">あぶらをうる</p>
-                <p class="literal-translation">Selling oil</p>
-                <p class="idiom-en">"To idle away time"</p>
-                <div class="meaning-box">Spending time chatting instead of working.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    仕事の途中で油を売っていて、怒られた。
-                    <span class="ex-en">(I got scolded for idling away my time during work.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="nemawashi.webp" class="idiom-image" loading="lazy" alt="nemawashi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">根回し</p>
-                <p class="idiom-reading">ねまわし</p>
-                <p class="literal-translation">Digging around the roots</p>
-                <p class="idiom-en">"Laying groundwork"</p>
-                <div class="meaning-box">Building informal consensus beforehand.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    会議の前に根回しをしておいた。
-                    <span class="ex-en">(I laid the groundwork before the meeting.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="kao.webp" class="idiom-image" loading="lazy" alt="kao"></div>
-            <div class="card-content">
-                <p class="idiom-jp">顔が広い</p>
-                <p class="idiom-reading">かおがひろい</p>
-                <p class="literal-translation">Wide face</p>
-                <p class="idiom-en">"Well-connected"</p>
-                <div class="meaning-box">Knowing many influential people.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は政界に顔が広い。
-                    <span class="ex-en">(He is well-connected in the political world.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="neko.webp" class="idiom-image" loading="lazy" alt="neko"></div>
-            <div class="card-content">
-                <p class="idiom-jp">猫をかぶる</p>
-                <p class="idiom-reading">ねこをかぶる</p>
-                <p class="literal-translation">Wearing a cat</p>
-                <p class="idiom-en">"Playing innocent"</p>
-                <div class="meaning-box">Feigning gentleness or ignorance.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は家では荒いが、外では猫をかぶっている。
-                    <span class="ex-en">(He is rough at home but plays innocent in public.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="saru.webp" class="idiom-image" loading="lazy" alt="saru"></div>
-            <div class="card-content">
-                <p class="idiom-jp">猿も木から落ちる</p>
-                <p class="idiom-reading">さるもきからおちる</p>
-                <p class="literal-translation">Even monkeys fall from trees</p>
-                <p class="idiom-en">"Even experts fail"</p>
-                <div class="meaning-box">Anyone, no matter how skilled, can make a mistake.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    名医がまさかのミス。猿も木から落ちるね。
-                    <span class="ex-en">(Even a great doctor made a mistake. Anyone can fail.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="unagi.webp" class="idiom-image" loading="lazy" alt="unagi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">鰻登り</p>
-                <p class="idiom-reading">うなぎのぼり</p>
-                <p class="literal-translation">Climbing like an eel</p>
-                <p class="idiom-en">"Skyrocketing"</p>
-                <div class="meaning-box">Rising rapidly and steeply.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    新商品の売れ行きが鰻登りだ。
-                    <span class="ex-en">(The sales of the new product are skyrocketing.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="enjo.webp" class="idiom-image" loading="lazy" alt="enjo"></div>
-            <div class="card-content">
-                <p class="idiom-jp">炎上する</p>
-                <p class="idiom-reading">えんじょうする</p>
-                <p class="literal-translation">Going up in flames</p>
-                <p class="idiom-en">"Social media backlash"</p>
-                <div class="meaning-box">Huge criticism or controversy online.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    失言がネットで炎上した。
-                    <span class="ex-en">(The slip of the tongue caused a huge backlash online.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="megaderu.webp" class="idiom-image" loading="lazy" alt="megaderu"></div>
-            <div class="card-content">
-                <p class="idiom-jp">芽が出る</p>
-                <p class="idiom-reading">めがでる</p>
-                <p class="literal-translation">Sprouting a bud</p>
-                <p class="idiom-en">"Showing signs of success"</p>
-                <div class="meaning-box">Efforts finally starting to show results.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    下積み時代を経て、ようやく芽が出た。
-                    <span class="ex-en">(After years of struggling, I'm finally seeing success.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="kigamizikai.webp" class="idiom-image" loading="lazy" alt="kigamizikai"></div>
-            <div class="card-content">
-                <p class="idiom-jp">気が短い</p>
-                <p class="idiom-reading">きがみじかい</p>
-                <p class="literal-translation">Short energy</p>
-                <p class="idiom-en">"Short-tempered"</p>
-                <div class="meaning-box">Losing patience quickly.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は気が短いので、すぐ怒る。
-                    <span class="ex-en">(He is short-tempered, so he gets angry easily.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="hanayori.webp" class="idiom-image" loading="lazy" alt="hanayori"></div>
-            <div class="card-content">
-                <p class="idiom-jp">花より団子</p>
-                <p class="idiom-reading">はなよりだんご</p>
-                <p class="literal-translation">Dumplings over flowers</p>
-                <p class="idiom-en">"Practicality over beauty"</p>
-                <div class="meaning-box">Choosing substance over aesthetics.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    景色よりも食事。まさに花より団子だ。
-                    <span class="ex-en">(Food over views. It's truly dumplings over flowers.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="fukusen.webp" class="idiom-image" loading="lazy" alt="fukusen"></div>
-            <div class="card-content">
-                <p class="idiom-jp">伏線回収</p>
-                <p class="idiom-reading">ふくせんかいしゅう</p>
-                <p class="literal-translation">Collecting hidden lines</p>
-                <p class="idiom-en">"Payoff of foreshadowing"</p>
-                <div class="meaning-box">Earlier hints finally being explained.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    最終回での伏線回収に感動した。
-                    <span class="ex-en">(I was moved by how the foreshadowing paid off in the finale.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="unomi.webp" class="idiom-image" loading="lazy" alt="unomi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">鵜呑みにする</p>
-                <p class="idiom-reading">うのみにする</p>
-                <p class="literal-translation">Swallow like a cormorant</p>
-                <p class="idiom-en">"Accept without question"</p>
-                <div class="meaning-box">Believing everything without thinking.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    ニュースを鵜呑みにするのは危険だ。
-                    <span class="ex-en">(It's dangerous to accept news without question.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="netabare.webp" class="idiom-image" loading="lazy" alt="netabare"></div>
-            <div class="card-content">
-                <p class="idiom-jp">ネタバレ</p>
-                <p class="idiom-reading">ねたばれ</p>
-                <p class="literal-translation">Material leak</p>
-                <p class="idiom-en">"Spoiler"</p>
-                <div class="meaning-box">Revealing the plot of a story.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    映画の結末をネタバレされた。
-                    <span class="ex-en">(The ending of the movie was spoiled for me.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="moto.webp" class="idiom-image" loading="lazy" alt="moto"></div>
-            <div class="card-content">
-                <p class="idiom-jp">元を取る</p>
-                <p class="idiom-reading">もとをとる</p>
-                <p class="literal-translation">Taking the origin</p>
-                <p class="idiom-en">"Get money's worth"</p>
-                <div class="meaning-box">To recoup the costs spent.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    食べ放題で元を取ろうと頑張る。
-                    <span class="ex-en">(I'll try my best to get my money's worth at the buffet.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="bottakuri.webp" class="idiom-image" loading="lazy" alt="bottakuri"></div>
-            <div class="card-content">
-                <p class="idiom-jp">ぼったくり</p>
-                <p class="idiom-reading">ぼったくり</p>
-                <p class="literal-translation">Plucking/Stripping</p>
-                <p class="idiom-en">"Rip-off"</p>
-                <div class="meaning-box">Unfairly high prices charged to customers.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    この店はぼったくりだから気をつけろ。
-                    <span class="ex-en">(Be careful, this shop is a rip-off.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap">
-                <img src="buzz.webp" class="idiom-image" loading="lazy" alt="buzz">
-            </div>
-            <div class="card-content">
-                <p class="idiom-jp">バズる</p>
-                <p class="idiom-reading">ばずる</p>
-                <p class="literal-translation">Creating a buzz</p>
-                <p class="idiom-en">"To go viral"</p>
-                <div class="meaning-box">For content on the internet to spread rapidly.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼女がSNSに投稿した猫の動画が瞬く間にバズった。
-                    <span class="ex-en">(The cat video she posted on social media went viral in no time.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="kuuki.webp" class="idiom-image" loading="lazy" alt="kuuki"></div>
-            <div class="card-content">
-                <p class="idiom-jp">空気を読む</p>
-                <p class="idiom-reading">くうきをよむ</p>
-                <p class="literal-translation">Reading the air</p>
-                <p class="idiom-en">"Reading the room"</p>
-                <div class="meaning-box">Sensing the mood of a situation and acting accordingly, without being told.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は空気を読んで、話題を変えた。
-                    <span class="ex-en">(He read the room and changed the subject.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="marunage.webp" class="idiom-image" loading="lazy" alt="marunage"></div>
-            <div class="card-content">
-                <p class="idiom-jp">丸投げ</p>
-                <p class="idiom-reading">まるなげ</p>
-                <p class="literal-translation">Throwing the whole thing</p>
-                <p class="idiom-en">"Dumping all the work"</p>
-                <div class="meaning-box">Handing over an entire task to someone else without doing any of it yourself.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は仕事を部下に丸投げした。
-                    <span class="ex-en">(He dumped the whole job on his subordinate.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="work">
-            <div class="card-image-wrap"><img src="dotakyan.webp" class="idiom-image" loading="lazy" alt="dotakyan"></div>
-            <div class="card-content">
-                <p class="idiom-jp">ドタキャン</p>
-                <p class="idiom-reading">どたきゃん</p>
-                <p class="literal-translation">Last-minute cancel</p>
-                <p class="idiom-en">"To bail at the last minute"</p>
-                <div class="meaning-box">Cancelling suddenly, right before an appointment or plan.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    デートをドタキャンされて、がっかりした。
-                    <span class="ex-en">(I was disappointed when my date bailed on me at the last minute.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="oshi.webp" class="idiom-image" loading="lazy" alt="oshi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">推し</p>
-                <p class="idiom-reading">おし</p>
-                <p class="literal-translation">The one you push</p>
-                <p class="idiom-en">"My fave"</p>
-                <div class="meaning-box">The idol, character, or person you passionately support as a fan.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    私の推しは、このグループのボーカルだ。
-                    <span class="ex-en">(My fave is the vocalist of this group.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="uroko.webp" class="idiom-image" loading="lazy" alt="uroko"></div>
-            <div class="card-content">
-                <p class="idiom-jp">目から鱗</p>
-                <p class="idiom-reading">めからうろこ</p>
-                <p class="literal-translation">Scales fall from my eyes</p>
-                <p class="idiom-en">"Eye-opening realization"</p>
-                <div class="meaning-box">Suddenly understanding something clearly for the first time.</div>
-                <div class="note-box"><strong>💡 Note:</strong> English has the same image: "the scales fell from my eyes" (from the Bible). Some expressions match perfectly!</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    先生の説明を聞いて、目から鱗だった。
-                    <span class="ex-en">(Hearing the teacher's explanation was a real eye-opener.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="nodo.webp" class="idiom-image" loading="lazy" alt="nodo"></div>
-            <div class="card-content">
-                <p class="idiom-jp">喉から手が出る</p>
-                <p class="idiom-reading">のどからてがでる</p>
-                <p class="literal-translation">A hand comes out of my throat</p>
-                <p class="idiom-en">"Want it desperately"</p>
-                <div class="meaning-box">Wanting something so badly that you can almost reach out and grab it.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    限定モデルが、喉から手が出るほど欲しい。
-                    <span class="ex-en">(I want the limited edition model so badly.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="ashi.webp" class="idiom-image" loading="lazy" alt="ashi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">足を引っ張る</p>
-                <p class="idiom-reading">あしをひっぱる</p>
-                <p class="literal-translation">Pulling someone's leg</p>
-                <p class="idiom-en">"Holding someone back"</p>
-                <div class="meaning-box">Hindering someone's progress or success, or being a burden on a team.</div>
-                <div class="note-box"><strong>💡 Note:</strong> Careful! In English, "pulling your leg" means joking or teasing. Same words, totally different meaning!</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼のミスが、チームの足を引っ張った。
-                    <span class="ex-en">(His mistakes dragged the team down.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="haraguroi.webp" class="idiom-image" loading="lazy" alt="haraguroi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">腹黒い</p>
-                <p class="idiom-reading">はらぐろい</p>
-                <p class="literal-translation">Black belly</p>
-                <p class="idiom-en">"Scheming / Two-faced"</p>
-                <div class="meaning-box">Sweet on the outside, but secretly plotting something.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は笑顔だが、実は腹黒い。
-                    <span class="ex-en">(He smiles, but he's actually quite scheming.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="kuchi.webp" class="idiom-image" loading="lazy" alt="kuchi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">口が軽い</p>
-                <p class="idiom-reading">くちがかるい</p>
-                <p class="literal-translation">Light mouth</p>
-                <p class="idiom-en">"Blabbermouth"</p>
-                <div class="meaning-box">Someone who cannot keep secrets and talks too easily.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼女は口が軽いから、秘密は話さない方がいい。
-                    <span class="ex-en">(She's a blabbermouth, so don't tell her any secrets.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="hanatakai.webp" class="idiom-image" loading="lazy" alt="hanatakai"></div>
-            <div class="card-content">
-                <p class="idiom-jp">鼻が高い</p>
-                <p class="idiom-reading">はながたかい</p>
-                <p class="literal-translation">High nose</p>
-                <p class="idiom-en">"Beaming with pride"</p>
-                <div class="meaning-box">Feeling very proud, especially of someone close to you.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    息子が優勝して、鼻が高い。
-                    <span class="ex-en">(My son won the championship, and I'm beaming with pride.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="nekokoban.webp" class="idiom-image" loading="lazy" alt="nekokoban"></div>
-            <div class="card-content">
-                <p class="idiom-jp">猫に小判</p>
-                <p class="idiom-reading">ねこにこばん</p>
-                <p class="literal-translation">Gold coins to a cat</p>
-                <p class="idiom-en">"Wasted on the unappreciative"</p>
-                <div class="meaning-box">Giving something valuable to someone who cannot appreciate its worth.</div>
-                <div class="note-box"><strong>💡 Note:</strong> English says "pearls before swine" — a different animal, but the same idea!</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    高いワインをあげたが、彼には猫に小判だった。
-                    <span class="ex-en">(I gave him expensive wine, but it was wasted on him.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="body">
-            <div class="card-image-wrap"><img src="nanakorobi.webp" class="idiom-image" loading="lazy" alt="nanakorobi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">七転び八起き</p>
-                <p class="idiom-reading">ななころびやおき</p>
-                <p class="literal-translation">Fall seven times, rise eight</p>
-                <p class="idiom-en">"Never give up"</p>
-                <div class="meaning-box">No matter how many times you fail, you get back up and try again.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    七転び八起きの精神で、挑戦し続ける。
-                    <span class="ex-en">(With a never-give-up spirit, I keep on trying.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="ishi.webp" class="idiom-image" loading="lazy" alt="ishi"></div>
-            <div class="card-content">
-                <p class="idiom-jp">石の上にも三年</p>
-                <p class="idiom-reading">いしのうえにもさんねん</p>
-                <p class="literal-translation">Three years on a stone</p>
-                <p class="idiom-en">"Perseverance pays off"</p>
-                <div class="meaning-box">Even a cold stone warms up if you sit on it for three years — patience brings results.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    石の上にも三年で、続けることが大切だ。
-                    <span class="ex-en">(Perseverance is key — good things come to those who persist.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="nature">
-            <div class="card-image-wrap"><img src="chiri.webp" class="idiom-image" loading="lazy" alt="chiri"></div>
-            <div class="card-content">
-                <p class="idiom-jp">ちりも積もれば山となる</p>
-                <p class="idiom-reading">ちりもつもればやまとなる</p>
-                <p class="literal-translation">Dust piles up into a mountain</p>
-                <p class="idiom-en">"Small efforts add up"</p>
-                <div class="meaning-box">Tiny efforts, repeated many times, eventually become something big.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    毎日少しずつ貯金すれば、ちりも積もれば山となる。
-                    <span class="ex-en">(Save a little every day, and it will add up to a lot.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="animal">
-            <div class="card-image-wrap"><img src="kaeru.webp" class="idiom-image" loading="lazy" alt="kaeru"></div>
-            <div class="card-content">
-                <p class="idiom-jp">井の中の蛙</p>
-                <p class="idiom-reading">いのなかのかわず</p>
-                <p class="literal-translation">A frog in a well</p>
-                <p class="idiom-en">"Narrow-minded"</p>
-                <div class="meaning-box">Knowing only your own small world, and thinking it is everything.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    彼は井の中の蛙で、他のやり方を知らない。
-                    <span class="ex-en">(He's a frog in a well — he knows no other way of doing things.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
-        <div class="idiom-card" data-category="food">
-            <div class="card-image-wrap"><img src="imo.webp" class="idiom-image" loading="lazy" alt="imo"></div>
-            <div class="card-content">
-                <p class="idiom-jp">芋を洗うよう</p>
-                <p class="idiom-reading">いもをあらうよう</p>
-                <p class="literal-translation">Like washing potatoes</p>
-                <p class="idiom-en">"Packed like sardines"</p>
-                <div class="meaning-box">So crowded that people are pressed together, like potatoes being washed in a tub.</div>
-                <button class="example-toggle" onclick="toggleExample(this)">EXAMPLE</button>
-                <div class="example-body">
-                    朝の電車は、芋を洗うような混雑だ。
-                    <span class="ex-en">(The morning train is packed like sardines.)</span>
-                </div>
-                <button class="mark-btn" onclick="toggleLearned(this)">Mark as Learned</button>
-            </div>
-        </div>
+      </div>
+      <div class="grid" id="galleryGrid"></div>
+    </section>
 
-    </div>
+    <!-- 2. QUIZ VIEW (Meaning Quiz & Situation Quiz) -->
+    <section id="quizView" class="hidden">
+      <div class="quiz-wrap">
+        <div class="quiz-mode-bar">
+          <button class="chip active" data-qtype="meaning">📖 Meaning Quiz</button>
+          <button class="chip" data-qtype="situation">💬 Situation Quiz (Art Reveal!)</button>
+        </div>
+        <div class="quiz-card" id="quizCard">
+          <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700; color:var(--muted);">
+            <span id="qProg">Question 1 / 10</span>
+            <span id="qScore">⭐ 0 · 🔥 0</span>
+          </div>
+          <div class="quiz-img" id="quizImgBox"></div>
+          <div class="quiz-prompt" id="quizPrompt"></div>
+          <div class="romaji-line" id="quizRomaji"></div>
+          <div class="quiz-sub" id="quizSub"></div>
+          <div class="quiz-opts" id="quizOpts"></div>
+          <div id="quizFeedback" style="margin-top:10px; font-weight:800; min-height:20px; font-size:0.88rem;"></div>
+          <button class="btn-primary hidden" id="quizNextBtn" style="margin-top:10px;">Next Question →</button>
+        </div>
+        <div class="quiz-card hidden" id="quizDoneCard">
+          <div style="font-size:2.5rem;">🎉</div>
+          <h2 id="quizDoneTitle" style="margin:6px 0; color:var(--dark);">Quiz Complete!</h2>
+          <p id="quizDoneScore" style="font-size:1.15rem; font-weight:800; color:var(--primary-dark); margin:6px 0 16px;"></p>
+          <button class="btn-primary" id="quizRetryBtn">🔄 Play Another 10 Questions</button>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- 3. 3D FLASHCARDS VIEW -->
+    <section id="cardsView" class="hidden">
+      <div class="fc-wrap">
+        <p style="margin:0 0 8px; font-size:0.82rem; color:var(--muted);" id="fcCounter">Card 1 / 40 · Tap card to flip!</p>
+        <div class="fc-stage" id="fcStage" role="button" tabindex="0">
+          <div class="fc-inner">
+            <div class="fc-face front">
+              <div class="fc-img"><img id="fcImg" src="" alt=""></div>
+              <div style="font-size:0.84rem; color:#e11d48; font-style:italic; font-weight:700;" id="fcLit"></div>
+              <div style="font-size:0.76rem; color:var(--muted); margin-top:6px;">👆 Tap card to reveal Japanese, Romaji &amp; Example!</div>
+            </div>
+            <div class="fc-face back">
+              <div style="font-family:'Sawarabi Mincho',serif; font-size:1.65rem; font-weight:700; color:var(--dark);" id="fcJp"></div>
+              <div style="font-size:0.84rem; color:var(--muted); margin-top:2px;" id="fcRead"></div>
+              <div class="romaji-line" style="margin:2px 0 8px;" id="fcRomaji"></div>
+              <div style="font-size:1.05rem; font-weight:800; color:var(--primary-dark); margin-bottom:10px;" id="fcEn"></div>
+              <div class="ex-box" style="width:100%; text-align:left;" id="fcEx"></div>
+              <div style="display:flex; gap:8px;">
+                <button class="chip" id="fcWordBtn" type="button">🔊 Word</button>
+                <button class="chip" id="fcExBtn" type="button">🗣️ Example</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button class="btn-ghost" id="fcPrev">← Prev</button>
+          <button class="btn-primary" id="fcGot">✅ Mastered!</button>
+          <button class="btn-ghost" id="fcNext">Next →</button>
+        </div>
+      </div>
+    </section>
 
-<!-- OHAYO_NEXT_CTA -->
-<section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
-  <div class="ohayo-cta-next">
-    <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
-    <div class="ohayo-cta-grid">
-      <a class="ohayo-cta-link" href="onomato.html"><div><span class="ohayo-cta-tag">CULTURE & FUN</span><span class="ohayo-cta-name">Japanese Onomatopoeia</span></div><span class="ohayo-cta-arrow">→</span></a>
-      <a class="ohayo-cta-link" href="audioblog.html"><div><span class="ohayo-cta-tag">LISTENING</span><span class="ohayo-cta-name">Audio Blog (Natural Japanese)</span></div><span class="ohayo-cta-arrow">→</span></a>
-    </div>
-  </div>
-  <div class="ohayo-cta-lesson">
-    <div>
-      <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
-      <h3>Want to use what you just practiced with a native teacher?</h3>
-      <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
-    </div>
-    <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
-  </div>
-</section>
+    <!-- OHAYO_NEXT_CTA -->
+    <section class="ohayo-cta-wrap" aria-label="Next materials and trial lesson">
+      <div class="ohayo-cta-next">
+        <p class="ohayo-cta-kicker">▶ Keep Going! Recommended Next</p>
+        <div class="ohayo-cta-grid">
+          <a class="ohayo-cta-link" href="onomato.html"><div><span class="ohayo-cta-tag">VOCAB</span><span class="ohayo-cta-name">Onomatopoeia Collection (42 Expressions)</span></div><span class="ohayo-cta-arrow">→</span></a>
+          <a class="ohayo-cta-link" href="anime.html"><div><span class="ohayo-cta-tag">CULTURE</span><span class="ohayo-cta-name">Anime &amp; Manga Japanese Phrases</span></div><span class="ohayo-cta-arrow">→</span></a>
+        </div>
+      </div>
+      <div class="ohayo-cta-lesson">
+        <div>
+          <p class="ohayo-cta-lesson-eyebrow">🗣️ SPEAK IT IN REAL CONVERSATION</p>
+          <h3>Want to use what you just practiced with a native teacher?</h3>
+          <p>Try a relaxed 30-min Trial Lesson with Shinya (¥1,500 / ≈ $10). English OK — zero pressure!</p>
+        </div>
+        <a class="ohayo-cta-btn" href="https://ohayocenter.com/#lessons">🍫 Book Trial Lesson →</a>
+      </div>
+    </section>
 
-<footer>
-    <p>More fun materials: <a href="onomato.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Japanese Onomatopoeia</a></p>
-    <p>If you find these materials helpful, please consider supporting us!</p>
-    <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank">
-        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
-        <span>Support OHAYO CENTER</span>
-    </a>
-    <p>&copy; 2026 OHAYO CENTER. All Rights Reserved.</p>
-</footer>
+    <footer>
+      <p>If you like the material please support us!</p>
+      <a class="bmc-btn" href="https://www.buymeacoffee.com/ohayocenter" target="_blank" rel="noopener">
+        ☕️ <span>SUPPORT OHAYO CENTER</span>
+      </a>
+      <p>&copy; OHAYO CENTER</p>
+    </footer>
+  </main>
 
-<script>
-    const TOTAL = 40;
+  <div class="toast" id="toast">🔊 Playing audio...</div>
 
-    // ダークモード制御
-    function setTheme(isDark) {
-        if (isDark) {
-            document.body.classList.add('dark-mode');
-            document.getElementById('themeToggle').innerHTML = '<i class="fa-solid fa-sun"></i>';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.classList.remove('dark-mode');
-            document.getElementById('themeToggle').innerHTML = '<i class="fa-solid fa-moon"></i>';
-            localStorage.setItem('theme', 'light');
-        }
-    }
-    document.getElementById('themeToggle').addEventListener('click', () => {
-        setTheme(!document.body.classList.contains('dark-mode'));
-    });
-    if (localStorage.getItem('theme') === 'dark') setTheme(true);
+  <script>
+    const ITEMS = [
+  {
+    "slug": "nekonote",
+    "img": "nekonote.webp?v=2.0",
+    "cat": "animal",
+    "jp": "猫の手も借りたい",
+    "read": "ねこのてもかりたい",
+    "romaji": "neko no te mo karitai",
+    "lit": "Want to borrow even a cat's paw",
+    "en": "Extremely busy",
+    "meaning": "So busy you'd take help from anyone.",
+    "exRuby": "<ruby>年末<rt>ねんまつ</rt></ruby>は<ruby>忙<rt>いそが</rt></ruby>しくて、<ruby>猫<rt>ねこ</rt></ruby>の<ruby>手<rt>て</rt></ruby>も<ruby>借<rt>か</rt></ruby>りたい<ruby>状況<rt>じょうきょう</rt></ruby>だ。",
+    "exBlank": "<ruby>年末<rt>ねんまつ</rt></ruby>は<ruby>忙<rt>いそが</rt></ruby>しくて、＿＿＿＿<ruby>状況<rt>じょうきょう</rt></ruby>だ。",
+    "exEn": "I'm so busy at the end of the year, I'd take any help I can get.",
+    "note": "",
+    "audioWord": "idioms-audio/nekonote.mp3",
+    "audioEx": "idioms-audio/nekonote-ex.mp3"
+  },
+  {
+    "slug": "saba",
+    "img": "saba.webp",
+    "cat": "food",
+    "jp": "サバを読む",
+    "read": "さばをよむ",
+    "romaji": "saba o yomu",
+    "lit": "Reading the mackerel",
+    "en": "To fudge numbers",
+    "meaning": "Manipulating counts or age to one's advantage.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>年齢<rt>ねんれい</rt></ruby>を２<ruby>歳<rt>さい</rt></ruby>ほどサバを<ruby>読<rt>よ</rt></ruby>んでいる。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>年齢<rt>ねんれい</rt></ruby>を２<ruby>歳<rt>さい</rt></ruby>ほど＿＿＿＿。",
+    "exEn": "He is fudging his age by about two years.",
+    "note": "",
+    "audioWord": "idioms-audio/saba.mp3",
+    "audioEx": "idioms-audio/saba-ex.mp3"
+  },
+  {
+    "slug": "atama",
+    "img": "atama.webp",
+    "cat": "body",
+    "jp": "頭が固い",
+    "read": "あたまがかたい",
+    "romaji": "atama ga katai",
+    "lit": "Hard head",
+    "en": "Stubborn / Inflexible",
+    "meaning": "Unwilling to change ideas or ways.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>頭<rt>あたま</rt></ruby>が<ruby>固<rt>かた</rt></ruby>くて、<ruby>新<rt>あたら</rt></ruby>しい<ruby>方法<rt>ほうほう</rt></ruby>を<ruby>認<rt>みと</rt></ruby>めようとしない。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は＿＿＿＿て、<ruby>新<rt>あたら</rt></ruby>しい<ruby>方法<rt>ほうほう</rt></ruby>を<ruby>認<rt>みと</rt></ruby>めようとしない。",
+    "exEn": "He is so stubborn that he won't accept new methods.",
+    "note": "",
+    "audioWord": "idioms-audio/atama.mp3",
+    "audioEx": "idioms-audio/atama-ex.mp3"
+  },
+  {
+    "slug": "yakimochi",
+    "img": "yakimochi.webp?v=2.0",
+    "cat": "food",
+    "jp": "やきもちを焼く",
+    "read": "やきもちをやく",
+    "romaji": "yakimochi o yaku",
+    "lit": "Grilling mochi",
+    "en": "To be jealous",
+    "meaning": "Feeling romantic jealousy.",
+    "exRuby": "<ruby>彼女<rt>かのじょ</rt></ruby>が<ruby>他<rt>ほか</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>と<ruby>楽<rt>たの</rt></ruby>しそうに<ruby>話<rt>はな</rt></ruby>していると、<ruby>彼<rt>かれ</rt></ruby>はやきもちを<ruby>焼<rt>や</rt></ruby>く。",
+    "exBlank": "<ruby>彼女<rt>かのじょ</rt></ruby>が<ruby>他<rt>ほか</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>と<ruby>楽<rt>たの</rt></ruby>しそうに<ruby>話<rt>はな</rt></ruby>していると、<ruby>彼<rt>かれ</rt></ruby>は＿＿＿＿。",
+    "exEn": "He gets jealous when she talks happily with others.",
+    "note": "",
+    "audioWord": "idioms-audio/yakimochi.mp3",
+    "audioEx": "idioms-audio/yakimochi-ex.mp3"
+  },
+  {
+    "slug": "mimi",
+    "img": "mimi.webp",
+    "cat": "body",
+    "jp": "耳が痛い",
+    "read": "みみがいたい",
+    "romaji": "mimi ga itai",
+    "lit": "Ears are aching",
+    "en": "Hard to hear the truth",
+    "meaning": "Finding a direct criticism painful to hear.",
+    "exRuby": "<ruby>生活習慣<rt>せいかつしゅうかん</rt></ruby>を<ruby>注意<rt>ちゅうい</rt></ruby>されて、<ruby>耳<rt>みみ</rt></ruby>が<ruby>痛<rt>いた</rt></ruby>い。",
+    "exBlank": "<ruby>生活習慣<rt>せいかつしゅうかん</rt></ruby>を<ruby>注意<rt>ちゅうい</rt></ruby>されて、＿＿＿＿。",
+    "exEn": "It's hard to hear the truth when someone warns me about my lifestyle.",
+    "note": "",
+    "audioWord": "idioms-audio/mimi.mp3",
+    "audioEx": "idioms-audio/mimi-ex.mp3"
+  },
+  {
+    "slug": "mizu",
+    "img": "mizu.webp",
+    "cat": "work",
+    "jp": "水に流す",
+    "read": "みずにながす",
+    "romaji": "mizu ni nagasu",
+    "lit": "Let it flow into the water",
+    "en": "Forgive and forget",
+    "meaning": "To wash away past grudges.",
+    "exRuby": "<ruby>喧嘩<rt>けんか</rt></ruby>のことは<ruby>水<rt>みず</rt></ruby>に<ruby>流<rt>なが</rt></ruby>して、<ruby>仲直<rt>なかなお</rt></ruby>りしよう。",
+    "exBlank": "<ruby>喧嘩<rt>けんか</rt></ruby>のことは＿＿＿＿て、<ruby>仲直<rt>なかなお</rt></ruby>りしよう。",
+    "exEn": "Let's forgive and forget the fight and make up.",
+    "note": "",
+    "audioWord": "idioms-audio/mizu.mp3",
+    "audioEx": "idioms-audio/mizu-ex.mp3"
+  },
+  {
+    "slug": "asameshi",
+    "img": "asameshi.webp",
+    "cat": "food",
+    "jp": "朝飯前",
+    "read": "あさめしまえ",
+    "romaji": "asameshimae",
+    "lit": "Before breakfast",
+    "en": "Piece of cake",
+    "meaning": "Something very easy to finish.",
+    "exRuby": "この<ruby>程度<rt>ていど</rt></ruby>の<ruby>修理<rt>しゅうり</rt></ruby>なら<ruby>朝飯前<rt>あさめしまえ</rt></ruby>だよ。",
+    "exBlank": "この<ruby>程度<rt>ていど</rt></ruby>の<ruby>修理<rt>しゅうり</rt></ruby>なら＿＿＿＿だよ。",
+    "exEn": "A simple repair like this is a piece of cake.",
+    "note": "",
+    "audioWord": "idioms-audio/asameshi.mp3",
+    "audioEx": "idioms-audio/asameshi-ex.mp3"
+  },
+  {
+    "slug": "hone",
+    "img": "hone.webp",
+    "cat": "body",
+    "jp": "骨を折る",
+    "read": "ほねをおる",
+    "romaji": "hone o oru",
+    "lit": "Breaking a bone",
+    "en": "Take great pains",
+    "meaning": "To work very hard on something.",
+    "exRuby": "<ruby>交渉<rt>こうしょう</rt></ruby>のためにずいぶんと<ruby>骨<rt>ほね</rt></ruby>を<ruby>折<rt>お</rt></ruby>った。",
+    "exBlank": "<ruby>交渉<rt>こうしょう</rt></ruby>のためにずいぶんと＿＿＿＿た。",
+    "exEn": "I took great pains to handle the negotiations.",
+    "note": "",
+    "audioWord": "idioms-audio/hone.mp3",
+    "audioEx": "idioms-audio/hone-ex.mp3"
+  },
+  {
+    "slug": "abura",
+    "img": "abura.webp",
+    "cat": "work",
+    "jp": "油を売る",
+    "read": "あぶらをうる",
+    "romaji": "abura o uru",
+    "lit": "Selling oil",
+    "en": "To idle away time",
+    "meaning": "Spending time chatting instead of working.",
+    "exRuby": "<ruby>仕事<rt>しごと</rt></ruby>の<ruby>途中<rt>とちゅう</rt></ruby>で<ruby>油<rt>あぶら</rt></ruby>を<ruby>売<rt>う</rt></ruby>っていて、<ruby>怒<rt>おこ</rt></ruby>られた。",
+    "exBlank": "<ruby>仕事<rt>しごと</rt></ruby>の<ruby>途中<rt>とちゅう</rt></ruby>で＿＿＿＿ていて、<ruby>怒<rt>おこ</rt></ruby>られた。",
+    "exEn": "I got scolded for idling away my time during work.",
+    "note": "",
+    "audioWord": "idioms-audio/abura.mp3",
+    "audioEx": "idioms-audio/abura-ex.mp3"
+  },
+  {
+    "slug": "nemawashi",
+    "img": "nemawashi.webp",
+    "cat": "work",
+    "jp": "根回し",
+    "read": "ねまわし",
+    "romaji": "nemawashi",
+    "lit": "Digging around the roots",
+    "en": "Laying groundwork",
+    "meaning": "Building informal consensus beforehand.",
+    "exRuby": "<ruby>会議<rt>かいぎ</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>に<ruby>根回<rt>ねまわ</rt></ruby>しをしておいた。",
+    "exBlank": "<ruby>会議<rt>かいぎ</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>に＿＿＿＿をしておいた。",
+    "exEn": "I laid the groundwork before the meeting.",
+    "note": "",
+    "audioWord": "idioms-audio/nemawashi.mp3",
+    "audioEx": "idioms-audio/nemawashi-ex.mp3"
+  },
+  {
+    "slug": "kao",
+    "img": "kao.webp",
+    "cat": "body",
+    "jp": "顔が広い",
+    "read": "かおがひろい",
+    "romaji": "kao ga hiroi",
+    "lit": "Wide face",
+    "en": "Well-connected",
+    "meaning": "Knowing many influential people.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>政界<rt>せいかい</rt></ruby>に<ruby>顔<rt>かお</rt></ruby>が<ruby>広<rt>ひろ</rt></ruby>い。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>政界<rt>せいかい</rt></ruby>に＿＿＿＿。",
+    "exEn": "He is well-connected in the political world.",
+    "note": "",
+    "audioWord": "idioms-audio/kao.mp3",
+    "audioEx": "idioms-audio/kao-ex.mp3"
+  },
+  {
+    "slug": "neko",
+    "img": "neko.webp",
+    "cat": "animal",
+    "jp": "猫をかぶる",
+    "read": "ねこをかぶる",
+    "romaji": "neko o kaburu",
+    "lit": "Wearing a cat",
+    "en": "Playing innocent",
+    "meaning": "Feigning gentleness or ignorance.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>家<rt>いえ</rt></ruby>では<ruby>荒<rt>あら</rt></ruby>いが、<ruby>外<rt>そと</rt></ruby>では<ruby>猫<rt>ねこ</rt></ruby>をかぶっている。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>家<rt>いえ</rt></ruby>では<ruby>荒<rt>あら</rt></ruby>いが、<ruby>外<rt>そと</rt></ruby>では＿＿＿＿ている。",
+    "exEn": "He is rough at home but plays innocent in public.",
+    "note": "",
+    "audioWord": "idioms-audio/neko.mp3",
+    "audioEx": "idioms-audio/neko-ex.mp3"
+  },
+  {
+    "slug": "saru",
+    "img": "saru.webp",
+    "cat": "animal",
+    "jp": "猿も木から落ちる",
+    "read": "さるもきからおちる",
+    "romaji": "saru mo ki kara ochiru",
+    "lit": "Even monkeys fall from trees",
+    "en": "Even experts fail",
+    "meaning": "Anyone, no matter how skilled, can make a mistake.",
+    "exRuby": "<ruby>名医<rt>めいい</rt></ruby>がまさかのミス。<ruby>猿<rt>さる</rt></ruby>も<ruby>木<rt>き</rt></ruby>から<ruby>落<rt>お</rt></ruby>ちるね。",
+    "exBlank": "<ruby>名医<rt>めいい</rt></ruby>がまさかのミス。＿＿＿＿ね。",
+    "exEn": "Even a great doctor made a mistake. Anyone can fail.",
+    "note": "",
+    "audioWord": "idioms-audio/saru.mp3",
+    "audioEx": "idioms-audio/saru-ex.mp3"
+  },
+  {
+    "slug": "unagi",
+    "img": "unagi.webp",
+    "cat": "animal",
+    "jp": "鰻登り",
+    "read": "うなぎのぼり",
+    "romaji": "unaginobori",
+    "lit": "Climbing like an eel",
+    "en": "Skyrocketing",
+    "meaning": "Rising rapidly and steeply.",
+    "exRuby": "<ruby>新商品<rt>しんしょうひん</rt></ruby>の<ruby>売<rt>う</rt></ruby>れ<ruby>行<rt>ゆ</rt></ruby>きが<ruby>鰻登<rt>うなぎのぼ</rt></ruby>りだ。",
+    "exBlank": "<ruby>新商品<rt>しんしょうひん</rt></ruby>の<ruby>売<rt>う</rt></ruby>れ<ruby>行<rt>ゆ</rt></ruby>きが＿＿＿＿だ。",
+    "exEn": "The sales of the new product are skyrocketing.",
+    "note": "",
+    "audioWord": "idioms-audio/unagi.mp3",
+    "audioEx": "idioms-audio/unagi-ex.mp3"
+  },
+  {
+    "slug": "enjo",
+    "img": "enjo.webp",
+    "cat": "slang",
+    "jp": "炎上する",
+    "read": "えんじょうする",
+    "romaji": "enjou suru",
+    "lit": "Going up in flames",
+    "en": "Social media backlash",
+    "meaning": "Huge criticism or controversy online.",
+    "exRuby": "<ruby>失言<rt>しつげん</rt></ruby>がネットで<ruby>炎上<rt>えんじょう</rt></ruby>した。",
+    "exBlank": "<ruby>失言<rt>しつげん</rt></ruby>がネットで＿＿＿＿た。",
+    "exEn": "The slip of the tongue caused a huge backlash online.",
+    "note": "",
+    "audioWord": "idioms-audio/enjo.mp3",
+    "audioEx": "idioms-audio/enjo-ex.mp3"
+  },
+  {
+    "slug": "megaderu",
+    "img": "megaderu.webp",
+    "cat": "work",
+    "jp": "芽が出る",
+    "read": "めがでる",
+    "romaji": "me ga deru",
+    "lit": "Sprouting a bud",
+    "en": "Showing signs of success",
+    "meaning": "Efforts finally starting to show results.",
+    "exRuby": "<ruby>下積<rt>したづ</rt></ruby>み<ruby>時代<rt>じだい</rt></ruby>を<ruby>経<rt>へ</rt></ruby>て、ようやく<ruby>芽<rt>め</rt></ruby>が<ruby>出<rt>で</rt></ruby>た。",
+    "exBlank": "<ruby>下積<rt>したづ</rt></ruby>み<ruby>時代<rt>じだい</rt></ruby>を<ruby>経<rt>へ</rt></ruby>て、ようやく＿＿＿＿た。",
+    "exEn": "After years of struggling, I'm finally seeing success.",
+    "note": "",
+    "audioWord": "idioms-audio/megaderu.mp3",
+    "audioEx": "idioms-audio/megaderu-ex.mp3"
+  },
+  {
+    "slug": "kigamizikai",
+    "img": "kigamizikai.webp",
+    "cat": "body",
+    "jp": "気が短い",
+    "read": "きがみじかい",
+    "romaji": "ki ga mijikai",
+    "lit": "Short energy",
+    "en": "Short-tempered",
+    "meaning": "Losing patience quickly.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>気<rt>き</rt></ruby>が<ruby>短<rt>みじか</rt></ruby>いので、すぐ<ruby>怒<rt>おこ</rt></ruby>る。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は＿＿＿＿ので、すぐ<ruby>怒<rt>おこ</rt></ruby>る。",
+    "exEn": "He is short-tempered, so he gets angry easily.",
+    "note": "",
+    "audioWord": "idioms-audio/kigamizikai.mp3",
+    "audioEx": "idioms-audio/kigamizikai-ex.mp3"
+  },
+  {
+    "slug": "hanayori",
+    "img": "hanayori.webp",
+    "cat": "food",
+    "jp": "花より団子",
+    "read": "はなよりだんご",
+    "romaji": "hana yori dango",
+    "lit": "Dumplings over flowers",
+    "en": "Practicality over beauty",
+    "meaning": "Choosing substance over aesthetics.",
+    "exRuby": "<ruby>景色<rt>けしき</rt></ruby>よりも<ruby>食事<rt>しょくじ</rt></ruby>。まさに<ruby>花<rt>はな</rt></ruby>より<ruby>団子<rt>だんご</rt></ruby>だ。",
+    "exBlank": "<ruby>景色<rt>けしき</rt></ruby>よりも<ruby>食事<rt>しょくじ</rt></ruby>。まさに＿＿＿＿だ。",
+    "exEn": "Food over views. It's truly dumplings over flowers.",
+    "note": "",
+    "audioWord": "idioms-audio/hanayori.mp3",
+    "audioEx": "idioms-audio/hanayori-ex.mp3"
+  },
+  {
+    "slug": "fukusen",
+    "img": "fukusen.webp",
+    "cat": "slang",
+    "jp": "伏線回収",
+    "read": "ふくせんかいしゅう",
+    "romaji": "fukusen kaishuu",
+    "lit": "Collecting hidden lines",
+    "en": "Payoff of foreshadowing",
+    "meaning": "Earlier hints finally being explained.",
+    "exRuby": "<ruby>最終回<rt>さいしゅうかい</rt></ruby>での<ruby>伏線回収<rt>ふくせんかいしゅう</rt></ruby>に<ruby>感動<rt>かんどう</rt></ruby>した。",
+    "exBlank": "<ruby>最終回<rt>さいしゅうかい</rt></ruby>での＿＿＿＿に<ruby>感動<rt>かんどう</rt></ruby>した。",
+    "exEn": "I was moved by how the foreshadowing paid off in the finale.",
+    "note": "",
+    "audioWord": "idioms-audio/fukusen.mp3",
+    "audioEx": "idioms-audio/fukusen-ex.mp3"
+  },
+  {
+    "slug": "unomi",
+    "img": "unomi.webp",
+    "cat": "animal",
+    "jp": "鵜呑みにする",
+    "read": "うのみにする",
+    "romaji": "unomi ni suru",
+    "lit": "Swallow like a cormorant",
+    "en": "Accept without question",
+    "meaning": "Believing everything without thinking.",
+    "exRuby": "ニュースを<ruby>鵜呑<rt>うの</rt></ruby>みにするのは<ruby>危険<rt>きけん</rt></ruby>だ。",
+    "exBlank": "ニュースを＿＿＿＿のは<ruby>危険<rt>きけん</rt></ruby>だ。",
+    "exEn": "It's dangerous to accept news without question.",
+    "note": "",
+    "audioWord": "idioms-audio/unomi.mp3",
+    "audioEx": "idioms-audio/unomi-ex.mp3"
+  },
+  {
+    "slug": "netabare",
+    "img": "netabare.webp",
+    "cat": "slang",
+    "jp": "ネタバレ",
+    "read": "ねたばれ",
+    "romaji": "netabare",
+    "lit": "Material leak",
+    "en": "Spoiler",
+    "meaning": "Revealing the plot of a story.",
+    "exRuby": "<ruby>映画<rt>えいが</rt></ruby>の<ruby>結末<rt>けつまつ</rt></ruby>をネタバレされた。",
+    "exBlank": "<ruby>映画<rt>えいが</rt></ruby>の<ruby>結末<rt>けつまつ</rt></ruby>を＿＿＿＿された。",
+    "exEn": "The ending of the movie was spoiled for me.",
+    "note": "",
+    "audioWord": "idioms-audio/netabare.mp3",
+    "audioEx": "idioms-audio/netabare-ex.mp3"
+  },
+  {
+    "slug": "moto",
+    "img": "moto.webp",
+    "cat": "slang",
+    "jp": "元を取る",
+    "read": "もとをとる",
+    "romaji": "moto o toru",
+    "lit": "Taking the origin",
+    "en": "Get money's worth",
+    "meaning": "To recoup the costs spent.",
+    "exRuby": "<ruby>食<rt>た</rt></ruby>べ<ruby>放題<rt>ほうだい</rt></ruby>で<ruby>元<rt>もと</rt></ruby>を<ruby>取<rt>と</rt></ruby>ろうと<ruby>頑張<rt>がんば</rt></ruby>る。",
+    "exBlank": "<ruby>食<rt>た</rt></ruby>べ<ruby>放題<rt>ほうだい</rt></ruby>で＿＿＿＿うと<ruby>頑張<rt>がんば</rt></ruby>る。",
+    "exEn": "I'll try my best to get my money's worth at the buffet.",
+    "note": "",
+    "audioWord": "idioms-audio/moto.mp3",
+    "audioEx": "idioms-audio/moto-ex.mp3"
+  },
+  {
+    "slug": "bottakuri",
+    "img": "bottakuri.webp",
+    "cat": "slang",
+    "jp": "ぼったくり",
+    "read": "ぼったくり",
+    "romaji": "bottakuri",
+    "lit": "Plucking/Stripping",
+    "en": "Rip-off",
+    "meaning": "Unfairly high prices charged to customers.",
+    "exRuby": "この<ruby>店<rt>みせ</rt></ruby>はぼったくりだから<ruby>気<rt>き</rt></ruby>をつけろ。",
+    "exBlank": "この<ruby>店<rt>みせ</rt></ruby>は＿＿＿＿だから<ruby>気<rt>き</rt></ruby>をつけろ。",
+    "exEn": "Be careful, this shop is a rip-off.",
+    "note": "",
+    "audioWord": "idioms-audio/bottakuri.mp3",
+    "audioEx": "idioms-audio/bottakuri-ex.mp3"
+  },
+  {
+    "slug": "buzz",
+    "img": "buzz.webp",
+    "cat": "slang",
+    "jp": "バズる",
+    "read": "ばずる",
+    "romaji": "bazuru",
+    "lit": "Creating a buzz",
+    "en": "To go viral",
+    "meaning": "For content on the internet to spread rapidly.",
+    "exRuby": "<ruby>彼女<rt>かのじょ</rt></ruby>がSNSに<ruby>投稿<rt>とうこう</rt></ruby>した<ruby>猫<rt>ねこ</rt></ruby>の<ruby>動画<rt>どうが</rt></ruby>が<ruby>瞬<rt>またた</rt></ruby>く<ruby>間<rt>ま</rt></ruby>にバズった。",
+    "exBlank": "<ruby>彼女<rt>かのじょ</rt></ruby>がSNSに<ruby>投稿<rt>とうこう</rt></ruby>した<ruby>猫<rt>ねこ</rt></ruby>の<ruby>動画<rt>どうが</rt></ruby>が<ruby>瞬<rt>またた</rt></ruby>く<ruby>間<rt>ま</rt></ruby>に＿＿＿＿た。",
+    "exEn": "The cat video she posted on social media went viral in no time.",
+    "note": "",
+    "audioWord": "idioms-audio/buzz.mp3",
+    "audioEx": "idioms-audio/buzz-ex.mp3"
+  },
+  {
+    "slug": "kuuki",
+    "img": "kuuki.webp",
+    "cat": "slang",
+    "jp": "空気を読む",
+    "read": "くうきをよむ",
+    "romaji": "kuuki o yomu",
+    "lit": "Reading the air",
+    "en": "Reading the room",
+    "meaning": "Sensing the mood of a situation and acting accordingly, without being told.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>空気<rt>くうき</rt></ruby>を<ruby>読<rt>よ</rt></ruby>んで、<ruby>話題<rt>わだい</rt></ruby>を<ruby>変<rt>か</rt></ruby>えた。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は＿＿＿＿で、<ruby>話題<rt>わだい</rt></ruby>を<ruby>変<rt>か</rt></ruby>えた。",
+    "exEn": "He read the room and changed the subject.",
+    "note": "",
+    "audioWord": "idioms-audio/kuuki.mp3",
+    "audioEx": "idioms-audio/kuuki-ex.mp3"
+  },
+  {
+    "slug": "marunage",
+    "img": "marunage.webp",
+    "cat": "work",
+    "jp": "丸投げ",
+    "read": "まるなげ",
+    "romaji": "marunage",
+    "lit": "Throwing the whole thing",
+    "en": "Dumping all the work",
+    "meaning": "Handing over an entire task to someone else without doing any of it yourself.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>仕事<rt>しごと</rt></ruby>を<ruby>部下<rt>ぶか</rt></ruby>に<ruby>丸投<rt>まるな</rt></ruby>げした。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>仕事<rt>しごと</rt></ruby>を<ruby>部下<rt>ぶか</rt></ruby>に＿＿＿＿した。",
+    "exEn": "He dumped the whole job on his subordinate.",
+    "note": "",
+    "audioWord": "idioms-audio/marunage.mp3",
+    "audioEx": "idioms-audio/marunage-ex.mp3"
+  },
+  {
+    "slug": "dotakyan",
+    "img": "dotakyan.webp",
+    "cat": "slang",
+    "jp": "ドタキャン",
+    "read": "どたきゃん",
+    "romaji": "dotakyan",
+    "lit": "Last-minute cancel",
+    "en": "To bail at the last minute",
+    "meaning": "Cancelling suddenly, right before an appointment or plan.",
+    "exRuby": "デートをドタキャンされて、がっかりした。",
+    "exBlank": "デートを＿＿＿＿されて、がっかりした。",
+    "exEn": "I was disappointed when my date bailed on me at the last minute.",
+    "note": "",
+    "audioWord": "idioms-audio/dotakyan.mp3",
+    "audioEx": "idioms-audio/dotakyan-ex.mp3"
+  },
+  {
+    "slug": "oshi",
+    "img": "oshi.webp",
+    "cat": "slang",
+    "jp": "推し",
+    "read": "おし",
+    "romaji": "oshi",
+    "lit": "The one you push",
+    "en": "My fave",
+    "meaning": "The idol, character, or person you passionately support as a fan.",
+    "exRuby": "<ruby>私<rt>わたし</rt></ruby>の<ruby>推<rt>お</rt></ruby>しは、このグループのボーカルだ。",
+    "exBlank": "<ruby>私<rt>わたし</rt></ruby>の＿＿＿＿は、このグループのボーカルだ。",
+    "exEn": "My fave is the vocalist of this group.",
+    "note": "",
+    "audioWord": "idioms-audio/oshi.mp3",
+    "audioEx": "idioms-audio/oshi-ex.mp3"
+  },
+  {
+    "slug": "uroko",
+    "img": "uroko.webp",
+    "cat": "body",
+    "jp": "目から鱗",
+    "read": "めからうろこ",
+    "romaji": "me kara uroko",
+    "lit": "Scales fall from my eyes",
+    "en": "Eye-opening realization",
+    "meaning": "Suddenly understanding something clearly for the first time.",
+    "exRuby": "<ruby>先生<rt>せんせい</rt></ruby>の<ruby>説明<rt>せつめい</rt></ruby>を<ruby>聞<rt>き</rt></ruby>いて、<ruby>目<rt>め</rt></ruby>から<ruby>鱗<rt>うろこ</rt></ruby>だった。",
+    "exBlank": "<ruby>先生<rt>せんせい</rt></ruby>の<ruby>説明<rt>せつめい</rt></ruby>を<ruby>聞<rt>き</rt></ruby>いて、＿＿＿＿だった。",
+    "exEn": "Hearing the teacher's explanation was a real eye-opener.",
+    "note": "<strong>💡 Note:</strong> English has the same image: \"the scales fell from my eyes\" (from the Bible). Some expressions match perfectly!",
+    "audioWord": "idioms-audio/uroko.mp3",
+    "audioEx": "idioms-audio/uroko-ex.mp3"
+  },
+  {
+    "slug": "nodo",
+    "img": "nodo.webp",
+    "cat": "body",
+    "jp": "喉から手が出る",
+    "read": "のどからてがでる",
+    "romaji": "nodo kara te ga deru",
+    "lit": "A hand comes out of my throat",
+    "en": "Want it desperately",
+    "meaning": "Wanting something so badly that you can almost reach out and grab it.",
+    "exRuby": "<ruby>限定<rt>げんてい</rt></ruby>モデルが、<ruby>喉<rt>のど</rt></ruby>から<ruby>手<rt>て</rt></ruby>が<ruby>出<rt>で</rt></ruby>るほど<ruby>欲<rt>ほ</rt></ruby>しい。",
+    "exBlank": "<ruby>限定<rt>げんてい</rt></ruby>モデルが、＿＿＿＿ほど<ruby>欲<rt>ほ</rt></ruby>しい。",
+    "exEn": "I want the limited edition model so badly.",
+    "note": "",
+    "audioWord": "idioms-audio/nodo.mp3",
+    "audioEx": "idioms-audio/nodo-ex.mp3"
+  },
+  {
+    "slug": "ashi",
+    "img": "ashi.webp",
+    "cat": "body",
+    "jp": "足を引っ張る",
+    "read": "あしをひっぱる",
+    "romaji": "ashi o hipparu",
+    "lit": "Pulling someone's leg",
+    "en": "Holding someone back",
+    "meaning": "Hindering someone's progress or success, or being a burden on a team.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>のミスが、チームの<ruby>足<rt>あし</rt></ruby>を<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>った。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>のミスが、チームの＿＿＿＿た。",
+    "exEn": "His mistakes dragged the team down.",
+    "note": "<strong>💡 Note:</strong> Careful! In English, \"pulling your leg\" means joking or teasing. Same words, totally different meaning!",
+    "audioWord": "idioms-audio/ashi.mp3",
+    "audioEx": "idioms-audio/ashi-ex.mp3"
+  },
+  {
+    "slug": "haraguroi",
+    "img": "haraguroi.webp",
+    "cat": "body",
+    "jp": "腹黒い",
+    "read": "はらぐろい",
+    "romaji": "haraguroi",
+    "lit": "Black belly",
+    "en": "Scheming / Two-faced",
+    "meaning": "Sweet on the outside, but secretly plotting something.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>笑顔<rt>えがお</rt></ruby>だが、<ruby>実<rt>じつ</rt></ruby>は<ruby>腹黒<rt>はらぐろ</rt></ruby>い。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>笑顔<rt>えがお</rt></ruby>だが、<ruby>実<rt>じつ</rt></ruby>は＿＿＿＿。",
+    "exEn": "He smiles, but he's actually quite scheming.",
+    "note": "",
+    "audioWord": "idioms-audio/haraguroi.mp3",
+    "audioEx": "idioms-audio/haraguroi-ex.mp3"
+  },
+  {
+    "slug": "kuchi",
+    "img": "kuchi.webp",
+    "cat": "body",
+    "jp": "口が軽い",
+    "read": "くちがかるい",
+    "romaji": "kuchi ga karui",
+    "lit": "Light mouth",
+    "en": "Blabbermouth",
+    "meaning": "Someone who cannot keep secrets and talks too easily.",
+    "exRuby": "<ruby>彼女<rt>かのじょ</rt></ruby>は<ruby>口<rt>くち</rt></ruby>が<ruby>軽<rt>かる</rt></ruby>いから、<ruby>秘密<rt>ひみつ</rt></ruby>は<ruby>話<rt>はな</rt></ruby>さない<ruby>方<rt>ほう</rt></ruby>がいい。",
+    "exBlank": "<ruby>彼女<rt>かのじょ</rt></ruby>は＿＿＿＿から、<ruby>秘密<rt>ひみつ</rt></ruby>は<ruby>話<rt>はな</rt></ruby>さない<ruby>方<rt>ほう</rt></ruby>がいい。",
+    "exEn": "She's a blabbermouth, so don't tell her any secrets.",
+    "note": "",
+    "audioWord": "idioms-audio/kuchi.mp3",
+    "audioEx": "idioms-audio/kuchi-ex.mp3"
+  },
+  {
+    "slug": "hanatakai",
+    "img": "hanatakai.webp",
+    "cat": "body",
+    "jp": "鼻が高い",
+    "read": "はながたかい",
+    "romaji": "hana ga takai",
+    "lit": "High nose",
+    "en": "Beaming with pride",
+    "meaning": "Feeling very proud, especially of someone close to you.",
+    "exRuby": "<ruby>息子<rt>むすこ</rt></ruby>が<ruby>優勝<rt>ゆうしょう</rt></ruby>して、<ruby>鼻<rt>はな</rt></ruby>が<ruby>高<rt>たか</rt></ruby>い。",
+    "exBlank": "<ruby>息子<rt>むすこ</rt></ruby>が<ruby>優勝<rt>ゆうしょう</rt></ruby>して、＿＿＿＿。",
+    "exEn": "My son won the championship, and I'm beaming with pride.",
+    "note": "",
+    "audioWord": "idioms-audio/hanatakai.mp3",
+    "audioEx": "idioms-audio/hanatakai-ex.mp3"
+  },
+  {
+    "slug": "nekokoban",
+    "img": "nekokoban.webp",
+    "cat": "animal",
+    "jp": "猫に小判",
+    "read": "ねこにこばん",
+    "romaji": "neko ni koban",
+    "lit": "Gold coins to a cat",
+    "en": "Wasted on the unappreciative",
+    "meaning": "Giving something valuable to someone who cannot appreciate its worth.",
+    "exRuby": "<ruby>高<rt>たか</rt></ruby>いワインをあげたが、<ruby>彼<rt>かれ</rt></ruby>には<ruby>猫<rt>ねこ</rt></ruby>に<ruby>小判<rt>こばん</rt></ruby>だった。",
+    "exBlank": "<ruby>高<rt>たか</rt></ruby>いワインをあげたが、<ruby>彼<rt>かれ</rt></ruby>には＿＿＿＿だった。",
+    "exEn": "I gave him expensive wine, but it was wasted on him.",
+    "note": "<strong>💡 Note:</strong> English says \"pearls before swine\" — a different animal, but the same idea!",
+    "audioWord": "idioms-audio/nekokoban.mp3",
+    "audioEx": "idioms-audio/nekokoban-ex.mp3"
+  },
+  {
+    "slug": "nanakorobi",
+    "img": "nanakorobi.webp",
+    "cat": "work",
+    "jp": "七転び八起き",
+    "read": "ななころびやおき",
+    "romaji": "nanakorobi yaoki",
+    "lit": "Fall seven times, rise eight",
+    "en": "Never give up",
+    "meaning": "No matter how many times you fail, you get back up and try again.",
+    "exRuby": "<ruby>七転<rt>ななころ</rt></ruby>び<ruby>八起<rt>やお</rt></ruby>きの<ruby>精神<rt>せいしん</rt></ruby>で、<ruby>挑戦<rt>ちょうせん</rt></ruby>し<ruby>続<rt>つづ</rt></ruby>ける。",
+    "exBlank": "＿＿＿＿の<ruby>精神<rt>せいしん</rt></ruby>で、<ruby>挑戦<rt>ちょうせん</rt></ruby>し<ruby>続<rt>つづ</rt></ruby>ける。",
+    "exEn": "With a never-give-up spirit, I keep on trying.",
+    "note": "",
+    "audioWord": "idioms-audio/nanakorobi.mp3",
+    "audioEx": "idioms-audio/nanakorobi-ex.mp3"
+  },
+  {
+    "slug": "ishi",
+    "img": "ishi.webp",
+    "cat": "work",
+    "jp": "石の上にも三年",
+    "read": "いしのうえにもさんねん",
+    "romaji": "ishi no ue ni mo sannen",
+    "lit": "Three years on a stone",
+    "en": "Perseverance pays off",
+    "meaning": "Even a cold stone warms up if you sit on it for three years — patience brings results.",
+    "exRuby": "<ruby>石<rt>いし</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>にも<ruby>三年<rt>さんねん</rt></ruby>で、<ruby>続<rt>つづ</rt></ruby>けることが<ruby>大切<rt>たいせつ</rt></ruby>だ。",
+    "exBlank": "＿＿＿＿で、<ruby>続<rt>つづ</rt></ruby>けることが<ruby>大切<rt>たいせつ</rt></ruby>だ。",
+    "exEn": "Perseverance is key — good things come to those who persist.",
+    "note": "",
+    "audioWord": "idioms-audio/ishi.mp3",
+    "audioEx": "idioms-audio/ishi-ex.mp3"
+  },
+  {
+    "slug": "chiri",
+    "img": "chiri.webp",
+    "cat": "work",
+    "jp": "ちりも積もれば山となる",
+    "read": "ちりもつもればやまとなる",
+    "romaji": "chiri mo tsumoreba yama to naru",
+    "lit": "Dust piles up into a mountain",
+    "en": "Small efforts add up",
+    "meaning": "Tiny efforts, repeated many times, eventually become something big.",
+    "exRuby": "<ruby>毎日<rt>まいにち</rt></ruby><ruby>少<rt>すこ</rt></ruby>しずつ<ruby>貯金<rt>ちょきん</rt></ruby>すれば、ちりも<ruby>積<rt>つ</rt></ruby>もれば<ruby>山<rt>やま</rt></ruby>となる。",
+    "exBlank": "<ruby>毎日<rt>まいにち</rt></ruby><ruby>少<rt>すこ</rt></ruby>しずつ<ruby>貯金<rt>ちょきん</rt></ruby>すれば、＿＿＿＿。",
+    "exEn": "Save a little every day, and it will add up to a lot.",
+    "note": "",
+    "audioWord": "idioms-audio/chiri.mp3",
+    "audioEx": "idioms-audio/chiri-ex.mp3"
+  },
+  {
+    "slug": "kaeru",
+    "img": "kaeru.webp",
+    "cat": "animal",
+    "jp": "井の中の蛙",
+    "read": "いのなかのかわず",
+    "romaji": "i no naka no kawazu",
+    "lit": "A frog in a well",
+    "en": "Narrow-minded",
+    "meaning": "Knowing only your own small world, and thinking it is everything.",
+    "exRuby": "<ruby>彼<rt>かれ</rt></ruby>は<ruby>井<rt>い</rt></ruby>の<ruby>中<rt>なか</rt></ruby>の<ruby>蛙<rt>かわず</rt></ruby>で、<ruby>他<rt>ほか</rt></ruby>のやり<ruby>方<rt>かた</rt></ruby>を<ruby>知<rt>し</rt></ruby>らない。",
+    "exBlank": "<ruby>彼<rt>かれ</rt></ruby>は＿＿＿＿で、<ruby>他<rt>ほか</rt></ruby>のやり<ruby>方<rt>かた</rt></ruby>を<ruby>知<rt>し</rt></ruby>らない。",
+    "exEn": "He's a frog in a well — he knows no other way of doing things.",
+    "note": "",
+    "audioWord": "idioms-audio/kaeru.mp3",
+    "audioEx": "idioms-audio/kaeru-ex.mp3"
+  },
+  {
+    "slug": "imo",
+    "img": "imo.webp",
+    "cat": "food",
+    "jp": "芋を洗うよう",
+    "read": "いもをあらうよう",
+    "romaji": "imo o arau you",
+    "lit": "Like washing potatoes",
+    "en": "Packed like sardines",
+    "meaning": "So crowded that people are pressed together, like potatoes being washed in a tub.",
+    "exRuby": "<ruby>朝<rt>あさ</rt></ruby>の<ruby>電車<rt>でんしゃ</rt></ruby>は、<ruby>芋<rt>いも</rt></ruby>を<ruby>洗<rt>あら</rt></ruby>うような<ruby>混雑<rt>こんざつ</rt></ruby>だ。",
+    "exBlank": "<ruby>朝<rt>あさ</rt></ruby>の<ruby>電車<rt>でんしゃ</rt></ruby>は、＿＿＿＿な<ruby>混雑<rt>こんざつ</rt></ruby>だ。",
+    "exEn": "The morning train is packed like sardines.",
+    "note": "",
+    "audioWord": "idioms-audio/imo.mp3",
+    "audioEx": "idioms-audio/imo-ex.mp3"
+  }
+];
 
-    // 例文の表示切り替え
-    function toggleExample(btn) {
-        btn.nextElementSibling.classList.toggle('open');
-    }
-
-    // 学習済みマークの制御（localStorageに保存して、次に開いても残るようにする）
+    // Preserve existing localStorage key `idiomsLearned` (stores Japanese titles)
     const LEARNED_KEY = 'idiomsLearned';
-    function saveLearned() {
-        const learned = [...document.querySelectorAll('.idiom-card.learned')]
-            .map(c => c.querySelector('.idiom-jp').textContent.trim());
-        localStorage.setItem(LEARNED_KEY, JSON.stringify(learned));
-    }
-    function toggleLearned(btn) {
-        const card = btn.closest('.idiom-card');
-        card.classList.toggle('learned');
-        btn.innerText = card.classList.contains('learned') ? "Mastered ✓" : "Mark as Learned";
-        updateProgress();
-        saveLearned();
-    }
-    // 保存済みの学習状態を復元
-    try {
-        const savedLearned = JSON.parse(localStorage.getItem(LEARNED_KEY) || '[]');
-        document.querySelectorAll('.idiom-card').forEach(card => {
-            if (savedLearned.includes(card.querySelector('.idiom-jp').textContent.trim())) {
-                card.classList.add('learned');
-                card.querySelector('.mark-btn').innerText = "Mastered ✓";
-            }
-        });
-        updateProgress();
-    } catch (e) { /* 保存データが読めなくても表示は続行する */ }
+    const FAV_KEY = 'ohayo_idioms_favs_v1';
 
-    // 進捗バーの更新
+    function loadSet(key) {
+      try { return new Set(JSON.parse(localStorage.getItem(key) || '[]')); } catch (e) { return new Set(); }
+    }
+    function saveSet(key, set) {
+      try { localStorage.setItem(key, JSON.stringify([...set])); } catch (e) {}
+    }
+
+    let learned = loadSet(LEARNED_KEY);
+    let favs = loadSet(FAV_KEY);
+    let mode = 'gallery';
+    let cat = 'all';
+    let unlearnedOnly = false;
+    let favOnly = false;
+    let qType = 'meaning';
+    let qList = [], qIdx = 0, qScore = 0, qCombo = 0, qMaxCombo = 0;
+    let fcIdx = 0;
+
+    // Native MP3 player (100% idioms-audio/*.mp3)
+    const player = new Audio();
+    player.preload = 'auto';
+    function playAudio(src) {
+      if (!src) return;
+      try {
+        player.pause();
+        player.src = src;
+        player.currentTime = 0;
+        player.play().catch(() => {});
+      } catch (e) {}
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 1400);
+    }
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
     function updateProgress() {
-        const learned = document.querySelectorAll('.idiom-card.learned').length;
-        document.getElementById('progressFill').style.width = (learned / TOTAL * 100) + '%';
-        document.getElementById('learnedCount').innerText = learned;
+      const count = ITEMS.filter(x => learned.has(x.jp)).length;
+      document.getElementById('progText').textContent = `${count} / ${ITEMS.length} Mastered`;
+      document.getElementById('progFill').style.width = `${(count / ITEMS.length) * 100}%`;
+      document.getElementById('favFilterBtn').textContent = `⭐ Favorites (${favs.size})`;
     }
 
-    // カテゴリーフィルター
-    function filterCards(category, btn) {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.idiom-card').forEach(card => {
-            if (category === 'all' || card.dataset.category === category) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+    function filteredItems() {
+      const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+      return ITEMS.filter(x =>
+        (cat === 'all' || x.cat === cat) &&
+        (!unlearnedOnly || !learned.has(x.jp)) &&
+        (!favOnly || favs.has(x.slug)) &&
+        (!q || x.jp.includes(q) || x.read.includes(q) || x.romaji.toLowerCase().includes(q) || x.en.toLowerCase().includes(q) || x.meaning.toLowerCase().includes(q))
+      );
     }
 
-    // --- View Toggle functionality (Card vs List) 追加部分 ---
-    const viewBtns = document.querySelectorAll('.view-btn');
-    const gridContainer = document.getElementById('idiomsGrid');
+    // 1. Gallery
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+      const list = filteredItems();
+      if (!list.length) {
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--muted); padding:28px;">No matching idioms found.</p>';
+        return;
+      }
+      list.forEach((item, i) => {
+        const isL = learned.has(item.jp);
+        const isF = favs.has(item.slug);
+        const el = document.createElement('div');
+        el.className = 'card' + (isL ? ' learned' : '') + (i === 0 ? ' open' : '');
+        el.innerHTML = `
+          <div class="img-wrap">
+            <img src="${item.img}" alt="${item.slug}" loading="lazy">
+            <button class="fav-btn ${isF ? 'on' : ''}" type="button" aria-label="Favorite">★</button>
+            <div class="audio-row">
+              <button class="audio-fab" data-a="word" type="button">🔊 Word</button>
+              <button class="audio-fab" data-a="ex" type="button">🗣️ Example</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="jp-title">${item.jp}</h3>
+            <div class="jp-read">${item.read}</div>
+            <div class="romaji-line">${item.romaji}</div>
+            <div class="lit">Literally: ${item.lit}</div>
+            <div class="en-mean">"${item.en}"</div>
+            <div class="desc-line">${item.meaning}</div>
+            <div class="ex-box">${item.exRuby}<span class="ex-en">${item.exEn}</span></div>
+            ${item.note ? `<div class="note-box">${item.note}</div>` : ''}
+            <button class="mark-btn" type="button">${isL ? 'Mastered ✓' : 'Mark as Learned'}</button>
+          </div>
+        `;
+        el.onclick = e => {
+          if (!e.target.closest('button') && window.innerWidth <= 680) el.classList.toggle('open');
+        };
+        el.querySelector('.fav-btn').onclick = () => {
+          if (favs.has(item.slug)) favs.delete(item.slug);
+          else favs.add(item.slug);
+          saveSet(FAV_KEY, favs);
+          updateProgress();
+          renderGallery();
+          showToast(favs.has(item.slug) ? '⭐ Saved to Favorites!' : 'Removed from Favorites');
+        };
+        el.querySelector('[data-a="word"]').onclick = () => playAudio(item.audioWord);
+        el.querySelector('[data-a="ex"]').onclick = () => playAudio(item.audioEx);
+        el.querySelector('.mark-btn').onclick = () => {
+          if (learned.has(item.jp)) learned.delete(item.jp);
+          else learned.add(item.jp);
+          saveSet(LEARNED_KEY, learned);
+          updateProgress();
+          renderGallery();
+        };
+        grid.appendChild(el);
+      });
+    }
 
-    viewBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            viewBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    // 2. 10-Q Quiz
+    function startQuiz() {
+      document.getElementById('quizCard').classList.remove('hidden');
+      document.getElementById('quizDoneCard').classList.add('hidden');
+      const pool = filteredItems().length >= 4 ? filteredItems() : ITEMS;
+      qList = shuffle(pool).slice(0, Math.min(10, pool.length));
+      qIdx = 0; qScore = 0; qCombo = 0; qMaxCombo = 0;
+      renderQuiz();
+    }
 
-            // Switch view
-            if (btn.dataset.view === 'list') {
-                gridContainer.classList.add('list-view');
-            } else {
-                gridContainer.classList.remove('list-view');
-            }
+    function renderQuiz() {
+      if (qIdx >= qList.length) {
+        document.getElementById('quizCard').classList.add('hidden');
+        document.getElementById('quizDoneCard').classList.remove('hidden');
+        const pct = Math.round((qScore / qList.length) * 100);
+        const rank = pct === 100 ? 'S' : pct >= 80 ? 'A' : pct >= 60 ? 'B' : 'C';
+        document.getElementById('quizDoneTitle').textContent = `Rank ${rank} — Quiz Complete!`;
+        document.getElementById('quizDoneScore').textContent = `Score: ${qScore} / ${qList.length} (Max Combo 🔥 ${qMaxCombo})`;
+        return;
+      }
+      const item = qList[qIdx];
+      document.getElementById('qProg').textContent = `Question ${qIdx + 1} / ${qList.length}`;
+      document.getElementById('qScore').textContent = `⭐ ${qScore} · 🔥 ${qCombo}`;
+      document.getElementById('quizFeedback').textContent = '';
+      document.getElementById('quizNextBtn').classList.add('hidden');
+
+      const imgBox = document.getElementById('quizImgBox');
+      const opts = shuffle([item, ...shuffle(ITEMS.filter(x => x.slug !== item.slug)).slice(0, 3)]);
+      const optsBox = document.getElementById('quizOpts');
+      optsBox.innerHTML = '';
+
+      if (qType === 'meaning') {
+        imgBox.className = 'quiz-img';
+        imgBox.innerHTML = `<img src="${item.img}" alt="${item.slug}">`;
+        document.getElementById('quizPrompt').textContent = `${item.jp}（${item.read}）`;
+        document.getElementById('quizRomaji').textContent = item.romaji;
+        document.getElementById('quizSub').textContent = `Literally: ${item.lit} — What does it really mean?`;
+        opts.forEach(o => {
+          const b = document.createElement('button');
+          b.className = 'quiz-opt';
+          b.textContent = o.en;
+          b.onclick = () => handleQuizAnswer(o.slug === item.slug, b, opts, item, optsBox);
+          optsBox.appendChild(b);
         });
+      } else {
+        imgBox.className = 'quiz-img mystery';
+        imgBox.innerHTML = `<div style="font-size:1.8rem; margin-bottom:4px;">🎁</div><div>Answer to reveal the illustration &amp; hear the audio!</div>`;
+        document.getElementById('quizPrompt').innerHTML = item.exBlank;
+        document.getElementById('quizRomaji').textContent = '';
+        document.getElementById('quizSub').textContent = `💡 "${item.exEn}"`;
+        opts.forEach(o => {
+          const b = document.createElement('button');
+          b.className = 'quiz-opt';
+          b.innerHTML = `${o.jp} <span style="font-size:0.8rem; color:var(--muted);">(${o.read})</span> <span class="romaji-line" style="display:inline; font-size:0.78rem;">· ${o.romaji}</span>`;
+          b.onclick = () => handleQuizAnswer(o.slug === item.slug, b, opts, item, optsBox);
+          optsBox.appendChild(b);
+        });
+      }
+    }
+
+    function handleQuizAnswer(ok, btn, opts, item, box) {
+      [...box.children].forEach(c => c.disabled = true);
+      if (ok) {
+        btn.classList.add('ok');
+        qScore++; qCombo++;
+        if (qCombo > qMaxCombo) qMaxCombo = qCombo;
+        learned.add(item.jp);
+        saveSet(LEARNED_KEY, learned);
+        updateProgress();
+        document.getElementById('quizFeedback').textContent = `✅ Correct! ${item.jp} = ${item.en}`;
+        document.getElementById('quizFeedback').style.color = 'var(--good)';
+      } else {
+        btn.classList.add('ng');
+        qCombo = 0;
+        [...box.children].forEach((c, i) => { if (opts[i].slug === item.slug) c.classList.add('ok'); });
+        document.getElementById('quizFeedback').textContent = `❌ Answer: ${item.jp} (${item.romaji}) — ${item.en}`;
+        document.getElementById('quizFeedback').style.color = 'var(--bad)';
+      }
+      if (qType === 'situation') {
+        const imgBox = document.getElementById('quizImgBox');
+        imgBox.className = 'quiz-img';
+        imgBox.innerHTML = `<img src="${item.img}" alt="${item.slug}">`;
+      }
+      playAudio(qType === 'situation' ? item.audioEx : item.audioWord);
+      document.getElementById('qScore').textContent = `⭐ ${qScore} · 🔥 ${qCombo}`;
+      document.getElementById('quizNextBtn').classList.remove('hidden');
+    }
+
+    // 3. 3D Flashcards
+    function fcPool() {
+      const f = filteredItems();
+      return f.length ? f : ITEMS;
+    }
+    function renderFC() {
+      const pool = fcPool();
+      if (fcIdx >= pool.length) fcIdx = 0;
+      const item = pool[fcIdx];
+      document.getElementById('fcStage').classList.remove('flipped');
+      document.getElementById('fcCounter').textContent = `Card ${fcIdx + 1} / ${pool.length} · Tap card to flip!`;
+      document.getElementById('fcImg').src = item.img;
+      document.getElementById('fcImg').alt = item.slug;
+      document.getElementById('fcLit').textContent = `Literally: ${item.lit}`;
+      document.getElementById('fcJp').textContent = item.jp;
+      document.getElementById('fcRead').textContent = item.read;
+      document.getElementById('fcRomaji').textContent = item.romaji;
+      document.getElementById('fcEn').textContent = `"${item.en}"`;
+      document.getElementById('fcEx').innerHTML = `${item.exRuby}<span class="ex-en">${item.exEn}</span>`;
+    }
+
+    // Wire events
+    document.querySelectorAll('.mode-tab').forEach(b => b.onclick = () => {
+      document.querySelectorAll('.mode-tab').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      mode = b.dataset.mode;
+      document.getElementById('galleryView').classList.toggle('hidden', mode !== 'gallery');
+      document.getElementById('quizView').classList.toggle('hidden', mode !== 'quiz');
+      document.getElementById('cardsView').classList.toggle('hidden', mode !== 'cards');
+      if (mode === 'gallery') renderGallery();
+      if (mode === 'quiz') startQuiz();
+      if (mode === 'cards') { fcIdx = 0; renderFC(); }
     });
-    // スマホ：カードを折りたたみ式にする（一覧を短くし、タップで全文表示）
-    if (window.innerWidth <= 768) {
-        const firstCard = document.querySelector('.idiom-card');
-        if (firstCard) firstCard.classList.add('open');
-    }
-    document.querySelectorAll('.idiom-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            if (e.target.closest('button') || e.target.closest('a')) return;
-            if (gridContainer.classList.contains('list-view')) {
-                // リスト表示：タップで読み方を表示/非表示
-                card.classList.toggle('reveal');
-            } else if (window.innerWidth <= 768) {
-                card.classList.toggle('open');
-            }
-        });
+
+    document.getElementById('romajiToggle').onclick = e => {
+      const off = document.body.classList.toggle('hide-romaji');
+      e.target.classList.toggle('on', !off);
+      e.target.textContent = off ? 'Aa Romaji OFF' : 'Aa Romaji ON';
+    };
+    document.getElementById('furiToggle').onclick = e => {
+      const off = document.body.classList.toggle('hide-furigana');
+      e.target.classList.toggle('on', !off);
+      e.target.textContent = off ? 'あ Furigana OFF' : 'あ Furigana ON';
+    };
+
+    document.querySelectorAll('[data-cat]').forEach(b => b.onclick = () => {
+      document.querySelectorAll('[data-cat]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      cat = b.dataset.cat;
+      renderGallery();
     });
-    // リスト表示のときだけヒントを出す
-    const listHint = document.getElementById('listHint');
-    viewBtns.forEach(b => b.addEventListener('click', () => {
-        if (listHint) listHint.style.display = b.dataset.view === 'list' ? 'block' : 'none';
-    }));
-</script>
+    document.getElementById('favFilterBtn').onclick = e => {
+      favOnly = !favOnly;
+      e.target.classList.toggle('active', favOnly);
+      renderGallery();
+    };
+    document.getElementById('unlearnedBtn').onclick = e => {
+      unlearnedOnly = !unlearnedOnly;
+      e.target.classList.toggle('active', unlearnedOnly);
+      renderGallery();
+    };
+    document.getElementById('searchInput').oninput = renderGallery;
+
+    document.querySelectorAll('[data-qtype]').forEach(b => b.onclick = () => {
+      document.querySelectorAll('[data-qtype]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      qType = b.dataset.qtype;
+      startQuiz();
+    });
+    document.getElementById('quizNextBtn').onclick = () => { qIdx++; renderQuiz(); };
+    document.getElementById('quizRetryBtn').onclick = startQuiz;
+
+    const fcStage = document.getElementById('fcStage');
+    fcStage.onclick = e => { if (!e.target.closest('button')) fcStage.classList.toggle('flipped'); };
+    fcStage.onkeydown = e => {
+      if (e.target.closest('button')) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fcStage.classList.toggle('flipped'); }
+    };
+    document.getElementById('fcWordBtn').onclick = e => { e.stopPropagation(); playAudio(fcPool()[fcIdx].audioWord); };
+    document.getElementById('fcExBtn').onclick = e => { e.stopPropagation(); playAudio(fcPool()[fcIdx].audioEx); };
+    document.getElementById('fcPrev').onclick = () => { const p = fcPool(); fcIdx = (fcIdx - 1 + p.length) % p.length; renderFC(); };
+    document.getElementById('fcNext').onclick = () => { const p = fcPool(); fcIdx = (fcIdx + 1) % p.length; renderFC(); };
+    document.getElementById('fcGot').onclick = () => {
+      const p = fcPool();
+      learned.add(p[fcIdx].jp);
+      saveSet(LEARNED_KEY, learned);
+      updateProgress();
+      fcIdx = (fcIdx + 1) % p.length;
+      renderFC();
+      showToast('✅ Marked as Mastered!');
+    };
+
+    // Dark mode sync with ohayo_theme
+    const themeBtn = document.getElementById('themeBtn');
+    if (localStorage.getItem('ohayo_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeBtn.textContent = '☀️';
+    }
+    themeBtn.onclick = () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('ohayo_theme', isDark ? 'dark' : 'light');
+    };
+
+    updateProgress();
+    renderGallery();
+  </script>
 </body>
 </html>
