@@ -351,6 +351,27 @@
             background: #2ecc71; border-color: #2ecc71; color: #fff;
             box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
         }
+        /* Live per-card auto-synced progress bar (shown only when started!) */
+        .unified-card.has-live-prog p { margin-bottom: 0.9rem; }
+        .card-live-prog {
+            width: 100%; max-width: 165px; margin: auto auto 0.7rem;
+            display: flex; flex-direction: column; gap: 4px; align-items: center;
+        }
+        .card-live-prog + .btn-bottom { margin-top: 0; }
+        .card-live-txt {
+            font-size: 0.7rem; font-weight: 800; color: #e67e22; letter-spacing: 0.2px;
+        }
+        .unified-card.is-done .card-live-txt { color: #27ae60; }
+        .card-live-bar {
+            width: 100%; height: 5px; border-radius: 999px; background: #f1f3f5; overflow: hidden;
+        }
+        .card-live-fill {
+            height: 100%; border-radius: 999px; background: linear-gradient(90deg, #ff9f43, #2ecc71);
+            transition: width 0.35s ease;
+        }
+        body.dark-mode .card-live-bar { background: #334155; }
+        body.dark-mode .card-live-txt { color: #ffbe76; }
+        body.dark-mode .unified-card.is-done .card-live-txt { color: #6ee7b7; }
         
         .level-section { margin-top: 3.2rem; padding-top: 2.2rem; border-top: 2px dashed #eaeaea; scroll-margin-top: 90px; }
         .level-section h2.section-title { font-family: 'Sawarabi Mincho', serif; text-align: center; font-size: 1.9rem; margin-bottom: 2rem; }
@@ -1751,69 +1772,109 @@
             const raw = JSON.parse(localStorage.getItem(STUDY_STORE_KEY) || '{}');
             return {
                 done: new Set(Array.isArray(raw.done) ? raw.done : []),
+                unchecked: new Set(Array.isArray(raw.unchecked) ? raw.unchecked : []),
                 last: raw.last && raw.last.href ? raw.last : null
             };
-        } catch (e) { return { done: new Set(), last: null }; }
+        } catch (e) { return { done: new Set(), unchecked: new Set(), last: null }; }
     }
     function saveStudyTracker(st) {
         try {
-            localStorage.setItem(STUDY_STORE_KEY, JSON.stringify({ done: [...st.done], last: st.last }));
+            localStorage.setItem(STUDY_STORE_KEY, JSON.stringify({
+                done: [...st.done],
+                unchecked: [...(st.unchecked || [])],
+                last: st.last
+            }));
         } catch (e) {}
     }
-    function initStudyTracker() {
+    function refreshStudyProgressUI() {
         const st = loadStudyTracker();
-        autoSyncCrossPageProgress(st);
+        const liveMap = autoSyncCrossPageProgress(st);
         const cards = [...document.querySelectorAll('.unified-card[data-mat]')];
         const total = cards.length;
+        let totalDone = 0;
+        let inProgCount = 0;
+        let firstInProgCard = null;
 
-        function refreshUI() {
-            let totalDone = 0;
-            cards.forEach(card => {
-                const id = card.dataset.mat;
-                const isDone = st.done.has(id);
-                if (isDone) totalDone++;
-                card.classList.toggle('is-done', isDone);
-                const lbl = card.querySelector('.done-stamp span');
-                if (lbl) lbl.textContent = isDone ? 'Done' : '';
-            });
-            const totEl = document.getElementById('studyTotalDone');
-            const fillEl = document.getElementById('studyTotalFill');
-            if (totEl) totEl.textContent = totalDone + ' / ' + total + ' Cleared';
-            if (fillEl) fillEl.style.width = (total ? Math.round((totalDone / total) * 100) : 0) + '%';
+        cards.forEach(card => {
+            const id = card.dataset.mat;
+            const isDone = st.done.has(id);
+            const prog = liveMap[id];
+            if (isDone) totalDone++;
+            else if (prog && prog.cur > 0) {
+                inProgCount++;
+                if (!firstInProgCard) firstInProgCard = card;
+            }
+            card.classList.toggle('is-done', isDone);
+            const lbl = card.querySelector('.done-stamp span');
+            if (lbl) lbl.textContent = isDone ? 'Done' : '';
 
-            // Per-group counts
-            document.querySelectorAll('[data-group]').forEach(grid => {
-                const gKey = grid.dataset.group;
-                const gCards = grid.querySelectorAll('.unified-card[data-mat]');
-                let gDone = 0;
-                gCards.forEach(c => { if (st.done.has(c.dataset.mat)) gDone++; });
-                const badge = document.querySelector('[data-group-prog="' + gKey + '"]');
-                if (badge) badge.textContent = gDone + ' / ' + gCards.length;
-            });
-
-            // Per-section portal counts
-            document.querySelectorAll('.level-section[data-section-key]').forEach(sec => {
-                const sKey = sec.dataset.sectionKey;
-                const sCards = sec.querySelectorAll('.unified-card[data-mat]');
-                let sDone = 0;
-                sCards.forEach(c => { if (st.done.has(c.dataset.mat)) sDone++; });
-                const pEl = document.querySelector('[data-portal-prog="' + sKey + '"]');
-                if (pEl) pEl.textContent = sDone + ' / ' + sCards.length + ' Done';
-            });
-
-            // Continue button (only shown once the student has opened a material)
-            const cBtn = document.getElementById('studyContinueBtn');
-            const cTxt = document.getElementById('studyContinueTxt');
-            if (cBtn && cTxt) {
-                if (st.last && st.last.href) {
-                    cBtn.href = st.last.href;
-                    cTxt.textContent = 'Continue: ' + st.last.title;
-                    cBtn.classList.add('show');
-                } else {
-                    cBtn.classList.remove('show');
+            // Render live mini progress bar on any started card
+            const hasProg = !!(prog && prog.cur > 0);
+            card.classList.toggle('has-live-prog', hasProg);
+            let progEl = card.querySelector('.card-live-prog');
+            if (hasProg) {
+                const pct = Math.min(100, Math.round((prog.cur / prog.total) * 100));
+                if (!progEl) {
+                    progEl = document.createElement('div');
+                    progEl.className = 'card-live-prog';
+                    const btnBottom = card.querySelector('.btn-bottom');
+                    if (btnBottom) card.insertBefore(progEl, btnBottom);
+                    else card.appendChild(progEl);
                 }
+                progEl.innerHTML =
+                    '<span class="card-live-txt">' + (isDone ? '✓ ' : '') + prog.cur + ' / ' + prog.total + ' (' + pct + '%)</span>' +
+                    '<div class="card-live-bar"><div class="card-live-fill" style="width:' + pct + '%;"></div></div>';
+            } else if (progEl) {
+                progEl.remove();
+            }
+        });
+        const totEl = document.getElementById('studyTotalDone');
+        const fillEl = document.getElementById('studyTotalFill');
+        if (totEl) {
+            totEl.textContent = totalDone + ' / ' + total + ' Cleared' + (inProgCount > 0 ? ' · ' + inProgCount + ' In Progress' : '');
+        }
+        if (fillEl) fillEl.style.width = (total ? Math.round((totalDone / total) * 100) : 0) + '%';
+
+        // Per-group counts
+        document.querySelectorAll('[data-group]').forEach(grid => {
+            const gKey = grid.dataset.group;
+            const gCards = grid.querySelectorAll('.unified-card[data-mat]');
+            let gDone = 0;
+            gCards.forEach(c => { if (st.done.has(c.dataset.mat)) gDone++; });
+            const badge = document.querySelector('[data-group-prog="' + gKey + '"]');
+            if (badge) badge.textContent = gDone + ' / ' + gCards.length;
+        });
+
+        // Per-section portal counts
+        document.querySelectorAll('.level-section[data-section-key]').forEach(sec => {
+            const sKey = sec.dataset.sectionKey;
+            const sCards = sec.querySelectorAll('.unified-card[data-mat]');
+            let sDone = 0;
+            sCards.forEach(c => { if (st.done.has(c.dataset.mat)) sDone++; });
+            const pEl = document.querySelector('[data-portal-prog="' + sKey + '"]');
+            if (pEl) pEl.textContent = sDone + ' / ' + sCards.length + ' Done';
+        });
+
+        // Continue button (shown once the student has opened or started any material)
+        const cBtn = document.getElementById('studyContinueBtn');
+        const cTxt = document.getElementById('studyContinueTxt');
+        if (cBtn && cTxt) {
+            if (st.last && st.last.href) {
+                cBtn.href = st.last.href;
+                cTxt.textContent = 'Continue: ' + st.last.title;
+                cBtn.classList.add('show');
+            } else if (firstInProgCard) {
+                cBtn.href = firstInProgCard.dataset.mat;
+                cTxt.textContent = 'Continue: ' + (firstInProgCard.dataset.title || firstInProgCard.dataset.mat);
+                cBtn.classList.add('show');
+            } else {
+                cBtn.classList.remove('show');
             }
         }
+    }
+
+    function initStudyTracker() {
+        const cards = [...document.querySelectorAll('.unified-card[data-mat]')];
 
         cards.forEach(card => {
             const id = card.dataset.mat;
@@ -1823,16 +1884,23 @@
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    if (st.done.has(id)) st.done.delete(id);
-                    else st.done.add(id);
-                    saveStudyTracker(st);
-                    refreshUI();
+                    const curSt = loadStudyTracker();
+                    if (curSt.done.has(id)) {
+                        curSt.done.delete(id);
+                        curSt.unchecked.add(id);
+                    } else {
+                        curSt.done.add(id);
+                        curSt.unchecked.delete(id);
+                    }
+                    saveStudyTracker(curSt);
+                    refreshStudyProgressUI();
                     renderStreakAndWelcome();
                 });
             }
             card.addEventListener('click', function() {
-                st.last = { href: id, title: title };
-                saveStudyTracker(st);
+                const curSt = loadStudyTracker();
+                curSt.last = { href: id, title: title };
+                saveStudyTracker(curSt);
                 touchTodayStreak();
             });
         });
@@ -1846,15 +1914,28 @@
                     const href = link.getAttribute('href');
                     const h4 = link.querySelector('h4');
                     if (href && !href.startsWith('#')) {
-                        st.last = { href: href, title: h4 ? h4.textContent.trim() : href };
-                        saveStudyTracker(st);
+                        const curSt = loadStudyTracker();
+                        curSt.last = { href: href, title: h4 ? h4.textContent.trim() : href };
+                        saveStudyTracker(curSt);
                         touchTodayStreak();
                     }
                 }
             });
         }
 
-        refreshUI();
+        refreshStudyProgressUI();
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted) {
+                syncThemeFromStorage();
+                refreshStudyProgressUI();
+                renderStreakAndWelcome();
+            }
+        });
+        window.addEventListener('storage', function() {
+            syncThemeFromStorage();
+            refreshStudyProgressUI();
+            renderStreakAndWelcome();
+        });
     }
 
     function pickStarterGoal(key, btn) {
@@ -1919,21 +2000,25 @@
 
 
     /* ====== Dark Mode Sync (ohayo_theme — shared across study pages) ====== */
-    function initThemeToggle() {
+    function applyTheme(isDark) {
+        document.body.classList.toggle('dark-mode', isDark);
         var btn = document.getElementById('themeBtn');
-        var apply = function(isDark) {
-            document.body.classList.toggle('dark-mode', isDark);
-            if (btn) btn.textContent = isDark ? '☀️' : '🌙';
-            var meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) meta.setAttribute('content', isDark ? '#0f172a' : '#ff9f43');
-        };
+        if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', isDark ? '#0f172a' : '#ff9f43');
+    }
+    function syncThemeFromStorage() {
         var savedDark = false;
         try { savedDark = localStorage.getItem('ohayo_theme') === 'dark'; } catch (e) {}
-        apply(savedDark);
+        applyTheme(savedDark);
+    }
+    function initThemeToggle() {
+        var btn = document.getElementById('themeBtn');
+        syncThemeFromStorage();
         if (btn) {
             btn.addEventListener('click', function() {
                 var next = !document.body.classList.contains('dark-mode');
-                apply(next);
+                applyTheme(next);
                 try { localStorage.setItem('ohayo_theme', next ? 'dark' : 'light'); } catch (e) {}
             });
         }
@@ -1973,18 +2058,36 @@
         if (badge) badge.textContent = '🔥 ' + activeCount + '-Day Streak';
 
         var st = loadStudyTracker();
+        var liveInProg = 0;
+        var firstInProgMat = null;
+        MATERIAL_PROGRESS_MAP.forEach(function(cfg) {
+            var r = readMaterialProgress(cfg);
+            if (r.cur > 0 && !st.done.has(cfg.mat)) {
+                liveInProg++;
+                if (!firstInProgMat) firstInProgMat = cfg.mat;
+            }
+        });
         var wb = document.getElementById('welcomeBackBar');
         if (wb) {
-            if (st.last || activeCount > 0 || st.done.size > 0) {
+            if (st.last || activeCount > 0 || st.done.size > 0 || liveInProg > 0) {
                 wb.classList.add('show');
                 var wbS = document.getElementById('wbStreak');
-                if (wbS) wbS.textContent = activeCount > 0 ? ('🔥 ' + activeCount + '-Day Streak') : ('⭐ ' + st.done.size + ' Cleared');
+                if (wbS) {
+                    if (activeCount > 0) wbS.textContent = '🔥 ' + activeCount + '-Day Streak';
+                    else if (st.done.size > 0) wbS.textContent = '⭐ ' + st.done.size + ' Cleared';
+                    else wbS.textContent = '📖 ' + liveInProg + ' In Progress';
+                }
                 var wbBtn = document.getElementById('wbContinueBtn');
                 var wbTxt = document.getElementById('wbContinueTxt');
                 if (wbBtn && wbTxt) {
                     if (st.last && st.last.href) {
                         wbBtn.href = st.last.href;
                         wbTxt.textContent = 'Continue: ' + st.last.title;
+                    } else if (firstInProgMat) {
+                        var cardEl = document.querySelector('.unified-card[data-mat="' + firstInProgMat + '"]');
+                        var tLabel = (cardEl && cardEl.dataset.title) ? cardEl.dataset.title : firstInProgMat;
+                        wbBtn.href = firstInProgMat;
+                        wbTxt.textContent = 'Continue: ' + tLabel;
                     } else {
                         wbBtn.href = '#resources';
                         wbTxt.textContent = 'Jump to Study Materials';
@@ -1996,17 +2099,104 @@
         }
     }
 
+    /* ====== Full 42-Material Live Progress Auto-Sync ====== */
+    const MATERIAL_PROGRESS_MAP = [
+        // Travel (3)
+        { mat: 'trip-listen.html',      key: 'ohayo_listen_progress',         mode: 'boolObj',       total: 9,   doneAt: 9 },
+        { mat: 'trip-flashcards.html',  key: 'ohayo_trip_fc_mastered_v1',     mode: 'arr',           total: 100, doneAt: 50 },
+        { mat: 'trip-quiz.html',        key: 'ohayo_trip_quiz_v2',            mode: 'propArr', prop: 'mastered', total: 25, doneAt: 20 },
+        // Culture & Fun (4)
+        { mat: 'audioblog.html',        key: 'ohayo_audioblog_listened_v1',   mode: 'boolObj',       total: 7,   doneAt: 7 },
+        { mat: 'idioms.html',           key: 'idiomsLearned',                 mode: 'arr',           total: 40,  doneAt: 32 },
+        { mat: 'onomato.html',          key: 'ohayo_onomato_quiz_v1',         mode: 'propArr', prop: 'mastered', total: 42, doneAt: 34 },
+        { mat: 'anime1.html',           key: 'ohayo_anime_lab_v2',            mode: 'propArr', prop: 'learned',  total: 40, doneAt: 32 },
+        // Hiragana (3)
+        { mat: 'hiragana-nazori.html',  key: 'ohayo_hiragana_mastery_v1',     mode: 'keyObj',        total: 46,  doneAt: 40 },
+        { mat: 'Hiragana.html',         key: 'ohayo_hira_read_mastery_v1',    mode: 'boolObj',       total: 50,  doneAt: 40 },
+        { mat: 'hiraganatype.html',     key: 'ohayo_master_v1',               mode: 'arr',           total: 104, doneAt: 46 },
+        // Katakana (5)
+        { mat: 'katakana-nazori.html',  key: 'ohayo_katakana_mastery_v1',     mode: 'keyObj',        total: 46,  doneAt: 40 },
+        { mat: 'Katakana1.html',        key: 'ohayo_kata1_read_mastery_v1',   mode: 'boolObj',       total: 50,  doneAt: 40 },
+        { mat: 'Katakana1-2.html',      key: 'ohayo_kata2_read_mastery_v1',   mode: 'boolObj',       total: 50,  doneAt: 40 },
+        { mat: 'katakanatype.html',     key: 'ohayo_katakana_save',           mode: 'arr',           total: 104, doneAt: 46 },
+        { mat: 'matching.html',         key: 'ohayo_match_cleared_rows_v1',   mode: 'arr',           total: 10,  doneAt: 8 },
+        // Grammar N5-N4 (7)
+        { mat: 'adj.html',              key: 'memorizedAdjectives',           mode: 'arr',           total: 200, doneAt: 100 },
+        { mat: 'plainform.html',        key: 'ohayo_plainform_v1',            mode: 'statusMastered',total: 300, doneAt: 150 },
+        { mat: 'Grammar1-1.html',       key: 'ohayo_sb_v1_grammar1_1',        mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'Grammar1-2.html',       key: 'ohayo_sb_v1_grammar1_2',        mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'Grammar2-1.html',       key: 'ohayo_sb_v1_grammar2_1',        mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'Grammar2-2.html',       key: 'ohayo_sb_v1_grammar2_2',        mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'conditional1.html',     key: 'ohayo_sb_v1_conditional1',      mode: 'statusMastered',total: 25,  doneAt: 20 },
+        // Kanji N5-N4 (7)
+        { mat: 'Kanji-N4-5.html',       key: 'ohayo_kanji300_mastery_v2',     mode: 'boolObj',       total: 300, doneAt: 150 },
+        { mat: 'N4-5verb1-1.html',      key: 'ohayo_n45_verb_v2',             mode: 'mapVal',  val: 'master', total: 100, doneAt: 80 },
+        { mat: 'N4-5adj1-1.html',       key: 'ohayo_n45_adj_v2',              mode: 'mapVal',  val: 'master', total: 100, doneAt: 80 },
+        { mat: 'N4-5noun1-1.html',      key: 'ohayo_n45_noun_v2',             mode: 'mapVal',  val: 'master', total: 100, doneAt: 80 },
+        { mat: 'A1-1.html',             key: 'kanji_mastered_list',           mode: 'arr',           total: 65,  doneAt: 52 },
+        { mat: 'A1-2.html',             key: 'kanji_mastered_list_A1_2',      mode: 'arr',           total: 156, doneAt: 120 },
+        { mat: 'A2.html',               key: 'kanji_mastered_list_A2',        mode: 'arr',           total: 170, doneAt: 135 },
+        // Intermediate Grammar (4)
+        { mat: 'grammar-quest.html',    key: 'ohayo_grammar_quest_v1',        mode: 'gq',            total: 45,  doneAt: 36 },
+        { mat: 'Grammar3-1.html',       key: 'ohayo_n3g_v1_3_1',              mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'n3-grammar.html',       key: 'ohayo_n3_grammar_mastered_v1',  mode: 'arr',           total: 84,  doneAt: 67 },
+        { mat: 'n2-grammar.html',       key: 'ohayo_n2_grammar_mastered_v1',  mode: 'arr',           total: 120, doneAt: 96 },
+        // Intermediate Vocab & Kanji (7)
+        { mat: 'N3-1.html',             key: 'ohayo_n3t_v1_n3_vocab_1',       mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'N3-2.html',             key: 'ohayo_n3t_v1_n3_vocab_2',       mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'N3-3.html',             key: 'ohayo_n3t_v1_n3_vocab_3',       mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'Kanji3-1.html',         key: 'ohayo_n3t_v1_kanji3_1',         mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'Kanji3-2.html',         key: 'ohayo_n3t_v1_kanji3_2',         mode: 'statusMastered',total: 25,  doneAt: 20 },
+        { mat: 'N3verb1-1.html',        key: 'ohayo_n3_verb_v2',              mode: 'mapVal',  val: 'master', total: 100, doneAt: 80 },
+        { mat: 'N3noun1-1.html',        key: 'ohayo_n3_noun_v2',              mode: 'mapVal',  val: 'master', total: 100, doneAt: 80 },
+        // Advanced N1 (2)
+        { mat: 'N1-1.html',             key: 'ohayo_n1_part1_v2',             mode: 'mapVal',  val: 'master', total: 200, doneAt: 160 },
+        { mat: 'N1-2.html',             key: 'ohayo_n1_part2_v2',             mode: 'mapVal',  val: 'master', total: 200, doneAt: 160 }
+    ];
+
+    function readMaterialProgress(cfg) {
+        try {
+            var rawStr = localStorage.getItem(cfg.key);
+            if (!rawStr) return { cur: 0, total: cfg.total, autoDone: false };
+            var raw = JSON.parse(rawStr);
+            var cur = 0, extraDone = false;
+            if (cfg.mode === 'arr') {
+                cur = Array.isArray(raw) ? raw.length : 0;
+            } else if (cfg.mode === 'boolObj') {
+                cur = (raw && typeof raw === 'object') ? Object.values(raw).filter(Boolean).length : 0;
+            } else if (cfg.mode === 'keyObj') {
+                cur = (raw && typeof raw === 'object') ? Object.keys(raw).length : 0;
+            } else if (cfg.mode === 'propArr') {
+                cur = (raw && Array.isArray(raw[cfg.prop])) ? raw[cfg.prop].length : 0;
+            } else if (cfg.mode === 'statusMastered') {
+                var sm = raw && raw.status;
+                cur = (sm && typeof sm === 'object') ? Object.values(sm).filter(function(v) { return v === 'mastered'; }).length : 0;
+            } else if (cfg.mode === 'mapVal') {
+                cur = (raw && typeof raw === 'object') ? Object.values(raw).filter(function(v) { return v === cfg.val; }).length : 0;
+            } else if (cfg.mode === 'gq') {
+                cur = (raw && Array.isArray(raw.mastered)) ? raw.mastered.length : 0;
+                if (raw && Array.isArray(raw.clearedBlitz) && raw.clearedBlitz.length >= 3) extraDone = true;
+            }
+            cur = Math.min(cfg.total, cur);
+            return { cur: cur, total: cfg.total, autoDone: extraDone || cur >= cfg.doneAt };
+        } catch (e) {
+            return { cur: 0, total: cfg.total, autoDone: false };
+        }
+    }
+
     function autoSyncCrossPageProgress(st) {
         var changed = false;
-        try {
-            var n3 = JSON.parse(localStorage.getItem('ohayo_n3_grammar_mastered_v1') || '[]');
-            if (Array.isArray(n3) && n3.length >= 24 && !st.done.has('n3-grammar.html')) { st.done.add('n3-grammar.html'); changed = true; }
-            var n2 = JSON.parse(localStorage.getItem('ohayo_n2_grammar_mastered_v1') || '[]');
-            if (Array.isArray(n2) && n2.length >= 24 && !st.done.has('n2-grammar.html')) { st.done.add('n2-grammar.html'); changed = true; }
-            var gq = JSON.parse(localStorage.getItem('ohayo_grammar_quest_v1') || '{}');
-            if (gq && Array.isArray(gq.clearedBlitz) && gq.clearedBlitz.length >= 3 && !st.done.has('grammar-quest.html')) { st.done.add('grammar-quest.html'); changed = true; }
-        } catch (e) {}
+        var liveMap = {};
+        MATERIAL_PROGRESS_MAP.forEach(function(cfg) {
+            var res = readMaterialProgress(cfg);
+            liveMap[cfg.mat] = res;
+            if (res.autoDone && !st.done.has(cfg.mat) && !(st.unchecked && st.unchecked.has(cfg.mat))) {
+                st.done.add(cfg.mat);
+                changed = true;
+            }
+        });
         if (changed) saveStudyTracker(st);
+        return liveMap;
     }
 
     /* ====== Today's 1-Minute Japanese (30 Date-Rotated Mini Quizzes) ====== */
