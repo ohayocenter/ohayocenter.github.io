@@ -992,6 +992,142 @@
     .confetti-bit { position: absolute; width: 9px; height: 9px; border-radius: 2px; animation: confettiFall 1.3s ease-out forwards; pointer-events: none; }
     .dmg-anchor { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); z-index: 20; }
     .xp-float-anchor { position: absolute; top: -18px; right: 4px; }
+
+    /* Night Kyoto Skin */
+    body[data-skin="kyoto"][data-theme="light"] { background: #eef0f8; }
+    body[data-skin="kyoto"][data-theme="dark"] { background: #0d1022; }
+    .rpg-shell[data-skin="kyoto"][data-theme="light"] {
+      --r-bg: #eef0f8; --r-soft: #e0e5f5; --r-border: #bcc5e3; --r-border-deep: #8b98c7;
+      --r-arena-bg: linear-gradient(180deg, #272e59 0%, #3d356b 65%, #2c274d 66%, #1f1b38 100%);
+    }
+    .rpg-shell[data-skin="kyoto"][data-theme="dark"] {
+      --r-bg: #0d1022; --r-soft: #1b2142; --r-border: #3d487a;
+      --r-arena-bg: linear-gradient(180deg, #121735 0%, #2a2154 65%, #191636 66%, #100d24 100%);
+    }
+    .rpg-shell[data-skin="kyoto"] .arena-stage .hp-label { color: #fef3c7; }
+
+    /* Hero Level & EXP Bar in Banner */
+    .lvl-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 11px; border-radius: 12px; font-weight: 900; font-size: 0.76rem;
+      background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.42);
+    }
+    .lvl-exp-track {
+      width: 56px; height: 6px; border-radius: 999px; background: rgba(0,0,0,0.25); overflow: hidden;
+    }
+    .lvl-exp-fill {
+      height: 100%; border-radius: 999px; background: #fde047; transition: width 0.35s ease;
+    }
+
+    /* Shop Category Tabs */
+    .shop-cats {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;
+    }
+    .shop-cat-btn {
+      font-family: inherit; border: 2px solid var(--r-border); border-bottom: 4px solid var(--r-border-deep);
+      background: var(--r-bg); color: var(--r-dark); border-radius: 12px;
+      padding: 5px 12px; font-size: 0.76rem; font-weight: 800; cursor: pointer;
+    }
+    .shop-cat-btn.active {
+      background: #ff9f43; border-color: #ea7b1c; border-bottom-color: #c2570a; color: #fff;
+    }
+    .bag-count-pill {
+      padding: 2px 8px; border-radius: 999px; font-size: 0.7rem; font-weight: 900;
+      background: var(--r-indigo-bg); color: var(--r-indigo-tx); border: 1px solid var(--r-indigo-bd);
+    }
+
+    /* Quest Map Hero Marker & Clear Badge */
+    .map-hero-pin {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #ff9f43; color: #fff; border: 2px solid #fff;
+      border-radius: 999px; padding: 1px 7px; font-size: 0.74rem; font-weight: 900;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.22); white-space: nowrap;
+      animation: floatBob 1.8s ease-in-out infinite;
+    }
+    .node-clear-stamp {
+      position: absolute; top: 5px; right: 6px; font-size: 0.78rem;
+    }
+
+    /* Battle Arena RPG Enhancements: Hero HP, Status Chips, Boss Speech, Item Command Bar */
+    .hero-hearts {
+      display: flex; align-items: center; justify-content: center; gap: 2px;
+      font-size: 0.95rem; margin-bottom: 4px; min-height: 22px;
+    }
+    .hero-gear-row {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; margin-bottom: 4px;
+    }
+    .buff-chip {
+      padding: 2px 8px; border-radius: 999px; font-size: 0.68rem; font-weight: 900;
+      background: #fef08a; color: #854d0e; border: 1.5px solid #eab308;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    .boss-speech {
+      margin-top: 10px;
+      background: rgba(255,255,255,0.92);
+      color: #26221e;
+      border: 2px solid var(--r-border);
+      border-radius: 14px;
+      padding: 7px 12px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    }
+    body[data-theme="dark"] .boss-speech {
+      background: rgba(27,32,50,0.92); color: #f8fafc;
+    }
+    .boss-speech-jp { font-weight: 800; }
+    .boss-speech-tr { font-size: 0.72rem; opacity: 0.78; font-weight: 600; }
+
+    .item-cmd-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 14px;
+      background: var(--r-soft);
+      border-bottom: 2px solid var(--r-border);
+    }
+    .item-cmd-label {
+      font-size: 0.72rem; font-weight: 900; color: var(--r-muted); letter-spacing: 0.04em;
+    }
+    .item-cmd-btn {
+      font-family: inherit;
+      border: 2px solid var(--r-border); border-bottom: 4px solid var(--r-border-deep);
+      background: var(--r-card); color: var(--r-dark);
+      border-radius: 12px; padding: 5px 10px; font-size: 0.75rem; font-weight: 800;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+      transition: transform 0.08s, border-color 0.12s;
+    }
+    .item-cmd-btn:hover:not(:disabled) { transform: translateY(-1px); border-color: #ff9f43; }
+    .item-cmd-btn:active:not(:disabled) { transform: translateY(2px); border-bottom-width: 2px; }
+    .item-cmd-btn:disabled { opacity: 0.42; cursor: not-allowed; }
+    .item-cmd-btn.active-buff {
+      background: #fef08a; border-color: #eab308; border-bottom-color: #ca8a04; color: #713f12;
+    }
+    .ko-overlay {
+      padding: 24px 18px; text-align: center;
+      background: var(--r-bad-bg); border: 2px solid var(--r-bad-bd); border-radius: 16px;
+      color: var(--r-bad-tx);
+    }
+
+    /* Keep Battle & Build cards compact and prevent jumping to bottom CTA between questions */
+    #blitzCard, #buildCard { scroll-margin-top: 82px; }
+    .arena-stage { padding: 11px 16px !important; }
+    .arena-top { margin-bottom: 6px !important; }
+    .sprite-box { width: 82px !important; height: 82px !important; }
+    @media (min-width: 640px) { .sprite-box { width: 92px !important; height: 92px !important; } }
+    .boss-speech { margin-top: 6px; padding: 6px 10px; font-size: 0.76rem; }
+    .item-cmd-bar { padding: 7px 12px; gap: 6px; }
+    .arena-body { padding: 13px 16px 16px !important; gap: 11px !important; }
+    .q-sentence { font-size: 1.18rem !important; line-height: 1.6 !important; }
+    .game-btn-choice { padding: 11px 14px !important; font-size: 0.92rem !important; }
+    .feedback-box { padding: 11px 14px !important; }
+    .feedback-next { margin-top: 8px !important; }
+    .cta-wrap { margin-top: 40px !important; }
   </style>
 </head>
 <body data-theme="light" data-skin="classic">
@@ -1060,6 +1196,10 @@
               <span id="hudShopCta">🎁 Shop</span>
               <span id="xpFloatAnchor" class="xp-float-anchor"></span>
             </button>
+            <span class="lvl-pill" id="hudLevelPill">
+              <span id="hudLevelTxt">Lv.1 · Novice</span>
+              <span class="lvl-exp-track"><span id="hudExpFill" class="lvl-exp-fill" style="width:0%;"></span></span>
+            </span>
             <span class="hud-pill">⭐ <span id="hudMastered">0 / 45</span></span>
             <span class="hud-pill">🔥 <span id="hudBestCombo">0</span></span>
           </div>
@@ -1081,6 +1221,11 @@
             <span id="shopWallet" class="stage-pill" style="background:#ff9f43;color:#fff;font-size:0.78rem;padding:4px 11px;">🍙 0 pt</span>
             <button onclick="toggleShop()" class="game-btn" aria-label="Close shop">✕</button>
           </div>
+        </div>
+        <div class="shop-cats" id="shopCats">
+          <button onclick="setShopCat('items')" id="scat-items" class="shop-cat-btn active">🎒 Battle Items</button>
+          <button onclick="setShopCat('gear')" id="scat-gear" class="shop-cat-btn">⚔️ Gear &amp; Upgrades</button>
+          <button onclick="setShopCat('cosmetics')" id="scat-cosmetics" class="shop-cat-btn">🎨 Heroes &amp; Themes</button>
         </div>
         <div id="shopGrid" class="shop-grid"></div>
       </section>
@@ -1156,13 +1301,6 @@
 
       <!-- ① LEARN TAB -->
       <section id="sec-learn" class="stack anim-in">
-        <!-- 1-Line Search Bar -->
-        <div class="search-bar">
-          <span>🔍</span>
-          <input id="searchLearnInput" type="search" class="search-input" placeholder="Search 45 patterns (e.g. ばかり, should, しか)..." oninput="onSearchInput('learn', this.value)">
-          <span id="searchLearnCount" class="search-count">15</span>
-          <button id="searchLearnClear" onclick="clearSearch('learn')" class="search-clear hidden" aria-label="Clear search">✕</button>
-        </div>
         <div id="learnGrid" class="learn-grid"></div>
         <div style="text-align:center; padding-top:4px;">
           <button onclick="setMode('blitz')" class="game-btn game-btn-orange game-btn-lg">
@@ -1189,8 +1327,12 @@
 
             <div class="arena-fighters">
               <div class="fighter-col">
-                <span id="arenaHeroTag" class="pill-white" style="margin-bottom:4px;font-size:0.68rem;">YOU</span>
+                <div id="heroHearts" class="hero-hearts">❤️❤️❤️</div>
+                <div id="heroGearRow" class="hero-gear-row">
+                  <span id="arenaHeroTag" class="pill-white" style="font-size:0.68rem;">Lv.1 YOU</span>
+                </div>
                 <div id="heroSprite" class="sprite-box bob"></div>
+                <div id="heroDmgAnchor" class="dmg-anchor"></div>
                 <div class="ground-shadow"></div>
               </div>
               <div class="fighter-col">
@@ -1206,6 +1348,22 @@
                 <div class="ground-shadow"></div>
               </div>
             </div>
+            <div id="bossSpeech" class="boss-speech">
+              <span id="bossSpeechIcon" style="font-size:1.15rem;">💬</span>
+              <div>
+                <div id="bossSpeechJp" class="boss-speech-jp"></div>
+                <div id="bossSpeechTr" class="boss-speech-tr"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 🎒 RPG BATTLE ITEM COMMAND BAR -->
+          <div class="item-cmd-bar" id="battleItemBar">
+            <span class="item-cmd-label" id="itemBarLbl">🎒 ITEMS:</span>
+            <button id="cmdMatcha" onclick="useBattleItem('item-matcha')" class="item-cmd-btn">🍵 Heal (0)</button>
+            <button id="cmdShield" onclick="useBattleItem('item-shield')" class="item-cmd-btn">🛡️ Guard (0)</button>
+            <button id="cmdScroll" onclick="useBattleItem('item-scroll')" class="item-cmd-btn">⚡ 2× Scroll (0)</button>
+            <button onclick="openShopFromBattle()" class="item-cmd-btn" style="border-color:#ff9f43;color:#c2570a;">🎁 Shop</button>
           </div>
 
           <div class="arena-body">
@@ -1319,14 +1477,6 @@
           </div>
         </div>
 
-        <!-- 1-Line Search Bar for Lesson Mode -->
-        <div class="search-bar">
-          <span>🔍</span>
-          <input id="searchLessonInput" type="search" class="search-input" placeholder="Jump to any of 45 grammar prompts..." oninput="onSearchInput('lesson', this.value)">
-          <span id="searchLessonCount" class="search-count">2</span>
-          <button id="searchLessonClear" onclick="clearSearch('lesson')" class="search-clear hidden" aria-label="Clear search">✕</button>
-        </div>
-
         <div class="lesson-tip">
           <span style="font-size:1.05rem;line-height:1;">💡</span>
           <div id="lessonTipText"></div>
@@ -1369,7 +1519,7 @@
         audioNote: 'Native Neural Audio · 45 N4→N3 Patterns',
         heroTitle: 'OHAYO Grammar Quest ⚔️',
         heroSub: 'Learn → Battle → Build → Speak live in your lesson!',
-        shopCta: '🎁 Shop', shopTitle: '🎁 Reward Shop', shopSub: 'Spend 🍙 points to change your hero or theme right away!',
+        shopCta: '🎁 Shop', shopTitle: '🎁 Reward Shop', shopSub: 'Exchange 🍙 points for battle items, samurai gear, heroes & themes!',
         mapTitle: 'QUEST MAP — Choose Stage', allBtn: '🌐 All (45)', revengeBtn: 'Review',
         worlds: { 1: 'Torii Town', 2: 'Castle Town', 3: 'Mt. Fuji', all: 'All Stages' },
         tabLearn: 'Learn', tabLearnSub: '10s Cards',
@@ -1628,16 +1778,127 @@
     };
 
     const BOSSES = {
-      1: { name: 'Mochi Slime', icon: '⛩️' },
-      2: { name: 'Kitsune Fox', icon: '🏯' },
-      3: { name: 'Oni Boss', icon: '🗻' },
-      all: { name: 'N3 Dragon', icon: '🌐' }
+      1: {
+        name: 'Mochi Slime', icon: '⛩️',
+        lines: {
+          intro: { jp: 'もちもち〜！N4文法で ぼくを たおせるかな？', tr: { en: 'Mochi mochi~ Can you beat me with N4 grammar?', pt: 'Mochi mochi~ Consegue me vencer com gramática N4?', it: 'Mochi mochi~ Riesci a battermi con la grammatica N4?', es: 'Mochi mochi~ ¿Puedes vencerme con gramática N4?', hk: '煙韌韌～睇下你用 N4 文法打唔打得低我？' } },
+          low:   { jp: 'うわっ！もちが とけそうだよ〜！', tr: { en: 'Whoa! My mochi body is melting~!', pt: 'Uau! Meu corpo de mochi está derretendo~!', it: 'Whoa! Il mio mochi si sta sciogliendo~!', es: '¡Guau! ¡Mi cuerpo de mochi se derrite~!', hk: '嘩！我嚿麻糬就快溶喇～！' } },
+          taunt: { jp: 'へへっ！もう一回 よく 読んでみて！', tr: { en: 'Hehe! Read carefully and strike back!', pt: 'Hehe! Leia com calma e contra-ataque!', it: 'Hehe! Leggi bene e contrattacca!', es: '¡Jeje! ¡Lee bien y contraataca!', hk: '嘿嘿！睇清楚啲再反擊啦！' } },
+          ko:    { jp: 'まいりました〜！鳥居の町の ヒーローだ！', tr: { en: 'I surrender~! You are the Hero of Torii Town!', pt: 'Eu me rendo~! Você é o Herói da Vila Torii!', it: 'Mi arrendo~! Sei l’eroe di Torii Town!', es: '¡Me rindo~! ¡Eres el Héroe de Pueblo Torii!', hk: '我認輸喇～！你係鳥居小鎮嘅英雄！' } }
+        }
+      },
+      2: {
+        name: 'Kitsune Fox', icon: '🏯',
+        lines: {
+          intro: { jp: 'コンコン！城下町の 罠（トラップ）を 見抜けるか？', tr: { en: 'Kon kon! Can you spot Castle Town’s grammar traps?', pt: 'Kon kon! Consegue ver as armadilhas do Castelo?', it: 'Kon kon! Sai scovare le trappole del Castello?', es: '¡Kon kon! ¿Ves las trampas del Castillo?', hk: '狐狸叫！睇下你識唔識避開城下町嘅文法伏位？' } },
+          low:   { jp: 'ぐぬぬ… なかなか やるじゃないか！', tr: { en: 'Grr... You’re much sharper than I thought!', pt: 'Grr... Você é mais esperto do que pensei!', it: 'Grr... Sei più bravo del previsto!', es: 'Grr... ¡Eres más hábil de lo que pensaba!', hk: '唔…你比我想像中仲勁喎！' } },
+          taunt: { jp: 'ふふっ、キツネの 幻術に ひっかかったね！', tr: { en: 'Fufu, caught in my Kitsune illusion!', pt: 'Fufu, caiu na ilusão da Kitsune!', it: 'Fufu, caduto nell’illusione della Kitsune!', es: '¡Fufu, caíste en mi ilusión Kitsune!', hk: '呵呵，中咗我嘅狐狸幻術啦！' } },
+          ko:    { jp: '見事だ！富士山の 頂上へ 進むがよい！', tr: { en: 'Splendid! Advance onward to Mt. Fuji!', pt: 'Magnífico! Avance para o Monte Fuji!', it: 'Splendido! Avanza verso il Monte Fuji!', es: '¡Magnífico! ¡Avanza hacia el Monte Fuji!', hk: '好犀利！向富士山出發啦！' } }
+        }
+      },
+      3: {
+        name: 'Oni Boss', icon: '🗻',
+        lines: {
+          intro: { jp: 'ガハハ！N3の ラスボスに 挑む 覚悟は あるか！', tr: { en: 'Gahaha! Ready to face the N3 Final Boss?!', pt: 'Gahaha! Pronto para o Chefão Final do N3?!', it: 'Gahaha! Pronto per il Boss Finale N3?!', es: '¡Gahaha! ¿Listo para el Jefe Final N3?!', hk: '哈哈哈！準備好挑戰 N3 終極大佬未？' } },
+          low:   { jp: 'バカな！おにぎり勇者が こんなに 強いとは…！', tr: { en: 'Impossible! How is an Onigiri Hero this strong?!', pt: 'Impossível! Como um Herói Onigiri é tão forte?!', it: 'Impossibile! Come fa un Eroe Onigiri a essere così forte?!', es: '¡Imposible! ¿Cómo es tan fuerte un Héroe Onigiri?!', hk: '冇可能！飯糰勇者點解會咁勁？！' } },
+          taunt: { jp: 'ドスン！まだまだ 修行が 足りないぞ！', tr: { en: 'BOOM! Keep training and try again!', pt: 'BUM! Continue treinando!', it: 'BOOM! Continua ad allenarti!', es: '¡BUM! ¡Sigue entrenando!', hk: '砰！修行仲未夠呀，再嚟過！' } },
+          ko:    { jp: 'あっぱれ！お前こそ 本物の N3文法マスターだ！', tr: { en: 'Bravo! You are a true N3 Grammar Master!', pt: 'Bravo! Você é um verdadeiro Mestre N3!', it: 'Bravo! Sei un vero Maestro N3!', es: '¡Bravo! ¡Eres un verdadero Maestro N3!', hk: '佩服！你先係真正嘅 N3 文法大師！' } }
+        }
+      },
+      all: {
+        name: 'N3 Dragon', icon: '🌐',
+        lines: {
+          intro: { jp: 'グルルル… 全45文法の 試練を 受けてみよ！', tr: { en: 'Grrrr... Face the 45-Grammar Grand Trial!', pt: 'Grrrr... Enfrente o Grande Desafio das 45 Gramáticas!', it: 'Grrrr... Affronta la Grande Prova delle 45 Grammatiche!', es: 'Grrrr... ¡Enfrenta la Gran Prueba de 45 Gramáticas!', hk: '吼…嚟接受全部45個文法嘅終極試煉啦！' } },
+          low:   { jp: 'おおお！龍の うろこが はがれていく…！', tr: { en: 'Roar! My dragon scales are cracking...!', pt: 'Roar! Minhas escamas de dragão estão rachando...!', it: 'Roar! Le mie scaglie di drago si stanno rompendo...!', es: '¡Roar! ¡Mis escamas de dragón se rompen...!', hk: '吼！我啲龍鱗就快頂唔住喇…！' } },
+          taunt: { jp: '火炎ブレス！落ち着いて 次の 一手を 打て！', tr: { en: 'Dragon breath! Stay calm and strike next!', pt: 'Sopro de fogo! Mantenha a calma!', it: 'Soffio di fuoco! Resta calmo e colpisci!', es: '¡Aliento de fuego! ¡Mantén la calma!', hk: '噴火攻擊！冷靜啲準備下一招！' } },
+          ko:    { jp: '伝説の 誕生だ！日本語の 冒険は まだまだ 続く！', tr: { en: 'A legend is born! Your Japanese adventure continues!', pt: 'Nasce uma lenda! Sua aventura continua!', it: 'Nasce una leggenda! La tua avventura continua!', es: '¡Nace una leyenda! ¡Tu aventura continúa!', hk: '傳說誕生喇！你嘅日文冒險繼續前進！' } }
+        }
+      }
     };
 
+    const RPG_LEVELS = [
+      { lv: 1, xp: 0,    title: { en: 'Novice',     pt: 'Novato',     it: 'Novizio',    es: 'Novato',     hk: '見習' } },
+      { lv: 2, xp: 60,   title: { en: 'Traveler',   pt: 'Viajante',   it: 'Viaggiatore',es: 'Viajero',    hk: '旅人' } },
+      { lv: 3, xp: 150,  title: { en: 'Apprentice', pt: 'Aprendiz',   it: 'Apprendista',es: 'Aprendiz',   hk: '門徒' } },
+      { lv: 4, xp: 280,  title: { en: 'Scout',      pt: 'Batedor',    it: 'Esploratore',es: 'Explorador', hk: '劍士' } },
+      { lv: 5, xp: 450,  title: { en: 'Ronin',      pt: 'Ronin',      it: 'Ronin',      es: 'Ronin',      hk: '浪人' } },
+      { lv: 6, xp: 660,  title: { en: 'Samurai',    pt: 'Samurai',    it: 'Samurai',    es: 'Samurái',    hk: '武士' } },
+      { lv: 7, xp: 920,  title: { en: 'Sensei Aid', pt: 'Mestre Jr.', it: 'Maestro Jr.',es: 'Maestro Jr.',hk: '師範代' } },
+      { lv: 8, xp: 1250, title: { en: 'Daimyo',     pt: 'Daimyo',     it: 'Daimyo',     es: 'Daimyo',     hk: '大名' } },
+      { lv: 9, xp: 1650, title: { en: 'Master',     pt: 'Mestre',     it: 'Maestro',    es: 'Maestro',    hk: '達人' } },
+      { lv: 10, xp: 2100,title: { en: 'Shogun 👑',  pt: 'Shogun 👑',  it: 'Shogun 👑',  es: 'Shogun 👑',  hk: '將軍 👑' } }
+    ];
+
     const SHOP_ITEMS = [
-      { id: 'av-fox', type: 'avatar', val: '🦊', cost: 40, icon: '🦊' },
-      { id: 'av-neko', type: 'avatar', val: '🐱', cost: 60, icon: '🐱' },
-      { id: 'skin-sakura', type: 'skin', val: 'sakura', cost: 80, icon: '🌸' }
+      // Battle Consumables (stockable!)
+      { id: 'item-matcha', cat: 'items', type: 'consumable', cost: 25, icon: '🍵',
+        meta: {
+          en: { name: 'Matcha Potion', desc: 'Restore +1 ❤️ HP in battle (or revive on KO!)' },
+          pt: { name: 'Poção Matcha', desc: 'Recupera +1 ❤️ HP na batalha (ou revive no KO!)' },
+          it: { name: 'Pozione Matcha', desc: 'Recupera +1 ❤️ HP in battaglia (o rianima al KO!)' },
+          es: { name: 'Poción Matcha', desc: 'Recupera +1 ❤️ HP en batalla (¡o revive en KO!)' },
+          hk: { name: '抹茶回復藥', desc: '戰鬥中回復 +1 ❤️ HP（HP歸零仲可以復活！）' }
+        }
+      },
+      { id: 'item-shield', cat: 'items', type: 'consumable', cost: 35, icon: '🛡️',
+        meta: {
+          en: { name: 'Omamori Shield', desc: 'Block 1 mistake: zero damage & keep your combo!' },
+          pt: { name: 'Escudo Omamori', desc: 'Bloqueia 1 erro: zero dano e mantém seu combo!' },
+          it: { name: 'Scudo Omamori', desc: 'Blocca 1 errore: zero danni e salva il combo!' },
+          es: { name: 'Escudo Omamori', desc: 'Bloquea 1 error: ¡sin daño y mantén tu combo!' },
+          hk: { name: '御守護盾', desc: '擋住 1 次答錯：唔扣血之餘仲保住連擊！' }
+        }
+      },
+      { id: 'item-scroll', cat: 'items', type: 'consumable', cost: 45, icon: '⚡',
+        meta: {
+          en: { name: 'Thunder Scroll', desc: 'Next right answer deals 2× SUPER CRITICAL damage!' },
+          pt: { name: 'Pergaminho Trovão', desc: 'Próximo acerto dá 2× dano SUPER CRÍTICO!' },
+          it: { name: 'Pergamena Tuono', desc: 'Prossima risposta giusta: 2× danno SUPER CRITICO!' },
+          es: { name: 'Pergamino Trueno', desc: '¡Próximo acierto hace 2× daño SÚPER CRÍTICO!' },
+          hk: { name: '雷電必殺卷軸', desc: '下一題答中造成 2倍超暴擊傷害！' }
+        }
+      },
+      // Permanent Gear & Upgrades
+      { id: 'eq-shinai', cat: 'gear', type: 'weapon', atk: 1.25, bonusPt: 2, cost: 50, icon: '🎋',
+        meta: {
+          en: { name: 'Bamboo Shinai', desc: '+25% Attack Power & +2 bonus pt per hit!' },
+          pt: { name: 'Shinai de Bambu', desc: '+25% de Ataque e +2 pt bônus por acerto!' },
+          it: { name: 'Shinai di Bambù', desc: '+25% Attacco e +2 pt bonus a ogni colpo!' },
+          es: { name: 'Shinai de Bambú', desc: '+25% de Ataque y +2 pt extra por acierto!' },
+          hk: { name: '竹刀', desc: '攻擊力 +25%，每次命中額外 +2 pt！' }
+        }
+      },
+      { id: 'eq-haori', cat: 'gear', type: 'armor', maxHp: 5, cost: 100, icon: '👘',
+        meta: {
+          en: { name: 'Samurai Haori', desc: 'Boosts Max Battle HP from ❤️❤️❤️ to ❤️❤️❤️❤️❤️ (5)!' },
+          pt: { name: 'Haori Samurai', desc: 'Aumenta o HP máximo de ❤️❤️❤️ para 5 corações!' },
+          it: { name: 'Haori Samurai', desc: 'Aumenta gli HP massimi da 3 a 5 cuori ❤️!' },
+          es: { name: 'Haori Samurái', desc: '¡Aumenta tu HP máximo de 3 a 5 corazones ❤️!' },
+          hk: { name: '武士羽織', desc: '最大生命值由 ❤️❤️❤️ 永久提升至 5 格！' }
+        }
+      },
+      { id: 'eq-katana', cat: 'gear', type: 'weapon', atk: 1.6, bonusPt: 5, cost: 150, icon: '⚔️',
+        meta: {
+          en: { name: 'Ohayo Katana', desc: '+60% Attack Power & +5 bonus pt per hit!' },
+          pt: { name: 'Katana Ohayo', desc: '+60% de Ataque e +5 pt bônus por acerto!' },
+          it: { name: 'Katana Ohayo', desc: '+60% Attacco e +5 pt bonus a ogni colpo!' },
+          es: { name: 'Katana Ohayo', desc: '+60% de Ataque y +5 pt extra por acierto!' },
+          hk: { name: '名刀・早安丸', desc: '攻擊力 +60%，每次命中額外 +5 pt！' }
+        }
+      },
+      // Cosmetics (Heroes & Themes)
+      { id: 'av-fox', cat: 'cosmetics', type: 'avatar', val: '🦊', cost: 40, icon: '🦊' },
+      { id: 'av-neko', cat: 'cosmetics', type: 'avatar', val: '🐱', cost: 60, icon: '🐱' },
+      { id: 'skin-sakura', cat: 'cosmetics', type: 'skin', val: 'sakura', cost: 80, icon: '🌸' },
+      { id: 'skin-kyoto', cat: 'cosmetics', type: 'skin', val: 'kyoto', cost: 120, icon: '🏮',
+        meta: {
+          en: { name: 'Night Kyoto Theme', desc: 'Lantern-lit indigo Dojo atmosphere!' },
+          pt: { name: 'Tema Kyoto Noturna', desc: 'Dojo índigo iluminado por lanternas!' },
+          it: { name: 'Tema Kyoto Notturna', desc: 'Dojo indaco illuminato da lanterne!' },
+          es: { name: 'Tema Kioto Nocturno', desc: '¡Dojo índigo iluminado con farolillos!' },
+          hk: { name: '京都夜色主題', desc: '將道場變成燈籠映照嘅靛藍夜色！' }
+        }
+      }
     ];
 
     // 45 CURATED N4 -> N3 GRAMMAR ITEMS (5 LANGUAGES + NEURAL MP3 PATHS)
@@ -1663,8 +1924,11 @@
     function defaultState() {
       return {
         lang: 'en', mode: 'learn', stage: 1, theme: 'light', furi: true, sfx: true,
-        xp: 0, streak: 0, bestCombo: 0,
+        xp: 0, totalXp: 0, streak: 0, bestCombo: 0,
         unlocked: new Set(), activeSkin: 'classic', activeAvatar: '🍙',
+        activeWeapon: null, activeArmor: null, shopCat: 'items',
+        bag: { 'item-matcha': 1, 'item-shield': 0, 'item-scroll': 0 },
+        heroHp: 3, bossHp: 150, bossMaxHp: 150, shieldOn: false, scrollOn: false, heroKo: false, bossLineKey: 'intro',
         pinned: new Set(['g07', 'g42']), mastered: new Set(), spoken: new Set(), weak: new Set(),
         clearedBlitz: new Set(), clearedBuild: new Set(),
         lessonFilter: 'pinned', lessonShowTrans: false, blitzShowTrans: true, screenMode: false, memos: {},
@@ -1688,6 +1952,11 @@
         if (typeof p.sfx === 'boolean') state.sfx = p.sfx;
         if (typeof p.blitzShowTrans === 'boolean') state.blitzShowTrans = p.blitzShowTrans;
         if (typeof p.xp === 'number') state.xp = p.xp;
+        if (typeof p.totalXp === 'number') state.totalXp = p.totalXp;
+        else state.totalXp = state.xp + ((Array.isArray(p.mastered) ? p.mastered.length : 0) * 15);
+        if (p.activeWeapon) state.activeWeapon = p.activeWeapon;
+        if (p.activeArmor) state.activeArmor = p.activeArmor;
+        if (p.bag && typeof p.bag === 'object') state.bag = Object.assign({ 'item-matcha': 1, 'item-shield': 0, 'item-scroll': 0 }, p.bag);
         if (typeof p.bestCombo === 'number') state.bestCombo = p.bestCombo;
         if (p.activeSkin) state.activeSkin = p.activeSkin;
         if (p.activeAvatar) state.activeAvatar = p.activeAvatar;
@@ -1706,7 +1975,9 @@
         localStorage.setItem(STORE_KEY, JSON.stringify({
           lang: state.lang, theme: state.theme, furi: state.furi, sfx: state.sfx,
           blitzShowTrans: state.blitzShowTrans,
-          xp: state.xp, bestCombo: state.bestCombo, activeSkin: state.activeSkin, activeAvatar: state.activeAvatar,
+          xp: state.xp, totalXp: state.totalXp, bestCombo: state.bestCombo,
+          activeSkin: state.activeSkin, activeAvatar: state.activeAvatar,
+          activeWeapon: state.activeWeapon, activeArmor: state.activeArmor, bag: state.bag,
           unlocked: [...state.unlocked], pinned: [...state.pinned], mastered: [...state.mastered],
           spoken: [...state.spoken], weak: [...state.weak],
           clearedBlitz: [...state.clearedBlitz], clearedBuild: [...state.clearedBuild], memos: state.memos
@@ -1722,7 +1993,7 @@
       applyVisualPrefs();
       setLang(keepLang);
       setStage(1);
-      setMode('learn');
+      setMode('blitz');
     }
 
     // =========================================================================
@@ -1967,31 +2238,6 @@
       return `${icons[stg]} ${stg === 'all' ? UI[state.lang].worlds.all : 'Stage ' + stg + ' · ' + UI[state.lang].worlds[stg]}`;
     }
 
-    function onSearchInput(where, val) {
-      if (where === 'learn') {
-        state.searchLearn = val.trim().toLowerCase();
-        document.getElementById('searchLearnClear').classList.toggle('hidden', !state.searchLearn);
-        renderLearn();
-      } else {
-        state.searchLesson = val.trim().toLowerCase();
-        document.getElementById('searchLessonClear').classList.toggle('hidden', !state.searchLesson);
-        renderLesson();
-      }
-    }
-    function clearSearch(where) {
-      if (where === 'learn') {
-        state.searchLearn = '';
-        document.getElementById('searchLearnInput').value = '';
-        document.getElementById('searchLearnClear').classList.add('hidden');
-        renderLearn();
-      } else {
-        state.searchLesson = '';
-        document.getElementById('searchLessonInput').value = '';
-        document.getElementById('searchLessonClear').classList.add('hidden');
-        renderLesson();
-      }
-    }
-
     function toggleVocabDrawer() {
       const d = document.getElementById('vocabDrawer');
       d.classList.toggle('hidden');
@@ -2050,16 +2296,40 @@
       document.getElementById('blitzTrans').classList.toggle('hidden', !state.blitzShowTrans);
     }
 
+    function getLevelInfo() {
+      let cur = RPG_LEVELS[0], next = RPG_LEVELS[1];
+      for (let i = 0; i < RPG_LEVELS.length; i++) {
+        if (state.totalXp >= RPG_LEVELS[i].xp) {
+          cur = RPG_LEVELS[i];
+          next = RPG_LEVELS[i + 1] || null;
+        }
+      }
+      const pct = next ? Math.min(100, Math.round(((state.totalXp - cur.xp) / (next.xp - cur.xp)) * 100)) : 100;
+      return { lv: cur.lv, title: cur.title[state.lang] || cur.title.en, pct, next };
+    }
+    function getMaxHeroHp() {
+      const arm = SHOP_ITEMS.find(x => x.id === state.activeArmor);
+      return arm && arm.maxHp ? arm.maxHp : 3;
+    }
+    function getWeaponStats() {
+      const w = SHOP_ITEMS.find(x => x.id === state.activeWeapon);
+      return w ? { atk: w.atk || 1, bonusPt: w.bonusPt || 0, icon: w.icon } : { atk: 1, bonusPt: 0, icon: '' };
+    }
+
     function addXp(amount) {
+      const prevLv = getLevelInfo().lv;
       state.xp = Math.max(0, state.xp + amount);
+      if (amount > 0) state.totalXp += amount;
+      const newLv = getLevelInfo().lv;
       saveState(); updateHud(); renderShop();
       const anchor = document.getElementById('xpFloatAnchor');
       const el = document.createElement('span');
       el.className = 'dmg-float';
       el.style.cssText = 'display:inline-block;padding:2px 8px;border-radius:999px;font-size:0.72rem;font-weight:900;background:#dc2626;color:#fff;white-space:nowrap;';
-      el.textContent = `${amount >= 0 ? '+' : ''}${amount} pt`;
+      el.textContent = newLv > prevLv ? `✨ LV.${newLv} UP! +${amount} pt` : `${amount >= 0 ? '+' : ''}${amount} pt`;
+      if (newLv > prevLv) { el.style.background = '#eab308'; el.style.color = '#422006'; sfxCelebration(); }
       anchor.innerHTML = ''; anchor.appendChild(el);
-      setTimeout(() => { if (el.parentNode) el.remove(); }, 900);
+      setTimeout(() => { if (el.parentNode) el.remove(); }, 1100);
     }
 
     function applyVisualPrefs() {
@@ -2079,6 +2349,9 @@
       document.getElementById('hudXp').textContent = `${state.xp} pt`;
       document.getElementById('hudShopCta').textContent = t.shopCta;
       document.getElementById('shopWallet').textContent = `🍙 ${state.xp} pt`;
+      const lv = getLevelInfo();
+      document.getElementById('hudLevelTxt').textContent = `Lv.${lv.lv} · ${lv.title}`;
+      document.getElementById('hudExpFill').style.width = `${lv.pct}%`;
       document.getElementById('hudMastered').textContent = `${state.mastered.size} / ${DATA.length}`;
       document.getElementById('hudBestCombo').textContent = state.bestCombo;
       document.getElementById('hudPinCount').textContent = `${state.pinned.size} ${t.pinnedUnit}`;
@@ -2099,9 +2372,24 @@
       [1, 2, 3].forEach(k => {
         const b = state.clearedBlitz.has(k), s = state.clearedBuild.has(k);
         if (b || s) cleared++;
+        const node = document.getElementById(`stg-${k}`);
         document.getElementById(`mapSub-${k}`).textContent = t.worlds[k];
         document.getElementById(`mapStars-${k}`).textContent = (b ? '⚔️★ ' : '☆ ') + (s ? '🪵★' : '☆');
-        document.getElementById(`stg-${k}`).classList.toggle('active-node', state.stage === k);
+        node.classList.toggle('active-node', state.stage === k);
+        node.querySelectorAll('.map-hero-pin, .node-clear-stamp').forEach(x => x.remove());
+        if (state.stage === k) {
+          const pin = document.createElement('span');
+          pin.className = 'map-hero-pin';
+          pin.textContent = `${state.activeAvatar} HERE`;
+          node.appendChild(pin);
+        }
+        if (b) {
+          const st = document.createElement('span');
+          st.className = 'node-clear-stamp';
+          st.title = 'Boss Defeated!';
+          st.textContent = '🏆';
+          node.appendChild(st);
+        }
       });
       const allBtn = document.getElementById('stg-all');
       allBtn.textContent = t.allBtn;
@@ -2127,28 +2415,87 @@
       d.classList.toggle('hidden');
       if (!d.classList.contains('hidden')) renderShop();
     }
+    function openShopFromBattle() {
+      const d = document.getElementById('shopDrawer');
+      state.shopCat = 'items';
+      d.classList.remove('hidden');
+      renderShop();
+      d.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function setShopCat(cat) {
+      state.shopCat = cat;
+      renderShop();
+    }
     function buyOrEquip(itemId) {
       const it = SHOP_ITEMS.find(x => x.id === itemId); if (!it) return;
-      if (!state.unlocked.has(it.id)) {
+      if (it.type === 'consumable') {
         if (state.xp < it.cost) { sfxWrong(); return; }
-        state.xp -= it.cost; state.unlocked.add(it.id); sfxCelebration();
-      } else sfxPin();
-      if (it.type === 'skin') {
-        state.activeSkin = state.activeSkin === it.val ? 'classic' : it.val;
-        applyVisualPrefs();
+        state.xp -= it.cost;
+        state.bag[it.id] = (state.bag[it.id] || 0) + 1;
+        sfxCelebration();
+      } else {
+        if (!state.unlocked.has(it.id)) {
+          if (state.xp < it.cost) { sfxWrong(); return; }
+          state.xp -= it.cost; state.unlocked.add(it.id); sfxCelebration();
+        } else sfxPin();
+        if (it.type === 'skin') {
+          state.activeSkin = state.activeSkin === it.val ? 'classic' : it.val;
+          applyVisualPrefs();
+        }
+        if (it.type === 'avatar') state.activeAvatar = state.activeAvatar === it.val ? '🍙' : it.val;
+        if (it.type === 'weapon') state.activeWeapon = state.activeWeapon === it.id ? null : it.id;
+        if (it.type === 'armor') {
+          state.activeArmor = state.activeArmor === it.id ? null : it.id;
+          state.heroHp = Math.min(getMaxHeroHp(), state.heroHp + (state.activeArmor ? 2 : 0));
+        }
       }
-      if (it.type === 'avatar') state.activeAvatar = state.activeAvatar === it.val ? '🍙' : it.val;
       saveState(); updateHud(); renderShop();
-      if (state.mode === 'blitz') updateBattleVisuals();
+      if (state.mode === 'blitz') { updateBattleVisuals(); updateBattleItemBar(); }
     }
     function renderShop() {
       const grid = document.getElementById('shopGrid'); if (!grid) return;
       const t = UI[state.lang];
-      grid.innerHTML = SHOP_ITEMS.map(it => {
-        const owned = state.unlocked.has(it.id), canBuy = state.xp >= it.cost;
-        const isActive = (it.type === 'skin' && state.activeSkin === it.val) || (it.type === 'avatar' && state.activeAvatar === it.val);
+      const catNames = {
+        en: { items: '🎒 Battle Items', gear: '⚔️ Gear & Upgrades', cosmetics: '🎨 Heroes & Themes' },
+        pt: { items: '🎒 Itens de Batalha', gear: '⚔️ Equipamentos', cosmetics: '🎨 Heróis & Temas' },
+        it: { items: '🎒 Oggetti Battaglia', gear: '⚔️ Equipaggiamento', cosmetics: '🎨 Eroi & Temi' },
+        es: { items: '🎒 Objetos Batalla', gear: '⚔️ Equipo y Mejoras', cosmetics: '🎨 Héroes y Temas' },
+        hk: { items: '🎒 戰鬥道具', gear: '⚔️ 武器裝備', cosmetics: '🎨 主角同主題' }
+      }[state.lang];
+      ['items', 'gear', 'cosmetics'].forEach(c => {
+        const b = document.getElementById(`scat-${c}`);
+        if (b) { b.textContent = catNames[c]; b.classList.toggle('active', state.shopCat === c); }
+      });
+
+      const list = SHOP_ITEMS.filter(x => x.cat === state.shopCat);
+      grid.innerHTML = list.map(it => {
+        const meta = (it.meta && it.meta[state.lang]) || (t.shop && t.shop[it.id]) || { name: it.id, desc: '' };
+        const canBuy = state.xp >= it.cost;
+        if (it.type === 'consumable') {
+          const qty = state.bag[it.id] || 0;
+          const btnCls = canBuy ? 'game-btn game-btn-orange' : 'game-btn';
+          return `
+            <div class="shop-card">
+              <div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:1.65rem;">${it.icon}</span>
+                  <span class="bag-count-pill">🎒 ×${qty}</span>
+                </div>
+                <div style="font-size:0.9rem;font-weight:900;color:var(--r-dark);">${meta.name}</div>
+                <div style="font-size:0.76rem;margin-top:3px;color:var(--r-muted);line-height:1.4;">${meta.desc}</div>
+              </div>
+              <button onclick="buyOrEquip('${it.id}')" class="${btnCls}" style="width:100%;${!canBuy ? 'opacity:0.45;' : ''}">
+                🍙 ${it.cost} pt (+1)
+              </button>
+            </div>`;
+        }
+        const owned = state.unlocked.has(it.id);
+        const isActive =
+          (it.type === 'skin' && state.activeSkin === it.val) ||
+          (it.type === 'avatar' && state.activeAvatar === it.val) ||
+          (it.type === 'weapon' && state.activeWeapon === it.id) ||
+          (it.type === 'armor' && state.activeArmor === it.id);
         const btnTxt = owned ? (isActive ? t.activeBtn : t.equipBtn) : `🍙 ${it.cost} pt`;
-        const meta = t.shop[it.id];
         const btnCls = owned ? 'game-btn game-btn-green' : (canBuy ? 'game-btn game-btn-orange' : 'game-btn');
         return `
           <div class="shop-card ${isActive ? 'active' : ''}">
@@ -2197,8 +2544,6 @@
       document.getElementById('tabLessonTxt').textContent = t.tabLesson;
       document.getElementById('tabLessonSub').textContent = t.tabLessonSub;
       document.getElementById('learnToBattleBtn').textContent = t.learnToBattle;
-      document.getElementById('searchLearnInput').placeholder = t.searchLearnPh;
-      document.getElementById('searchLessonInput').placeholder = t.searchLessonPh;
       document.getElementById('arenaHeroTag').textContent = t.youTag;
       document.getElementById('blitzContext').textContent = t.blitzPrompt;
       document.getElementById('buildPromptLbl').textContent = t.buildPrompt;
@@ -2257,7 +2602,6 @@
       const items = q
         ? DATA.filter(d => SEARCH_INDEX[d.id].includes(q))
         : getFilteredData();
-      document.getElementById('searchLearnCount').textContent = q ? `${items.length} / ${DATA.length}` : `${items.length}`;
       const grid = document.getElementById('learnGrid');
       if (!items.length) {
         grid.innerHTML = `<div class="game-panel" style="grid-column:1/-1;padding:28px;text-align:center;font-weight:800;color:var(--r-muted);">🔍 ${t.searchEmpty}</div>`;
@@ -2303,20 +2647,96 @@
       if (!pool.length) { state.blitzWeakOnly = false; pool = getFilteredData(); }
       state.blitzQueue = [...pool].sort(() => Math.random() - 0.5);
       state.blitzIdx = 0; state.blitzAnswered = false; state.blitzCorrectInRound = 0; state.blitzDone = false;
+      state.heroHp = getMaxHeroHp();
+      state.bossMaxHp = Math.max(40, state.blitzQueue.length * 10);
+      state.bossHp = state.bossMaxHp;
+      state.shieldOn = false; state.scrollOn = false; state.heroKo = false;
+      state.bossLineKey = 'intro';
     }
     function startWeakBlitz() { state.blitzWeakOnly = true; initBlitzQueue(); setMode('blitz'); }
     function getCurrentBlitzItem() { if (!state.blitzQueue.length) initBlitzQueue(); return state.blitzQueue[state.blitzIdx % state.blitzQueue.length]; }
     function getMult(s) { return s >= 5 ? 4 : s >= 3 ? 3 : s >= 2 ? 2 : 1; }
 
+    function updateBattleItemBar() {
+      const mQty = state.bag['item-matcha'] || 0;
+      const sQty = state.bag['item-shield'] || 0;
+      const tQty = state.bag['item-scroll'] || 0;
+      const cm = document.getElementById('cmdMatcha');
+      const cs = document.getElementById('cmdShield');
+      const ct = document.getElementById('cmdScroll');
+      if (!cm) return;
+      cm.textContent = `🍵 Heal (${mQty})`;
+      cm.disabled = mQty <= 0 || (state.heroHp >= getMaxHeroHp() && !state.heroKo);
+      cs.textContent = state.shieldOn ? `🛡️ Guard ON!` : `🛡️ Guard (${sQty})`;
+      cs.classList.toggle('active-buff', state.shieldOn);
+      cs.disabled = state.shieldOn || sQty <= 0 || state.blitzAnswered || state.heroKo;
+      ct.textContent = state.scrollOn ? `⚡ 2× ON!` : `⚡ 2× Scroll (${tQty})`;
+      ct.classList.toggle('active-buff', state.scrollOn);
+      ct.disabled = state.scrollOn || tQty <= 0 || state.blitzAnswered || state.heroKo;
+    }
+
+    function useBattleItem(itemId) {
+      const qty = state.bag[itemId] || 0;
+      if (qty <= 0) { sfxWrong(); return; }
+      if (itemId === 'item-matcha') {
+        const maxHp = getMaxHeroHp();
+        if (state.heroHp >= maxHp && !state.heroKo) return;
+        state.bag[itemId] = qty - 1;
+        state.heroHp = Math.min(maxHp, state.heroHp + (state.heroKo ? 2 : 1));
+        const wasKo = state.heroKo;
+        state.heroKo = false;
+        sfxCelebration();
+        spawnHeroText(wasKo ? '🍵 REVIVED! +2❤️' : '🍵 +1 ❤️ HP!', '#10b981');
+        saveState(); updateHud(); renderShop(); updateBattleVisuals('idle'); updateBattleItemBar();
+        if (wasKo) renderBlitz();
+        return;
+      }
+      if (itemId === 'item-shield' && !state.shieldOn && !state.blitzAnswered) {
+        state.bag[itemId] = qty - 1;
+        state.shieldOn = true;
+        sfxPin();
+        spawnHeroText('🛡️ GUARD READY!', '#4f46e5');
+        saveState(); updateHud(); renderShop(); updateBattleVisuals('idle'); updateBattleItemBar();
+        return;
+      }
+      if (itemId === 'item-scroll' && !state.scrollOn && !state.blitzAnswered) {
+        state.bag[itemId] = qty - 1;
+        state.scrollOn = true;
+        sfxPin();
+        spawnHeroText('⚡ 2× POWER!', '#ea580c');
+        saveState(); updateHud(); renderShop(); updateBattleVisuals('idle'); updateBattleItemBar();
+        return;
+      }
+    }
+
     function updateBattleVisuals(heroMood = 'idle', bossMood = null) {
-      const boss = BOSSES[state.stage], total = state.blitzQueue.length || 1;
-      const hpPct = Math.max(0, Math.round(((total - state.blitzCorrectInRound) / total) * 100));
+      const boss = BOSSES[state.stage] || BOSSES[1];
+      const hpPct = Math.max(0, Math.round((state.bossHp / Math.max(1, state.bossMaxHp)) * 100));
       const bMood = bossMood || (hpPct === 0 ? 'ko' : 'idle');
+      const maxHp = getMaxHeroHp();
+      const lv = getLevelInfo();
+      const wpn = getWeaponStats();
+
       document.getElementById('bossName').textContent = boss.name;
-      document.getElementById('heroSprite').innerHTML = renderHeroSvg(state.activeAvatar, heroMood);
+      document.getElementById('heroSprite').innerHTML = renderHeroSvg(state.activeAvatar, state.heroKo ? 'hit' : heroMood);
       document.getElementById('bossSprite').innerHTML = renderBossSvg(state.stage, bMood);
-      document.getElementById('bossHpTxt').textContent = `HP ${hpPct}%`;
+      document.getElementById('bossHpTxt').textContent = `HP ${hpPct}% (${state.bossHp}/${state.bossMaxHp})`;
       document.getElementById('bossHpBar').style.width = `${hpPct}%`;
+
+      let hearts = '';
+      for (let i = 0; i < maxHp; i++) hearts += i < state.heroHp ? '❤️' : '🖤';
+      document.getElementById('heroHearts').textContent = hearts;
+
+      const gearRow = document.getElementById('heroGearRow');
+      gearRow.innerHTML = `<span id="arenaHeroTag" class="pill-white" style="font-size:0.68rem;">Lv.${lv.lv} ${UI[state.lang].youTag}${wpn.icon ? ' ' + wpn.icon : ''}${state.activeArmor ? ' 👘' : ''}</span>`
+        + (state.shieldOn ? `<span class="buff-chip">🛡️ GUARD</span>` : '')
+        + (state.scrollOn ? `<span class="buff-chip">⚡ 2× ATK</span>` : '');
+
+      const lineObj = (boss.lines && boss.lines[state.bossLineKey]) || boss.lines.intro;
+      document.getElementById('bossSpeechIcon').textContent = boss.icon;
+      document.getElementById('bossSpeechJp').textContent = `${boss.name}: 「${lineObj.jp}」`;
+      document.getElementById('bossSpeechTr').textContent = lineObj.tr[state.lang] || lineObj.tr.en;
+      updateBattleItemBar();
     }
 
     function spawnBattleText(text, color) {
@@ -2328,29 +2748,44 @@
       anchor.innerHTML = ''; anchor.appendChild(el);
       setTimeout(() => { if (el.parentNode) el.remove(); }, 950);
     }
+    function spawnHeroText(text, color) {
+      const anchor = document.getElementById('heroDmgAnchor');
+      if (!anchor) return;
+      const el = document.createElement('div');
+      el.className = 'dmg-float';
+      el.style.cssText = `padding:4px 12px;border-radius:999px;font-size:0.82rem;font-weight:900;color:#fff;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.2);background:${color};`;
+      el.textContent = text;
+      anchor.innerHTML = ''; anchor.appendChild(el);
+      setTimeout(() => { if (el.parentNode) el.remove(); }, 950);
+    }
 
     function renderBlitz() {
       const t = UI[state.lang], card = document.getElementById('blitzCard'), clearCard = document.getElementById('blitzClearCard');
       if (state.blitzDone) {
         card.classList.add('hidden'); clearCard.classList.remove('hidden');
+        const answered = Math.max(1, state.blitzIdx);
         const total = state.blitzQueue.length, score = state.blitzCorrectInRound;
-        const pct = Math.round((score / total) * 100);
-        const passed = pct >= 70;
-        const stars = pct === 100 ? '⭐⭐⭐' : passed ? '⭐⭐' : '☆';
+        const pct = Math.round((score / Math.min(total, answered)) * 100);
+        const passed = state.bossHp <= 0 || pct >= 70;
+        const stars = (state.bossHp <= 0 && pct === 100) ? '⭐⭐⭐' : passed ? '⭐⭐' : '☆';
         const reward = passed ? 40 : 15;
         const hasNext = passed && (state.stage === 1 || state.stage === 2);
+        const boss = BOSSES[state.stage] || BOSSES[1];
+        const koLine = passed && boss.lines ? boss.lines.ko : null;
         clearCard.innerHTML = `
           <div style="font-size:3rem;">${passed ? '🏆' : '💪'}</div>
           <div style="font-size:0.75rem;font-weight:900;letter-spacing:0.08em;color:${passed ? '#ea580c' : '#e11d48'};">${passed ? t.bossWinEyebrow : t.bossFailEyebrow}</div>
           <h2 style="font-size:1.5rem;font-weight:900;margin:6px 0 4px;color:var(--r-dark);">${stageBadgeLabel(state.stage)}</h2>
           <div style="font-size:1.8rem;letter-spacing:0.15em;">${stars}</div>
+          ${koLine ? `<div style="margin:8px auto;max-width:460px;font-size:0.82rem;font-weight:700;padding:8px 12px;border-radius:12px;background:var(--r-soft);">${boss.icon} 「${koLine.jp}」<div style="font-size:0.74rem;color:var(--r-muted);margin-top:2px;">${koLine.tr[state.lang] || koLine.tr.en}</div></div>` : ''}
           <div class="stats-grid">
-            <div class="stat-tile"><div class="stat-k">${t.statHits}</div><div class="stat-v" style="color:var(--r-dark);">${score} / ${total}</div></div>
+            <div class="stat-tile"><div class="stat-k">${t.statHits}</div><div class="stat-v" style="color:var(--r-dark);">${score} / ${Math.min(total, answered)}</div></div>
             <div class="stat-tile"><div class="stat-k">${t.statAcc}</div><div class="stat-v" style="color:${passed ? '#10b981' : '#e11d48'};">${pct}%</div></div>
             <div class="stat-tile"><div class="stat-k">${t.statReward}</div><div class="stat-v" style="color:#ea580c;">+${reward} pt</div></div>
           </div>
           <div class="btn-row" style="justify-content:center;padding-top:8px;">
             ${hasNext ? `<button onclick="goNextStage('blitz')" class="game-btn game-btn-orange game-btn-lg">${t.nextStageBtn} →</button>` : ''}
+            <button onclick="openShopFromBattle()" class="game-btn game-btn-indigo game-btn-lg">🎁 ${t.shopCta.replace('🎁 ', '')}</button>
             <button onclick="replayBlitz()" class="game-btn game-btn-lg">${t.rematchBtn}</button>
             <button onclick="setMode('lesson')" class="game-btn game-btn-green game-btn-lg">${t.goLessonBtn}</button>
           </div>`;
@@ -2359,6 +2794,30 @@
       }
 
       clearCard.classList.add('hidden'); card.classList.remove('hidden');
+
+      // Hero KO / Revive screen right inside battle arena!
+      if (state.heroKo) {
+        updateBattleVisuals('hit', 'idle');
+        document.getElementById('blitzSentence').innerHTML = '';
+        document.getElementById('blitzTrans').textContent = '';
+        document.getElementById('blitzFeedback').classList.add('hidden');
+        const mQty = state.bag['item-matcha'] || 0;
+        document.getElementById('blitzChoices').innerHTML = `
+          <div class="ko-overlay" style="grid-column:1/-1;">
+            <div style="font-size:2.2rem;">💫</div>
+            <div style="font-size:1.1rem;font-weight:900;margin:4px 0;">HP 0! Out of Energy!</div>
+            <div style="font-size:0.82rem;font-weight:700;opacity:0.9;margin-bottom:12px;">
+              ${mQty > 0 ? 'Use a 🍵 Matcha Potion to revive (+2 ❤️) and finish the boss!' : 'Rest at the Dojo, grab a 🍵 Matcha Potion in the Shop, or try again!'}
+            </div>
+            <div class="btn-row" style="justify-content:center;">
+              ${mQty > 0 ? `<button onclick="useBattleItem('item-matcha')" class="game-btn game-btn-green game-btn-lg">🍵 Revive (+2 ❤️) [×${mQty}]</button>` : ''}
+              <button onclick="openShopFromBattle()" class="game-btn game-btn-indigo game-btn-lg">🎁 Buy Items</button>
+              <button onclick="replayBlitz()" class="game-btn game-btn-orange game-btn-lg">🔁 ${t.rematchBtn.replace('🔁 ', '')}</button>
+            </div>
+          </div>`;
+        return;
+      }
+
       const item = getCurrentBlitzItem(), total = state.blitzQueue.length, curNum = state.blitzIdx + 1;
       state.blitzAnswered = false; state.blitz5050Used = false;
       const b50 = document.getElementById('btnBlitz5050');
@@ -2391,7 +2850,7 @@
     }
 
     function answerBlitz(btn, isRight) {
-      if (state.blitzAnswered) return;
+      if (state.blitzAnswered || state.heroKo) return;
       state.blitzAnswered = true;
       const t = UI[state.lang], item = getCurrentBlitzItem();
       document.querySelectorAll('#blitzChoices .game-btn-choice').forEach(b => {
@@ -2405,27 +2864,60 @@
         state.streak += 1; state.blitzCorrectInRound += 1;
         if (state.streak > state.bestCombo) state.bestCombo = state.streak;
         state.weak.delete(item.id); state.mastered.add(item.id);
-        const gained = 10 * getMult(state.streak);
-        sfxCorrect(state.streak); addXp(gained);
+
+        const wpn = getWeaponStats();
+        const isScroll = state.scrollOn;
+        state.scrollOn = false;
+        const baseDmg = 14;
+        const critMult = state.streak >= 3 ? 1.35 : 1.0;
+        const scrollMult = isScroll ? 2.0 : 1.0;
+        const dmg = Math.round(baseDmg * wpn.atk * critMult * scrollMult);
+        state.bossHp = Math.max(0, state.bossHp - dmg);
+
+        const gained = 10 * getMult(state.streak) + wpn.bonusPt;
+        sfxCorrect(isScroll ? 6 : state.streak); addXp(gained);
 
         const hero = document.getElementById('heroSprite'), boss = document.getElementById('bossSprite');
         hero.classList.remove('atk-anim'); boss.classList.remove('hit-anim'); void hero.offsetWidth;
         hero.classList.add('atk-anim'); boss.classList.add('hit-anim');
-        spawnBattleText(state.streak >= 3 ? `🔥 CRITICAL! +${gained}pt` : `💥 HIT! +${gained}pt`, state.streak >= 3 ? '#dc2626' : '#10b981');
+
+        const hitBanner = isScroll ? `⚡ SUPER CRIT -${dmg} HP!` : (state.streak >= 3 ? `🔥 CRIT -${dmg} HP!` : `💥 -${dmg} HP!`);
+        spawnBattleText(hitBanner, isScroll ? '#eab308' : (state.streak >= 3 ? '#dc2626' : '#10b981'));
         fb.style.background = 'var(--r-good-bg)'; fb.style.borderColor = 'var(--r-good-bd)'; fb.style.color = 'var(--r-good-tx)';
-        fbTitle.textContent = `${state.streak >= 3 ? t.critMsg : t.hitMsg} (+${gained} pt)`;
+        fbTitle.textContent = `${isScroll ? '⚡ SUPER CRITICAL!' : (state.streak >= 3 ? t.critMsg : t.hitMsg)} (-${dmg} Boss HP · +${gained} pt)`;
+
+        if (state.bossHp <= 0) {
+          state.bossLineKey = 'ko';
+          document.getElementById('fbNextTxt').textContent = '🏆 ' + t.finishQ;
+        } else if (state.bossHp <= state.bossMaxHp * 0.35) {
+          state.bossLineKey = 'low';
+        }
       } else {
         btn.classList.add('is-wrong');
-        state.streak = 0; state.weak.add(item.id); sfxWrong();
-        const hero = document.getElementById('heroSprite');
-        hero.classList.remove('hit-anim'); void hero.offsetWidth; hero.classList.add('hit-anim');
-        spawnBattleText('💨 MISS!', '#dc2626');
-        fb.style.background = 'var(--r-bad-bg)'; fb.style.borderColor = 'var(--r-bad-bd)'; fb.style.color = 'var(--r-bad-tx)';
-        fbTitle.textContent = t.missMsg;
+        state.weak.add(item.id);
+        if (state.shieldOn) {
+          state.shieldOn = false;
+          sfxPin();
+          spawnHeroText('🛡️ GUARDED! 0 DMG', '#4f46e5');
+          fb.style.background = 'var(--r-indigo-bg)'; fb.style.borderColor = 'var(--r-indigo-bd)'; fb.style.color = 'var(--r-indigo-tx)';
+          fbTitle.textContent = '🛡️ Omamori Shield blocked the damage & saved your combo!';
+        } else {
+          state.streak = 0;
+          state.heroHp = Math.max(0, state.heroHp - 1);
+          state.bossLineKey = 'taunt';
+          sfxWrong();
+          const hero = document.getElementById('heroSprite');
+          hero.classList.remove('hit-anim'); void hero.offsetWidth; hero.classList.add('hit-anim');
+          spawnHeroText('💔 -1 ❤️ HP', '#dc2626');
+          spawnBattleText('💨 MISS!', '#dc2626');
+          fb.style.background = 'var(--r-bad-bg)'; fb.style.borderColor = 'var(--r-bad-bd)'; fb.style.color = 'var(--r-bad-tx)';
+          fbTitle.textContent = `${t.missMsg} (-1 ❤️ HP)`;
+          if (state.heroHp <= 0) state.heroKo = true;
+        }
       }
 
       saveState();
-      updateBattleVisuals(isRight ? 'attack' : 'hit', isRight ? (state.blitzCorrectInRound >= state.blitzQueue.length ? 'ko' : 'hit') : 'idle');
+      updateBattleVisuals(isRight ? 'attack' : 'hit', isRight ? (state.bossHp <= 0 ? 'ko' : 'hit') : 'idle');
       updateComboBadges(); updateHud();
       document.getElementById('fbFullJp').innerHTML = item.blitz.fullHtml;
       const rev = document.getElementById('fbTransReveal');
@@ -2458,11 +2950,13 @@
     function playCurrentBlitz(r, btn) { playMp3(getCurrentBlitzItem().audio.bz, r, btn); }
     function nextBlitz() {
       stopMp3();
+      if (state.heroKo) { renderBlitz(); return; }
       state.blitzIdx += 1;
-      if (state.blitzIdx >= state.blitzQueue.length) {
+      const bossBeaten = state.bossHp <= 0;
+      if (bossBeaten || state.blitzIdx >= state.blitzQueue.length) {
         state.blitzDone = true;
-        const pct = Math.round((state.blitzCorrectInRound / state.blitzQueue.length) * 100);
-        if (pct >= 70) {
+        const pct = Math.round((state.blitzCorrectInRound / Math.max(1, state.blitzIdx)) * 100);
+        if (bossBeaten || pct >= 70) {
           if (!state.blitzWeakOnly) state.clearedBlitz.add(state.stage);
           sfxCelebration(); addXp(40);
         } else {
@@ -2470,6 +2964,8 @@
         }
       }
       renderBlitz();
+      const cardEl = document.getElementById(state.blitzDone ? 'blitzClearCard' : 'blitzCard');
+      if (cardEl) cardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     function replayBlitz() { initBlitzQueue(); renderBlitz(); }
     function goNextStage(mode) { const n = state.stage === 1 ? 2 : state.stage === 2 ? 3 : 'all'; state.mode = mode; setStage(n); }
@@ -2612,6 +3108,8 @@
       const items = getFilteredData(); state.buildIdx += 1;
       if (state.buildIdx >= items.length) { state.buildDone = true; state.clearedBuild.add(state.stage); sfxCelebration(); addXp(40); }
       renderBuild();
+      const bc = document.getElementById(state.buildDone ? 'buildClearCard' : 'buildCard');
+      if (bc) bc.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     function replayBuild() { resetBuildRound(); renderBuild(); }
 
@@ -2656,7 +3154,6 @@
       const items = q
         ? DATA.filter(d => SEARCH_INDEX[d.id].includes(q))
         : (state.lessonFilter === 'pinned' ? DATA.filter(d => state.pinned.has(d.id)) : getFilteredData());
-      document.getElementById('searchLessonCount').textContent = q ? `${items.length} / ${DATA.length}` : `${items.length}`;
 
       const list = document.getElementById('lessonList');
       if (!items.length) {
