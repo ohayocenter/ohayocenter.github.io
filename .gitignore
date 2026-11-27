@@ -1,0 +1,4 @@
+# Local-only Instagram content studio (never publish to GitHub Pages)
+ig-studio/
+.DS_Store
+Thumbs.db
