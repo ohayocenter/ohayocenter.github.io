@@ -20,6 +20,11 @@
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" sizes="192x192" href="icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9f43">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="OHAYO CENTER">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -490,17 +495,216 @@
             .fc-header-toolbar { margin-bottom: 1rem !important; }
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ====== Nav Dark Mode Toggle ====== */
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        .theme-btn {
+            border: 1.5px solid #e5e7eb; background: #ffffff; color: var(--dark);
+            width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.92rem; flex-shrink: 0; transition: 0.2s;
+        }
+        .theme-btn:hover { border-color: var(--primary); transform: scale(1.06); }
+
+        /* Slightly roomier desktop container so 5 portal cards breathe */
+        .container { max-width: 1060px; }
+
+        /* ====== Returning Student Quick-Resume Bar (Hidden for 1st-time visitors) ====== */
+        .welcome-back-bar {
+            display: none;
+            background: linear-gradient(135deg, #fff8ef 0%, #fff2df 100%);
+            border-bottom: 1.5px solid #ffe0bd;
+            padding: 0.7rem 1rem;
+        }
+        .welcome-back-bar.show { display: block; }
+        .wb-inner {
+            max-width: 1060px; margin: 0 auto;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.65rem;
+        }
+        .wb-left { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; font-size: 0.84rem; font-weight: 700; color: var(--dark); }
+        .wb-streak {
+            background: #ff9f43; color: #fff; padding: 2px 10px; border-radius: 999px;
+            font-size: 0.76rem; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;
+        }
+        .wb-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .wb-btn {
+            display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+            padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; transition: 0.2s;
+        }
+        .wb-btn-primary { background: var(--primary); color: #fff; box-shadow: 0 3px 10px rgba(255,159,67,0.3); }
+        .wb-btn-primary:hover { transform: translateY(-1px); background: #ee8a2e; }
+        .wb-btn-ghost { background: #fff; color: var(--dark); border: 1px solid #e5d5c0; }
+        .wb-btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* ====== Streak Pill in Progress Bar ====== */
+        .mp-streak {
+            background: #fff1e6; color: #e67e22; border: 1px solid #ffd5b0;
+            font-weight: 800; font-size: 0.8rem; padding: 4px 12px; border-radius: 50px;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+
+        /* ====== Today's 1-Minute Japanese (Daily Auto-Rotating Mini Quiz) ====== */
+        .daily-card {
+            background: #fff; border-radius: 22px; padding: 1.4rem 1.5rem; margin: 0 auto 2rem;
+            box-shadow: var(--shadow); border: 1.5px solid #ffdcb8;
+        }
+        .daily-head {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+            gap: 0.5rem; margin-bottom: 0.85rem;
+        }
+        .daily-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #ff9f43, #f39c12); color: #fff;
+            font-size: 0.74rem; font-weight: 800; padding: 4px 12px; border-radius: 50px; letter-spacing: 0.4px;
+        }
+        .daily-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .daily-tag {
+            font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 50px;
+            background: #f3f4f6; color: #555;
+        }
+        .daily-bonus-btn {
+            border: 1px solid #e2e8f0; background: #fff; color: var(--dark);
+            border-radius: 50px; padding: 3px 10px; font-size: 0.72rem; font-weight: 700;
+            cursor: pointer; font-family: inherit; transition: 0.15s;
+        }
+        .daily-bonus-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .daily-q {
+            font-size: 1.12rem; font-weight: 700; color: var(--dark); line-height: 1.65; margin-bottom: 0.25rem;
+        }
+        .daily-sub { font-size: 0.82rem; color: #777; margin-bottom: 0.9rem; }
+        .daily-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
+        .daily-opt {
+            border: 2px solid #ececec; background: #fafafa; color: var(--dark);
+            border-radius: 14px; padding: 0.7rem 0.8rem; font-size: 0.86rem; font-weight: 700;
+            cursor: pointer; font-family: inherit; transition: 0.15s; text-align: center;
+        }
+        .daily-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); transform: translateY(-1px); }
+        .daily-opt.ok { background: #dcfce7; border-color: #16a34a; color: #166534; }
+        .daily-opt.ng { background: #fee2e2; border-color: #dc2626; color: #991b1b; }
+        .daily-fb {
+            display: none; margin-top: 0.85rem; padding: 0.85rem 1rem; border-radius: 14px;
+            background: #fff9f2; border-left: 4px solid var(--primary); font-size: 0.84rem; color: var(--text);
+            align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem;
+        }
+        .daily-fb.show { display: flex; }
+        .daily-more-link {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: var(--primary); color: #fff; text-decoration: none;
+            padding: 6px 14px; border-radius: 50px; font-size: 0.76rem; font-weight: 700; white-space: nowrap;
+        }
+        .daily-more-link:hover { background: #ee8a2e; }
+
+        /* ====== Mobile Swipe Hint ====== */
+        .swipe-hint {
+            display: none; font-size: 0.68rem; font-weight: 700; color: var(--primary);
+            background: var(--primary-light); padding: 2px 8px; border-radius: 50px; white-space: nowrap;
+        }
+        .sub-cat-meta { display: inline-flex; align-items: center; gap: 6px; }
+
+        /* ====== Tablet (601px - 900px) & Mid-Viewport Fixes ====== */
+        @media (max-width: 900px) and (min-width: 601px) {
+            .level-portal-grid {
+                display: flex !important; flex-wrap: wrap; justify-content: center; gap: 1rem;
+            }
+            .level-card { flex: 0 1 calc(33.333% - 0.7rem); min-width: 175px; padding: 1.5rem 0.9rem; }
+        }
+        @media (max-width: 768px) {
+            .goal-btn-grid { grid-template-columns: repeat(2, 1fr); }
+            .starter-result-grid, .guide-steps, .guide-details-grid, .daily-opts { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .nav-right { gap: 0.5rem; }
+            .logo { font-size: 0.96rem; }
+            .nav-links { gap: 0.65rem; }
+            .nav-links a { font-size: 0.7rem; letter-spacing: 0.4px; }
+            .theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+            .swipe-hint { display: inline-flex; align-items: center; gap: 3px; }
+            .horizontal-scroll-mobile {
+                padding-right: 26px;
+                -webkit-mask-image: linear-gradient(90deg, #000 94%, transparent 100%);
+                mask-image: linear-gradient(90deg, #000 94%, transparent 100%);
+            }
+            .daily-card { padding: 1.15rem 1rem; }
+            .daily-q { font-size: 1rem; }
+            .unified-card[data-mat] { padding-top: 2.35rem; }
+        }
+
+        /* ====== Full Dark Mode (Synced with ohayo_theme across all study pages!) ====== */
+        body.dark-mode { background-color: #0f172a; color: #e2e8f0; }
+        body.dark-mode nav { background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid #334155; }
+        body.dark-mode .logo, body.dark-mode .nav-links a, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 { color: #f8fafc; }
+        body.dark-mode .theme-btn { background: #1e293b; border-color: #334155; color: #f8fafc; }
+        body.dark-mode .welcome-back-bar { background: linear-gradient(135deg, #1e293b, #283548); border-bottom-color: #334155; }
+        body.dark-mode .wb-left { color: #f8fafc; }
+        body.dark-mode .wb-btn-ghost { background: #0f172a; color: #e2e8f0; border-color: #475569; }
+        body.dark-mode .card, body.dark-mode .first-time-guide, body.dark-mode #schedule-section,
+        body.dark-mode .profile-box, body.dark-mode .voice-card, body.dark-mode .my-progress-bar,
+        body.dark-mode .daily-card, body.dark-mode .starter-quiz, body.dark-mode .level-card,
+        body.dark-mode .update-board, body.dark-mode .unified-card, body.dark-mode .legal-content {
+            background: #1e293b; border-color: #334155; color: #e2e8f0; box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+        }
+        body.dark-mode .unified-card.is-hero-pick { background: linear-gradient(180deg, #1e293b 0%, #2b2620 100%); border-color: #d97706; }
+        body.dark-mode .unified-card.is-done { background: linear-gradient(180deg, #1e293b 0%, #172d24 100%); border-color: #16a34a; }
+        body.dark-mode .tab-btn, body.dark-mode .goal-btn, body.dark-mode .starter-rec-card,
+        body.dark-mode .guide-step-card, body.dark-mode .guide-faq-box, body.dark-mode .cal-legend,
+        body.dark-mode .daily-opt, body.dark-mode .daily-bonus-btn, body.dark-mode .sub-cat-prog,
+        body.dark-mode .done-stamp {
+            background: #0f172a; border-color: #334155; color: #e2e8f0;
+        }
+        body.dark-mode .tab-btn.active, body.dark-mode .goal-btn.active,
+        body.dark-mode .first-time-guide summary, body.dark-mode .profile-story-toggle summary,
+        body.dark-mode .highlight-box, body.dark-mode .guide-info-box, body.dark-mode .daily-fb {
+            background: rgba(255, 159, 67, 0.16); color: #f8fafc; border-color: #ff9f43;
+        }
+        body.dark-mode .profile-story-toggle { background: #1e293b; border-color: #334155; }
+        body.dark-mode .guide-toggle-pill { background: #0f172a; border-color: #ff9f43; }
+        body.dark-mode .price, body.dark-mode .cal-tz-badge, body.dark-mode .voice-name,
+        body.dark-mode .starter-result-title, body.dark-mode .goal-btn .goal-title,
+        body.dark-mode .daily-q, body.dark-mode .update-text a { color: #f8fafc; }
+        body.dark-mode .price-approx, body.dark-mode .voice-text, body.dark-mode .unified-card p,
+        body.dark-mode .profile-text-grid p, body.dark-mode .guide-step-card p,
+        body.dark-mode .guide-info-box ul, body.dark-mode .guide-faq-box ul,
+        body.dark-mode .level-card ul li, body.dark-mode .update-text,
+        body.dark-mode .starter-rec-card p, body.dark-mode .daily-sub,
+        body.dark-mode .sub-category-title, body.dark-mode .portal-prog { color: #cbd5e1; }
+        body.dark-mode .step-pill, body.dark-mode .daily-tag { background: #334155; color: #e2e8f0; }
+        body.dark-mode .step-pill.first, body.dark-mode .mp-count, body.dark-mode .mp-streak,
+        body.dark-mode .swipe-hint { background: rgba(255,159,67,0.2); color: #ffbe76; border-color: rgba(255,159,67,0.4); }
+        body.dark-mode .mp-meter { background: #334155; }
+        body.dark-mode .level-section { border-top-color: #334155; }
+        body.dark-mode .update-board h3, body.dark-mode .profile-header, body.dark-mode .exp-item,
+        body.dark-mode .update-list li, body.dark-mode .starter-result { border-color: #334155; }
+        body.dark-mode .daily-opt.ok { background: rgba(22, 163, 74, 0.28); border-color: #22c55e; color: #bbf7d0; }
+        body.dark-mode .daily-opt.ng { background: rgba(220, 38, 38, 0.28); border-color: #ef4444; color: #fecaca; }
+        body.dark-mode .unified-card.is-done .done-stamp { background: #2ecc71; border-color: #2ecc71; color: #fff; }
+        /* Fix FullCalendar sticky header inside fixed-height scroll container */
+        .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * { top: 0 !important; }
+        body.dark-mode .fc { --fc-border-color: #334155; --fc-page-bg-color: #1e293b; --fc-neutral-bg-color: #0f172a; --fc-today-bg-color: rgba(255,159,67,0.12); color: #e2e8f0; }
+        body.dark-mode .fc-toolbar-title { color: #f8fafc !important; }
+        body.dark-mode .fc-day-sat { background-color: rgba(59, 130, 246, 0.12) !important; }
+        body.dark-mode .fc-day-sun { background-color: rgba(239, 68, 68, 0.12) !important; }
+        body.dark-mode .fc .fc-bg-event.open-hour-bg { background-color: rgba(34, 197, 94, 0.28) !important; }
+        body.dark-mode .legal-table th { background-color: #0f172a; color: #f8fafc; }
+        body.dark-mode .legal-table th, body.dark-mode .legal-table td { border-color: #334155; }
+        body.dark-mode .privacy-section p { color: #cbd5e1; }
+        body.dark-mode .package-price { background: rgba(255, 159, 67, 0.2); color: #ffbe76; }
+        body.dark-mode .profile-box p, body.dark-mode #resources > p { color: #cbd5e1 !important; }
+        body.dark-mode .profile-box [style*="border-top"], body.dark-mode .profile-box [style*="border-bottom"] { border-color: #334155 !important; }
+        body.dark-mode h2[style*="border-top"] { border-top-color: #334155 !important; }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
-        <li><a href="#lessons">LESSONS</a></li>
-        <li><a href="#profile">PROFILE</a></li>
-        <li><a href="#resources">MATERIAL</a></li>
-    </ul>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <li><a href="#lessons">LESSONS</a></li>
+            <li><a href="#profile">PROFILE</a></li>
+            <li><a href="#resources">MATERIAL</a></li>
+        </ul>
+        <button type="button" class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+    </div>
 </nav>
 
 <header class="hero">
@@ -520,6 +724,20 @@
         <a href="#resources" class="hero-btn secondary-btn"><i class="fa-solid fa-book-open"></i><span>FREE Learning Materials</span><i class="fa-solid fa-arrow-down hero-btn-arrow"></i></a>
     </div>
 </header>
+
+<!-- おかえりなさい！1タップ再開バー（2回目以降の学習者のみ表示） -->
+<div id="welcomeBackBar" class="welcome-back-bar" aria-label="Quick resume study">
+    <div class="wb-inner">
+        <div class="wb-left">
+            <span>👋 Welcome back!</span>
+            <span class="wb-streak" id="wbStreak">🔥 1-Day Streak</span>
+        </div>
+        <div class="wb-actions">
+            <a href="#resources" id="wbContinueBtn" class="wb-btn wb-btn-primary"><i class="fa-solid fa-play"></i> <span id="wbContinueTxt">Continue Study</span></a>
+            <a href="#dailyChallenge" class="wb-btn wb-btn-ghost">🔥 Today's 1-Min Q</a>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <!-- ================= LESSON SECTION ================= -->
@@ -755,15 +973,34 @@
     <section id="resources">
         <h2 id="materials">Study Material</h2>
 
-        <!-- 学習進捗 & 続きから再開バー -->
+        <!-- 学習進捗 & 連続ストリーク & 続きから再開バー -->
         <div class="my-progress-bar">
             <div class="mp-left">
                 <span class="mp-count"><i class="fa-solid fa-trophy"></i> <span id="studyTotalDone">0 / 42 Cleared</span></span>
+                <span class="mp-streak" id="studyStreakBadge">🔥 0-Day Streak</span>
                 <div class="mp-meter"><div id="studyTotalFill" class="mp-meter-fill" style="width: 0%;"></div></div>
             </div>
             <a href="#" id="studyContinueBtn" class="mp-continue">
                 <i class="fa-solid fa-play"></i> <span id="studyContinueTxt">Continue</span>
             </a>
+        </div>
+
+        <!-- 🔥 今日の1分日本語（毎日0時に自動更新） -->
+        <div class="daily-card" id="dailyChallenge">
+            <div class="daily-head">
+                <span class="daily-badge">🔥 TODAY'S 1-MIN JAPANESE</span>
+                <div class="daily-meta">
+                    <span class="daily-tag" id="dailyTag">Daily Pick</span>
+                    <button type="button" class="daily-bonus-btn" id="dailyBonusBtn">🎲 Bonus Q</button>
+                </div>
+            </div>
+            <div class="daily-q" id="dailyQ"></div>
+            <div class="daily-sub" id="dailySub"></div>
+            <div class="daily-opts" id="dailyOpts"></div>
+            <div class="daily-fb" id="dailyFb">
+                <span id="dailyFbText"></span>
+                <a href="#" id="dailyMoreLink" class="daily-more-link">Practice more →</a>
+            </div>
         </div>
 
         <!-- 30秒おすすめ教材診断 -->
@@ -896,7 +1133,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #e74c3c;">Trip Japan Survival (Step 1 → 3)</h4>
-                <span class="sub-cat-prog" data-group-prog="travel-main">0 / 3</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="travel-main">0 / 3</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="travel-main">
                 <a href="trip-listen.html" class="unified-card is-hero-pick" data-mat="trip-listen.html" data-title="Listen in Japan">
@@ -935,7 +1172,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: var(--primary);">Real-Life Japanese &amp; Listening</h4>
-                <span class="sub-cat-prog" data-group-prog="culture-main">0 / 4</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="culture-main">0 / 4</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="culture-main">
                 <a href="audioblog.html" class="unified-card is-hero-pick" data-mat="audioblog.html" data-title="Audio Blog">
@@ -979,7 +1216,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #2980b9;">Hiragana (Write → Read → Type)</h4>
-                <span class="sub-cat-prog" data-group-prog="beg-hira">0 / 3</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="beg-hira">0 / 3</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="beg-hira">
                 <a href="hiragana-nazori.html" class="unified-card" data-mat="hiragana-nazori.html" data-title="Write Hiragana">
@@ -1012,7 +1249,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #d35400;">Katakana (Write → Read → Menu → Type → Match)</h4>
-                <span class="sub-cat-prog" data-group-prog="beg-kata">0 / 5</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="beg-kata">0 / 5</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="beg-kata">
                 <a href="katakana-nazori.html" class="unified-card" data-mat="katakana-nazori.html" data-title="Write Katakana">
@@ -1062,7 +1299,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #f39c12;">Grammar N5–N4 (Step 1 → 7)</h4>
-                <span class="sub-cat-prog" data-group-prog="beg-gram">0 / 7</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="beg-gram">0 / 7</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="beg-gram">
                 <a href="adj.html" class="unified-card" data-mat="adj.html" data-title="Adjectives 200">
@@ -1127,7 +1364,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #27ae60;">Kanji N5–N4</h4>
-                <span class="sub-cat-prog" data-group-prog="beg-kanji">0 / 7</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="beg-kanji">0 / 7</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="beg-kanji">
                 <a href="Kanji-N4-5.html" class="unified-card" data-mat="Kanji-N4-5.html" data-title="Core 300 Kanji">
@@ -1198,7 +1435,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #9b59b6;">Grammar Roadmap (Step 1 → 4)</h4>
-                <span class="sub-cat-prog" data-group-prog="int-gram">0 / 4</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="int-gram">0 / 4</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="int-gram">
                 <a href="grammar-quest.html" class="unified-card is-hero-pick" data-mat="grammar-quest.html" data-title="OHAYO Grammar Quest">
@@ -1240,7 +1477,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #3498db;">N3 Vocabulary by Topic</h4>
-                <span class="sub-cat-prog" data-group-prog="int-vocab">0 / 3</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="int-vocab">0 / 3</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="int-vocab">
                 <a href="N3-1.html" class="unified-card" data-mat="N3-1.html" data-title="Daily Life &amp; Cooking">
@@ -1271,7 +1508,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #8e44ad;">N3 Kanji</h4>
-                <span class="sub-cat-prog" data-group-prog="int-kanji">0 / 4</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="int-kanji">0 / 4</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="int-kanji">
                 <a href="Kanji3-1.html" class="unified-card" data-mat="Kanji3-1.html" data-title="N3 Kanji Part 1">
@@ -1317,7 +1554,7 @@
 
             <div class="sub-cat-row">
                 <h4 class="sub-category-title" style="border-color: #c0392b;">JLPT N1 Kanji Challenge</h4>
-                <span class="sub-cat-prog" data-group-prog="adv-kanji">0 / 2</span>
+                <span class="sub-cat-meta"><span class="swipe-hint">Swipe →</span><span class="sub-cat-prog" data-group-prog="adv-kanji">0 / 2</span></span>
             </div>
             <div class="unified-grid horizontal-scroll-mobile" data-group="adv-kanji">
                 <a href="N1-1.html" class="unified-card" data-mat="N1-1.html" data-title="N1 Kanji Part 1">
@@ -1525,6 +1762,7 @@
     }
     function initStudyTracker() {
         const st = loadStudyTracker();
+        autoSyncCrossPageProgress(st);
         const cards = [...document.querySelectorAll('.unified-card[data-mat]')];
         const total = cards.length;
 
@@ -1589,11 +1827,13 @@
                     else st.done.add(id);
                     saveStudyTracker(st);
                     refreshUI();
+                    renderStreakAndWelcome();
                 });
             }
             card.addEventListener('click', function() {
                 st.last = { href: id, title: title };
                 saveStudyTracker(st);
+                touchTodayStreak();
             });
         });
 
@@ -1608,6 +1848,7 @@
                     if (href && !href.startsWith('#')) {
                         st.last = { href: href, title: h4 ? h4.textContent.trim() : href };
                         saveStudyTracker(st);
+                        touchTodayStreak();
                     }
                 }
             });
@@ -1676,9 +1917,201 @@
         return out;
     }
 
+
+    /* ====== Dark Mode Sync (ohayo_theme — shared across study pages) ====== */
+    function initThemeToggle() {
+        var btn = document.getElementById('themeBtn');
+        var apply = function(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', isDark ? '#0f172a' : '#ff9f43');
+        };
+        var savedDark = false;
+        try { savedDark = localStorage.getItem('ohayo_theme') === 'dark'; } catch (e) {}
+        apply(savedDark);
+        if (btn) {
+            btn.addEventListener('click', function() {
+                var next = !document.body.classList.contains('dark-mode');
+                apply(next);
+                try { localStorage.setItem('ohayo_theme', next ? 'dark' : 'light'); } catch (e) {}
+            });
+        }
+    }
+
+    /* ====== Daily Streak & Auto-Synced Progress (localStorage) ====== */
+    const STREAK_KEY = 'ohayo_streak_v1';
+    function getTodayStr() {
+        var d = new Date();
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function loadStreak() {
+        try {
+            var raw = JSON.parse(localStorage.getItem(STREAK_KEY) || '{}');
+            return { count: Number(raw.count) || 0, lastDate: raw.lastDate || '' };
+        } catch (e) { return { count: 0, lastDate: '' }; }
+    }
+    function touchTodayStreak() {
+        var s = loadStreak();
+        var today = getTodayStr();
+        if (s.lastDate === today) return s;
+        var y = new Date(); y.setDate(y.getDate() - 1);
+        var yStr = y.getFullYear() + '-' + String(y.getMonth() + 1).padStart(2, '0') + '-' + String(y.getDate()).padStart(2, '0');
+        s.count = (s.lastDate === yStr) ? (s.count + 1) : 1;
+        s.lastDate = today;
+        try { localStorage.setItem(STREAK_KEY, JSON.stringify(s)); } catch (e) {}
+        return s;
+    }
+    function renderStreakAndWelcome() {
+        var s = loadStreak();
+        var today = getTodayStr();
+        var y = new Date(); y.setDate(y.getDate() - 1);
+        var yStr = y.getFullYear() + '-' + String(y.getMonth() + 1).padStart(2, '0') + '-' + String(y.getDate()).padStart(2, '0');
+        var activeCount = (s.lastDate === today || s.lastDate === yStr) ? s.count : 0;
+
+        var badge = document.getElementById('studyStreakBadge');
+        if (badge) badge.textContent = '🔥 ' + activeCount + '-Day Streak';
+
+        var st = loadStudyTracker();
+        var wb = document.getElementById('welcomeBackBar');
+        if (wb) {
+            if (st.last || activeCount > 0 || st.done.size > 0) {
+                wb.classList.add('show');
+                var wbS = document.getElementById('wbStreak');
+                if (wbS) wbS.textContent = activeCount > 0 ? ('🔥 ' + activeCount + '-Day Streak') : ('⭐ ' + st.done.size + ' Cleared');
+                var wbBtn = document.getElementById('wbContinueBtn');
+                var wbTxt = document.getElementById('wbContinueTxt');
+                if (wbBtn && wbTxt) {
+                    if (st.last && st.last.href) {
+                        wbBtn.href = st.last.href;
+                        wbTxt.textContent = 'Continue: ' + st.last.title;
+                    } else {
+                        wbBtn.href = '#resources';
+                        wbTxt.textContent = 'Jump to Study Materials';
+                    }
+                }
+            } else {
+                wb.classList.remove('show');
+            }
+        }
+    }
+
+    function autoSyncCrossPageProgress(st) {
+        var changed = false;
+        try {
+            var n3 = JSON.parse(localStorage.getItem('ohayo_n3_grammar_mastered_v1') || '[]');
+            if (Array.isArray(n3) && n3.length >= 24 && !st.done.has('n3-grammar.html')) { st.done.add('n3-grammar.html'); changed = true; }
+            var n2 = JSON.parse(localStorage.getItem('ohayo_n2_grammar_mastered_v1') || '[]');
+            if (Array.isArray(n2) && n2.length >= 24 && !st.done.has('n2-grammar.html')) { st.done.add('n2-grammar.html'); changed = true; }
+            var gq = JSON.parse(localStorage.getItem('ohayo_grammar_quest_v1') || '{}');
+            if (gq && Array.isArray(gq.clearedBlitz) && gq.clearedBlitz.length >= 3 && !st.done.has('grammar-quest.html')) { st.done.add('grammar-quest.html'); changed = true; }
+        } catch (e) {}
+        if (changed) saveStudyTracker(st);
+    }
+
+    /* ====== Today's 1-Minute Japanese (30 Date-Rotated Mini Quizzes) ====== */
+    const DAILY_ITEMS = [
+        { tag: 'Idiom', q: '「猫の手も借りたい」(ねこのてもかりたい)', sub: 'What does this everyday idiom mean?', opts: ['Extremely busy!', 'Love cats deeply', 'Very sleepy'], ans: 0, exp: 'Literally "want to borrow even a cat’s paw" = swamped with work!', href: 'idioms.html', label: 'Idioms & Slang (40)' },
+        { tag: 'Onomatopoeia', q: 'テストのまえで、むねが（　　　）しています。', sub: 'Choose the sound word for a pounding / nervous heart!', opts: ['ペコペコ', 'ドキドキ', 'ピカピカ'], ans: 1, exp: 'ドキドキ = heart pounding with excitement or nervousness!', href: 'onomato.html', label: 'Onomatopoeia (42)' },
+        { tag: 'Travel', q: 'レストランで「お会計（かいけい）おねがいします」', sub: 'When do you say this in Japan?', opts: ['Asking for the menu', 'Asking for the check', 'Ordering water'], ans: 1, exp: 'お会計お願いします = "Check, please!" — essential in every restaurant.', href: 'trip-flashcards.html', label: 'Travel Flashcards' },
+        { tag: 'N4→N3 RPG', q: 'きのうは いそがしくて、3時間（　　　）。', sub: '"I could ONLY sleep 3 hours!"', opts: ['しか ねられませんでした', 'しか ねました', 'だけ ねられませんでした'], ans: 0, exp: 'しか ALWAYS pairs with a negative verb (~ない / ~ませんでした)!', href: 'grammar-quest.html', label: 'OHAYO Grammar Quest' },
+        { tag: 'JLPT N3', q: 'せっかくのピザが さめない（　　　）、はやく食べよう！', sub: '"Before the pizza gets cold!"', opts: ['ために', 'うちに', 'といっても'], ans: 1, exp: '〜ないうちに = before the state changes (while it is still warm)!', href: 'n3-grammar.html', label: 'JLPT N3 Grammar' },
+        { tag: 'Idiom', q: '「目からうろこ」(めからうろこ)', sub: 'When do Japanese people say this?', opts: ['When eyes hurt', 'Having an "Aha!" moment', 'Crying at a movie'], ans: 1, exp: '目からうろこ = suddenly understanding something clearly ("scales falling from eyes")!', href: 'idioms.html', label: 'Idioms & Slang (40)' },
+        { tag: 'Onomatopoeia', q: 'おなかが（　　　）です！なにか食べよう。', sub: 'Choose the sound word for "starving hungry"!', opts: ['ペコペコ', 'フワフワ', 'ニコニコ'], ans: 0, exp: 'ペコペコ = super hungry (stomach totally empty)!', href: 'onomato.html', label: 'Onomatopoeia (42)' },
+        { tag: 'Travel', q: 'カフェで「もちかえり できますか？」', sub: 'What are you asking the staff?', opts: ['Can I sit here?', 'Can I get this to go?', 'Is Wi-Fi free?'], ans: 1, exp: '持ち帰り（もちかえり）= takeout / to go!', href: 'trip-listen.html', label: 'Listen in Japan' },
+        { tag: 'N4→N3 RPG', q: '日本語は 話せば（　　　）楽しくなります。', sub: '"The more you speak, the more fun it gets!"', opts: ['話すほど', '話したほど', '話してほど'], ans: 0, exp: 'V-ば + V-dict + ほど = "the more A, the more B"!', href: 'grammar-quest.html', label: 'OHAYO Grammar Quest' },
+        { tag: 'JLPT N3', q: 'みなさんの協力の（　　　）、イベントは大成功でした！', sub: '"Thanks to everyone’s help..."', opts: ['せいで', 'おかげで', 'において'], ans: 1, exp: 'おかげで = thanks to (positive result); せいで = because of (negative).', href: 'n3-grammar.html', label: 'JLPT N3 Grammar' },
+        { tag: 'JLPT N2', q: '強い雨（　　　）、スタジアムは満員だった。', sub: '"Despite the heavy rain, the stadium was packed."', opts: ['にもかかわらず', 'ものの', 'ことか'], ans: 0, exp: 'N + にもかかわらず = in spite of / despite ~!', href: 'n2-grammar.html', label: 'JLPT N2 Grammar' },
+        { tag: 'Idiom', q: '「朝飯前」(あさめしまえ)', sub: 'Literally "before breakfast" — what does it mean?', opts: ['A piece of cake!', 'Waking up early', 'Skipping breakfast'], ans: 0, exp: '朝飯前 = super easy, effortless ("a piece of cake")!', href: 'idioms.html', label: 'Idioms & Slang (40)' },
+        { tag: 'Onomatopoeia', q: 'でんしゃに（　　　）まにあいました！', sub: '"I made the train just in the nick of time!"', opts: ['ギリギリ', 'のんびり', 'ペラペラ'], ans: 0, exp: 'ギリギリ = barely / just in time!', href: 'onomato.html', label: 'Onomatopoeia (42)' },
+        { tag: 'N4→N3 RPG', q: '手を 洗っ（　　　）、ごはんを食べます。', sub: '"After washing my hands, I eat."', opts: ['てから', 'るから', 'たばかり'], ans: 0, exp: 'V-て + から clearly shows step 1 → step 2 ("after doing A")!', href: 'grammar-quest.html', label: 'OHAYO Grammar Quest' },
+        { tag: 'JLPT N3', q: '駅に着いた（　　　）、電車が出発してしまった。', sub: '"The very instant I arrived, the train left!"', opts: ['最中に', 'とたんに', 'ついでに'], ans: 1, exp: 'V-た + とたんに = the very moment A happened, unexpected B happened!', href: 'n3-grammar.html', label: 'JLPT N3 Grammar' },
+        { tag: 'Idiom', q: '「花より団子」(はなよりだんご)', sub: 'What does "dumplings over flowers" mean?', opts: ['Food/practicality over looks', 'Spring is coming', 'Sweets are expensive'], ans: 0, exp: 'Choosing tasty food or practical benefits over aesthetics!', href: 'idioms.html', label: 'Idioms & Slang (40)' },
+        { tag: 'Travel', q: 'お店で「おすすめは なんですか？」', sub: 'What does this useful travel phrase mean?', opts: ['Where is the restroom?', 'What do you recommend?', 'How much is this?'], ans: 1, exp: 'おすすめ = recommendation — great at ramen shops & izakayas!', href: 'trip-quiz.html', label: 'Travel Quiz (25)' },
+        { tag: 'JLPT N2', q: '大雪で欠航になったため、出張を延期（　　　）。', sub: '"Had no choice but to postpone the trip."', opts: ['せざるを得ない', 'しがたい', 'つつある'], ans: 0, exp: 'する → せざるを得ない = have no choice but to do ~!', href: 'n2-grammar.html', label: 'JLPT N2 Grammar' },
+        { tag: 'Onomatopoeia', q: 'あつい日に 冷たい水を（　　　）飲みました。', sub: 'Choose the sound of gulping down a cold drink!', opts: ['ゴクゴク', 'モグモグ', 'シトシト'], ans: 0, exp: 'ゴクゴク = gulping liquids; モグモグ = chewing food!', href: 'onomato.html', label: 'Onomatopoeia (42)' },
+        { tag: 'JLPT N3', q: '郵便局へ行く（　　　）、スーパーで牛乳を買った。', sub: '"While I was heading to the post office anyway..."', opts: ['ついでに', 'くせに', '次第'], ans: 0, exp: 'ついでに = doing B while already doing main task A!', href: 'n3-grammar.html', label: 'JLPT N3 Grammar' },
+        { tag: 'Idiom', q: '「サバを読む」(さばをよむ)', sub: 'What does "counting mackerel" mean in slang?', opts: ['Fudging / lying about your age or numbers', 'Going fishing', 'Reading fast'], ans: 0, exp: 'サバを読む = fudging numbers (especially making yourself sound younger)!', href: 'idioms.html', label: 'Idioms & Slang (40)' },
+        { tag: 'JLPT N2', q: 'お気に入りの靴を履いた日（　　　）、どしゃ降りになる。', sub: '"Of all days, it pours on the day I wear my favorite shoes!"', opts: ['に限って', 'に限らず', 'にそって'], ans: 0, exp: '〜に限って (2) = "of all times/days" (Murphy’s law)!', href: 'n2-grammar.html', label: 'JLPT N2 Grammar' },
+        { tag: 'Onomatopoeia', q: '一日じゅう歩いて、もう（　　　）です。', sub: 'Choose the word for "totally exhausted"!', opts: ['クタクタ', 'ワクワク', 'ツルツル'], ans: 0, exp: 'クタクタ = completely worn out / exhausted!', href: 'onomato.html', label: 'Onomatopoeia (42)' },
+        { tag: 'JLPT N3', q: 'インターネット（　　　）あれば、どこでも仕事ができる。', sub: '"As long as I just have internet..."', opts: ['さえ', 'に比べて', 'に応じて'], ans: 0, exp: '〜さえ〜ば = if only / as long as this one condition is met!', href: 'n3-grammar.html', label: 'JLPT N3 Grammar' },
+        { tag: 'Travel', q: 'レジで「カードは つかえますか？」', sub: 'What are you asking at checkout?', opts: ['Do you have a bag?', 'Can I pay by card?', 'Is tax included?'], ans: 1, exp: 'カードは使えますか？ = "Can I use a credit/debit card?"', href: 'trip-flashcards.html', label: 'Travel Flashcards' },
+        { tag: 'JLPT N2', q: 'この旅館は 料金が安い（　　　）、食事がとても豪華だ。', sub: '"Considering how cheap it is, the food is luxurious!"', opts: ['わりに', 'もかまわず', 'に対して'], ans: 0, exp: '〜わりに = considering ~ / for a ~ (surprising contrast)!', href: 'n2-grammar.html', label: 'JLPT N2 Grammar' },
+        { tag: 'Idiom', q: '「頭が固い」(あたまがかたい)', sub: 'What does "having a hard head" describe?', opts: ['Stubborn / inflexible thinker', 'Very smart', 'Having a headache'], ans: 0, exp: '頭が固い = rigid, inflexible, stubborn!', href: 'idioms.html', label: 'Idioms & Slang (40)' },
+        { tag: 'N4→N3 RPG', q: '私（　　　）、家族はいちばん大切です。', sub: '"For me / from my point of view..."', opts: ['にとって', 'について', 'のかわりに'], ans: 0, exp: 'にとって = "for [person]" (expressing value or opinion)!', href: 'grammar-quest.html', label: 'OHAYO Grammar Quest' },
+        { tag: 'JLPT N2', q: '万が一に備えて、保険には 入っておく（　　　）。', sub: '"Nothing beats having insurance just in case!"', opts: ['に越したことはない', 'にすぎない', 'ものだ'], ans: 0, exp: '〜に越したことはない = "it’s always best to ~ / nothing beats ~"!', href: 'n2-grammar.html', label: 'JLPT N2 Grammar' },
+        { tag: 'Onomatopoeia', q: '明日の日本旅行が楽しみで（　　　）しています！', sub: 'Choose the word for "thrilled / excited"!', opts: ['ワクワク', 'イライラ', 'ボロボロ'], ans: 0, exp: 'ワクワク = excited and looking forward to something fun!', href: 'onomato.html', label: 'Onomatopoeia (42)' }
+    ];
+
+    function initDailyChallenge() {
+        var d = new Date();
+        var seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+        var curIdx = seed % DAILY_ITEMS.length;
+
+        function renderDaily(idx, isBonus) {
+            var it = DAILY_ITEMS[idx];
+            var tagEl = document.getElementById('dailyTag');
+            var qEl = document.getElementById('dailyQ');
+            var subEl = document.getElementById('dailySub');
+            var optsEl = document.getElementById('dailyOpts');
+            var fbEl = document.getElementById('dailyFb');
+            var fbTxt = document.getElementById('dailyFbText');
+            var moreEl = document.getElementById('dailyMoreLink');
+            if (!qEl || !optsEl) return;
+
+            tagEl.textContent = (isBonus ? '🎲 Bonus · ' : '📅 Today · ') + it.tag;
+            qEl.textContent = it.q;
+            subEl.textContent = it.sub;
+            fbEl.classList.remove('show');
+            optsEl.innerHTML = '';
+
+            var shuffled = it.opts.map(function(txt, origIdx) {
+                return { txt: txt, isCorrect: origIdx === it.ans };
+            });
+            for (var si = shuffled.length - 1; si > 0; si--) {
+                var sj = (isBonus ? Math.floor(Math.random() * (si + 1)) : ((seed + idx + si) % (si + 1)));
+                var tmp = shuffled[si]; shuffled[si] = shuffled[sj]; shuffled[sj] = tmp;
+            }
+            var correctPos = shuffled.findIndex(function(x) { return x.isCorrect; });
+
+            shuffled.forEach(function(itemOpt, oi) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'daily-opt';
+                b.textContent = itemOpt.txt;
+                b.onclick = function() {
+                    var all = optsEl.querySelectorAll('.daily-opt');
+                    all.forEach(function(x) { x.disabled = true; });
+                    var ok = itemOpt.isCorrect;
+                    b.classList.add(ok ? 'ok' : 'ng');
+                    if (!ok && all[correctPos]) all[correctPos].classList.add('ok');
+                    fbTxt.textContent = (ok ? '✅ Great! ' : '💡 Answer: ' + it.opts[it.ans] + ' — ') + it.exp;
+                    moreEl.href = it.href;
+                    moreEl.textContent = 'Practice in ' + it.label + ' →';
+                    fbEl.classList.add('show');
+                    touchTodayStreak();
+                    renderStreakAndWelcome();
+                };
+                optsEl.appendChild(b);
+            });
+        }
+
+        var bonusBtn = document.getElementById('dailyBonusBtn');
+        if (bonusBtn) {
+            bonusBtn.addEventListener('click', function() {
+                curIdx = (curIdx + 1 + Math.floor(Math.random() * (DAILY_ITEMS.length - 1))) % DAILY_ITEMS.length;
+                renderDaily(curIdx, true);
+            });
+        }
+        renderDaily(curIdx, false);
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+        initThemeToggle();
         pickStarterGoal('travel');
         initStudyTracker();
+        initDailyChallenge();
+        renderStreakAndWelcome();
 
         var tzNote = document.getElementById('cal-tz-note');
         try {
@@ -1706,12 +2139,26 @@
         });
 
         var calendarEl = document.getElementById('calendar');
+        if (typeof FullCalendar === 'undefined' || !calendarEl) return;
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: window.innerWidth < 600 ? 'timeGridDay' : 'timeGridWeek', 
             firstDay: 1, 
             locale: 'en',
             headerToolbar: { left: 'prev,next today', center: 'title', right: window.innerWidth < 600 ? '' : 'timeGridWeek,timeGridDay' },
-            slotMinTime: '00:00:00', slotMaxTime: '24:00:00', allDaySlot: false, height: 'auto', nowIndicator: true, expandRows: true, stickyHeaderDates: true,
+            slotMinTime: '00:00:00', slotMaxTime: '24:00:00',
+            scrollTime: (function() {
+                if (!localOpenHours.length) return '09:00:00';
+                var todayDow = new Date().getDay();
+                var isMobile = window.innerWidth < 600;
+                var pool = isMobile
+                    ? localOpenHours.filter(function(s) { return s.daysOfWeek.indexOf(todayDow) !== -1; })
+                    : localOpenHours.filter(function(s) { return s.daysOfWeek.some(function(d) { return d >= 1 && d <= 5; }); });
+                if (!pool.length) pool = localOpenHours;
+                var mins = pool.map(function(s) { var p = s.startTime.split(':'); return (+p[0])*60 + (+p[1]); });
+                var earliest = Math.max(0, Math.min.apply(null, mins) - 60);
+                return String(Math.floor(earliest / 60)).padStart(2, '0') + ':' + String(earliest % 60).padStart(2, '0') + ':00';
+            })(),
+            allDaySlot: false, height: window.innerWidth < 600 ? 440 : 520, nowIndicator: true, stickyHeaderDates: true,
             eventColor: '#888888', eventTextColor: '#ffffff',
             businessHours: localOpenHours,
             eventSources: [
@@ -1721,9 +2168,11 @@
             windowResize: function(arg) {
                 if (window.innerWidth < 600) {
                     calendar.changeView('timeGridDay');
+                    calendar.setOption('height', 440);
                     calendar.setOption('headerToolbar', { left: 'prev,next today', center: 'title', right: '' });
                 } else {
                     calendar.changeView('timeGridWeek');
+                    calendar.setOption('height', 520);
                     calendar.setOption('headerToolbar', { left: 'prev,next today', center: 'title', right: 'timeGridWeek,timeGridDay' });
                 }
             }

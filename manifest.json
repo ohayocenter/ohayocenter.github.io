@@ -1,0 +1,17 @@
+{
+  "name": "OHAYO CENTER - Online Japanese Lessons & Free Study Materials",
+  "short_name": "OHAYO CENTER",
+  "description": "1-on-1 Online Japanese Lessons & 42+ Free Interactive Study Materials (Kana, Travel, Idioms, JLPT N5-N1).",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fff5eb",
+  "theme_color": "#ff9f43",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
