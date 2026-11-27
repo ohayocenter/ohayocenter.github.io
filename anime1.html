@@ -818,6 +818,9 @@
       .ohayo-cta-btn { width: 100%; text-align: center; }
     }
   </style>
+    <link rel="canonical" href="https://ohayocenter.com/anime1.html">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9f43">
 </head>
 <body>
 
@@ -1831,6 +1834,10 @@
         }
       }
     } catch (e) {}
+    try {
+      var sharedTheme = window.localStorage.getItem('ohayo_theme');
+      if (sharedTheme === 'dark' || sharedTheme === 'light') def.dark = (sharedTheme === 'dark');
+    } catch (e) {}
     return def;
   }
 
@@ -2357,9 +2364,16 @@
   // --- Events ---
   document.getElementById('themeBtn').onclick = function () {
     state.dark = !state.dark;
+    try { window.localStorage.setItem('ohayo_theme', state.dark ? 'dark' : 'light'); } catch (e) {}
     persist();
     applyTheme();
   };
+  window.addEventListener('storage', function (e) {
+    if (e.key === 'ohayo_theme' && (e.newValue === 'dark' || e.newValue === 'light')) {
+      state.dark = (e.newValue === 'dark');
+      applyTheme();
+    }
+  });
 
   document.querySelectorAll('.lang-btn').forEach(function (b) {
     b.onclick = function () {

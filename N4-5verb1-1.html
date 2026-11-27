@@ -301,16 +301,82 @@
   .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
 }
 </style>
+    <link rel="canonical" href="https://ohayocenter.com/N4-5verb1-1.html">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9f43">
+<style id="ohayo-dark-style">
+.ohayo-nav-right { display: flex; align-items: center; gap: 0.9rem; }
+.ohayo-theme-btn {
+    border: 1.5px solid #e2e8f0; background: #fff; color: #2c3e50;
+    width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.92rem; transition: 0.2s; flex-shrink: 0; padding: 0; line-height: 1;
+}
+.ohayo-theme-btn:hover { border-color: #ff9f43; transform: scale(1.06); }
+body.dark-mode .ohayo-theme-btn { background: #1e293b; border-color: #475569; color: #f8fafc; }
+body.dark-mode .ohayo-cta-next { background: #1e293b; border-color: #334155; }
+body.dark-mode .ohayo-cta-kicker { color: #94a3b8; }
+body.dark-mode .ohayo-cta-link { background: #0f172a; border-color: #334155; color: #f8fafc; }
+body.dark-mode .ohayo-cta-link:hover { border-color: #ff9f43; background: rgba(255,159,67,0.16); }
+body.dark-mode .ohayo-cta-name { color: #f8fafc; }
+body.dark-mode .ohayo-cta-lesson { background: rgba(255,159,67,0.14); border-color: #ff9f43; }
+body.dark-mode .ohayo-cta-lesson h3 { color: #f8fafc; }
+body.dark-mode .ohayo-cta-lesson p { color: #cbd5e1; }
+@media (max-width: 600px) {
+    .ohayo-nav-right { gap: 0.5rem; }
+    .ohayo-theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+}
+
+body.dark-mode {
+    --bg: #0f172a; --card: #1e293b; --dark: #f8fafc; --text: #e2e8f0;
+    --primary-light: rgba(255,159,67,0.18); --green-soft: rgba(46,204,113,0.22);
+    --red-soft: rgba(231,76,60,0.24); --n1-accent: #f87171;
+    background-color: var(--bg); color: var(--text);
+}
+body.dark-mode nav { background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid #334155; box-shadow: 0 2px 15px rgba(0,0,0,0.35); }
+body.dark-mode .progress-fixed, body.dark-mode .mastery-bar { background: #334155; }
+body.dark-mode .dash-card, body.dark-mode .panel { border-color: #334155; box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+body.dark-mode .level-pill { background: rgba(46,204,113,0.2); color: #6ee7b7; }
+body.dark-mode .streak-pill { border-color: rgba(255,159,67,0.45); color: #ffbe76; }
+body.dark-mode .auto-audio-btn, body.dark-mode .part-btn, body.dark-mode .mode-btn, body.dark-mode .tool-pill,
+body.dark-mode .opt-choice, body.dark-mode .btn-outline, body.dark-mode .flashcard, body.dark-mode .kanji-stage,
+body.dark-mode .list-card, body.dark-mode .mini-audio {
+    background: #0f172a; border-color: #334155; color: #f8fafc;
+}
+body.dark-mode .auto-audio-btn.on { background: rgba(52,152,219,0.24); border-color: #38bdf8; color: #bae6fd; }
+body.dark-mode .part-btn.active { background: #ff9f43; border-color: #ff9f43; color: #fff; }
+body.dark-mode .mode-btn.active-quiz { border-color: #ff9f43; background: rgba(255,159,67,0.22); color: #ffbe76; }
+body.dark-mode .mode-btn.active-weak { border-color: #ef4444; background: rgba(239,68,68,0.24); color: #fecaca; }
+body.dark-mode .mode-btn.active-study { border-color: #38bdf8; background: rgba(56,189,248,0.22); color: #bae6fd; }
+body.dark-mode .mode-btn.active-test { border-color: #c084fc; background: rgba(192,132,252,0.22); color: #e9d5ff; }
+body.dark-mode .mode-btn.active-list { border-color: #94a3b8; background: #334155; color: #f8fafc; }
+body.dark-mode .opt-num { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+body.dark-mode .opt-choice:hover:not(:disabled) { border-color: #ff9f43; background: rgba(255,159,67,0.16); }
+body.dark-mode .opt-choice.is-correct { background: rgba(22,163,74,0.3) !important; color: #bbf7d0 !important; }
+body.dark-mode .opt-choice.is-wrong { background: rgba(220,38,38,0.3) !important; color: #fecaca !important; }
+body.dark-mode .feedback-banner.ok { color: #bbf7d0; border-color: #22c55e; }
+body.dark-mode .feedback-banner.ng { color: #fecaca; border-color: #ef4444; }
+body.dark-mode .wrong-review-list { border-color: rgba(239,68,68,0.45); }
+body.dark-mode .timer-pill { background: #334155; color: #f8fafc; }
+body.dark-mode .fc-back { border-top-color: #334155; }
+body.dark-mode .fc-reading, body.dark-mode .list-read { color: #ffbe76; }
+body.dark-mode .list-card.st-m { border-color: #22c55e; background: rgba(22,163,74,0.18); }
+body.dark-mode .list-card.st-w { border-color: #ef4444; background: rgba(220,38,38,0.18); }
+body.dark-mode .panel-head, body.dark-mode .stage-prompt, body.dark-mode .st-unseen, body.dark-mode .kbd-tip,
+body.dark-mode .test-intro p, body.dark-mode .empty-state p, body.dark-mode .list-eng, body.dark-mode .list-sent,
+body.dark-mode .theme-caption, body.dark-mode .support-section p { color: #cbd5e1; }
+body.dark-mode .support-section { border-top-color: #334155; }
+</style>
 </head>
 <body>
 
 <nav>
     <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
+    <div class="ohayo-nav-right"><ul class="nav-links">
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-    </ul>
+    </ul><button type="button" class="ohayo-theme-btn" id="ohayoThemeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button></div>
 </nav>
 
 <div class="progress-fixed"><div id="topMasterBar"></div><div id="topWeakBar"></div></div>
@@ -925,6 +991,33 @@ document.addEventListener('keydown', function(e) {
 loadProgress();
 updateDashboard();
 switchMode('quiz');
+</script>
+<script id="ohayo-theme-sync">
+(function() {
+    function applyOhayoTheme(isDark) {
+        document.body.classList.toggle('dark-mode', isDark);
+        var btn = document.getElementById('ohayoThemeBtn');
+        if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', isDark ? '#0f172a' : '#ff9f43');
+    }
+    function syncOhayoTheme() {
+        var isDark = false;
+        try { isDark = localStorage.getItem('ohayo_theme') === 'dark'; } catch (e) {}
+        applyOhayoTheme(isDark);
+    }
+    syncOhayoTheme();
+    var btn = document.getElementById('ohayoThemeBtn');
+    if (btn) {
+        btn.addEventListener('click', function() {
+            var next = !document.body.classList.contains('dark-mode');
+            applyOhayoTheme(next);
+            try { localStorage.setItem('ohayo_theme', next ? 'dark' : 'light'); } catch (e) {}
+        });
+    }
+    window.addEventListener('pageshow', function(e) { if (e.persisted) syncOhayoTheme(); });
+    window.addEventListener('storage', function(e) { if (e.key === 'ohayo_theme') syncOhayoTheme(); });
+})();
 </script>
 </body>
 </html>

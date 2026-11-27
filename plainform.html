@@ -275,16 +275,105 @@
   .ohayo-cta-btn { width: 100%; text-align: center; box-sizing: border-box; }
 }
 </style>
+    <link rel="canonical" href="https://ohayocenter.com/plainform.html">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9f43">
+<style id="ohayo-dark-style">
+.ohayo-nav-right { display: flex; align-items: center; gap: 0.9rem; }
+.ohayo-theme-btn {
+    border: 1.5px solid #e2e8f0; background: #fff; color: #2c3e50;
+    width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.92rem; transition: 0.2s; flex-shrink: 0; padding: 0; line-height: 1;
+}
+.ohayo-theme-btn:hover { border-color: #ff9f43; transform: scale(1.06); }
+body.dark-mode .ohayo-theme-btn { background: #1e293b; border-color: #475569; color: #f8fafc; }
+body.dark-mode .ohayo-cta-next { background: #1e293b; border-color: #334155; }
+body.dark-mode .ohayo-cta-kicker { color: #94a3b8; }
+body.dark-mode .ohayo-cta-link { background: #0f172a; border-color: #334155; color: #f8fafc; }
+body.dark-mode .ohayo-cta-link:hover { border-color: #ff9f43; background: rgba(255,159,67,0.16); }
+body.dark-mode .ohayo-cta-name { color: #f8fafc; }
+body.dark-mode .ohayo-cta-lesson { background: rgba(255,159,67,0.14); border-color: #ff9f43; }
+body.dark-mode .ohayo-cta-lesson h3 { color: #f8fafc; }
+body.dark-mode .ohayo-cta-lesson p { color: #cbd5e1; }
+@media (max-width: 600px) {
+    .ohayo-nav-right { gap: 0.5rem; }
+    .ohayo-theme-btn { width: 30px; height: 30px; font-size: 0.82rem; }
+}
+
+body.dark-mode {
+    --bg: #0f172a; --card: #1e293b; --dark: #f8fafc; --text: #e2e8f0; --muted: #94a3b8;
+    --border: #334155; --primary-light: rgba(255,159,67,0.18); --primary-dark: #ffbe76;
+    --green-bg: rgba(22,163,74,0.26); --red-bg: rgba(220,38,38,0.26);
+    --blue-bg: rgba(59,130,246,0.22); --blue: #93c5fd;
+    --purple-bg: rgba(139,92,246,0.24); --purple: #c4b5fd;
+    --star-bg: rgba(245,158,11,0.22);
+    background: var(--bg); color: var(--text);
+}
+body.dark-mode nav { background: rgba(15, 23, 42, 0.96); border-bottom: 1px solid #334155; box-shadow: 0 2px 15px rgba(0,0,0,0.35); }
+body.dark-mode .logo a, body.dark-mode .nav-links a { color: #f8fafc; }
+body.dark-mode .nav-links a:hover { color: var(--primary); }
+body.dark-mode .toggle-pill, body.dark-mode .hint-btn, body.dark-mode .chunk-btn, body.dark-mode .choice-btn,
+body.dark-mode .slot, body.dark-mode .audio-btn, body.dark-mode .chip-btn, body.dark-mode .scratch-toggle {
+    background: #0f172a; border-color: #334155; color: #f8fafc;
+}
+body.dark-mode .toggle-pill.on { border-color: var(--primary); background: rgba(255,159,67,0.22); color: #ffbe76; }
+body.dark-mode .chip-btn.active { border-color: var(--primary); background: var(--primary); color: #fff; }
+body.dark-mode .stat-box, body.dark-mode .sentence-box, body.dark-mode .prompt-box, body.dark-mode .drill-prompt,
+body.dark-mode .fc-box, body.dark-mode .structure-box, body.dark-mode .explain-box, body.dark-mode .rule-box,
+body.dark-mode .form-cell, body.dark-mode .list-item {
+    background: #0f172a; border-color: #334155; color: #f8fafc;
+}
+body.dark-mode .form-cell.hi { border-color: var(--primary); background: rgba(255,159,67,0.18); }
+body.dark-mode .mastery-bar, body.dark-mode .chunk-num, body.dark-mode .choice-num, body.dark-mode .btn-ghost,
+body.dark-mode .hint-text, body.dark-mode .st-unseen {
+    background: #334155; color: #e2e8f0;
+}
+body.dark-mode .btn-ghost:hover { background: #475569; }
+body.dark-mode .tab-btn:hover, body.dark-mode .fc-box:hover { border-color: var(--primary); background: rgba(255,159,67,0.12); }
+body.dark-mode .tab-btn.active { background: rgba(255,159,67,0.2); color: #ffbe76; }
+body.dark-mode .tab-btn.active .tab-sub { color: #fdba74; }
+body.dark-mode .timer-pill { background: rgba(245,158,11,0.24); color: #fde68a; }
+body.dark-mode .sentence-box.correct-border, body.dark-mode .prompt-box.correct-border, body.dark-mode .drill-prompt.correct-border,
+body.dark-mode .feedback.ok { background: rgba(22,163,74,0.2); border-color: #22c55e; }
+body.dark-mode .sentence-box.wrong-border, body.dark-mode .prompt-box.wrong-border, body.dark-mode .drill-prompt.wrong-border,
+body.dark-mode .feedback.ng { background: rgba(220,38,38,0.2); border-color: #ef4444; }
+body.dark-mode .slot.filled { background: rgba(255,159,67,0.22); color: #f8fafc; }
+body.dark-mode .slot.star-slot { color: #fde68a; }
+body.dark-mode .slot.star-slot.filled { background: rgba(245,158,11,0.34); color: #fef3c7; }
+body.dark-mode .chunk-btn:hover:not(:disabled), body.dark-mode .choice-btn:hover:not(:disabled), body.dark-mode .hint-btn:hover {
+    border-color: var(--primary); background: rgba(255,159,67,0.16);
+}
+body.dark-mode .chunk-btn.star-pick:hover:not(:disabled) { border-color: #f59e0b; background: rgba(245,158,11,0.2); }
+body.dark-mode .chunk-btn.chosen-correct, body.dark-mode .choice-btn.is-correct, body.dark-mode .blank-pill.filled-ok {
+    background: rgba(22,163,74,0.3); border-color: #22c55e; color: #bbf7d0;
+}
+body.dark-mode .chunk-btn.chosen-wrong, body.dark-mode .choice-btn.is-wrong, body.dark-mode .blank-pill.filled-ng {
+    background: rgba(220,38,38,0.3); border-color: #ef4444; color: #fecaca;
+}
+body.dark-mode .chip { background: rgba(255,159,67,0.2); border-color: rgba(255,159,67,0.45); color: #ffbe76; }
+body.dark-mode .chip.star { background: rgba(245,158,11,0.25); border-color: #f59e0b; color: #fde68a; }
+body.dark-mode .tip-en, body.dark-mode .rule-box, body.dark-mode .explain-box { color: #e2e8f0; }
+body.dark-mode .trick-en, body.dark-mode .trap-en { background: rgba(59,130,246,0.2); color: #bfdbfe; }
+body.dark-mode .exam-instruction { background: rgba(245,158,11,0.16); border-color: rgba(245,158,11,0.45); color: #fde68a; }
+body.dark-mode .target-badge { border-color: rgba(139,92,246,0.5); }
+body.dark-mode .search-input { background: #0f172a; border-color: #334155; color: #f8fafc; }
+body.dark-mode table.vtable th { background: #0f172a; color: #94a3b8; }
+body.dark-mode table.vtable th, body.dark-mode table.vtable td { border-bottom-color: #334155; }
+body.dark-mode table.vtable tr:hover td { background: rgba(255,159,67,0.1); }
+body.dark-mode .support-section { border-top-color: #334155; }
+body.dark-mode .support-section p { color: #cbd5e1; }
+</style>
 </head>
 <body>
 
 <nav>
     <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
-    <ul class="nav-links">
+    <div class="ohayo-nav-right"><ul class="nav-links">
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
         <li><a href="https://ohayocenter.com/#resources">MATERIAL</a></li>
-    </ul>
+    </ul><button type="button" class="ohayo-theme-btn" id="ohayoThemeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button></div>
 </nav>
 
 <div class="wrap">
@@ -986,6 +1075,33 @@ document.addEventListener('keydown', (e) => {
 loadState();
 updateStats();
 setMode('drill');
+</script>
+<script id="ohayo-theme-sync">
+(function() {
+    function applyOhayoTheme(isDark) {
+        document.body.classList.toggle('dark-mode', isDark);
+        var btn = document.getElementById('ohayoThemeBtn');
+        if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', isDark ? '#0f172a' : '#ff9f43');
+    }
+    function syncOhayoTheme() {
+        var isDark = false;
+        try { isDark = localStorage.getItem('ohayo_theme') === 'dark'; } catch (e) {}
+        applyOhayoTheme(isDark);
+    }
+    syncOhayoTheme();
+    var btn = document.getElementById('ohayoThemeBtn');
+    if (btn) {
+        btn.addEventListener('click', function() {
+            var next = !document.body.classList.contains('dark-mode');
+            applyOhayoTheme(next);
+            try { localStorage.setItem('ohayo_theme', next ? 'dark' : 'light'); } catch (e) {}
+        });
+    }
+    window.addEventListener('pageshow', function(e) { if (e.persisted) syncOhayoTheme(); });
+    window.addEventListener('storage', function(e) { if (e.key === 'ohayo_theme') syncOhayoTheme(); });
+})();
 </script>
 </body>
 </html>

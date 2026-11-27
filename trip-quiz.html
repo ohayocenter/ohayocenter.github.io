@@ -922,6 +922,9 @@
       .ohayo-cta-btn { width: 100%; text-align: center; }
     }
   </style>
+    <link rel="canonical" href="https://ohayocenter.com/trip-quiz.html">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9f43">
 </head>
 <body>
 
@@ -2144,7 +2147,11 @@
           if (Array.isArray(parsed.mistakes)) def.mistakes = parsed.mistakes;
           if (typeof parsed.bestQuiz === 'number') def.bestQuiz = parsed.bestQuiz;
           if (typeof parsed.bestListen === 'number') def.bestListen = parsed.bestListen;
-          return def;
+          try {
+      var sharedTheme = window.localStorage.getItem('ohayo_theme');
+      if (sharedTheme === 'dark' || sharedTheme === 'light') def.dark = (sharedTheme === 'dark');
+    } catch (e) {}
+    return def;
         }
       }
       // Migrate legacy totalBest if present
@@ -2153,6 +2160,10 @@
         var lp = JSON.parse(leg);
         if (lp && typeof lp.totalBest === 'number') def.bestQuiz = lp.totalBest;
       }
+    } catch (e) {}
+    try {
+      var sharedTheme = window.localStorage.getItem('ohayo_theme');
+      if (sharedTheme === 'dark' || sharedTheme === 'light') def.dark = (sharedTheme === 'dark');
     } catch (e) {}
     return def;
   }
@@ -2627,9 +2638,16 @@
   // --- Event Listeners ---
   document.getElementById('themeBtn').onclick = function () {
     state.dark = !state.dark;
+    try { window.localStorage.setItem('ohayo_theme', state.dark ? 'dark' : 'light'); } catch (e) {}
     persist();
     applyTheme();
   };
+  window.addEventListener('storage', function (e) {
+    if (e.key === 'ohayo_theme' && (e.newValue === 'dark' || e.newValue === 'light')) {
+      state.dark = (e.newValue === 'dark');
+      applyTheme();
+    }
+  });
 
   document.querySelectorAll('.mode-tab').forEach(function (btn) {
     btn.onclick = function () {

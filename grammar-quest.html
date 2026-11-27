@@ -1129,6 +1129,9 @@
     .feedback-next { margin-top: 8px !important; }
     .cta-wrap { margin-top: 40px !important; }
   </style>
+    <link rel="canonical" href="https://ohayocenter.com/grammar-quest.html">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9f43">
 </head>
 <body data-theme="light" data-skin="classic">
 
@@ -1944,30 +1947,33 @@
     function loadSaved() {
       try {
         const raw = localStorage.getItem(STORE_KEY);
-        if (!raw) return;
-        const p = JSON.parse(raw);
-        if (p.lang && UI[p.lang]) state.lang = p.lang;
-        if (p.theme) state.theme = p.theme;
-        if (typeof p.furi === 'boolean') state.furi = p.furi;
-        if (typeof p.sfx === 'boolean') state.sfx = p.sfx;
-        if (typeof p.blitzShowTrans === 'boolean') state.blitzShowTrans = p.blitzShowTrans;
-        if (typeof p.xp === 'number') state.xp = p.xp;
-        if (typeof p.totalXp === 'number') state.totalXp = p.totalXp;
-        else state.totalXp = state.xp + ((Array.isArray(p.mastered) ? p.mastered.length : 0) * 15);
-        if (p.activeWeapon) state.activeWeapon = p.activeWeapon;
-        if (p.activeArmor) state.activeArmor = p.activeArmor;
-        if (p.bag && typeof p.bag === 'object') state.bag = Object.assign({ 'item-matcha': 1, 'item-shield': 0, 'item-scroll': 0 }, p.bag);
-        if (typeof p.bestCombo === 'number') state.bestCombo = p.bestCombo;
-        if (p.activeSkin) state.activeSkin = p.activeSkin;
-        if (p.activeAvatar) state.activeAvatar = p.activeAvatar;
-        if (Array.isArray(p.unlocked)) state.unlocked = new Set(p.unlocked);
-        if (Array.isArray(p.pinned)) state.pinned = new Set(p.pinned);
-        if (Array.isArray(p.mastered)) state.mastered = new Set(p.mastered);
-        if (Array.isArray(p.spoken)) state.spoken = new Set(p.spoken);
-        if (Array.isArray(p.weak)) state.weak = new Set(p.weak);
-        if (Array.isArray(p.clearedBlitz)) state.clearedBlitz = new Set(p.clearedBlitz);
-        if (Array.isArray(p.clearedBuild)) state.clearedBuild = new Set(p.clearedBuild);
-        if (p.memos && typeof p.memos === 'object') state.memos = p.memos;
+        if (raw) {
+          const p = JSON.parse(raw);
+          if (p.lang && UI[p.lang]) state.lang = p.lang;
+          if (p.theme) state.theme = p.theme;
+          if (typeof p.furi === 'boolean') state.furi = p.furi;
+          if (typeof p.sfx === 'boolean') state.sfx = p.sfx;
+          if (typeof p.blitzShowTrans === 'boolean') state.blitzShowTrans = p.blitzShowTrans;
+          if (typeof p.xp === 'number') state.xp = p.xp;
+          if (typeof p.totalXp === 'number') state.totalXp = p.totalXp;
+          else state.totalXp = state.xp + ((Array.isArray(p.mastered) ? p.mastered.length : 0) * 15);
+          if (p.activeWeapon) state.activeWeapon = p.activeWeapon;
+          if (p.activeArmor) state.activeArmor = p.activeArmor;
+          if (p.bag && typeof p.bag === 'object') state.bag = Object.assign({ 'item-matcha': 1, 'item-shield': 0, 'item-scroll': 0 }, p.bag);
+          if (typeof p.bestCombo === 'number') state.bestCombo = p.bestCombo;
+          if (p.activeSkin) state.activeSkin = p.activeSkin;
+          if (p.activeAvatar) state.activeAvatar = p.activeAvatar;
+          if (Array.isArray(p.unlocked)) state.unlocked = new Set(p.unlocked);
+          if (Array.isArray(p.pinned)) state.pinned = new Set(p.pinned);
+          if (Array.isArray(p.mastered)) state.mastered = new Set(p.mastered);
+          if (Array.isArray(p.spoken)) state.spoken = new Set(p.spoken);
+          if (Array.isArray(p.weak)) state.weak = new Set(p.weak);
+          if (Array.isArray(p.clearedBlitz)) state.clearedBlitz = new Set(p.clearedBlitz);
+          if (Array.isArray(p.clearedBuild)) state.clearedBuild = new Set(p.clearedBuild);
+          if (p.memos && typeof p.memos === 'object') state.memos = p.memos;
+        }
+        const sharedTheme = localStorage.getItem('ohayo_theme');
+        if (sharedTheme === 'dark' || sharedTheme === 'light') state.theme = sharedTheme;
       } catch (e) {}
     }
     function saveState() {
@@ -2517,7 +2523,8 @@
     // =========================================================================
     // CONTROLS & LANGUAGE SYNC
     // =========================================================================
-    function toggleTheme() { state.theme = state.theme === 'light' ? 'dark' : 'light'; applyVisualPrefs(); saveState(); }
+    function toggleTheme() { state.theme = state.theme === 'light' ? 'dark' : 'light'; try { localStorage.setItem('ohayo_theme', state.theme); } catch (e) {} applyVisualPrefs(); saveState(); }
+    window.addEventListener('storage', (e) => { if (e.key === 'ohayo_theme' && (e.newValue === 'dark' || e.newValue === 'light')) { state.theme = e.newValue; applyVisualPrefs(); } });
     function toggleFuri() { state.furi = !state.furi; applyVisualPrefs(); saveState(); }
     function updateSfxBtn() { document.getElementById('btnSfx').textContent = state.sfx ? `🔔 ${UI[state.lang].sfxLbl}` : '🔕 OFF'; }
     function toggleSfx() { state.sfx = !state.sfx; updateSfxBtn(); saveState(); }
