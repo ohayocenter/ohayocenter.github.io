@@ -1128,6 +1128,73 @@
     .feedback-box { padding: 11px 14px !important; }
     .feedback-next { margin-top: 8px !important; }
     .cta-wrap { margin-top: 40px !important; }
+
+    /* OHAYO Grammar Quest Series Switcher (N4->N3 / JLPT N3 / JLPT N2) */
+    .quest-series-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+    }
+    .series-tab {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 8px 6px;
+      border-radius: 14px;
+      background: var(--r-card);
+      border: 2px solid var(--r-border);
+      border-bottom: 4px solid var(--r-border-deep);
+      color: var(--r-dark);
+      font-weight: 900;
+      text-align: center;
+      transition: transform 0.08s ease, border-color 0.12s ease, background 0.15s ease;
+    }
+    .series-tab:hover { transform: translateY(-1px); border-color: #ff9f43; }
+    .series-tab:active { transform: translateY(2px); border-bottom-width: 2px; }
+    .series-tab-main {
+      font-size: 0.84rem;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .series-tab-sub {
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: var(--r-muted);
+      white-space: nowrap;
+    }
+    .series-tab.is-current {
+      background: linear-gradient(135deg, #ff9f43 0%, #f97316 100%);
+      border-color: #ea580c;
+      border-bottom-color: #c2570a;
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(234, 88, 12, 0.22);
+    }
+    .series-tab.is-current .series-tab-sub { color: rgba(255,255,255,0.9); }
+    .series-tab.is-current-n3 {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+      border-color: #6d28d9;
+      border-bottom-color: #4c1d95;
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(109, 40, 217, 0.22);
+    }
+    .series-tab.is-current-n3 .series-tab-sub { color: rgba(255,255,255,0.9); }
+    .series-tab.is-current-n2 {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      border-color: #1d4ed8;
+      border-bottom-color: #1e3a8a;
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(29, 78, 216, 0.22);
+    }
+    .series-tab.is-current-n2 .series-tab-sub { color: rgba(255,255,255,0.9); }
+    @media (max-width: 600px) {
+      .quest-series-bar { gap: 5px; }
+      .series-tab { padding: 7px 4px; border-radius: 12px; }
+      .series-tab-main { font-size: 0.75rem; }
+      .series-tab-sub { font-size: 0.62rem; }
+    }
   </style>
     <link rel="canonical" href="https://ohayocenter.com/grammar-quest.html">
     <link rel="manifest" href="manifest.json">
@@ -1168,6 +1235,23 @@
           <button id="btnTheme" onclick="toggleTheme()" class="game-btn" aria-label="Toggle dark mode">🌙</button>
         </div>
       </div>
+
+
+      <!-- 🧭 OHAYO GRAMMAR QUEST SERIES SWITCHER (Shared Hero RPG Progress!) -->
+      <nav class="quest-series-bar" aria-label="Grammar Quest Levels">
+        <a href="grammar-quest.html" class="series-tab is-current" data-series-key="ohayo_grammar_quest_v1">
+          <span class="series-tab-main">⚔️ N4→N3</span>
+          <span class="series-tab-sub" data-series-prog="ohayo_grammar_quest_v1">Quest 1 · 45</span>
+        </a>
+        <a href="grammar-quest-n3.html" class="series-tab" data-series-key="ohayo_grammar_quest_n3_v1">
+          <span class="series-tab-main">🏯 JLPT N3</span>
+          <span class="series-tab-sub" data-series-prog="ohayo_grammar_quest_n3_v1">Quest 2 · 45</span>
+        </a>
+        <a href="grammar-quest-n2.html" class="series-tab" data-series-key="ohayo_grammar_quest_n2_v1">
+          <span class="series-tab-main">🐉 JLPT N2</span>
+          <span class="series-tab-sub" data-series-prog="ohayo_grammar_quest_n2_v1">Quest 3 · 45</span>
+        </a>
+      </nav>
 
       <!-- COMPACT RPG HEADER BAR -->
       <section class="rpg-banner">
@@ -1561,7 +1645,7 @@
         ctaTitle: 'Use Your Pinned Deck in a 1-on-1 Trial Lesson!',
         ctaSub: 'Bring your 📌 pinned grammar cards to an OHAYO CENTER lesson and speak with confidence.',
         ctaBtn: '🌸 Book a Trial Lesson →', bmcTxt: '☕ Support OHAYO CENTER on Buy Me a Coffee',
-        resetLink: '↺ Reset Progress', resetConfirm: 'Reset all points, badges, and saved memos?',
+        resetLink: '↺ Reset Progress', resetConfirm: 'Reset this Quest’s stage progress & memos? (Your shared Hero level, points & shop items will stay!)',
         sfxLbl: 'Sound', ownedTag: 'OWNED', activeBtn: '✓ Active (Tap to reset)', equipBtn: 'Equip',
         vocabBtn: '📖 Vocab', vocabTitle: '📖 Stage Vocabulary List', vocabSub: 'Tap any word to hear native pronunciation', vocabHint: '📖 Word Hint',
         shop: {
@@ -1613,7 +1697,7 @@
         ctaTitle: 'Use seu Deck Salvo em uma Aula Experimental 1-a-1!',
         ctaSub: 'Traga seus cartões 📌 salvos para a OHAYO CENTER e fale com naturalidade.',
         ctaBtn: '🌸 Agendar Aula Experimental →', bmcTxt: '☕ Apoie a OHAYO CENTER no Buy Me a Coffee',
-        resetLink: '↺ Resetar Progresso', resetConfirm: 'Apagar todos os pontos, medalhas e anotações?',
+        resetLink: '↺ Resetar Progresso', resetConfirm: 'Resetar o progresso desta Quest e anotações? (Seu nível de Herói, pontos e itens da loja continuam salvos!)',
         sfxLbl: 'Som', ownedTag: 'SEU', activeBtn: '✓ Ativo (Toque p/ resetar)', equipBtn: 'Usar',
         vocabBtn: '📖 Vocabulário', vocabTitle: '📖 Vocabulário da Fase', vocabSub: 'Toque em qualquer palavra para ouvir o áudio nativo', vocabHint: '📖 Dica de Palavras',
         shop: {
@@ -1665,7 +1749,7 @@
         ctaTitle: 'Usa il Tuo Mazzo in una Lezione di Prova 1-a-1!',
         ctaSub: 'Porta le tue schede 📌 salvate in una lezione OHAYO CENTER e parla con sicurezza.',
         ctaBtn: '🌸 Prenota una Lezione di Prova →', bmcTxt: '☕ Supporta OHAYO CENTER su Buy Me a Coffee',
-        resetLink: '↺ Azzera Progressi', resetConfirm: 'Azzerare punti, progressi e appunti salvati?',
+        resetLink: '↺ Azzera Progressi', resetConfirm: 'Azzerare i progressi di questa Quest e gli appunti? (Livello Eroe, punti e oggetti del negozio restano salvati!)',
         sfxLbl: 'Suoni', ownedTag: 'TUO', activeBtn: '✓ Attivo (Tocca x reset)', equipBtn: 'Usa',
         vocabBtn: '📖 Vocabolario', vocabTitle: '📖 Vocabolario del Livello', vocabSub: 'Tocca una parola per ascoltare la pronuncia nativa', vocabHint: '📖 Aiuto Parole',
         shop: {
@@ -1717,7 +1801,7 @@
         ctaTitle: '¡Usa Tu Mazo en una Clase de Prueba 1-a-1!',
         ctaSub: 'Trae tus tarjetas 📌 guardadas a una clase de OHAYO CENTER y habla con confianza.',
         ctaBtn: '🌸 Reservar Clase de Prueba →', bmcTxt: '☕ Apoya a OHAYO CENTER en Buy Me a Coffee',
-        resetLink: '↺ Reiniciar Progreso', resetConfirm: '¿Reiniciar todos los puntos, logros y notas?',
+        resetLink: '↺ Reiniciar Progreso', resetConfirm: '¿Reiniciar el progreso de esta Quest y tus notas? (¡Tu nivel de Héroe, puntos y objetos se conservarán!)',
         sfxLbl: 'Sonido', ownedTag: 'TUYO', activeBtn: '✓ Activo (Toca p/ quitar)', equipBtn: 'Usar',
         vocabBtn: '📖 Vocabulario', vocabTitle: '📖 Vocabulario del Nivel', vocabSub: 'Toca cualquier palabra para oír la pronunciación nativa', vocabHint: '📖 Pista de Palabras',
         shop: {
@@ -1769,7 +1853,7 @@
         ctaTitle: '帶住你留低嘅文法卡，嚟一對一試堂實戰啦！',
         ctaSub: '將你 📌 留低嘅文法帶上 OHAYO CENTER 線上會話堂，講出自信日文。',
         ctaBtn: '🌸 預約一對一試堂 →', bmcTxt: '☕ 用 Buy Me a Coffee 支持 OHAYO CENTER',
-        resetLink: '↺ 重設學習紀錄', resetConfirm: '確定要重設所有積分、成就同備忘？',
+        resetLink: '↺ 重設學習紀錄', resetConfirm: '確定要重設呢個 Quest 嘅關卡進度同備忘？（共用嘅勇者等級、積分同商店道具會保留！）',
         sfxLbl: '音效', ownedTag: '已擁有', activeBtn: '✓ 使用中（撳返變原裝）', equipBtn: '切換使用',
         vocabBtn: '📖 生字表', vocabTitle: '📖 本關生字表', vocabSub: '撳任何一個詞語即可聽真人發音', vocabHint: '📖 詞語提示',
         shop: {
@@ -1924,6 +2008,7 @@
     // STATE + LOCALSTORAGE PERSISTENCE
     // =========================================================================
     const STORE_KEY = 'ohayo_grammar_quest_v1';
+    const HERO_KEY = 'ohayo_gq_hero_v1';
     function defaultState() {
       return {
         lang: 'en', mode: 'learn', stage: 1, theme: 'light', furi: true, sfx: true,
@@ -1944,26 +2029,51 @@
     }
     let state = defaultState();
 
+    function applyHeroFields(h) {
+      if (!h || typeof h !== 'object') return;
+      if (h.lang && UI[h.lang]) state.lang = h.lang;
+      if (typeof h.furi === 'boolean') state.furi = h.furi;
+      if (typeof h.sfx === 'boolean') state.sfx = h.sfx;
+      if (typeof h.blitzShowTrans === 'boolean') state.blitzShowTrans = h.blitzShowTrans;
+      if (typeof h.xp === 'number') state.xp = h.xp;
+      if (typeof h.totalXp === 'number') state.totalXp = h.totalXp;
+      else if (typeof h.xp === 'number') state.totalXp = h.xp + ((Array.isArray(h.mastered) ? h.mastered.length : 0) * 15);
+      if (typeof h.bestCombo === 'number') state.bestCombo = h.bestCombo;
+      if (h.activeSkin) state.activeSkin = h.activeSkin;
+      if (h.activeAvatar) state.activeAvatar = h.activeAvatar;
+      if (h.activeWeapon !== undefined) state.activeWeapon = h.activeWeapon;
+      if (h.activeArmor !== undefined) state.activeArmor = h.activeArmor;
+      if (h.bag && typeof h.bag === 'object') state.bag = Object.assign({ 'item-matcha': 1, 'item-shield': 0, 'item-scroll': 0 }, h.bag);
+      if (Array.isArray(h.unlocked)) state.unlocked = new Set(h.unlocked);
+    }
+
+    function updateSeriesProgressBadges() {
+      const defaults = {
+        ohayo_grammar_quest_v1: 'Quest 1 · 45',
+        ohayo_grammar_quest_n3_v1: 'Quest 2 · 45',
+        ohayo_grammar_quest_n2_v1: 'Quest 3 · 45'
+      };
+      document.querySelectorAll('[data-series-prog]').forEach(el => {
+        const k = el.getAttribute('data-series-prog');
+        try {
+          const raw = localStorage.getItem(k);
+          if (raw) {
+            const d = JSON.parse(raw);
+            const m = Array.isArray(d.mastered) ? d.mastered.length : 0;
+            if (m > 0) { el.textContent = `⭐ ${m} / 45`; return; }
+          }
+        } catch (e) {}
+        el.textContent = defaults[k] || '45 Patterns';
+      });
+    }
+
     function loadSaved() {
       try {
+        // 1. Load per-Quest stage progress
         const raw = localStorage.getItem(STORE_KEY);
         if (raw) {
           const p = JSON.parse(raw);
-          if (p.lang && UI[p.lang]) state.lang = p.lang;
           if (p.theme) state.theme = p.theme;
-          if (typeof p.furi === 'boolean') state.furi = p.furi;
-          if (typeof p.sfx === 'boolean') state.sfx = p.sfx;
-          if (typeof p.blitzShowTrans === 'boolean') state.blitzShowTrans = p.blitzShowTrans;
-          if (typeof p.xp === 'number') state.xp = p.xp;
-          if (typeof p.totalXp === 'number') state.totalXp = p.totalXp;
-          else state.totalXp = state.xp + ((Array.isArray(p.mastered) ? p.mastered.length : 0) * 15);
-          if (p.activeWeapon) state.activeWeapon = p.activeWeapon;
-          if (p.activeArmor) state.activeArmor = p.activeArmor;
-          if (p.bag && typeof p.bag === 'object') state.bag = Object.assign({ 'item-matcha': 1, 'item-shield': 0, 'item-scroll': 0 }, p.bag);
-          if (typeof p.bestCombo === 'number') state.bestCombo = p.bestCombo;
-          if (p.activeSkin) state.activeSkin = p.activeSkin;
-          if (p.activeAvatar) state.activeAvatar = p.activeAvatar;
-          if (Array.isArray(p.unlocked)) state.unlocked = new Set(p.unlocked);
           if (Array.isArray(p.pinned)) state.pinned = new Set(p.pinned);
           if (Array.isArray(p.mastered)) state.mastered = new Set(p.mastered);
           if (Array.isArray(p.spoken)) state.spoken = new Set(p.spoken);
@@ -1972,29 +2082,55 @@
           if (Array.isArray(p.clearedBuild)) state.clearedBuild = new Set(p.clearedBuild);
           if (p.memos && typeof p.memos === 'object') state.memos = p.memos;
         }
+        // 2. Load shared Hero RPG state (or migrate seamlessly from Quest 1!)
+        const heroRaw = localStorage.getItem(HERO_KEY);
+        if (heroRaw) {
+          applyHeroFields(JSON.parse(heroRaw));
+        } else {
+          const legacyRaw = localStorage.getItem('ohayo_grammar_quest_v1');
+          if (legacyRaw) {
+            applyHeroFields(JSON.parse(legacyRaw));
+            saveHeroState();
+          }
+        }
         const sharedTheme = localStorage.getItem('ohayo_theme');
         if (sharedTheme === 'dark' || sharedTheme === 'light') state.theme = sharedTheme;
       } catch (e) {}
+      updateSeriesProgressBadges();
     }
-    function saveState() {
+
+    function saveHeroState() {
       try {
-        localStorage.setItem(STORE_KEY, JSON.stringify({
-          lang: state.lang, theme: state.theme, furi: state.furi, sfx: state.sfx,
+        localStorage.setItem(HERO_KEY, JSON.stringify({
+          lang: state.lang, furi: state.furi, sfx: state.sfx,
           blitzShowTrans: state.blitzShowTrans,
           xp: state.xp, totalXp: state.totalXp, bestCombo: state.bestCombo,
           activeSkin: state.activeSkin, activeAvatar: state.activeAvatar,
-          activeWeapon: state.activeWeapon, activeArmor: state.activeArmor, bag: state.bag,
-          unlocked: [...state.unlocked], pinned: [...state.pinned], mastered: [...state.mastered],
+          activeWeapon: state.activeWeapon, activeArmor: state.activeArmor,
+          bag: state.bag, unlocked: [...state.unlocked]
+        }));
+      } catch (e) {}
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORE_KEY, JSON.stringify({
+          theme: state.theme,
+          pinned: [...state.pinned], mastered: [...state.mastered],
           spoken: [...state.spoken], weak: [...state.weak],
           clearedBlitz: [...state.clearedBlitz], clearedBuild: [...state.clearedBuild], memos: state.memos
         }));
       } catch (e) {}
+      saveHeroState();
+      updateSeriesProgressBadges();
     }
+
     function confirmResetProgress() {
       if (!window.confirm(UI[state.lang].resetConfirm)) return;
       try { localStorage.removeItem(STORE_KEY); } catch (e) {}
       const keepLang = state.lang;
       state = defaultState();
+      loadSaved();
       state.lang = keepLang;
       applyVisualPrefs();
       setLang(keepLang);
@@ -2524,7 +2660,7 @@
     // CONTROLS & LANGUAGE SYNC
     // =========================================================================
     function toggleTheme() { state.theme = state.theme === 'light' ? 'dark' : 'light'; try { localStorage.setItem('ohayo_theme', state.theme); } catch (e) {} applyVisualPrefs(); saveState(); }
-    window.addEventListener('storage', (e) => { if (e.key === 'ohayo_theme' && (e.newValue === 'dark' || e.newValue === 'light')) { state.theme = e.newValue; applyVisualPrefs(); } });
+    window.addEventListener('storage', (e) => { if (e.key === 'ohayo_theme' && (e.newValue === 'dark' || e.newValue === 'light')) { state.theme = e.newValue; applyVisualPrefs(); } if (e.key === HERO_KEY) { loadSaved(); applyVisualPrefs(); updateHud(); renderShop(); } });
     function toggleFuri() { state.furi = !state.furi; applyVisualPrefs(); saveState(); }
     function updateSfxBtn() { document.getElementById('btnSfx').textContent = state.sfx ? `🔔 ${UI[state.lang].sfxLbl}` : '🔕 OFF'; }
     function toggleSfx() { state.sfx = !state.sfx; updateSfxBtn(); saveState(); }
