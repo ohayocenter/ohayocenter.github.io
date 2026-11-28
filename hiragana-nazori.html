@@ -946,11 +946,24 @@ body.dark-mode .ohayo-cta-lesson p { color: #e2e8f0; }
     <link rel="canonical" href="https://ohayocenter.com/hiragana-nazori.html">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff9f43">
+<style id="ohayo-logo-icon-style">
+.logo a, .site-logo a { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.ohayo-nav-icon { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid #ff9f43; flex-shrink: 0; display: block; }
+@media (max-width: 600px) {
+  .logo a, .site-logo a { gap: 6px; }
+  .ohayo-nav-icon { width: 24px; height: 24px; }
+}
+@media (max-width: 420px) {
+  .logo, .site-logo { font-size: 0.92rem !important; }
+  .logo a, .site-logo a { gap: 5px; }
+  .ohayo-nav-icon { width: 22px; height: 22px; }
+}
+</style>
 </head>
 <body>
 
 <nav>
-    <div class="logo"><a href="https://ohayocenter.com/">OHAYO CENTER</a></div>
+    <div class="logo"><a href="https://ohayocenter.com/"><img class="ohayo-nav-icon" src="icon.png" alt=""><span>OHAYO CENTER</span></a></div>
     <ul class="nav-links">
         <li><a href="https://ohayocenter.com/#lessons">LESSONS</a></li>
         <li><a href="https://ohayocenter.com/#profile">PROFILE</a></li>
